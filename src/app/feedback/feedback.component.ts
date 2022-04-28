@@ -10,7 +10,7 @@ import { FeedbackService, Feedback } from '../services/feedback.service';
 export class FeedbackComponent implements OnInit {
 
  
-  feedback:Feedback = {FeedbackCategory: "", Text: "", Date: "", Resolved: false, Img:"", Username:""};
+  feedback:Feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
  
   public get feedbacks(): Feedback[]{
     return this._feedbacks;
@@ -23,7 +23,7 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.feedbackService.getFeedbacks().subscribe(data => {
-      
+      console.log(data);
       this._feedbacks = data;
     });
   }
@@ -33,7 +33,7 @@ export class FeedbackComponent implements OnInit {
       this._feedbacks.push(data);
 
     });
-    this.feedback = {FeedbackCategory: "", Text: "", Date: "", Resolved: false, Img:"", Username:""};
+    this.feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
 
   }
 

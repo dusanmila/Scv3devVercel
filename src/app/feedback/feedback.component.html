@@ -3,7 +3,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>#</th>
+        
           <th>Category</th>
           <th>Text</th>
           <th>Date</th>
@@ -15,12 +15,12 @@
       <tbody>
         <tr *ngFor="let feedback of feedbacks">
   
-          <td> {{ feedback.FeedbackCategory }}</td>
-          <td> {{ feedback.Text }}</td>
-          <td> {{ feedback.Date }}</td>
-          <td> {{ feedback.Resolved }}</td>
-          <td> {{ feedback.Img }}</td>
-          <td> {{ feedback.Username }}</td>
+          <td> {{ feedback.feedbackCategoryName }}</td>
+          <td> {{ feedback.text }}</td>
+          <td> {{ feedback.date }}</td>
+          <td> {{ feedback.resolved }}</td>
+          <td> {{ feedback.img }}</td>
+          <td> {{ feedback.username }}</td>
          
         </tr>
       </tbody>

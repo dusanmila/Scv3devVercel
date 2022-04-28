@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
 
 export interface Feedback {
-  FeedbackCategory: string
-  Text: string  
-  Date: string
-  Resolved: boolean
-  Img: string
-  Username:string
+  feedbackCategoryName: string
+  text: string  
+  date: string
+  resolved: boolean
+  img: string
+  username:string
 }
 
 
@@ -21,11 +21,14 @@ export class FeedbackService {
 
   private readonly adress ="http://localhost:8083/feedback";
 
+   
+ 
+
   public getFeedbacks(): Observable<Feedback[]>{ 
 
     let retval$ = new Subject<Feedback[]>();
-  
-    this.http.get<Feedback[]>(`${this.adress}/feedbacks`).subscribe((clients: Feedback[]) => {
+
+    this.http.get<Feedback[]>(`${this.adress}/feedbacks`,{headers:new HttpHeaders({'token':'*'})}).subscribe((clients: Feedback[]) => {
 
       retval$.next(clients)
 
