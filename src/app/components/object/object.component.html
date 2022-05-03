@@ -1,3 +1,54 @@
+<form>
+  <label for="fname">objectIdRetail:</label><br>
+  <input type="text" id="objectIdRetail" name="objectIdRetail" [(ngModel)]="object.objectIdRetail"><br>
+  <label for="lname">objectIdCompany:</label><br>
+  <input type="text" id="objectIdCompany" name="objectIdCompany" [(ngModel)]="object.objectIdCompany"><br>
+  <label for="lname">retailer:</label><br>
+  <input type="text" id="retailer" name="retailer" [(ngModel)]="object.retailer"><br>
+  <label for="lname">objectFormat:</label><br>
+  <input type="text" id="objectFormat" name="objectFormat" [(ngModel)]="object.objectFormat"><br>
+  <label for="fname">objectName:</label><br>
+  <input type="text" id="objectName" name="objectName" [(ngModel)]="object.objectName"><br>
+  <label for="lname">address:</label><br>
+  <input type="text" id="address" name="address" [(ngModel)]="object.address"><br>
+  <label for="lname">kam:</label><br>
+  <input type="text" id="kam" name="kam" [(ngModel)]="object.kam"><br>
+  <label for="lname">director:</label><br>
+  <input type="text" id="director" name="director" [(ngModel)]="object.director"><br>
+  <label for="lname">supervisor:</label><br>
+  <input type="text" id="supervisor" name="supervisor" [(ngModel)]="object.supervisor"><br>
+  <label for="lname">commercialist:</label><br>
+  <input type="text" id="commercialist" name="commercialist" [(ngModel)]="object.commercialist"><br>
+  <label for="lname">merchandiser:</label><br>
+  <input type="text" id="merchandiser" name="merchandiser" [(ngModel)]="object.merchandiser"><br>
+  <label for="lname">requisitionDays:</label><br>
+  <input type="text" id="requisitionDays" name="requisitionDays" [(ngModel)]="object.requisitionDays"><br>
+  <label for="fname">merchandiserRevisionDays:</label><br>
+  <input type="text" id="merchandiserRevisionDays" name="merchandiserRevisionDays" [(ngModel)]="object.merchandiserRevisionDays"><br>
+  <label for="lname">assortmentModule:</label><br>
+  <input type="text" id="assortmentModule" name="assortmentModule" [(ngModel)]="object.objectInfo.assortmentModule"><br>
+  <label for="lname">gainings12Mrsd:</label><br>
+  <input type="text" id="gainings12Mrsd" name="gainings12Mrsd" [(ngModel)]="object.objectInfo.gainings12Mrsd"><br>
+  <label for="fname">wdpercentSerbia:</label><br>
+  <input type="text" id="wdpercentSerbia" name="wdpercentSerbia" [(ngModel)]="object.objectInfo.wdpercentSerbia"><br>
+  <label for="lname">wdpercentSector:</label><br>
+  <input type="text" id="wdpercentSector" name="wdpercentSector" [(ngModel)]="object.objectInfo.wdpercentSector"><br>
+  <label for="lname">wdpercentCustomer:</label><br>
+  <input type="text" id="wdpercentCustomer" name="wdpercentCustomer" [(ngModel)]="object.objectInfo.wdpercentCustomer"><br>
+  <label for="fname">gainingsVs12mpercent:</label><br>
+  <input type="text" id="gainingsVs12mpercent" name="gainingsVs12mpercent" [(ngModel)]="object.objectInfo.gainingsVs12mpercent"><br>
+  <label for="lname">registersNumber:</label><br>
+  <input type="text" id="registersNumber" name="registersNumber" [(ngModel)]="object.objectInfo.registersNumber"><br>
+  <label for="lname">shelfSpaceM:</label><br>
+  <input type="text" id="shelfSpaceM" name="shelfSpaceM" [(ngModel)]="object.objectInfo.shelfSpaceM"><br>
+  <label for="lname">companyShelfSpaceM:</label><br>
+  <input type="text" id="companyShelfSpaceM" name="companyShelfSpaceM" [(ngModel)]="object.objectInfo.companyShelfSpaceM"><br>
+  <label for="lname">companyShelfSpacePercent:</label><br>
+  <input type="text" id="companyShelfSpacePercent" name="companyShelfSpacePercent" [(ngModel)]="object.objectInfo.companyShelfSpacePercent"><br>
+</form>
+
+<button (click)="createObject()">Create object</button>
+
 <table class="table table-hover">
     <thead>
       <tr>
