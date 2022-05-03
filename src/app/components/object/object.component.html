@@ -4,7 +4,7 @@
   <label for="lname">objectIdCompany:</label><br>
   <input type="text" id="objectIdCompany" name="objectIdCompany" [(ngModel)]="object.objectIdCompany"><br>
   <label for="lname">retailer:</label><br>
-  <input type="text" id="retailer" name="retailer" [(ngModel)]="object.retailer"><br>
+  <input type="text" id="retailer" name="retailer" [(ngModel)]="object.retailer.retailerName"><br>
   <label for="lname">objectFormat:</label><br>
   <input type="text" id="objectFormat" name="objectFormat" [(ngModel)]="object.objectFormat"><br>
   <label for="fname">objectName:</label><br>
@@ -12,15 +12,15 @@
   <label for="lname">address:</label><br>
   <input type="text" id="address" name="address" [(ngModel)]="object.address"><br>
   <label for="lname">kam:</label><br>
-  <input type="text" id="kam" name="kam" [(ngModel)]="object.kam"><br>
+  <input type="text" id="kam" name="kam" [(ngModel)]="object.kam.username"><br>
   <label for="lname">director:</label><br>
-  <input type="text" id="director" name="director" [(ngModel)]="object.director"><br>
+  <input type="text" id="director" name="director" [(ngModel)]="object.director.username"><br>
   <label for="lname">supervisor:</label><br>
-  <input type="text" id="supervisor" name="supervisor" [(ngModel)]="object.supervisor"><br>
+  <input type="text" id="supervisor" name="supervisor" [(ngModel)]="object.supervisor.username"><br>
   <label for="lname">commercialist:</label><br>
-  <input type="text" id="commercialist" name="commercialist" [(ngModel)]="object.commercialist"><br>
+  <input type="text" id="commercialist" name="commercialist" [(ngModel)]="object.commercialist.username"><br>
   <label for="lname">merchandiser:</label><br>
-  <input type="text" id="merchandiser" name="merchandiser" [(ngModel)]="object.merchandiser"><br>
+  <input type="text" id="merchandiser" name="merchandiser" [(ngModel)]="object.merchandiser.username"><br>
   <label for="lname">requisitionDays:</label><br>
   <input type="text" id="requisitionDays" name="requisitionDays" [(ngModel)]="object.requisitionDays"><br>
   <label for="fname">merchandiserRevisionDays:</label><br>
@@ -48,6 +48,7 @@
 </form>
 
 <button (click)="createObject()">Create object</button>
+<button (click)="updateObject()">Update object</button>
 
 <table class="table table-hover">
     <thead>
@@ -91,6 +92,7 @@
         <td> {{ object.objectInfo.shelfSpaceM }}</td>
         <td> {{ object.objectInfo.companyShelfSpaceM }}</td>
         <td> {{ object.objectInfo.companyShelfSpacePercent }}</td>
+        <button (click)="selectObject(object)"> Show details</button>
       </tr>
     </tbody>
   </table>

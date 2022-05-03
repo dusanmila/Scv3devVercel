@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ObjectService } from 'src/app/services/object.service';
+import { ObjectCreateDto, ObjectService } from 'src/app/services/object.service';
 import { Obj } from 'src/app/services/object.service';
 
 @Component({
@@ -13,7 +13,10 @@ export class ObjectComponent implements OnInit {
   public object: Obj = {
     objectIdRetail: "string",
     objectIdCompany: "string",
-    retailer: "string",
+    retailer: {
+      "retailerName": "",
+      "planogramPdf": ""
+    },
     objectFormat: "string",
     objectName: "string",
     city: "string",
@@ -71,10 +74,11 @@ export class ObjectComponent implements OnInit {
   constructor(public objectService: ObjectService) { }
 
   ngOnInit(): void {
-    // this.objectService.getObjects().subscribe(data => {
-    //   this._objects = data;
-    //   console.log(this._objects);
-    // });
+    console.log('a')
+    this.objectService.getObjects().subscribe(data => {
+      this._objects = data;
+      console.log(this._objects);
+    });
 
     // this.objectService.getObjectsByString('ste').subscribe(data => {
     //   this._objects = data;
@@ -87,9 +91,22 @@ export class ObjectComponent implements OnInit {
     // });
   }
 
+  public selectObject(object: Obj){
+    this.object=object;
+    this.objectService.getOneObject(this.object).subscribe(data => {
+      console.log(data);
+    });
+  }
+
   public createObject() {
     console.log(this.object);
     this.objectService.createObject(this.object).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  public updateObject() {
+    this.objectService.updateObject(this.object).subscribe(data => {
       console.log(data);
     });
   }

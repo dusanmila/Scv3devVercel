@@ -10,10 +10,15 @@ export interface User {
   email: string;
 }
 
+export interface Retailer {
+  retailerName: string;
+  planogramPdf: string;
+}
+
 export interface Obj {
   objectIdRetail: string;
   objectIdCompany: string;
-  retailer: string;
+  retailer: Retailer;
   objectFormat: string;
   objectName: string;
   city: string;
@@ -23,6 +28,24 @@ export interface Obj {
   supervisor: User;
   commercialist: User;
   merchandiser: User;
+  requisitionDays: string;
+  merchandiserRevisionDays: string;
+  objectInfo: ObjectInfo;
+}
+
+export interface ObjectCreateDto {
+  objectIdRetail: string;
+  objectIdCompany: string;
+  retailer: string;
+  objectFormat: string;
+  objectName: string;
+  city: string;
+  address: string;
+  kam: string;
+  director: string;
+  supervisor: string;
+  commercialist: string;
+  merchandiser: string;
   requisitionDays: string;
   merchandiserRevisionDays: string;
   objectInfo: ObjectInfo;
@@ -39,6 +62,7 @@ export class ObjectService {
   private readonly address = "http://localhost:8089/api/objects";
 
   public getObjects(): Observable<Obj[]> {
+    console.log('b')
     let retval$ = new Subject<Obj[]>();
     this.http.get<Obj[]>(this.address).subscribe((objects: Obj[]) => {
       retval$.next(objects);
@@ -62,9 +86,17 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public getOneObject(object: Obj): Observable<Obj> {
+    let retval$ = new Subject<Obj>();
+    this.http.get<Obj>(`${this.address}/objectByObjectName/${object.objectName}`).subscribe((objects: Obj) => {
+      retval$.next(objects);
+    });
+    return retval$.asObservable();
+  }
+
   public createObject(object: Obj): Observable<Obj> {
     let retval$ = new Subject<Obj>();
-    this.http.post<Obj>(this.address, object).subscribe((helper: Obj) => {
+    this.http.post<Obj>(this.address, {objectIdRetail: object.objectIdRetail, retailer: object.retailer.retailerName, objectIdCompany: object.objectIdCompany, objectFormat: object.objectFormat, objectName: object.objectName, city: object.city, address: object.address, kam: object.kam.username, director: object.director.username, supervisor: object.supervisor.username, commercialist: object.commercialist.username, merchandiser: object.merchandiser.username, requisitionDays: object.requisitionDays, merchandiserRevisionDays: object.merchandiserRevisionDays, objectInfo: object.objectInfo}).subscribe((helper: Obj) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -72,7 +104,7 @@ export class ObjectService {
 
   public updateObject(object: Obj): Observable<Obj> {
     let retval$ = new Subject<Obj>();
-    this.http.put<Obj>(this.address, object).subscribe((helper: Obj) => {
+    this.http.put<Obj>(this.address, {objectIdRetail: object.objectIdRetail, retailer: object.retailer.retailerName, objectIdCompany: object.objectIdCompany, objectFormat: object.objectFormat, objectName: object.objectName, city: object.city, address: object.address, kam: object.kam.username, director: object.director.username, supervisor: object.supervisor.username, commercialist: object.commercialist.username, merchandiser: object.merchandiser.username, requisitionDays: object.requisitionDays, merchandiserRevisionDays: object.merchandiserRevisionDays, objectInfo: object.objectInfo}).subscribe((helper: Obj) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
