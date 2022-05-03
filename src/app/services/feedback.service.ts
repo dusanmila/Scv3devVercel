@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
+import { Feedback } from '../models/feedback.model';
 
-export interface Feedback {
-  feedbackCategoryName: string
-  text: string  
-  date: string
-  resolved: boolean
-  img: string
-  username:string
-}
+
 
 
 @Injectable({

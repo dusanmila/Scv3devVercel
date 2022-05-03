@@ -2,14 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
-
-export interface User {
-  firstName: string
-  lastName: string  
-  username: string
-  email: boolean
-  userType: string
-}
+import { User } from '../models/user.model';
 
 
 @Injectable({
@@ -19,7 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly adress ="http://localhost:8083/feedback";
+  private readonly adress ="http://localhost:8083/user";
   private readonly userAdress ="http://localhost:8086/api";
 
 

@@ -2,7 +2,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { FeedbackService, Feedback } from '../services/feedback.service';
+import { FeedbackService } from '../services/feedback.service';
+import { Feedback } from '../models/feedback.model';
 
 @Component({
   selector: 'app-feedback',
