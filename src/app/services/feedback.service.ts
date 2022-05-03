@@ -20,17 +20,17 @@ export class FeedbackService {
   constructor(private http: HttpClient) { }
 
   private readonly adress ="http://localhost:8083/feedback";
+  private readonly feedbackAdress ="http://localhost:8088/api";
 
-   
- 
+
 
   public getFeedbacks(): Observable<Feedback[]>{ 
 
     let retval$ = new Subject<Feedback[]>();
 
-    this.http.get<Feedback[]>(`${this.adress}/feedbacks`,{headers:new HttpHeaders({'token':'*'})}).subscribe((clients: Feedback[]) => {
+    this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks`,{headers:new HttpHeaders({'token':'*'})}).subscribe((feedbacks: Feedback[]) => {
 
-      retval$.next(clients)
+      retval$.next(feedbacks)
 
     });
    
@@ -42,9 +42,9 @@ export class FeedbackService {
 
     let retval$ = new Subject<Feedback[]>();
   
-    this.http.get<Feedback[]>(`${this.adress}/feedbacks/unresolvedFeedbacks`).subscribe((clients: Feedback[]) => {
+    this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
 
-      retval$.next(clients)
+      retval$.next(feedbacks)
 
     });
    
@@ -55,7 +55,7 @@ export class FeedbackService {
    
     let retval$ = new Subject<Feedback>();
 
-    this.http.post<Feedback>(`${this.adress}/feedbacks`, feedback).subscribe((helper: Feedback) => {
+    this.http.post<Feedback>(`${this.feedbackAdress}/feedbacks`, feedback).subscribe((helper: Feedback) => {
 
       retval$.next(helper)
     
@@ -69,7 +69,7 @@ export class FeedbackService {
     
     let retval$ = new Subject<Feedback>();
     
-    this.http.put<Feedback>(`${this.adress}/feedbacks`, feedback).subscribe((helper: Feedback) => {
+    this.http.put<Feedback>(`${this.feedbackAdress}/feedbacks/${feedback.img}`,feedback).subscribe((helper: Feedback) => {
 
       retval$.next(helper)
     
@@ -80,6 +80,18 @@ export class FeedbackService {
 
   }
 
+  public getOneFeedback(feedback:Feedback):Observable<Feedback>{
+    
+    let retval$ = new Subject<Feedback>();
+   
+      this.http.get<Feedback>(`${this.feedbackAdress}/feedbacks/getOneFeedback/${feedback.img}`).subscribe((helper: Feedback) => {
+        retval$.next(helper)
+    
+    });
+
+    return retval$.asObservable();
+    
+  }
 
 
 
