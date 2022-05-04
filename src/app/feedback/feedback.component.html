@@ -1,0 +1,111 @@
+<h1>List of all feedbacks</h1>
+<div class="container" style="margin-top: 70px;">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+        
+          <th>Category</th>
+          <th>Text</th>
+          <th>Date</th>
+          <th>Resolved</th>
+          <th>Img</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of feedbacks">
+  
+          <td> {{ feedback.feedbackCategoryName }}</td>
+          <td> {{ feedback.text }}</td>
+          <td> {{ feedback.date }}</td>
+          <td> {{ feedback.resolved }}</td>
+          <td> {{ feedback.img }}</td>
+          <td> {{ feedback.username }}</td>
+         
+
+          <td>
+            
+            <button class="btn btn-primary" (click)="selectFeedback(feedback)"> Show details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+
+<div class="card text-center" *ngIf="selectedFeedback">
+  <div class="card-header">
+    # {{selectedFeedback.img}}
+  </div>
+  <div class="card-block">
+    <h4 class="card-title">{{selectedFeedback.img}}</h4>
+    <p class="card-text">
+      {{selectedFeedback.text}}
+    </p>    
+  </div>
+
+</div>
+
+<!--<button class="btn btn-primary" *ngIf="selectedFeedback" (click)="deleteFeedback()"> Delete product</button>-->
+
+<!--<div class="container" style="margin-top: 70px;" *ngIf="isadmin|async">-->
+
+<div class="row">
+
+<div class="col-sm-8 offset-sm-2">
+
+  <div>
+    <form>
+      <div class="form-group">
+        
+
+        <label for="feedbackCategoryName">Feedback category</label>
+        <input [(ngModel)]="feedback.feedbackCategoryName" type="text" name="feedbackCategoryName" class="form-control" id="feedbackCategoryName" aria-describedby="feedbackCategoryNameHelp" placeholder="Enter category">
+        <small id="feedbackCategoryNameHelp" class="form-text text-muted">Enter category of a feedback</small>
+
+        <label for="text">Feedbacktext</label>
+        <input [(ngModel)]="feedback.text" type="text" name="text" class="form-control" id="text" aria-describedby="textHelp"
+          placeholder="Enter text">
+        <small id="textHelp" class="form-text text-muted">Enter feedback text</small>
+
+        <label for="date">Feedback date</label>
+        <input [(ngModel)]="feedback.date" type="text" name="date" class="form-control" id="date" aria-describedby="dateHelp"  placeholder="Enter your date">      
+        <small id="dateHelp" class="form-text text-muted">Enter feedback date</small>
+
+        <!--resolved fali ovde-->
+
+        <!--ovde ide za username a lto treba iz tokena-->
+
+        <!--slika dodavanje il prikaz sta vec-->
+
+      </div>
+    </form>
+    <button class="btn btn-primary" (click)="createFeedback()">Create feedback</button>
+    <button id="editBtn" class="btn btn-primary" (click)="editFeedback(feedback)">Edit feedback</button>
+  </div>
+</div>
+</div>
+<!--</div>-->
+
+
+<div *ngIf="isCameraExist; else noCameraExist">
+  <div style="text-align:center">
+      <div class="btn-group">
+          <button class="button" (click)="takeSnapshot()">Take Picture</button>
+          <button class="button" (click)="changeWebCame(true)">Toggle Camera</button>
+          <button class="button" (click)="onOffWebCame()">Switch camera</button>
+      </div> <br />
+      <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+          *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
+  </div>
+
+  <div *ngIf="errors.length > 0">
+      <h4>Error Messages:</h4>
+      <ul *ngFor="let error of errors">
+          <li>{{ error | json }}</li>
+      </ul>
+  </div>
+</div>
+
+<ng-template #noCameraExist>
+  Camera device not available
+</ng-template>
