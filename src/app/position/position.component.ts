@@ -23,6 +23,7 @@ export class PositionComponent implements OnInit {
   }
 
   createPosition(){
+    console.log(this.position.objectName);
     this.positionService.createPosition(this.position).subscribe(data => {
       this._positions.push(data);
 
