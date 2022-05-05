@@ -14,9 +14,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FeedbackComponent implements OnInit {
 
-
+  
   form: FormGroup;
 
+  webcamImage!: WebcamImage;
 
   @Output() getPicture = new EventEmitter<WebcamImage>();
 
@@ -78,6 +79,7 @@ export class FeedbackComponent implements OnInit {
   submitForm() {
     var formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
+    //formData.append('file',this.webcamImage);
     formData.append('FeedbackCategoryName', this.form.get('FeedbackCategoryName')!.value);
     formData.append('text', this.form.get('text')!.value);
     formData.append('username', this.form.get('username')!.value);
@@ -86,7 +88,8 @@ export class FeedbackComponent implements OnInit {
       .post('http://localhost:8088/api/feedbacks', formData)
       .subscribe({
         next: (response) => console.log(response),
-        error: (error) => console.log(error),
+        error: (error) => console.log(error)
+
       });
   }
 
@@ -139,8 +142,11 @@ export class FeedbackComponent implements OnInit {
   handleImage(webcamImage: WebcamImage) {
     this.getPicture.emit(webcamImage);
     console.log(webcamImage);
+    this.webcamImage=webcamImage;
     this.showWebcam = false;
   }
+ 
+  
 
   get triggerObservable(): Observable<void> {
     return this.trigger.asObservable();
