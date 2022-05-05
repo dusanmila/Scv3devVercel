@@ -1,19 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { PositionComponent } from './position/position.component';
-import { FormsModule } from '@angular/forms';
 
 import { ObjectComponent } from './components/object/object.component';
-
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { FeedbackComponent } from './feedback/feedback.component';
 
 import { WebcamModule } from 'ngx-webcam';
@@ -21,6 +16,8 @@ import { WebcamModule } from 'ngx-webcam';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
+import { StoreCheckPageComponent } from './store-check-page/store-check-page.component';
+import { StoreCheckComponent } from './components/store-check/store-check.component';
 
 @NgModule({
   declarations: [
@@ -29,15 +26,17 @@ import { LoginComponent } from './login/login.component';
     ObjectComponent,
     FeedbackComponent,
     UserComponent,
-    LoginComponent
+    LoginComponent,
+    StoreCheckPageComponent,
+    StoreCheckComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
     BrowserAnimationsModule,
-    WebcamModule
+    WebcamModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
