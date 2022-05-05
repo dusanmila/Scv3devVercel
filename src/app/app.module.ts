@@ -1,12 +1,16 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 
-
-import { HttpClientModule } from '@angular/common/http';
+import { PositionComponent } from './position/position.component';
 import { FormsModule } from '@angular/forms';
+
+import { ObjectComponent } from './components/object/object.component';
+
 import { FeedbackComponent } from './feedback/feedback.component';
 
 import { WebcamModule } from 'ngx-webcam';
@@ -19,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    PositionComponent,
+    ObjectComponent,
     FeedbackComponent,
     UserComponent,
     LoginComponent
