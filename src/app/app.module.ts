@@ -14,6 +14,7 @@ import { WebcamModule } from 'ngx-webcam';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    WebcamModule
+    WebcamModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
