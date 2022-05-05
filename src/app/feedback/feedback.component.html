@@ -55,9 +55,6 @@
     <form [formGroup]="form" (ngSubmit)="submitForm()">
         
         <input type="file" (change)="uploadFile($event)" accept="image/*;capture=camera">
-
-
-       
         <input placeholder="FeedbackCategoryName" formControlName="FeedbackCategoryName">
         <input placeholder="text" formControlName="text">
         <input placeholder="date" formControlName="date">

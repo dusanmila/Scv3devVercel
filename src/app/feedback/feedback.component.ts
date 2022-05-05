@@ -79,7 +79,7 @@ export class FeedbackComponent implements OnInit {
   submitForm() {
     var formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
-    //formData.append('file',this.webcamImage);
+  
     formData.append('FeedbackCategoryName', this.form.get('FeedbackCategoryName')!.value);
     formData.append('text', this.form.get('text')!.value);
     formData.append('username', this.form.get('username')!.value);
@@ -92,6 +92,7 @@ export class FeedbackComponent implements OnInit {
 
       });
   }
+
 
 
   createFeedback(){
@@ -109,6 +110,7 @@ export class FeedbackComponent implements OnInit {
       this.selectedFeedback=data;
     }) ;
     this.feedback=feedback;
+    
    }
 
 
