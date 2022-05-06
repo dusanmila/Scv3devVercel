@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ObjectInfo } from '../services/object-info.service';
+import { ObjectInfo } from 'src/app/services/object-info.service';
 import { saveAs } from 'file-saver';
 
 export interface User {
