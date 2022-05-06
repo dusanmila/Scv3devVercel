@@ -1,9 +1,8 @@
 
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { FeedbackService } from '../Services/feedback.service';
-import { Feedback } from '../models/feedback.model';
+import { FeedbackService } from '../../services/feedback.service';
+import { Feedback } from '../../models/feedback.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -16,6 +15,7 @@ export class FeedbackComponent implements OnInit {
 
 
   form: FormGroup;
+
 
   feedback:Feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
 

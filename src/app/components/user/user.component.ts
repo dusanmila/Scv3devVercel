@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
-import { UserService } from '../Services/user.service';
+import { UserService } from '../../services/user.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { User } from '../models/user.model';
+import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-user',

@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Obj } from './object.service';
-import { StoreCheck } from './store-check.service';
+import { Obj } from 'src/app/services/object.service';
+import { StoreCheck } from 'src/app/services/store-check.service';
+
+
+
 
 export interface ObjectStoreCheck {
   storeCheck: StoreCheck;

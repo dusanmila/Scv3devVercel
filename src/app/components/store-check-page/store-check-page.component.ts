@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ObjectStoreCheck, ObjectStoreCheckCreateDto, ObjectStoreCheckService } from '../Services/object-store-check.service';
-import { Obj, ObjectService } from '../Services/object.service';
-import { Position, PositionService } from '../Services/PositionService/position-service.service';
+import { ObjectStoreCheck, ObjectStoreCheckCreateDto, ObjectStoreCheckService } from '../../services/object-store-check.service';
+import { Obj, ObjectService } from '../../services/object.service';
+import { Position, PositionService } from '../../services/position-service.service';
 
 @Component({
   selector: 'app-store-check-page',
