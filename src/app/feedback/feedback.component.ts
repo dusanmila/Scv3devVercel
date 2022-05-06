@@ -2,7 +2,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { FeedbackService } from '../services/feedback.service';
+import { FeedbackService } from '../Services/feedback.service';
 import { Feedback } from '../models/feedback.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -103,6 +103,16 @@ export class FeedbackComponent implements OnInit {
 
       console.log(data);
 
+    });
+  }
+
+  public resolveFeedback(feedback: Feedback) {
+    feedback.resolved = true;
+    this.feedbackService.editFeedback(feedback).subscribe(data => {
+      console.log(data);
+      this.feedbackService.getUnresolvedFeedbacks().subscribe(data => {
+        this._feedbacks = data;
+      })
     });
   }
 

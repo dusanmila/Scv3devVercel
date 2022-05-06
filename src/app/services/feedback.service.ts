@@ -63,7 +63,7 @@ export class FeedbackService {
     
     let retval$ = new Subject<Feedback>();
     
-    this.http.put<Feedback>(`${this.feedbackAdress}/feedbacks/${feedback.img}`,feedback).subscribe((helper: Feedback) => {
+    this.http.put<Feedback>(`${this.feedbackAdress}/feedbacks/${feedback.img}`, feedback).subscribe((helper: Feedback) => {
 
       retval$.next(helper)
     
