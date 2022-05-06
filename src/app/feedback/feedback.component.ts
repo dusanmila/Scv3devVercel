@@ -14,21 +14,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FeedbackComponent implements OnInit {
 
-
+  
   form: FormGroup;
-
-
-  @Output() getPicture = new EventEmitter<WebcamImage>();
-
-  showWebcam = true;
-
-  isCameraExist = true;
-
-  errors: WebcamInitError[] = [];
-
-  // webcam snapshot trigger
-  private trigger: Subject<void> = new Subject<void>();
-  private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   feedback:Feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
  
@@ -62,10 +49,6 @@ export class FeedbackComponent implements OnInit {
     });
 
 
-    WebcamUtil.getAvailableVideoInputs()
-    .then((mediaDevices: MediaDeviceInfo[]) => {
-      this.isCameraExist = mediaDevices && mediaDevices.length > 0;
-    });
   }
 
   uploadFile(event:any) {
@@ -78,6 +61,7 @@ export class FeedbackComponent implements OnInit {
   submitForm() {
     var formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
+  
     formData.append('FeedbackCategoryName', this.form.get('FeedbackCategoryName')!.value);
     formData.append('text', this.form.get('text')!.value);
     formData.append('username', this.form.get('username')!.value);
@@ -86,9 +70,11 @@ export class FeedbackComponent implements OnInit {
       .post('http://localhost:8088/api/feedbacks', formData)
       .subscribe({
         next: (response) => console.log(response),
-        error: (error) => console.log(error),
+        error: (error) => console.log(error)
+
       });
   }
+
 
 
   createFeedback(){
@@ -106,6 +92,7 @@ export class FeedbackComponent implements OnInit {
       this.selectedFeedback=data;
     }) ;
     this.feedback=feedback;
+    
    }
 
 
@@ -120,34 +107,5 @@ export class FeedbackComponent implements OnInit {
   }
 
   
-  takeSnapshot(): void {
-    this.trigger.next();
-  }
-
-  onOffWebCame() {
-    this.showWebcam = !this.showWebcam;
-  }
-
-  handleInitError(error: WebcamInitError) {
-    this.errors.push(error);
-  }
-
-  changeWebCame(directionOrDeviceId: boolean | string) {
-    this.nextWebcam.next(directionOrDeviceId);
-  }
-
-  handleImage(webcamImage: WebcamImage) {
-    this.getPicture.emit(webcamImage);
-    console.log(webcamImage);
-    this.showWebcam = false;
-  }
-
-  get triggerObservable(): Observable<void> {
-    return this.trigger.asObservable();
-  }
-
-  get nextWebcamObservable(): Observable<boolean | string> {
-    return this.nextWebcam.asObservable();
-  }
 
 }

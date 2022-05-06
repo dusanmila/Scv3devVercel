@@ -36,10 +36,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
+    
     PositionComponent,
     ObjectComponent,
     FeedbackComponent,
