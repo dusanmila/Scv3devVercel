@@ -17,6 +17,7 @@ export class FeedbackComponent implements OnInit {
   form: FormGroup;
 
 
+  
   feedback:Feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
 
   selectedFeedback:Feedback= {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
