@@ -39,6 +39,14 @@ export class PositionService{
     return retval$.asObservable();
   }
 
+  public getPositionsByObjectName(objectName: string) {
+    let retval$ = new Subject<Position[]>();
+    this.http.get<Position[]>(`${this.adress}/secondaryPositionByObjectName/${objectName}`).subscribe((positions: Position[]) => {
+      retval$.next(positions)
+    });
+    return retval$.asObservable();
+  }
+
   public createPosition(position:Position):Observable<Position>{
 
     let retval$ = new Subject<Position>();

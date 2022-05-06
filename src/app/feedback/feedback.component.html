@@ -1,4 +1,6 @@
 <h1>List of all feedbacks</h1>
+
+
 <div class="container" style="margin-top: 70px;">
     <table class="table table-hover">
       <thead>
@@ -26,6 +28,7 @@
           <td>
 
             <button class="btn btn-primary" (click)="selectFeedback(feedback)"> Show details</button>
+            <button class="btn btn-primary" (click)="resolveFeedback(feedback)"> Resolve</button>
           </td>
         </tr>
       </tbody>
@@ -51,15 +54,14 @@
   <div class="container">
     <form [formGroup]="form" (ngSubmit)="submitForm()">
 
-        <input type="file" (change)="uploadFile($event)">
-
-
+        
+        <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera">
 
         <input placeholder="FeedbackCategoryName" formControlName="FeedbackCategoryName">
         <input placeholder="text" formControlName="text">
         <input placeholder="date" formControlName="date">
         <input placeholder="username" formControlName="username">
-
+       
 
         <button>Create</button>
 
@@ -67,29 +69,7 @@
 </div>
   <br>
 
-
-
-
-
-<div *ngIf="isCameraExist; else noCameraExist">
-  <div style="text-align:center">
-      <div class="btn-group">
-          <button class="button" (click)="takeSnapshot()">Take Picture</button>
-          <button class="button" (click)="changeWebCame(true)">Toggle Camera</button>
-          <button class="button" (click)="onOffWebCame()">Switch camera</button>
-      </div> <br />
-      <webcam [height]="500" [width]="1000" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
-          *ngIf="showWebcam" [switchCamera]="nextWebcamObservable"></webcam>
-  </div>
-
-  <div *ngIf="errors.length > 0">
-      <h4>Error Messages:</h4>
-      <ul *ngFor="let error of errors">
-          <li>{{ error | json }}</li>
-      </ul>
-  </div>
-</div>
-
 <ng-template #noCameraExist>
   Camera device not available
 </ng-template>
+
