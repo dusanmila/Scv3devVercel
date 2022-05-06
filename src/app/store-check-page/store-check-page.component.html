@@ -1,0 +1,28 @@
+<h4>Podaci o objektu</h4>
+<p> {{ object.objectIdRetail }}</p><br>
+<p> {{ object.objectIdCompany }}</p><br>
+<p> {{ object.objectFormat }}</p><br>
+<p> {{ object.objectName }}</p><br>
+<p> {{ object.city }}</p><br>
+<p> {{ object.address }}</p><br>
+<p> {{ object.requisitionDays }}</p><br>
+<p> {{ object.merchandiserRevisionDays }}</p><br>
+<p> {{ object.objectInfo.assortmentModule }}</p><br>
+<p> {{ object.objectInfo.gainings12Mrsd }}</p><br>
+<p> {{ object.objectInfo.wdpercentSerbia }}</p><br>
+<p> {{ object.objectInfo.wdpercentSector }}</p><br>
+<p> {{ object.objectInfo.wdpercentCustomer }}</p><br>
+<p> {{ object.objectInfo.gainingsVs12mpercent }}</p><br>
+<p> {{ object.objectInfo.registersNumber }}</p><br>
+<p> {{ object.objectInfo.shelfSpaceM }}</p><br>
+<p> {{ object.objectInfo.companyShelfSpaceM }}</p><br>
+<p> {{ object.objectInfo.companyShelfSpacePercent }}</p><br>
+<br>
+<br>
+<h4>Sekundarne pozicije u objektu</h4>
+<ul>
+    <li *ngFor="let position of positions">{{ position.posClassName }}, {{ position.posTypeName }}</li>
+</ul>
+
+<button (click)="getRetailerPlanogram()">Planogram</button>
+<button (click)="createEmptyObjectStoreCheck()">Create object store check</button>

@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ObjectInfo } from './object-info.service';
-import { HttpClient, HttpHeaders, HttpStatusCode } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
+import { ObjectInfo } from '../Services/object-info.service';
+import { saveAs } from 'file-saver';
 
 export interface User {
   firstName: string;
@@ -108,5 +109,20 @@ export class ObjectService {
       retval$.next(helper);
     });
     return retval$.asObservable();
+  }
+
+  public getRetailerPlanogram(retailer: Retailer) {
+    return this.http.get(`http://localhost:8089/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, {responseType: 'blob'}).subscribe(pdf => {
+      const blob = new Blob([pdf], {type: 'application/pdf'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
+  public downloadRetailerPlanogram() {
+    return this.http.get('http://localhost:8089/api/retailers/retailerPlanogram/Objekat1Planogram.pdf', {responseType: 'blob'}).subscribe(pdf => {
+      const fileName = 'Planogram.pdf';
+      saveAs(pdf, fileName);
+    });
   }
 }
