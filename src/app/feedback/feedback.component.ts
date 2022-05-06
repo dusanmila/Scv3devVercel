@@ -14,11 +14,11 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FeedbackComponent implements OnInit {
 
-  
+
   form: FormGroup;
 
   feedback:Feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
- 
+
   selectedFeedback:Feedback= {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
 
 
@@ -32,7 +32,7 @@ export class FeedbackComponent implements OnInit {
 
 
   constructor(public feedbackService: FeedbackService, private http:HttpClient,public fb: FormBuilder,) {
-  
+
     this.form = this.fb.group({
       file: [null],
       FeedbackCategoryName: [''],
@@ -86,7 +86,7 @@ export class FeedbackComponent implements OnInit {
     this.feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
 
   }
-  
+
   public selectFeedback(feedback:Feedback){
     this.feedbackService.getOneFeedback(feedback).subscribe(data => {
       this.selectedFeedback=data;
@@ -96,7 +96,7 @@ export class FeedbackComponent implements OnInit {
    }
 
 
-  
+
   public editFeedback(feedback:Feedback)
   {
     this.feedbackService.editFeedback(feedback).subscribe(data=>{
@@ -114,8 +114,10 @@ export class FeedbackComponent implements OnInit {
         this._feedbacks = data;
       })
     });
+
   }
 
   
 
+  
 }

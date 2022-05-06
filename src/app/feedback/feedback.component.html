@@ -5,7 +5,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
-        
+
           <th>Category</th>
           <th>Text</th>
           <th>Date</th>
@@ -16,17 +16,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let feedback of feedbacks">
-  
+
           <td> {{ feedback.feedbackCategoryName }}</td>
           <td> {{ feedback.text }}</td>
           <td> {{ feedback.date }}</td>
           <td> {{ feedback.resolved }}</td>
-          <td> {{ feedback.img }}</td>
+          <td> <img data-enlargeable src={{feedback.img}} alt="feedback photo" width="200" height="200"></td>
           <td> {{ feedback.username }}</td>
-         
+
 
           <td>
-            
+
             <button class="btn btn-primary" (click)="selectFeedback(feedback)"> Show details</button>
             <button class="btn btn-primary" (click)="resolveFeedback(feedback)"> Resolve</button>
           </td>
@@ -34,7 +34,6 @@
       </tbody>
     </table>
 </div>
-
 <div class="card text-center" *ngIf="selectedFeedback">
   <div class="card-header">
     # {{selectedFeedback.img}}
@@ -43,7 +42,7 @@
     <h4 class="card-title">{{selectedFeedback.img}}</h4>
     <p class="card-text">
       {{selectedFeedback.text}}
-    </p>    
+    </p>
   </div>
 
 </div>
@@ -54,8 +53,10 @@
 
   <div class="container">
     <form [formGroup]="form" (ngSubmit)="submitForm()">
+
         
         <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera">
+
         <input placeholder="FeedbackCategoryName" formControlName="FeedbackCategoryName">
         <input placeholder="text" formControlName="text">
         <input placeholder="date" formControlName="date">
@@ -63,8 +64,12 @@
        
 
         <button>Create</button>
-       
+
     </form>
 </div>
   <br>
-  
+
+<ng-template #noCameraExist>
+  Camera device not available
+</ng-template>
+

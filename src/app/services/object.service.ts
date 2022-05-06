@@ -111,6 +111,21 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+
+  public getObjectByString(string:String): Observable<Obj>{
+
+    let retval$ = new Subject<Obj>();
+
+    this.http.get<Obj>(`${this.address}/objects/objectByString/${string}`).subscribe((object: Obj) => {
+
+      retval$.next(object)
+
+    });
+
+    return retval$.asObservable();
+  }
+
+
   public getRetailerPlanogram(retailer: Retailer) {
     return this.http.get(`http://localhost:8089/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, {responseType: 'blob'}).subscribe(pdf => {
       const blob = new Blob([pdf], {type: 'application/pdf'});
@@ -125,4 +140,5 @@ export class ObjectService {
       saveAs(pdf, fileName);
     });
   }
+
 }
