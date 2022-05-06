@@ -14,7 +14,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FeedbackComponent implements OnInit {
 
-
   form: FormGroup;
 
 
@@ -31,7 +30,7 @@ export class FeedbackComponent implements OnInit {
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   feedback:Feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
- 
+
   selectedFeedback:Feedback= {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
 
 
@@ -45,7 +44,7 @@ export class FeedbackComponent implements OnInit {
 
 
   constructor(public feedbackService: FeedbackService, private http:HttpClient,public fb: FormBuilder,) {
-  
+
     this.form = this.fb.group({
       file: [null],
       FeedbackCategoryName: [''],
@@ -100,7 +99,7 @@ export class FeedbackComponent implements OnInit {
     this.feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
 
   }
-  
+
   public selectFeedback(feedback:Feedback){
     this.feedbackService.getOneFeedback(feedback).subscribe(data => {
       this.selectedFeedback=data;
@@ -109,7 +108,7 @@ export class FeedbackComponent implements OnInit {
    }
 
 
-  
+
   public editFeedback(feedback:Feedback)
   {
     this.feedbackService.editFeedback(feedback).subscribe(data=>{
@@ -119,7 +118,7 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  
+
   takeSnapshot(): void {
     this.trigger.next();
   }
@@ -150,4 +149,5 @@ export class FeedbackComponent implements OnInit {
     return this.nextWebcam.asObservable();
   }
 
+  
 }

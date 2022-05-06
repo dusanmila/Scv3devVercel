@@ -109,4 +109,18 @@ export class ObjectService {
     });
     return retval$.asObservable();
   }
+
+  public getObjectByString(string:String): Observable<Obj>{
+
+    let retval$ = new Subject<Obj>();
+
+    this.http.get<Obj>(`${this.address}/objects/objectByString/${string}`).subscribe((object: Obj) => {
+
+      retval$.next(object)
+
+    });
+
+    return retval$.asObservable();
+  }
+
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { Observable, Subscription } from 'rxjs';
 import { ObjectCreateDto, ObjectService } from 'src/app/services/object.service';
 import { Obj } from 'src/app/services/object.service';
 
@@ -8,8 +10,12 @@ import { Obj } from 'src/app/services/object.service';
   styleUrls: ['./object.component.css']
 })
 export class ObjectComponent implements OnInit {
+  displayedColumns = ["objectName","objectIdRetail","objectIdCompany","actions"];
+dataSource: MatTableDataSource<Obj>;
+subscription: Subscription;
 
-  private _objects: Obj[] = [];
+search : String ="";
+ // private _objects: Obj[] = [];
   public object: Obj = {
     objectIdRetail: "string",
     objectIdCompany: "string",
@@ -68,16 +74,16 @@ export class ObjectComponent implements OnInit {
   }
 
   public get objects() {
-    return this._objects;
+    return this.dataSource;
   }
 
   constructor(public objectService: ObjectService) { }
 
   ngOnInit(): void {
-    console.log('a')
+
     this.objectService.getObjects().subscribe(data => {
-      this._objects = data;
-      console.log(this._objects);
+      this.dataSource = new MatTableDataSource(data);
+
     });
 
     // this.objectService.getObjectsByString('ste').subscribe(data => {
@@ -110,5 +116,16 @@ export class ObjectComponent implements OnInit {
       console.log(data);
     });
   }
+
+  public searchByString():void{
+    this.objectService.getObjectByString(this.search).subscribe(data => {
+      console.log(data)
+      type ObjArray = Array<Obj>;
+      const objArr: ObjArray = [
+        data
+    ];
+      this.dataSource=new MatTableDataSource<Obj>(objArr);
+    });
+   }
 
 }
