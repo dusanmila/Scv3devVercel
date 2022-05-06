@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Obj } from 'src/app/services/object.service';
-import { StoreCheck } from 'src/app/services/store-check.service';
+import { Obj } from 'src/app/Services/object.service';
+import { StoreCheck } from 'src/app/Services/store-check.service';
 
 
 

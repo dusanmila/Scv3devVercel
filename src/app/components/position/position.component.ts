@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Guid } from 'guid-typescript';
-import { Position, PositionService } from 'src/app/services/position-service.service';
+import { Position, PositionService } from 'src/app/Services/position-service.service';
 //import { DataService, Product } from '../data.service';
 
 

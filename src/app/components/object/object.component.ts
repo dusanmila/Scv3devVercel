@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
-import { ObjectCreateDto, ObjectService } from 'src/app/services/object.service';
-import { Obj } from 'src/app/services/object.service';
+import { ObjectCreateDto, ObjectService } from 'src/app/Services/object.service';
+import { Obj } from 'src/app/Services/object.service';
 
 
 
