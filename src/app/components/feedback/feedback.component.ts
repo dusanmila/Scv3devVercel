@@ -87,7 +87,7 @@ export class FeedbackComponent implements OnInit {
 
   }
 
-  public selectFeedback(feedback:Feedback){
+  selectFeedback(feedback:Feedback){
     this.feedbackService.getOneFeedback(feedback).subscribe(data => {
       this.selectedFeedback=data;
     }) ;
@@ -97,7 +97,7 @@ export class FeedbackComponent implements OnInit {
 
 
 
-  public editFeedback(feedback:Feedback)
+  editFeedback(feedback:Feedback)
   {
     this.feedbackService.editFeedback(feedback).subscribe(data=>{
 

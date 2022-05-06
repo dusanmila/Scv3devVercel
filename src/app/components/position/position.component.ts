@@ -4,23 +4,35 @@ import { Guid } from 'guid-typescript';
 import { Position, PositionService } from 'src/app/services/position-service.service';
 //import { DataService, Product } from '../data.service';
 
+
 @Component({
   selector: 'app-position',
   templateUrl: './position.component.html',
   styleUrls: ['./position.component.css']
 })
-
-export class PositionComponent implements OnInit {
+export class PositionComponent implements OnInit{ 
 
   position:Position={objectName:"", posClassName:"", posTypeName:""};
   selectedPosition:Position;
-  //editorBool=false;
 
   public get positions(): Position[]
   {
 
     return this._positions;
   }
+
+  public _positions: Position[]=[];
+
+  constructor(public positionService: PositionService) { }
+
+  ngOnInit(): void {
+    this.positionService.getPositions().subscribe(data => {
+
+      this._positions = data;
+    console.log(this._positions.length)
+  });
+  }
+
 
   createPosition(){
     console.log(this.position.objectName);
@@ -32,7 +44,7 @@ export class PositionComponent implements OnInit {
 
   }
 
-  public selectPosition(position:Position){
+  selectPosition(position:Position){
     this.positionService.getOnePosition(position).subscribe(data => {
       this.selectedPosition=data;
     })
@@ -40,49 +52,12 @@ export class PositionComponent implements OnInit {
 
   }
 
-  public editPosition(position:Position)
+  editPosition(position:Position)
   {
     this.positionService.editPosition(position).subscribe();
   }
 
-
-
-  public _positions: Position[]=[];
-
-  constructor(public positionService: PositionService) { }
-
-  ngOnInit(): void {
-    this.positionService.getPositions().subscribe(data => {
-
-      this._positions = data;
-console.log(this._positions.length)
-  });
-
-
-}
-
-/*  createProduct(){
-    console.log(this.product);
-    this.dataService.createProduct(this.product).subscribe(data => {
-    this._products.push(data);
-    });
-    this.product = {productName: "", productType: "", productDate: "" , userId: 0};
-
-  }
-
-  public selectProduct(product){
-    this.dataService.getOneProduct(product).subscribe(data => {
-      this.selectedProduct=data;
-    })
-    this.product=product;
-
-  }
-
-
-  }
-
-   */
-  public deletePosition()
+  deletePosition()
   {
 
     this.positionService.deletePosition(this.selectedPosition).subscribe(data =>{
