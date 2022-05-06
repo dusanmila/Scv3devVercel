@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,14 +9,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { PositionComponent } from './position/position.component';
+
 import { ObjectComponent } from './components/object/object.component';
 import { MatInputModule } from '@angular/material/input';
+
 import { FeedbackComponent } from './feedback/feedback.component';
 import { UserComponent } from './user/user.component';
-import { LoginComponent } from './login/login.component';
+
 
 import { WebcamModule } from 'ngx-webcam';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { LoginComponent } from './login/login.component';
+import { StoreCheckPageComponent } from './store-check-page/store-check-page.component';
+import { StoreCheckComponent } from './components/store-check/store-check.component';
+
 
 
 import { AdminpageComponent } from './adminpage/adminpage.component';
@@ -30,6 +36,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,11 +45,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     FeedbackComponent,
     UserComponent,
     LoginComponent,
+    StoreCheckPageComponent,
+    StoreCheckComponent,
     AdminpageComponent
   ],
   imports: [
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    WebcamModule,
+
     FormsModule,
     MatInputModule,
     BrowserAnimationsModule,
