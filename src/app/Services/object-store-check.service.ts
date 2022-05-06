@@ -12,6 +12,7 @@ export interface ObjectStoreCheck {
   object: Obj;
   pdf: string;
   username: string;
+  
  }
  
  export interface ObjectStoreCheckCreateDto {
