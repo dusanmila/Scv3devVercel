@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ObjectCreateDto, ObjectService } from 'src/app/services/object.service';
-import { Obj } from 'src/app/services/object.service';
+
+import { Obj, ObjectService } from 'src/app/Services/object.service';
 
 @Component({
   selector: 'app-object',
