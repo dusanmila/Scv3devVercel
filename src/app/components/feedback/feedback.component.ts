@@ -68,7 +68,8 @@ export class FeedbackComponent implements OnInit {
     formData.append('username', this.form.get('username')!.value);
     formData.append('date', this.form.get('date')!.value);
     this.http
-      .post('http://localhost:8088/api/feedbacks', formData)
+    .post('https://microservicefeedback.azurewebsites.net/api/feedbacks', formData)
+     // .post('http://localhost:8088/api/feedbacks', formData)
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error)
