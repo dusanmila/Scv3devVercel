@@ -12,7 +12,7 @@ import { StoreCheckComponent } from './components/store-check/store-check.compon
 import { StoreCheckPageComponent } from './components/store-check-page/store-check-page.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'admin',pathMatch:'full'},
+  {path:'', redirectTo:'feedback',pathMatch:'full'},
   {path:'feedback', component:FeedbackComponent},
   {path:'user', component:UserComponent},
 
