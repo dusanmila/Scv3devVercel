@@ -1,0 +1,40 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag == 1">Add user</h3>
+  <h3 mat-dialog-title *ngIf="flag == 2">Update user: {{data.username}}</h3>
+  <h3 mat-dialog-title *ngIf="flag == 3">Delete user: {{data.username}}</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "FirstName" [(ngModel)]="data.firstName" name = "firstName" [disabled]="flag==3" required/>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "LastName" [(ngModel)]="data.lastName" name = "lastName" [disabled]="flag==3" required/>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "Username" [(ngModel)]="data.username" name = "username" [disabled]="flag==3" required/>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "Email" [(ngModel)]="data.email" name = "email" [disabled]="flag==3" required/>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "UserType" [(ngModel)]="data.userType" name = "userType" [disabled]="flag==3" required/>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>
+  <button mat-button *ngIf="flag == 2" type="submit" [mat-dialog-close]="1"(click)="update()" [disabled]="!formControl.valid">Ok</button>
+  <button mat-button *ngIf="flag == 3" type="submit" [mat-dialog-close]="1"(click)="delete()">Delete</button>
+  <button mat-button (click)="close()">Cancel</button>
+</div>
+  </form>
+  </div>
+
