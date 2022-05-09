@@ -1,0 +1,34 @@
+.header {
+    background-color: #56baed;
+    color: #fff;
+    width: 100%;
+    padding: 10px 0 10px 10px;
+}
+
+.header ul {
+    list-style-type: none;
+    
+}
+
+table, th, td {
+    border: 1px solid #fff;
+}
+
+.info-table {
+    border-collapse: collapse;
+    width: 400px;
+    max-width: 100%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.info-table th {
+    background-color: grey;
+}
+
+.main {
+    width: 100%;
+    background-color: #fff;
+    padding-top: 100px;
+    text-align: center;
+}
