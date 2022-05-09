@@ -1,11 +1,13 @@
 <div class="header">
-    <h1>Object 1.1</h1>
-    <ul>
-        <li>Retailer: Retailer 1</li>
-        <li>Assortment module: 1-SB22</li>
-        <li># of registers</li>
-        <li>Commercialist: John Doe</li>
-    </ul>
+    <div class="obj-info">
+        <h1>Object 1.1</h1>
+        <ul>
+            <li>Retailer: Retailer 1</li>
+            <li>Assortment module: 1-SB22</li>
+            <li># of registers: 2</li>
+            <li>Commercialist: John Doe</li>
+        </ul>
+    </div>
 
     <table class="info-table">
         <tr>
@@ -41,10 +43,28 @@
 <div class="main">
     <h3>ADD FEEDBACK</h3>
     <a href="/feedback">
-        <div class="add-fb">
+        <div class="add-fb-btn">
             ADD FEEDBACK
         </div>
     </a>
+    
+    <h3 class="unresolved-fb-header">UNRESOLVED FEEDBACKS</h3>
+
+    <div class="secondary-positions">
+        <h4>SECONDARY POSITIONS:</h4>
+        <table class="positions-tbl">
+            <tr>
+                <td class="position-name-td">Shelf 1 - Promo</td>
+                <td class="check-box-td"><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td class="position-name-td">Shelf 2 - Promo</td>
+                <td class="check-box-td"><input type="checkbox"></td>
+            </tr>
+        </table>
+    </div>
+
+    <button class="btn-finish">FINISH</button>
 </div>
 
 

@@ -3,14 +3,25 @@
     color: #fff;
     width: 100%;
     padding: 10px 0 10px 10px;
+    text-align: center;
 }
 
-.header ul {
+.header .obj-info {
+    width: 400px;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.header .obj-info ul {
     list-style-type: none;
-    
+    padding-left: 20px;
 }
 
-table, th, td {
+.header .obj-info ul li {
+    margin-top: 10px;
+}
+
+.header table, th, td {
     border: 1px solid #fff;
 }
 
@@ -18,7 +29,7 @@ table, th, td {
     border-collapse: collapse;
     width: 400px;
     max-width: 100%;
-    margin-top: 20px;
+    margin: 20px auto;
     text-align: center;
 }
 
@@ -31,4 +42,82 @@ table, th, td {
     background-color: #fff;
     padding-top: 100px;
     text-align: center;
+}
+
+.main h3 {
+    color: grey;
+}
+
+.main a {
+    text-decoration: none;
+}
+
+.add-fb-btn {
+    border-radius: 20px;
+    border: 2px solid #39ace7;
+    background-color: #39ace7;;
+    color: #fff;
+    width: 200px;
+    padding: 10px 0;
+    margin: 30px auto;
+}
+
+.add-fb-btn:hover {
+    background-color: #fff;
+    color: #39ace7;
+    transition: 0.3s;
+}
+
+.unresolved-fb-header {
+    margin-top: 80px;
+}
+
+.secondary-positions {
+    margin-top: 80px;
+}
+
+.secondary-positions h4 {
+    color: grey;
+}
+
+.secondary-positions td{
+    border: 1px solid grey;
+}
+
+.positions-tbl {
+    border-collapse: collapse;
+    width: 300px;
+    max-width: 100%;
+    margin: 20px auto;
+    color: grey;
+}
+
+.positions-tbl tr {
+    height: 40px;
+}
+
+.position-name-td {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.check-box-td {
+    text-align: center;
+}
+
+.btn-finish {
+    border-radius: 20px;
+    border: 2px solid #39ace7;
+    background-color: #39ace7;;
+    color: #fff;
+    width: 200px;
+    padding: 10px 0;
+    margin: 30px auto;
+    cursor: pointer;
+}
+
+.btn-finish:hover {
+    background-color: #fff;
+    color: #39ace7;
+    transition: 0.3s;
 }
