@@ -1,1 +1,35 @@
-<p>login works!</p>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+
+    <div id="formContent">
+  
+
+        <div class="fadeIn first">
+            <img src="../../../assets/StoreCheckIcon3.png" id="icon" alt="App Icon" />
+          </div>
+
+          <form>
+           
+
+              <input [(ngModel)]="user.username" type="text" name="username" class="fadeIn second" id="username"
+               aria-describedby="nameHelp" placeholder="Enter your username">
+             
+  
+              <input [(ngModel)]="user.password" type="text" name="password" class="fadeIn third" id="password"
+               aria-describedby="lastNameHelp" placeholder="Enter your password">
+          
+
+              <button class="fadeIn fourth" (click)="LoginUser()">Log in</button>
+
+              <div id="formFooter">
+               
+              </div>
+
+          
+          </form>
+    
+    </div>
+</div>

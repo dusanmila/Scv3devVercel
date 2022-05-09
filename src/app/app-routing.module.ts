@@ -10,9 +10,10 @@ import { AdminGuard } from  './admin/admin.guard';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
 import { StoreCheckComponent } from './components/store-check/store-check.component';
 import { StoreCheckPageComponent } from './components/store-check-page/store-check-page.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'feedback',pathMatch:'full'},
+  {path:'', redirectTo:'login',pathMatch:'full'},
   {path:'feedback', component:FeedbackComponent},
   {path:'user', component:UserComponent},
 
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'position', component:PositionComponent},
   {path:'object', component:ObjectComponent},
   {path:'storeCheckPage',component:StoreCheckPageComponent},
-  {path:'storeCheck',component:StoreCheckComponent}
+  {path:'storeCheck',component:StoreCheckComponent},
+  {path:'login',component:LoginComponent}
 
 
 ];
