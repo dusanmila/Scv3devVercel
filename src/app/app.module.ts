@@ -40,8 +40,12 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { PositionComponent } from './components/position/position.component';
+
 import { StoreCheckComponent } from './components/store-check/store-check.component';
 import { StoreCheckPageComponent } from './components/store-check-page/store-check-page.component';
+
+import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.component';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +60,8 @@ import { StoreCheckPageComponent } from './components/store-check-page/store-che
     AdminpageComponent,
     ChooseObjectComponent,
     AdminpageComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    ObjectDialogComponent
   ],
   imports: [
     AppRoutingModule,

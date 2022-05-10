@@ -61,6 +61,7 @@ export class ObjectService {
 
   // private readonly address = "http://localhost:8083/object/objects";
   private readonly address = "http://localhost:8089/api/objects";
+  private readonly excelAddress = "http://localhost:8089/api/objectExcels/";
 
   public getObjects(): Observable<Obj[]> {
     console.log('b')
@@ -101,6 +102,12 @@ export class ObjectService {
       retval$.next(helper);
     });
     return retval$.asObservable();
+  }
+
+  public excelImport(formData:FormData) {
+
+    this.http.post(this.address, formData).subscribe((response) => {console.log(response)});
+
   }
 
   public updateObject(object: Obj): Observable<Obj> {

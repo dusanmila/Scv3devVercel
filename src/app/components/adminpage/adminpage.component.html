@@ -2,7 +2,37 @@
   <h1 style="text-align:center;color:#56baed">Admin Dashboard</h1>
   <h2 style="text-align:center;color:#56baed">Users</h2>
   <app-user></app-user>
-  <h2 style="text-align:center;color:#56baed">Object</h2>
+  <br>
+  <h2 style="text-align:center;color:#56baed">Objects</h2>
   <app-object></app-object>
+  <br>
+  <h2 style="text-align:center;color:#56baed">Import Excel</h2>
+  <br>
+
+
+
+  <div class="parentcontainer">
+
+      <div class="container">
+        <h3 style="text-align:center;color:#56baed">Objects</h3>
+        <input type="file" #fileDropRef (change)="uploadObjectsFile($event)" id="fileDropRef" />
+
+        <h3>Drag and drop file here</h3>
+        <h3>or</h3>
+        <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
+      </div>
+
+
+
+  <div class="container">
+    <h3 style="text-align:center;color:#56baed">Positions</h3>
+    <input type="file" #fileDropRef (change)="uploadPositionsFile($event)" id="fileDropRef" />
+
+    <h3>Drag and drop file here</h3>
+    <h3>or</h3>
+    <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
+  </div>
+</div>
+
 
 </body>
