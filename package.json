@@ -21,6 +21,7 @@
     "@angular/router": "~13.3.0",
     "@dynamic-mapper/angular": "^1.0.2",
     "@dynamic-mapper/mapper": "^1.9.1",
+    "@material/dialog": "^14.0.0",
     "file-saver": "^2.0.5",
     "guid-typescript": "^1.0.9",
     "ngx-webcam": "^0.4.1",
