@@ -33,7 +33,8 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
-import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
     LoginComponent,
     StoreCheckPageComponent,
     StoreCheckComponent,
-    AdminpageComponent
+    AdminpageComponent,
+    ChooseObjectComponent
   ],
   imports: [
     AppRoutingModule,
