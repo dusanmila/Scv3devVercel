@@ -1,7 +1,7 @@
 
 <mat-form-field>
-  <input type="text" matInput [(ngModel)]= "search">
-  <button matSuffix mat-button (click)="searchByUsername()">ok</button>
+  <input type="text" matInput placeholder="Search by username" [(ngModel)]= "search">
+  <button matSuffix mat-button (click)="searchByUsername()"><mat-icon>search</mat-icon></button>
   </mat-form-field>
 
 <div class="container mat-elevation-z8">
@@ -37,15 +37,15 @@
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef>
       <button mat-icon-button color="primary">
-<button > add </button>
+<mat-icon (click)="openDialog(1)">add</mat-icon>
       </button>
     </mat-header-cell>
     <mat-cell *matCellDef="let row; let i=index">
       <button mat-icon-button color="primary">
-        <button area-label="Edit" > edit </button>
+        <mat-icon area-label="Edit" (click)="openDialog(2,row.firstName,row.lastName,row.username,row.email,row.userType)"> edit </mat-icon>
               </button>
-<button>
-        <button area-label="Delete"> delete </button>
+
+     <button mat-icon-button color="primary"><mat-icon area-label="Delete" (click)="openDialog(3,row.firstName,row.lastName,row.username,row.email,row.userType)"> delete </mat-icon>
             </button>
     </mat-cell>
   </ng-container>

@@ -1,8 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
-import { UserService } from 'src/app/Services/user.service';
+
 import { MatTableDataSource } from '@angular/material/table';
-import { User } from '../../models/user.model';
+
+import { MatDialog } from '@angular/material/dialog';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/Services/user.service';
+import { UserDialogComponent } from 'src/app/dialogs/userdialog/userdialog.component';
 
 @Component({
   selector: 'app-user',
@@ -29,19 +33,22 @@ search : String ="";
   private _users: User[]=[]
 
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private dialog:MatDialog) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(data => {
 
-        this.dataSource = new MatTableDataSource(data);
-    });
+    this.loadData();
 
 
 
   }
 
+public loadData(){
+  this.userService.getUsers().subscribe(data => {
 
+    this.dataSource = new MatTableDataSource(data);
+});
+}
 
   public selectUser(user:User){
     this.userService.getOneUser(user).subscribe(data => {
@@ -71,6 +78,17 @@ search : String ="";
     });
   }
 
+  public openDialog(flag:number, firstName?:string,lastName?:string,username?:string,email?:string,userType?:string,){
+    const dialogRef = this.dialog.open(UserDialogComponent, {data: {firstName,lastName,username,email,userType}});
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.afterClosed()
+    .subscribe( res => {
+        if(res === 1){
+          this.loadData();
+        }
+      }
+    )
+    }
 
 
 }
