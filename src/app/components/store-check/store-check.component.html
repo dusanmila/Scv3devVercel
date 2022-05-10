@@ -1,2 +1,17 @@
-<button (click)="createEmptyStoreCheck()">Create store check</button>
-<button (click)="createEmptyObjectStoreCheck()">Create object store check</button>
+<div class="header">
+    <h1>Start Store Check</h1>
+    <h3>or</h3>
+    <h1>Resolve Feedbacks</h1>
+</div>
+<div class="menu">
+    <a href="/storeCheckPage">
+        <div class="item start-sc" (click)="startStoreCheck()">
+            Start Store Check
+        </div>
+    </a>
+    <a href="/feedback">
+        <div class="item resolve-fb" (click)="resolveFeedbacks()">
+            Resolve Feedbacks
+        </div>
+    </a>
+</div>

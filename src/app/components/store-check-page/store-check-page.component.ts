@@ -21,8 +21,8 @@ export class StoreCheckPageComponent implements OnInit {
               public positionService: PositionService) { }
 
   ngOnInit(): void {
-    this.getOneObject();
-    this.getPositionsByObjectName();
+    // this.getOneObject();
+    // this.getPositionsByObjectName();
   }
 
   public getOneObject() {
