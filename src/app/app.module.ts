@@ -38,6 +38,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { PositionComponent } from './components/position/position.component';
+import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { PositionComponent } from './components/position/position.component';
     UserComponent,
     LoginComponent,
     AdminpageComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    ObjectDialogComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,40 +1,42 @@
 <mat-form-field>
-  <input type="text" matInput [(ngModel)]= "search">
-  <button matSuffix mat-button (click)="searchByString()">ok</button>
+  <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
+  <button matSuffix mat-button (click)="searchByString()"><mat-icon>search</mat-icon></button>
   </mat-form-field>
-{{search}}
+
 <div class="container mat-elevation-z8">
 
 <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-  <ng-container matColumnDef="objectIdRetail">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Object ID retail</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.objectIdRetail }}</mat-cell>
+  <ng-container matColumnDef="objectName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectName</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="objectIdCompany">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Object ID company</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectIdCompany</mat-header-cell>
     <mat-cell *matCellDef="let row">{{ row.objectIdCompany }}</mat-cell>
   </ng-container>
 
-  <ng-container matColumnDef="objectName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Object name</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
+  <ng-container matColumnDef="objectIdRetail">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectIdRetail</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.objectIdRetail }}</mat-cell>
   </ng-container>
+
+
 
 
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef>
       <button mat-icon-button color="primary">
-<button > add </button>
+<mat-icon (click)="openDialog(1)">add</mat-icon>
       </button>
     </mat-header-cell>
     <mat-cell *matCellDef="let row; let i=index">
       <button mat-icon-button color="primary">
-        <button area-label="Edit" > edit </button>
+        <mat-icon area-label="Edit" (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail)"> edit </mat-icon>
               </button>
-<button>
-        <button area-label="Delete"> delete </button>
+
+     <button mat-icon-button color="primary"><mat-icon area-label="Delete" (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail)"> delete </mat-icon>
             </button>
     </mat-cell>
   </ng-container>
@@ -43,4 +45,3 @@
   </mat-table>
 
 </div>
-

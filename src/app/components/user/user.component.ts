@@ -78,7 +78,7 @@ public loadData(){
     });
   }
 
-  public openDialog(flag:number, firstName?:string,lastName?:string,username?:string,email?:string,userType?:string,){
+  public openDialog(flag:number, firstName?:string,lastName?:string,username?:string,email?:string,userType?:string){
     const dialogRef = this.dialog.open(UserDialogComponent, {data: {firstName,lastName,username,email,userType}});
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()

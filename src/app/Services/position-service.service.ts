@@ -24,6 +24,7 @@ export class PositionService{
 
 
   private readonly adress ="http://localhost:8087/api/secondaryPositions";
+  private readonly excelAdress="http://localhost:8087/api/secondaryPositionExcels"
 
 
   public getPositions():Observable<Position[]>{
@@ -54,6 +55,12 @@ export class PositionService{
       retval$.next(helper);
     });
     return retval$.asObservable();
+  }
+
+  public excelImport(formData:FormData) {
+
+    this.http.post(this.excelAdress, formData).subscribe((response) => {console.log(response)});
+
   }
 
   public editPosition(position:Position):Observable<Position>{

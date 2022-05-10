@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
+import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
 import { ObjectCreateDto, ObjectService } from 'src/app/Services/object.service';
 import { Obj } from 'src/app/Services/object.service';
 
@@ -80,14 +82,11 @@ search : String ="";
     return this.dataSource;
   }
 
-  constructor(public objectService: ObjectService) { }
+  constructor(public objectService: ObjectService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
-    this.objectService.getObjects().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-
-    });
+this.loadData();
 
     // this.objectService.getObjectsByString('ste').subscribe(data => {
     //   this._objects = data;
@@ -99,6 +98,13 @@ search : String ="";
     //   console.log(this.object);
     // });
   }
+
+public loadData(){
+  this.objectService.getObjects().subscribe(data => {
+    this.dataSource = new MatTableDataSource(data);
+
+  });
+}
 
   public selectObject(object: Obj){
     this.object=object;
@@ -130,5 +136,17 @@ search : String ="";
       this.dataSource=new MatTableDataSource<Obj>(objArr);
     });
    }
+
+   public openDialog(flag:number, objectName?:string,objectIdCompany?:string,objectIdRetail?:string){
+    const dialogRef = this.dialog.open(ObjectDialogComponent, {data: {objectName,objectIdCompany,objectIdRetail}});
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.afterClosed()
+    .subscribe( res => {
+        if(res === 1){
+          this.loadData();
+        }
+      }
+    )
+    }
 
 }
