@@ -44,4 +44,12 @@ export class StoreCheckComponent implements OnInit {
     });
   }
 
+  public startStoreCheck() {
+    console.log('start store check')
+  }
+
+  public resolveFeedbacks() {
+    console.log('resolve feedbacks')
+  }
+
 }
