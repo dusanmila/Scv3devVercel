@@ -1,11 +1,14 @@
 <div class="header">
-    <div class="obj-info">
+    <div class="head">
         <h1>Object 1.1</h1>
+        <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
+    </div>
+    <div class="obj-info">
         <ul>
-            <li>Retailer: Retailer 1</li>
-            <li>Assortment module: 1-SB22</li>
+            <li>Retailer: {{ object.retailer.retailerName }}</li>
+            <li>Assortment module: {{ object.objectInfo.assortmentModule }}</li>
             <li># of registers: 2</li>
-            <li>Commercialist: John Doe</li>
+            <li>Commercialist: {{ object.commercialist.firstName }} {{ object.commercialist.lastName }}</li>
         </ul>
     </div>
 
@@ -16,9 +19,9 @@
             <th>Company Shelf Space %</th>
         </tr>
         <tr>
-            <td>20</td>
-            <td>30</td>
-            <td>25</td>
+            <td>{{ object.objectInfo.shelfSpaceM }}</td>
+            <td>{{ object.objectInfo.companyShelfSpaceM }}</td>
+            <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
         </tr>
     </table>
 
@@ -31,11 +34,11 @@
             <th>Gainings VS 12M %</th>
         </tr>
         <tr>
-            <td>1.222</td>
-            <td>12</td>
-            <td>15</td>
-            <td>13</td>
-            <td>8</td>
+            <td>{{ object.objectInfo.gainings12Mrsd }}</td>
+            <td>{{ object.objectInfo.wdpercentSerbia }}</td>
+            <td>{{ object.objectInfo.wdpercentSector }}</td>
+            <td>{{ object.objectInfo.wdpercentCustomer }}</td>
+            <td>{{ object.objectInfo.gainingsVs12mpercent }}</td>
         </tr>
     </table>
 </div>
@@ -53,12 +56,8 @@
     <div class="secondary-positions">
         <h4>SECONDARY POSITIONS:</h4>
         <table class="positions-tbl">
-            <tr>
-                <td class="position-name-td">Shelf 1 - Promo</td>
-                <td class="check-box-td"><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td class="position-name-td">Shelf 2 - Promo</td>
+            <tr *ngFor="let position of positions">
+                <td class="position-name-td">{{ position.posClassName }} - {{ position.posTypeName }}</td>
                 <td class="check-box-td"><input type="checkbox"></td>
             </tr>
         </table>

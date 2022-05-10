@@ -21,8 +21,8 @@ export class StoreCheckPageComponent implements OnInit {
               public positionService: PositionService) { }
 
   ngOnInit(): void {
-    // this.getOneObject();
-    // this.getPositionsByObjectName();
+    this.getOneObject();
+    this.getPositionsByObjectName();
   }
 
   public getOneObject() {
@@ -53,6 +53,7 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   public getRetailerPlanogram() {
+    console.log('get retailer planogram');
     this.objectService.getRetailerPlanogram(this.object.retailer);
   }
 

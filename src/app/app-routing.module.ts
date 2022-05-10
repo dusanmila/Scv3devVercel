@@ -11,6 +11,7 @@ import { AdminpageComponent } from './components/adminpage/adminpage.component';
 import { StoreCheckComponent } from './components/store-check/store-check.component';
 import { StoreCheckPageComponent } from './components/store-check-page/store-check-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -23,8 +24,8 @@ const routes: Routes = [
   {path:'object', component:ObjectComponent},
   {path:'storeCheckPage',component:StoreCheckPageComponent},
   {path:'storeCheck',component:StoreCheckComponent},
-  {path:'login',component:LoginComponent}
-
+  {path:'login',component:LoginComponent},
+  {path:'chooseObject',component:ChooseObjectComponent}
 
 ];
 

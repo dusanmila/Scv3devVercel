@@ -26,6 +26,8 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 
+import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -38,6 +40,10 @@ import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { PositionComponent } from './components/position/position.component';
+
+import { StoreCheckComponent } from './components/store-check/store-check.component';
+import { StoreCheckPageComponent } from './components/store-check-page/store-check-page.component';
+
 import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.component';
 
 
@@ -49,6 +55,10 @@ import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.compo
     FeedbackComponent,
     UserComponent,
     LoginComponent,
+    StoreCheckPageComponent,
+    StoreCheckComponent,
+    AdminpageComponent,
+    ChooseObjectComponent,
     AdminpageComponent,
     UserDialogComponent,
     ObjectDialogComponent
