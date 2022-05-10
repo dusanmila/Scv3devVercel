@@ -8,23 +8,31 @@
   <br>
   <h2 style="text-align:center;color:#56baed">Import Excel</h2>
   <br>
+
+
+
   <div class="parentcontainer">
-    <div class="container">
-      <h3 style="text-align:center;color:#56baed">Import objects</h3>
-      <input type="file" #fileDropRef id="fileDropRef" />
-      <img src="assets/img/dnd/ic-upload-file.svg" alt="">
-      <h3>Drag and drop file here</h3>
-      <h3>or</h3>
-      <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
-    </div>
-    <div class="container">
-      <h3 style="text-align:center;color:#56baed">Import positions</h3>
-      <input type="file" #fileDropRef id="fileDropRef" />
-      <img src="assets/img/dnd/ic-upload-file.svg" alt="">
-      <h3>Drag and drop file here</h3>
-      <h3>or</h3>
-      <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
-    </div>
+
+      <div class="container">
+        <h3 style="text-align:center;color:#56baed">Import objects</h3>
+        <input type="file" #fileDropRef (change)="uploadObjectsFile($event)" id="fileDropRef" />
+
+        <h3>Drag and drop file here</h3>
+        <h3>or</h3>
+        <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
+      </div>
+
+
+
+  <div class="container">
+    <h3 style="text-align:center;color:#56baed">Import positions</h3>
+    <input type="file" #fileDropRef (change)="uploadPositionsFile($event)" id="fileDropRef" />
+
+    <h3>Drag and drop file here</h3>
+    <h3>or</h3>
+    <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
   </div>
+</div>
+
 
 </body>

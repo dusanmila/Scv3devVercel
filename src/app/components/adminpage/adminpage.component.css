@@ -6,6 +6,7 @@
   border: dashed 1px #979797;
   position: relative;
   margin: 0 auto;
+
 }
 .container input {
   opacity: 0;
@@ -70,4 +71,7 @@
 
 .parentcontainer{
   display:flex;
+  margin:0 auto;
 }
+
+
