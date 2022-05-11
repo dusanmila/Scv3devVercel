@@ -61,7 +61,7 @@ export class ObjectService {
 
   // private readonly address = "http://localhost:8083/object/objects";
   private readonly address = "http://localhost:8089/api/objects";
-  private readonly excelAddress = "http://localhost:8089/api/objectExcels/";
+  private readonly excelAddress = "http://localhost:8089/api/objectExcels";
 
   public getObjects(): Observable<Obj[]> {
     console.log('b')

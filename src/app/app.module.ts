@@ -46,6 +46,8 @@ import { StoreCheckPageComponent } from './components/store-check-page/store-che
 
 import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.component';
 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.compo
     ChooseObjectComponent,
     AdminpageComponent,
     UserDialogComponent,
-    ObjectDialogComponent
+    ObjectDialogComponent,
+    FeedbackDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -70,7 +73,7 @@ import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.compo
     MatInputModule,
     BrowserAnimationsModule,
     WebcamModule,
-
+    MatCheckboxModule,
     BrowserModule,
     MatToolbarModule,
     MatFormFieldModule,
