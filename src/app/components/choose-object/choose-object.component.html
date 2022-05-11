@@ -4,19 +4,21 @@
 
 <div class="main">
     <div class="search-object">
-        <h4>ENTER ADDRES OR NAME:</h4>
-        <input class="search-input" type="text" placeholder="Search object">
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-        <table class="emails-tbl">
+        <h4>ENTER ADDRESS OR NAME:</h4>
+        <input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">
+        <table class="emails-tbl" *ngIf="objects.length > 0">
             <tr>
                 <th>Addres</th>
                 <th>Name</th>
+                <th></th>
             </tr>
-           <tr>
-               <td class="email-td">Address</td>
-               <td class="name-td">Name <i class="fa-solid fa-up-right-from-square"></i></td>
+           <tr *ngFor="let object of objects">
+               <td class="email-td">{{ object.address }}</td>
+               <td class="email-td">{{ object.objectName }}</td>
+               <td><i class="fa-solid fa-up-right-from-square"></i></td>
            </tr>
         </table>
+        <app-object></app-object>
     </div>
 
     <div class="finish-sc">

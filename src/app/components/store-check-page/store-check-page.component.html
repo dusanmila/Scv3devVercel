@@ -1,49 +1,55 @@
 <div class="header">
     <div class="head">
-        <h1>Object 1.1</h1>
+        <h1>{{ object.objectName }}</h1>
         <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
     </div>
-    <div class="obj-info">
-        <ul>
-            <li>Retailer: {{ object.retailer.retailerName }}</li>
-            <li>Assortment module: {{ object.objectInfo.assortmentModule }}</li>
-            <li># of registers: 2</li>
-            <li>Commercialist: {{ object.commercialist.firstName }} {{ object.commercialist.lastName }}</li>
-        </ul>
+    <div class="object-info-data" *ngIf="showDetails == true">
+        <div class="obj-info">
+            <ul>
+                <li>Retailer: {{ object.retailer.retailerName }}</li>
+                <li>Assortment module: {{ object.objectInfo.assortmentModule }}</li>
+                <li>Number of registers: {{ object.objectInfo.registersNumber }}</li>
+                <li>Commercialist: {{ object.commercialist.firstName }} {{ object.commercialist.lastName }}</li>
+            </ul>
+        </div>
+        <table class="info-table">
+            <tr>
+                <th>Shelf Space M</th>
+                <th>Company Shelf Space M</th>
+                <th>Company Shelf Space %</th>
+            </tr>
+            <tr>
+                <td>{{ object.objectInfo.shelfSpaceM }}</td>
+                <td>{{ object.objectInfo.companyShelfSpaceM }}</td>
+                <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
+            </tr>
+        </table>
+    
+        <table class="info-table">
+            <tr>
+                <th>Gainings 12M (RSD)</th>
+                <th>WD % Serbia</th>
+                <th>WD % Sector</th>
+                <th>WD % Customer</th>
+                <th>Gainings VS 12M %</th>
+            </tr>
+            <tr>
+                <td>{{ object.objectInfo.gainings12Mrsd }}</td>
+                <td>{{ object.objectInfo.wdpercentSerbia }}</td>
+                <td>{{ object.objectInfo.wdpercentSector }}</td>
+                <td>{{ object.objectInfo.wdpercentCustomer }}</td>
+                <td>{{ object.objectInfo.gainingsVs12mpercent }}</td>
+            </tr>
+        </table>
     </div>
-
-    <table class="info-table">
-        <tr>
-            <th>Shelf Space M</th>
-            <th>Company Shelf Space M</th>
-            <th>Company Shelf Space %</th>
-        </tr>
-        <tr>
-            <td>{{ object.objectInfo.shelfSpaceM }}</td>
-            <td>{{ object.objectInfo.companyShelfSpaceM }}</td>
-            <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
-        </tr>
-    </table>
-
-    <table class="info-table">
-        <tr>
-            <th>Gainings 12M (RSD)</th>
-            <th>WD % Serbia</th>
-            <th>WD % Sector</th>
-            <th>WD % Customer</th>
-            <th>Gainings VS 12M %</th>
-        </tr>
-        <tr>
-            <td>{{ object.objectInfo.gainings12Mrsd }}</td>
-            <td>{{ object.objectInfo.wdpercentSerbia }}</td>
-            <td>{{ object.objectInfo.wdpercentSector }}</td>
-            <td>{{ object.objectInfo.wdpercentCustomer }}</td>
-            <td>{{ object.objectInfo.gainingsVs12mpercent }}</td>
-        </tr>
-    </table>
+    <i class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></i>
+    <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></i>
 </div>
 
-<div class="main">
+<app-feedback></app-feedback>
+<app-position></app-position>
+
+<div class="main" *ngIf="1>2">
     <h3>ADD FEEDBACK</h3>
     <a href="/feedback">
         <div class="add-fb-btn">
