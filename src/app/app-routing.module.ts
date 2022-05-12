@@ -12,10 +12,12 @@ import { StoreCheckComponent } from './components/store-check/store-check.compon
 import { StoreCheckPageComponent } from './components/store-check-page/store-check-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
+import { ResolvedFeedbackComponent } from './components/resolved-feedback/resolved-feedback.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
   {path:'feedback', component:FeedbackComponent},
+ 
   {path:'user', component:UserComponent},
 
   {path:'admin', component:AdminpageComponent},
@@ -25,7 +27,8 @@ const routes: Routes = [
   {path:'storeCheckPage/:objectName',component:StoreCheckPageComponent},
   {path:'storeCheck',component:StoreCheckComponent},
   {path:'login',component:LoginComponent},
-  {path:'chooseObject',component:ChooseObjectComponent}
+  {path:'chooseObject/:flag',component:ChooseObjectComponent},
+  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent},
 
 ];
 

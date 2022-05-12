@@ -1,5 +1,5 @@
 
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { FeedbackService } from 'src/app/Services/feedback.service';
 import { Feedback } from '../../models/feedback.model';
@@ -16,54 +16,77 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class FeedbackComponent implements OnInit {
 
-displayedColumns = ["feedbackCategoryName","text","date","resolved","img","username","date","actions"];
-dataSource: MatTableDataSource<Feedback>;
-subscription: Subscription;
+  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date", "actions"];
+  dataSource: MatTableDataSource<Feedback>;
+  subscription: Subscription;
 
+  objectName: string = "Objekat1";
+  resolveFeedbacks: boolean = false;
+
+  public showResolved: boolean = false;
 
   form: FormGroup;
 
 
 
-  feedback:Feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
+  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
 
-  selectedFeedback:Feedback= {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
-
-
+  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
 
 
-  public get feedbacks(): Feedback[]{
+
+
+  public get feedbacks(): Feedback[] {
     return this._feedbacks;
   }
 
-  private _feedbacks: Feedback[]=[]
+  private _feedbacks: Feedback[] = []
 
 
-  constructor(public feedbackService: FeedbackService, private http:HttpClient,public fb: FormBuilder,public dialog:MatDialog) {
+  constructor(public feedbackService: FeedbackService, private http: HttpClient, public fb: FormBuilder, public dialog: MatDialog) {
 
     this.form = this.fb.group({
       file: [null],
       FeedbackCategoryName: [''],
-      text:[''],
-      date:[''],
-      username:['']
+      text: [''],
+      date: [''],
+      username: ['']
     });
-   }
-
-  ngOnInit(): void {
-this.loadData();
-
-
   }
 
-  public loadData(){
+  ngOnInit(): void {
+    if (this.objectName != null && this.resolveFeedbacks == true) {
+      console.log('1');
+      this.loadUnresolvedFeedbacksByObject();
+    } else if (this.objectName != null && this.resolveFeedbacks == false) {
+      console.log('2');
+      this.loadResolvedFeedbacksByObject();
+    } else {
+      console.log(this.objectName, this.resolveFeedbacks);
+      this.loadData();
+    }
+  }
+
+  public loadData() {
     this.feedbackService.getFeedbacks().subscribe(data => {
       console.log(data);
       this.dataSource = new MatTableDataSource(data);
     });
   }
 
-  uploadFile(event:any) {
+  public loadUnresolvedFeedbacksByObject() {
+    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+    });
+  }
+
+  public loadResolvedFeedbacksByObject() {
+    this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+    });
+  }
+
+  uploadFile(event: any) {
     const file = (event.target as HTMLInputElement).files![0];
     this.form.patchValue({
       file: file,
@@ -79,8 +102,8 @@ this.loadData();
     formData.append('username', this.form.get('username')!.value);
     formData.append('date', this.form.get('date')!.value);
     this.http
-    .post('https://microservicefeedback.azurewebsites.net/api/feedbacks', formData)
-     // .post('http://localhost:8088/api/feedbacks', formData)
+      .post('https://microservicefeedback.azurewebsites.net/api/feedbacks', formData)
+      // .post('http://localhost:8088/api/feedbacks', formData)
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error)
@@ -90,29 +113,28 @@ this.loadData();
 
 
 
-  createFeedback(){
+  createFeedback() {
     console.log(this.feedback);
     this.feedbackService.createFeedback(this.feedback).subscribe(data => {
       this._feedbacks.push(data);
 
     });
-    this.feedback = {feedbackCategoryName: "", text: "", date: "", resolved: false, img:"", username:""};
+    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
 
   }
 
-  selectFeedback(feedback:Feedback){
+  selectFeedback(feedback: Feedback) {
     this.feedbackService.getOneFeedback(feedback).subscribe(data => {
-      this.selectedFeedback=data;
-    }) ;
-    this.feedback=feedback;
+      this.selectedFeedback = data;
+    });
+    this.feedback = feedback;
 
-   }
+  }
 
 
 
-  editFeedback(feedback:Feedback)
-  {
-    this.feedbackService.editFeedback(feedback).subscribe(data=>{
+  editFeedback(feedback: Feedback) {
+    this.feedbackService.editFeedback(feedback).subscribe(data => {
 
       console.log(data);
 
@@ -130,18 +152,25 @@ this.loadData();
 
   }
 
-  public openDialog(flag:number, feedbackCategoryName?:string,text?:string,date?:string,resolved?:string,img?:string,username?:string){
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, {data: {feedbackCategoryName,text,date,resolved,img,username}});
+  public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
-    .subscribe( res => {
-        if(res === 1){
+      .subscribe(res => {
+        if (res === 1) {
           this.loadData();
         }
       }
-    )
+      )
+  }
+
+  public showResolvedFeedbacks() {
+    this.showResolved = !this.showResolved;
+    if (this.showResolved) {
+      this.loadResolvedFeedbacksByObject();
+    } else {
+      this.loadUnresolvedFeedbacksByObject();
     }
-
-
+  }
 
 }
