@@ -20,8 +20,8 @@ export class FeedbackComponent implements OnInit {
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
-  objectName: string = "Objekat1";
-  resolveFeedbacks: boolean = false;
+  @Input() objectName: string;
+  @Input() resolveFeedbacks: boolean;
 
   public showResolved: boolean = false;
 
