@@ -19,7 +19,11 @@ h1{
     cursor: pointer;
     border-radius: 2px;
   }
-  
+
   ul.links {
     padding-bottom: 10px;
+  }
+
+  .table-row {
+    height: 30px !important;
   }

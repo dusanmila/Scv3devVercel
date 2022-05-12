@@ -1,71 +1,56 @@
-<h1>List of all feedbacks</h1>
 
 
-<div class="container" style="margin-top: 70px;">
-    <table class="table table-hover">
-      <thead>
-        <tr>
+<div class="container mat-elevation-z8">
 
-          <th>Category</th>
-          <th>Text</th>
-          <th>Date</th>
-          <th>Resolved</th>
-          <th>Img</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let feedback of feedbacks">
+<mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-          <td> {{ feedback.feedbackCategoryName }}</td>
-          <td> {{ feedback.text }}</td>
-          <td> {{ feedback.date }}</td>
-          <td> {{ feedback.resolved }}</td>
-          <td> <img data-enlargeable src="{{'assets/' + feedback.img}}" alt="feedback photo" width="200" height="200"></td>
-          <td> {{ feedback.username }}</td>
+  <ng-container matColumnDef="img">
+    <th mat-header-cell *matHeaderCellDef> Image </th>
+    <td mat-cell *matCellDef="let row"> <img [src]="row.img" alt="SC photo" width="50" height="50"/> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="feedbackCategoryName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="text">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Text</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.text }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.date }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="resolved">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Resolved</mat-header-cell>
+    <mat-cell *matCellDef="let row">{{ row.resolved }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
+    <mat-cell *matCellDef="let row" class="table-row">{{ row.username }}</mat-cell>
+  </ng-container>
 
 
-          <td>
 
-            <button class="btn btn-primary" (click)="selectFeedback(feedback)"> Show details</button>
-            <button class="btn btn-primary" (click)="resolveFeedback(feedback)"> Resolve</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-icon-button color="primary">
+<mat-icon>add</mat-icon>
+      </button>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i=index">
+
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="openDialog(3,row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username)"></mat-row>
+  </mat-table>
+
 </div>
-<div class="card text-center" *ngIf="selectedFeedback">
-  <div class="card-header">
-    # {{selectedFeedback.img}}
-  </div>
-  <div class="card-block">
-    <h4 class="card-title">{{selectedFeedback.img}}</h4>
-    <p class="card-text">
-      {{selectedFeedback.text}}
-    </p>
-  </div>
 
-</div>
-
-<!--<button class="btn btn-primary" *ngIf="selectedFeedback" (click)="deleteFeedback()"> Delete product</button>-->
-
-<!--<div class="container" style="margin-top: 70px;" *ngIf="isadmin|async">-->
-
-  <div class="container">
-    <form [formGroup]="form" (ngSubmit)="submitForm()">
-
-        
-        <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera">
-
-        <input placeholder="FeedbackCategoryName" formControlName="FeedbackCategoryName">
-        <input placeholder="text" formControlName="text">
-        <input placeholder="date" formControlName="date">
-        <input placeholder="username" formControlName="username">
-       
-
-        <button>Create</button>
-
-    </form>
-</div>
-  <br>
 
