@@ -23,7 +23,7 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback[]>();
 
 
-    this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks`,{headers:new HttpHeaders({'token':'*'})}).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks`).subscribe((feedbacks: Feedback[]) => {
 
       retval$.next(feedbacks)
 
@@ -32,13 +32,26 @@ export class FeedbackService {
     return retval$.asObservable();
   }
 
+  public getResolvedFeedbacks(): Observable<Feedback[]>{
+
+    let retval$ = new Subject<Feedback[]>();
+
+
+    this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+
+      retval$.next(feedbacks)
+
+    });
+
+    return retval$.asObservable();
+  }
 
   public getUnresolvedFeedbacks(): Observable<Feedback[]>{
 
     let retval$ = new Subject<Feedback[]>();
 
-   // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
-      this.http.get<Feedback[]>(`https://microservicefeedback.azurewebsites.net/api/feedbacks`).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+      //this.http.get<Feedback[]>(`https://microservicefeedback.azurewebsites.net/api/feedbacks`).subscribe((feedbacks: Feedback[]) => {
 
       retval$.next(feedbacks)
 

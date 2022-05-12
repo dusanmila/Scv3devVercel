@@ -48,6 +48,7 @@ import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.compo
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
+import { ResolvedFeedbacksComponent } from './components/resolved-feedbacks/resolved-feedbacks.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog
     AdminpageComponent,
     UserDialogComponent,
     ObjectDialogComponent,
-    FeedbackDialogComponent
+    FeedbackDialogComponent,
+    ResolvedFeedbacksComponent
   ],
   imports: [
     AppRoutingModule,
