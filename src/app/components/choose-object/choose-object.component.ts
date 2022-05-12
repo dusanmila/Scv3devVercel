@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Obj, ObjectService } from 'src/app/Services/object.service';
 
 @Component({
   selector: 'app-choose-object',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChooseObjectComponent implements OnInit {
 
-  constructor() { }
+  public objects: Obj[] = [];
+
+  constructor(public objectService: ObjectService) { }
 
   ngOnInit(): void {
+    //this.loadObjects();
+  }
+
+  public loadObjects() {
+    this.objectService.getObjects().subscribe(data => {
+      this.objects = data;
+    });
   }
 
 }

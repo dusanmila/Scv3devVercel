@@ -22,7 +22,7 @@ const routes: Routes = [
 
   {path:'position', component:PositionComponent},
   {path:'object', component:ObjectComponent},
-  {path:'storeCheckPage',component:StoreCheckPageComponent},
+  {path:'storeCheckPage/:objectName',component:StoreCheckPageComponent},
   {path:'storeCheck',component:StoreCheckComponent},
   {path:'login',component:LoginComponent},
   {path:'chooseObject',component:ChooseObjectComponent}
