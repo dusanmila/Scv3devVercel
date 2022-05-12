@@ -1,5 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
 import { Position, PositionService } from 'src/app/Services/position-service.service';
 //import { DataService, Product } from '../data.service';
@@ -10,7 +11,10 @@ import { Position, PositionService } from 'src/app/Services/position-service.ser
   templateUrl: './position.component.html',
   styleUrls: ['./position.component.css']
 })
-export class PositionComponent implements OnInit{ 
+export class PositionComponent implements OnInit{
+
+  displayedColumns = ["objectName","posClassName","posTypeName","actions"];
+  dataSource: MatTableDataSource<Position>;
 
   position:Position={objectName:"", posClassName:"", posTypeName:""};
   selectedPosition:Position;
@@ -26,14 +30,16 @@ export class PositionComponent implements OnInit{
   constructor(public positionService: PositionService) { }
 
   ngOnInit(): void {
-    this.positionService.getPositions().subscribe(data => {
-
-      this._positions = data;
-    console.log(this._positions.length)
-  });
+   this.loadData();
   }
 
+public loadData(){
+  this.positionService.getPositions().subscribe(data => {
 
+    this.dataSource = new MatTableDataSource(data);
+
+});
+}
   createPosition(){
     console.log(this.position.objectName);
     this.positionService.createPosition(this.position).subscribe(data => {
@@ -70,5 +76,17 @@ export class PositionComponent implements OnInit{
     }
     });
   }
+
+  public openDialog(flag:number, objectName?:string,posClassName?:string,posTypeName?:string){
+  /*  const dialogRef = this.dialog.open(PositionDialogComponent, {data: {objectName,posClassName,posTypeName}});
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.afterClosed()
+    .subscribe( res => {
+        if(res === 1){
+          this.loadData();
+        }
+      }
+    )*/
+    }
 }
 
