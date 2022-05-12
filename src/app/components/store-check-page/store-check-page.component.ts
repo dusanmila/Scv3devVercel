@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ObjectStoreCheck, ObjectStoreCheckCreateDto, ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { Obj, ObjectService } from 'src/app/Services/object.service';
 import { Position, PositionService } from 'src/app/Services/position-service.service';
@@ -15,12 +16,15 @@ export class StoreCheckPageComponent implements OnInit {
   public objectStoreCheck: ObjectStoreCheck;
   public username: string = "ppetrovic";
   public positions: Position[];
+  public showDetails: boolean = false;
 
   constructor(public objectService: ObjectService,
               public objectStoreCheckService: ObjectStoreCheckService,
-              public positionService: PositionService) { }
+              public positionService: PositionService,
+              public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
     this.getOneObject();
     this.getPositionsByObjectName();
   }
@@ -55,6 +59,10 @@ export class StoreCheckPageComponent implements OnInit {
   public getRetailerPlanogram() {
     console.log('get retailer planogram');
     this.objectService.getRetailerPlanogram(this.object.retailer);
+  }
+
+  public showObjectInfos() {
+    this.showDetails = !this.showDetails;
   }
 
 }

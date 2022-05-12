@@ -16,7 +16,7 @@
 }
 
 .main .search-input {
-    width: 250px;
+    width: 280px;
     height: 40px;
     border-radius: 25px;
     padding: 0 10px;
@@ -39,6 +39,11 @@
 
 .emails-tbl tr {
     height: 40px;
+}
+
+.emails-tbl i {
+    cursor: pointer;
+    margin: 0 10px;
 }
 
 .email-td {
