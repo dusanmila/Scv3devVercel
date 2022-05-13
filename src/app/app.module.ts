@@ -31,6 +31,7 @@ import { ChooseObjectComponent } from './components/choose-object/choose-object.
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -48,6 +49,9 @@ import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.compo
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
+import { RetailerDialogComponent } from './dialogs/retailerdialog/retailerdialogcomponent';
+import { RetailerComponent } from './components/retailer/retailer.component';
+import { AddfeedbackdialogComponent } from './dialogs/addfeedbackdialog/addfeedbackdialog.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +68,9 @@ import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog
     AdminpageComponent,
     UserDialogComponent,
     ObjectDialogComponent,
-    FeedbackDialogComponent
+    FeedbackDialogComponent,
+    RetailerDialogComponent,
+    RetailerComponent
   ],
   imports: [
     AppRoutingModule,
@@ -78,7 +84,7 @@ import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog
     MatToolbarModule,
     MatFormFieldModule,
     MatTableModule,
-
+MatSelectModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
