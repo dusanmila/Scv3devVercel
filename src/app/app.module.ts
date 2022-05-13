@@ -51,7 +51,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
 import { RetailerDialogComponent } from './dialogs/retailerdialog/retailerdialogcomponent';
 import { RetailerComponent } from './components/retailer/retailer.component';
-import { AddfeedbackdialogComponent } from './dialogs/addfeedbackdialog/addfeedbackdialog.component';
 
 @NgModule({
   declarations: [
