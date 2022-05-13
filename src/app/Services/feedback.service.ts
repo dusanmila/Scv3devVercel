@@ -60,6 +60,22 @@ export class FeedbackService {
     return retval$.asObservable();
   }
 
+  public getUnresolvedFeedbacksByObject(objectName: string) {
+    let retval$ = new Subject<Feedback[]>();
+    this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
+      retval$.next(feedbacks);
+    });
+    return retval$.asObservable();
+  }
+
+  public getResolvedFeedbacksByObject(objectName: string) {
+    let retval$ = new Subject<Feedback[]>();
+    this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
+      retval$.next(feedbacks);
+    });
+    return retval$.asObservable();
+  }
+
   public createFeedback(feedback:Feedback):Observable<Feedback>{
 
     let retval$ = new Subject<Feedback>();
