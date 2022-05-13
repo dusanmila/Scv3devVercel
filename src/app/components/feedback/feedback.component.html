@@ -37,9 +37,9 @@
 
 
 
-  <ng-container matColumnDef="actions" *ngIf="!resolveFeedbacks">
+  <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef>
-      <button mat-icon-button color="primary">
+      <button mat-icon-button color="primary" (click)="openCreateDialog(1)">
 <mat-icon>add</mat-icon>
       </button>
     </mat-header-cell>
