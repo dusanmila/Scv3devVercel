@@ -99,6 +99,14 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public getObjectsByStringContains(str: string): Observable<Obj[]> {
+    let retval$ = new Subject<Obj[]>();
+    this.http.get<Obj[]>(`${this.address}/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
+      retval$.next(objects);
+    });
+    return retval$.asObservable();
+  }
+
   public getOneObject(object: Obj): Observable<Obj> {
     let retval$ = new Subject<Obj>();
     this.http.get<Obj>(`${this.address}/objectByObjectName/${object.objectName}`).subscribe((objects: Obj) => {
@@ -162,11 +170,11 @@ export class ObjectService {
   }
 
 
-  public getObjectByString(string:String): Observable<Obj>{
+  public getObjectByString(string:String): Observable<Obj[]>{
 
-    let retval$ = new Subject<Obj>();
+    let retval$ = new Subject<Obj[]>();
 
-    this.http.get<Obj>(`${this.address}/objects/objectByString/${string}`).subscribe((object: Obj) => {
+    this.http.get<Obj[]>(`${this.address}/objectByString/${string}`).subscribe((object: Obj[]) => {
 
       retval$.next(object)
 
