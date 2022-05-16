@@ -31,7 +31,7 @@ import { ChooseObjectComponent } from './components/choose-object/choose-object.
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSelectModule } from '@angular/material/select';
+
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -97,8 +97,7 @@ MatSelectModule,
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    MatButtonModule,
-    MatSelectModule
+    MatButtonModule
 
   ],
   providers: [],
