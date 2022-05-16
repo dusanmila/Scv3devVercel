@@ -3,6 +3,6 @@ export interface EmailsForSending {
     manager: boolean;
     sectorDirector: boolean;
     salesDirector: boolean;
-    marketingDirector: boolean;
+    marketing: boolean;
     optionalEmail: string;
 }

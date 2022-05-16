@@ -33,7 +33,6 @@ export class ChooseObjectComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res === 1) {
-          console.log('Uspesno poslati mejlovi')
         }
       }
       )
