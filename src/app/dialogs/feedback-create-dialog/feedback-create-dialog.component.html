@@ -1,0 +1,31 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag == 1">Feedback</h3>
+
+    <form class="mat-dialog-content" #formControl="ngForm">
+
+        <div class="form">
+            <mat-form-field>
+              <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory">
+                <mat-option *ngFor="let category of feedbackCategories" [value]="category">
+                  {{ category.feedbackCategoryName }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        <div class="form">
+            <mat-form-field>
+                <input matInput [(ngModel)]="feedback.text" name="text" placeholder="Type text..."/>
+            </mat-form-field>
+        </div>
+
+       
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+            <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
+            <button mat-button>Add Feedback</button>
+        </form>
+        <div mat-dialog-actions>
+            <button mat-button (click)="close()">Close</button>
+        </div>
+    </form>
+</div>

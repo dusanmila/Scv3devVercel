@@ -27,7 +27,7 @@ const routes: Routes = [
   {path:'storeCheckPage/:objectName',component:StoreCheckPageComponent},
   {path:'storeCheck',component:StoreCheckComponent},
   {path:'login',component:LoginComponent},
-  {path:'chooseObject/:flag',component:ChooseObjectComponent},
+  {path:'chooseObject',component:ChooseObjectComponent},
   {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent},
 
 ];

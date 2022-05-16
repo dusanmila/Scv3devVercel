@@ -1,29 +1,34 @@
 <div class="container">
   <h3 mat-dialog-title *ngIf="flag == 1">Feedback</h3>
+
   <form class="mat-dialog-content" #formControl="ngForm">
 
     <div class="form">
 
-        <img [src]="data.img" alt="SC photo" width="250" height="250"/>
+      <img [src]="data.img" alt="SC photo" width="250" height="250" />
 
     </div>
     <div class="form">
       <mat-form-field>
-        <input matInput [(ngModel)]="data.text" name = "text" [disabled]="true"/>
+        <input matInput [(ngModel)]="data.text" name="text" [disabled]="true" />
       </mat-form-field>
     </div>
 
-<div class="form">
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.feedbackCategoryName" name = "feedbackCategoryName" [disabled]="true"/>
-  </mat-form-field>
-</div>
+    <div class="form">
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.feedbackCategoryName" name="feedbackCategoryName" [disabled]="true" />
+      </mat-form-field>
+    </div>
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
+        <button mat-button>Resolve</button>
+      </form>
+      <div mat-dialog-actions>
+        <button mat-button *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()"
+          [disabled]="!formControl.valid">Ok</button>
 
-<div mat-dialog-actions>
-  <button mat-button *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>
-
-  <button mat-button (click)="close()">Close</button>
-</div>
+        <button mat-button (click)="close()">Close</button>
+      </div>
   </form>
-  </div>
-
+</div>
+    

@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FeedbackCreateDialogComponent } from 'src/app/dialogs/feedback-create-dialog/feedback-create-dialog.component';
 
 @Component({
   selector: 'app-feedback',
@@ -16,13 +17,13 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class FeedbackComponent implements OnInit {
 
-  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date", "actions"];
+  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date"];
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
   @Input() objectName: string;
   @Input() resolveFeedbacks: boolean;
-
+  // resolveFeedbacks: boolean = false;
   public showResolved: boolean = false;
 
   form: FormGroup;
@@ -55,16 +56,15 @@ export class FeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.objectName != null && this.resolveFeedbacks == true) {
-      console.log('1');
-      this.loadUnresolvedFeedbacksByObject();
-    } else if (this.objectName != null && this.resolveFeedbacks == false) {
-      console.log('2');
-      this.loadResolvedFeedbacksByObject();
-    } else {
-      console.log(this.objectName, this.resolveFeedbacks);
-      this.loadData();
+    if (!this.resolveFeedbacks) {
+      this.displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date", "actions"];
     }
+
+    if (this.objectName != null) {
+      this.loadUnresolvedFeedbacksByObject();
+    } 
+    this.loadUnresolvedFeedbacksByObject();
+
   }
 
   public loadData() {
@@ -154,6 +154,18 @@ export class FeedbackComponent implements OnInit {
 
   public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
     const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username } });
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        if (res === 1) {
+          this.loadData();
+        }
+      }
+      )
+  }
+
+  public openCreateDialog(flag: number) {
+    const dialogRef = this.dialog.open(FeedbackCreateDialogComponent);
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {

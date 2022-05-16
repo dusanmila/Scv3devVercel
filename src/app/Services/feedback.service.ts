@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
 import { Feedback } from '../models/feedback.model';
+import { FeedbackCategory } from '../models/feedbackCategory';
 
 
 
@@ -119,6 +120,12 @@ export class FeedbackService {
 
   }
 
-
+  public getFeedbackCategories(): Observable<FeedbackCategory[]> {
+    let retval$ = new Subject<FeedbackCategory[]>();
+    this.http.get<FeedbackCategory[]>('http://localhost:8088/api/feedbackCategories').subscribe((helper: FeedbackCategory[]) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
 
 }
