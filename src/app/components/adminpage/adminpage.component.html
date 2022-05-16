@@ -1,15 +1,15 @@
 <body>
-  <h1 style="text-align:center;color:#56baed">Admin Dashboard</h1>
+  <h1 style="text-align:center;color:#56baed;margin-bottom:2%">Admin Dashboard</h1>
   <h2 style="text-align:center;color:#56baed">Users</h2>
   <app-user></app-user>
   <br>
-  <h2 style="text-align:center;color:#56baed">Objects</h2>
+  <h2 style="text-align:center;color:#56baed;margin:2%">Objects</h2>
   <app-object></app-object>
   <br>
-  <h2 style="text-align:center;color:#56baed">Retailers</h2>
+  <h2 style="text-align:center;color:#56baed;margin:2%">Retailers</h2>
   <app-retailer></app-retailer>
   <br>
-  <h2 style="text-align:center;color:#56baed">Import Excel</h2>
+  <h2 style="text-align:center;color:#56baed;margin:2%">Import Excel</h2>
   <br>
 
 
@@ -19,16 +19,10 @@
       <div class="container">
         <h3 style="text-align:center;color:#56baed">Objects</h3>
         <input type="file" #fileDropRef (change)="uploadObjectsFile($event)" id="fileDropRef" />
-        <br>
-        <br>
-        <br>
-        <br>
 
-        <h3>Drag and drop file here</h3>
-        <br>
-        <br>
-        <br>
-        <br>
+
+        <h3 style="margin:5%">Drag and drop file here</h3>
+
         <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
       </div>
 
@@ -37,23 +31,12 @@
   <div class="container">
     <h3 style="text-align:center;color:#56baed">Positions</h3>
     <input type="file" #fileDropRef (change)="uploadPositionsFile($event)" id="fileDropRef" />
-    <br>
-    <br>
-    <br>
-    <br>
-    <h3>Drag and drop file here</h3>
-    <br>
-    <br>
-    <br>
-    <br>
+
+    <h3 style="margin:5%">Drag and drop file here</h3>
+
     <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
   </div>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 </body>
