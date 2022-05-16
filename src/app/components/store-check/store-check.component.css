@@ -34,6 +34,31 @@ a {
     margin: 0 auto;
 }
 
+.item2{
+    background-color: white;
+    color: #39ace7;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 25px;
+    border: 2px solid #39ace7;
+    cursor: pointer;
+    margin: 0 auto;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1%;
+}
+
+.item2:hover {
+    background-color: #39ace7;
+    color: #fff;
+    transition: 0.3s;
+}
+
 .item:hover {
     background-color: #fff;
     color: #39ace7;

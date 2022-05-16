@@ -99,6 +99,19 @@ public deleteUser(user:User):Observable<User>{
     return retval$.asObservable();
   }
 
+  public getUsersByUsername(username:String): Observable<User[]>{
+
+    let retval$ = new Subject<User[]>();
+
+    this.http.get<User[]>(`${this.userAdress}/usernameList/${username}`).subscribe((users: User[]) => {
+
+      retval$.next(users)
+
+    });
+
+    return retval$.asObservable();
+  }
+
   public createUser(user:User):Observable<User>{
 
     let retval$ = new Subject<User>();

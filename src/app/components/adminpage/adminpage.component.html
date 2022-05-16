@@ -1,10 +1,13 @@
-<body>
+
   <h1 style="text-align:center;color:#56baed">Admin Dashboard</h1>
   <h2 style="text-align:center;color:#56baed">Users</h2>
   <app-user></app-user>
   <br>
   <h2 style="text-align:center;color:#56baed">Objects</h2>
   <app-object></app-object>
+  <br>
+  <h2 style="text-align:center;color:#56baed">Retailers</h2>
+  <app-retailer></app-retailer>
   <br>
   <h2 style="text-align:center;color:#56baed">Import Excel</h2>
   <br>
@@ -46,6 +49,15 @@
     <label for="fileDropRef" style="background-color:#56baed">Browse for file</label>
   </div>
 </div>
-
-
-</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div>
+<a [routerLink]="['/login']">
+  <div class="item2">
+     Log out
+  </div>
+</a>

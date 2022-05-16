@@ -19,9 +19,11 @@ export class ObjectComponent implements OnInit {
 dataSource: MatTableDataSource<Obj>;
 subscription: Subscription;
 
+
 @Input() workModel: string;
 
-search : String ="";
+search : string ="";
+ 
  // private _objects: Obj[] = [];
   public object: Obj = {
     objectIdRetail: "string",
@@ -88,7 +90,6 @@ search : String ="";
 
   ngOnInit(): void {
 
-this.loadData();
 
     // this.objectService.getObjectsByString('ste').subscribe(data => {
     //   this._objects = data;
@@ -129,13 +130,10 @@ public loadData(){
   }
 
   public searchByString():void{
-    this.objectService.getObjectByString(this.search).subscribe(data => {
-      console.log(data)
-      type ObjArray = Array<Obj>;
-      const objArr: ObjArray = [
-        data
-    ];
-      this.dataSource=new MatTableDataSource<Obj>(objArr);
+    this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
+
+
+      this.dataSource=new MatTableDataSource<Obj>(data);
     });
    }
 

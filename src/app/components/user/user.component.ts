@@ -37,7 +37,7 @@ search : String ="";
 
   ngOnInit(): void {
 
-    this.loadData();
+
 
 
   }
@@ -57,13 +57,10 @@ public loadData(){
    }
 
    public searchByUsername():void{
-    this.userService.getUserByUsername(this.search).subscribe(data => {
-      console.log(data)
-      type UserArray = Array<User>;
-      const userArr: UserArray = [
-        data
-    ];
-      this.dataSource=new MatTableDataSource<User>(userArr);
+    this.userService.getUsersByUsername(this.search).subscribe(data => {
+
+      this.dataSource=new MatTableDataSource<User>(data);
+
     });
    }
 
@@ -89,6 +86,6 @@ public loadData(){
     )
     }
 
-    
+
 
 }
