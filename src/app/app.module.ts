@@ -36,6 +36,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
@@ -51,6 +52,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
 import { RetailerDialogComponent } from './dialogs/retailerdialog/retailerdialogcomponent';
 import { RetailerComponent } from './components/retailer/retailer.component';
+
+import { ResolvedFeedbackComponent } from './components/resolved-feedback/resolved-feedback.component';
+import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/feedback-create-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +74,10 @@ import { RetailerComponent } from './components/retailer/retailer.component';
     ObjectDialogComponent,
     FeedbackDialogComponent,
     RetailerDialogComponent,
-    RetailerComponent
+    RetailerComponent,
+    ResolvedFeedbackComponent,
+    FeedbackCreateDialogComponent
+
   ],
   imports: [
     AppRoutingModule,
@@ -88,7 +96,8 @@ MatSelectModule,
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
 
   ],
   providers: [],

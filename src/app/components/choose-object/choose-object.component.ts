@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Obj, ObjectService } from 'src/app/Services/object.service';
 
 @Component({
@@ -9,17 +10,18 @@ import { Obj, ObjectService } from 'src/app/Services/object.service';
 export class ChooseObjectComponent implements OnInit {
 
   public objects: Obj[] = [];
+  // public resolveFeedbacks: boolean;
 
-  constructor(public objectService: ObjectService) { }
+  constructor(public objectService: ObjectService,
+              public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.loadObjects();
-  }
-
-  public loadObjects() {
-    this.objectService.getObjects().subscribe(data => {
-      this.objects = data;
-    });
+    // let flag = this.activatedRoute.snapshot.paramMap.get("flag") as string;
+    // if (flag == "addStoreCheck") {
+    //   this.resolveFeedbacks = false;
+    // } else if (flag == "resolveFeedbacks") {
+    //   this.resolveFeedbacks = true;
+    // }
   }
 
 }
