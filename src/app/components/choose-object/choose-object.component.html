@@ -6,7 +6,7 @@
     <div class="search-object">
         <h4>ENTER ADDRESS OR NAME:</h4>
         <input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">
-        <table class="emails-tbl" *ngIf="objects.length > 0">
+        <table class="emails-tbl" *ngIf="1>2">
             <tr>
                 <th>Addres</th>
                 <th>Name</th>
@@ -18,7 +18,8 @@
                <td><i class="fa-solid fa-up-right-from-square"></i></td>
            </tr>
         </table>
-        <app-object></app-object>
+        <app-object [workModel]="workModel"></app-object>
+        <button class="btn-finish" (click)="openDialog()">FINISH STORE CHECK</button>
     </div>
 
     <div class="finish-sc" *ngIf="1>2">
@@ -47,4 +48,14 @@
         </table>
         <button class="btn-finish">FINISH STORE CHECK</button>
     </div>
+
+</div>
+
+<div>
+<a [routerLink]="['/storeCheck']">
+    <div class="item2">
+       Exit
+    </div>
+</a>
+
 </div>

@@ -1,0 +1,24 @@
+<div class="container">
+    <h3 mat-dialog-title>Send store check to:</h3>
+  
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Optional email" [(ngModel)]="emailsForSending.optionalEmail" name="optionaEmail">
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field>
+                <input matInput value="General director">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-checkbox></mat-checkbox>
+            </mat-form-field>
+        </div>
+       
+        <div mat-dialog-action>
+            <button mat-button type="submit" [mat-dialog-close]="1" (click)="send()" [disabled]="!formControl.valid">Send</button>
+            <button mat-button (click)="close()">Close</button>
+        </div>
+    </form>
+</div>

@@ -1,8 +1,4 @@
-<div class="header">
-    <h1>Start Store Check</h1>
-    <h3>or</h3>
-    <h1>Resolve Feedbacks</h1>
-</div>
+
 <div class="menu">
     <a [routerLink]="['/chooseObject/addStoreCheck']">
         <div class="item start-sc" (click)="startStoreCheck()">
@@ -12,6 +8,11 @@
     <a [routerLink]="['/chooseObject/resolveFeedbacks']">
         <div class="item resolve-fb" (click)="resolveFeedbacks()">
             Resolve Feedbacks
+        </div>
+    </a>
+    <a [routerLink]="['/login']">
+        <div class="item2 resolve-fb">
+           Log out
         </div>
     </a>
 </div>
