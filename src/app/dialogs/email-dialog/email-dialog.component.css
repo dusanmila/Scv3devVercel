@@ -6,9 +6,15 @@
     
   .form {
     display: flex;
+    margin-bottom: 10px;
   }
     
   .mat-form-field {
     font-size: 16px;
     flex-grow: 1;
+  }
+
+  .email-input {
+      border: none;
+      font-size: 18px;
   }

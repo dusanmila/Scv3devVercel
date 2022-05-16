@@ -28,7 +28,7 @@ export class StoreCheckService {
 
   public finishStoreCheck(username: string, emailsForSending: EmailsForSending) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${this.address}/${username}`, emailsForSending).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`${this.address}/finishStoreCheck/${username}`, emailsForSending).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

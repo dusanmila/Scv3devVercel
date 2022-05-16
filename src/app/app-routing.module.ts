@@ -13,6 +13,7 @@ import { StoreCheckPageComponent } from './components/store-check-page/store-che
 import { LoginComponent } from './components/login/login.component';
 import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
 import { ResolvedFeedbackComponent } from './components/resolved-feedback/resolved-feedback.component';
+import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path:'storeCheck',component:StoreCheckComponent},
   {path:'login',component:LoginComponent},
   {path:'chooseObject/:workModel',component:ChooseObjectComponent},
-  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent},
+  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent}
 
 ];
 
