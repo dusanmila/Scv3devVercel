@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { MatTableDataSource } from '@angular/material/table';
@@ -18,6 +18,8 @@ export class ObjectComponent implements OnInit {
   displayedColumns = ["objectName","objectIdRetail","objectIdCompany","actions"];
 dataSource: MatTableDataSource<Obj>;
 subscription: Subscription;
+
+@Input() workModel: string;
 
 search : String ="";
  // private _objects: Obj[] = [];

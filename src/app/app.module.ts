@@ -52,6 +52,7 @@ import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog
 
 import { ResolvedFeedbackComponent } from './components/resolved-feedback/resolved-feedback.component';
 import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/feedback-create-dialog.component';
+import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/
     FeedbackDialogComponent,
 
     ResolvedFeedbackComponent,
-      FeedbackCreateDialogComponent
+      FeedbackCreateDialogComponent,
+      EmailDialogComponent
 
   ],
   imports: [
