@@ -36,7 +36,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
