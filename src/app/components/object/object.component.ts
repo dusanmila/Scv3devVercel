@@ -90,7 +90,7 @@ search : string ="";
 
   ngOnInit(): void {
 
-
+//this.loadData();
     // this.objectService.getObjectsByString('ste').subscribe(data => {
     //   this._objects = data;
     //   console.log(this._objects);
