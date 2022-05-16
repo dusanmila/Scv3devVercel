@@ -54,6 +54,7 @@ import { RetailerComponent } from './components/retailer/retailer.component';
 
 import { ResolvedFeedbackComponent } from './components/resolved-feedback/resolved-feedback.component';
 import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/feedback-create-dialog.component';
+import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/
     RetailerDialogComponent,
     RetailerComponent,
     ResolvedFeedbackComponent,
-    FeedbackCreateDialogComponent
+      FeedbackCreateDialogComponent,
+      EmailDialogComponent
 
   ],
   imports: [

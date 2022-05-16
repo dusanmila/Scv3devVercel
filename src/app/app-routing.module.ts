@@ -24,10 +24,10 @@ const routes: Routes = [
 
   {path:'position', component:PositionComponent},
   {path:'object', component:ObjectComponent},
-  {path:'storeCheckPage/:objectName',component:StoreCheckPageComponent},
+  {path:'storeCheckPage/:workModel/:objectName',component:StoreCheckPageComponent},
   {path:'storeCheck',component:StoreCheckComponent},
   {path:'login',component:LoginComponent},
-  {path:'chooseObject',component:ChooseObjectComponent},
+  {path:'chooseObject/:workModel',component:ChooseObjectComponent},
   {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent},
 
 ];
