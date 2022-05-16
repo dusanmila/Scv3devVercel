@@ -67,8 +67,9 @@ export class FeedbackComponent implements OnInit {
 
   }
 
-  public loadData() {
-    this.feedbackService.getFeedbacks().subscribe(data => {
+
+  public loadData(){
+    this.feedbackService.getUnresolvedFeedbacks().subscribe(data => {
       console.log(data);
       this.dataSource = new MatTableDataSource(data);
     });

@@ -49,12 +49,9 @@ export class FeedbackService {
 
   public getUnresolvedFeedbacks(): Observable<Feedback[]>{
 
-    let retval$ = new Subject<Feedback[]>();
-
-    this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
-      //this.http.get<Feedback[]>(`https://microservicefeedback.azurewebsites.net/api/feedbacks`).subscribe((feedbacks: Feedback[]) => {
-
-      retval$.next(feedbacks)
+      let retval$ = new Subject<Feedback[]>();
+      this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+      retval$.next(feedbacks);
 
     });
 

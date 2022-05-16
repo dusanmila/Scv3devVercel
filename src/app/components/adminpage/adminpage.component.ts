@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 
@@ -9,7 +11,7 @@ import { PositionService } from 'src/app/Services/position-service.service';
 })
 export class AdminpageComponent implements OnInit {
 
-  constructor(private objectService:ObjectService,private positionService:PositionService) { }
+  constructor(private objectService:ObjectService,private positionService:PositionService,public dialog:MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -33,7 +35,6 @@ uploadPositionsFile(event:any){
 
   this.positionService.excelImport(formData);
 }
-
 
 
 }
