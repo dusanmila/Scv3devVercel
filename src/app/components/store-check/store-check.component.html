@@ -4,12 +4,12 @@
     <h1>Resolve Feedbacks</h1>
 </div>
 <div class="menu">
-    <a href="/storeCheckPage">
+    <a [routerLink]="['/chooseObject/addStoreCheck']">
         <div class="item start-sc" (click)="startStoreCheck()">
             Start Store Check
         </div>
     </a>
-    <a href="/feedback">
+    <a [routerLink]="['/chooseObject/resolveFeedbacks']">
         <div class="item resolve-fb" (click)="resolveFeedbacks()">
             Resolve Feedbacks
         </div>

@@ -4,25 +4,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/models/feedback.model';
-import { User } from 'src/app/models/user.model';
+import { FeedbackCategory } from 'src/app/models/feedbackCategory';
 import { FeedbackService } from 'src/app/Services/feedback.service';
-import { UserService } from 'src/app/Services/user.service';
-
-
+import { FeedbackDialogComponent } from '../feedbackdialog/feedbackdialog.component';
 
 @Component({
-  selector: 'app-feedback-dialog',
-  templateUrl: './feedbackdialog.component.html',
-  styleUrls: ['./feedbackdialog.component.css']
+  selector: 'app-feedback-create-dialog',
+  templateUrl: './feedback-create-dialog.component.html',
+  styleUrls: ['./feedback-create-dialog.component.css']
 })
-export class FeedbackDialogComponent implements OnInit {
+export class FeedbackCreateDialogComponent implements OnInit {
 
   public flag: number;
   public form: FormGroup;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "ppetrovic" };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+  public feedbackCategories: FeedbackCategory[] = [];
 
   constructor(public snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<FeedbackDialogComponent>,
+    public dialogRef: MatDialogRef<FeedbackCreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Feedback,
     public feedbackService: FeedbackService,
     public fb: FormBuilder,
@@ -35,21 +34,13 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadFeedbackCategories();
   }
 
-  public add(): void {
-    this.feedbackService.createFeedback(this.data)
-      .subscribe(data => {
-        this.snackBar.open('Feedback successfully added', 'Ok', { duration: 2500 });
-      }),
-      (error: Error) => {
-        console.log(error.name + ' -> ' + error.message)
-        this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
-      }
-  }
-
-  public close(): void {
-    this.dialogRef.close();
+  public loadFeedbackCategories() {
+    this.feedbackService.getFeedbackCategories().subscribe(data => {
+      this.feedbackCategories = data;
+    });
   }
 
   uploadFile(event: any) {
@@ -64,16 +55,16 @@ export class FeedbackDialogComponent implements OnInit {
     var formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
     formData.append('FeedbackCategoryName', this.feedback.feedbackCategoryName);
-    formData.append('text', this.feedback.text);
-    formData.append('username', this.feedback.username);
-
     this.http
-      .post('http://localhost:8088/api/feedbacks', formData)
+      .put('http://localhost:8088/api/feedbacks', formData)
       .subscribe({
         next: (response) => console.log(response),
         error: (error) => console.log(error)
+
       });
   }
 
-
+  public close(): void {
+    this.dialogRef.close();
+  }
 }

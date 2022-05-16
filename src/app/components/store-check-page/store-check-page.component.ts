@@ -17,6 +17,7 @@ export class StoreCheckPageComponent implements OnInit {
   public username: string = "ppetrovic";
   public positions: Position[];
   public showDetails: boolean = false;
+  public resolveFeedbacks: boolean = false;
 
   constructor(public objectService: ObjectService,
               public objectStoreCheckService: ObjectStoreCheckService,
