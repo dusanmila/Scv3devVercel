@@ -17,7 +17,7 @@ import { FeedbackCreateDialogComponent } from 'src/app/dialogs/feedback-create-d
 })
 export class FeedbackComponent implements OnInit {
 
-  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date"];
+  displayedColumns = ["feedbackCategoryName", "date", "resolved", "username"];
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
@@ -57,18 +57,18 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.resolveFeedbacks) {
-      this.displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date", "actions"];
+      this.displayedColumns = ["feedbackCategoryName", "date", "resolved", "username", "actions"];
     }
 
     if (this.objectName != null) {
       this.loadUnresolvedFeedbacksByObject();
-    } 
+    }
     this.loadUnresolvedFeedbacksByObject();
 
   }
 
 
-  public loadData(){
+  public loadData() {
     this.feedbackService.getUnresolvedFeedbacks().subscribe(data => {
       console.log(data);
       this.dataSource = new MatTableDataSource(data);
@@ -155,7 +155,7 @@ export class FeedbackComponent implements OnInit {
 
   public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
     const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username } });
-    dialogRef.componentInstance.flag = flag;
+    dialogRef.componentInstance.resolveFeedbacks = this.resolveFeedbacks;
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res === 1) {

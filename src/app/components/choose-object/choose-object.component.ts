@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
 import { Obj, ObjectService } from 'src/app/Services/object.service';
+import { StoreCheck, StoreCheckService } from 'src/app/Services/store-check.service';
 
 @Component({
   selector: 'app-choose-object',
@@ -14,10 +15,12 @@ export class ChooseObjectComponent implements OnInit {
   public objects: Obj[] = [];
   public resolveFeedbacks: boolean;
   public workModel: string;
+  public storeCheck: StoreCheck;
 
   constructor(public objectService: ObjectService,
               public activatedRoute: ActivatedRoute,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              public storeCheckService: StoreCheckService) { }
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
@@ -26,6 +29,16 @@ export class ChooseObjectComponent implements OnInit {
     } else if (this.workModel == "resolveFeedbacks") {
       this.resolveFeedbacks = true;
     }
+    if (!this.resolveFeedbacks) {
+      this.loadStoreCheck();
+    }
+  }
+
+  public loadStoreCheck() {
+    this.storeCheckService.getUnfinishedStoreCheckByUsername("ppetrovic").subscribe(data => {
+      this.storeCheck = data;
+      console.log(this.storeCheck)
+    });
   }
 
   public openDialog() {
