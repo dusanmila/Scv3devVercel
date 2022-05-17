@@ -37,4 +37,12 @@ export class ObjectStoreCheckService {
     });
     return retval$.asObservable();
   }
+
+  public finishObjectStoreCheck(username: string) {
+    let retval$ = new Subject<StoreCheck>();
+    this.http.put<StoreCheck>(`http://localhost:8085/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
 }

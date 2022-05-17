@@ -48,9 +48,11 @@
 
 <div class="main">
     <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
-    <app-position [objectName]="objectName"></app-position>
+    <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
     
-    <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']">FINISH OBJECT</button>
+    <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']" (click)="finishObjectStoreCheck()">FINISH OBJECT</button>
+    
+    <div class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']">EXIT</div>
 </div>
 
 <!--<div class="main">

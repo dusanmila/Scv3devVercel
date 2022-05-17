@@ -72,4 +72,10 @@ export class StoreCheckPageComponent implements OnInit {
     this.showDetails = !this.showDetails;
   }
 
+  public finishObjectStoreCheck() {
+    this.objectStoreCheckService.finishObjectStoreCheck("ppetrovic").subscribe(data => {
+      console.log(data);
+    });
+  }
+
 }
