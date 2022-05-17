@@ -46,8 +46,12 @@
     <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></i>
 </div>
 
-<app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
-<app-position [objectName]="objectName"></app-position>
+<div class="main">
+    <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
+    <app-position [objectName]="objectName"></app-position>
+    
+    <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']">FINISH OBJECT</button>
+</div>
 
 <!--<div class="main">
     <h3>ADD FEEDBACK</h3>

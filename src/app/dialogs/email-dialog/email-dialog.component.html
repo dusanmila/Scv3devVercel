@@ -3,19 +3,24 @@
   
     <form class="mat-dialog-content" #formControl="ngForm">
         <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="Optional email" [(ngModel)]="emailsForSending.optionalEmail" name="optionaEmail">
-            </mat-form-field>
+            <mat-checkbox color="primary" [checked]="emailsForSending.generalDirector" name="generalDirector" (change)="onSelectionChanged($event, 'generalDirector')">General director</mat-checkbox>
         </div>
         <div class="form">
-            <mat-form-field>
-                <input matInput value="General director">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-checkbox></mat-checkbox>
-            </mat-form-field>
+            <mat-checkbox color="primary" [(ngModel)]="emailsForSending.sectorDirector" name="sectorDirector" (change)="onSelectionChanged($event, 'sectorDirector')">Sector director</mat-checkbox>
         </div>
-       
+        <div class="form">
+            <mat-checkbox color="primary" [(ngModel)]="emailsForSending.salesDirector" name="salesDirector" (change)="onSelectionChanged($event, 'salesDirector')">Sales director</mat-checkbox>
+        </div>
+        <div class="form">
+            <mat-checkbox color="primary" [(ngModel)]="emailsForSending.manager" name="manager" (change)="onSelectionChanged($event, 'manager')">Manager</mat-checkbox>
+        </div>
+        <div class="form">
+            <mat-checkbox color="primary" [(ngModel)]="emailsForSending.marketing" name="marketing" (change)="onSelectionChanged($event, 'marketing')">Marketing</mat-checkbox>
+        </div>
+        <div class="form">
+            <input class="email-input" type="text" placeholder="Optional email" name="optionalEmail" [(ngModel)]="emailsForSending.optionalEmail">
+        </div>
+
         <div mat-dialog-action>
             <button mat-button type="submit" [mat-dialog-close]="1" (click)="send()" [disabled]="!formControl.valid">Send</button>
             <button mat-button (click)="close()">Close</button>
