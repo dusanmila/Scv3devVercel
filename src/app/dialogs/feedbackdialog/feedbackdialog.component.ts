@@ -18,6 +18,7 @@ import { UserService } from 'src/app/Services/user.service';
 export class FeedbackDialogComponent implements OnInit {
 
   public flag: number;
+  public resolveFeedbacks: boolean;
   public form: FormGroup;
   public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "ppetrovic" };
 

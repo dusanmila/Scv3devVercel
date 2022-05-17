@@ -19,10 +19,10 @@
            </tr>
         </table>
         <app-object [workModel]="workModel"></app-object>
-        <button class="btn-finish" (click)="openDialog()">FINISH STORE CHECK</button>
+        <button class="btn-finish" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">FINISH STORE CHECK</button>
     </div>
 
-    <div class="finish-sc" *ngIf="1>2">
+    <!-- <div class="finish-sc" *ngIf="1>2">
         <h4>SEND STORE CHECK TO:</h4>
         <table class="emails-tbl">
             <tr>
@@ -49,7 +49,7 @@
         <button class="btn-finish">FINISH STORE CHECK</button>
     </div>
 
-</div>
+</div> -->
 
 <div>
 <a [routerLink]="['/storeCheck']">
