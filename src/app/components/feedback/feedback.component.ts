@@ -17,7 +17,7 @@ import { FeedbackCreateDialogComponent } from 'src/app/dialogs/feedback-create-d
 })
 export class FeedbackComponent implements OnInit {
 
-  displayedColumns = ["feedbackCategoryName", "date", "resolved", "username"];
+  displayedColumns = ["feedbackCategoryName", "date", "username"];
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
@@ -57,7 +57,7 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.resolveFeedbacks) {
-      this.displayedColumns = ["feedbackCategoryName", "date", "resolved", "username", "actions"];
+      this.displayedColumns = ["feedbackCategoryName", "date", "username", "actions"];
     }
 
     if (this.objectName != null) {
