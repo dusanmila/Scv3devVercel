@@ -55,6 +55,8 @@ import { RetailerComponent } from './components/retailer/retailer.component';
 import { ResolvedFeedbackComponent } from './components/resolved-feedback/resolved-feedback.component';
 import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/feedback-create-dialog.component';
 import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdialog.component';
 
 
 @NgModule({
@@ -77,7 +79,8 @@ import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.compon
     RetailerComponent,
     ResolvedFeedbackComponent,
       FeedbackCreateDialogComponent,
-      EmailDialogComponent
+      EmailDialogComponent,
+      AnalyticsdialogComponent
 
   ],
   imports: [

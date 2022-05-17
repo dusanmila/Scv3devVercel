@@ -19,8 +19,8 @@
 }
 .container label {
   color: white;
-  width: 183px;
-  height: 44px;
+  width: 100px;
+  height: 20px;
   border-radius: 21.5px;
   background-color: #db202f;
   padding: 8px 16px;
@@ -111,5 +111,19 @@
   transition: 0.3s;
 }
 .btn, a {
-  text-decoration: none;     
+  text-decoration: none;
+}
+
+.container2 {
+  height: 200px;
+  position: relative;
+  border: 3px solid green;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
