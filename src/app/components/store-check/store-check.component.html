@@ -1,18 +1,11 @@
-
 <div class="menu">
-    <a [routerLink]="['/chooseObject/addStoreCheck']">
-        <div class="item start-sc" (click)="startStoreCheck()">
-            Start Store Check
-        </div>
-    </a>
-    <a [routerLink]="['/chooseObject/resolveFeedbacks']">
-        <div class="item resolve-fb" (click)="resolveFeedbacks()">
-            Resolve Feedbacks
-        </div>
-    </a>
-    <a [routerLink]="['/login']">
-        <div class="item2 resolve-fb">
-           Log out
-        </div>
-    </a>
+    <div class="item start-sc" [routerLink]="['/chooseObject/addStoreCheck']">
+        Start Store Check
+    </div>
+    <div class="item resolve-fb" [routerLink]="['/chooseObject/resolveFeedbacks']">
+        Resolve Feedbacks
+    </div>
+    <div class="item2 resolve-fb" [routerLink]="['/login']">
+        Log out
+    </div>
 </div>

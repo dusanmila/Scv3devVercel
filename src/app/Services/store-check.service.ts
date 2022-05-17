@@ -18,6 +18,14 @@ export class StoreCheckService {
 
   private readonly address = "http://localhost:8085/api/storeChecks";
 
+  public getUnfinishedStoreCheckByUsername(username: string) {
+    let retval$ = new Subject<StoreCheck>();
+    this.http.get<StoreCheck>(`${this.address}/unfinishedStoreCheckByUsername/${username}`).subscribe((storeCheck: StoreCheck) => {
+      retval$.next(storeCheck);
+    });
+    return retval$.asObservable();
+  }
+
   public createStoreCheck(storeCheck: StoreCheck) {
     let retval$ = new Subject<StoreCheck>();
     this.http.post<StoreCheck>(this.address, storeCheck).subscribe((helper: StoreCheck) => {
@@ -28,7 +36,7 @@ export class StoreCheckService {
 
   public finishStoreCheck(username: string, emailsForSending: EmailsForSending) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${this.address}/${username}`, emailsForSending).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`${this.address}/finishStoreCheck/${username}`, emailsForSending).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
