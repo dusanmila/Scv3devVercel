@@ -76,7 +76,6 @@ export class PositionService{
 
     return retval$.asObservable();
 
-
   }
 
 
