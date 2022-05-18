@@ -15,16 +15,22 @@ import { Obj } from 'src/app/Services/object.service';
   styleUrls: ['./object.component.css']
 })
 export class ObjectComponent implements OnInit {
-  displayedColumns = ["objectName","objectIdRetail","objectIdCompany","actions"];
-dataSource: MatTableDataSource<Obj>;
-subscription: Subscription;
+  displayedColumns = ["objectIdRetail", "objectIdCompany", "objectName", "address", "actions"];
+  dataSource: MatTableDataSource<Obj>;
+  subscription: Subscription;
 
 
-@Input() workModel: string;
+  @Input() workModel: string;
 
-search : string ="";
- 
- // private _objects: Obj[] = [];
+  public detailSearch: boolean = false;
+  public idCompany: string = "";
+  public retailer: string = "";
+  public city: string = "";
+  public format: string = "";
+
+  search: string = "";
+
+  // private _objects: Obj[] = [];
   public object: Obj = {
     objectIdRetail: "string",
     objectIdCompany: "string",
@@ -90,7 +96,7 @@ search : string ="";
 
   ngOnInit(): void {
 
-//this.loadData();
+    //this.loadData();
     // this.objectService.getObjectsByString('ste').subscribe(data => {
     //   this._objects = data;
     //   console.log(this._objects);
@@ -102,15 +108,16 @@ search : string ="";
     // });
   }
 
-public loadData(){
-  this.objectService.getObjects().subscribe(data => {
-    this.dataSource = new MatTableDataSource(data);
+  public loadData() {
+    console.log(this.idCompany, this.retailer, this.city, this.format)
+    this.objectService.getObjects(this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      console.log(data)
+    });
+  }
 
-  });
-}
-
-  public selectObject(object: Obj){
-    this.object=object;
+  public selectObject(object: Obj) {
+    this.object = object;
     this.objectService.getOneObject(this.object).subscribe(data => {
       console.log(data);
     });
@@ -129,31 +136,35 @@ public loadData(){
     });
   }
 
-  public searchByString():void{
+  public searchByString(): void {
     this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
 
 
-      this.dataSource=new MatTableDataSource<Obj>(data);
+      this.dataSource = new MatTableDataSource<Obj>(data);
     });
-   }
+  }
 
-   public openDialog(flag:number, objectName?:string,objectIdCompany?:string,objectIdRetail?:string){
-    const dialogRef = this.dialog.open(ObjectDialogComponent, {data: {objectName,objectIdCompany,objectIdRetail}});
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string) {
+    const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
-    .subscribe( res => {
-        if(res === 1){
+      .subscribe(res => {
+        if (res === 1) {
           this.loadData();
         }
       }
-    )
-    }
+      )
+  }
 
-    public applyFilter(event: Event) {
-      let filterValue = (event.target as HTMLInputElement).value;
-      filterValue = filterValue.trim();
-      filterValue = filterValue.toLowerCase();
-      this.dataSource.filter = filterValue;
-    }
+  public applyFilter(event: Event) {
+    let filterValue = (event.target as HTMLInputElement).value;
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
+
+  public showDetailSearch() {
+    this.detailSearch = !this.detailSearch;
+  }
 
 }

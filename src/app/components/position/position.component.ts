@@ -23,6 +23,7 @@ export class PositionComponent implements OnInit {
   selectedPosition: Position;
 
   @Input() public objectName: string;
+  @Input() public resolveFeedbacks: boolean;
 
   public get positions(): Position[] {
 

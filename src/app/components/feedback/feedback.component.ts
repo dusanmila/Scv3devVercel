@@ -57,7 +57,7 @@ export class FeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.resolveFeedbacks) {
-      this.displayedColumns = ["feedbackCategoryName", "date", "username", "actions"];
+      this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
     }
 
     if (this.objectName != null) {

@@ -41,13 +41,13 @@ export class EmailDialogComponent implements OnInit {
     if (name == 'generalDirector') {
       this.emailsForSending.generalDirector = arg.checked;
     } else if (name == 'sectorDirector') {
-      this.emailsForSending.generalDirector = arg.checked;
+      this.emailsForSending.sectorDirector = arg.checked;
     } else if (name == 'salesDirector') {
-      this.emailsForSending.generalDirector = arg.checked;
+      this.emailsForSending.salesDirector = arg.checked;
     } else if (name == 'manager') {
-      this.emailsForSending.generalDirector = arg.checked;
+      this.emailsForSending.manager = arg.checked;
     } else if (name == 'marketing') {
-      this.emailsForSending.generalDirector = arg.checked;
+      this.emailsForSending.marketing = arg.checked;
     }
   }
 

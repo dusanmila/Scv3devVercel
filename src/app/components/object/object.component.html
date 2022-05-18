@@ -1,19 +1,20 @@
-<mat-form-field>
-
-
-    <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
-    <button matSuffix mat-button (click)="searchByString()"><mat-icon>search</mat-icon></button>
-
-  </mat-form-field>
-
-
 <div class="container mat-elevation-z8">
 
-  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+  <div class="adr-name-search">
+    <h4>ENTER ADDRESS OR NAME:</h4>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Search" [(ngModel)]="search">
+      <button matSuffix mat-button (click)="searchByString()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
 
-    <ng-container matColumnDef="objectName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectName</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
+
+    <ng-container matColumnDef="objectIdRetail">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectIdRetail</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.objectIdRetail }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="objectIdCompany">
@@ -21,10 +22,17 @@
       <mat-cell *matCellDef="let row">{{ row.objectIdCompany }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="objectIdRetail">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectIdRetail</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectIdRetail }}</mat-cell>
+    <ng-container matColumnDef="objectName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectName</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="address">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
+    </ng-container>
+
+
 
 
 
@@ -56,4 +64,34 @@
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 
+  <div class="detail-search">
+    <h4>DETAIL SEARCH</h4>
+    <div class="detail-search-menu" *ngIf="detailSearch">
+      <div class="menu-item">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Id company" [(ngModel)]="idCompany">
+        </mat-form-field>
+      </div>
+      <div class="menu-item">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Retailer" [(ngModel)]="retailer">
+        </mat-form-field>
+      </div>
+      <div class="menu-item">
+        <mat-form-field>
+          <input type="text" matInput placeholder="City" [(ngModel)]="city">
+        </mat-form-field>
+      </div>
+      <div class="menu-item">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Format" [(ngModel)]="format">
+        </mat-form-field>
+      </div>
+      <div class="menu-btn">
+        <button matSuffix mat-button (click)="loadData()">Search <mat-icon>search</mat-icon></button>
+      </div>
+    </div>
+    <i class="fa-solid fa-circle-chevron-down fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == false"></i>
+    <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></i>
+  </div>
 </div>

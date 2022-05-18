@@ -1,4 +1,49 @@
 
 .mat-header-cell {
-  background: #56baed;
+  background: #39ace7;
 }
+
+i {
+  color: #56baed;
+  cursor: pointer;
+}
+
+h4 {
+  color: grey;
+}
+
+.container {
+  text-align: center;
+}
+
+.adr-name-search {
+  padding-top: 20px;
+}
+
+.adr-name-search mat-form-field {
+  width: 300px;
+  max-width: 90%;
+}
+
+.detail-search {
+  margin-top: 20px;
+}
+
+.detail-search i {
+  margin: 20px 0;
+}
+
+.menu-item mat-form-field {
+  width: 300px;
+  max-width: 90%;
+}
+
+.menu-btn {
+  width: 100px;
+  max-width: 90%;
+  background-color: #56baed;
+  border-radius: 3px;
+  color: #fff;
+  margin: 0 auto;
+}
+

@@ -3,6 +3,10 @@
 </div>
 
 <div class="main">
+
+    <div class="search-object">
+        <input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">
+
     <div class="search-object ">
         <div class="fadeIn first">
         <h4>ENTER ADDRESS OR NAME:</h4>
@@ -10,6 +14,7 @@
 
         </div>
         <div class="fadeIn second">
+
         <table class="emails-tbl" *ngIf="1>2">
             <tr>
                 <th>Addres</th>
