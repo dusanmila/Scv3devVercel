@@ -209,5 +209,23 @@
     -moz-animation-delay: 1s;
     animation-delay: 1s;
   }
-  
 
+  
+  
+  .analytics2{
+    font-size: large;
+    margin-right: 5%;
+    margin-left: 70%;
+  }
+
+  @media (min-width: 600px) {
+    .analytics2 {
+      margin-left: 80%;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .analytics2 {
+      margin-left: 90%;
+    }
+  }
