@@ -6,10 +6,11 @@ import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 
 export interface Position {
-  secondaryPositionId?:Guid,
-  objectName: string
-  posClassName: string
-  posTypeName: string
+  secondaryPositionId:Guid,
+  objectName: string,
+  posClassName: string,
+  posTypeName: string,
+  valid:boolean
 
 }
 
@@ -67,7 +68,7 @@ export class PositionService{
 
     let retval$ = new Subject<Position>();
 
-    this.http.put<Position>(`${this.adress}`, position).subscribe((helper: Position) => {
+    this.http.put<Position>(`${this.adress}`,position).subscribe((helper: Position) => {
 
       retval$.next(helper)
 
@@ -77,6 +78,8 @@ export class PositionService{
 
 
   }
+
+
 
   public getOnePosition(position:Position):Observable<Position>{
 

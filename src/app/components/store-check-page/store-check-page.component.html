@@ -1,52 +1,54 @@
-<div class="header">
-    <div class="head">
-        <h1>{{ object.objectName }}</h1>
-        <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
-    </div>
-    <div class="object-info-data" *ngIf="showDetails == true">
-        <div class="obj-info">
-            <ul>
-                <li>Retailer: {{ object.retailer.retailerName }}</li>
-                <li>Assortment module: {{ object.objectInfo.assortmentModule }}</li>
-                <li>Number of registers: {{ object.objectInfo.registersNumber }}</li>
-                <li>Commercialist: {{ object.commercialist.firstName }} {{ object.commercialist.lastName }}</li>
-            </ul>
+<div class="fadeInDown">
+    <div class="header fadeIn first">
+            <div class="head">
+                <h1>{{ object.objectName }}</h1>
+                <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
+            </div>
+        <div class="object-info-data" *ngIf="showDetails == true">
+            <div class="obj-info">
+                <ul>
+                    <li>Retailer: {{ object.retailer.retailerName }}</li>
+                    <li>Assortment module: {{ object.objectInfo.assortmentModule }}</li>
+                    <li>Number of registers: {{ object.objectInfo.registersNumber }}</li>
+                    <li>Commercialist: {{ object.commercialist.firstName }} {{ object.commercialist.lastName }}</li>
+                </ul>
+            </div>
+            <table class="info-table">
+                <tr>
+                    <th>Shelf Space M</th>
+                    <th>Company Shelf Space M</th>
+                    <th>Company Shelf Space %</th>
+                </tr>
+                <tr>
+                    <td>{{ object.objectInfo.shelfSpaceM }}</td>
+                    <td>{{ object.objectInfo.companyShelfSpaceM }}</td>
+                    <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
+                </tr>
+            </table>
+        
+            <table class="info-table">
+                <tr>
+                    <th>Gainings 12M (RSD)</th>
+                    <th>WD % Serbia</th>
+                    <th>WD % Sector</th>
+                    <th>WD % Customer</th>
+                    <th>Gainings VS 12M %</th>
+                </tr>
+                <tr>
+                    <td>{{ object.objectInfo.gainings12Mrsd }}</td>
+                    <td>{{ object.objectInfo.wdpercentSerbia }}</td>
+                    <td>{{ object.objectInfo.wdpercentSector }}</td>
+                    <td>{{ object.objectInfo.wdpercentCustomer }}</td>
+                    <td>{{ object.objectInfo.gainingsVs12mpercent }}</td>
+                </tr>
+            </table>
         </div>
-        <table class="info-table">
-            <tr>
-                <th>Shelf Space M</th>
-                <th>Company Shelf Space M</th>
-                <th>Company Shelf Space %</th>
-            </tr>
-            <tr>
-                <td>{{ object.objectInfo.shelfSpaceM }}</td>
-                <td>{{ object.objectInfo.companyShelfSpaceM }}</td>
-                <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
-            </tr>
-        </table>
-    
-        <table class="info-table">
-            <tr>
-                <th>Gainings 12M (RSD)</th>
-                <th>WD % Serbia</th>
-                <th>WD % Sector</th>
-                <th>WD % Customer</th>
-                <th>Gainings VS 12M %</th>
-            </tr>
-            <tr>
-                <td>{{ object.objectInfo.gainings12Mrsd }}</td>
-                <td>{{ object.objectInfo.wdpercentSerbia }}</td>
-                <td>{{ object.objectInfo.wdpercentSector }}</td>
-                <td>{{ object.objectInfo.wdpercentCustomer }}</td>
-                <td>{{ object.objectInfo.gainingsVs12mpercent }}</td>
-            </tr>
-        </table>
+        <i class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></i>
+        <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></i>
     </div>
-    <i class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></i>
-    <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></i>
-</div>
 
-<div class="main">
+
+<div class="main fadeIn second">
     <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
     <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
     
@@ -54,6 +56,9 @@
     
     <div class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']">EXIT</div>
 </div>
+
+
+
 
 <!--<div class="main">
     <h3>ADD FEEDBACK</h3>
@@ -111,3 +116,4 @@
 <button (click)="getRetailerPlanogram()">Planogram</button>
 <button (click)="createEmptyObjectStoreCheck()">Create object store check</button>
 -->
+</div>
