@@ -1,10 +1,11 @@
-
+<div class="centered">
 <mat-form-field>
-  
+
   <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
   <button matSuffix mat-button (click)="searchByUsername()"><mat-icon>search</mat-icon></button>
-  </mat-form-field>
 
+  </mat-form-field>
+</div>
 <div class="container mat-elevation-z8">
 
 <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
