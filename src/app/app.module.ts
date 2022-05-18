@@ -78,9 +78,9 @@ import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdia
     RetailerDialogComponent,
     RetailerComponent,
     ResolvedFeedbackComponent,
-      FeedbackCreateDialogComponent,
-      EmailDialogComponent,
-      AnalyticsdialogComponent
+    FeedbackCreateDialogComponent,
+    EmailDialogComponent,
+    AnalyticsdialogComponent
 
   ],
   imports: [
@@ -95,7 +95,7 @@ import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdia
     MatToolbarModule,
     MatFormFieldModule,
     MatTableModule,
-MatSelectModule,
+    MatSelectModule,
     ReactiveFormsModule,
     MatDialogModule,
     MatSnackBarModule,
