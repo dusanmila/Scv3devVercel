@@ -1,37 +1,50 @@
 <div class="header fadeInDown">
+
     <h1>Choose Object</h1>
-</div>
 
-<div class="main">
 
-    <div class="search-object">
-        <input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">
+    <div class="main">
 
-    <div class="search-object ">
-        <div class="fadeIn first">
-        <h4>ENTER ADDRESS OR NAME:</h4>
-        <input class="search-input fadeIn first" type="text" placeholder="Search object" *ngIf="objects.length > 0">
+        <div class="search-object ">
+            <div class="fadeIn first">
+                <input class="search-input fadeIn first" type="text" placeholder="Search object"
+                    *ngIf="objects.length > 0">
 
+            </div>
+
+            <div class="fadeIn second">
+
+                <table class="emails-tbl" *ngIf="1>2">
+                    <tr>
+                        <th>Addres</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                    <tr *ngFor="let object of objects">
+                        <td class="email-td">{{ object.address }}</td>
+                        <td class="email-td">{{ object.objectName }}</td>
+                        <td><i class="fa-solid fa-up-right-from-square"></i></td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="fadeIn third">
+                <app-object [workModel]="workModel"></app-object>
+                <button class="btn-finish" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">
+                    FINISH STORE CHECK</button>
+            </div>
+
+            <div>
+                <a [routerLink]="['/storeCheck']">
+                    <div class="item2 fadeIn fourth">
+                        Exit
+                    </div>
+                </a>
+
+            </div>
         </div>
-        <div class="fadeIn second">
-
-        <table class="emails-tbl" *ngIf="1>2">
-            <tr>
-                <th>Addres</th>
-                <th>Name</th>
-                <th></th>
-            </tr>
-           <tr *ngFor="let object of objects">
-               <td class="email-td">{{ object.address }}</td>
-               <td class="email-td">{{ object.objectName }}</td>
-               <td><i class="fa-solid fa-up-right-from-square"></i></td>
-           </tr>
-        </table>
     </div>
-        <app-object [workModel]="workModel"></app-object>
-        <button class="btn-finish" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">FINISH STORE CHECK</button>
-    </div>
-
+</div>
     <!-- <div class="finish-sc" *ngIf="1>2">
         <h4>SEND STORE CHECK TO:</h4>
         <table class="emails-tbl">
@@ -60,12 +73,3 @@
     </div>
 
 </div> -->
-
-<div>
-<a [routerLink]="['/storeCheck']">
-    <div class="item2 fadeIn fourth">
-       Exit
-    </div>
-</a>
-
-</div>

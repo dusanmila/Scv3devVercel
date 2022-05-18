@@ -1,9 +1,10 @@
 <div class="fadeInDown">
+    
     <div class="header fadeIn first">
-            <div class="head">
-                <h1>{{ object.objectName }}</h1>
-                <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
-            </div>
+        <div class="head">
+            <h1>{{ object.objectName }}</h1>
+            <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
+        </div>
         <div class="object-info-data" *ngIf="showDetails == true">
             <div class="obj-info">
                 <ul>
@@ -25,7 +26,7 @@
                     <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
                 </tr>
             </table>
-        
+
             <table class="info-table">
                 <tr>
                     <th>Gainings 12M (RSD)</th>
@@ -48,17 +49,18 @@
     </div>
 
 
-<div class="main fadeIn second">
-    <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
-    <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
-    
-    <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']" (click)="finishObjectStoreCheck()">FINISH OBJECT</button>
-    
-    <div class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']">EXIT</div>
+    <div class="main fadeIn second">
+        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
+        <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
+
+        <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']"
+            (click)="finishObjectStoreCheck()">FINISH OBJECT</button>
+
+        <div class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']">EXIT</div>
+    </div>
+
+
 </div>
-
-
-
 
 <!--<div class="main">
     <h3>ADD FEEDBACK</h3>
@@ -116,4 +118,3 @@
 <button (click)="getRetailerPlanogram()">Planogram</button>
 <button (click)="createEmptyObjectStoreCheck()">Create object store check</button>
 -->
-</div>
