@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
 
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
@@ -36,5 +37,10 @@ uploadPositionsFile(event:any){
   this.positionService.excelImport(formData);
 }
 
+
+public openDialog() {
+  const dialogRef = this.dialog.open(AnalyticsdialogComponent);
+
+}
 
 }

@@ -1,5 +1,7 @@
 
+import { OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
 import { Position, PositionService } from 'src/app/Services/position-service.service';
@@ -16,7 +18,8 @@ export class PositionComponent implements OnInit {
   displayedColumns = ["objectName", "posClassName", "posTypeName", "actions"];
   dataSource: MatTableDataSource<Position>;
 
-  position: Position = { objectName: "", posClassName: "", posTypeName: "" };
+
+  position: Position = { secondaryPositionId: Guid.create(),objectName: "", posClassName: "", posTypeName: "",valid:false };
   selectedPosition: Position;
 
   @Input() public objectName: string;
@@ -31,9 +34,10 @@ export class PositionComponent implements OnInit {
   constructor(public positionService: PositionService) { }
 
   ngOnInit(): void {
-    if(this.objectName != null) {
-      this.loadPositionsByObject();
-    }
+ //   if(this.objectName != null) {
+ //     this.loadPositionsByObject();
+  //  }
+  this.loadData();
   }
 
   public loadData() {
@@ -56,7 +60,7 @@ export class PositionComponent implements OnInit {
       this._positions.push(data);
 
     });
-    this.position = { objectName: "", posClassName: "", posTypeName: "" };
+    this.position = {secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "",valid:false };
 
   }
 
@@ -68,9 +72,9 @@ export class PositionComponent implements OnInit {
 
   }
 
-  editPosition(position: Position) {
+/*  editPosition(position: Position) {
     this.positionService.editPosition(position).subscribe();
-  }
+  }*/
 
   deletePosition() {
 
@@ -84,6 +88,14 @@ export class PositionComponent implements OnInit {
       }
     });
   }
+
+  public updatePosition(checked:boolean,pos:Position){
+    pos.valid=checked;
+this.positionService.editPosition(pos);
+
+  }
+
+
 
   public openDialog(flag: number, objectName?: string, posClassName?: string, posTypeName?: string) {
     /*  const dialogRef = this.dialog.open(PositionDialogComponent, {data: {objectName,posClassName,posTypeName}});
