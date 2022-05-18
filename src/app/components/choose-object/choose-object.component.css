@@ -92,7 +92,7 @@
     position: relative;
     margin-bottom: 5%;
     right: 0%;
-    margin-top: 20%;
+    margin-top: 95%;
 
 }
 
@@ -188,3 +188,11 @@
     animation-delay: 1s;
   }
   
+  
+  
+
+  @media (min-width: 1200px) {
+    .item2 {
+      margin-top: 20%;
+    }
+  }
