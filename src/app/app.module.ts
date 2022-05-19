@@ -57,6 +57,7 @@ import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/
 import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdialog.component';
+import { PositionDialogComponent } from './dialogs/position-dialog/position-dialog.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdia
     ResolvedFeedbackComponent,
     FeedbackCreateDialogComponent,
     EmailDialogComponent,
-    AnalyticsdialogComponent
+    AnalyticsdialogComponent,
+    PositionDialogComponent
 
   ],
   imports: [

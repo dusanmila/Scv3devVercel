@@ -15,7 +15,10 @@ export class UserDialogComponent implements OnInit {
 
   public flag: number;
 
-  constructor(public snackBar:MatSnackBar, public dialogRef:MatDialogRef<UserDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: User, public userService: UserService) { }
+  constructor(public snackBar:MatSnackBar, 
+              public dialogRef:MatDialogRef<UserDialogComponent>, 
+              @Inject (MAT_DIALOG_DATA) public data: User, 
+              public userService: UserService) { }
 
   ngOnInit(): void {
   }

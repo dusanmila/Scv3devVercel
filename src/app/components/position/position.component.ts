@@ -2,9 +2,11 @@
 import { OverlayPositionBuilder } from '@angular/cdk/overlay';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
+import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
 import { Position, PositionService } from 'src/app/Services/position-service.service';
 //import { DataService, Product } from '../data.service';
 
@@ -16,7 +18,7 @@ import { Position, PositionService } from 'src/app/Services/position-service.ser
 })
 export class PositionComponent implements OnInit {
 
-  displayedColumns = ["objectName", "posClassName", "posTypeName", "actions"];
+  displayedColumns = ["posClassName", "posTypeName", "actions"];
   dataSource: MatTableDataSource<Position>;
 
 
@@ -28,7 +30,8 @@ export class PositionComponent implements OnInit {
 
   public positions: Position[] = [];
 
-  constructor(public positionService: PositionService) { }
+  constructor(public positionService: PositionService,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.objectName != null) {
@@ -51,7 +54,7 @@ export class PositionComponent implements OnInit {
       this.positions = data;
       if (!this.resolveFeedbacks) {
         this.uncheckPositions();
-      } 
+      }
       this.dataSource = new MatTableDataSource(this.positions);
     });
   }
@@ -105,21 +108,19 @@ export class PositionComponent implements OnInit {
   public updatePosition(checked: boolean, pos: Position) {
     pos.valid = checked;
     this.positionService.editPosition(pos);
-
   }
 
-
-
-  public openDialog(flag: number, objectName?: string, posClassName?: string, posTypeName?: string) {
-    /*  const dialogRef = this.dialog.open(PositionDialogComponent, {data: {objectName,posClassName,posTypeName}});
-      dialogRef.componentInstance.flag = flag;
-      dialogRef.afterClosed()
-      .subscribe( res => {
-          if(res === 1){
-            this.loadData();
-          }
+  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean) {
+    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid } });
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.componentInstance.objectName = this.objectName;
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        if (res === 1) {
+          this.loadPositionsByObject();
         }
-      )*/
+      }
+      )
   }
 }
 
