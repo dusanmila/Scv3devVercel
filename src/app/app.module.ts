@@ -33,7 +33,7 @@ import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
@@ -57,6 +57,7 @@ import { FeedbackCreateDialogComponent } from './dialogs/feedback-create-dialog/
 import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdialog.component';
+import { PositionDialogComponent } from './dialogs/position-dialog/position-dialog.component';
 
 
 
@@ -81,7 +82,8 @@ import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdia
     ResolvedFeedbackComponent,
     FeedbackCreateDialogComponent,
     EmailDialogComponent,
-    AnalyticsdialogComponent
+    AnalyticsdialogComponent,
+    PositionDialogComponent
 
   ],
   imports: [
@@ -101,7 +103,8 @@ import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdia
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatPaginatorModule
 
   ],
   providers: [],

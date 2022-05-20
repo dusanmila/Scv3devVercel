@@ -36,6 +36,8 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.resolveFeedbacks);
+    console.log(this.data);
   }
 
   public add(): void {
@@ -64,17 +66,15 @@ export class FeedbackDialogComponent implements OnInit {
   submitForm() {
     var formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
-    formData.append('FeedbackCategoryName', this.feedback.feedbackCategoryName);
-    formData.append('text', this.feedback.text);
-    formData.append('username', this.feedback.username);
-
-    this.http
-      .post('http://localhost:8088/api/feedbacks', formData)
-      .subscribe({
-        next: (response) => console.log(response),
-        error: (error) => console.log(error)
-      });
+    formData.append('FeedbackCategoryName', this.data.feedbackCategoryName);
+    formData.append('text', this.data.text);
+    formData.append('username', this.data.username);
+    formData.append('img', this.data.img);
+    console.log(formData);
+    console.log(this.feedback);
+    this.feedbackService.resolveFeedback(formData).subscribe(data => {
+      console.log(data);
+    });
   }
-
 
 }

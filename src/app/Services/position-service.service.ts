@@ -10,8 +10,15 @@ export interface Position {
   objectName: string,
   posClassName: string,
   posTypeName: string,
-  valid:boolean
+  valid:boolean;
+}
 
+export interface PositionClass {
+  positionClassName: string;
+}
+
+export interface PositionType {
+  positionTypeName: string;
 }
 
 @Injectable({
@@ -103,6 +110,22 @@ export class PositionService{
 
 
     return retval$.asObservable();
+  }
+
+  public getPositionClasses(): Observable<PositionClass[]> {
+    let retval$ = new Subject<PositionClass[]>();
+    this.http.get<PositionClass[]>(`http://localhost:8087/api/positionClasses`).subscribe((helper: PositionClass[]) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
+  public getPositionTypes(): Observable<PositionType[]> {
+    let retvla$ = new Subject<PositionType[]>();
+    this.http.get<PositionType[]>(`http://localhost:8087/api/positionTypes`).subscribe((helper: PositionType[]) => {
+      retvla$.next(helper);
+    });
+    return retvla$.asObservable();
   }
 }
 
