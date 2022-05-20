@@ -6,7 +6,7 @@
         <div class="form">
             <mat-form-field>
               <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory">
-                <mat-option *ngFor="let category of feedbackCategories" [value]="category">
+                <mat-option *ngFor="let category of feedbackCategories" [value]="category.feedbackCategoryName">
                   {{ category.feedbackCategoryName }}
                 </mat-option>
               </mat-select>

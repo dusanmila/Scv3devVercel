@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';
@@ -14,6 +15,12 @@ import { FeedbackService } from 'src/app/Services/feedback.service';
 export class ResolvedFeedbackComponent implements OnInit {
 
   public objectName: string;
+  public count: number = 5;
+  public page: number = 1;
+  public length: number = 100;
+  public pageEvent: PageEvent;
+
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date"];
   dataSource: MatTableDataSource<Feedback>;
@@ -28,8 +35,18 @@ export class ResolvedFeedbackComponent implements OnInit {
   }
 
   public loadData() {
-    this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
+    this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data);
+    });
+  }
+
+  public loadDataOnPageEvent(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    console.log(this.page);
+    this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      console.log(data);
     });
   }
   

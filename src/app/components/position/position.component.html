@@ -2,12 +2,6 @@
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-
-
-    <ng-container matColumnDef="objectName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Object</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectName}}</mat-cell>
-    </ng-container>
     <ng-container matColumnDef="posClassName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Class</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.posClassName}}</mat-cell>
@@ -19,14 +13,15 @@
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" (click)="openDialog(1)">
           <mat-icon>add</mat-icon>
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <mat-checkbox color="primary" (change)="updatePosition(cb.checked, row)" #cb [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>
+        <mat-checkbox color="primary" (change)="updatePosition(cb.checked, row)" #cb [disabled]="resolveFeedbacks"
+          [(ngModel)]="row.valid"></mat-checkbox>
 
-        <button mat-icon-button color="primary" style="margin-left:30%">
+        <button mat-icon-button color="primary" (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid)" style="margin-left:30%">
           <mat-icon area-label="Delete"> delete </mat-icon>
         </button>
       </mat-cell>

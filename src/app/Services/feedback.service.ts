@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
 import { Feedback } from '../models/feedback.model';
 import { FeedbackCategory } from '../models/feedbackCategory';
@@ -66,9 +66,12 @@ export class FeedbackService {
     return retval$.asObservable();
   }
 
-  public getResolvedFeedbacksByObject(objectName: string) {
+  public getResolvedFeedbacksByObject(objectName: string, count: number, page: number) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("count", count);
+    queryParams = queryParams.append("page", page);
     let retval$ = new Subject<Feedback[]>();
-    this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
       retval$.next(feedbacks);
     });
     return retval$.asObservable();
@@ -123,6 +126,22 @@ export class FeedbackService {
       retval$.next(helper);
     });
     return retval$.asObservable();
+  }
+
+  public createFeedbackWithForm(formData: FormData): Observable<Feedback> {
+    let retval$ = new Subject<Feedback>();
+    this.http.post<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
+      retval$.next(helper);
+    });
+    return retval$;
+  }
+
+  public resolveFeedback(formData: FormData): Observable<Feedback> {
+    let retval$ = new Subject<Feedback>();
+    this.http.put<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
+      retval$.next(helper);
+    });
+    return retval$;
   }
 
 }
