@@ -20,9 +20,10 @@ export class RetailerDialogComponent implements OnInit {
      file: [null]
     });
 }
-
+retailer:Retailer = {retailerName:"",planogramPdf:""};
 retailers:Retailer[];
 public flag: number;
+retailerName:string;
 
 
   ngOnInit(): void {
@@ -36,21 +37,28 @@ public flag: number;
     this.dialogRef.close();
      }
 
-     public add(){
 
-     }
-
-     public searchByName(){
-
-    }
 
     public submit(){
 
-        var formData: any = new FormData();
-        formData.append('file', this.tableForm.get('file')!.value);
-        formData.append('RetailerName',this.data.retailerName);
-        this.objectService
-        .addPlanogram(formData); //TODO dodati subscribe
+if(this.flag==2){
+  var formData: any = new FormData();
+  formData.append('file', this.tableForm.get('file')!.value);
+  formData.append('RetailerName',this.data.retailerName);
+  this.objectService
+  .addPlanogram(formData); //dodati subscribe
+}else{
+this.retailer.retailerName=(<HTMLInputElement>document.getElementById("name")).value;
+this.retailer.planogramPdf="";
+
+if(this.retailer.retailerName!=""){
+  this.objectService
+  .createRetailer(this.retailer);
+}
+
+
+}
+
 
 
     }
@@ -65,6 +73,18 @@ public flag: number;
 
     openInput(){
       document.getElementById("fileInput")!.click();
+ }
+
+ delete(){
+
+  this.objectService.deleteRetailer(this.data)
+  .subscribe(data => {
+    this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500 });
+  }),
+  (error:Error) => {
+    console.log(error.name + ' -> ' + error.message)
+    this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
+  }
  }
 }
 

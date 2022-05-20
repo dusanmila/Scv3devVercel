@@ -59,6 +59,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdialog.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

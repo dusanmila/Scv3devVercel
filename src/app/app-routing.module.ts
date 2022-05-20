@@ -18,7 +18,7 @@ import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.compon
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
   {path:'feedback', component:FeedbackComponent},
- 
+
   {path:'user', component:UserComponent},
 
   {path:'admin', component:AdminpageComponent},

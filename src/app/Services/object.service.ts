@@ -223,4 +223,14 @@ export class ObjectService {
 
   }
 
+  public createRetailerWithPlanogram(form: FormData) {
+
+    let retval$ = new Subject<Retailer>();
+    this.http.post<Retailer>(`${this.retailerAddress}/createRetailerWithPlanogram`, form).subscribe((helper: Retailer) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+
+  }
+
 }
