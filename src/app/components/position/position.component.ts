@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
+import { Observable } from 'rxjs';
 import { Position, PositionService } from 'src/app/Services/position-service.service';
 //import { DataService, Product } from '../data.service';
 
@@ -19,49 +20,60 @@ export class PositionComponent implements OnInit {
   dataSource: MatTableDataSource<Position>;
 
 
-  position: Position = { secondaryPositionId: Guid.create(),objectName: "", posClassName: "", posTypeName: "",valid:false };
+  position: Position = { secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "", valid: false };
   selectedPosition: Position;
 
   @Input() public objectName: string;
   @Input() public resolveFeedbacks: boolean;
 
-  public get positions(): Position[] {
-
-    return this._positions;
-  }
-
-  public _positions: Position[] = [];
+  public positions: Position[] = [];
 
   constructor(public positionService: PositionService) { }
 
   ngOnInit(): void {
- //   if(this.objectName != null) {
- //     this.loadPositionsByObject();
-  //  }
-  this.loadData();
+    if (this.objectName != null) {
+      console.log('load by object')
+      this.loadPositionsByObject();
+    } else {
+      this.loadData();
+    }
   }
 
   public loadData() {
     this.positionService.getPositions().subscribe(data => {
-
-      this.dataSource = new MatTableDataSource(data);
-
+      this.positions = data;
+      this.dataSource = new MatTableDataSource(this.positions);
     });
   }
 
   public loadPositionsByObject() {
     this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+      this.positions = data;
+      if (!this.resolveFeedbacks) {
+        this.uncheckPositions();
+      } 
+      this.dataSource = new MatTableDataSource(this.positions);
+    });
+  }
+
+  public uncheckPositions() {
+    this.positions.forEach(position => {
+      if (position.valid == true) {
+        position.valid = false;
+        this.positionService.editPosition(position).subscribe(data => {
+          console.log(data);
+        });
+      }
     });
   }
 
   createPosition() {
     console.log(this.position.objectName);
     this.positionService.createPosition(this.position).subscribe(data => {
-      this._positions.push(data);
+      this.positions.push(data);
 
     });
-    this.position = {secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "",valid:false };
+    this.position = { secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "", valid: false };
 
   }
 
@@ -73,16 +85,16 @@ export class PositionComponent implements OnInit {
 
   }
 
-/*  editPosition(position: Position) {
-    this.positionService.editPosition(position).subscribe();
-  }*/
+  /*  editPosition(position: Position) {
+      this.positionService.editPosition(position).subscribe();
+    }*/
 
   deletePosition() {
 
     this.positionService.deletePosition(this.selectedPosition).subscribe(data => {
-      let helper = this._positions.findIndex(pos => pos.secondaryPositionId == this.selectedPosition.secondaryPositionId);
+      let helper = this.positions.findIndex(pos => pos.secondaryPositionId == this.selectedPosition.secondaryPositionId);
       if (helper > 0) {
-        this._positions.splice(helper, 1);
+        this.positions.splice(helper, 1);
       }
       else {
         console.log("Error while deleting position.")
@@ -90,9 +102,9 @@ export class PositionComponent implements OnInit {
     });
   }
 
-  public updatePosition(checked:boolean,pos:Position){
-    pos.valid=checked;
-this.positionService.editPosition(pos);
+  public updatePosition(checked: boolean, pos: Position) {
+    pos.valid = checked;
+    this.positionService.editPosition(pos);
 
   }
 
