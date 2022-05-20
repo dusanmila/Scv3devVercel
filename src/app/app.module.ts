@@ -33,7 +33,7 @@ import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
@@ -102,7 +102,8 @@ import { PositionDialogComponent } from './dialogs/position-dialog/position-dial
     MatDialogModule,
     MatSnackBarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatPaginatorModule
 
   ],
   providers: [],

@@ -81,11 +81,11 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  public loadResolvedFeedbacksByObject() {
-    this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-    });
-  }
+  // public loadResolvedFeedbacksByObject() {
+  //   this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
+  //     this.dataSource = new MatTableDataSource(data);
+  //   });
+  // }
 
   uploadFile(event: any) {
     const file = (event.target as HTMLInputElement).files![0];
@@ -180,7 +180,7 @@ export class FeedbackComponent implements OnInit {
   public showResolvedFeedbacks() {
     this.showResolved = !this.showResolved;
     if (this.showResolved) {
-      this.loadResolvedFeedbacksByObject();
+      // this.loadResolvedFeedbacksByObject();
     } else {
       this.loadUnresolvedFeedbacksByObject();
     }
