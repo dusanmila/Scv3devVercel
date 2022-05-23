@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/models/feedback.model';
 import { User } from 'src/app/models/user.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
 import { UserService } from 'src/app/Services/user.service';
+import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.component';
 
 
 
@@ -20,10 +21,11 @@ export class FeedbackDialogComponent implements OnInit {
   public flag: number;
   public resolveFeedbacks: boolean;
   public form: FormGroup;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "ppetrovic" };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "ppetrovic", imgResolve: "" };
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackDialogComponent>,
+    private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: Feedback,
     public feedbackService: FeedbackService,
     public fb: FormBuilder,
@@ -75,6 +77,13 @@ export class FeedbackDialogComponent implements OnInit {
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
       console.log(data);
     });
+  }
+
+  public openInfo() {
+    const dialogRef = this.dialog.open(AnalyticsdialogComponent);
+    dialogRef.componentInstance.flag = 2;
+    
+      
   }
 
 }
