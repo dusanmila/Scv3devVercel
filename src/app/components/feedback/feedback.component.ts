@@ -17,7 +17,7 @@ import { FeedbackCreateDialogComponent } from 'src/app/dialogs/feedback-create-d
 })
 export class FeedbackComponent implements OnInit {
 
-  displayedColumns = ["feedbackCategoryName", "date", "username"];
+  displayedColumns = ["feedbackCategoryName", "date", "username","actions"];
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
@@ -30,9 +30,9 @@ export class FeedbackComponent implements OnInit {
 
 
 
-  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
-  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
 
 
@@ -56,9 +56,9 @@ export class FeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.resolveFeedbacks) {
-      this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
-    }
+  //  if (!this.resolveFeedbacks) {
+  //    this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
+  //  }
 
     if (this.objectName != null) {
       this.loadUnresolvedFeedbacksByObject();
@@ -120,7 +120,7 @@ export class FeedbackComponent implements OnInit {
       this._feedbacks.push(data);
 
     });
-    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
   }
 
