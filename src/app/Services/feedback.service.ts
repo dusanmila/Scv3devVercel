@@ -60,7 +60,7 @@ export class FeedbackService {
     return retval$.asObservable();
   }
 
-  public getUnresolvedFeedbacksByObject(objectName: string) {
+  public getUnresolvedFeedbacksByObject() {
     let retval$ = new Subject<Feedback[]>();
    
     //this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
