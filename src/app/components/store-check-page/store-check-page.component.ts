@@ -25,7 +25,7 @@ export class StoreCheckPageComponent implements OnInit {
               public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
+   // this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
     let workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
     if (workModel == "addStoreCheck") {
       this.resolveFeedbacks = false;
