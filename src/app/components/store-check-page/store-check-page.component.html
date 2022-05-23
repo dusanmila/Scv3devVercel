@@ -57,8 +57,8 @@
 
 
     <div class="main fadeIn second">
-        <app-feedback [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
-        <app-position [resolveFeedbacks]="resolveFeedbacks"></app-position>
+        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
+        <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
 
         <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']"
             (click)="finishObjectStoreCheck()">FINISH OBJECT</button>
