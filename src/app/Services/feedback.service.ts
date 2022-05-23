@@ -76,7 +76,7 @@ export class FeedbackService {
     queryParams = queryParams.append("page", page);
     let retval$ = new Subject<Feedback[]>();
    // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
-      this.http.get<Feedback[]>(`https://microservicefeedback.azurewebsites.net/api/feedbacks/resolvedFeedbacks`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
+      this.http.get<Feedback[]>(`https://microservicefeedback.azurewebsites.net/api/feedbacks/resolvedFeedbacks1`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
     
     retval$.next(feedbacks);
     });
