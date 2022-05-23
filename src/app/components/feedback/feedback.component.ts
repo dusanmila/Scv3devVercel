@@ -60,9 +60,9 @@ export class FeedbackComponent implements OnInit {
   //    this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
   //  }
 
-    if (this.objectName != null) {
-      this.loadUnresolvedFeedbacksByObject();
-    }
+   // if (this.objectName != null) {
+    //  this.loadUnresolvedFeedbacksByObject();
+   // }
     this.loadUnresolvedFeedbacksByObject();
 
   }

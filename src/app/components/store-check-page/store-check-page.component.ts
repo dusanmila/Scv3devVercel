@@ -32,8 +32,8 @@ export class StoreCheckPageComponent implements OnInit {
     } else if (workModel == "resolveFeedbacks") {
       this.resolveFeedbacks = true;
     }
-    this.getOneObject();
-    this.getPositionsByObjectName();
+   // this.getOneObject();
+   // this.getPositionsByObjectName();
   }
 
   public getOneObject() {
