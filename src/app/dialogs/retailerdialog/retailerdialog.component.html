@@ -2,18 +2,23 @@
 
 <div class="container">
   <h3 mat-dialog-title *ngIf="flag == 1">Add retailer</h3>
+
   <h3 mat-dialog-title *ngIf="flag == 2">Add planogram to {{data.retailerName}}</h3>
-  <h3 mat-dialog-title *ngIf="flag == 3">Delete retailer {{data.retailerName}}</h3>
+  <h3 mat-dialog-title *ngIf="flag == 3">Delete {{data.retailerName}}</h3>
 
     <div class="form">
       <form [formGroup]="tableForm" (ngSubmit)="submit()">
 
-          <input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file">
+        <input type="text" id="name" placeholder="Retailer name" fromControlName="name" *ngIf="flag==1">
+<br>
+<br>
+
+          <input mat-input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file" *ngIf="flag ==2">
 
 
           <div mat-dialog-actions>
-            <button mat-button type="submit" [mat-dialog-close]="1" (click)="submit()">Ok</button>
-
+            <button mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag != 3"(click)="submit()">Ok</button>
+            <button mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag==3" (click)="delete()">Ok</button>
             <button mat-button (click)="close()">Cancel</button>
           </div>
             </form>
