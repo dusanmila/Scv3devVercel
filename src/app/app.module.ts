@@ -60,6 +60,7 @@ import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdia
 import { PositionDialogComponent } from './dialogs/position-dialog/position-dialog.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
