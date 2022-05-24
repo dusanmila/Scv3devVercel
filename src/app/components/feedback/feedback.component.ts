@@ -17,7 +17,7 @@ import { FeedbackCreateDialogComponent } from 'src/app/dialogs/feedback-create-d
 })
 export class FeedbackComponent implements OnInit {
 
-  displayedColumns = ["feedbackCategoryName", "date", "username","actions"];
+  displayedColumns = ["feedbackCategoryName", "date", "username"];
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
@@ -56,15 +56,14 @@ export class FeedbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  //  if (!this.resolveFeedbacks) {
-  //    this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
-  //  }
-
+    if (!this.resolveFeedbacks) {
+      this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
+    }
     if (this.objectName != null) {
       this.loadUnresolvedFeedbacksByObject();
+    } else {
+      this.loadData();
     }
-    this.loadUnresolvedFeedbacksByObject();
-
   }
 
 
@@ -171,7 +170,7 @@ export class FeedbackComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res === 1) {
-          this.loadData();
+          this.loadUnresolvedFeedbacksByObject();
         }
       }
       )
