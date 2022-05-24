@@ -17,7 +17,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
   public flag: number;
   public form: FormGroup;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
   public feedbackCategories: FeedbackCategory[] = [];
 
   constructor(public snackBar: MatSnackBar,

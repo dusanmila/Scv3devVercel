@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
@@ -22,7 +23,7 @@ export class ResolvedFeedbackComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date"];
+  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date","actions"];
   dataSource: MatTableDataSource<Feedback>;
 
   constructor(public activatedRoute: ActivatedRoute,
@@ -61,5 +62,7 @@ export class ResolvedFeedbackComponent implements OnInit {
       }
       )
   }
+
+  
 
 }
