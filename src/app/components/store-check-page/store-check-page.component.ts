@@ -35,6 +35,7 @@ export class StoreCheckPageComponent implements OnInit {
     this.getOneObject();
     this.getPositionsByObjectName();
     console.log(this.resolveFeedbacks);
+
   }
 
   public getOneObject() {
