@@ -38,8 +38,9 @@ uploadPositionsFile(event:any){
 }
 
 
-public openDialog() {
+public openDialog(flag:number) {
   const dialogRef = this.dialog.open(AnalyticsdialogComponent);
+  dialogRef.componentInstance.flag = flag;
 
 }
 

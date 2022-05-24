@@ -64,6 +64,7 @@ export class FeedbackComponent implements OnInit {
     } else {
       this.loadData();
     }
+
   }
 
 
