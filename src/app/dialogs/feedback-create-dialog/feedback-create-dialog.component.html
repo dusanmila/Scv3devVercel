@@ -5,7 +5,7 @@
 
         <div class="form">
             <mat-form-field>
-              <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory">
+              <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory" required>
                 <mat-option *ngFor="let category of feedbackCategories" [value]="category.feedbackCategoryName">
                   {{ category.feedbackCategoryName }}
                 </mat-option>
@@ -15,17 +15,18 @@
 
         <div class="form">
             <mat-form-field>
-                <input matInput [(ngModel)]="feedback.text" name="text" placeholder="Type text..."/>
+                <input matInput [(ngModel)]="feedback.text" name="text" placeholder="Type text..." required/>
             </mat-form-field>
         </div>
 
        
         <form [formGroup]="form" (ngSubmit)="submitForm()">
-            <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
-            <button mat-button>Add Feedback</button>
+            <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file" required>
+            <!-- <button mat-button>Add Feedback</button> -->
         </form>
         <div mat-dialog-actions>
             <button mat-button (click)="close()">Close</button>
+            <button mat-button type="submit" [mat-dialog-close]="1" (click)="submitForm()" [disabled]="!formControl.valid || !imageUploaded">Add Feedback</button>
         </div>
     </form>
 </div>

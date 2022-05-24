@@ -32,7 +32,8 @@ export class ObjectStoreCheckService {
 
   public createObjectStoreCheck(osc: ObjectStoreCheckCreateDto) {
     let retval$ = new Subject<ObjectStoreCheck>();
-    this.http.post<ObjectStoreCheck>(this.address, osc).subscribe((helper: ObjectStoreCheck) => {
+    // this.http.post<ObjectStoreCheck>('http://localhost:8085/api/objectStoreChecks', osc).subscribe((helper: ObjectStoreCheck) => {
+    this.http.post<ObjectStoreCheck>('http://localhost:8085/api/objectStoreChecks', osc).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -40,7 +41,8 @@ export class ObjectStoreCheckService {
 
   public finishObjectStoreCheck(username: string) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`http://localhost:8085/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
+    // this.http.put<StoreCheck>(`https://microservicestorecheck.azurewebsites.net/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`https://microservicestorecheck.azurewebsites.net/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
