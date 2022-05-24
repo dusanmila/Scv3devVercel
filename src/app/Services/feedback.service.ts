@@ -59,11 +59,11 @@ export class FeedbackService {
 
     return retval$.asObservable();
   }
-  public getUnresolvedFeedbacksByObject() {
+  public getUnresolvedFeedbacksByObject(objectName: string) {
     let retval$ = new Subject<Feedback[]>();
    
     //this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
-      this.http.get<Feedback[]>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/unresolvedFeedbacks1`).subscribe((feedbacks: Feedback[]) => {
+      this.http.get<Feedback[]>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
       retval$.next(feedbacks);
     });
     return retval$.asObservable();
@@ -75,7 +75,7 @@ export class FeedbackService {
     queryParams = queryParams.append("page", page);
     let retval$ = new Subject<Feedback[]>();
    // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
-      this.http.get<Feedback[]>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/resolvedFeedbacks1`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
+      this.http.get<Feedback[]>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
     
     retval$.next(feedbacks);
     });
