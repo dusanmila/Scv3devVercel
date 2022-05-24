@@ -64,9 +64,9 @@ export class ObjectService {
   // private readonly excelAddress = "http://localhost:8089/api/objectExcels";
   // private readonly retailerAddress = "http://localhost:8089/api/retailers";
 
-  private readonly address = "https://microservicestorecheck.azurewebsites.net/api/objects";
-  private readonly excelAddress = "https://microservicestorecheck.azurewebsites.net/api/objectExcels";
-  private readonly retailerAddress = "https://microservicestorecheck.azurewebsites.net/api/retailers";
+  private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
+  private readonly excelAddress = "https://microserviceobject.azurewebsites.net/api/objectExcels";
+  private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 
   public getObjects(idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
@@ -204,7 +204,7 @@ export class ObjectService {
 
   public getRetailerPlanogram(retailer: Retailer) {
     // return this.http.get(`http://localhost:8089/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, { responseType: 'blob' }).subscribe(pdf => {
-    return this.http.get(`https://microservicestorecheck.azurewebsites.net/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, { responseType: 'blob' }).subscribe(pdf => {
+    return this.http.get(`https://microserviceobject.azurewebsites.net/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, { responseType: 'blob' }).subscribe(pdf => {
       const blob = new Blob([pdf], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
@@ -213,7 +213,7 @@ export class ObjectService {
 
   public downloadRetailerPlanogram() {
     // return this.http.get('http://localhost:8089/api/retailers/retailerPlanogram/Objekat1Planogram.pdf', { responseType: 'blob' }).subscribe(pdf => {
-    return this.http.get('https://microservicestorecheck.azurewebsites.net/api/retailers/retailerPlanogram/Objekat1Planogram.pdf', { responseType: 'blob' }).subscribe(pdf => {
+    return this.http.get('https://microserviceobject.azurewebsites.net/api/retailers/retailerPlanogram/Objekat1Planogram.pdf', { responseType: 'blob' }).subscribe(pdf => {
       const fileName = 'Planogram.pdf';
       saveAs(pdf, fileName);
     });
