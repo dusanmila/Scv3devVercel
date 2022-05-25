@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -23,12 +24,12 @@ export class ResolvedFeedbackComponent implements OnInit {
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
-  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date","actions"];
+  displayedColumns = ["feedbackCategoryName", "date", "username","actions"];
   dataSource: MatTableDataSource<Feedback>;
 
   constructor(public activatedRoute: ActivatedRoute,
               public feedbackService: FeedbackService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,public date: DatePipe) { }
 
   ngOnInit(): void {
     this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
@@ -50,7 +51,7 @@ export class ResolvedFeedbackComponent implements OnInit {
       console.log(data);
     });
   }
-  
+
   public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
     const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username } });
     dialogRef.componentInstance.flag = flag;
@@ -63,6 +64,6 @@ export class ResolvedFeedbackComponent implements OnInit {
       )
   }
 
-  
+
 
 }

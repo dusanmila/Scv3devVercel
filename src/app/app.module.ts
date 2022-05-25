@@ -58,6 +58,7 @@ import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.compon
 import { MatSelectModule } from '@angular/material/select';
 import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdialog.component';
 import { PositionDialogComponent } from './dialogs/position-dialog/position-dialog.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -107,7 +108,7 @@ import { PositionDialogComponent } from './dialogs/position-dialog/position-dial
     MatPaginatorModule
 
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
