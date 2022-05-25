@@ -71,7 +71,7 @@ export class StoreCheckPageComponent implements OnInit {
   public createEmptyObjectStoreCheck() {
     console.log('create empty object store check');
     let osc: ObjectStoreCheckCreateDto = {
-      objectIdRetail: this.object.objectIdRetail,
+      objectIdCompany: this.object.objectIdCompany,
       username: "ppetrovic",
       pdf: ""
     }

@@ -16,7 +16,7 @@ export interface ObjectStoreCheck {
  }
  
  export interface ObjectStoreCheckCreateDto {
-   objectIdRetail: string;
+   objectIdCompany: string;
    username: string;
    pdf: string;
  }
