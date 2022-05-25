@@ -36,17 +36,17 @@
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" *ngIf="isAdmin">
           <mat-icon (click)="openDialog(1)">add</mat-icon>
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" *ngIf="isAdmin"> 
           <mat-icon area-label="Edit" (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail)">
             edit </mat-icon>
         </button>
 
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" *ngIf="isAdmin">
           <mat-icon area-label="Delete" (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail)">
             delete </mat-icon>
         </button>

@@ -35,26 +35,14 @@ export class StoreCheckPageComponent implements OnInit {
     this.getOneObject();
     this.getPositionsByObjectName();
     console.log(this.resolveFeedbacks);
-
   }
 
   public getOneObject() {
     this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
       this.object = data;
+      if (!this.resolveFeedbacks) 
+        this.createEmptyObjectStoreCheck();
       console.log(this.object);
-    });
-  }
-
-  public createEmptyObjectStoreCheck() {
-    console.log('Create empty object store check');
-    let osc: ObjectStoreCheckCreateDto = {
-      objectIdRetail: this.object.objectIdRetail,
-      username: this.username,
-      pdf: ""
-    }
-    this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-      this.objectStoreCheck = data;
-      console.log(this.objectStoreCheck);
     });
   }
 
@@ -77,6 +65,19 @@ export class StoreCheckPageComponent implements OnInit {
   public finishObjectStoreCheck() {
     this.objectStoreCheckService.finishObjectStoreCheck("ppetrovic").subscribe(data => {
       console.log(data);
+    });
+  }
+
+  public createEmptyObjectStoreCheck() {
+    console.log('create empty object store check');
+    let osc: ObjectStoreCheckCreateDto = {
+      objectIdRetail: this.object.objectIdRetail,
+      username: "ppetrovic",
+      pdf: ""
+    }
+    this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
+      this.objectStoreCheck = data;
+      console.log(this.objectStoreCheck);
     });
   }
 

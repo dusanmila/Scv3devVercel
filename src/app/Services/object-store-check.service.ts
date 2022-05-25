@@ -33,7 +33,7 @@ export class ObjectStoreCheckService {
   public createObjectStoreCheck(osc: ObjectStoreCheckCreateDto) {
     let retval$ = new Subject<ObjectStoreCheck>();
     // this.http.post<ObjectStoreCheck>('http://localhost:8085/api/objectStoreChecks', osc).subscribe((helper: ObjectStoreCheck) => {
-    this.http.post<ObjectStoreCheck>('http://localhost:8085/api/objectStoreChecks', osc).subscribe((helper: ObjectStoreCheck) => {
+    this.http.post<ObjectStoreCheck>('https://microservicestorecheck.azurewebsites.net/api/objectStoreChecks', osc).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

@@ -19,8 +19,8 @@ export class ObjectComponent implements OnInit {
   dataSource: MatTableDataSource<Obj>;
   subscription: Subscription;
 
-
-  @Input() workModel: string;
+  @Input() public workModel: string;
+  @Input() public isAdmin: boolean = false;
 
   public detailSearch: boolean = false;
   public idCompany: string = "";
