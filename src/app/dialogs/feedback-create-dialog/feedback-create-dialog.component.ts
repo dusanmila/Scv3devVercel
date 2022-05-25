@@ -19,6 +19,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   public form: FormGroup;
   public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
   public feedbackCategories: FeedbackCategory[] = [];
+  public imageUploaded: boolean = false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackCreateDialogComponent>,
@@ -49,6 +50,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
       file: file,
     });
     this.form.get('file')!.updateValueAndValidity();
+    this.imageUploaded = true;
   }
 
   submitForm() {

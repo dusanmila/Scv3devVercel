@@ -31,10 +31,11 @@ export class PositionService{
   constructor(private http: HttpClient) { }
 
 
-  private readonly adress ="http://localhost:8087/api/secondaryPositions";
-  private readonly excelAdress="http://localhost:8087/api/secondaryPositionExcels"
-
-
+  // private readonly adress ="http://localhost:8087/api/secondaryPositions";
+  // private readonly excelAdress="http://localhost:8087/api/secondaryPositionExcels"
+  private readonly adress ="https://microserviceposition.azurewebsites.net/api/secondaryPositions";
+  private readonly excelAdress="https://microserviceposition.azurewebsites.net/api/secondaryPositionExcels"
+  
   public getPositions():Observable<Position[]>{
 
     let retval$ = new Subject<Position[]>();
@@ -114,7 +115,8 @@ export class PositionService{
 
   public getPositionClasses(): Observable<PositionClass[]> {
     let retval$ = new Subject<PositionClass[]>();
-    this.http.get<PositionClass[]>(`http://localhost:8087/api/positionClasses`).subscribe((helper: PositionClass[]) => {
+    // this.http.get<PositionClass[]>(`http://localhost:8087/api/positionClasses`).subscribe((helper: PositionClass[]) => {
+    this.http.get<PositionClass[]>(`https://microserviceposition.azurewebsites.net/api/positionClasses`).subscribe((helper: PositionClass[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -122,7 +124,8 @@ export class PositionService{
 
   public getPositionTypes(): Observable<PositionType[]> {
     let retvla$ = new Subject<PositionType[]>();
-    this.http.get<PositionType[]>(`http://localhost:8087/api/positionTypes`).subscribe((helper: PositionType[]) => {
+    // this.http.get<PositionType[]>(`http://localhost:8087/api/positionTypes`).subscribe((helper: PositionType[]) => {
+    this.http.get<PositionType[]>(`https://microserviceposition.azurewebsites.net/api/positionTypes`).subscribe((helper: PositionType[]) => {
       retvla$.next(helper);
     });
     return retvla$.asObservable();

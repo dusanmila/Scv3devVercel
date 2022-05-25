@@ -14,18 +14,19 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly adress ="http://localhost:8083/feedback";
-  private readonly feedbackAdress ="http://localhost:8088/api";
+  private readonly adress = "http://localhost:8083/feedback";
+  private readonly feedbackAdress = "http://localhost:8088/api";
 
 
 
-  public getFeedbacks(): Observable<Feedback[]>{
+  public getFeedbacks(): Observable<Feedback[]> {
 
     let retval$ = new Subject<Feedback[]>();
 
-    //this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks`).subscribe((feedbacks: Feedback[]) => {
+    // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks`).subscribe((feedbacks: Feedback[]) => {
     this.http.get<Feedback[]>(`http://microservicefeedback.azurewebsites.net/api/feedbacks`).subscribe((feedbacks: Feedback[]) => {
 
+
       retval$.next(feedbacks)
 
     });
@@ -33,12 +34,13 @@ export class FeedbackService {
     return retval$.asObservable();
   }
 
-  public getResolvedFeedbacks(): Observable<Feedback[]>{
+  public getResolvedFeedbacks(): Observable<Feedback[]> {
 
     let retval$ = new Subject<Feedback[]>();
 
-    //this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+    // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
     this.http.get<Feedback[]>(`http://microservicefeedback.azurewebsites.net/api/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+
 
       retval$.next(feedbacks)
 
@@ -47,24 +49,28 @@ export class FeedbackService {
     return retval$.asObservable();
   }
 
-  public getUnresolvedFeedbacks(): Observable<Feedback[]>{
+  public getUnresolvedFeedbacks(): Observable<Feedback[]> {
+
+  
 
       let retval$ = new Subject<Feedback[]>();
    
      // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
-        this.http.get<Feedback[]>(`http://microservicefeedback.azurewebsites.net/api/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+        this.http.get<Feedback[]>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+
       retval$.next(feedbacks);
 
     });
 
     return retval$.asObservable();
   }
-
   public getUnresolvedFeedbacksByObject(objectName: string) {
     let retval$ = new Subject<Feedback[]>();
+
    
     //this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
-      this.http.get<Feedback[]>(`http://microservicefeedback.azurewebsites.net/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
+      this.http.get<Feedback[]>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
+
       retval$.next(feedbacks);
     });
     return retval$.asObservable();
@@ -75,21 +81,24 @@ export class FeedbackService {
     queryParams = queryParams.append("count", count);
     queryParams = queryParams.append("page", page);
     let retval$ = new Subject<Feedback[]>();
+
    // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
-      this.http.get<Feedback[]>(`http://microservicefeedback.azurewebsites.net/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
+      this.http.get<Feedback[]>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
     
     retval$.next(feedbacks);
     });
     return retval$.asObservable();
   }
 
-  public createFeedback(feedback:Feedback):Observable<Feedback>{
+  public createFeedback(feedback: Feedback): Observable<Feedback> {
 
     let retval$ = new Subject<Feedback>();
 
-    this.http.post<Feedback>(`https://microservicefeedback.azurewebsites.net/api/feedbacks`, feedback).subscribe((helper: Feedback) => {
+
+    this.http.post<Feedback>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks`, feedback).subscribe((helper: Feedback) => {
     //this.http.post<Feedback>(`${this.feedbackAdress}/feedbacks`, feedback).subscribe((helper: Feedback) => {
 
+
       retval$.next(helper)
 
     });
@@ -98,12 +107,14 @@ export class FeedbackService {
   }
 
 
-  public editFeedback(feedback:Feedback):Observable<Feedback>{
+  public editFeedback(feedback: Feedback): Observable<Feedback> {
 
     let retval$ = new Subject<Feedback>();
+
 
     //this.http.put<Feedback>(`${this.feedbackAdress}/feedbacks/${feedback.img}`, feedback).subscribe((helper: Feedback) => {
-    this.http.put<Feedback>(`https://microservicefeedback.azurewebsites.net/api/feedbacks/${feedback.img}`, feedback).subscribe((helper: Feedback) => {
+    this.http.put<Feedback>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/${feedback.img}`, feedback).subscribe((helper: Feedback) => {
+
 
       retval$.next(helper)
 
@@ -114,13 +125,15 @@ export class FeedbackService {
 
   }
 
-  public getOneFeedback(feedback:Feedback):Observable<Feedback>{
+  public getOneFeedback(feedback: Feedback): Observable<Feedback> {
 
     let retval$ = new Subject<Feedback>();
 
+
     //this.http.get<Feedback>(`${this.feedbackAdress}/feedbacks/getOneFeedback/${feedback.img}`).subscribe((helper: Feedback) => {
-      this.http.get<Feedback>(`https://microservicefeedback.azurewebsites.net/api/feedbacks/getOneFeedback/${feedback.img}`).subscribe((helper: Feedback) => {
+      this.http.get<Feedback>(`https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks/getOneFeedback/${feedback.img}`).subscribe((helper: Feedback) => {
         retval$.next(helper)
+
 
     });
 
@@ -131,8 +144,10 @@ export class FeedbackService {
   public getFeedbackCategories(): Observable<FeedbackCategory[]> {
     let retval$ = new Subject<FeedbackCategory[]>();
 
+
     //this.http.get<FeedbackCategory[]>('http://localhost:8088/api/feedbackCategories').subscribe((helper: FeedbackCategory[]) => {
-    this.http.get<FeedbackCategory[]>('https://microservicefeedback.azurewebsites.net/api/feedbackCategories').subscribe((helper: FeedbackCategory[]) => {
+    this.http.get<FeedbackCategory[]>('https://microservicefeedback20220523153422.azurewebsites.net/api/feedbackCategories').subscribe((helper: FeedbackCategory[]) => {
+
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -140,9 +155,11 @@ export class FeedbackService {
 
   public createFeedbackWithForm(formData: FormData): Observable<Feedback> {
     let retval$ = new Subject<Feedback>();
+
   //  this.http.post<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
   
-    this.http.post<Feedback>('https://microservicefeedback.azurewebsites.net/api/feedbacks', formData).subscribe((helper: Feedback) => {
+    this.http.post<Feedback>('https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks', formData).subscribe((helper: Feedback) => {
+
       retval$.next(helper);
     });
     return retval$;
@@ -150,9 +167,9 @@ export class FeedbackService {
 
   public resolveFeedback(formData: FormData): Observable<Feedback> {
     let retval$ = new Subject<Feedback>();
-//    this.http.put<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
+    // this.http.put<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
 
-    this.http.put<Feedback>('https://microservicefeedback.azurewebsites.net/api/feedbacks', formData).subscribe((helper: Feedback) => {
+    this.http.put<Feedback>('https://microservicefeedback20220523153422.azurewebsites.net/api/feedbacks', formData).subscribe((helper: Feedback) => {
       retval$.next(helper);
     });
     return retval$;
