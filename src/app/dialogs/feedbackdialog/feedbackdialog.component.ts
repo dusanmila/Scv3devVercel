@@ -21,6 +21,7 @@ export class FeedbackDialogComponent implements OnInit {
   public flag: number;
   public resolveFeedbacks: boolean;
   public form: FormGroup;
+  public imageUploaded: boolean = false;
   public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "ppetrovic", imgResolve: "" };
 
   constructor(public snackBar: MatSnackBar,
@@ -63,6 +64,7 @@ export class FeedbackDialogComponent implements OnInit {
       file: file,
     });
     this.form.get('file')!.updateValueAndValidity();
+    this.imageUploaded = true;
   }
 
   submitForm() {
