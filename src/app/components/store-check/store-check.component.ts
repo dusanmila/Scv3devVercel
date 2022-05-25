@@ -17,31 +17,4 @@ export class StoreCheckComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  public createEmptyStoreCheck() {
-    console.log('create empty store check');
-    let sc: StoreCheck = {
-      username: "ppetrovic",
-      date: new Date(Date.now()),
-      finished: false
-    }
-    this.storeCheckService.createStoreCheck(sc).subscribe(data => {
-      this.storeCheck = data;
-      console.log(this.storeCheck);
-    });
-  }
-
-  public createEmptyObjectStoreCheck() {
-    console.log('create empty object store check');
-    let osc: ObjectStoreCheckCreateDto = {
-      objectIdRetail: "12345",
-      username: "ppetrovic",
-      pdf: ""
-    }
-    this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-      this.objectStoreCheck = data;
-      console.log(this.objectStoreCheck);
-    });
-  }
-
 }
