@@ -1,5 +1,7 @@
-<div class="container mat-elevation-z8 font">
+<div class="container mat-elevation-z8 font fadeInDown">
 
+  <div class="fadeIn first"><h1>Resolved feedbacks</h1></div>
+  <div class="fadeIn second">
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
     <!-- <ng-container matColumnDef="img">
@@ -47,4 +49,6 @@
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="openDialog(3,row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username,row.imgResolve)"></mat-row>
   </mat-table>
   <mat-paginator [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
+</div>
+<div class="fadeIn third"> Exit  </div>
 </div>
