@@ -22,7 +22,6 @@
        
         <form [formGroup]="form" (ngSubmit)="submitForm()">
             <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file" required>
-            <!-- <button mat-button>Add Feedback</button> -->
         </form>
         <div mat-dialog-actions>
             <button mat-button (click)="close()">Close</button>

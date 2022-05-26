@@ -31,7 +31,7 @@ export class PositionComponent implements OnInit {
   public positions: Position[] = [];
 
   constructor(public positionService: PositionService,
-              public dialog: MatDialog) { }
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.objectName != null) {
@@ -56,6 +56,8 @@ export class PositionComponent implements OnInit {
         this.uncheckPositions();
       }
       this.dataSource = new MatTableDataSource(this.positions);
+      console.log('load positions by object')
+      console.log(data);
     });
   }
 
@@ -116,9 +118,9 @@ export class PositionComponent implements OnInit {
     dialogRef.componentInstance.objectName = this.objectName;
     dialogRef.afterClosed()
       .subscribe(res => {
-        if (res === 1) {
+        console.log(res);
+        if (res)
           this.loadPositionsByObject();
-        }
       }
       )
   }

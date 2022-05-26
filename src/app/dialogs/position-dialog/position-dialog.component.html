@@ -4,8 +4,8 @@
     <form class="mat-dialog-content" #formControl="ngForm">
         <div class="form">
             <mat-form-field>
-                <mat-select [(ngModel)]="data.posClassName" placeholder="Secondary Position Class"
-                    name="posClassName" [disabled]="flag == 2">
+                <mat-select [(ngModel)]="data.posClassName" placeholder="Secondary Position Class" name="posClassName"
+                    [disabled]="flag == 2" required="flag == 1">
                     <mat-option *ngFor="let class of positionClasses" [value]="class.positionClassName">
                         {{ class.positionClassName }}
                     </mat-option>
@@ -15,8 +15,8 @@
 
         <div class="form">
             <mat-form-field>
-                <mat-select [(ngModel)]="data.posTypeName" placeholder="Secondary Position Type"
-                    name="posTypeName" [disabled]="flag == 2">
+                <mat-select [(ngModel)]="data.posTypeName" placeholder="Secondary Position Type" name="posTypeName"
+                    [disabled]="flag == 2" required="flag == 1">
                     <mat-option *ngFor="let type of positionTypes" [value]="type.positionTypeName">
                         {{ type.positionTypeName }}
                     </mat-option>
@@ -25,9 +25,9 @@
         </div>
 
         <div mat-dialog-actions>
-            <button mat-button *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()"
+            <button mat-button *ngIf="flag == 1" type="submit" (click)="add()"
                 [disabled]="!formControl.valid">Ok</button>
-            <button mat-button *ngIf="flag == 2" type="submit" [mat-dialog-close]="1" (click)="delete()">Delete</button>
+            <button mat-button *ngIf="flag == 2" type="submit" (click)="delete()">Delete</button>
             <button mat-button (click)="close()">Cancel</button>
         </div>
     </form>

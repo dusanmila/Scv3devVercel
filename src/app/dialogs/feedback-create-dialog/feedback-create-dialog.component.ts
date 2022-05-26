@@ -63,6 +63,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
     console.log(this.feedback);
     this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
       console.log(data);
+      this.close();
     });
   }
 
