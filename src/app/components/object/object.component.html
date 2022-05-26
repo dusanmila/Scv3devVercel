@@ -1,12 +1,12 @@
 <div class="container mat-elevation-z8 font">
 
   <div class="adr-name-search">
-    
+
     <h4>Enter address or object name</h4>
     <mat-form-field>
       <input type="text" matInput placeholder="Search" [(ngModel)]="search">
-      <button matSuffix mat-button (click)="searchByString()">
-        <mat-icon>search</mat-icon>
+      <button class="search" matSuffix mat-button (click)="searchByString()">
+        <mat-icon class="search">search</mat-icon>
       </button>
     </mat-form-field>
   </div>
@@ -42,7 +42,7 @@
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <button mat-icon-button color="primary" *ngIf="isAdmin"> 
+        <button mat-icon-button color="primary" *ngIf="isAdmin">
           <mat-icon area-label="Edit" (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail)">
             edit </mat-icon>
         </button>
