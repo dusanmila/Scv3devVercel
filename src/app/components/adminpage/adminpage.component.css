@@ -8,6 +8,12 @@
   margin: 0 auto;
 
 }
+
+.header{
+  margin-top: 4%;
+  margin-bottom: -3%;
+}
+
 .container input {
   opacity: 0;
   position: absolute;
