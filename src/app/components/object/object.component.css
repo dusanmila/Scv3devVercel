@@ -2,6 +2,16 @@
 .mat-header-cell {
   background: #39ace7;
 }
+.font{
+  font-family:sans-serif;
+}
+.header {
+  text-align: center;
+  height: 100px;
+  background-color: #56baed;
+  color: #fff;
+  line-height: 100px;
+}
 
 i {
   color: #56baed;
@@ -47,3 +57,8 @@ h4 {
   margin: 0 auto;
 }
 
+.search{
+  color:white;
+  background-color:#56baed;
+
+}

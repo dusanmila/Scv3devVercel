@@ -5,3 +5,13 @@
 .centered{
   text-align:center;
 }
+
+.font{
+  font-family: sans-serif;
+}
+
+.search{
+  color:white;
+  background-color:#56baed;
+
+}

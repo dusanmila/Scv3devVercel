@@ -1,8 +1,8 @@
-<div class="centered">
+<div class="font"><div class="centered">
 <mat-form-field>
 
   <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
-  <button matSuffix mat-button (click)="searchByUsername()"><mat-icon>search</mat-icon></button>
+  <button matSuffix mat-button class="search" (click)="searchByUsername()"><mat-icon class="search">search</mat-icon></button>
 
   </mat-form-field>
 </div>
@@ -55,4 +55,5 @@
   <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 
+</div>
 </div>

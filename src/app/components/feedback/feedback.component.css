@@ -6,6 +6,9 @@ h1{
 #editBtn{
     margin: 20px;
 }
+.font{
+  font-family: sans-serif;
+}
 .button {
     color: white;
     background-color: blue;

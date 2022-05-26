@@ -31,7 +31,7 @@ selectedRetailer:Retailer;
 
   ngOnInit(): void {
 
-    this.loadData();
+  //  this.loadData();
 
 
   }

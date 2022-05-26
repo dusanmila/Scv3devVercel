@@ -132,6 +132,7 @@
 
 
   .fadeInDown {
+    font-family:sans-serif;
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;
