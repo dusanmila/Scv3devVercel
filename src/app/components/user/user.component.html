@@ -6,7 +6,7 @@
 
   </mat-form-field>
 </div>
-<div class="container mat-elevation-z8">
+<div class="container mat-elevation-z8" *ngIf="searchClicked">
 
 <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 

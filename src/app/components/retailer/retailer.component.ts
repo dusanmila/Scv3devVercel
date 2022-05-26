@@ -24,6 +24,8 @@ dataSource: MatTableDataSource<Retailer>;
 tableForm:FormGroup;
 search : string ="";
 
+searchClicked: boolean = false;
+
 
 selectedRetailer:Retailer;
 
@@ -89,6 +91,7 @@ public loadData(){
       ];
         this.dataSource=new MatTableDataSource<Retailer>(retArr);
       });
+      this.searchClicked=true;
     }
 
 
