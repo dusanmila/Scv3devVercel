@@ -1,7 +1,9 @@
 h1{
-    color: blue;
+    color: #39ace7;
     text-align: center;
     margin-top: 40px;
+    margin-top: 10%;
+    margin-bottom: 5%;
 }
 #editBtn{
     margin: 20px;
@@ -10,6 +12,7 @@ h1{
   font-family: sans-serif;
 }
 .button {
+   
     color: white;
     background-color: blue;
     padding: 4px;
@@ -22,6 +25,36 @@ h1{
     cursor: pointer;
     border-radius: 2px;
   }
+
+  
+  
+.item2{
+  background-color: white;
+  color: #39ace7;
+  width: 140px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 20px;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  bottom: 0;
+  margin-bottom: 10%;
+  margin-top: 20%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.item2:hover {
+  background-color: #39ace7;
+  color: #fff;
+  transition: 0.3s;
+}
+
 
   ul.links {
     padding-bottom: 10px;
