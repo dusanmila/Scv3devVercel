@@ -20,3 +20,27 @@
 .fb-img {
   justify-content: center;
 }
+
+.item2{
+  background-color: white;
+  color: #39ace7;
+  width: 140px;
+  height: 50px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  bottom: 0;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.item2:hover {
+  background-color: #39ace7;
+  color: #fff;
+  transition: 0.3s;
+}
