@@ -6,8 +6,12 @@
   }
   
   
-  .test:hover {
+  
+  button:hover {
     color: #fff;
     background-color: #39ace7;
     transition: 0.3s;
-  }
+}
+button[disabled]:hover {
+   background-color: #fff;
+}
