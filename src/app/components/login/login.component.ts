@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
 
   
   public LoginUser(){
+    
+    /*
     this.authorisation.logIn(this.user)
     .pipe(catchError(it => {
 
@@ -36,6 +38,6 @@ export class LoginComponent implements OnInit {
       
     }, 
     () => {console.log('complete')} );
-    this.user=this.user;
+    this.user=this.user;*/
   }
 }

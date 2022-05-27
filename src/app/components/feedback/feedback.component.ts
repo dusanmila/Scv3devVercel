@@ -77,6 +77,7 @@ export class FeedbackComponent implements OnInit {
 
   public loadUnresolvedFeedbacksByObject() {
     this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName).subscribe(data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data);
     });
   }
@@ -159,7 +160,7 @@ export class FeedbackComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res === 1) {
-          this.loadData();
+          this.loadUnresolvedFeedbacksByObject();
         }
       }
       )

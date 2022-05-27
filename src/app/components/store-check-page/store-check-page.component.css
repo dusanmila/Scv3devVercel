@@ -2,15 +2,19 @@
     background-color: #56baed;
     color: #fff;
     width: 100%;
-    padding: 10px 0 10px 10px;
+    padding: 10px;
     text-align: center;
 }
 
+button{
+    font-family: sans-serif;
+}
 .header .head {
     display: flex;
     width: 400px;
     margin: 0 auto;
     padding: 0 20px;
+    max-width: 100%;
 }
 
 .header i {
@@ -55,11 +59,11 @@
 .main {
     width: 100%;
     background-color: #fff;
-    padding-top: 100px;
     text-align: center;
 }
 
 .main h3 {
+    margin: 50px 0 25px 0;
     color: grey;
 }
 
@@ -141,12 +145,11 @@
     border: 1px solid grey;
 }
 
-
   /* ANIMATIONS */
   
   /* Simple CSS3 Fade-in-down Animation */
   .fadeInDown {
-    font-family: sans-serif;
+    font-family:sans-serif;
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;
