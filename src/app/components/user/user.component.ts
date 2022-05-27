@@ -25,6 +25,8 @@ subscription: Subscription;
 
 search : String ="";
 
+searchClicked:boolean=false;
+
 
   public get users(): User[]{
     return this._users;
@@ -61,6 +63,8 @@ public loadData(){
 
       this.dataSource=new MatTableDataSource<User>(data);
 
+      this.searchClicked=true;
+
     });
    }
 
@@ -86,6 +90,8 @@ public loadData(){
     )
     }
 
-
+    public setSearchClicked(){
+      this.searchClicked=true;
+    }
 
 }

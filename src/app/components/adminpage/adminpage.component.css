@@ -31,6 +31,8 @@
   background-color: #db202f;
   padding: 8px 16px;
 }
+
+
 .container h3 {
   font-size: 20px;
   font-weight: 600;
@@ -236,7 +238,15 @@
   }
 
   .browseButton{
+    z-index: 100;
     background-color:#56baed;
+    width:50px;
+    display: inline-block;
+  }
+
+  .browseButton:hover{
+    z-index: 100;
+    background-color:gray;
     width:50px;
     display: inline-block;
   }
