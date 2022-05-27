@@ -30,7 +30,8 @@
     </div>
 
     <form [formGroup]="form" *ngIf="resolveFeedbacks" (ngSubmit)="submitForm()">
-      <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
+      <input id="inputfile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
+      <label for="inputfile" class="browseFile">Browse</label>
       <!-- <button mat-button>Resolve</button> -->
     </form>
     <div mat-dialog-actions>

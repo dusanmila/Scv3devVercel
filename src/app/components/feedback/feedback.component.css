@@ -35,9 +35,27 @@ h1{
     color:gray;
     text-align: center;
   }
-  
+
 .item2{
   background-color: white;
+  color: #39ace7;
+  width: 140px;
+  height: 50px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  bottom: 0;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.item1{
+    background-color: white;
   color: #39ace7;
   width: 140px;
   height: 50px;
@@ -62,4 +80,32 @@ h1{
 
 .btn, a {
   text-decoration: none;
+}
+
+.browseFile{
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  background-color: #56baed;
+  padding: 8px 16px;
+}
+
+.browseFile{
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  background-color: #56baed;
+  padding: 8px 16px;
+  margin:40%;
+}
+
+.browseFile:hover{
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  padding: 8px 16px;
+  background-color:gray;
 }

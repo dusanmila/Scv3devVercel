@@ -7,11 +7,11 @@
   flex-direction: column;
   min-width: 450px;
   }
-  
+
 .form {
   display: flex;
 }
-  
+
 .mat-form-field {
   font-size: 16px;
   flex-grow: 1;
@@ -46,4 +46,13 @@ button:hover {
 }
 button[disabled]:hover {
  background-color: #fff;
+}
+
+.browseFile{
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  background-color: #56baed;
+  padding: 8px 16px;
 }
