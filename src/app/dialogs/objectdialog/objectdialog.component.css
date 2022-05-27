@@ -1,0 +1,13 @@
+.item2{
+    background-color: white;
+    color: #39ace7;
+    margin-bottom: 4%;
+    border: 2px solid #39ace7;
+  }
+
+  
+.item2:hover {
+    color: #fff;
+    background-color: #39ace7;
+    transition: 0.3s;
+  }
