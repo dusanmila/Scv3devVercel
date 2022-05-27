@@ -18,6 +18,7 @@ export class StoreCheckPageComponent implements OnInit {
   public positions: Position[];
   public showDetails: boolean = false;
   public resolveFeedbacks: boolean = false;
+  public workModel: string;
 
   constructor(public objectService: ObjectService,
               public objectStoreCheckService: ObjectStoreCheckService,
@@ -26,10 +27,10 @@ export class StoreCheckPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
-    let workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
-    if (workModel == "addStoreCheck") {
+    this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
+    if (this.workModel == "addStoreCheck") {
       this.resolveFeedbacks = false;
-    } else if (workModel == "resolveFeedbacks") {
+    } else if (this.workModel == "resolveFeedbacks") {
       this.resolveFeedbacks = true;
     }
     this.getOneObject();

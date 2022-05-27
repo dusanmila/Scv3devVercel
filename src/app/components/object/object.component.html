@@ -1,5 +1,4 @@
 <div class="container mat-elevation-z8 font">
-
   <div class="adr-name-search">
 
     <h4>Enter address or object name</h4>
@@ -10,6 +9,7 @@
       </button>
     </mat-form-field>
   </div>
+
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
 
@@ -52,7 +52,7 @@
             delete </mat-icon>
         </button>
 
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" *ngIf="!isAdmin">
           <mat-icon area-label="Open" [routerLink]="['/storeCheckPage', workModel, row.objectName]">open_in_new
           </mat-icon>
         </button>
