@@ -24,8 +24,8 @@
             <input type="file"  (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file" required>
         </form>
         <div mat-dialog-actions class="wrap">
-            <button mat-button class="item2 item3" style="margin-left: 15%;margin-right: 20%;" (click)="close()">Close</button>
-            <button mat-button class="item2 item4" type="submit" [mat-dialog-close]="1" (click)="submitForm()" [disabled]="!formControl.valid || !imageUploaded"><span class="feedbackSpan"><a onmouseover="this.style.color='white';" onmouseout="this.style.color='#39ace7'">Add</a></span></button>
+            <button mat-button class="test" (click)="close()">Close</button>
+            <button mat-button class="test" type="submit" [mat-dialog-close]="1" (click)="submitForm()" [disabled]="!formControl.valid || !imageUploaded"><span class="feedbackSpan"><a onmouseover="this.style.color='white';" onmouseout="this.style.color='#39ace7'">Add</a></span></button>
         </div>
     </form>
 </div>
