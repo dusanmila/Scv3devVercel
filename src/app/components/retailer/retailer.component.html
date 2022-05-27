@@ -4,7 +4,7 @@
   <button class="search" matSuffix mat-button (click)="searchByName()"><mat-icon class="search">search</mat-icon></button>
   </mat-form-field>
 </div>
-<div class="container mat-elevation-z8" *ngIf="searchClicked">
+<div class="container mat-elevation-z8">
 
 <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
