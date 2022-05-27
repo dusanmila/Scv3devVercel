@@ -80,7 +80,7 @@ a {
   
   /* Simple CSS3 Fade-in-down Animation */
   .fadeInDown {
-    font-family: sans-serif;
+    font-family:sans-serif;
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;

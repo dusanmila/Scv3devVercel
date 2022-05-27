@@ -30,6 +30,8 @@ export class ObjectComponent implements OnInit {
 
   search: string = "";
 
+  searchClicked: boolean=false;
+
   // private _objects: Obj[] = [];
   public object: Obj = {
     objectIdRetail: "string",
@@ -165,6 +167,10 @@ export class ObjectComponent implements OnInit {
 
   public showDetailSearch() {
     this.detailSearch = !this.detailSearch;
+  }
+
+  public setSearchClicked(){
+    this.searchClicked=true;
   }
 
 }

@@ -1,36 +1,38 @@
 <div class="fadeInDown">
 
-  <div class="fadeIn first">
-    <h1 class="mainHeading">Admin Dashboard</h1>
+  <div class="wrapp fadeIn first">
+
+  
+    
+    <div class="header">
+      <h1 class="mainHeading">Admin Dashboard</h1>
+    </div>
+
+
+    <div>
+      <button  class="item2 analytics2 " (click)="openDialog(1)">Analytics</button>
+    </div>
+
   </div>
 
-
-
-  <div>
-    <button  class="item2 analytics2 " (click)="openDialog(1)">Analytics</button>
-  </div>
-
-
-
-
-  <div class="fadeIn first">
+  <div class="fadeIn second">
     <h2 class="heading">Users</h2>
     <app-user></app-user>
   </div>
 
-  <div class="fadeIn first">
+  <div class="fadeIn third">
     <h2 class="heading">Objects</h2>
     <app-object [isAdmin]="true"></app-object>
   </div>
 
-  <div class="fadeIn first">
+  <div class="fadeIn third">
     <h2 class="heading">Retailers</h2>
     <app-retailer></app-retailer>
   </div>
 
 
 
-  <div class="fadeIn second">
+  <div class="fadeIn third">
     <h2 class="heading">Import Excel</h2>
 
 
@@ -46,7 +48,9 @@
         <h3 style="margin:5%">Drag and drop file here</h3>
 
 
-        <label for="fileDropRef" class="browseButton" style="background-color:#56baed">Browse</label>
+  <label for="fileDropRef" class="browseButton" style="background-color:#56baed">Browse</label>
+
+
       </div>
 
 
@@ -67,7 +71,7 @@
 
 
 
-  <div class="fadeIn third">
+  <div class="fadeIn fourth">
     <a [routerLink]="['/login']">
       <div class="item2">
         Log out
