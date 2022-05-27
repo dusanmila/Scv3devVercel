@@ -37,9 +37,9 @@ export class ChooseObjectComponent implements OnInit {
   public loadStoreCheck() {
     this.storeCheckService.getUnfinishedStoreCheckByUsername("ppetrovic").subscribe(data => {
       this.storeCheck = data;
-      if (!this.storeCheck)
+      if (!this.storeCheck) {
         this.createEmptyStoreCheck();
-      console.log(this.storeCheck)
+      }
     });
   }
 

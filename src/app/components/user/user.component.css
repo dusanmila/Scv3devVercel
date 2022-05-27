@@ -1,4 +1,8 @@
 
+.font {
+  padding: 0 20px;
+}
+
 .mat-header-cell {
   background: #56baed;
 }
