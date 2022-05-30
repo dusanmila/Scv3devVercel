@@ -144,8 +144,8 @@ export class ObjectComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string) {
-    const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail } });
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?:string,city?:string,retailerName?:string,objectFormat?:string,requisitionDays?:string,merchandiserRevisionDays?:string) {
+    const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address,city,retailerName,objectFormat,requisitionDays,merchandiserRevisionDays } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {
