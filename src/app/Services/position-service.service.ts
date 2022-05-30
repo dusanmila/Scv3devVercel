@@ -4,27 +4,13 @@ import { Injectable } from '@angular/core';
 
 import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
-
-export interface Position {
-  secondaryPositionId:Guid,
-  objectName: string,
-  posClassName: string,
-  posTypeName: string,
-  valid:boolean;
-}
-
-export interface PositionClass {
-  positionClassName: string;
-}
-
-export interface PositionType {
-  positionTypeName: string;
-}
+import { Position } from '../models/position';
+import { PositionClass } from '../models/positionClass';
+import { PositionType } from '../models/positionType';
 
 @Injectable({
   providedIn: 'root'
 })
-
 
 export class PositionService{
 

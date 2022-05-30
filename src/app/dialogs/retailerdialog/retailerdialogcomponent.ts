@@ -2,7 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ObjectService, Retailer } from 'src/app/Services/object.service';
+import { Retailer } from 'src/app/models/retailer';
+import { ObjectService } from 'src/app/Services/object.service';
 
 @Component({
   selector: 'app-retailerdialog',
