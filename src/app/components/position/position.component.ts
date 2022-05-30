@@ -7,7 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
 import { Observable } from 'rxjs';
 import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
-import { Position, PositionService } from 'src/app/Services/position-service.service';
+import { Position } from 'src/app/models/position';
+import { PositionService } from 'src/app/Services/position-service.service';
 //import { DataService, Product } from '../data.service';
 
 

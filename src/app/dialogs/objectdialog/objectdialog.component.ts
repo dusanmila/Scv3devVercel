@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Obj } from 'src/app/models/object';
 import { User } from 'src/app/models/user.model';
-import { Obj, ObjectService } from 'src/app/Services/object.service';
+import { ObjectService } from 'src/app/Services/object.service';
 import { UserService } from 'src/app/Services/user.service';
 
 

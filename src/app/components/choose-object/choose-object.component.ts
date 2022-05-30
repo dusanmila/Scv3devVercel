@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
-import { Obj, ObjectService } from 'src/app/Services/object.service';
-import { StoreCheck, StoreCheckService } from 'src/app/Services/store-check.service';
+import { Obj } from 'src/app/models/object';
+import { StoreCheck } from 'src/app/models/storeCheck';
+import { ObjectService } from 'src/app/Services/object.service';
+import { StoreCheckService } from 'src/app/Services/store-check.service';
 
 @Component({
   selector: 'app-choose-object',
