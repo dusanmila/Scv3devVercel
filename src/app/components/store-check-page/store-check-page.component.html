@@ -21,35 +21,37 @@
                     <li>Merchandiser revision days: {{ object.merchandiserRevisionDays }}</li>
                 </ul>
             </div>
-            <table class="info-table">
-                <tr>
-                    <th>Shelf Space M</th>
-                    <th>Company Shelf Space M</th>
-                    <th>Company Shelf Space %</th>
-                </tr>
-                <tr>
-                    <td>{{ object.objectInfo.shelfSpaceM }}</td>
-                    <td>{{ object.objectInfo.companyShelfSpaceM }}</td>
-                    <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
-                </tr>
-            </table>
-
-            <table class="info-table">
-                <tr>
-                    <th>Gainings 12M (RSD)</th>
-                    <th>WD % Serbia</th>
-                    <th>WD % Sector</th>
-                    <th>WD % Customer</th>
-                    <th>Gainings VS 12M %</th>
-                </tr>
-                <tr>
-                    <td>{{ object.objectInfo.gainings12Mrsd }}</td>
-                    <td>{{ object.objectInfo.wdpercentSerbia }}</td>
-                    <td>{{ object.objectInfo.wdpercentSector }}</td>
-                    <td>{{ object.objectInfo.wdpercentCustomer }}</td>
-                    <td>{{ object.objectInfo.gainingsVs12mpercent }}</td>
-                </tr>
-            </table>
+            <div class="object-info-tables">
+                <table class="info-table">
+                    <tr>
+                        <th>Shelf Space M</th>
+                        <th>Company Shelf Space M</th>
+                        <th>Company Shelf Space %</th>
+                    </tr>
+                    <tr>
+                        <td>{{ object.objectInfo.shelfSpaceM }}</td>
+                        <td>{{ object.objectInfo.companyShelfSpaceM }}</td>
+                        <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
+                    </tr>
+                </table>
+    
+                <table class="info-table">
+                    <tr>
+                        <th>Gainings 12M (RSD)</th>
+                        <th>WD % Serbia</th>
+                        <th>WD % Sector</th>
+                        <th>WD % Customer</th>
+                        <th>Gainings VS 12M %</th>
+                    </tr>
+                    <tr>
+                        <td>{{ object.objectInfo.gainings12Mrsd }}</td>
+                        <td>{{ object.objectInfo.wdpercentSerbia }}</td>
+                        <td>{{ object.objectInfo.wdpercentSector }}</td>
+                        <td>{{ object.objectInfo.wdpercentCustomer }}</td>
+                        <td>{{ object.objectInfo.gainingsVs12mpercent }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <i class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></i>
         <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></i>
@@ -62,10 +64,10 @@
         <h3>SECONDARY POSITIONS:</h3>
         <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
 
-        <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']"
+        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]"
             (click)="finishObjectStoreCheck()">FINISH OBJECT</button>
         
-        <button class="btn-finish" [routerLink]="['/chooseObject/{{workModel}}']">EXIT</button>
+        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]">EXIT</button>
     </div>
 
 

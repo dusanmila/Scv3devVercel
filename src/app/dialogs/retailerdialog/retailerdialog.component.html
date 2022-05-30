@@ -1,29 +1,36 @@
-
-
 <div class="container">
   <h3 mat-dialog-title *ngIf="flag == 1">Add retailer</h3>
 
   <h3 mat-dialog-title *ngIf="flag == 2">Add planogram to {{data.retailerName}}</h3>
   <h3 mat-dialog-title *ngIf="flag == 3">Delete {{data.retailerName}}</h3>
 
+  <!-- <form class="mat-dialog-content" #formControl="ngForm"></form> -->
+  <!-- <div class="form"> -->
+  <!-- <form [formGroup]="tableForm" (ngSubmit)="submit()"> -->
+
+  <!-- <input type="text" id="name" placeholder="Retailer name" fromControlName="name" *ngIf="flag==1">
+      <br>
+      <br>
+
+      <input mat-input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file" *ngIf="flag ==2"> -->
+  <form class="mat-dialog-content" #formControl="ngForm">
     <div class="form">
-      <form [formGroup]="tableForm" (ngSubmit)="submit()">
-
-        <input type="text" id="name" placeholder="Retailer name" fromControlName="name" *ngIf="flag==1">
-<br>
-<br>
-
-          <input mat-input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file" *ngIf="flag ==2">
+      <mat-form-field>
+        <input matInput id="name" name="text" placeholder="Retailer name" [(ngModel)]="data.retailerName" [disabled]="flag==2 || flag==3" required />
+      </mat-form-field>
+    </div>
 
 
-          <div mat-dialog-actions>
-            <button class="test" mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag != 3"(click)="submit()">Ok</button>
-            <button class="test" mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag==3" (click)="delete()">Ok</button>
-            <button class="test" mat-button (click)="close()">Cancel</button>
-          </div>
-            </form>
-  </div>
+    <form [formGroup]="tableForm" (ngSubmit)="submit()" *ngIf="flag ==2">
+      <input mat-input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file" />
+    </form>
 
-
-
-  </div>
+    <div mat-dialog-actions>
+      <button class="test" mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag != 3" [disabled]="!data.retailerName"
+        (click)="submit()">Add</button>
+      <button class="test" mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag==3"
+        (click)="delete()">Delete</button>
+      <button class="test" mat-button (click)="close()">Cancel</button>
+    </div>
+  </form>
+</div>
