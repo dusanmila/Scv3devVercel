@@ -1,25 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Obj } from 'src/app/Services/object.service';
-import { StoreCheck } from 'src/app/Services/store-check.service';
-
-
-
-
-export interface ObjectStoreCheck {
-  storeCheck: StoreCheck;
-  object: Obj;
-  pdf: string;
-  username: string;
-  
- }
- 
- export interface ObjectStoreCheckCreateDto {
-   objectIdCompany: string;
-   username: string;
-   pdf: string;
- }
+import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from '../models/objectStoreCheck';
+import { StoreCheck } from '../models/storeCheck';
 
 @Injectable({
   providedIn: 'root'

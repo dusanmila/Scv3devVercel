@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ObjectStoreCheck, ObjectStoreCheckCreateDto, ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
-import { Obj, ObjectService } from 'src/app/Services/object.service';
-import { Position, PositionService } from 'src/app/Services/position-service.service';
+import { Obj } from 'src/app/models/object';
+import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from 'src/app/models/objectStoreCheck';
+import { Position } from 'src/app/models/position';
+import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
+import { ObjectService } from 'src/app/Services/object.service';
+import { PositionService } from 'src/app/Services/position-service.service';
 
 @Component({
   selector: 'app-store-check-page',

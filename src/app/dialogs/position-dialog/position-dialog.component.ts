@@ -1,7 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Position, PositionClass, PositionService, PositionType } from 'src/app/Services/position-service.service';
+import { Position } from 'src/app/models/position';
+import { PositionClass } from 'src/app/models/positionClass';
+import { PositionType } from 'src/app/models/positionType';
+import { PositionService } from 'src/app/Services/position-service.service';
 
 @Component({
   selector: 'app-position-dialog',

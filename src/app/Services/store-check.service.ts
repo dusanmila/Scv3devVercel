@@ -2,12 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EmailsForSending } from '../models/emailsForSending';
-
-export interface StoreCheck {
-  username: string;
-  date: Date;
-  finished: boolean;
-}
+import { StoreCheck } from '../models/storeCheck';
 
 @Injectable({
   providedIn: 'root'
