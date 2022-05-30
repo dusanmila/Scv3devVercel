@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
@@ -29,7 +29,8 @@ export class ResolvedFeedbackComponent implements OnInit {
 
   constructor(public activatedRoute: ActivatedRoute,
               public feedbackService: FeedbackService,
-              public dialog: MatDialog,public date: DatePipe) { }
+              public dialog: MatDialog,public date: DatePipe,
+              public location: Location) { }
 
   ngOnInit(): void {
     this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
@@ -64,6 +65,10 @@ export class ResolvedFeedbackComponent implements OnInit {
         }
       }
       )
+  }
+
+  public back() {
+    this.location.back();
   }
 
 
