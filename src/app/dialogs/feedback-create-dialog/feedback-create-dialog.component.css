@@ -2,18 +2,17 @@
     display: flex;
     flex-direction: column;
     }
-    
+
   .form {
     display: flex;
   }
-    
+
   .mat-form-field {
     font-size: 16px;
     flex-grow: 1;
   }
 
- 
-  
+
 .item2{
   background-color: white;
   color: #39ace7;
@@ -49,7 +48,7 @@
 
 
 @media (max-width: 600px){
- 
+
   .item2{
     position:fixed ;
   }
@@ -76,3 +75,23 @@ button:hover {
 button[disabled]:hover {
  background-color: #fff;
 }
+
+.browseFile{
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  background-color: #56baed;
+  padding: 8px 16px;
+  margin:40%;
+}
+
+.browseFile:hover{
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  padding: 8px 16px;
+  background-color:gray;
+}
+

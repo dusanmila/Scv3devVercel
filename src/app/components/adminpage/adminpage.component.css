@@ -28,7 +28,7 @@
   width: 100px;
   height: 20px;
   border-radius: 21.5px;
-  background-color: #db202f;
+  background-color: #56baed;
   padding: 8px 16px;
 }
 
@@ -99,14 +99,16 @@
 .item2{
   background-color: white;
   color: #39ace7;
-  width: 100px;
+  width: 120px;
   height: 50px;
   line-height: 50px;
-  text-align: center;
   border-radius: 10px;
   font-size: 25px;
   border: 2px solid #39ace7;
   cursor: pointer;
+
+  text-align:center;
+
   margin: 0 auto;
   position: relative;
   bottom: 0;
@@ -239,17 +241,27 @@
   }
 
   .browseButton{
-    z-index: 100;
-    background-color:#56baed;
-    width:50px;
-    display: inline-block;
+    color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  background-color: #56baed;
+  padding: 8px 16px;
   }
 
   .browseButton:hover{
-    z-index: 100;
+    color: white;
+    width: 100px;
+    height: 20px;
+    border-radius: 21.5px;
+    padding: 8px 16px;
     background-color:gray;
-    width:50px;
-    display: inline-block;
+  }
+
+  .cont2{
+    align-items: center;
+    position:relative;
+    margin:0 auto;
   }
 
   .analytics2{
@@ -267,5 +279,10 @@
   @media (min-width: 1000px) {
     .analytics2 {
       margin-left: 90%;
+    }
+
+    .menu{
+      display:inline;
+      float:right;
     }
   }
