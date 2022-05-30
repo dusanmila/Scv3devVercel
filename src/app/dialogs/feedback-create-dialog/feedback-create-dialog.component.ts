@@ -17,8 +17,9 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
   public flag: number;
   public form: FormGroup;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
   public feedbackCategories: FeedbackCategory[] = [];
+  public imageUploaded: boolean = false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackCreateDialogComponent>,
@@ -49,19 +50,21 @@ export class FeedbackCreateDialogComponent implements OnInit {
       file: file,
     });
     this.form.get('file')!.updateValueAndValidity();
+    this.imageUploaded = true;
   }
 
   submitForm() {
     var formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
     formData.append('FeedbackCategoryName', this.feedback.feedbackCategoryName);
-    this.http
-      .put('http://localhost:8088/api/feedbacks', formData)
-      .subscribe({
-        next: (response) => console.log(response),
-        error: (error) => console.log(error)
-
-      });
+    formData.append('Username', "ppetrovic");
+    formData.append('Text', this.feedback.text);
+    console.log(formData);
+    console.log(this.feedback);
+    this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
+      console.log(data);
+      this.close();
+    });
   }
 
   public close(): void {

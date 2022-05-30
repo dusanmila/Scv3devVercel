@@ -1,3 +1,21 @@
 .mat-header-cell {
   background: #56baed;
 }
+
+.centered{
+  text-align:center;
+}
+
+.font{
+  font-family: sans-serif;
+}
+
+.search{
+  color:white;
+  background-color:#56baed;
+
+}
+
+.container {
+  margin: 0 20px;
+}

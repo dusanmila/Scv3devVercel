@@ -30,9 +30,9 @@ export class FeedbackComponent implements OnInit {
 
 
 
-  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
-  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
 
 
@@ -59,11 +59,11 @@ export class FeedbackComponent implements OnInit {
     if (!this.resolveFeedbacks) {
       this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
     }
-
     if (this.objectName != null) {
       this.loadUnresolvedFeedbacksByObject();
+    } else {
+      this.loadData();
     }
-    this.loadUnresolvedFeedbacksByObject();
 
   }
 
@@ -77,15 +77,16 @@ export class FeedbackComponent implements OnInit {
 
   public loadUnresolvedFeedbacksByObject() {
     this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName).subscribe(data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data);
     });
   }
 
-  public loadResolvedFeedbacksByObject() {
-    this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-    });
-  }
+  // public loadResolvedFeedbacksByObject() {
+  //   this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
+  //     this.dataSource = new MatTableDataSource(data);
+  //   });
+  // }
 
   uploadFile(event: any) {
     const file = (event.target as HTMLInputElement).files![0];
@@ -120,7 +121,7 @@ export class FeedbackComponent implements OnInit {
       this._feedbacks.push(data);
 
     });
-    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "" };
+    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
   }
 
@@ -159,7 +160,7 @@ export class FeedbackComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res === 1) {
-          this.loadData();
+          this.loadUnresolvedFeedbacksByObject();
         }
       }
       )
@@ -171,7 +172,7 @@ export class FeedbackComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res === 1) {
-          this.loadData();
+          this.loadUnresolvedFeedbacksByObject();
         }
       }
       )
@@ -180,7 +181,7 @@ export class FeedbackComponent implements OnInit {
   public showResolvedFeedbacks() {
     this.showResolved = !this.showResolved;
     if (this.showResolved) {
-      this.loadResolvedFeedbacksByObject();
+      // this.loadResolvedFeedbacksByObject();
     } else {
       this.loadUnresolvedFeedbacksByObject();
     }

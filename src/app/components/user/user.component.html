@@ -1,57 +1,65 @@
+<div class="font">
+  <div class="centered">
+    <mat-form-field>
 
-<mat-form-field>
-  
-  <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
-  <button matSuffix mat-button (click)="searchByUsername()"><mat-icon>search</mat-icon></button>
-  </mat-form-field>
-
-<div class="container mat-elevation-z8">
-
-<mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
-
-  <ng-container matColumnDef="firstName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>First name</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="lastName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Last name</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
-  </ng-container>
-
-
-  <ng-container matColumnDef="username">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="userType">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>User type</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.userType }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef>
-      <button mat-icon-button color="primary">
-<mat-icon (click)="openDialog(1)">add</mat-icon>
+      <input type="text" matInput placeholder="Search" [(ngModel)]="search">
+      <button matSuffix mat-button class="search" (click)="searchByUsername()">
+        <mat-icon class="search">search</mat-icon>
       </button>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row; let i=index">
-      <button mat-icon-button color="primary">
-        <mat-icon area-label="Edit" (click)="openDialog(2,row.firstName,row.lastName,row.username,row.email,row.userType)"> edit </mat-icon>
-              </button>
 
-     <button mat-icon-button color="primary"><mat-icon area-label="Delete" (click)="openDialog(3,row.firstName,row.lastName,row.username,row.email,row.userType)"> delete </mat-icon>
-            </button>
-    </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
+    </mat-form-field>
+  </div>
+  <div class="container mat-elevation-z8">
 
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>First name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Last name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="userType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>User type</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.userType }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary">
+            <mat-icon (click)="openDialog(1)">add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row; let i=index">
+          <button mat-icon-button color="primary">
+            <mat-icon area-label="Edit"
+              (click)="openDialog(2,row.firstName,row.lastName,row.username,row.email,row.userType)"> edit </mat-icon>
+          </button>
+
+          <button mat-icon-button color="primary">
+            <mat-icon area-label="Delete"
+              (click)="openDialog(3,row.firstName,row.lastName,row.username,row.email,row.userType)"> delete </mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+  </div>
 </div>

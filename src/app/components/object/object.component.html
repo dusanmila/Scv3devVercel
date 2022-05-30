@@ -1,14 +1,15 @@
-<div class="container mat-elevation-z8">
-
+<div class="container mat-elevation-z8 font">
   <div class="adr-name-search">
-    <h4>ENTER ADDRESS OR NAME:</h4>
+
+    <h4>Enter address or object name</h4>
     <mat-form-field>
       <input type="text" matInput placeholder="Search" [(ngModel)]="search">
-      <button matSuffix mat-button (click)="searchByString()">
-        <mat-icon>search</mat-icon>
+      <button class="search" matSuffix mat-button (click)="searchByString()">
+        <mat-icon class="search">search</mat-icon>
       </button>
     </mat-form-field>
   </div>
+
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
 
@@ -36,24 +37,27 @@
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" *ngIf="isAdmin">
           <mat-icon (click)="openDialog(1)">add</mat-icon>
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" *ngIf="isAdmin">
           <mat-icon area-label="Edit" (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail)">
             edit </mat-icon>
         </button>
 
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary" *ngIf="isAdmin">
           <mat-icon area-label="Delete" (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail)">
             delete </mat-icon>
         </button>
 
-        <button mat-icon-button color="primary">
+        <!-- <button mat-icon-button color="primary" *ngIf="!isAdmin">
           <mat-icon area-label="Open" [routerLink]="['/storeCheckPage', workModel, row.objectName]">open_in_new
           </mat-icon>
+        </button> -->
+        <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" [routerLink]="['/storeCheckPage', workModel, row.objectName]">
+          Choose
         </button>
       </mat-cell>
     </ng-container>
@@ -62,7 +66,7 @@
   </mat-table>
 
   <div class="detail-search">
-    <h4>DETAIL SEARCH</h4>
+    <h4>Detail search</h4>
     <div class="detail-search-menu" *ngIf="detailSearch">
       <div class="menu-item">
         <mat-form-field>

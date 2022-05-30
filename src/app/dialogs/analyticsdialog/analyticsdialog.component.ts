@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnalyticsdialogComponent implements OnInit {
 
+  public flag: number;
+
   constructor() { }
 
   ngOnInit(): void {

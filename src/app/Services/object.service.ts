@@ -1,56 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ObjectInfo } from 'src/app/Services/object-info.service';
 import { saveAs } from 'file-saver';
-
-export interface User {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-}
-
-export interface Retailer {
-  retailerName: string;
-  planogramPdf: string;
-}
-
-export interface Obj {
-  objectIdRetail: string;
-  objectIdCompany: string;
-  retailer: Retailer;
-  objectFormat: string;
-  objectName: string;
-  city: string;
-  address: string;
-  kam: User;
-  director: User;
-  supervisor: User;
-  commercialist: User;
-  merchandiser: User;
-  requisitionDays: string;
-  merchandiserRevisionDays: string;
-  objectInfo: ObjectInfo;
-}
-
-export interface ObjectCreateDto {
-  objectIdRetail: string;
-  objectIdCompany: string;
-  retailer: string;
-  objectFormat: string;
-  objectName: string;
-  city: string;
-  address: string;
-  kam: string;
-  director: string;
-  supervisor: string;
-  commercialist: string;
-  merchandiser: string;
-  requisitionDays: string;
-  merchandiserRevisionDays: string;
-  objectInfo: ObjectInfo;
-}
+import { Retailer } from '../models/retailer';
+import { Obj } from '../models/object';
 
 @Injectable({
   providedIn: 'root'
@@ -60,9 +13,13 @@ export class ObjectService {
   constructor(private http: HttpClient) { }
 
   // private readonly address = "http://localhost:8083/object/objects";
-  private readonly address = "http://localhost:8089/api/objects";
-  private readonly excelAddress = "http://localhost:8089/api/objectExcels";
-  private readonly retailerAddress = "http://localhost:8089/api/retailers";
+  // private readonly address = "http://localhost:8089/api/objects";
+  // private readonly excelAddress = "http://localhost:8089/api/objectExcels";
+  // private readonly retailerAddress = "http://localhost:8089/api/retailers";
+
+  private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
+  private readonly excelAddress = "https://microserviceobject.azurewebsites.net/api/objectExcels";
+  private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 
   public getObjects(idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
@@ -199,7 +156,8 @@ export class ObjectService {
   }
 
   public getRetailerPlanogram(retailer: Retailer) {
-    return this.http.get(`http://localhost:8089/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, { responseType: 'blob' }).subscribe(pdf => {
+    // return this.http.get(`http://localhost:8089/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, { responseType: 'blob' }).subscribe(pdf => {
+    return this.http.get(`https://microserviceobject.azurewebsites.net/api/retailers/retailerPlanogram/${retailer.planogramPdf}`, { responseType: 'blob' }).subscribe(pdf => {
       const blob = new Blob([pdf], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
@@ -207,7 +165,8 @@ export class ObjectService {
   }
 
   public downloadRetailerPlanogram() {
-    return this.http.get('http://localhost:8089/api/retailers/retailerPlanogram/Objekat1Planogram.pdf', { responseType: 'blob' }).subscribe(pdf => {
+    // return this.http.get('http://localhost:8089/api/retailers/retailerPlanogram/Objekat1Planogram.pdf', { responseType: 'blob' }).subscribe(pdf => {
+    return this.http.get('https://microserviceobject.azurewebsites.net/api/retailers/retailerPlanogram/Objekat1Planogram.pdf', { responseType: 'blob' }).subscribe(pdf => {
       const fileName = 'Planogram.pdf';
       saveAs(pdf, fileName);
     });
@@ -220,6 +179,16 @@ export class ObjectService {
       error: (error) => console.log(error)
 
     });
+
+  }
+
+  public createRetailerWithPlanogram(form: FormData) {
+
+    let retval$ = new Subject<Retailer>();
+    this.http.post<Retailer>(`${this.retailerAddress}/createRetailerWithPlanogram`, form).subscribe((helper: Retailer) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
 
   }
 

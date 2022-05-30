@@ -2,6 +2,16 @@
 .mat-header-cell {
   background: #39ace7;
 }
+.font{
+  font-family:sans-serif;
+}
+.header {
+  text-align: center;
+  height: 100px;
+  background-color: #56baed;
+  color: #fff;
+  line-height: 100px;
+}
 
 i {
   color: #56baed;
@@ -14,6 +24,7 @@ h4 {
 
 .container {
   text-align: center;
+  padding: 0 20px;
 }
 
 .adr-name-search {
@@ -47,3 +58,13 @@ h4 {
   margin: 0 auto;
 }
 
+.search{
+  color:white;
+  background-color:#56baed;
+
+}
+
+.choose-btn {
+  color: #fff;
+  background-color:#56baed;
+}

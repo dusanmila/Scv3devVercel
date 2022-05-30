@@ -5,8 +5,8 @@
 
         <div class="form">
             <mat-form-field>
-              <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory">
-                <mat-option *ngFor="let category of feedbackCategories" [value]="category">
+              <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory" required>
+                <mat-option *ngFor="let category of feedbackCategories" [value]="category.feedbackCategoryName">
                   {{ category.feedbackCategoryName }}
                 </mat-option>
               </mat-select>
@@ -15,17 +15,19 @@
 
         <div class="form">
             <mat-form-field>
-                <input matInput [(ngModel)]="feedback.text" name="text" placeholder="Type text..."/>
+                <input matInput [(ngModel)]="feedback.text" name="text" placeholder="Type text..." required/>
             </mat-form-field>
         </div>
 
-       
+
         <form [formGroup]="form" (ngSubmit)="submitForm()">
-            <input type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
-            <button mat-button>Add Feedback</button>
+            <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file" required hidden>
+            <label for="inputFile" class="browseFile"> Photo</label>
         </form>
-        <div mat-dialog-actions>
-            <button mat-button (click)="close()">Close</button>
-        </div>
+        <div mat-dialog-actions class="wrap">
+            <button mat-button class="test" type="submit" [mat-dialog-close]="1" (click)="submitForm()" [disabled]="!formControl.valid || !imageUploaded"><span class="feedbackSpan"><a onmouseover="this.style.color='white';" onmouseout="this.style.color='#39ace7'">Add</a></span></button>
+
+            <button mat-button class="test" (click)="close()">Close</button>
+           </div>
     </form>
 </div>

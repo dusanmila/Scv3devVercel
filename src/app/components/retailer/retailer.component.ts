@@ -7,9 +7,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/Services/user.service';
 import { UserDialogComponent } from 'src/app/dialogs/userdialog/userdialog.component';
-import { ObjectService, Retailer } from 'src/app/Services/object.service';
+import { ObjectService } from 'src/app/Services/object.service';
 import { RetailerDialogComponent } from 'src/app/dialogs/retailerdialog/retailerdialogcomponent';
 import { FormGroup } from '@angular/forms';
+import { Retailer } from 'src/app/models/retailer';
 
 @Component({
   selector: 'app-retailer',
@@ -24,6 +25,8 @@ dataSource: MatTableDataSource<Retailer>;
 tableForm:FormGroup;
 search : string ="";
 
+searchClicked: boolean = false;
+
 
 selectedRetailer:Retailer;
 
@@ -31,7 +34,7 @@ selectedRetailer:Retailer;
 
   ngOnInit(): void {
 
-    this.loadData();
+  //  this.loadData();
 
 
   }
@@ -89,6 +92,7 @@ public loadData(){
       ];
         this.dataSource=new MatTableDataSource<Retailer>(retArr);
       });
+      this.searchClicked=true;
     }
 
 

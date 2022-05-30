@@ -22,7 +22,7 @@
         </div>
 
         <div mat-dialog-action>
-            <button mat-button type="submit" [mat-dialog-close]="1" (click)="send()" [disabled]="!formControl.valid">Send</button>
+            <button mat-button type="submit" [mat-dialog-close]="1" (click)="send()" [disabled]="!formControl.valid" [routerLink]="['/storeCheck']">Send</button>
             <button mat-button (click)="close()">Close</button>
         </div>
     </form>

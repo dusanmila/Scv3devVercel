@@ -2,12 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EmailsForSending } from '../models/emailsForSending';
-
-export interface StoreCheck {
-  username: string;
-  date: Date;
-  finished: boolean;
-}
+import { StoreCheck } from '../models/storeCheck';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +11,8 @@ export class StoreCheckService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly address = "http://localhost:8085/api/storeChecks";
+  // private readonly address = "http://localhost:8085/api/storeChecks";
+  private readonly address = "https://microservicestorecheck.azurewebsites.net/api/storeChecks";
 
   public getUnfinishedStoreCheckByUsername(username: string) {
     let retval$ = new Subject<StoreCheck>();

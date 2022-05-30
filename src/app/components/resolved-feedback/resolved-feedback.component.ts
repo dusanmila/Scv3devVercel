@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { DatePipe, Location } from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
@@ -14,13 +17,20 @@ import { FeedbackService } from 'src/app/Services/feedback.service';
 export class ResolvedFeedbackComponent implements OnInit {
 
   public objectName: string;
+  public count: number = 5;
+  public page: number = 1;
+  public length: number = 100;
+  public pageEvent: PageEvent;
 
-  displayedColumns = ["feedbackCategoryName", "text", "date", "resolved", "img", "username", "date"];
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+
+  displayedColumns = ["feedbackCategoryName", "date", "username","actions"];
   dataSource: MatTableDataSource<Feedback>;
 
   constructor(public activatedRoute: ActivatedRoute,
               public feedbackService: FeedbackService,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,public date: DatePipe,
+              public location: Location) { }
 
   ngOnInit(): void {
     this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
@@ -28,13 +38,25 @@ export class ResolvedFeedbackComponent implements OnInit {
   }
 
   public loadData() {
-    this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
+    this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
+      console.log(data);
       this.dataSource = new MatTableDataSource(data);
     });
   }
+
+  public loadDataOnPageEvent(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    console.log(this.page);
+    this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      console.log(data);
+    });
+  }
+
   
-  public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username } });
+  public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string, imgResolve?: string) {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username, imgResolve } });
+
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {
@@ -44,5 +66,11 @@ export class ResolvedFeedbackComponent implements OnInit {
       }
       )
   }
+
+  public back() {
+    this.location.back();
+  }
+
+
 
 }

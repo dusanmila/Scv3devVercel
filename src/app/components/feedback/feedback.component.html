@@ -1,6 +1,8 @@
-<div class="container mat-elevation-z8">
+<div class="container mat-elevation-z8 font">
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+
 
     <!-- <ng-container matColumnDef="img">
     <th mat-header-cell *matHeaderCellDef> Image </th>
@@ -53,5 +55,5 @@
 
   <!--<button mat-button (click)="showResolvedFeedbacks()" *ngIf="!showResolved">Show Resolved</button>
   <button mat-button (click)="showResolvedFeedbacks()" *ngIf="showResolved">Show Unresolved</button>-->
-  <button mat-button [routerLink]="['/resolvedFeebacks/', objectName]">Show Resolved</button>
+  <button class="item2" mat-button [routerLink]="['/storeCheckPage/resolvedFeebacks/', objectName]">Show Resolved</button>
 </div>

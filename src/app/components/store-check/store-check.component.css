@@ -23,15 +23,17 @@ a {
 .item {
     background-color: #39ace7;
     color: #fff;
-    width: 400px;
-    height: 200px;
+    width: 60%;
+    height: 40%;
     line-height: 200px;
     text-align: center;
     border-radius: 10px;
     font-size: 25px;
     border: 2px solid #39ace7;
     cursor: pointer;
-    margin: 0 auto;
+    margin: auto;
+  
+    
 }
 
 .item2{
@@ -45,12 +47,16 @@ a {
     font-size: 25px;
     border: 2px solid #39ace7;
     cursor: pointer;
-    margin: 0 auto;
-    position: fixed;
+    position: relative;
     bottom: 1;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: auto;
+
+    /*
     margin-bottom: 1%;
+    
+    margin-left: 50%;
+    margin-right: 50%;*/
+
 }
 
 .item2:hover {
@@ -74,6 +80,7 @@ a {
   
   /* Simple CSS3 Fade-in-down Animation */
   .fadeInDown {
+    font-family:sans-serif;
     -webkit-animation-name: fadeInDown;
     animation-name: fadeInDown;
     -webkit-animation-duration: 1s;

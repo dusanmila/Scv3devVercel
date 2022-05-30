@@ -5,4 +5,5 @@ export interface Feedback {
     resolved: boolean
     img: string
     username:string
+    imgResolve: string
   }

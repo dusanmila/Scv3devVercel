@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ObjectStoreCheck, ObjectStoreCheckCreateDto, ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
-import { StoreCheck, StoreCheckService } from 'src/app/Services/store-check.service';
+import { ObjectStoreCheck } from 'src/app/models/objectStoreCheck';
+import { StoreCheck } from 'src/app/models/storeCheck';
+import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
+import { StoreCheckService } from 'src/app/Services/store-check.service';
 
 @Component({
   selector: 'app-store-check',
@@ -17,31 +19,4 @@ export class StoreCheckComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  public createEmptyStoreCheck() {
-    console.log('create empty store check');
-    let sc: StoreCheck = {
-      username: "ppetrovic",
-      date: new Date(Date.now()),
-      finished: false
-    }
-    this.storeCheckService.createStoreCheck(sc).subscribe(data => {
-      this.storeCheck = data;
-      console.log(this.storeCheck);
-    });
-  }
-
-  public createEmptyObjectStoreCheck() {
-    console.log('create empty object store check');
-    let osc: ObjectStoreCheckCreateDto = {
-      objectIdRetail: "12345",
-      username: "ppetrovic",
-      pdf: ""
-    }
-    this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-      this.objectStoreCheck = data;
-      console.log(this.objectStoreCheck);
-    });
-  }
-
 }

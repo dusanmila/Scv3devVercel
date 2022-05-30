@@ -1,81 +1,86 @@
 <div class="fadeInDown">
 
-  <div class="fadeIn first">
-    <h1 style="text-align:center;color:#56baed;margin-bottom:2%">Admin Dashboard</h1>
+  <div class="wrapp fadeIn first">
+
+
+
+    <div class="header">
+      <h1 class="mainHeading">Admin Dashboard</h1>
+      <div class="menu" style="display:flex;">
+
+        <div class="fadeIn fourth">
+
+            <div class="item2" onclick="openDialog(1)">
+              Analytics
+            </div>
+        </div>
+
+        <div class="fadeIn fourth">
+          <a [routerLink]="['/login']">
+            <div class="item2">
+              Log out
+            </div>
+          </a>
+        </div>
+      </div>
+
+</div>
+
+
+
   </div>
-
-
-
-
-  <div align="end" style="margin-right:10%;">
-    <button mat-raised-button style="background-color:#56baed" (click)="openDialog()">Analytics</button>
-  </div>
-
-
-
-
-  <div class="fadeIn first">
-    <h2 style="text-align:center;color:#56baed">Users</h2>
+  <br>
+  <br>
+<br>
+<br>
+  <div class="fadeIn second">
+    <h2 class="heading">Users</h2>
     <app-user></app-user>
   </div>
 
-  <div class="fadeIn first">
-    <h2 style="text-align:center;color:#56baed;margin:2%">Objects</h2>
-    <app-object></app-object>
+  <div class="fadeIn third">
+    <h2 class="heading">Objects</h2>
+    <app-object [isAdmin]="true"></app-object>
   </div>
 
-  <div class="fadeIn first">
-    <h2 style="text-align:center;color:#56baed;margin:2%">Retailers</h2>
+  <div class="fadeIn third">
+    <h2 class="heading">Retailers</h2>
     <app-retailer></app-retailer>
   </div>
 
 
 
-  <div class="fadeIn second">
-    <h2 style="text-align:center;color:#56baed;margin:2%">Import Excel</h2>
+  <div class="fadeIn third">
+    <h2 class="heading">Import Excel</h2>
 
 
 
     <div class="parentcontainer">
 
-
       <div class="container">
-        <h3 style="text-align:center;color:#56baed">Objects</h3>
+        <h3 class="uploadHeading">Objects</h3>
         <input type="file" #fileDropRef (change)="uploadObjectsFile($event)" id="fileDropRef" />
 
 
         <h3 style="margin:5%">Drag and drop file here</h3>
 
-
-        <label for="fileDropRef" style="background-color:#56baed;background-color:#56baed;width:50px;
-            display: inline-block;">Browse</label>
+<label for="fileDropRef" class="browseButton">Browse</label>
       </div>
 
 
 
       <div class="container">
-        <h3 style="text-align:center;color:#56baed">Positions</h3>
+        <h3 class="uploadHeading">Positions</h3>
         <input type="file" #fileDropRef (change)="uploadPositionsFile($event)" id="fileDropRef" />
 
 
         <h3 style="margin:5%">Drag and drop file here</h3>
 
-        <label for="fileDropRef" style="background-color:#56baed;width:50px;
-          display: inline-block;">Browse</label>
+        <label class="browseButton" style="background-color:#56baed" for="fileDropRef">Browse</label>
       </div>
 
     </div>
 
-  </div>
-
-
-
-  <div class="fadeIn third">
-    <a [routerLink]="['/login']">
-      <div class="item2">
-        Log out
-      </div>
-    </a>
   </div>
 
 </div>

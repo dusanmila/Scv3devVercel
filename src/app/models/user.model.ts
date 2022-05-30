@@ -2,7 +2,7 @@ export interface User {
     firstName: string
     lastName: string  
     username: string
-    email: boolean
+    email: string
     userType: string
   }
   

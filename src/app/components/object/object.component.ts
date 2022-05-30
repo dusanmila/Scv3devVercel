@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { filter, Observable, Subscription } from 'rxjs';
 import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
-import { ObjectCreateDto, ObjectService } from 'src/app/Services/object.service';
-import { Obj } from 'src/app/Services/object.service';
+import { Obj } from 'src/app/models/object';
+import { ObjectService } from 'src/app/Services/object.service';
 
 
 
@@ -19,8 +19,8 @@ export class ObjectComponent implements OnInit {
   dataSource: MatTableDataSource<Obj>;
   subscription: Subscription;
 
-
-  @Input() workModel: string;
+  @Input() public workModel: string;
+  @Input() public isAdmin: boolean = false;
 
   public detailSearch: boolean = false;
   public idCompany: string = "";
@@ -29,6 +29,8 @@ export class ObjectComponent implements OnInit {
   public format: string = "";
 
   search: string = "";
+
+  searchClicked: boolean=false;
 
   // private _objects: Obj[] = [];
   public object: Obj = {
@@ -46,31 +48,36 @@ export class ObjectComponent implements OnInit {
       firstName: "",
       lastName: "",
       username: "",
-      email: ""
+      email: "",
+      userType: ""
     },
     director: {
       firstName: "",
       lastName: "",
       username: "",
-      email: ""
+      email: "",
+      userType: ""
     },
     supervisor: {
       firstName: "",
       lastName: "",
       username: "",
-      email: ""
+      email: "",
+      userType: ""
     },
     commercialist: {
       firstName: "",
       lastName: "",
       username: "",
-      email: ""
+      email: "",
+      userType: ""
     },
     merchandiser: {
       firstName: "",
       lastName: "",
       username: "",
-      email: ""
+      email: "",
+      userType: ""
     },
     requisitionDays: "",
     merchandiserRevisionDays: "string",
@@ -165,6 +172,10 @@ export class ObjectComponent implements OnInit {
 
   public showDetailSearch() {
     this.detailSearch = !this.detailSearch;
+  }
+
+  public setSearchClicked(){
+    this.searchClicked=true;
   }
 
 }
