@@ -1,56 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ObjectInfo } from 'src/app/Services/object-info.service';
 import { saveAs } from 'file-saver';
-
-export interface User {
-  firstName: string;
-  lastName: string;
-  username: string;
-  email: string;
-}
-
-export interface Retailer {
-  retailerName: string;
-  planogramPdf: string;
-}
-
-export interface Obj {
-  objectIdRetail: string;
-  objectIdCompany: string;
-  retailer: Retailer;
-  objectFormat: string;
-  objectName: string;
-  city: string;
-  address: string;
-  kam: User;
-  director: User;
-  supervisor: User;
-  commercialist: User;
-  merchandiser: User;
-  requisitionDays: string;
-  merchandiserRevisionDays: string;
-  objectInfo: ObjectInfo;
-}
-
-export interface ObjectCreateDto {
-  objectIdRetail: string;
-  objectIdCompany: string;
-  retailer: string;
-  objectFormat: string;
-  objectName: string;
-  city: string;
-  address: string;
-  kam: string;
-  director: string;
-  supervisor: string;
-  commercialist: string;
-  merchandiser: string;
-  requisitionDays: string;
-  merchandiserRevisionDays: string;
-  objectInfo: ObjectInfo;
-}
+import { Retailer } from '../models/retailer';
+import { Obj } from '../models/object';
 
 @Injectable({
   providedIn: 'root'
