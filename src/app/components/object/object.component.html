@@ -43,12 +43,12 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
         <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon area-label="Edit" (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail)">
+          <mat-icon area-label="Edit" (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
             edit </mat-icon>
         </button>
 
         <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon area-label="Delete" (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail)">
+          <mat-icon area-label="Delete" (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
             delete </mat-icon>
         </button>
 
@@ -56,9 +56,15 @@
           <mat-icon area-label="Open" [routerLink]="['/storeCheckPage', workModel, row.objectName]">open_in_new
           </mat-icon>
         </button> -->
+
+        <button class="choose-btn marginalize" mat-button color="primary" *ngIf="!isAdmin" (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+          Details
+        </button>
         <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" [routerLink]="['/storeCheckPage', workModel, row.objectName]">
           Choose
         </button>
+
+
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

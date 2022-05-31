@@ -2,41 +2,43 @@
   <h3 mat-dialog-title *ngIf="flag == 1">Add object</h3>
   <h3 mat-dialog-title *ngIf="flag == 2">Update object: {{data.objectName}}</h3>
   <h3 mat-dialog-title *ngIf="flag == 3">Delete object: {{data.objectName}}</h3>
+  <h3 mat-dialog-title *ngIf="flag == 4">{{data.objectName}} - object details:</h3>
   <form class="mat-dialog-content" #formControl="ngForm">
 <div class="form">
   <mat-form-field>
-    <input matInput placeholder = "ObjectIDRetail" [(ngModel)]="data.objectIdRetail" name = "objectIdRetail" [disabled]="flag==3" required/>
+    <input matInput placeholder = "ObjectIDRetail" [(ngModel)]="data.objectIdRetail" name = "objectIdRetail" [disabled]="flag==3 || flag==4" required/>
   </mat-form-field>
 </div>
 <div class="form">
   <mat-form-field>
-    <input matInput placeholder = "ObjectIDCompany" [(ngModel)]="data.objectIdCompany" name = "objectIdCompany" [disabled]="flag==3" required/>
+    <input matInput placeholder = "ObjectIDCompany" [(ngModel)]="data.objectIdCompany" name = "objectIdCompany" [disabled]="flag==3|| flag==4" required/>
   </mat-form-field>
 </div>
 <div class="form">
   <mat-form-field>
-    <input matInput placeholder = "Retailer" [(ngModel)]="data.retailer" name = "retailer" [disabled]="flag==3" required/>
+    <input matInput placeholder = "Retailer" [(ngModel)]="data.retailer.retailerName" name = "retailer" [disabled]="flag==3|| flag==4" required/>
   </mat-form-field>
 </div>
 <div class="form">
   <mat-form-field>
-    <input matInput placeholder = "ObjectFormat" [(ngModel)]="data.objectFormat" name = "objectFormat" [disabled]="flag==3" required/>
+    <input matInput placeholder = "ObjectFormat" [(ngModel)]="data.objectFormat" name = "objectFormat" [disabled]="flag==3|| flag==4" required/>
   </mat-form-field>
   <div class="form">
     <mat-form-field>
-      <input matInput placeholder = "ObjectName" [(ngModel)]="data.objectName" name = "objectName" [disabled]="flag==3" required/>
+      <input matInput placeholder = "ObjectName" [(ngModel)]="data.objectName" name = "objectName" [disabled]="flag==3|| flag==4" required/>
     </mat-form-field>
   </div>
   <div class="form">
     <mat-form-field>
-      <input matInput placeholder = "City" [(ngModel)]="data.city" name = "city" [disabled]="flag==3" required/>
+      <input matInput placeholder = "City" [(ngModel)]="data.city" name = "city" [disabled]="flag==3|| flag==4" required/>
     </mat-form-field>
   </div>
   <div class="form">
     <mat-form-field>
-      <input matInput placeholder = "Address" [(ngModel)]="data.address" name = "address" [disabled]="flag==3" required/>
+      <input matInput placeholder = "Address" [(ngModel)]="data.address" name = "address" [disabled]="flag==3|| flag==4" required/>
     </mat-form-field>
   </div>
+  <!--
   <div class="form">
     <mat-form-field>
       <input matInput placeholder = "KAM" [(ngModel)]="data.kam" name = "kam" [disabled]="flag==3" required/>
@@ -61,22 +63,18 @@
   <mat-form-field>
     <input matInput placeholder = "Merchandiser" [(ngModel)]="data.merchandiser" name = "merchandiser" [disabled]="flag==3" required/>
   </mat-form-field>
-</div>
+</div>-->
 <div class="form">
   <mat-form-field>
-    <input matInput placeholder = "RequisitionDays" [(ngModel)]="data.requisitionDays" name = "requisitionDays" [disabled]="flag==3" required/>
+    <input matInput placeholder = "RequisitionDays" [(ngModel)]="data.requisitionDays" name = "requisitionDays" [disabled]="flag==3 || flag==4" required/>
   </mat-form-field>
 </div>
 <div class="form">
   <mat-form-field>
-    <input matInput placeholder = "MerchandiserRevisionDays" [(ngModel)]="data.merchandiserRevisionDays" name = "merchandiserRevisionDays" [disabled]="flag==3" required/>
+    <input matInput placeholder = "MerchandiserRevisionDays" [(ngModel)]="data.merchandiserRevisionDays" name = "merchandiserRevisionDays" [disabled]="flag==3 || flag==4" required/>
   </mat-form-field>
 </div>
-<div class="form">
-  <mat-form-field>
-    <input matInput placeholder = "ObjectInfo" [(ngModel)]="data.objectInfo" name = "objectInfo" [disabled]="flag==3" required/>
-  </mat-form-field>
-</div>
+
 </div>
 
 
@@ -85,7 +83,7 @@
   <button mat-button class="item2" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>
   <button mat-button class="item2" *ngIf="flag == 2" type="submit" [mat-dialog-close]="1"(click)="update()" [disabled]="!formControl.valid">Ok</button>
   <button mat-button class="item2" *ngIf="flag == 3" type="submit" [mat-dialog-close]="1"(click)="delete()">Delete</button>
-  <button mat-button class="item2" (click)="close()">Cancel</button>
+  <button mat-button class="item2" (click)="close()">Close</button>
 </div>
   </form>
   </div>
