@@ -60,14 +60,15 @@
 
     <div class="main fadeIn second">
         <h3>UNRESOLVED FEEDBACKS:</h3>
-        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
+        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks" (showFinishButton)="enableFinishButton($event)"></app-feedback>
         <h3>SECONDARY POSITIONS:</h3>
         <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
-
-        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]"
+        <div class="margintop">
+        <button class="btn-finish " [routerLink]="['/chooseObject', workModel]"
             (click)="finishObjectStoreCheck()">ADD TO STORECHECK</button>
         
         <button class="btn-finish" [routerLink]="['/chooseObject', workModel]">EXIT</button>
+        </div>
     </div>
 
 

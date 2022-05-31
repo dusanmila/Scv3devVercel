@@ -32,3 +32,6 @@ button:hover {
 button[disabled]:hover {
   background-color: #fff;
 }
+h3{
+  color: #39ace7;
+}

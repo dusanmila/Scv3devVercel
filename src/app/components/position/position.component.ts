@@ -1,6 +1,6 @@
 
 import { OverlayPositionBuilder } from '@angular/cdk/overlay';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
@@ -26,10 +26,14 @@ export class PositionComponent implements OnInit {
   position: Position = { secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "", valid: false };
   selectedPosition: Position;
 
+
 isLoading=true;
 
-  @Input() public objectName: string;
-  @Input() public resolveFeedbacks: boolean;
+
+  @Input() objectName: string;
+  @Input() resolveFeedbacks: boolean;
+  @Output() showFinishButton = new EventEmitter<boolean>();
+
 
   public positions: Position[] = [];
 
@@ -112,7 +116,9 @@ isLoading=true;
 
   public updatePosition(checked: boolean, pos: Position) {
     pos.valid = checked;
-    this.positionService.editPosition(pos);
+    this.positionService.editPosition(pos).subscribe(res => {
+      this.showFinishButton.emit(true);
+    });
   }
 
   public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean) {

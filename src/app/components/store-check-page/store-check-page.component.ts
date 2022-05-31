@@ -1,5 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { Obj } from 'src/app/models/object';
 import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from 'src/app/models/objectStoreCheck';
 import { Position } from 'src/app/models/position';
@@ -22,11 +25,14 @@ export class StoreCheckPageComponent implements OnInit {
   public showDetails: boolean = false;
   public resolveFeedbacks: boolean = false;
   public workModel: string;
+  public showFinishButton: boolean = false;
 
   constructor(public objectService: ObjectService,
-              public objectStoreCheckService: ObjectStoreCheckService,
-              public positionService: PositionService,
-              public activatedRoute: ActivatedRoute) { }
+    public objectStoreCheckService: ObjectStoreCheckService,
+    public positionService: PositionService,
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    public router: Router) { }
 
   ngOnInit(): void {
     this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
@@ -44,7 +50,7 @@ export class StoreCheckPageComponent implements OnInit {
   public getOneObject() {
     this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
       this.object = data;
-      if (!this.resolveFeedbacks) 
+      if (!this.resolveFeedbacks)
         this.createEmptyObjectStoreCheck();
       console.log(this.object);
     });
@@ -83,6 +89,22 @@ export class StoreCheckPageComponent implements OnInit {
       this.objectStoreCheck = data;
       console.log(this.objectStoreCheck);
     });
+  }
+
+  public enableFinishButton(showButton: boolean) {
+    this.showFinishButton = showButton;
+  }
+
+  public exit() {
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        console.log(res)
+        if (res) {
+          this.router.navigate(['/chooseObject/' + this.workModel]);
+        }
+      }
+      )
   }
 
 }

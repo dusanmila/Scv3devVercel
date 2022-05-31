@@ -12,23 +12,13 @@
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
 
-    <ng-container matColumnDef="objectIdRetail">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectIdRetail</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectIdRetail }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="objectIdCompany">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectIdCompany</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectIdCompany }}</mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="objectName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>ObjectName</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="address">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Address</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Address</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
     </ng-container>
 
@@ -37,7 +27,7 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon (click)="openDialog(1)">add</mat-icon>
+          <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
@@ -56,14 +46,14 @@
           </mat-icon>
         </button> -->
 
-        <button class="choose-btn marginalize" mat-button color="primary" *ngIf="!isAdmin" (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+        <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button color="primary" *ngIf="!isAdmin" (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
           Details
         </button>
         <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" [routerLink]="['/storeCheckPage', workModel, row.objectName]">
-          Choose
+          Start
+          <mat-icon  area-label="Open">open_in_new</mat-icon>
         </button>
-
-
+       
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

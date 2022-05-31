@@ -23,6 +23,7 @@ export class FeedbackComponent implements OnInit {
 
   @Input() objectName: string;
   @Input() resolveFeedbacks: boolean;
+  @Output() showFinishButton = new EventEmitter<boolean>();
   // resolveFeedbacks: boolean = false;
   public showResolved: boolean = false;
 
@@ -110,7 +111,11 @@ export class FeedbackComponent implements OnInit {
       .post('https://microservicefeedback.azurewebsites.net/api/feedbacks', formData)
       // .post('http://localhost:8088/api/feedbacks', formData)
       .subscribe({
-        next: (response) => console.log(response),
+        next: (response) => {
+          console.log(response);
+          console.log('prikazi')
+          this.showFinishButton.emit(true);
+        },
         error: (error) => console.log(error)
 
       });

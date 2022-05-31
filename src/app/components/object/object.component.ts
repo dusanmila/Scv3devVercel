@@ -16,7 +16,7 @@ import { ObjectService } from 'src/app/Services/object.service';
   styleUrls: ['./object.component.css']
 })
 export class ObjectComponent implements OnInit {
-  displayedColumns = ["objectIdRetail", "objectIdCompany", "objectName", "address", "actions"];
+  displayedColumns = ["objectName", "address", "actions"];
   dataSource: MatTableDataSource<Obj>;
   subscription: Subscription;
   isLoading=false;
