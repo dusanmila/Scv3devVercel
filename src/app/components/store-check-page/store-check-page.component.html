@@ -63,11 +63,12 @@
         <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-feedback>
         <h3>SECONDARY POSITIONS:</h3>
         <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"></app-position>
-
-        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]"
+        <div class="margintop">
+        <button class="btn-finish " [routerLink]="['/chooseObject', workModel]"
             (click)="finishObjectStoreCheck()">ADD TO STORECHECK</button>
         
         <button class="btn-finish" [routerLink]="['/chooseObject', workModel]">EXIT</button>
+        </div>
     </div>
 
 

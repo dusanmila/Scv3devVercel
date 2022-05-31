@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+.margintop{
+    margin-top: 10%;
+}
+
 button{
     font-family: sans-serif;
 }
