@@ -59,6 +59,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdialog.component';
 import { PositionDialogComponent } from './dialogs/position-dialog/position-dialog.component';
 import { DatePipe } from '@angular/common';
+import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 
 
 
@@ -84,7 +85,8 @@ import { DatePipe } from '@angular/common';
     FeedbackCreateDialogComponent,
     EmailDialogComponent,
     AnalyticsdialogComponent,
-    PositionDialogComponent
+    PositionDialogComponent,
+    AreYouSureDialogComponent
 
   ],
   imports: [

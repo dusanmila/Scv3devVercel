@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { filter, Observable, Subscription } from 'rxjs';
 import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
 import { Obj } from 'src/app/models/object';
+import { Retailer } from 'src/app/models/retailer';
 import { ObjectService } from 'src/app/Services/object.service';
 
 
@@ -151,8 +152,8 @@ export class ObjectComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string) {
-    const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail } });
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?:string,city?:string,retailer?:Retailer,objectFormat?:string,requisitionDays?:string,merchandiserRevisionDays?:string) {
+    const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address,city,retailer,objectFormat,requisitionDays,merchandiserRevisionDays } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {
