@@ -13,18 +13,8 @@
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
 
-    <ng-container matColumnDef="objectIdRetail">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">ObjectIdRetail</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectIdRetail }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="objectIdCompany">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">ObjectIdCompany</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectIdCompany }}</mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="objectName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">ObjectName</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
     </ng-container>
 
@@ -57,14 +47,14 @@
           </mat-icon>
         </button> -->
 
-        <button class="choose-btn marginalize" mat-button color="primary" *ngIf="!isAdmin" (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+        <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button color="primary" *ngIf="!isAdmin" (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
           Details
         </button>
         <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" [routerLink]="['/storeCheckPage', workModel, row.objectName]">
-          Choose
+          Start
+          <mat-icon  area-label="Open">open_in_new</mat-icon>
         </button>
-
-
+       
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
