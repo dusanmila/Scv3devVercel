@@ -25,6 +25,8 @@ subscription: Subscription;
 
 search : String ="";
 
+isLoading=true;
+
 searchClicked:boolean=false;
 
 
@@ -48,6 +50,7 @@ public loadData(){
   this.userService.getUsers().subscribe(data => {
 
     this.dataSource = new MatTableDataSource(data);
+    this.isLoading=false;
 });
 }
 

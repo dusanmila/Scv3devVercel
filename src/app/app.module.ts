@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 
 import { ObjectComponent } from './components/object/object.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -105,7 +106,8 @@ import { DatePipe } from '@angular/common';
     MatSnackBarModule,
     MatIconModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [DatePipe],

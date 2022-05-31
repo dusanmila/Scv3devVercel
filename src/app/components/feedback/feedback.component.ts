@@ -28,7 +28,7 @@ export class FeedbackComponent implements OnInit {
 
   form: FormGroup;
 
-
+  isLoading=true;
 
   feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
@@ -70,15 +70,18 @@ export class FeedbackComponent implements OnInit {
 
   public loadData() {
     this.feedbackService.getUnresolvedFeedbacks().subscribe(data => {
-      console.log(data);
+
       this.dataSource = new MatTableDataSource(data);
+      this.isLoading=false;
+
     });
   }
 
   public loadUnresolvedFeedbacksByObject() {
     this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName).subscribe(data => {
-      console.log(data);
+    
       this.dataSource = new MatTableDataSource(data);
+      this.isLoading=false;
     });
   }
 

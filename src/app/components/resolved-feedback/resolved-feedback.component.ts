@@ -27,6 +27,8 @@ export class ResolvedFeedbackComponent implements OnInit {
   displayedColumns = ["feedbackCategoryName", "date", "username","actions"];
   dataSource: MatTableDataSource<Feedback>;
 
+  isLoading=true;
+
   constructor(public activatedRoute: ActivatedRoute,
               public feedbackService: FeedbackService,
               public dialog: MatDialog,public date: DatePipe,
@@ -41,6 +43,7 @@ export class ResolvedFeedbackComponent implements OnInit {
     this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
       console.log(data);
       this.dataSource = new MatTableDataSource(data);
+      this.isLoading=false;
     });
   }
 
@@ -53,7 +56,7 @@ export class ResolvedFeedbackComponent implements OnInit {
     });
   }
 
-  
+
   public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string, imgResolve?: string) {
     const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username, imgResolve } });
 

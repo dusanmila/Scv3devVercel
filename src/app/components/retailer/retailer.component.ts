@@ -27,6 +27,7 @@ search : string ="";
 
 searchClicked: boolean = false;
 
+isLoading=true;
 
 selectedRetailer:Retailer;
 
@@ -43,6 +44,7 @@ public loadData(){
   this.objectService.getRetailers().subscribe(data => {
 
     this.dataSource = new MatTableDataSource(data);
+    this.isLoading=false;
 });
 }
 

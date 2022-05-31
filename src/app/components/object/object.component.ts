@@ -19,6 +19,7 @@ export class ObjectComponent implements OnInit {
   displayedColumns = ["objectIdRetail", "objectIdCompany", "objectName", "address", "actions"];
   dataSource: MatTableDataSource<Obj>;
   subscription: Subscription;
+  isLoading=false;
 
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
@@ -28,6 +29,7 @@ export class ObjectComponent implements OnInit {
   public retailer: string = "";
   public city: string = "";
   public format: string = "";
+
 
   search: string = "";
 
@@ -120,7 +122,7 @@ export class ObjectComponent implements OnInit {
     console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
-      console.log(data)
+      this.isLoading = false;
     });
   }
 
@@ -145,10 +147,11 @@ export class ObjectComponent implements OnInit {
   }
 
   public searchByString(): void {
+    this.isLoading=true;
     this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
 
-
       this.dataSource = new MatTableDataSource<Obj>(data);
+      this.isLoading=false;
     });
   }
 
