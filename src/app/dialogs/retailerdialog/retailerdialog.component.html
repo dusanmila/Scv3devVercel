@@ -1,6 +1,5 @@
 <div class="container">
   <h3 mat-dialog-title *ngIf="flag == 1">Add retailer</h3>
-
   <h3 mat-dialog-title *ngIf="flag == 2">Add planogram to {{data.retailerName}}</h3>
   <h3 mat-dialog-title *ngIf="flag == 3">Delete {{data.retailerName}}</h3>
 
@@ -32,5 +31,7 @@
         (click)="delete()">Delete</button>
       <button class="test" mat-button (click)="close()">Cancel</button>
     </div>
+  <br>
+  <br>
   </form>
 </div>

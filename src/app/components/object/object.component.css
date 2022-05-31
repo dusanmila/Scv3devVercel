@@ -19,7 +19,8 @@ i {
 }
 
 h4 {
-  color: grey;
+  margin-bottom: 1%;
+  color: #56baed;
 }
 
 .container {
@@ -31,11 +32,11 @@ h4 {
   padding-top: 20px;
 }
 
-.adr-name-search mat-form-field {
+/*.adr-name-search mat-form-field {
   width: 300px;
   max-width: 90%;
 }
-
+*/
 .detail-search {
   margin-top: 20px;
 }
@@ -61,7 +62,7 @@ h4 {
 .search{
   color:white;
   background-color:#56baed;
-  margin: 2%;
+  margin: 1%;
 
 }
 
@@ -72,4 +73,12 @@ h4 {
 
 .marginalize{
   margin:5%;
+}
+
+.whitetext{
+  color:white;
+}
+
+::placeholder{
+  color: #56baed;
 }
