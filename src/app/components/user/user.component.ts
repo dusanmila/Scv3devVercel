@@ -25,7 +25,7 @@ subscription: Subscription;
 
 search : String ="";
 
-isLoading=true;
+isLoading=false;
 
 searchClicked:boolean=false;
 
@@ -62,11 +62,14 @@ public loadData(){
    }
 
    public searchByUsername():void{
+    this.isLoading=true;
     this.userService.getUsersByUsername(this.search).subscribe(data => {
 
       this.dataSource=new MatTableDataSource<User>(data);
 
       this.searchClicked=true;
+      this.isLoading=false;
+
 
     });
    }
