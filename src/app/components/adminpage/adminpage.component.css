@@ -225,12 +225,22 @@
   .heading{
     text-align:center;
     color:#56baed;
-    margin:5%
+    margin:5%;
+   
   }
 
+  .l{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+  }
   .mainHeading{
     text-align:center;
-    color:#56baed;
+    color:white;
+    width: 300px;
+    background-color: #56baed;
+    
 
   }
 
