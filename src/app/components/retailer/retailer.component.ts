@@ -27,6 +27,7 @@ search : string ="";
 
 searchClicked: boolean = false;
 
+isLoading=false;
 
 selectedRetailer:Retailer;
 
@@ -43,6 +44,7 @@ public loadData(){
   this.objectService.getRetailers().subscribe(data => {
 
     this.dataSource = new MatTableDataSource(data);
+    this.isLoading=false;
 });
 }
 
@@ -84,6 +86,7 @@ public loadData(){
     }
 
     public searchByName(){
+      this.isLoading=true;
       this.objectService.getRetailerByName(this.search).subscribe(data => {
         console.log(data)
         type RetArray = Array<Retailer>;
@@ -91,6 +94,7 @@ public loadData(){
           data
       ];
         this.dataSource=new MatTableDataSource<Retailer>(retArr);
+        this.isLoading=false;
       });
       this.searchClicked=true;
     }

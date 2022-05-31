@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 
 import { ObjectComponent } from './components/object/object.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -107,7 +108,8 @@ import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you
     MatSnackBarModule,
     MatIconModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [DatePipe],

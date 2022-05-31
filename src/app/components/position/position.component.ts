@@ -26,9 +26,14 @@ export class PositionComponent implements OnInit {
   position: Position = { secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "", valid: false };
   selectedPosition: Position;
 
+
+isLoading=true;
+
+
   @Input() objectName: string;
   @Input() resolveFeedbacks: boolean;
   @Output() showFinishButton = new EventEmitter<boolean>();
+
 
   public positions: Position[] = [];
 
@@ -48,6 +53,7 @@ export class PositionComponent implements OnInit {
     this.positionService.getPositions().subscribe(data => {
       this.positions = data;
       this.dataSource = new MatTableDataSource(this.positions);
+      this.isLoading=false;
     });
   }
 
@@ -58,8 +64,7 @@ export class PositionComponent implements OnInit {
         this.uncheckPositions();
       }
       this.dataSource = new MatTableDataSource(this.positions);
-      console.log('load positions by object')
-      console.log(data);
+     this.isLoading=false;
     });
   }
 

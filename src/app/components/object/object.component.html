@@ -10,7 +10,6 @@
     </mat-form-field>
   </div>
 
-
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
 
     <ng-container matColumnDef="objectName">
@@ -60,6 +59,14 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+
+  <div *ngIf="isLoading"
+   style="display: flex; justify-content: center; align-items: center; background: white;">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</div>
 
   <div class="detail-search">
     <h4>Detail search</h4>
