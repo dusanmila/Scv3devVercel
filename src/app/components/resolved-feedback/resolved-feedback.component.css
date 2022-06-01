@@ -2,13 +2,7 @@
   margin: 0 20px;
 }
 
-h1{
-    color: #39ace7;
-    text-align: center;
-    margin-top: 40px;
-    margin-top: 10%;
-    margin-bottom: 5%;
-}
+
 #editBtn{
     margin: 20px;
 }
@@ -33,6 +27,18 @@ h1{
   .header{
     margin-top: -5%;
   }
+
+
+
+
+  .header {
+  text-align: center;
+  height: 100px;
+  background-color: #56baed;
+  color: #fff;
+  line-height: 100px;
+}
+
 
 
 .item2{

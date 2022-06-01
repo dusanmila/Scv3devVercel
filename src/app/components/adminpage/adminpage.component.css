@@ -9,6 +9,8 @@
 
 }
 
+
+
 .header{
   margin-top: 3%;
   margin-bottom: -3%;
@@ -106,14 +108,9 @@
   font-size: 25px;
   border: 2px solid #39ace7;
   cursor: pointer;
-
   text-align:center;
-
-  margin: 0 auto;
   position: relative;
-  bottom: 0;
-  margin-bottom: 2%;
-  margin-top: 5%;
+  margin-right:50px;
 }
 
 .item2:hover {
@@ -214,6 +211,8 @@
     -webkit-animation-delay: 0.8s;
     -moz-animation-delay: 0.8s;
     animation-delay: 0.8s;
+    margin-top: 10%;
+    
   }
 
   .fadeIn.fourth {
@@ -226,12 +225,22 @@
   .heading{
     text-align:center;
     color:#56baed;
-    margin:3%
+    margin:5%;
+   
   }
 
+  .l{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+  }
   .mainHeading{
     text-align:center;
-    color:#56baed;
+    color:white;
+    width: 300px;
+    background-color: #56baed;
+    
 
   }
 
