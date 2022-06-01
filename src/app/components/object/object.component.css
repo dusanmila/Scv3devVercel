@@ -72,3 +72,7 @@ h4 {
 .marginalize{
   margin:5%;
 }
+
+.mat-spinner-color::ng-deep circle{
+stroke: #56baed !important;
+}

@@ -113,3 +113,11 @@ h1{
   padding: 8px 16px;
   background-color:gray;
 }
+
+.mat-spinner-color::ng-deep circle{
+  stroke: #56baed !important;
+  }
+
+  .mat-spinner-color::ng-deep circle{
+    stroke: #56baed !important;
+    }
