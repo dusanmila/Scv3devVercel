@@ -73,15 +73,7 @@ export class ResolvedFeedbackComponent implements OnInit {
   }
 
   public exit() {
-    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
-    dialogRef.afterClosed()
-      .subscribe(res => {
-        console.log(res)
-        if (res) {
-          this.location.back();
-        }
-      }
-      )
+    this.location.back();
   }
 
 }

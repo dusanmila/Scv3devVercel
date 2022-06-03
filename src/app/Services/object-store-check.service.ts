@@ -24,8 +24,8 @@ export class ObjectStoreCheckService {
 
   public finishObjectStoreCheck(username: string) {
     let retval$ = new Subject<StoreCheck>();
-     this.http.put<StoreCheck>(`http://localhost:8085/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
-  //  this.http.put<StoreCheck>(`https://microservicestorecheck.azurewebsites.net/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
+    //  this.http.put<StoreCheck>(`http://localhost:8085/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
+   this.http.put<StoreCheck>(`https://microservicestorecheck.azurewebsites.net/api/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -33,8 +33,8 @@ export class ObjectStoreCheckService {
 
   public deleteUnfinishedObjectStoreCheck(username: string) {
     let retval$ = new Subject<ObjectStoreCheck>();
-     this.http.delete<ObjectStoreCheck>(`http://localhost:8085/api/objectStoreChecks/deleteUnfinishedObjectStoreCheck/${username}`).subscribe((helper: ObjectStoreCheck) => {
-   // this.http.delete<ObjectStoreCheck>(`https://microservicestorecheck.azurewebsites.net/api/objectStoreChecks/deleteUnfinishedObjectStoreCheck/${username}`).subscribe((helper: ObjectStoreCheck) => {
+    //  this.http.delete<ObjectStoreCheck>(`http://localhost:8085/api/objectStoreChecks/deleteUnfinishedObjectStoreCheck/${username}`).subscribe((helper: ObjectStoreCheck) => {
+   this.http.delete<ObjectStoreCheck>(`https://microservicestorecheck.azurewebsites.net/api/objectStoreChecks/deleteUnfinishedObjectStoreCheck/${username}`).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
