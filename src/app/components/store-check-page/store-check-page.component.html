@@ -1,5 +1,5 @@
 <div class="fadeInDown">
-    
+
     <div class="header fadeIn first">
         <div class="head">
             <h1>{{ object.objectName }}</h1>
@@ -34,7 +34,7 @@
                         <td>{{ object.objectInfo.companyShelfSpacePercent }}</td>
                     </tr>
                 </table>
-    
+
                 <table class="info-table">
                     <tr>
                         <th>Gainings 12M (RSD)</th>
@@ -60,16 +60,18 @@
 
     <div class="main fadeIn second">
         <h3>UNRESOLVED FEEDBACKS:</h3>
-        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks" (showFinishButton)="enableFinishButton($event)"></app-feedback>
+        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
+            (showFinishButton)="enableFinishButton($event)"></app-feedback>
         <h3>SECONDARY POSITIONS:</h3>
 
-        <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks" (showFinishButton)="enableFinishButton($event)"></app-position>
-        
-        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]" *ngIf="showFinishButton && !resolveFeedbacks"
+        <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
+            (showFinishButton)="enableFinishButton($event)"></app-position>
+        <div class="margintop">
+            <button class="btn-finish" [routerLink]="['/chooseObject', workModel]"
+                *ngIf="showFinishButton && !resolveFeedbacks" (click)="finishObjectStoreCheck()">ADD TO
+                STORECHECK</button>
 
-            (click)="finishObjectStoreCheck()">ADD TO STORECHECK</button>
-        
-        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]">EXIT</button>
+            <button class="btn-finish" [routerLink]="['/chooseObject', workModel]">EXIT</button>
         </div>
     </div>
 
