@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
 import { Obj } from 'src/app/models/object';
 import { StoreCheck } from 'src/app/models/storeCheck';
@@ -20,9 +21,10 @@ export class ChooseObjectComponent implements OnInit {
   public storeCheck: StoreCheck;
 
   constructor(public objectService: ObjectService,
-              public activatedRoute: ActivatedRoute,
-              public dialog: MatDialog,
-              public storeCheckService: StoreCheckService) { }
+    public activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    public storeCheckService: StoreCheckService,
+    public router: Router) { }
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
@@ -53,8 +55,7 @@ export class ChooseObjectComponent implements OnInit {
       finished: false
     }
     this.storeCheckService.createStoreCheck(sc).subscribe(data => {
-      this.storeCheck = data;
-      console.log(this.storeCheck);
+      console.log(data);
     });
   }
 
@@ -63,6 +64,18 @@ export class ChooseObjectComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res === 1) {
+        }
+      }
+      )
+  }
+
+  public exit() {
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        console.log(res)
+        if (res) {
+          this.router.navigate(['/storeCheck']);
         }
       }
       )

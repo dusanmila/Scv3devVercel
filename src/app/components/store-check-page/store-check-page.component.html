@@ -64,7 +64,7 @@
         <h3>SECONDARY POSITIONS:</h3>
         <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks" (showFinishButton)="enableFinishButton($event)"></app-position>
 
-        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]" *ngIf="showFinishButton"
+        <button class="btn-finish" [routerLink]="['/chooseObject', workModel]" *ngIf="showFinishButton && !resolveFeedbacks"
             (click)="finishObjectStoreCheck()">ADD TO STORECHECK</button>
         <button class="btn-finish" (click)="exit()">EXIT</button>
     </div>

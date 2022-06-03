@@ -61,6 +61,7 @@ export class FeedbackComponent implements OnInit {
       this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
     }
     if (this.objectName != null) {
+      console.log('ucitavanje fb po objektu')
       this.loadUnresolvedFeedbacksByObject();
     } else {
       this.loadData();
@@ -178,6 +179,7 @@ export class FeedbackComponent implements OnInit {
       .subscribe(res => {
         if (res === 1) {
           this.loadUnresolvedFeedbacksByObject();
+          this.showFinishButton.emit(true);
         }
       }
       )
