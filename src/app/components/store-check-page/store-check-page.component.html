@@ -67,6 +67,7 @@
         <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
             (showFinishButton)="enableFinishButton($event)"></app-position>
         <div class="margintop">
+
             <button class="btn-finish" *ngIf="showFinishButton && !resolveFeedbacks" (click)="addToStoreCheck()">ADD TO
                 STORECHECK</button>
 
