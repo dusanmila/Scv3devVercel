@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Event, Router } from '@angular/router';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { Obj } from 'src/app/models/object';
 import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from 'src/app/models/objectStoreCheck';
@@ -9,6 +9,8 @@ import { Position } from 'src/app/models/position';
 import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
+
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-store-check-page',
@@ -45,6 +47,24 @@ export class StoreCheckPageComponent implements OnInit {
     this.getOneObject();
     this.getPositionsByObjectName();
     console.log(this.resolveFeedbacks);
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event:Event) {
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        console.log(res)
+        if (res) {
+          this.router.navigate(['/chooseObject/' + this.workModel]);
+          if (!this.resolveFeedbacks) {
+            this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
+              console.log(data);
+            });
+          }
+        }
+      }
+      )
   }
 
   public getOneObject() {
