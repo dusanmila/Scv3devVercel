@@ -54,7 +54,8 @@ export class ObjectService {
 
   public getObjectsByString(str: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
-    this.http.get<Obj[]>(`http://localhost:8089/api/objects/objectByString/${str}`).subscribe((objects: Obj[]) => {
+    // this.http.get<Obj[]>(`http://localhost:8089/api/objects/objectByString/${str}`).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(`${this.address}/objectByString/${str}`).subscribe((objects: Obj[]) => {
       retval$.next(objects);
     });
     return retval$.asObservable();
@@ -62,7 +63,9 @@ export class ObjectService {
 
   public getObjectsByStringContains(str: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
-    this.http.get<Obj[]>(`http://localhost:8089/api/objects/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
+    // this.http.get<Obj[]>(`http://localhost:8089/api/objects/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(`${this.address}/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
+
       retval$.next(objects);
     });
     return retval$.asObservable();
