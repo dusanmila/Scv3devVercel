@@ -2,7 +2,7 @@
 
     <div class="header fadeIn first">
         <div class="head">
-            <h1>{{ object.objectName }}</h1>
+            <h1>{{ objectName }}</h1>
             <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
         </div>
         <div class="object-info-data" *ngIf="showDetails == true">
@@ -67,12 +67,11 @@
         <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
             (showFinishButton)="enableFinishButton($event)"></app-position>
         <div class="margintop">
-            <!--class="btn-finish"-->
-            <button class="item2" [routerLink]="['/chooseObject', workModel]"
-                *ngIf="showFinishButton && !resolveFeedbacks" (click)="finishObjectStoreCheck()">ADD TO
+
+            <button class="btn-finish" *ngIf="showFinishButton && !resolveFeedbacks" (click)="addToStoreCheck()">ADD TO
                 STORECHECK</button>
 
-            <button class="item2" [routerLink]="['/chooseObject', workModel]">EXIT</button>
+            <button class="btn-finish" (click)="exit()">EXIT</button>
         </div>
     </div>
 
