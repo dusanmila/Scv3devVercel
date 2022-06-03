@@ -67,11 +67,12 @@
         <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
             (showFinishButton)="enableFinishButton($event)"></app-position>
         <div class="margintop">
-            <button class="btn-finish" [routerLink]="['/chooseObject', workModel]"
+            <!--class="btn-finish"-->
+            <button class="item2" [routerLink]="['/chooseObject', workModel]"
                 *ngIf="showFinishButton && !resolveFeedbacks" (click)="finishObjectStoreCheck()">ADD TO
                 STORECHECK</button>
 
-            <button class="btn-finish" [routerLink]="['/chooseObject', workModel]">EXIT</button>
+            <button class="item2" [routerLink]="['/chooseObject', workModel]">EXIT</button>
         </div>
     </div>
 
