@@ -3,8 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { filter, Observable, Subscription } from 'rxjs';
+import { ObjectCreateDialogComponent } from 'src/app/dialogs/object-create-dialog/object-create-dialog.component';
 import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
 import { Obj } from 'src/app/models/object';
+import { ObjectCreateDto } from 'src/app/models/object';
+import { ObjectInfo } from 'src/app/models/objectInfo';
+import { ObjectStoreCheckCreateDto } from 'src/app/models/objectStoreCheck';
+import { Retailer } from 'src/app/models/retailer';
 import { ObjectService } from 'src/app/Services/object.service';
 
 
@@ -15,9 +20,10 @@ import { ObjectService } from 'src/app/Services/object.service';
   styleUrls: ['./object.component.css']
 })
 export class ObjectComponent implements OnInit {
-  displayedColumns = ["objectIdRetail", "objectIdCompany", "objectName", "address", "actions"];
+  displayedColumns = ["objectName", "address", "actions"];
   dataSource: MatTableDataSource<Obj>;
   subscription: Subscription;
+  isLoading=false;
 
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
@@ -27,6 +33,9 @@ export class ObjectComponent implements OnInit {
   public retailer: string = "";
   public city: string = "";
   public format: string = "";
+
+  objectInfo:ObjectInfo;
+
 
   search: string = "";
 
@@ -95,6 +104,35 @@ export class ObjectComponent implements OnInit {
     }
   }
 
+  public objectCreateDto: ObjectCreateDto = {
+    objectIdRetail: "",
+    objectIdCompany: "",
+    retailer: "",
+    objectFormat: "",
+    objectName: "",
+    city: "",
+    address: "",
+    kam: "",
+    director: "",
+    supervisor: "",
+    commercialist: "",
+    merchandiser: "",
+    requisitionDays: "",
+    merchandiserRevisionDays: "",
+    objectInfo: {
+      assortmentModule: "",
+      gainings12Mrsd: 0,
+      wdpercentSerbia: 0,
+      wdpercentSector: 0,
+      wdpercentCustomer: 0,
+      gainingsVs12mpercent: 0,
+      registersNumber: 0,
+      shelfSpaceM: 0,
+      companyShelfSpaceM: 0,
+      companyShelfSpacePercent: 0
+    }
+  }
+
   public get objects() {
     return this.dataSource;
   }
@@ -119,7 +157,7 @@ export class ObjectComponent implements OnInit {
     console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
-      console.log(data)
+      this.isLoading = false;
     });
   }
 
@@ -129,13 +167,13 @@ export class ObjectComponent implements OnInit {
       console.log(data);
     });
   }
-
+/*
   public createObject() {
     console.log(this.object);
     this.objectService.createObject(this.object).subscribe(data => {
       console.log(data);
     });
-  }
+  }*/
 
   public updateObject() {
     this.objectService.updateObject(this.object).subscribe(data => {
@@ -144,23 +182,30 @@ export class ObjectComponent implements OnInit {
   }
 
   public searchByString(): void {
+    this.isLoading=true;
     this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
 
-
       this.dataSource = new MatTableDataSource<Obj>(data);
+      this.isLoading=false;
     });
   }
 
-  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string) {
-    const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail } });
-    dialogRef.componentInstance.flag = flag;
-    dialogRef.afterClosed()
-      .subscribe(res => {
-        if (res === 1) {
-          this.loadData();
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?:string,city?:string,retailer?:Retailer,objectFormat?:string,requisitionDays?:string,merchandiserRevisionDays?:string) {
+    if(flag==1){
+      const dialogRef = this.dialog.open(ObjectCreateDialogComponent,{data: this.objectCreateDto});
+    }
+    else{
+      const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address,city,retailer,objectFormat,requisitionDays,merchandiserRevisionDays } });
+      dialogRef.componentInstance.flag = flag;
+      dialogRef.afterClosed()
+        .subscribe(res => {
+          if (res === 1) {
+            this.loadData();
+          }
         }
-      }
-      )
+        )
+    }
+
   }
 
   public applyFilter(event: Event) {

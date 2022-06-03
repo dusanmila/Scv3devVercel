@@ -13,36 +13,36 @@
 
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-      <ng-container matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>First name</mat-header-cell>
+      <ng-container  matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">First name</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Last name</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Last name</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
       </ng-container>
 
 
       <ng-container matColumnDef="username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Username</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Username</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Email</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="userType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>User type</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">User type</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.userType }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef>
           <button mat-icon-button color="primary">
-            <mat-icon (click)="openDialog(1)">add</mat-icon>
+            <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i=index">
@@ -60,6 +60,12 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
-
+    <div *ngIf="isLoading"
+    style="display: flex; justify-content: center; align-items: center; background: white;">
+   <mat-progress-spinner
+   class="mat-spinner-color"
+     mode="indeterminate">
+   </mat-progress-spinner>
+  </div>
   </div>
 </div>

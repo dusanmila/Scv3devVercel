@@ -10,20 +10,27 @@
   font-family: sans-serif;
 }
 .button {
-  color: white;
-  background-color: blue;
-  padding: 4px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 2px;
-}
 
-  
+    color: white;
+    background-color: blue;
+    padding: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+  .header{
+    margin-top: -5%;
+  }
+
+
+
+
   .header {
   text-align: center;
   height: 100px;
@@ -32,8 +39,8 @@
   line-height: 100px;
 }
 
-  
-  
+
+
 .item2{
   background-color: white;
   color: #39ace7;
@@ -207,3 +214,7 @@ mat-header-cell:nth-child(5) {
     margin-left: 90%;
   }
 }
+
+.mat-spinner-color::ng-deep circle{
+  stroke: #56baed !important;
+  }

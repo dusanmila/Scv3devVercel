@@ -6,16 +6,22 @@
   text-align:center;
 }
 
-.font{
-  font-family: sans-serif;
-}
+
 
 .search{
   color:white;
   background-color:#56baed;
+  margin: 1%;
 
 }
 
 .container {
   margin: 0 20px;
+}
+
+.mat-spinner-color::ng-deep circle{
+  stroke: #56baed !important;
+  }
+.whitetext{
+  color:white;
 }

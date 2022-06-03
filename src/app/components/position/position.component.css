@@ -34,3 +34,7 @@ h1{
   .table-row {
     height: 30px !important;
   }
+
+  .mat-spinner-color::ng-deep circle{
+    stroke: #56baed !important;
+    }

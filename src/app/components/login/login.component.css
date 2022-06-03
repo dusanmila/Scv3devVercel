@@ -96,10 +96,14 @@ html {
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
   }
+  
   button:hover{
-    background-color: #39ace7;
+    background-color: white;
+    color: #56baed;
   }
+
   button:active
   {
     -moz-transform: scale(0.95);

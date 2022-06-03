@@ -48,6 +48,13 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="openDialog(3,row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username,row.imgResolve)"></mat-row>
   </mat-table>
+  <div *ngIf="isLoading"
+  style="display: flex; justify-content: center; align-items: center; background: white;">
+ <mat-progress-spinner
+ class="mat-spinner-color"
+   mode="indeterminate">
+ </mat-progress-spinner>
+</div>
   <mat-paginator [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
 </div>
 <div class="fadeIn third"> <button class="item2" (click)="back()">Exit</button> </div>

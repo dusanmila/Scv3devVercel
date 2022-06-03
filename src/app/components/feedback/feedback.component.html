@@ -53,7 +53,15 @@
       (click)="openDialog(3,row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username)"></mat-row>
   </mat-table>
 
+  <div *ngIf="isLoading"
+  style="display: flex; justify-content: center; align-items: center; background: white;">
+ <mat-progress-spinner
+ class="mat-spinner-color"
+   mode="indeterminate">
+ </mat-progress-spinner>
+</div>
+
   <!--<button mat-button (click)="showResolvedFeedbacks()" *ngIf="!showResolved">Show Resolved</button>
   <button mat-button (click)="showResolvedFeedbacks()" *ngIf="showResolved">Show Unresolved</button>-->
-  <button class="item2" mat-button [routerLink]="['/storeCheckPage/resolvedFeebacks/', objectName]">Show Resolved</button>
+  <button class="item2" mat-button [routerLink]="['/resolvedFeebacks/', objectName]">Show Resolved</button>
 </div>

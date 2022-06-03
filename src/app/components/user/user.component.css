@@ -18,5 +18,13 @@
 .search{
   color:white;
   background-color:#56baed;
+  margin: 2%;
 
+}
+
+.mat-spinner-color::ng-deep circle{
+  stroke: #56baed !important;
+  }
+.whitetext{
+  color:white;
 }
