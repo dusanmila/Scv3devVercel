@@ -18,6 +18,10 @@
 .container {
   margin: 0 20px;
 }
+
+.mat-spinner-color::ng-deep circle{
+  stroke: #56baed !important;
+  }
 .whitetext{
   color:white;
 }

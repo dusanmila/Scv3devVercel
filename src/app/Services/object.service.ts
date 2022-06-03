@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { saveAs } from 'file-saver';
 import { Retailer } from '../models/retailer';
-import { Obj } from '../models/object';
+import { Obj, ObjectCreateDto } from '../models/object';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +54,7 @@ export class ObjectService {
 
   public getObjectsByString(str: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
-    this.http.get<Obj[]>(`${this.address}/objectByString/${str}`).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(`http://localhost:8089/api/objects/objectByString/${str}`).subscribe((objects: Obj[]) => {
       retval$.next(objects);
     });
     return retval$.asObservable();
@@ -62,7 +62,7 @@ export class ObjectService {
 
   public getObjectsByStringContains(str: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
-    this.http.get<Obj[]>(`${this.address}/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(`http://localhost:8089/api/objects/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
       retval$.next(objects);
     });
     return retval$.asObservable();
@@ -92,9 +92,9 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
-  public createObject(object: Obj): Observable<Obj> {
-    let retval$ = new Subject<Obj>();
-    this.http.post<Obj>(this.address, { objectIdRetail: object.objectIdRetail, retailer: object.retailer.retailerName, objectIdCompany: object.objectIdCompany, objectFormat: object.objectFormat, objectName: object.objectName, city: object.city, address: object.address, kam: object.kam.username, director: object.director.username, supervisor: object.supervisor.username, commercialist: object.commercialist.username, merchandiser: object.merchandiser.username, requisitionDays: object.requisitionDays, merchandiserRevisionDays: object.merchandiserRevisionDays, objectInfo: object.objectInfo }).subscribe((helper: Obj) => {
+  public createObject(object: ObjectCreateDto): Observable<ObjectCreateDto> {
+    let retval$ = new Subject<ObjectCreateDto>();
+    this.http.post<ObjectCreateDto>(this.address, object).subscribe((helper: ObjectCreateDto) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

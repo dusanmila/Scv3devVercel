@@ -77,6 +77,9 @@ h4 {
   margin:5%;
 }
 
+.mat-spinner-color::ng-deep circle{
+stroke: #56baed !important;
+}
 .whitetext{
   color:white;
 }
@@ -101,7 +104,7 @@ table{
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-  
+
   text-align: left;
 }
 

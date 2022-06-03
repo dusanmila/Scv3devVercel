@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Obj } from 'src/app/models/object';
+import { Obj, ObjectCreateDto } from 'src/app/models/object';
 import { ObjectInfo } from 'src/app/models/objectInfo';
 import { User } from 'src/app/models/user.model';
 import { ObjectInfoService } from 'src/app/Services/object-info.service';
@@ -11,11 +11,11 @@ import { UserService } from 'src/app/Services/user.service';
 
 
 @Component({
-  selector: 'app-object-dialog',
-  templateUrl: './objectdialog.component.html',
-  styleUrls: ['./objectdialog.component.css']
+  selector: 'app-object-create-dialog',
+  templateUrl: './object-create-dialog.component.html',
+  styleUrls: ['./object-create-dialog.component.css']
 })
-export class ObjectDialogComponent implements OnInit {
+export class ObjectCreateDialogComponent implements OnInit {
 
   public flag: number;
 
@@ -25,7 +25,7 @@ export class ObjectDialogComponent implements OnInit {
   objectInfo:ObjectInfo;
   object:Obj;
 
-  constructor(public snackBar:MatSnackBar, public dialogRef:MatDialogRef<ObjectDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: Obj, public objectService: ObjectService, public userService: UserService) { }
+  constructor(public snackBar:MatSnackBar, public dialogRef:MatDialogRef<ObjectCreateDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: ObjectCreateDto, public objectService: ObjectService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -37,6 +37,17 @@ export class ObjectDialogComponent implements OnInit {
     });
   }
 
+public add(): void{
+
+  this.objectService.createObject(this.data)
+  .subscribe( data =>{
+    this.snackBar.open('Object successfully added: ' + this.data.objectName, 'Ok', { duration: 2500 });
+  } ),
+  (error:Error) => {
+    console.log(error.name + ' -> ' + error.message)
+    this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
+  }
+}
 
 /*
 public update(): void{
@@ -48,8 +59,8 @@ public update(): void{
     console.log(error.name + ' -> ' + error.message)
     this.snackBar.open('An error occured, try again later. ', 'Close', { duration: 2500 });
   }
-}
-*/
+}*/
+
 public delete(): void{
  /* this.objectService.deleteObject(this.data)
   .subscribe(data => {
@@ -66,3 +77,4 @@ this.dialogRef.close();
 }
 
 }
+

@@ -66,6 +66,52 @@
 </div>-->
 <div class="form">
   <mat-form-field>
+    <mat-select [(ngModel)]="data.kam" placeholder="KAM" name="KAM" required>
+      <mat-option *ngFor="let user of users" [value]="user.username">
+        {{ user.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <mat-select [(ngModel)]="data.merchandiser" placeholder="Merchandiser" name="Merchandiser" required>
+      <mat-option *ngFor="let user of users" [value]="user.username">
+        {{ user.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <mat-select [(ngModel)]="data.director" placeholder="Director" name="Director" required>
+      <mat-option *ngFor="let user of users" [value]="user.username">
+        {{ user.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <mat-select [(ngModel)]="data.commercialist" placeholder="Commercialist" name="Commercialist" required>
+      <mat-option *ngFor="let user of users" [value]="user.username">
+        {{ user.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <mat-select [(ngModel)]="data.supervisor" placeholder="Supervisor" name="Supervisor" required>
+      <mat-option *ngFor="let user of users" [value]="user.username">
+        {{ user.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
     <input matInput placeholder = "RequisitionDays" [(ngModel)]="data.requisitionDays" name = "requisitionDays" [disabled]="flag==3 || flag==4" required/>
   </mat-form-field>
 </div>
@@ -75,13 +121,67 @@
   </mat-form-field>
 </div>
 
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "CompanyShelfSpaceM" [(ngModel)]="data.objectInfo.companyShelfSpaceM" name = "companyShelfSpaceM" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "CompanyShelfSpacePercent" [(ngModel)]="data.objectInfo.companyShelfSpacePercent" name = "companyShelfSpacePercent" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "Gainings12Mrsd" [(ngModel)]="data.objectInfo.gainings12Mrsd" name = "gainings12Mrsd" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "GainingsVs12Mpercent" [(ngModel)]="data.objectInfo.gainingsVs12mpercent" name = "gainingsVs12mpercent" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "RegistersNumber" [(ngModel)]="data.objectInfo.registersNumber" name = "registersNumber" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "ShelfSpaceM" [(ngModel)]="data.objectInfo.shelfSpaceM" name = "shelfSpaceM" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "WDpercentCustomer" [(ngModel)]="data.objectInfo.wdpercentCustomer" name = "wdpercentCustomer" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "WDpercentSector" [(ngModel)]="data.objectInfo.wdpercentSector" name = "wdpercentSector" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "WDpercentSerbia" [(ngModel)]="data.objectInfo.wdpercentSerbia" name = "wdpercentSerbia" [disabled]="flag==3 || flag==4" required/>
+  </mat-form-field>
+</div>
+
 </div>
 
 
 
 <div mat-dialog-actions>
-  <button mat-button class="item2" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>
-  <button mat-button class="item2" *ngIf="flag == 2" type="submit" [mat-dialog-close]="1"(click)="update()" [disabled]="!formControl.valid">Ok</button>
+  <!--<button mat-button class="item2" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>
+  <button mat-button class="item2" *ngIf="flag == 2" type="submit" [mat-dialog-close]="1"(click)="update()" [disabled]="!formControl.valid">Ok</button>-->
   <button mat-button class="item2" *ngIf="flag == 3" type="submit" [mat-dialog-close]="1"(click)="delete()">Delete</button>
   <button mat-button class="item2" (click)="close()">Close</button>
 </div>

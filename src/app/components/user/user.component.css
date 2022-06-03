@@ -22,6 +22,9 @@
 
 }
 
+.mat-spinner-color::ng-deep circle{
+  stroke: #56baed !important;
+  }
 .whitetext{
   color:white;
 }

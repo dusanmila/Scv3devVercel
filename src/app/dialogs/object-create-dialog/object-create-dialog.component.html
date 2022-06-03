@@ -1,0 +1,158 @@
+<div class="container">
+  <h3 mat-dialog-title>Add object</h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "ObjectIDRetail" [(ngModel)]="data.objectIdRetail" name = "objectIdRetail"  required/>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "ObjectIDCompany" [(ngModel)]="data.objectIdCompany" name = "objectIdCompany"  required/>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "Retailer" [(ngModel)]="data.retailer" name = "retailer" required/>
+  </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder = "ObjectFormat" [(ngModel)]="data.objectFormat" name = "objectFormat" required/>
+  </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "ObjectName" [(ngModel)]="data.objectName" name = "objectName" required/>
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "City" [(ngModel)]="data.city" name = "city"  required/>
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "Address" [(ngModel)]="data.address" name = "address"  required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <mat-select [(ngModel)]="data.kam" placeholder="KAM" name="KAM" required>
+        <mat-option *ngFor="let user of users" [value]="user.username">
+          {{ user.username }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <mat-select [(ngModel)]="data.merchandiser" placeholder="Merchandiser" name="Merchandiser" required>
+        <mat-option *ngFor="let user of users" [value]="user.username">
+          {{ user.username }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field>
+      <mat-select [(ngModel)]="data.director" placeholder="Director" name="Director" required>
+        <mat-option *ngFor="let user of users" [value]="user.username">
+          {{ user.username }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field>
+      <mat-select [(ngModel)]="data.commercialist" placeholder="Commercialist" name="Commercialist" required>
+        <mat-option *ngFor="let user of users" [value]="user.username">
+          {{ user.username }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field>
+      <mat-select [(ngModel)]="data.supervisor" placeholder="Supervisor" name="Supervisor" required>
+        <mat-option *ngFor="let user of users" [value]="user.username">
+          {{ user.username }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "RequisitionDays" [(ngModel)]="data.requisitionDays" name = "requisitionDays"  required/>
+    </mat-form-field>
+  </div>
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "MerchandiserRevisionDays" [(ngModel)]="data.merchandiserRevisionDays" name = "merchandiserRevisionDays"  required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "CompanyShelfSpaceM" [(ngModel)]="data.objectInfo.companyShelfSpaceM" name = "companyShelfSpaceM"  required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "CompanyShelfSpacePercent" [(ngModel)]="data.objectInfo.companyShelfSpacePercent" name = "companyShelfSpacePercent" required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "Gainings12Mrsd" [(ngModel)]="data.objectInfo.gainings12Mrsd" name = "gainings12Mrsd" required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "GainingsVs12Mpercent" [(ngModel)]="data.objectInfo.gainingsVs12mpercent" name = "gainingsVs12mpercent"  required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "RegistersNumber" [(ngModel)]="data.objectInfo.registersNumber" name = "registersNumber"  required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "ShelfSpaceM" [(ngModel)]="data.objectInfo.shelfSpaceM" name = "shelfSpaceM"  required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "WDpercentCustomer" [(ngModel)]="data.objectInfo.wdpercentCustomer" name = "wdpercentCustomer" required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "WDpercentSector" [(ngModel)]="data.objectInfo.wdpercentSector" name = "wdpercentSector" required/>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <input matInput placeholder = "WDpercentSerbia" [(ngModel)]="data.objectInfo.wdpercentSerbia" name = "wdpercentSerbia" required/>
+    </mat-form-field>
+  </div>
+
+<div mat-dialog-actions>
+  <button mat-button class="item2" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Add</button>
+  <button mat-button class="item2" (click)="close()">Close</button>
+</div>
+  </form>
+  </div>
