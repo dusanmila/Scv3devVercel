@@ -24,10 +24,6 @@
     border-radius: 2px;
   }
 
-  .header{
-    margin-top: -5%;
-  }
-
 
 
 
@@ -37,6 +33,7 @@
   background-color: #56baed;
   color: #fff;
   line-height: 100px;
+  margin-top: -5%;
 }
 
 
