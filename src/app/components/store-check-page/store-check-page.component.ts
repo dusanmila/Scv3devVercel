@@ -95,6 +95,19 @@ export class StoreCheckPageComponent implements OnInit {
     this.showFinishButton = showButton;
   }
 
+  public addToStoreCheck() {
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        console.log(res)
+        if (res) {
+          this.finishObjectStoreCheck();
+          this.router.navigate(['/chooseObject/' + this.workModel]);
+        }
+      }
+      )
+  }
+
   public exit() {
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
     dialogRef.afterClosed()
