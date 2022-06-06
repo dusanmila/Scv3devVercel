@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
@@ -11,33 +12,25 @@ import { AuthorisationService } from 'src/app/Services/authorisation.service';
 export class LoginComponent implements OnInit {
 
   user: {username:string, password:string} = {username:"", password:""};
-  constructor(private router: Router, public authorisation: AuthorisationService) { }
+  constructor(private router: Router, public authorisation: AuthorisationService, private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
   
   public LoginUser(){
-    
-    /*
-    this.authorisation.logIn(this.user)
-    .pipe(catchError(it => {
-
-      console.log('neuspeh 123');
-      return it;
-    }))
-    .subscribe((data: any)=> {
-     // this.user={username:"",password:""}
-     console.log(data);
-      this.router.navigate(['/client']);
-
-      
-    },
-      (err: any) => {
-      console.log("Fail",err);
-      
-    }, 
-    () => {console.log('complete')} );
-    this.user=this.user;*/
+    this.http.post("https://localhost:44323/api/auths/login", this.user, {headers: {}}).subscribe((data: any) => {
+      console.log('/////////////////////');  
+      console.log(data);
+        if (data.token !== undefined)
+        {
+          const token = data.token;
+          const refreshToken = data.refreshToken;
+          localStorage.setItem("jwt", token);
+          localStorage.setItem("refreshToken", refreshToken);
+          
+          this.router.navigate(["/storeCheck"]);
+        }
+    });
   }
 }
