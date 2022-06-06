@@ -13,16 +13,19 @@ export class ObjectService {
   constructor(private http: HttpClient) { }
 
   // private readonly address = "http://localhost:8083/object/objects";
-  //  private readonly address = "http://localhost:8089/api/objects";
+   private readonly address = "http://localhost:8089/api/objects";
   // private readonly excelAddress = "http://localhost:8089/api/objectExcels";
   // private readonly retailerAddress = "http://localhost:8089/api/retailers";
 
- private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
+//  private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
   private readonly excelAddress = "https://microserviceobject.azurewebsites.net/api/objectExcels";
   private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 
-  public getObjects(idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
+  public getObjects(page: number, count: number, search: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
+    queryParams = queryParams.append("page", page);
+    queryParams = queryParams.append("count", count);
+    queryParams = queryParams.append("search", search);
     queryParams = queryParams.append("idCompany", idCompany);
     queryParams = queryParams.append("retailer", retailer);
     queryParams = queryParams.append("city", city);

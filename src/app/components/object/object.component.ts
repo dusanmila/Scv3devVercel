@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { filter, Observable, Subscription } from 'rxjs';
@@ -28,11 +29,16 @@ export class ObjectComponent implements OnInit {
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
 
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+
   public detailSearch: boolean = false;
   public idCompany: string = "";
   public retailer: string = "";
   public city: string = "";
   public format: string = "";
+  public page: number = 1;
+  public count: number = 5;
+  public length: number = 100;
 
   objectInfo:ObjectInfo;
 
@@ -101,7 +107,8 @@ export class ObjectComponent implements OnInit {
       shelfSpaceM: 0,
       companyShelfSpaceM: 0,
       companyShelfSpacePercent: 0
-    }
+    },
+    totalCount: 0
   }
 
   public objectCreateDto: ObjectCreateDto = {
@@ -155,10 +162,20 @@ export class ObjectComponent implements OnInit {
 
   public loadData() {
     console.log(this.idCompany, this.retailer, this.city, this.format)
-    this.objectService.getObjects(this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
+    this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
+      this.length = data[0].totalCount;
       this.dataSource = new MatTableDataSource(data);
       this.isLoading = false;
+      console.log(data);
     });
+  }
+
+  public loadDataOnPageEvent(event: PageEvent) {
+    if ((event.pageIndex + 1) * this.count > this.length) {
+      this.count = this.length % this.count;
+    }
+    this.page = event.pageIndex + 1;
+    this.loadData();
   }
 
   public selectObject(object: Obj) {
