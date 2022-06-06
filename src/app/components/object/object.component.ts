@@ -171,9 +171,9 @@ export class ObjectComponent implements OnInit {
   }
 
   public loadDataOnPageEvent(event: PageEvent) {
-    if ((event.pageIndex + 1) * this.count > this.length) {
-      this.count = this.length % this.count;
-    }
+    // if ((event.pageIndex + 1) * this.count > this.length) {
+    //   this.count = this.length % this.count;
+    // }
     this.page = event.pageIndex + 1;
     this.loadData();
   }
