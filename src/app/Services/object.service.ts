@@ -17,7 +17,7 @@ export class ObjectService {
   // private readonly excelAddress = "http://localhost:8089/api/objectExcels";
   // private readonly retailerAddress = "http://localhost:8089/api/retailers";
 
- private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
+  private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
   private readonly excelAddress = "https://microserviceobject.azurewebsites.net/api/objectExcels";
   private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 

@@ -58,9 +58,9 @@ export class StoreCheckPageComponent implements OnInit {
         if (res) {
           this.router.navigate(['/chooseObject/' + this.workModel]);
           if (!this.resolveFeedbacks) {
-            this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
-              console.log(data);
-            });
+            // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
+            //   console.log(data);
+            // });
           }
         }
       }
@@ -137,9 +137,9 @@ export class StoreCheckPageComponent implements OnInit {
           if (res) {
             this.router.navigate(['/chooseObject/' + this.workModel]);
             if (!this.resolveFeedbacks) {
-              this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
-                console.log(data);
-              });
+              // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
+              //   console.log(data);
+              // });
             }
           }
         }
