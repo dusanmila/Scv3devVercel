@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   
   public LoginUser(){
     this.http.post("https://localhost:44323/api/auths/login", this.user, {headers: {}}).subscribe((data: any) => {
-      console.log('/////////////////////');  
       console.log(data);
         if (data.token !== undefined)
         {
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
           const refreshToken = data.refreshToken;
           localStorage.setItem("jwt", token);
           localStorage.setItem("refreshToken", refreshToken);
-          
+          // ovde dodati ako je admin videti iz tokena dal je admin da navigate to /admin
           this.router.navigate(["/storeCheck"]);
         }
     });

@@ -12,6 +12,7 @@ export class ObjectService {
 
   constructor(private http: HttpClient) { }
 
+  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
   // private readonly address = "http://localhost:8083/object/objects";
    private readonly address = "http://localhost:8089/api/objects";
   // private readonly excelAddress = "http://localhost:8089/api/objectExcels";
@@ -28,7 +29,7 @@ export class ObjectService {
     queryParams = queryParams.append("city", city);
     queryParams = queryParams.append("format", format);
     let retval$ = new Subject<Obj[]>();
-    this.http.get<Obj[]>(this.address, { params: queryParams }).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(this.address, {  headers:this.headers, params: queryParams }).subscribe((objects: Obj[]) => {
       retval$.next(objects);
     });
     return retval$.asObservable();
@@ -64,7 +65,7 @@ export class ObjectService {
   public getObjectsByStringContains(str: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
     // this.http.get<Obj[]>(`http://localhost:8089/api/objects/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
-    this.http.get<Obj[]>(`${this.address}/objectByStringContains/${str}`).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(`${this.address}/objectByStringContains/${str}`,{headers:this.headers}).subscribe((objects: Obj[]) => {
 
       retval$.next(objects);
     });
@@ -137,8 +138,9 @@ export class ObjectService {
   public getObjectByString(string: String): Observable<Obj[]> {
 
     let retval$ = new Subject<Obj[]>();
+    //localStorage.setItem("jwt", token);
 
-    this.http.get<Obj[]>(`${this.address}/objectByString/${string}`).subscribe((object: Obj[]) => {
+    this.http.get<Obj[]>(`${this.address}/objectByString/${string}`,{headers:this.headers}).subscribe((object: Obj[]) => {
 
       retval$.next(object)
 

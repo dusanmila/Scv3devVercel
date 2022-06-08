@@ -4,7 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Obj, ObjectCreateDto } from 'src/app/models/object';
 import { ObjectInfo } from 'src/app/models/objectInfo';
 import { User } from 'src/app/models/user.model';
-import { ObjectInfoService } from 'src/app/Services/object-info.service';
 import { ObjectService } from 'src/app/Services/object.service';
 import { UserService } from 'src/app/Services/user.service';
 
