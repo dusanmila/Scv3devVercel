@@ -4,7 +4,7 @@
     <h4>Enter address or object name</h4>
     <mat-form-field>
       <input type="text" matInput placeholder="Search" [(ngModel)]="search">
-      <button class="search" matSuffix mat-button (click)="searchByString()">
+      <button class="search" matSuffix mat-button (click)="loadData()">
         <mat-icon class="search">search</mat-icon>
       </button>
     </mat-form-field>
@@ -32,12 +32,14 @@
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
         <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon area-label="Edit" (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+          <mat-icon area-label="Edit"
+            (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
             edit </mat-icon>
         </button>
 
         <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon area-label="Delete" (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+          <mat-icon area-label="Delete"
+            (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
             delete </mat-icon>
         </button>
 
@@ -46,27 +48,31 @@
           </mat-icon>
         </button> -->
 
-        <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button color="primary" *ngIf="!isAdmin" (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+        <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button color="primary"
+          *ngIf="!isAdmin"
+          (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
           Details
         </button>
-        <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" [routerLink]="['/storeCheckPage', workModel, row.objectName]">
+        <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin"
+          [routerLink]="['/storeCheckPage', workModel, row.objectName]">
           Start
-          <mat-icon  area-label="Open">open_in_new</mat-icon>
+          <mat-icon area-label="Open">open_in_new</mat-icon>
         </button>
-       
+
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
+  <mat-paginator *ngIf="dataSource" [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
 
   <div *ngIf="isLoading"
-   style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-  <mat-progress-spinner
-  class="mat-spinner-color"
-    mode="indeterminate">
-  </mat-progress-spinner>
-</div>
+    style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+    <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+ 
+
 
   <div class="detail-search">
     <h4>Detail search</h4>

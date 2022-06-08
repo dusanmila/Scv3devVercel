@@ -46,9 +46,9 @@ export class PositionDialogComponent implements OnInit {
   public add() {
     this.data.objectName = this.objectName;
     this.data.valid = false;
-    this.changed = true;
     this.positionService.createPosition(this.data).subscribe(data => {
-      this.dialogRef.close();
+      this.changed = true;
+      this.close();
       this.snackBar.open('Secondary position successfully added.', 'Ok', { duration: 2500 });
     }),
       (error: Error) => {
@@ -58,8 +58,8 @@ export class PositionDialogComponent implements OnInit {
   }
 
   public delete() {
-    this.changed = true;
     this.positionService.deletePosition(this.data).subscribe(data => {
+      this.changed = true;
       this.snackBar.open('Secondary position successfully deleted.', 'Ok', { duration: 2500 });
       this.close();
     }),
