@@ -51,20 +51,14 @@ export class StoreCheckPageComponent implements OnInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState(event:Event) {
-    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
-    dialogRef.afterClosed()
-      .subscribe(res => {
-        console.log(res)
-        if (res) {
+
           this.router.navigate(['/chooseObject/' + this.workModel]);
           if (!this.resolveFeedbacks) {
             this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
               console.log(data);
             });
           }
-        }
-      }
-      )
+
   }
 
   public getOneObject() {
