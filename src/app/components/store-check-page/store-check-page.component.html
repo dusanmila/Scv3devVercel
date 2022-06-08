@@ -68,8 +68,7 @@
             (showFinishButton)="enableFinishButton($event)"></app-position>
         <div class="margintop">
 
-            <button class="item2" *ngIf="showFinishButton && !resolveFeedbacks" (click)="addToStoreCheck()">ADD TO
-                STORECHECK</button>
+            <button class="item2" (click)="addToStoreCheck()">Add To Store Check</button>
 
             <button class="item2" (click)="exit()">Exit</button>
         </div>
