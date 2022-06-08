@@ -13,6 +13,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+  
   // private readonly adress ="http://localhost:8083/user";
   // private readonly userAdress ="http://localhost:8086/api/users";
 
@@ -23,7 +25,7 @@ export class UserService {
 
     let retval$ = new Subject<User[]>();
 
-    this.http.get<User[]>(`${USER_URL}/users`).subscribe((users: User[]) => {
+    this.http.get<User[]>(`${USER_URL}/users`,{headers:this.headers}).subscribe((users: User[]) => {
 
       retval$.next(users)
 
@@ -52,7 +54,7 @@ export class UserService {
 
 
     let retval$ = new Subject<User>();
-    this.http.delete<User>(`${USER_URL}/users/${user.username}`).subscribe((helper: User) => {
+    this.http.delete<User>(`${USER_URL}/users/${user.username}`,{headers:this.headers}).subscribe((helper: User) => {
       retval$.next(helper)
     })
 
@@ -64,7 +66,7 @@ export class UserService {
 
     let retval$ = new Subject<User>();
 
-    this.http.put<User>(`${USER_URL}/users`, user).subscribe((helper: User) => {
+    this.http.put<User>(`${USER_URL}/users`, user,{headers:this.headers}).subscribe((helper: User) => {
 
       retval$.next(helper)
 
@@ -79,7 +81,7 @@ export class UserService {
 
     let retval$ = new Subject<User>();
 
-    this.http.get<User>(`${USER_URL}/users/username/${user.username}`).subscribe((helper: User) => {
+    this.http.get<User>(`${USER_URL}/users/username/${user.username}`,{headers:this.headers}).subscribe((helper: User) => {
       retval$.next(helper)
 
     });
@@ -92,7 +94,7 @@ export class UserService {
 
     let retval$ = new Subject<User>();
 
-    this.http.get<User>(`${USER_URL}/users/username/${username}`).subscribe((user: User) => {
+    this.http.get<User>(`${USER_URL}/users/username/${username}`,{headers:this.headers}).subscribe((user: User) => {
 
       retval$.next(user)
 
@@ -105,7 +107,7 @@ export class UserService {
 
     let retval$ = new Subject<User[]>();
 
-    this.http.get<User[]>(`${USER_URL}/users/usernameList/${username}`).subscribe((users: User[]) => {
+    this.http.get<User[]>(`${USER_URL}/users/usernameList/${username}`,{headers:this.headers}).subscribe((users: User[]) => {
 
       retval$.next(users)
 
@@ -117,7 +119,7 @@ export class UserService {
   public createUser(user: User): Observable<User> {
 
     let retval$ = new Subject<User>();
-    this.http.post<User>(`${USER_URL}/users`, user).subscribe((helper: User) => {
+    this.http.post<User>(`${USER_URL}/users`, user,{headers:this.headers}).subscribe((helper: User) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

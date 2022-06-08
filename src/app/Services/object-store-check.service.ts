@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from '../models/objectStoreCheck';
@@ -12,9 +12,11 @@ export class ObjectStoreCheckService {
 
   constructor(private http: HttpClient) { }
 
+  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+  
   public createObjectStoreCheck(osc: ObjectStoreCheckCreateDto) {
     let retval$ = new Subject<ObjectStoreCheck>();
-    this.http.post<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks`, osc).subscribe((helper: ObjectStoreCheck) => {
+    this.http.post<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks`, osc,{headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -22,7 +24,7 @@ export class ObjectStoreCheckService {
 
   public finishObjectStoreCheck(username: string) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {headers:this.headers}).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -30,7 +32,7 @@ export class ObjectStoreCheckService {
 
   public deleteUnfinishedObjectStoreCheck(username: string) {
     let retval$ = new Subject<ObjectStoreCheck>();
-    this.http.delete<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/deleteUnfinishedObjectStoreCheck/${username}`).subscribe((helper: ObjectStoreCheck) => {
+    this.http.delete<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/deleteUnfinishedObjectStoreCheck/${username}`,{headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
