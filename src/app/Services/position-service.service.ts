@@ -7,26 +7,29 @@ import { Observable, Subject } from 'rxjs';
 import { Position } from '../models/position';
 import { PositionClass } from '../models/positionClass';
 import { PositionType } from '../models/positionType';
+import { POSITION_URL } from '../app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class PositionService{
+export class PositionService {
 
   constructor(private http: HttpClient) { }
 
 
   // private readonly adress ="http://localhost:8087/api/secondaryPositions";
   // private readonly excelAdress="http://localhost:8087/api/secondaryPositionExcels"
-  private readonly adress ="https://microserviceposition.azurewebsites.net/api/secondaryPositions";
-  private readonly excelAdress="https://microserviceposition.azurewebsites.net/api/secondaryPositionExcels"
-  
-  public getPositions():Observable<Position[]>{
+
+  private readonly adress = "https://microserviceposition.azurewebsites.net/api/secondaryPositions";
+  private readonly excelAdress = "https://microserviceposition.azurewebsites.net/api/secondaryPositionExcels"
+
+  public getPositions(): Observable<Position[]> {
+
 
     let retval$ = new Subject<Position[]>();
 
-    this.http.get<Position[]>(`${this.adress}`,{headers:new HttpHeaders({'token':'*'})}).subscribe((clients: Position[]) => {
+    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions`, { headers: new HttpHeaders({ 'token': '*' }) }).subscribe((clients: Position[]) => {
 
       retval$.next(clients)
 
@@ -37,32 +40,34 @@ export class PositionService{
 
   public getPositionsByObjectName(objectName: string): Observable<Position[]> {
     let retval$ = new Subject<Position[]>();
-    this.http.get<Position[]>(`${this.adress}/secondaryPositionByObjectName/${objectName}`).subscribe((positions: Position[]) => {
+    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions/secondaryPositionByObjectName/${objectName}`).subscribe((positions: Position[]) => {
       retval$.next(positions)
     });
     return retval$.asObservable();
   }
 
-  public createPosition(position:Position):Observable<Position>{
+  public createPosition(position: Position): Observable<Position> {
 
     let retval$ = new Subject<Position>();
-    this.http.post<Position>(this.adress, position).subscribe((helper: Position) => {
+    this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position).subscribe((helper: Position) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
   }
 
-  public excelImport(formData:FormData) {
+  public excelImport(formData: FormData) {
 
-    this.http.post(this.excelAdress, formData).subscribe((response) => {console.log(response)});
+    this.http.post(`${POSITION_URL}/secondaryPositionExcels`, formData).subscribe((response) => {
+      console.log(response);
+    });
 
   }
 
-  public editPosition(position:Position):Observable<Position>{
+  public editPosition(position: Position): Observable<Position> {
 
     let retval$ = new Subject<Position>();
 
-    this.http.put<Position>(`${this.adress}`,position).subscribe((helper: Position) => {
+    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position).subscribe((helper: Position) => {
 
       retval$.next(helper)
 
@@ -74,26 +79,25 @@ export class PositionService{
 
 
 
-  public getOnePosition(position:Position):Observable<Position>{
+  public getOnePosition(position: Position): Observable<Position> {
 
     let retval$ = new Subject<Position>();
-    this.http.get<{url: string}>(this.adress).subscribe(address =>{
-      this.http.get<Position>(`${this.adress}/${position.secondaryPositionId}`).subscribe((helper: Position) => {
-        retval$.next(helper)
-      })
+
+    this.http.get<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`).subscribe((helper: Position) => {
+      retval$.next(helper)
     });
 
     return retval$.asObservable();
 
   }
 
-  public deletePosition(position:Position):Observable<Position>{
+  public deletePosition(position: Position): Observable<Position> {
 
 
     let retval$ = new Subject<Position>();
-      this.http.delete<Position>(`${this.adress}/${position.secondaryPositionId}`).subscribe((helper: Position) => {
-        retval$.next(helper)
-      })
+    this.http.delete<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`).subscribe((helper: Position) => {
+      retval$.next(helper)
+    })
 
 
     return retval$.asObservable();
@@ -101,8 +105,7 @@ export class PositionService{
 
   public getPositionClasses(): Observable<PositionClass[]> {
     let retval$ = new Subject<PositionClass[]>();
-    // this.http.get<PositionClass[]>(`http://localhost:8087/api/positionClasses`).subscribe((helper: PositionClass[]) => {
-    this.http.get<PositionClass[]>(`https://microserviceposition.azurewebsites.net/api/positionClasses`).subscribe((helper: PositionClass[]) => {
+    this.http.get<PositionClass[]>(`${POSITION_URL}/positionClasses`).subscribe((helper: PositionClass[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -110,8 +113,7 @@ export class PositionService{
 
   public getPositionTypes(): Observable<PositionType[]> {
     let retvla$ = new Subject<PositionType[]>();
-    // this.http.get<PositionType[]>(`http://localhost:8087/api/positionTypes`).subscribe((helper: PositionType[]) => {
-    this.http.get<PositionType[]>(`https://microserviceposition.azurewebsites.net/api/positionTypes`).subscribe((helper: PositionType[]) => {
+    this.http.get<PositionType[]>(`${POSITION_URL}/positionTypes`).subscribe((helper: PositionType[]) => {
       retvla$.next(helper);
     });
     return retvla$.asObservable();

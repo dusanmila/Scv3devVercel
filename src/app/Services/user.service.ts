@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
 import { User } from '../models/user.model';
+import { USER_URL } from '../app.constants';
 
 
 @Injectable({
@@ -15,14 +16,14 @@ export class UserService {
   // private readonly adress ="http://localhost:8083/user";
   // private readonly userAdress ="http://localhost:8086/api/users";
 
-  private readonly adress ="https://microserviceuser.azurewebsites.net/user";
-  private readonly userAdress ="https://microserviceuser.azurewebsites.net/api/users";
+  private readonly adress = "https://microserviceuser.azurewebsites.net/user";
+  private readonly userAdress = "https://microserviceuser.azurewebsites.net/api/users";
 
-  public getUsers(): Observable<User[]>{
+  public getUsers(): Observable<User[]> {
 
     let retval$ = new Subject<User[]>();
 
-    this.http.get<User[]>(`${this.userAdress}`).subscribe((users: User[]) => {
+    this.http.get<User[]>(`${USER_URL}/users`).subscribe((users: User[]) => {
 
       retval$.next(users)
 
@@ -38,7 +39,7 @@ export class UserService {
 
     let retval$ = new Subject<User>();
 
-    this.http.post<User>(`${this.userAdress}/feedbacks`, user).subscribe((helper: User) => {
+    this.http.post<User>(`${USER_URL}/users`, user).subscribe((helper: User) => {
 
       retval$.next(helper)
 
@@ -47,23 +48,23 @@ export class UserService {
     return retval$.asObservable();
   }
 */
-public deleteUser(user:User):Observable<User>{
+  public deleteUser(user: User): Observable<User> {
 
 
-  let retval$ = new Subject<User>();
-    this.http.delete<User>(`${this.userAdress}/${user.username}`).subscribe((helper: User) => {
+    let retval$ = new Subject<User>();
+    this.http.delete<User>(`${USER_URL}/users/${user.username}`).subscribe((helper: User) => {
       retval$.next(helper)
     })
 
 
-  return retval$.asObservable();
-}
+    return retval$.asObservable();
+  }
 
-  public editUser(user:User):Observable<User>{
+  public editUser(user: User): Observable<User> {
 
     let retval$ = new Subject<User>();
 
-    this.http.put<User>(`${this.userAdress}`,user).subscribe((helper: User) => {
+    this.http.put<User>(`${USER_URL}/users`, user).subscribe((helper: User) => {
 
       retval$.next(helper)
 
@@ -74,12 +75,12 @@ public deleteUser(user:User):Observable<User>{
 
   }
 
-  public getOneUser(user:User):Observable<User>{
+  public getOneUser(user: User): Observable<User> {
 
     let retval$ = new Subject<User>();
 
-      this.http.get<User>(`${this.userAdress}/username/${user.username}`).subscribe((helper: User) => {
-        retval$.next(helper)
+    this.http.get<User>(`${USER_URL}/users/username/${user.username}`).subscribe((helper: User) => {
+      retval$.next(helper)
 
     });
 
@@ -87,11 +88,11 @@ public deleteUser(user:User):Observable<User>{
 
   }
 
-  public getUserByUsername(username:String): Observable<User>{
+  public getUserByUsername(username: String): Observable<User> {
 
     let retval$ = new Subject<User>();
 
-    this.http.get<User>(`${this.userAdress}/username/${username}`).subscribe((user: User) => {
+    this.http.get<User>(`${USER_URL}/users/username/${username}`).subscribe((user: User) => {
 
       retval$.next(user)
 
@@ -100,11 +101,11 @@ public deleteUser(user:User):Observable<User>{
     return retval$.asObservable();
   }
 
-  public getUsersByUsername(username:String): Observable<User[]>{
+  public getUsersByUsername(username: String): Observable<User[]> {
 
     let retval$ = new Subject<User[]>();
 
-    this.http.get<User[]>(`${this.userAdress}/usernameList/${username}`).subscribe((users: User[]) => {
+    this.http.get<User[]>(`${USER_URL}/users/usernameList/${username}`).subscribe((users: User[]) => {
 
       retval$.next(users)
 
@@ -113,10 +114,10 @@ public deleteUser(user:User):Observable<User>{
     return retval$.asObservable();
   }
 
-  public createUser(user:User):Observable<User>{
+  public createUser(user: User): Observable<User> {
 
     let retval$ = new Subject<User>();
-    this.http.post<User>(this.userAdress, user).subscribe((helper: User) => {
+    this.http.post<User>(`${USER_URL}/users`, user).subscribe((helper: User) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

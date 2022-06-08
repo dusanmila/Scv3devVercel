@@ -71,66 +71,10 @@
             <button class="item2" *ngIf="showFinishButton && !resolveFeedbacks" (click)="addToStoreCheck()">ADD TO
                 STORECHECK</button>
 
-            <button class="item2" (click)="exit()">EXIT</button>
+            <button class="item2" (click)="exit()">Exit</button>
+
         </div>
     </div>
 
 
 </div>
-
-<!--<div class="main">
-    <h3>ADD FEEDBACK</h3>
-    <a href="/feedback">
-        <div class="add-fb-btn">
-            ADD FEEDBACK
-        </div>
-    </a>
-    
-    <h3 class="unresolved-fb-header">UNRESOLVED FEEDBACKS</h3>
-
-    <div class="secondary-positions">
-        <h4>SECONDARY POSITIONS:</h4>
-        <table class="positions-tbl">
-            <tr *ngFor="let position of positions">
-                <td class="position-name-td">{{ position.posClassName }} - {{ position.posTypeName }}</td>
-                <td class="check-box-td"><input type="checkbox"></td>
-            </tr>
-        </table>
-    </div>
-
-    <button class="btn-finish">FINISH</button>
-</div>
--->
-
-
-
-<!--
-<h4>Podaci o objektu</h4>
-<p> {{ object.objectIdRetail }}</p><br>
-<p> {{ object.objectIdCompany }}</p><br>
-<p> {{ object.objectFormat }}</p><br>
-<p> {{ object.objectName }}</p><br>
-<p> {{ object.city }}</p><br>
-<p> {{ object.address }}</p><br>
-<p> {{ object.requisitionDays }}</p><br>
-<p> {{ object.merchandiserRevisionDays }}</p><br>
-<p> {{ object.objectInfo.assortmentModule }}</p><br>
-<p> {{ object.objectInfo.gainings12Mrsd }}</p><br>
-<p> {{ object.objectInfo.wdpercentSerbia }}</p><br>
-<p> {{ object.objectInfo.wdpercentSector }}</p><br>
-<p> {{ object.objectInfo.wdpercentCustomer }}</p><br>
-<p> {{ object.objectInfo.gainingsVs12mpercent }}</p><br>
-<p> {{ object.objectInfo.registersNumber }}</p><br>
-<p> {{ object.objectInfo.shelfSpaceM }}</p><br>
-<p> {{ object.objectInfo.companyShelfSpaceM }}</p><br>
-<p> {{ object.objectInfo.companyShelfSpacePercent }}</p><br>
-<br>
-<br>
-<h4>Sekundarne pozicije u objektu</h4>
-<ul>
-    <li *ngFor="let position of positions">{{ position.posClassName }}, {{ position.posTypeName }}</li>
-</ul>
-
-<button (click)="getRetailerPlanogram()">Planogram</button>
-<button (click)="createEmptyObjectStoreCheck()">Create object store check</button>
--->
