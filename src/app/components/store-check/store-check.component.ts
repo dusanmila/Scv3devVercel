@@ -27,6 +27,8 @@ export class StoreCheckComponent implements OnInit {
 
   public logout() {
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    localStorage.setItem("jwt", "");
+    localStorage.setItem("refreshToken", "");
     dialogRef.afterClosed()
       .subscribe(res => {
         console.log(res)
