@@ -168,7 +168,7 @@ export class FeedbackComponent implements OnInit {
     dialogRef.componentInstance.resolveFeedbacks = this.resolveFeedbacks;
     dialogRef.afterClosed()
       .subscribe(res => {
-        if (res === 1) {
+        if (res) {
           this.loadUnresolvedFeedbacksByObject();
         }
       }
@@ -180,7 +180,8 @@ export class FeedbackComponent implements OnInit {
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {
-        if (res === 1) {
+        if (res) {
+          console.log('promena')
           this.loadUnresolvedFeedbacksByObject();
           this.showFinishButton.emit(true);
         }

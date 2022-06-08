@@ -5,6 +5,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
+import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
@@ -22,17 +23,18 @@ export class ResolvedFeedbackComponent implements OnInit {
   public length: number = 100;
   public pageEvent: PageEvent;
 
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  displayedColumns = ["feedbackCategoryName", "date", "username","actions"];
+  displayedColumns = ["feedbackCategoryName", "date", "username", "actions"];
   dataSource: MatTableDataSource<Feedback>;
 
-  isLoading=true;
+  isLoading = true;
 
   constructor(public activatedRoute: ActivatedRoute,
-              public feedbackService: FeedbackService,
-              public dialog: MatDialog,public date: DatePipe,
-              public location: Location) { }
+    public feedbackService: FeedbackService,
+    public dialog: MatDialog,
+    public date: DatePipe,
+    public location: Location) { }
 
   ngOnInit(): void {
     this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
@@ -43,7 +45,7 @@ export class ResolvedFeedbackComponent implements OnInit {
     this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
       console.log(data);
       this.dataSource = new MatTableDataSource(data);
-      this.isLoading=false;
+      this.isLoading = false;
     });
   }
 
@@ -70,10 +72,8 @@ export class ResolvedFeedbackComponent implements OnInit {
       )
   }
 
-  public back() {
+  public exit() {
     this.location.back();
   }
-
-
 
 }

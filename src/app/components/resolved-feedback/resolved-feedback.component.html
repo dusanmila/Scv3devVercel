@@ -1,61 +1,62 @@
 <div class="container font fadeInDown">
 
-  <div class="fadeIn first header"><h1>Resolved feedbacks</h1></div>
+  <div class="fadeIn first header">
+    <h1>Resolved feedbacks</h1>
+  </div>
   <div class="fadeIn second">
-  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-    <!-- <ng-container matColumnDef="img">
+      <!-- <ng-container matColumnDef="img">
     <th mat-header-cell *matHeaderCellDef> Image </th>
     <td mat-cell *matCellDef="let row"> <img [src]="row.img" alt="SC photo" width="50" height="50"/> </td>
   </ng-container> -->
 
-  <ng-container matColumnDef="date">
-    <mat-header-cell *matHeaderCellDef mat-sort-header style="width:30%">Date</mat-header-cell>
-    <mat-cell *matCellDef="let row" style="width:20%">{{ row.date | date:'dd.MM.' }}</mat-cell>
-  </ng-container>
+      <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header style="width:30%">Date</mat-header-cell>
+        <mat-cell *matCellDef="let row" style="width:20%">{{ row.date | date:'dd.MM.' }}</mat-cell>
+      </ng-container>
 
-  <ng-container matColumnDef="feedbackCategoryName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
-  </ng-container>
+      <ng-container matColumnDef="feedbackCategoryName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Category</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
+      </ng-container>
 
-  <!-- <ng-container matColumnDef="text">
+      <!-- <ng-container matColumnDef="text">
   <mat-header-cell *matHeaderCellDef mat-sort-header>Text</mat-header-cell>
   <mat-cell *matCellDef="let row">{{ row.text }}</mat-cell>
 </ng-container> -->
 
 
-  <!-- <ng-container matColumnDef="resolved">
+      <!-- <ng-container matColumnDef="resolved">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Resolved</mat-header-cell>
     <mat-cell *matCellDef="let row">{{ row.resolved }}</mat-cell>
   </ng-container> -->
 
-  <ng-container matColumnDef="username">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
-    <mat-cell *matCellDef="let row" class="table-row">{{ row.username }}</mat-cell>
-  </ng-container>
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
+        <mat-cell *matCellDef="let row" class="table-row">{{ row.username }}</mat-cell>
+      </ng-container>
 
 
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
 
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row; let i=index">
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row; let i=index">
 
-      </mat-cell>
-    </ng-container>
+        </mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="openDialog(3,row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username,row.imgResolve)"></mat-row>
-  </mat-table>
-  <div *ngIf="isLoading"
-  style="display: flex; justify-content: center; align-items: center; background: white;">
- <mat-progress-spinner
- class="mat-spinner-color"
-   mode="indeterminate">
- </mat-progress-spinner>
-</div>
-  <mat-paginator [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
-</div>
-<div class="fadeIn third"> <button class="item2" (click)="back()">Exit</button> </div>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
+        (click)="openDialog(3,row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username,row.imgResolve)">
+      </mat-row>
+    </mat-table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+    <mat-paginator [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
+  </div>
+  <div class="fadeIn third"> <button class="item2" (click)="exit()">Exit</button> </div>
 </div>

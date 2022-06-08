@@ -23,6 +23,7 @@ export class FeedbackDialogComponent implements OnInit {
   public form: FormGroup;
   public imageUploaded: boolean = false;
   public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "ppetrovic", imgResolve: "" };
+  public changed: boolean = false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackDialogComponent>,
@@ -55,7 +56,7 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   public close(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.changed);
   }
 
   uploadFile(event: any) {
@@ -77,6 +78,8 @@ export class FeedbackDialogComponent implements OnInit {
     console.log(formData);
     console.log(this.feedback);
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
+      this.changed = true;
+      this.close();
       console.log(data);
     });
   }

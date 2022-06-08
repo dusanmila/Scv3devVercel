@@ -1,5 +1,5 @@
 .container {
-  margin: 0 20px;
+  margin-top: 5%;
 }
 
 
@@ -24,10 +24,6 @@
     border-radius: 2px;
   }
 
-  .header{
-    margin-top: -5%;
-  }
-
 
 
 
@@ -37,6 +33,7 @@
   background-color: #56baed;
   color: #fff;
   line-height: 100px;
+  margin-top: -5%;
 }
 
 
@@ -218,3 +215,61 @@ mat-header-cell:nth-child(5) {
 .mat-spinner-color::ng-deep circle{
   stroke: #56baed !important;
   }
+
+
+  
+    
+.mat-column-date {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 25% !important;
+  width: 25% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  text-align: left;
+}
+
+.mat-column-feedbackCategoryName {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 35% !important;
+  width: 35% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  text-align: left;
+}
+
+
+.mat-column-username {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 35% !important;
+  width: 35% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  text-align: left;
+}

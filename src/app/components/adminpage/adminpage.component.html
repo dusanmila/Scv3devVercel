@@ -6,18 +6,18 @@
 
     <div class="header ">
       <div class="l">
-      <h1 class="mainHeading">Admin Dashboard</h1>
-    </div>
+        <h1 class="mainHeading">Admin Dashboard</h1>
+      </div>
       <div class="menu" style="display:flex;">
 
-        <div class="fadeIn fourth">
+        <div class="fadeIn second">
 
-            <div class="item2 " (click)="openDialog(1)">
-              Analytics
-            </div>
+          <div class="item2 " (click)="openDialog(1)">
+            Analytics
+          </div>
         </div>
 
-        <div class="fadeIn fourth">
+        <div class="fadeIn second">
           <a [routerLink]="['/login']">
             <div class="item2">
               Log out
@@ -26,15 +26,15 @@
         </div>
       </div>
 
-</div>
+    </div>
 
 
 
   </div>
   <br>
   <br>
-<br>
-<br>
+  <br>
+  <br>
   <div class="fadeIn second">
     <h2 class="heading">Users</h2>
     <app-user></app-user>
@@ -56,7 +56,7 @@
     <h2 class="heading">Import Excel</h2>
 
 
-    
+
     <div class="parentcontainer" style="margin-bottom: 5%;">
 
       <div class="container">
@@ -64,19 +64,19 @@
         <input type="file" #fileDropRef (change)="uploadObjectsFile($event)" id="fileDropRef" />
 
 
-        <h3  style="margin:5%;color:#56baed;">Drag and drop file here</h3>
+        <h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>
 
-      <label for="fileDropRef" class="browseButton"  >Browse</label>
+        <label for="fileDropRef" class="browseButton">Browse</label>
       </div>
 
 
 
-      <div class="container" >
-        <h3  class="uploadHeading " style="color:#56baed;">Positions</h3>
+      <div class="container">
+        <h3 class="uploadHeading " style="color:#56baed;">Positions</h3>
         <input type="file" #fileDropRef (change)="uploadPositionsFile($event)" id="fileDropRef" />
 
 
-        <h3  style="margin:5%; color:#56baed;">Drag and drop file here</h3>
+        <h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>
 
         <label class="browseButton" for="fileDropRef">Browse</label>
       </div>

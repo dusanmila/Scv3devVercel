@@ -11,10 +11,7 @@
 
 
 
-.header{
-  margin-top: 3%;
-  margin-bottom: -3%;
-}
+
 
 .container input {
   opacity: 0;
@@ -235,14 +232,7 @@
     justify-content: center;
     text-align:center;
   }
-  .mainHeading{
-    text-align:center;
-    color:white;
-    width: 300px;
-    background-color: #56baed;
-    
-
-  }
+  
 
   .uploadHeading{
     text-align:center;
@@ -251,11 +241,11 @@
 
   .browseButton{
     color: white;
-  width: 100px;
-  height: 20px;
-  border-radius: 21.5px;
-  background-color: #56baed;
-  padding: 8px 16px;
+    width: 100px;
+    height: 20px;
+    border-radius: 21.5px;
+    background-color: #56baed;
+    padding: 8px 16px;
   }
 
   .browseButton:hover{
@@ -279,19 +269,22 @@
     margin-left: 70%;
   }
 
-  @media (min-width: 600px) {
-    .analytics2 {
+  .analytics2 {
       margin-left: 80%;
     }
-  }
-
-  @media (min-width: 1000px) {
-    .analytics2 {
-      margin-left: 90%;
-    }
-
     .menu{
       display:inline;
       float:right;
+      margin-top: 20px;
     }
+ 
+
+    
+  .header {
+    text-align: center;
+    height: 100px;
+    background-color: #56baed;
+    color: #fff;
+    line-height: 100px;
   }
+ 

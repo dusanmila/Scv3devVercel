@@ -18,6 +18,7 @@ export interface Obj {
     requisitionDays: string;
     merchandiserRevisionDays: string;
     objectInfo: ObjectInfo;
+    totalCount: number;
   }
   
   export interface ObjectCreateDto {

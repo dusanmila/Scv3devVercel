@@ -20,6 +20,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
   public feedbackCategories: FeedbackCategory[] = [];
   public imageUploaded: boolean = false;
+  public changed: boolean = false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackCreateDialogComponent>,
@@ -62,12 +63,13 @@ export class FeedbackCreateDialogComponent implements OnInit {
     console.log(formData);
     console.log(this.feedback);
     this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
+      this.changed = true;
       console.log(data);
       this.close();
     });
   }
 
   public close(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.changed);
   }
 }

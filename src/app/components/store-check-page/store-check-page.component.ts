@@ -54,9 +54,9 @@ export class StoreCheckPageComponent implements OnInit {
 
           this.router.navigate(['/chooseObject/' + this.workModel]);
           if (!this.resolveFeedbacks) {
-            this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
-              console.log(data);
-            });
+            // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
+            //   console.log(data);
+            // });
           }
 
   }
@@ -109,21 +109,38 @@ export class StoreCheckPageComponent implements OnInit {
     this.showFinishButton = showButton;
   }
 
-  public exit() {
+  public addToStoreCheck() {
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
     dialogRef.afterClosed()
       .subscribe(res => {
         console.log(res)
         if (res) {
+          this.finishObjectStoreCheck();
           this.router.navigate(['/chooseObject/' + this.workModel]);
-          if (!this.resolveFeedbacks) {
-            this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
-              console.log(data);
-            });
-          }
         }
       }
       )
+  }
+
+  public exit() {
+    if (this.showFinishButton) {
+      const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+      dialogRef.afterClosed()
+        .subscribe(res => {
+          console.log(res)
+          if (res) {
+            this.router.navigate(['/chooseObject/' + this.workModel]);
+            if (!this.resolveFeedbacks) {
+              // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
+              //   console.log(data);
+              // });
+            }
+          }
+        }
+        )
+    } else {
+      this.router.navigate(['/chooseObject/' + this.workModel]);
+    }
   }
 
 }
