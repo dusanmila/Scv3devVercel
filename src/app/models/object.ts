@@ -20,7 +20,7 @@ export interface Obj {
     objectInfo: ObjectInfo;
     totalCount: number;
   }
-  
+
   export interface ObjectCreateDto {
     objectIdRetail: string;
     objectIdCompany: string;

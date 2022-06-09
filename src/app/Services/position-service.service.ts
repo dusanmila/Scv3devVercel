@@ -17,6 +17,8 @@ export class PositionService {
 
   constructor(private http: HttpClient) { }
 
+  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+  
 
   // private readonly adress ="http://localhost:8087/api/secondaryPositions";
   // private readonly excelAdress="http://localhost:8087/api/secondaryPositionExcels"
@@ -29,7 +31,7 @@ export class PositionService {
 
     let retval$ = new Subject<Position[]>();
 
-    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions`, { headers: new HttpHeaders({ 'token': '*' }) }).subscribe((clients: Position[]) => {
+    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions`, {headers:this.headers}).subscribe((clients: Position[]) => {
 
       retval$.next(clients)
 
@@ -40,7 +42,7 @@ export class PositionService {
 
   public getPositionsByObjectName(objectName: string): Observable<Position[]> {
     let retval$ = new Subject<Position[]>();
-    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions/secondaryPositionByObjectName/${objectName}`).subscribe((positions: Position[]) => {
+    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions/secondaryPositionByObjectName/${objectName}`,{headers:this.headers}).subscribe((positions: Position[]) => {
       retval$.next(positions)
     });
     return retval$.asObservable();
@@ -49,7 +51,7 @@ export class PositionService {
   public createPosition(position: Position): Observable<Position> {
 
     let retval$ = new Subject<Position>();
-    this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position).subscribe((helper: Position) => {
+    this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position,{headers:this.headers}).subscribe((helper: Position) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -57,7 +59,7 @@ export class PositionService {
 
   public excelImport(formData: FormData) {
 
-    this.http.post(`${POSITION_URL}/secondaryPositionExcels`, formData).subscribe((response) => {
+    this.http.post(`${POSITION_URL}/secondaryPositionExcels`, formData,{headers:this.headers}).subscribe((response) => {
       console.log(response);
     });
 
@@ -67,7 +69,7 @@ export class PositionService {
 
     let retval$ = new Subject<Position>();
 
-    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position).subscribe((helper: Position) => {
+    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position,{headers:this.headers}).subscribe((helper: Position) => {
 
       retval$.next(helper)
 
@@ -83,7 +85,7 @@ export class PositionService {
 
     let retval$ = new Subject<Position>();
 
-    this.http.get<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`).subscribe((helper: Position) => {
+    this.http.get<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`,{headers:this.headers}).subscribe((helper: Position) => {
       retval$.next(helper)
     });
 
@@ -95,7 +97,7 @@ export class PositionService {
 
 
     let retval$ = new Subject<Position>();
-    this.http.delete<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`).subscribe((helper: Position) => {
+    this.http.delete<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`,{headers:this.headers}).subscribe((helper: Position) => {
       retval$.next(helper)
     })
 
@@ -105,7 +107,7 @@ export class PositionService {
 
   public getPositionClasses(): Observable<PositionClass[]> {
     let retval$ = new Subject<PositionClass[]>();
-    this.http.get<PositionClass[]>(`${POSITION_URL}/positionClasses`).subscribe((helper: PositionClass[]) => {
+    this.http.get<PositionClass[]>(`${POSITION_URL}/positionClasses`,{headers:this.headers}).subscribe((helper: PositionClass[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -113,7 +115,7 @@ export class PositionService {
 
   public getPositionTypes(): Observable<PositionType[]> {
     let retvla$ = new Subject<PositionType[]>();
-    this.http.get<PositionType[]>(`${POSITION_URL}/positionTypes`).subscribe((helper: PositionType[]) => {
+    this.http.get<PositionType[]>(`${POSITION_URL}/positionTypes`,{headers:this.headers}).subscribe((helper: PositionType[]) => {
       retvla$.next(helper);
     });
     return retvla$.asObservable();

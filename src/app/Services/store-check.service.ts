@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { EmailsForSending } from '../models/emailsForSending';
@@ -12,9 +12,11 @@ export class StoreCheckService {
 
   constructor(private http: HttpClient) { }
 
+  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+  
   public getUnfinishedStoreCheckByUsername(username: string) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.get<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/unfinishedStoreCheckByUsername/${username}`).subscribe((storeCheck: StoreCheck) => {
+    this.http.get<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/unfinishedStoreCheckByUsername/${username}`,{headers:this.headers}).subscribe((storeCheck: StoreCheck) => {
       retval$.next(storeCheck);
     });
     return retval$.asObservable();
@@ -22,7 +24,7 @@ export class StoreCheckService {
 
   public createStoreCheck(storeCheck: StoreCheck) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.post<StoreCheck>(`${STORE_CHECK_URL}/storeChecks`, storeCheck).subscribe((helper: StoreCheck) => {
+    this.http.post<StoreCheck>(`${STORE_CHECK_URL}/storeChecks`, storeCheck,{headers:this.headers}).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -30,7 +32,7 @@ export class StoreCheckService {
 
   public finishStoreCheck(username: string, emailsForSending: EmailsForSending) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, emailsForSending).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, emailsForSending,{headers:this.headers}).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

@@ -14,7 +14,8 @@ import { FEEDBACK_URL } from '../app.constants';
 export class FeedbackService {
 
   constructor(private http: HttpClient) { }
-
+  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+  
   private readonly adress = "http://localhost:8083/feedback";
   private readonly feedbackAdress = "http://localhost:8088/api";
 
@@ -25,7 +26,7 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks`).subscribe((feedbacks: Feedback[]) => {
-    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks`).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks`,{headers:this.headers}).subscribe((feedbacks: Feedback[]) => {
 
 
       retval$.next(feedbacks)
@@ -40,7 +41,7 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
-    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks`,{headers:this.headers}).subscribe((feedbacks: Feedback[]) => {
 
 
       retval$.next(feedbacks)
@@ -57,7 +58,7 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
-    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/unresolvedFeedbacks`,{headers:this.headers}).subscribe((feedbacks: Feedback[]) => {
 
       retval$.next(feedbacks);
 
@@ -70,7 +71,7 @@ export class FeedbackService {
 
 
     // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
-    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/unresolvedFeedbacks/${objectName}`,{headers:this.headers}).subscribe((feedbacks: Feedback[]) => {
 
       retval$.next(feedbacks);
     });
@@ -84,7 +85,7 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
-    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks/${objectName}`, { params: queryParams }).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks/${objectName}`, {headers:this.headers, params: queryParams }).subscribe((feedbacks: Feedback[]) => {
 
       retval$.next(feedbacks);
     });
@@ -96,7 +97,7 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback>();
 
 
-    this.http.post<Feedback>(`${FEEDBACK_URL}/feedbacks`, feedback).subscribe((helper: Feedback) => {
+    this.http.post<Feedback>(`${FEEDBACK_URL}/feedbacks`, feedback,{headers:this.headers}).subscribe((helper: Feedback) => {
       // this.http.post<Feedback>(`${this.feedbackAdress}/feedbacks`, feedback).subscribe((helper: Feedback) => {
 
 
@@ -147,7 +148,7 @@ export class FeedbackService {
 
 
     // this.http.get<FeedbackCategory[]>('http://localhost:8088/api/feedbackCategories').subscribe((helper: FeedbackCategory[]) => {
-    this.http.get<FeedbackCategory[]>(`${FEEDBACK_URL}/feedbackCategories`).subscribe((helper: FeedbackCategory[]) => {
+    this.http.get<FeedbackCategory[]>(`${FEEDBACK_URL}/feedbackCategories`,{headers:this.headers}).subscribe((helper: FeedbackCategory[]) => {
 
       retval$.next(helper);
     });
@@ -159,7 +160,7 @@ export class FeedbackService {
 
     // this.http.post<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
 
-    this.http.post<Feedback>(`${FEEDBACK_URL}/feedbacks`, formData).subscribe((helper: Feedback) => {
+    this.http.post<Feedback>(`${FEEDBACK_URL}/feedbacks`, formData,{headers:this.headers}).subscribe((helper: Feedback) => {
 
       retval$.next(helper);
     });
@@ -170,7 +171,7 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback>();
     //  this.http.put<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
 
-    this.http.put<Feedback>(`${FEEDBACK_URL}/feedbacks`, formData).subscribe((helper: Feedback) => {
+    this.http.put<Feedback>(`${FEEDBACK_URL}/feedbacks`, formData,{headers:this.headers}).subscribe((helper: Feedback) => {
       retval$.next(helper);
     });
     return retval$;
