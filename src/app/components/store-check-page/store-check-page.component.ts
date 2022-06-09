@@ -50,22 +50,22 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   @HostListener('window:popstate', ['$event'])
-  onPopState(event:Event) {
+  onPopState(event: Event) {
 
-          this.router.navigate(['/chooseObject/' + this.workModel]);
-          if (!this.resolveFeedbacks) {
-            // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
-            //   console.log(data);
-            // });
-          }
+    this.router.navigate(['/chooseObject/' + this.workModel]);
+    if (!this.resolveFeedbacks) {
+      // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
+      //   console.log(data);
+      // });
+    }
 
   }
 
   public getOneObject() {
     this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
       this.object = data;
-      if (!this.resolveFeedbacks)
-        this.createEmptyObjectStoreCheck();
+      // if (!this.resolveFeedbacks)
+      //   this.createEmptyObjectStoreCheck();
       console.log(this.object);
     });
   }
