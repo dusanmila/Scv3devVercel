@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
      // const helper = new JwtHelperService();
 
-      if (data.token !== undefined) {
+      if (data.token !== null) {
         const token = data.token;
         const refreshToken = data.refreshToken;
         localStorage.setItem("jwt", token);
