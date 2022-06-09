@@ -23,6 +23,7 @@
 
 
               <button class="fadeIn fourth" (click)="LoginUser()">Log in</button>
+              <p *ngIf="isLoginFailed" style="color:red">Wrong username/password.</p>
 
               <div id="formFooter">
 
