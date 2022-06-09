@@ -53,8 +53,7 @@
           (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
           Details
         </button>
-        <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin"
-          [routerLink]="['/storeCheckPage', workModel, row.objectName]">
+        <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" (click)="createEmptyObjectStoreCheck(row.objectName, row.objectIdCompany)">
           Start
           <mat-icon area-label="Open">open_in_new</mat-icon>
         </button>
