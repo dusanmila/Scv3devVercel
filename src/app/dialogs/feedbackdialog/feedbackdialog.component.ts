@@ -22,7 +22,7 @@ export class FeedbackDialogComponent implements OnInit {
   public resolveFeedbacks: boolean;
   public form: FormGroup;
   public imageUploaded: boolean = false;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "ppetrovic", imgResolve: "" };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
   public changed: boolean = false;
 
   constructor(public snackBar: MatSnackBar,
