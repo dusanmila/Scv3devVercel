@@ -39,8 +39,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("refreshToken", refreshToken);
 
         
-         let role = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        let role = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
+        let username = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+       
+        localStorage.setItem("username", username);
 
         if ( role === "Admin") {
           this.router.navigate(["/admin"]);
