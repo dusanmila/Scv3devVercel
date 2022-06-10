@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
 
   public LoginUser() {
-    this.http.post(`${AUTH_URL}/auths/login`, this.user, { headers: {} }).subscribe((data: any) => {
+    this.http.post(`${AUTH_URL}/auths/login`, this.user).subscribe((data: any) => {
 
       //console.log(data);
 

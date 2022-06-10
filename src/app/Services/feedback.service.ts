@@ -53,8 +53,7 @@ export class FeedbackService {
 
   public getUnresolvedFeedbacks(): Observable<Feedback[]> {
 
-
-
+    console.log("///////////////////////"+this.headers);
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
