@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { AuthorisationService } from 'src/app/Services/authorisation.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { USER_URL } from 'src/app/app.constants';
+import { AUTH_URL } from 'src/app/app.constants';
 //import { stringify } from 'querystring';
 //import { clearScreenDown } from 'readline';
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
 
   public LoginUser() {
-    this.http.post(`${USER_URL}/users/auths/login`, this.user, { headers: {} }).subscribe((data: any) => {
+    this.http.post(`${AUTH_URL}/auths/login`, this.user, { headers: {} }).subscribe((data: any) => {
 
       //console.log(data);
 
