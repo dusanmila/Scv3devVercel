@@ -254,18 +254,20 @@ export class ObjectComponent implements OnInit {
   }
 
   public createEmptyObjectStoreCheck(objectName: string, objectIdCompany: string) {
-    if (!this.resolveFeedbacks)
-    console.log('create empty object store check');
-    let osc: ObjectStoreCheckCreateDto = {
-      objectIdCompany: objectIdCompany,
-      username: "ppetrovic",
-      pdf: ""
+    if (!this.resolveFeedbacks) {
+      let username = localStorage.getItem("username") as string;
+      console.log('create empty object store check');
+      let osc: ObjectStoreCheckCreateDto = {
+        objectIdCompany: objectIdCompany,
+        username: username,
+        pdf: ""
+      }
+      console.log(osc);
+      this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
+        console.log(data);
+        this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
+      });
     }
-    console.log(osc);
-    this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-      console.log(data);
-      this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
-    });
   }
 
 }

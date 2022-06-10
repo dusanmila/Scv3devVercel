@@ -13,19 +13,25 @@
     font-size: 16px;
     flex-grow: 1;
 }
-.item2{
+
+.item2 {
     background-color: white;
     color: #39ace7;
     margin-bottom: 4%;
     border: 2px solid #39ace7;
-  }
+}
 
-  
-  button:hover {
+
+button:hover {
     color: #fff;
     background-color: #39ace7;
     transition: 0.3s;
 }
+
 button[disabled]:hover {
-   background-color: #fff;
+    background-color: #fff;
+}
+
+.mat-dialog-content {
+    overflow-y: hidden;
 }
