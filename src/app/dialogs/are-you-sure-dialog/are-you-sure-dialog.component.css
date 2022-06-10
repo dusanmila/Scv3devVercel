@@ -24,3 +24,7 @@ button:hover {
     background-color: #39ace7;
     transition: 0.3s;
 }
+
+.mat-dialog-content {
+    overflow-y: hidden;
+}
