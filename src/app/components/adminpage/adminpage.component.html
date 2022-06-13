@@ -18,11 +18,9 @@
         </div>
 
         <div class="fadeIn second">
-          <a [routerLink]="['/login']">
-            <div class="item2">
-              Log out
-            </div>
-          </a>
+          <div class="item2" (click)="logout()">
+            Log out
+          </div>
         </div>
       </div>
 

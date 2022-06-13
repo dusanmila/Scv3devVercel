@@ -92,3 +92,7 @@ button[disabled]:hover {
 .mat-dialog-content {
   overflow-y: hidden;
 }
+
+.wrap {
+  height: 70px;
+}

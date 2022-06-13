@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
+import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
@@ -12,36 +14,53 @@ import { PositionService } from 'src/app/Services/position-service.service';
 })
 export class AdminpageComponent implements OnInit {
 
-  constructor(private objectService:ObjectService,private positionService:PositionService,public dialog:MatDialog) { }
+  constructor(private objectService: ObjectService, 
+    private positionService: PositionService, 
+    public dialog: MatDialog,
+    public router: Router) { }
 
   ngOnInit(): void {
   }
-objectsFile:any;
-positionsFile:any;
+  objectsFile: any;
+  positionsFile: any;
 
-uploadObjectsFile(event:any){
-  this.objectsFile=event.target.files[0];
-  console.log(event.target.files[0].name);
-  let formData = new FormData();
-formData.set('file',this.objectsFile);
+  uploadObjectsFile(event: any) {
+    this.objectsFile = event.target.files[0];
+    console.log(event.target.files[0].name);
+    let formData = new FormData();
+    formData.set('file', this.objectsFile);
 
-this.objectService.excelImport(formData);
-}
+    this.objectService.excelImport(formData);
+  }
 
-uploadPositionsFile(event:any){
-  this.positionsFile=event.target.files[0];
-  console.log(event.target.files[0].name);
-  let formData = new FormData();
-  formData.set('file',this.positionsFile);
+  uploadPositionsFile(event: any) {
+    this.positionsFile = event.target.files[0];
+    console.log(event.target.files[0].name);
+    let formData = new FormData();
+    formData.set('file', this.positionsFile);
 
-  this.positionService.excelImport(formData);
-}
+    this.positionService.excelImport(formData);
+  }
 
 
-public openDialog(flag:number) {
-  const dialogRef = this.dialog.open(AnalyticsdialogComponent);
-  dialogRef.componentInstance.flag = flag;
+  public openDialog(flag: number) {
+    const dialogRef = this.dialog.open(AnalyticsdialogComponent);
+    dialogRef.componentInstance.flag = flag;
 
-}
+  }
+
+  public logout() {
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    localStorage.setItem("jwt", "");
+    localStorage.setItem("refreshToken", "");
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        console.log(res)
+        if (res) {
+          this.router.navigate(['/login']);
+        }
+      }
+      )
+  }
 
 }
