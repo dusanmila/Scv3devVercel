@@ -214,6 +214,7 @@ export class ObjectComponent implements OnInit {
     else{
       const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address,city,retailer,objectFormat,requisitionDays,merchandiserRevisionDays } });
       dialogRef.componentInstance.flag = flag;
+      console.log(retailer?.retailerName);
       dialogRef.afterClosed()
         .subscribe(res => {
           if (res === 1) {

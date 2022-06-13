@@ -4,8 +4,9 @@
  export const FEEDBACK_URL = 'http://localhost:8088/api';
  export const OBJECT_URL = 'http://localhost:8089/api';
 
-//export const STORE_CHECK_URL = 'https://microservicestorecheck.azurewebsites.net/api';
-//export const USER_URL = 'https://microserviceuser.azurewebsites.net/user';
-//export const POSITION_URL = 'https://microserviceposition.azurewebsites.net/api';
-//export const FEEDBACK_URL = 'https://microservicefeedback20220523153422.azurewebsites.net/api';
-//export const OBJECT_URL = 'https://microserviceuser.azurewebsites.net/api';
+ /*
+export const STORE_CHECK_URL = 'https://microservicestorecheck.azurewebsites.net/api';
+export const USER_URL = 'https://microserviceuser.azurewebsites.net/user';
+export const POSITION_URL = 'https://microserviceposition.azurewebsites.net/api';
+export const FEEDBACK_URL = 'https://microservicefeedback20220523153422.azurewebsites.net/api';
+export const OBJECT_URL = 'https://microserviceuser.azurewebsites.net/api';*/

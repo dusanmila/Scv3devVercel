@@ -64,7 +64,7 @@
     <input matInput placeholder = "Merchandiser" [(ngModel)]="data.merchandiser" name = "merchandiser" [disabled]="flag==3" required/>
   </mat-form-field>
 </div>-->
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
     <mat-select [(ngModel)]="data.kam" placeholder="KAM" name="KAM" required>
       <mat-option *ngFor="let user of users" [value]="user.username">
@@ -73,7 +73,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
     <mat-select [(ngModel)]="data.merchandiser" placeholder="Merchandiser" name="Merchandiser" required>
       <mat-option *ngFor="let user of users" [value]="user.username">
@@ -82,7 +82,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
     <mat-select [(ngModel)]="data.director" placeholder="Director" name="Director" required>
       <mat-option *ngFor="let user of users" [value]="user.username">
@@ -91,7 +91,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
     <mat-select [(ngModel)]="data.commercialist" placeholder="Commercialist" name="Commercialist" required>
       <mat-option *ngFor="let user of users" [value]="user.username">
@@ -100,7 +100,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
     <mat-select [(ngModel)]="data.supervisor" placeholder="Supervisor" name="Supervisor" required>
       <mat-option *ngFor="let user of users" [value]="user.username">
@@ -117,67 +117,67 @@
     <input matInput placeholder = "RequisitionDays" [(ngModel)]="data.requisitionDays" name = "requisitionDays" [disabled]="flag==3 || flag==4" required/>
   </mat-form-field>
 </div>
-<div class="form">
+<div class="form" >
   <mat-form-field>
     <input matInput placeholder = "MerchandiserRevisionDays" [(ngModel)]="data.merchandiserRevisionDays" name = "merchandiserRevisionDays" [disabled]="flag==3 || flag==4" required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "CompanyShelfSpaceM" [(ngModel)]="data.objectInfo.companyShelfSpaceM" name = "companyShelfSpaceM" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "CompanyShelfSpaceM" [(ngModel)]="data.objectInfo.companyShelfSpaceM" name = "companyShelfSpaceM" [disabled]="flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "CompanyShelfSpacePercent" [(ngModel)]="data.objectInfo.companyShelfSpacePercent" name = "companyShelfSpacePercent" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "CompanyShelfSpacePercent" [(ngModel)]="data.objectInfo.companyShelfSpacePercent" name = "companyShelfSpacePercent" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "Gainings12Mrsd" [(ngModel)]="data.objectInfo.gainings12Mrsd" name = "gainings12Mrsd" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "Gainings12Mrsd" [(ngModel)]="data.objectInfo.gainings12Mrsd" name = "gainings12Mrsd" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "GainingsVs12Mpercent" [(ngModel)]="data.objectInfo.gainingsVs12mpercent" name = "gainingsVs12mpercent" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "GainingsVs12Mpercent" [(ngModel)]="data.objectInfo.gainingsVs12mpercent" name = "gainingsVs12mpercent" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "RegistersNumber" [(ngModel)]="data.objectInfo.registersNumber" name = "registersNumber" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "RegistersNumber" [(ngModel)]="data.objectInfo.registersNumber" name = "registersNumber" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "ShelfSpaceM" [(ngModel)]="data.objectInfo.shelfSpaceM" name = "shelfSpaceM" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "ShelfSpaceM" [(ngModel)]="data.objectInfo.shelfSpaceM" name = "shelfSpaceM" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "WDpercentCustomer" [(ngModel)]="data.objectInfo.wdpercentCustomer" name = "wdpercentCustomer" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "WDpercentCustomer" [(ngModel)]="data.objectInfo.wdpercentCustomer" name = "wdpercentCustomer" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "WDpercentSector" [(ngModel)]="data.objectInfo.wdpercentSector" name = "wdpercentSector" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "WDpercentSector" [(ngModel)]="data.objectInfo.wdpercentSector" name = "wdpercentSector" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "WDpercentSerbia" [(ngModel)]="data.objectInfo.wdpercentSerbia" name = "wdpercentSerbia" [disabled]="flag==3 || flag==4" required/>
+    <input matInput placeholder = "WDpercentSerbia" [(ngModel)]="data.objectInfo.wdpercentSerbia" name = "wdpercentSerbia" [disabled]=" flag==4"  required/>
   </mat-form-field>
 </div>
 
-<div class="form">
+<div class="form" *ngIf="flag!=4">
   <mat-form-field>
     <input matInput placeholder = "AssortmentModule" [(ngModel)]="data.objectInfo.assortmentModule" name = "assortmentModule"  required/>
   </mat-form-field>
