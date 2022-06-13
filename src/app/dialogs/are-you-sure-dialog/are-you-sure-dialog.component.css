@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 120px;
+    height: 150px;
 }
 
 .form {
@@ -25,5 +25,8 @@ button:hover {
     color: #fff;
     background-color: #39ace7;
     transition: 0.3s;
+}
+.wrap{
+    height: 90px;
 }
 
