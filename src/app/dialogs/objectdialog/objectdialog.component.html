@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 mat-dialog-title *ngIf="flag == 1">Add object</h3>
+
   <h3 mat-dialog-title *ngIf="flag == 2">Update object: {{data.objectName}}</h3>
   <h3 mat-dialog-title *ngIf="flag == 3">Delete object: {{data.objectName}}</h3>
   <h3 mat-dialog-title *ngIf="flag == 4">{{data.objectName}} - object details:</h3>
@@ -179,7 +179,7 @@
 
 <div class="form" *ngIf="flag!=4">
   <mat-form-field>
-    <input matInput placeholder = "AssortmentModule" [(ngModel)]="data.objectInfo.assortmentModule" name = "assortmentModule"  required/>
+    <input matInput placeholder = "AssortmentModule" [(ngModel)]="data.objectInfo.assortmentModule" name = "assortmentModule" [disabled]=" flag==4" required/>
   </mat-form-field>
 </div>
 </div>
@@ -187,8 +187,8 @@
 
 
 <div mat-dialog-actions>
-  <!--<button mat-button class="item2" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>
-  <button mat-button class="item2" *ngIf="flag == 2" type="submit" [mat-dialog-close]="1"(click)="update()" [disabled]="!formControl.valid">Ok</button>-->
+  <!--<button mat-button class="item2" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>-->
+  <button mat-button class="item2" *ngIf="flag == 2" type="submit" [mat-dialog-close]="1"(click)="update()" [disabled]="!formControl.valid">Ok</button>
   <button mat-button class="item2" *ngIf="flag == 3" type="submit" [mat-dialog-close]="1"(click)="delete()">Delete</button>
   <button mat-button class="item2" (click)="close()">Close</button>
 </div>
