@@ -18,6 +18,7 @@
     color: #39ace7;
     margin-bottom: 6.4%;
     border: 2px solid #39ace7;
+    margin-bottom: 10px;
 }
 
 button:hover {
@@ -26,6 +27,3 @@ button:hover {
     transition: 0.3s;
 }
 
-.mat-dialog-content {
-    overflow-y: hidden;
-}
