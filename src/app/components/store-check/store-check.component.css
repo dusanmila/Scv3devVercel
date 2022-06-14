@@ -23,8 +23,9 @@ a {
 .item {
     background-color: #39ace7;
     color: #fff;
-    width: 60%;
-    height: 40%;
+    width: 600px;
+    max-width: 90%;
+    height: 200px;
     line-height: 200px;
     text-align: center;
     border-radius: 10px;

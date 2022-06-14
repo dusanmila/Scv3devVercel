@@ -1,5 +1,21 @@
 /*@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  max-width: 100%;
+}
+
+.form {
+  display: flex;
+}
+
+.mat-form-field {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
 .test{
     background-color: white;
     color: #39ace7;
@@ -20,4 +36,8 @@ h3{
 }
 button[disabled]:hover {
    background-color: #fff;
+}
+
+.wrap {
+  margin-top: 10px;
 }
