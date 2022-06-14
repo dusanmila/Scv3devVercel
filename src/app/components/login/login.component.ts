@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.http.post(`${AUTH_URL}/auths/login`, this.user).subscribe((data: any) => {
 
 
-      console.log(data);
+      console.log(data.status);
 
      // const helper = new JwtHelperService();
 
@@ -66,6 +66,8 @@ export class LoginComponent implements OnInit {
       {
 this.isLoginFailed=true;
       }
-    });
+    }, (e: HttpErrorResponse) => {if(e.status == 401){
+this.isLoginFailed=true;
+    }});
   }
 }
