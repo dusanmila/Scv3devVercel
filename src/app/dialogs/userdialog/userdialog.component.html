@@ -28,6 +28,11 @@
     </div>
     <div class="form">
       <mat-form-field>
+        <input matInput placeholder="Password" type="password" [(ngModel)]="data.password" name="password" [disabled]="flag==3" required />
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
         <input matInput placeholder="UserType" [(ngModel)]="data.userType" name="userType" [disabled]="flag==3"
           required />
       </mat-form-field>
