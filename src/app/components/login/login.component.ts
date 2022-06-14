@@ -27,23 +27,31 @@ export class LoginComponent implements OnInit {
 
 
   public LoginUser() {
+
+
+    if(this.isLoginFailed!=false){
+      this.isLoginFailed=false;
+    }
+
+
     this.http.post(`${AUTH_URL}/auths/login`, this.user).subscribe((data: any) => {
 
-      //console.log(data);
+
+      console.log(data);
 
      // const helper = new JwtHelperService();
 
-      if (data.token !== undefined) {
+      if (data.token !== null) {
         const token = data.token;
         const refreshToken = data.refreshToken;
         localStorage.setItem("jwt", token);
         localStorage.setItem("refreshToken", refreshToken);
 
-        
+
         let role = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
         let username = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-       
+
         localStorage.setItem("username", username);
 
         if ( role === "Admin") {
@@ -53,7 +61,10 @@ export class LoginComponent implements OnInit {
         else{
           this.router.navigate(["/storeCheck"]);
         }
-        
+
+      }else
+      {
+this.isLoginFailed=true;
       }
     });
   }

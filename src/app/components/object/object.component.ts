@@ -206,7 +206,21 @@ export class ObjectComponent implements OnInit {
   }*/
 
   public updateObject() {
-    this.objectService.updateObject(this.object).subscribe(data => {
+    this.objectCreateDto.objectIdRetail=this.object.objectIdRetail;
+this.objectCreateDto.retailer=this.object.retailer.retailerName;
+this.objectCreateDto.objectIdCompany=this.object.objectIdCompany;
+this.objectCreateDto.objectFormat=this.object.objectFormat;
+this.objectCreateDto.objectName=this.object.objectName;
+this.objectCreateDto.city=this.object.city;
+this.objectCreateDto.address=this.object.address;
+this.objectCreateDto.kam=this.object.kam.username;
+this.objectCreateDto.director=this.object.director.username;
+this.objectCreateDto.supervisor=this.object.commercialist.username;
+this.objectCreateDto.merchandiser=this.object.merchandiser.username;
+this.objectCreateDto.merchandiserRevisionDays=this.object.merchandiserRevisionDays;
+this.objectCreateDto.requisitionDays=this.object.requisitionDays;
+this.objectCreateDto.objectInfo=this.object.objectInfo;
+    this.objectService.updateObject(this.objectCreateDto).subscribe(data => {
       console.log(data);
     });
   }
@@ -223,10 +237,13 @@ export class ObjectComponent implements OnInit {
   public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?:string,city?:string,retailer?:Retailer,objectFormat?:string,requisitionDays?:string,merchandiserRevisionDays?:string) {
     if(flag==1){
       const dialogRef = this.dialog.open(ObjectCreateDialogComponent,{data: this.objectCreateDto});
+
     }
     else{
+
       const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address,city,retailer,objectFormat,requisitionDays,merchandiserRevisionDays } });
       dialogRef.componentInstance.flag = flag;
+
       dialogRef.afterClosed()
         .subscribe(res => {
           if (res === 1) {
@@ -236,6 +253,11 @@ export class ObjectComponent implements OnInit {
         )
     }
 
+  }
+
+  public openUpdateDialog(data:Obj){
+    const dialogRef = this.dialog.open(ObjectDialogComponent,{data: data});
+    dialogRef.componentInstance.flag=2;
   }
 
   public applyFilter(event: Event) {

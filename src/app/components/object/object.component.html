@@ -31,9 +31,9 @@
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <button mat-icon-button color="primary" *ngIf="isAdmin">
+        <button mat-icon-button color="primary" >
           <mat-icon area-label="Edit"
-            (click)="openDialog(2,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+            (click)="openUpdateDialog(row)">
             edit </mat-icon>
         </button>
 
@@ -70,7 +70,7 @@
     <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
     </mat-progress-spinner>
   </div>
- 
+
 
 
   <div class="detail-search">

@@ -21,6 +21,9 @@ export class ObjectService {
  // private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
   private readonly excelAddress = "https://microserviceobject.azurewebsites.net/api/objectExcels";
   private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
+
+
+
   public getObjects(page: number, count: number, search: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("page", page);
@@ -115,9 +118,13 @@ export class ObjectService {
     });
   }
 
-  public updateObject(object: Obj): Observable<Obj> {
-    let retval$ = new Subject<Obj>();
-    this.http.put<Obj>(`${OBJECT_URL}/objects`, object,{headers:this.headers}).subscribe((helper: Obj) => {
+  public updateObject(object: ObjectCreateDto): Observable<ObjectCreateDto> {
+
+console.log(object.kam);
+console.log(object.commercialist);
+
+    let retval$ = new Subject<ObjectCreateDto>();
+    this.http.put<ObjectCreateDto>(`${OBJECT_URL}/objects`, object,{headers:this.headers}).subscribe((helper: ObjectCreateDto) => {
       retval$.next(helper);
       //dal radi samo objects dve linije iznad?
     });
