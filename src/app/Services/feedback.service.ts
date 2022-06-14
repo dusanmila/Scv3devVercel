@@ -39,7 +39,7 @@ export class FeedbackService {
   public getResolvedFeedbacks(): Observable<Feedback[]> {
 
     let retval$ = new Subject<Feedback[]>();
-
+   
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
     this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks`,{headers:this.headers}).subscribe((feedbacks: Feedback[]) => {
 
@@ -53,8 +53,7 @@ export class FeedbackService {
 
   public getUnresolvedFeedbacks(): Observable<Feedback[]> {
 
-
-
+    
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
@@ -68,7 +67,6 @@ export class FeedbackService {
   }
   public getUnresolvedFeedbacksByObject(objectName: string) {
     let retval$ = new Subject<Feedback[]>();
-
 
     // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
     this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/unresolvedFeedbacks/${objectName}`,{headers:this.headers}).subscribe((feedbacks: Feedback[]) => {

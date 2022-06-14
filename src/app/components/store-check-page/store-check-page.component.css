@@ -1,9 +1,14 @@
+.container {
+    overflow-x: hidden;
+}
+
 .header {
     background-color: #56baed;
     color: #fff;
     width: 100%;
-    padding: 10px;
+    /* padding: 10px; */
     text-align: center;
+    padding: 10px 0;
 }
 
 .margintop {
@@ -38,8 +43,8 @@ button {
     width: 400px;
     text-align: left;
     margin: 0 auto;
-    max-width: 100%;
-    padding: 0 5px;
+    max-width: 90%;
+    /* padding: 0 5px; */
 }
 
 .header .obj-info ul {
@@ -49,6 +54,11 @@ button {
 
 .header .obj-info ul li {
     margin-top: 10px;
+}
+
+.object-info-tables {
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .object-info-tables table {
@@ -79,7 +89,7 @@ td {
     width: 100%;
     background-color: #fff;
     text-align: center;
-    margin-left: -5px;
+    /* margin-left: 10px; */
 }
 
 .main h3 {
@@ -292,7 +302,7 @@ td {
 }
 
 .item2:hover {
-    background-color: #fff;
-    color: #39ace7;
+    background-color: #39ace7;
+    color: #fff;
     transition: 0.3s;
 }

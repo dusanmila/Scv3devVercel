@@ -39,7 +39,8 @@ export class ChooseObjectComponent implements OnInit {
   }
 
   public loadStoreCheck() {
-    this.storeCheckService.getUnfinishedStoreCheckByUsername("ppetrovic").subscribe(data => {
+    let username = localStorage.getItem("username") as string;
+    this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
       this.storeCheck = data;
       if (!this.storeCheck) {
         this.createEmptyStoreCheck();
@@ -49,8 +50,9 @@ export class ChooseObjectComponent implements OnInit {
 
   public createEmptyStoreCheck() {
     console.log('create empty store check');
+    let username = localStorage.getItem("username") as string;
     let sc: StoreCheck = {
-      username: "ppetrovic",
+      username: username,
       date: new Date(Date.now()),
       finished: false
     }

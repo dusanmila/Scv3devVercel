@@ -1,4 +1,4 @@
-<div class="fadeInDown">
+<div class="container fadeInDown">
 
     <div class="header fadeIn first">
         <div class="head">
@@ -13,12 +13,12 @@
                     <li>Retailer: {{ object.retailer.retailerName }}</li>
                     <li>Assortment module: {{ object.objectInfo.assortmentModule }}</li>
                     <li>Number of registers: {{ object.objectInfo.registersNumber }}</li>
-                    <li>Director: {{ object.director.firstName }} {{ object.director.lastName }}</li>
+                    <!-- <li>Director: {{ object.director.firstName }} {{ object.director.lastName }}</li>
                     <li>Commercialist: {{ object.commercialist.firstName }} {{ object.commercialist.lastName }}</li>
                     <li>Supervisor: {{ object.supervisor.firstName }} {{ object.supervisor.lastName }}</li>
                     <li>Director: {{ object.merchandiser.firstName }} {{ object.merchandiser.lastName }}</li>
                     <li>Requisition days: {{ object.requisitionDays }}</li>
-                    <li>Merchandiser revision days: {{ object.merchandiserRevisionDays }}</li>
+                    <li>Merchandiser revision days: {{ object.merchandiserRevisionDays }}</li> -->
                 </ul>
             </div>
             <div class="object-info-tables">
@@ -68,7 +68,7 @@
             (showFinishButton)="enableFinishButton($event)"></app-position>
         <div class="margintop">
 
-            <button class="item2" (click)="addToStoreCheck()">Add To Store Check</button>
+            <button class="item2" (click)="addToStoreCheck()" *ngIf="showFinishButton && !resolveFeedbacks">Add To Store Check</button>
 
             <button class="item2" (click)="exit()">Exit</button>
 

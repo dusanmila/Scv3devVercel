@@ -15,11 +15,11 @@ export class UserService {
 
   private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
   
-  // private readonly adress ="http://localhost:8083/user";
-  // private readonly userAdress ="http://localhost:8086/api/users";
+   private readonly adress ="http://localhost:8083/user";
+   private readonly userAdress ="http://localhost:8086/api/users";
 
-  private readonly adress = "https://microserviceuser.azurewebsites.net/user";
-  private readonly userAdress = "https://microserviceuser.azurewebsites.net/api/users";
+  //private readonly adress = "https://microserviceuser.azurewebsites.net/user";
+  //private readonly userAdress = "https://microserviceuser.azurewebsites.net/api/users";
 
   public getUsers(): Observable<User[]> {
 

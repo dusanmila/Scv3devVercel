@@ -28,7 +28,8 @@ export class EmailDialogComponent implements OnInit {
 
   public send() {
     console.log(this.emailsForSending);
-    this.sotreCheckService.finishStoreCheck("ppetrovic", this.emailsForSending).subscribe(data => {
+    let username = localStorage.getItem("username") as string;
+    this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
       console.log(data);
     });
   }

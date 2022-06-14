@@ -22,7 +22,6 @@ export class StoreCheckPageComponent implements OnInit {
   public objectName: string = "Objekat1";
   public object: Obj;
   public objectStoreCheck: ObjectStoreCheck;
-  public username: string = "ppetrovic";
   public positions: Position[];
   public showDetails: boolean = false;
   public resolveFeedbacks: boolean = false;
@@ -50,22 +49,23 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   @HostListener('window:popstate', ['$event'])
-  onPopState(event:Event) {
+  onPopState(event: Event) {
 
-          this.router.navigate(['/chooseObject/' + this.workModel]);
-          if (!this.resolveFeedbacks) {
-            // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
-            //   console.log(data);
-            // });
-          }
+    this.router.navigate(['/chooseObject/' + this.workModel]);
+    if (!this.resolveFeedbacks) {
+      // let username = localStorage.getItem("username") as string;
+      // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
+      //   console.log(data);
+      // });
+    }
 
   }
 
   public getOneObject() {
     this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
       this.object = data;
-      if (!this.resolveFeedbacks)
-        this.createEmptyObjectStoreCheck();
+      // if (!this.resolveFeedbacks)
+      //   this.createEmptyObjectStoreCheck();
       console.log(this.object);
     });
   }
@@ -87,16 +87,18 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   public finishObjectStoreCheck() {
-    this.objectStoreCheckService.finishObjectStoreCheck("ppetrovic").subscribe(data => {
+    let username = localStorage.getItem("username") as string;
+    this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
       console.log(data);
     });
   }
 
   public createEmptyObjectStoreCheck() {
     console.log('create empty object store check');
+    let username = localStorage.getItem("username") as string;
     let osc: ObjectStoreCheckCreateDto = {
       objectIdCompany: this.object.objectIdCompany,
-      username: "ppetrovic",
+      username: username,
       pdf: ""
     }
     this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
@@ -131,9 +133,10 @@ export class StoreCheckPageComponent implements OnInit {
           if (res) {
             this.router.navigate(['/chooseObject/' + this.workModel]);
             if (!this.resolveFeedbacks) {
-              // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck("ppetrovic").subscribe(data => {
-              //   console.log(data);
-              // });
+              let username = localStorage.getItem("username") as string;
+              this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
+                console.log(data);
+              });
             }
           }
         }

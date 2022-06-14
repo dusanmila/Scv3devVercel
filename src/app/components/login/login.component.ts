@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { AuthorisationService } from 'src/app/Services/authorisation.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { AUTH_URL } from 'src/app/app.constants';
 //import { stringify } from 'querystring';
 //import { clearScreenDown } from 'readline';
 
@@ -27,12 +28,14 @@ export class LoginComponent implements OnInit {
 
   public LoginUser() {
 
+
     if(this.isLoginFailed!=false){
       this.isLoginFailed=false;
     }
 
 
-    this.http.post("https://localhost:44323/api/auths/login", this.user, { headers: {} }).subscribe((data: any) => {
+    this.http.post(`${AUTH_URL}/auths/login`, this.user).subscribe((data: any) => {
+
 
       console.log(data);
 

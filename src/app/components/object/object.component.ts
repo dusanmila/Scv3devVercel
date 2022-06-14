@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { filter, Observable, Subscription } from 'rxjs';
 import { ObjectCreateDialogComponent } from 'src/app/dialogs/object-create-dialog/object-create-dialog.component';
 import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
@@ -11,6 +12,7 @@ import { ObjectCreateDto } from 'src/app/models/object';
 import { ObjectInfo } from 'src/app/models/objectInfo';
 import { ObjectStoreCheckCreateDto } from 'src/app/models/objectStoreCheck';
 import { Retailer } from 'src/app/models/retailer';
+import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { ObjectService } from 'src/app/Services/object.service';
 
 
@@ -39,6 +41,7 @@ export class ObjectComponent implements OnInit {
   public page: number = 1;
   public count: number = 5;
   public length: number = 100;
+  public resolveFeedbacks: boolean = false;
 
   objectInfo:ObjectInfo;
 
@@ -144,9 +147,19 @@ export class ObjectComponent implements OnInit {
     return this.dataSource;
   }
 
-  constructor(public objectService: ObjectService, public dialog: MatDialog) { }
+  constructor(public objectService: ObjectService, 
+    public dialog: MatDialog,
+    public router: Router,
+    public activatedRoute: ActivatedRoute,
+    public objectStoreCheckService: ObjectStoreCheckService) { }
 
   ngOnInit(): void {
+    this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
+    if (this.workModel == "addStoreCheck") {
+      this.resolveFeedbacks = false;
+    } else if (this.workModel == "resolveFeedbacks") {
+      this.resolveFeedbacks = true;
+    }
 
     //this.loadData();
     // this.objectService.getObjectsByString('ste').subscribe(data => {
@@ -260,6 +273,23 @@ this.objectCreateDto.objectInfo=this.object.objectInfo;
 
   public setSearchClicked(){
     this.searchClicked=true;
+  }
+
+  public createEmptyObjectStoreCheck(objectName: string, objectIdCompany: string) {
+    if (!this.resolveFeedbacks) {
+      let username = localStorage.getItem("username") as string;
+      console.log('create empty object store check');
+      let osc: ObjectStoreCheckCreateDto = {
+        objectIdCompany: objectIdCompany,
+        username: username,
+        pdf: ""
+      }
+      console.log(osc);
+      this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
+        console.log(data);
+        this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
+      });
+    }
   }
 
 }

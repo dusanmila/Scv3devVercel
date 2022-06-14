@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
+import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
+import { Router } from '@angular/router';
 
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
@@ -12,7 +14,7 @@ import { PositionService } from 'src/app/Services/position-service.service';
 })
 export class AdminpageComponent implements OnInit {
 
-  constructor(private objectService:ObjectService,private positionService:PositionService,public dialog:MatDialog) { }
+  constructor(private objectService:ObjectService,private positionService:PositionService,public dialog:MatDialog, public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +44,18 @@ public openDialog(flag:number) {
   const dialogRef = this.dialog.open(AnalyticsdialogComponent);
   dialogRef.componentInstance.flag = flag;
 
+}
+public logout() {
+  const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+  localStorage.setItem("jwt", "");
+  localStorage.setItem("refreshToken", "");
+  dialogRef.afterClosed()
+    .subscribe(res => {
+      if (res) {
+        this.router.navigate(['/login']);
+      }
+    }
+  )
 }
 
 }

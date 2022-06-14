@@ -3,5 +3,5 @@ export interface User {
     lastName: string
     username: string
     email: string
-    userType: string
+    UserType: string
   }

@@ -60,9 +60,9 @@ isLoading=true;
   public loadPositionsByObject() {
     this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
       this.positions = data;
-      if (!this.resolveFeedbacks) {
-        this.uncheckPositions();
-      }
+      // if (!this.resolveFeedbacks) {
+      //   this.uncheckPositions();
+      // }
       this.dataSource = new MatTableDataSource(this.positions);
      this.isLoading=false;
     });
