@@ -3,8 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
-
-import { Router } from '@angular/router';
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 
