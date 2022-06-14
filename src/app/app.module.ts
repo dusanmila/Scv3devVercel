@@ -64,6 +64,7 @@ import { DatePipe } from '@angular/common';
 import { ObjectCreateDialogComponent } from './dialogs/object-create-dialog/object-create-dialog.component';
 
 import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
+import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
 
 
 
@@ -91,7 +92,8 @@ import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you
     AnalyticsdialogComponent,
     PositionDialogComponent,
     ObjectCreateDialogComponent,
-    AreYouSureDialogComponent
+    AreYouSureDialogComponent,
+    UnfinishedObjectStoreCheckDialogComponent
 
   ],
   imports: [

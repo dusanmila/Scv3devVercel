@@ -7,6 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { filter, Observable, Subscription } from 'rxjs';
 import { ObjectCreateDialogComponent } from 'src/app/dialogs/object-create-dialog/object-create-dialog.component';
 import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
+import { UnfinishedObjectStoreCheckDialogComponent } from 'src/app/dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
 import { Obj } from 'src/app/models/object';
 import { ObjectCreateDto } from 'src/app/models/object';
 import { ObjectInfo } from 'src/app/models/objectInfo';
@@ -26,7 +27,7 @@ export class ObjectComponent implements OnInit {
   displayedColumns = ["objectName", "address", "actions"];
   dataSource: MatTableDataSource<Obj>;
   subscription: Subscription;
-  isLoading=false;
+  isLoading = false;
 
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
@@ -43,12 +44,12 @@ export class ObjectComponent implements OnInit {
   public length: number = 100;
   public resolveFeedbacks: boolean = false;
 
-  objectInfo:ObjectInfo;
+  objectInfo: ObjectInfo;
 
 
   search: string = "";
 
-  searchClicked: boolean=false;
+  searchClicked: boolean = false;
 
   // private _objects: Obj[] = [];
   public object: Obj = {
@@ -147,7 +148,7 @@ export class ObjectComponent implements OnInit {
     return this.dataSource;
   }
 
-  constructor(public objectService: ObjectService, 
+  constructor(public objectService: ObjectService,
     public dialog: MatDialog,
     public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -197,51 +198,51 @@ export class ObjectComponent implements OnInit {
       console.log(data);
     });
   }
-/*
-  public createObject() {
-    console.log(this.object);
-    this.objectService.createObject(this.object).subscribe(data => {
-      console.log(data);
-    });
-  }*/
+  /*
+    public createObject() {
+      console.log(this.object);
+      this.objectService.createObject(this.object).subscribe(data => {
+        console.log(data);
+      });
+    }*/
 
   public updateObject() {
-    this.objectCreateDto.objectIdRetail=this.object.objectIdRetail;
-this.objectCreateDto.retailer=this.object.retailer.retailerName;
-this.objectCreateDto.objectIdCompany=this.object.objectIdCompany;
-this.objectCreateDto.objectFormat=this.object.objectFormat;
-this.objectCreateDto.objectName=this.object.objectName;
-this.objectCreateDto.city=this.object.city;
-this.objectCreateDto.address=this.object.address;
-this.objectCreateDto.kam=this.object.kam.username;
-this.objectCreateDto.director=this.object.director.username;
-this.objectCreateDto.supervisor=this.object.commercialist.username;
-this.objectCreateDto.merchandiser=this.object.merchandiser.username;
-this.objectCreateDto.merchandiserRevisionDays=this.object.merchandiserRevisionDays;
-this.objectCreateDto.requisitionDays=this.object.requisitionDays;
-this.objectCreateDto.objectInfo=this.object.objectInfo;
+    this.objectCreateDto.objectIdRetail = this.object.objectIdRetail;
+    this.objectCreateDto.retailer = this.object.retailer.retailerName;
+    this.objectCreateDto.objectIdCompany = this.object.objectIdCompany;
+    this.objectCreateDto.objectFormat = this.object.objectFormat;
+    this.objectCreateDto.objectName = this.object.objectName;
+    this.objectCreateDto.city = this.object.city;
+    this.objectCreateDto.address = this.object.address;
+    this.objectCreateDto.kam = this.object.kam.username;
+    this.objectCreateDto.director = this.object.director.username;
+    this.objectCreateDto.supervisor = this.object.commercialist.username;
+    this.objectCreateDto.merchandiser = this.object.merchandiser.username;
+    this.objectCreateDto.merchandiserRevisionDays = this.object.merchandiserRevisionDays;
+    this.objectCreateDto.requisitionDays = this.object.requisitionDays;
+    this.objectCreateDto.objectInfo = this.object.objectInfo;
     this.objectService.updateObject(this.objectCreateDto).subscribe(data => {
       console.log(data);
     });
   }
 
   public searchByString(): void {
-    this.isLoading=true;
+    this.isLoading = true;
     this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
 
       this.dataSource = new MatTableDataSource<Obj>(data);
-      this.isLoading=false;
+      this.isLoading = false;
     });
   }
 
-  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?:string,city?:string,retailer?:Retailer,objectFormat?:string,requisitionDays?:string,merchandiserRevisionDays?:string) {
-    if(flag==1){
-      const dialogRef = this.dialog.open(ObjectCreateDialogComponent,{data: this.objectCreateDto});
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string) {
+    if (flag == 1) {
+      const dialogRef = this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
 
     }
-    else{
+    else {
 
-      const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address,city,retailer,objectFormat,requisitionDays,merchandiserRevisionDays } });
+      const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address, city, retailer, objectFormat, requisitionDays, merchandiserRevisionDays } });
       dialogRef.componentInstance.flag = flag;
 
       dialogRef.afterClosed()
@@ -255,9 +256,9 @@ this.objectCreateDto.objectInfo=this.object.objectInfo;
 
   }
 
-  public openUpdateDialog(data:Obj){
-    const dialogRef = this.dialog.open(ObjectDialogComponent,{data: data});
-    dialogRef.componentInstance.flag=2;
+  public openUpdateDialog(data: Obj) {
+    const dialogRef = this.dialog.open(ObjectDialogComponent, { data: data });
+    dialogRef.componentInstance.flag = 2;
   }
 
   public applyFilter(event: Event) {
@@ -271,13 +272,14 @@ this.objectCreateDto.objectInfo=this.object.objectInfo;
     this.detailSearch = !this.detailSearch;
   }
 
-  public setSearchClicked(){
-    this.searchClicked=true;
+  public setSearchClicked() {
+    this.searchClicked = true;
   }
 
   public createEmptyObjectStoreCheck(objectName: string, objectIdCompany: string) {
     if (!this.resolveFeedbacks) {
       let username = localStorage.getItem("username") as string;
+      // let username = "ppetrovic";
       console.log('create empty object store check');
       let osc: ObjectStoreCheckCreateDto = {
         objectIdCompany: objectIdCompany,
@@ -288,6 +290,32 @@ this.objectCreateDto.objectInfo=this.object.objectInfo;
       this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
         console.log(data);
         this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
+      });
+    }
+  }
+
+  public getUnfinishedObjectStoreCheck(objectName: string, objectIdCompany: string) {
+    console.log('get unfinished object store check')
+    if (!this.resolveFeedbacks) {
+      let username = localStorage.getItem("username") as string;
+      // let username = "ppetrovic";
+      this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
+        console.log(data);
+        if (data) {
+          let newObjectName = data.object.objectName;
+          const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, {data: objectName});
+          dialogRef.afterClosed()
+            .subscribe(res => {
+              if (res) {
+                this.router.navigate(['/storeCheckPage', this.workModel, newObjectName]);
+              } else {
+                this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username);
+                this.createEmptyObjectStoreCheck(objectName, objectIdCompany);
+              }
+            });
+        } else {
+          this.createEmptyObjectStoreCheck(objectName, objectIdCompany);
+        }
       });
     }
   }
