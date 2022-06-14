@@ -31,7 +31,7 @@
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <button mat-icon-button color="primary" >
+        <button mat-icon-button color="primary" *ngIf="isAdmin">
           <mat-icon area-label="Edit"
             (click)="openUpdateDialog(row)">
             edit </mat-icon>
