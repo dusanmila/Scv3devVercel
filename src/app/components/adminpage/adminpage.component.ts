@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 
+import { Router } from '@angular/router';
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 
@@ -14,10 +15,9 @@ import { PositionService } from 'src/app/Services/position-service.service';
 })
 export class AdminpageComponent implements OnInit {
 
-  constructor(private objectService: ObjectService, 
-    private positionService: PositionService, 
-    public dialog: MatDialog,
-    public router: Router) { }
+
+  constructor(private objectService:ObjectService,private positionService:PositionService,public dialog:MatDialog, public router: Router) { }
+
 
   ngOnInit(): void {
   }
@@ -47,6 +47,7 @@ export class AdminpageComponent implements OnInit {
     const dialogRef = this.dialog.open(AnalyticsdialogComponent);
     dialogRef.componentInstance.flag = flag;
 
+
   }
 
   public logout() {
@@ -62,5 +63,6 @@ export class AdminpageComponent implements OnInit {
       }
       )
   }
+
 
 }
