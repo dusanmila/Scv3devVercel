@@ -22,7 +22,14 @@
                aria-describedby="lastNameHelp" placeholder="Enter your password">
 
 
-              <button class="fadeIn fourth" (click)="LoginUser()">Log in</button>
+              <button class="fadeIn fourth" (click)="LoginUser()" [disabled]="isLoading">Log in</button>
+
+           <div *ngIf="isLoading"
+    style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+    <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+
               <p *ngIf="isLoginFailed" style="color:red">Wrong username/password.</p>
 
               <div id="formFooter">

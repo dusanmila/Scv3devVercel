@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   user: { username: string, password: string } = { username: "", password: "" };
 
   isLoginFailed: boolean = false;
+  isLoading = false;
 
 
   constructor(private router: Router, public authorisation: AuthorisationService, private http: HttpClient) { }
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   public LoginUser() {
 
+    this.isLoading=true;
 
     if(this.isLoginFailed!=false){
       this.isLoginFailed=false;
@@ -37,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.http.post(`${AUTH_URL}/auths/login`, this.user).subscribe((data: any) => {
 
 
-      console.log(data);
+      console.log(data.status);
 
      // const helper = new JwtHelperService();
 
@@ -61,11 +63,15 @@ export class LoginComponent implements OnInit {
         else{
           this.router.navigate(["/storeCheck"]);
         }
-
       }else
       {
+
 this.isLoginFailed=true;
       }
-    });
+    }, (e: HttpErrorResponse) => {if(e.status == 401){
+      this.isLoading=false;
+this.isLoginFailed=true;
+    }});
+
   }
 }
