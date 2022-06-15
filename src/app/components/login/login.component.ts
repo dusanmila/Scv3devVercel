@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   user: { username: string, password: string } = { username: "", password: "" };
 
   isLoginFailed: boolean = false;
+  isLoading = false;
 
 
   constructor(private router: Router, public authorisation: AuthorisationService, private http: HttpClient) { }
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   public LoginUser() {
 
+    this.isLoading=true;
 
     if(this.isLoginFailed!=false){
       this.isLoginFailed=false;
@@ -61,13 +63,15 @@ export class LoginComponent implements OnInit {
         else{
           this.router.navigate(["/storeCheck"]);
         }
-
       }else
       {
+
 this.isLoginFailed=true;
       }
     }, (e: HttpErrorResponse) => {if(e.status == 401){
+      this.isLoading=false;
 this.isLoginFailed=true;
     }});
+
   }
 }
