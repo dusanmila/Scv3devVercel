@@ -67,6 +67,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     director: {
@@ -74,6 +75,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     supervisor: {
@@ -81,6 +83,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     commercialist: {
@@ -88,6 +91,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     merchandiser: {
@@ -95,6 +99,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     requisitionDays: "",
@@ -147,7 +152,7 @@ export class ObjectComponent implements OnInit {
     return this.dataSource;
   }
 
-  constructor(public objectService: ObjectService, 
+  constructor(public objectService: ObjectService,
     public dialog: MatDialog,
     public router: Router,
     public activatedRoute: ActivatedRoute,

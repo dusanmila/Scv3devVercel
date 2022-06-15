@@ -281,3 +281,7 @@ html {
   #icon {
     width:60%;
   }
+
+  .mat-spinner-color::ng-deep circle{
+    stroke: #56baed !important;
+    }
