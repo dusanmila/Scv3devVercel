@@ -17,19 +17,16 @@ import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.compon
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
-  {path:'feedback', component:FeedbackComponent},
-
-  {path:'user', component:UserComponent},
-
-  {path:'admin', component:AdminpageComponent},
-
-  {path:'position', component:PositionComponent},
-  {path:'object', component:ObjectComponent},
-  {path:'storeCheckPage/:workModel/:objectName',component:StoreCheckPageComponent},
-  {path:'storeCheck',component:StoreCheckComponent},
+  {path:'feedback', component:FeedbackComponent,canActivate: [AdminGuard]},
+  {path:'user', component:UserComponent,canActivate: [AdminGuard]},
+  {path:'admin', component:AdminpageComponent,canActivate: [AdminGuard]},
+  {path:'position', component:PositionComponent,canActivate: [AdminGuard]},
+  {path:'object', component:ObjectComponent,canActivate: [AdminGuard]},
+  {path:'storeCheckPage/:workModel/:objectName',component:StoreCheckPageComponent,canActivate: [AdminGuard]},
+  {path:'storeCheck',component:StoreCheckComponent,canActivate: [AdminGuard]},
   {path:'login',component:LoginComponent},
-  {path:'chooseObject/:workModel',component:ChooseObjectComponent},
-  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent}
+  {path:'chooseObject/:workModel',component:ChooseObjectComponent,canActivate: [AdminGuard]},
+  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent,canActivate: [AdminGuard]}
 
 ];
 
