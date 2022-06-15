@@ -1,0 +1,44 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    /* height: 150px; */
+}
+
+.form {
+    display: flex;
+}
+
+.mat-form-field {
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.test {
+    background-color: #fff;
+    color: #39ace7;
+    margin-bottom: 6.4%;
+    border: 2px solid #39ace7;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    color: #fff;
+    background-color: #39ace7;
+    transition: 0.3s;
+}
+.wrap{
+    height: 90px;
+}
+
+
+.mat-dialog-content {
+    overflow-y: hidden;
+}
+
+/* Otklanja sivu pozadinu sa dugmeta */
+button {
+    outline: none;
+}
+::ng-deep .mat-button-focus-overlay {
+    display: none;
+}

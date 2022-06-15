@@ -13,6 +13,14 @@ export class ObjectStoreCheckService {
   constructor(private http: HttpClient) { }
 
   private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+
+  public getUnfinishedObjectStoreCheckByUsername(username: string): Observable<ObjectStoreCheck> {
+    let retval$ = new Subject<ObjectStoreCheck>();
+    this.http.get<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/unfinishedObjectStoreCheckByUsername/${username}`, {headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
   
   public createObjectStoreCheck(osc: ObjectStoreCheckCreateDto) {
     let retval$ = new Subject<ObjectStoreCheck>();
@@ -23,8 +31,8 @@ export class ObjectStoreCheckService {
   }
 
   public finishObjectStoreCheck(username: string) {
-    let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {headers:this.headers}).subscribe((helper: StoreCheck) => {
+    let retval$ = new Subject<ObjectStoreCheck>();
+    this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
