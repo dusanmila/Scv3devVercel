@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
   {path:'feedback', component:FeedbackComponent,canActivate: [AdminGuard]},
   {path:'user', component:UserComponent,canActivate: [AdminGuard]},
-  {path:'admin', component:AdminpageComponent,canActivate: [AdminGuard]},
+  {path:'admin', component:AdminpageComponent,canActivate: [AdminGuard], data: {admin: true}},
   {path:'position', component:PositionComponent,canActivate: [AdminGuard]},
   {path:'object', component:ObjectComponent,canActivate: [AdminGuard]},
   {path:'storeCheckPage/:workModel/:objectName',component:StoreCheckPageComponent,canActivate: [AdminGuard]},
