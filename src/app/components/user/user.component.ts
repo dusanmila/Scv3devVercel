@@ -15,9 +15,9 @@ import { UserDialogComponent } from 'src/app/dialogs/userdialog/userdialog.compo
 })
 export class UserComponent implements OnInit {
 
-  user:User = {firstName: "", lastName: "", username: "", email: "", userType:""};
+  user:User = {firstName: "", lastName: "", username: "", email: "",password:"", userType:""};
 
-  selectedUser:User= {firstName: "", lastName: "", username: "", email: "", userType:""};
+  selectedUser:User= {firstName: "", lastName: "", username: "", email: "",password:"", userType:""};
 
   displayedColumns = ["firstName","lastName","username","email","userType","actions"];
 dataSource: MatTableDataSource<User>;

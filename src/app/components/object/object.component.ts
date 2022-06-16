@@ -68,6 +68,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     director: {
@@ -75,6 +76,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     supervisor: {
@@ -82,6 +84,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     commercialist: {
@@ -89,6 +92,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     merchandiser: {
@@ -96,6 +100,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
+      password:"",
       userType: ""
     },
     requisitionDays: "",

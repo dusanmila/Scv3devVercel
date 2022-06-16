@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import {
-  Event,
+  Event as RouterEvent,
   NavigationCancel,
   NavigationEnd,
   NavigationError,
@@ -16,26 +16,35 @@ import {
 })
 export class AppComponent {
   title = 'StoreCheckFront';
-  loading = false;
-
+  loading = true;
   constructor(private router: Router) {
-    this.router.events.subscribe((event: Event) => {
-      switch (true) {
-        case event instanceof NavigationStart: {
-          this.loading = true;
-          break;
-        }
-
-        case event instanceof NavigationEnd:
-        case event instanceof NavigationCancel:
-        case event instanceof NavigationError: {
-          this.loading = false;
-          break;
-        }
-        default: {
-          break;
-        }
-      }
+    router.events.subscribe((event: RouterEvent) => {
+      this.navigationInterceptor(event);
     });
+  }
+
+  // Shows and hides the loading spinner during RouterEvent changes
+  navigationInterceptor(event: RouterEvent): void {
+    if (event instanceof NavigationStart) {
+      this.loading = true;
     }
+    if (event instanceof NavigationEnd) {
+      setTimeout(() => { // here
+        this.loading = false;
+      }, 2000);
+    }
+
+    // Set loading state to false in both of the below events to hide the spinner in case a request fails
+    if (event instanceof NavigationCancel) {
+      setTimeout(() => { // here
+        this.loading = false;
+      }, 2000);
+    }
+    if (event instanceof NavigationError) {
+      setTimeout(() => { // here
+        this.loading = false;
+      }, 2000);
+    }
+
+}
 }
