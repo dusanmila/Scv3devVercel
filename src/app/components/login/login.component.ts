@@ -26,22 +26,22 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   public LoginUser() {
 
-    this.isLoading=true;
+    this.isLoading = true;
 
-    if(this.isLoginFailed!=false){
-      this.isLoginFailed=false;
+    if (this.isLoginFailed != false) {
+      this.isLoginFailed = false;
     }
 
 
-    this.http.post(`${AUTH_URL}/auths/login`, this.user).subscribe((data: any) => {
-
+    this.http.post(`${AUTH_URL}/auths/login`, this.user).subscribe(
+      
+      
+      (data: any) => {
 
       console.log(data.status);
-
-     // const helper = new JwtHelperService();
+      // const helper = new JwtHelperService();
 
       if (data.token !== null) {
         const token = data.token;
@@ -49,29 +49,30 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("jwt", token);
         localStorage.setItem("refreshToken", refreshToken);
 
-
         let role = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
 
         let username = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
 
         localStorage.setItem("username", username);
 
-        if ( role === "Admin") {
+        localStorage.setItem("role", role);
+//ovih 6 ispod msm da ne treba ako cu u adminguard
+        if (role === "Admin") {
           this.router.navigate(["/admin"]);
         }
-
-        else{
+        else {
           this.router.navigate(["/storeCheck"]);
         }
-      }else
-      {
+      } else {
 
-this.isLoginFailed=true;
+        this.isLoginFailed = true;
       }
-    }, (e: HttpErrorResponse) => {if(e.status == 401){
-      this.isLoading=false;
-this.isLoginFailed=true;
-    }});
+    }, (e: HttpErrorResponse) => {
+      if (e.status == 401) {
+        this.isLoading = false;
+        this.isLoginFailed = true;
+      }
+    });
 
   }
 }

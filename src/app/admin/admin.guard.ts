@@ -10,12 +10,13 @@ import { AuthenticatedResponse } from '../models/authenticatedResponse';
 })
 export class AdminGuard implements CanActivate {
  
-  constructor(private router:Router, private jwtHelper: JwtHelperService, private http: HttpClient){}
+  constructor(private router:Router, private http: HttpClient){}
   
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const jwtHelper = new JwtHelperService();
     const token = localStorage.getItem("jwt");
-    if (token !== null && !this.jwtHelper.isTokenExpired(token)){
-      console.log(this.jwtHelper.decodeToken(token))
+    if (token !== null && !jwtHelper.isTokenExpired(token)){
+      console.log(jwtHelper.decodeToken(token))
       return true;
     }
     const isRefreshSuccess = await this.tryRefreshingTokens(token!); 
@@ -24,7 +25,23 @@ export class AdminGuard implements CanActivate {
     }
     return isRefreshSuccess;
   }
-  
+
+  async canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const jwtHelper = new JwtHelperService();
+    const token = localStorage.getItem("jwt");
+    const role = localStorage.getItem("role");
+
+    if (token !== null && !jwtHelper.isTokenExpired(token) && role=="Admin"){
+      console.log(jwtHelper.decodeToken(token))
+      return true;
+    }
+    const isRefreshSuccess = await this.tryRefreshingTokens(token!); 
+    if (!isRefreshSuccess) { 
+      this.router.navigate(["login"]); 
+    }
+    return isRefreshSuccess;
+  }
+
   private async tryRefreshingTokens(token: string): Promise<boolean> {
     const refreshToken: string | null = localStorage.getItem("refreshToken");
     if (!token || !refreshToken) { 
