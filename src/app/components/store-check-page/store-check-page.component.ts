@@ -53,10 +53,10 @@ export class StoreCheckPageComponent implements OnInit {
 
     this.router.navigate(['/chooseObject/' + this.workModel]);
     if (!this.resolveFeedbacks) {
-      // let username = localStorage.getItem("username") as string;
-      // this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
-      //   console.log(data);
-      // });
+      let username = localStorage.getItem("username") as string;
+      this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
+        console.log(data);
+      });
     }
 
   }
@@ -133,6 +133,7 @@ export class StoreCheckPageComponent implements OnInit {
           if (res) {
             this.router.navigate(['/chooseObject/' + this.workModel]);
             if (!this.resolveFeedbacks) {
+              // let username = "ppetrovic";
               let username = localStorage.getItem("username") as string;
               this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
                 console.log(data);
@@ -142,6 +143,11 @@ export class StoreCheckPageComponent implements OnInit {
         }
         )
     } else {
+      // let username = "ppetrovic";
+      let username = localStorage.getItem("username") as string;
+      this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
+        console.log(data);
+      });
       this.router.navigate(['/chooseObject/' + this.workModel]);
     }
   }

@@ -9,7 +9,7 @@ import { AuthenticatedResponse } from '../models/authenticatedResponse';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-
+ 
   constructor(private router:Router, private jwtHelper: JwtHelperService, private http: HttpClient){}
   
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
