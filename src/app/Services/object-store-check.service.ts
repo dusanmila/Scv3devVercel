@@ -23,6 +23,7 @@ export class ObjectStoreCheckService {
   }
   
   public createObjectStoreCheck(osc: ObjectStoreCheckCreateDto) {
+    console.log(this.headers)
     let retval$ = new Subject<ObjectStoreCheck>();
     this.http.post<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks`, osc,{headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
@@ -32,7 +33,7 @@ export class ObjectStoreCheckService {
 
   public finishObjectStoreCheck(username: string) {
     let retval$ = new Subject<ObjectStoreCheck>();
-    this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
+    this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {},{headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
