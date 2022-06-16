@@ -68,7 +68,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     director: {
@@ -76,7 +76,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     supervisor: {
@@ -84,7 +84,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     commercialist: {
@@ -92,7 +92,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     merchandiser: {
@@ -100,7 +100,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     requisitionDays: "",
@@ -308,7 +308,7 @@ export class ObjectComponent implements OnInit {
         console.log(data);
         if (data) {
           let newObjectName = data.object.objectName;
-          const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, {data: objectName});
+          const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: objectName });
           dialogRef.afterClosed()
             .subscribe(res => {
               if (res) {
@@ -322,6 +322,8 @@ export class ObjectComponent implements OnInit {
           this.createEmptyObjectStoreCheck(objectName, objectIdCompany);
         }
       });
+    } else {
+      this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
     }
   }
 
