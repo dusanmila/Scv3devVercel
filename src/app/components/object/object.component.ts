@@ -149,6 +149,8 @@ export class ObjectComponent implements OnInit {
     }
   }
 
+  public objectArray: Obj[] = [];
+
   public get objects() {
     return this.dataSource;
   }
@@ -182,8 +184,14 @@ export class ObjectComponent implements OnInit {
   public loadData() {
     console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
-      this.length = data[0].totalCount;
-      this.dataSource = new MatTableDataSource(data);
+      console.log('uspeh')
+      if (data) {
+        this.length = data[0].totalCount;
+        this.dataSource = new MatTableDataSource(data);
+      } else {
+        this.length = 0;
+        this.dataSource = new MatTableDataSource(this.objectArray);
+      }
       this.isLoading = false;
       console.log(data);
     });
