@@ -93,8 +93,8 @@ table{
 .mat-column-objectName {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 17% !important;
-  width: 17% !important;
+  flex: 0 0 15% !important;
+  width: 15% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -106,7 +106,7 @@ table{
   hyphens: auto;
 
   text-align: left;
-  margin-left: -20px;
+  margin-left: -17px;
 }
 
 .mat-column-address {
@@ -130,8 +130,8 @@ table{
 .mat-column-actions {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 53% !important;
-  width: 53% !important;
+  flex: 0 0 50% !important;
+  width: 50% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -143,5 +143,7 @@ table{
   hyphens: auto;
 
   text-align: left;
+
+  margin-right: 5px;
 }
 
