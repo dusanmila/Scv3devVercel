@@ -180,6 +180,7 @@ export class ObjectComponent implements OnInit {
   }
 
   public loadData() {
+    this.isLoading=true;
     console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       this.length = data[0].totalCount;

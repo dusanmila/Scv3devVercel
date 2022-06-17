@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/user.model';
+import { UserType } from 'src/app/models/userType';
 import { UserService } from 'src/app/Services/user.service';
 
 
@@ -15,12 +16,21 @@ export class UserDialogComponent implements OnInit {
 
   public flag: number;
 
-  constructor(public snackBar:MatSnackBar, 
-              public dialogRef:MatDialogRef<UserDialogComponent>, 
-              @Inject (MAT_DIALOG_DATA) public data: User, 
+  public userTypes: UserType[] = [];
+
+  constructor(public snackBar:MatSnackBar,
+              public dialogRef:MatDialogRef<UserDialogComponent>,
+              @Inject (MAT_DIALOG_DATA) public data: User,
               public userService: UserService) { }
 
   ngOnInit(): void {
+    this.loadUserTypes();
+  }
+
+  public loadUserTypes() {
+    this.userService.getUserTypes().subscribe(data => {
+      this.userTypes = data;
+    });
   }
 
 public add(): void{

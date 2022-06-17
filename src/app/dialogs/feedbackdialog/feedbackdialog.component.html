@@ -31,15 +31,25 @@
 
     <form [formGroup]="form" *ngIf="resolveFeedbacks" (ngSubmit)="submitForm()">
       <input id="inputfile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
-      <label for="inputfile" class="browseFile">Browse</label>
+      <label>Take photo:</label>
+      <label for="inputFile" class="browseFile"> <img src="assets\photoicon.png" width="10%" height="10%" /></label>
       <!-- <button mat-button>Resolve</button> -->
     </form>
+    <div *ngIf="imageUploaded">
+      <p>Image is uploaded</p>
+    </div>
     <div mat-dialog-actions>
       <button mat-icon-button color="primary" *ngIf="data.img=='' || data.img=='NULL' " (click)="openInfo()">
         <mat-icon> warning </mat-icon>
       </button>
       <button mat-button *ngIf="resolveFeedbacks" type="submit" (click)="submitForm()"
-        [disabled]="!imageUploaded">Resolve</button>
+        [disabled]="!imageUploaded && !isLoading">Resolve</button>
+
+        <div *ngIf="isLoading"
+        style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+        </mat-progress-spinner>
+      </div>
 
       <button mat-button class="item2" (click)="close()">Close</button>
     </div>

@@ -32,11 +32,14 @@
       </mat-form-field>
     </div>
     <div class="form">
-      <mat-form-field>
-        <input matInput placeholder="UserType" [(ngModel)]="data.userType" name="userType" [disabled]="flag==3"
-          required />
-      </mat-form-field>
-    </div>
+  <mat-form-field>
+    <mat-select [(ngModel)]="data.userType" placeholder="UserType" name="UserType" required>
+      <mat-option *ngFor="let userType of userTypes" [value]="userType.typeName">
+        {{ userType.typeName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
     <div mat-dialog-actions class="wrap">
       <button mat-button class="test" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()"

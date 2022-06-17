@@ -14,7 +14,13 @@
 </div>
 <div class="form">
   <mat-form-field>
-    <input matInput placeholder = "Retailer" [(ngModel)]="data.retailer" name = "retailer" required/>
+    <mat-select [(ngModel)]="data.retailer" placeholder="Retailer" name="Retailer" required>
+
+        <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
+          {{ retailer.retailerName }}
+        </mat-option>
+
+    </mat-select>
   </mat-form-field>
 </div>
 <div class="form">
