@@ -144,11 +144,15 @@ export class StoreCheckPageComponent implements OnInit {
         )
     } else {
       // let username = "ppetrovic";
-      let username = localStorage.getItem("username") as string;
-      this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
-        console.log(data);
-      });
-      this.router.navigate(['/chooseObject/' + this.workModel]);
+      if (!this.resolveFeedbacks) {
+        let username = localStorage.getItem("username") as string;
+        this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
+          console.log(data);
+          this.router.navigate(['/chooseObject/' + this.workModel]);
+        });
+      } else {
+        this.router.navigate(['/chooseObject/' + this.workModel]);
+      }
     }
   }
 

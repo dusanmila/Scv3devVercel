@@ -14,9 +14,21 @@
       </mat-form-field>
     </div>
 
-    <div class="form">
+    <!-- <div class="form">
       <mat-form-field>
         <input matInput [(ngModel)]="feedback.text" name="text" placeholder="Type text..." required />
+      </mat-form-field>
+    </div> -->
+
+    <div class="form">
+      <mat-form-field>
+        <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"
+                placeholder="Type text..."
+                [(ngModel)]="feedback.text" name="text" required></textarea>
       </mat-form-field>
     </div>
 
