@@ -20,18 +20,18 @@
                 </tr>
             </table>
             <app-object [workModel]="workModel" [isAdmin]="false"></app-object>
-            <button class="btn-finish" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">FINISH STORE
-                CHECK</button>
+            <button class="item3" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">Finish StoreCheck
+                </button>
         </div>
 
 
 
         <div class="fadeIn third">
-            <a (click)="exit()">
-                <div class="item2">
+           
+                <button class="item2" (click)="exit()">
                     Exit
-                </div>
-            </a>
+                </button>
+      
 
         </div>
     </div>

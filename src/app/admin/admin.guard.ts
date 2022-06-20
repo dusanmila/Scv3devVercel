@@ -37,21 +37,7 @@ export class AdminGuard implements CanActivate {
     return isRefreshSuccess;
   }
 
-  async canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const jwtHelper = new JwtHelperService();
-    const token = localStorage.getItem("jwt");
-    const role = localStorage.getItem("role");
-
-    if (token !== null && !jwtHelper.isTokenExpired(token) && role=="Admin"){
-      console.log(jwtHelper.decodeToken(token))
-      return true;
-    }
-    const isRefreshSuccess = await this.tryRefreshingTokens(token!); 
-    if (!isRefreshSuccess) { 
-      this.router.navigate(["login"]); 
-    }
-    return isRefreshSuccess;
-  }
+  
 
   private async tryRefreshingTokens(token: string): Promise<boolean> {
     const refreshToken: string | null = localStorage.getItem("refreshToken");

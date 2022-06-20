@@ -5,7 +5,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-width: 450px;
+  /* min-width: 450px; */
   }
 
 .form {
@@ -55,4 +55,12 @@ button[disabled]:hover {
   border-radius: 21.5px;
   background-color: #56baed;
   padding: 8px 16px;
+}
+
+/* Otklanja sivu pozadinu sa dugmeta */
+button {
+  outline: none;
+}
+::ng-deep .mat-button-focus-overlay {
+  display: none;
 }

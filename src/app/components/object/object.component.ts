@@ -68,7 +68,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     director: {
@@ -76,7 +76,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     supervisor: {
@@ -84,7 +84,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     commercialist: {
@@ -92,7 +92,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     merchandiser: {
@@ -100,7 +100,7 @@ export class ObjectComponent implements OnInit {
       lastName: "",
       username: "",
       email: "",
-      password:"",
+      password: "",
       userType: ""
     },
     requisitionDays: "",
@@ -149,6 +149,8 @@ export class ObjectComponent implements OnInit {
     }
   }
 
+  public objectArray: Obj[] = [];
+
   public get objects() {
     return this.dataSource;
   }
@@ -183,8 +185,14 @@ export class ObjectComponent implements OnInit {
     this.isLoading=true;
     console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
-      this.length = data[0].totalCount;
-      this.dataSource = new MatTableDataSource(data);
+      console.log('uspeh')
+      if (data) {
+        this.length = data[0].totalCount;
+        this.dataSource = new MatTableDataSource(data);
+      } else {
+        this.length = 0;
+        this.dataSource = new MatTableDataSource(this.objectArray);
+      }
       this.isLoading = false;
       console.log(data);
     });
@@ -309,7 +317,7 @@ export class ObjectComponent implements OnInit {
         console.log(data);
         if (data) {
           let newObjectName = data.object.objectName;
-          const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, {data: objectName});
+          const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: objectName });
           dialogRef.afterClosed()
             .subscribe(res => {
               if (res) {
@@ -323,6 +331,8 @@ export class ObjectComponent implements OnInit {
           this.createEmptyObjectStoreCheck(objectName, objectIdCompany);
         }
       });
+    } else {
+      this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
     }
   }
 

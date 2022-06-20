@@ -80,17 +80,34 @@
 .item2{
     background-color: white;
     color: #39ace7;
-    width: 100px;
+    width: 150px;
     height: 50px;
     line-height: 50px;
     text-align: center;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 15px;
     border: 2px solid #39ace7;
     cursor: pointer;
     margin: 0 auto;
     position: relative;
     margin-bottom: 5%;
+    margin-top: 5%;
+    right: 0%;
+
+}
+.item3{
+    background-color: white;
+    color: #39ace7;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 15px;
+    border: 2px solid #39ace7;
+    cursor: pointer;
+    margin: 0 auto;
+    position: relative;
     right: 0%;
     margin-top: 20%;
 
@@ -100,6 +117,11 @@
     background-color: #39ace7;
     color: #fff;
     transition: 0.3s;
+}
+.item3:hover {
+  background-color: #39ace7;
+  color: #fff;
+  transition: 0.3s;
 }
 .btn, a {
     text-decoration: none;     
@@ -192,8 +214,4 @@
   
   
 
-  @media (min-width: 1200px) {
-    .item2 {
-      margin-top: 20%;
-    }
-  }
+ 

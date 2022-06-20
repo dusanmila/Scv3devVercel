@@ -17,3 +17,15 @@ button[disabled]:hover {
 h3{
   color: #39ace7;
 }
+
+mat-form-field {
+  width: 100%;
+}
+
+/* Otklanja sivu pozadinu sa dugmeta */
+button {
+  outline: none;
+}
+::ng-deep .mat-button-focus-overlay {
+  display: none;
+}
