@@ -82,8 +82,12 @@ stroke: #56baed !important;
 }
 .whitetext{
   color:white;
+
 }
 
+.width{
+  width: 50px;
+}
 
 
 table{
@@ -130,8 +134,8 @@ table{
 .mat-column-actions {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 50% !important;
-  width: 50% !important;
+  flex: 0 0 40% !important;
+  width: 40% !important;
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -145,5 +149,13 @@ table{
   text-align: left;
 
   margin-right: 5px;
+  margin-left:-10px;
 }
 
+@media (max-width: 400px) {
+  .mat-column-actions{
+    margin-left:-20px;
+    flex: 0 0 45% !important;
+  width: 45% !important;
+  }
+}

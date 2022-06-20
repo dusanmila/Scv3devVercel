@@ -14,8 +14,6 @@ import { ObjectComponent } from './components/object/object.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-
 import { WebcamModule } from 'ngx-webcam';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -116,8 +114,7 @@ import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatAutocompleteModule,
-    NgxMatSelectSearchModule
+    MatAutocompleteModule
 
   ],
   providers: [DatePipe],
