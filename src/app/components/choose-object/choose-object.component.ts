@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
 import { Obj } from 'src/app/models/object';
@@ -66,13 +67,24 @@ export class ChooseObjectComponent implements OnInit {
   }
 
   public openDialog() {
-    const dialogRef = this.dialog.open(EmailDialogComponent);
-    dialogRef.afterClosed()
-      .subscribe(res => {
-        if (res === 1) {
-        }
+    let username = localStorage.getItem("username") as string;
+    // let username = "ppetrovic";
+    this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
+      console.log(data);
+      this.storeCheck = data;
+      if (!this.storeCheck) {
+        this.dialog.open(AlreadyFinishedComponent);
+      } else {
+        this.dialog.open(EmailDialogComponent);
       }
-      )
+    });
+    // const dialogRef = this.dialog.open(EmailDialogComponent);
+    // dialogRef.afterClosed()
+    //   .subscribe(res => {
+    //     if (res === 1) {
+    //     }
+    //   }
+    //   )
   }
 
   public exit() {
