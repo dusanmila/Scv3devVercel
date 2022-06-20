@@ -41,7 +41,7 @@
     </div>
 
     <form [formGroup]="form" *ngIf="resolveFeedbacks" (ngSubmit)="submitForm()">
-      <input id="inputfile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file">
+      <input id="inputFile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file"  required hidden>
       <label>Take photo:</label>
       <label for="inputFile" class="browseFile"> <img src="assets\photoicon.png" width="10%" height="10%" /></label>
       <!-- <button mat-button>Resolve</button> -->
