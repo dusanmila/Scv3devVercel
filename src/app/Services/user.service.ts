@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError, Subject } from 'rxjs';
 import { User } from '../models/user.model';
+import { UserType } from '../models/userType';
 import { USER_URL } from '../app.constants';
 
 
@@ -14,7 +15,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
-  
+
    private readonly adress ="http://localhost:8083/user";
    private readonly userAdress ="http://localhost:8086/api/users";
 
@@ -26,6 +27,20 @@ export class UserService {
     let retval$ = new Subject<User[]>();
 
     this.http.get<User[]>(`${USER_URL}/users`,{headers:this.headers}).subscribe((users: User[]) => {
+
+      retval$.next(users)
+
+    });
+
+    return retval$.asObservable();
+  }
+
+
+  public getUserTypes(): Observable<UserType[]> {
+
+    let retval$ = new Subject<UserType[]>();
+
+    this.http.get<UserType[]>(`${USER_URL}/userTypes`,{headers:this.headers}).subscribe((users: UserType[]) => {
 
       retval$.next(users)
 

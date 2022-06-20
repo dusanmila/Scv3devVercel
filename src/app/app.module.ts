@@ -14,12 +14,10 @@ import { ObjectComponent } from './components/object/object.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-
-
 import { WebcamModule } from 'ngx-webcam';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
@@ -117,7 +115,8 @@ import { AlreadyFinishedComponent } from './dialogs/already-finished/already-fin
     MatIconModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatAutocompleteModule
 
   ],
   providers: [DatePipe],

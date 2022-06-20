@@ -21,6 +21,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   public feedbackCategories: FeedbackCategory[] = [];
   public imageUploaded: boolean = false;
   public changed: boolean = false;
+  isLoading=false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackCreateDialogComponent>,
@@ -55,6 +56,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   }
 
   submitForm() {
+    this.isLoading=true;
     let username = localStorage.getItem("username") as string;
     var formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
@@ -65,6 +67,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
     console.log(this.feedback);
     this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
       this.changed = true;
+      this.isLoading = false;
       console.log('dodato')
       console.log(data);
       this.close();

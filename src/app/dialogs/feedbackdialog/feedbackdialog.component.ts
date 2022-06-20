@@ -24,6 +24,7 @@ export class FeedbackDialogComponent implements OnInit {
   public imageUploaded: boolean = false;
   public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
   public changed: boolean = false;
+  isLoading=false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackDialogComponent>,
@@ -45,13 +46,16 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   public add(): void {
+    this.isLoading=true;
     this.feedbackService.createFeedback(this.data)
       .subscribe(data => {
         this.snackBar.open('Feedback successfully added', 'Ok', { duration: 2500 });
+        this.isLoading=false;
       }),
       (error: Error) => {
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
+        this.isLoading=false;
       }
   }
 
@@ -87,8 +91,8 @@ export class FeedbackDialogComponent implements OnInit {
   public openInfo() {
     const dialogRef = this.dialog.open(AnalyticsdialogComponent);
     dialogRef.componentInstance.flag = 2;
-    
-      
+
+
   }
 
 }
