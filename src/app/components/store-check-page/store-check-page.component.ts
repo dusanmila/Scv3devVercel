@@ -11,6 +11,7 @@ import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 
 import { HostListener } from '@angular/core';
+import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
 
 @Component({
   selector: 'app-store-check-page',
@@ -112,16 +113,25 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   public addToStoreCheck() {
-    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
-    dialogRef.afterClosed()
-      .subscribe(res => {
-        console.log(res)
-        if (res) {
-          this.finishObjectStoreCheck();
-          this.router.navigate(['/chooseObject/' + this.workModel]);
-        }
+    let username = localStorage.getItem("username") as string;
+    this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
+      if (data) {
+        const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+        dialogRef.afterClosed()
+          .subscribe(res => {
+            console.log(res)
+            if (res) {
+              this.finishObjectStoreCheck();
+              this.router.navigate(['/chooseObject/' + this.workModel]);
+            }
+          }
+          )
+      } else {
+        this.dialog.open(AlreadyFinishedComponent);
       }
-      )
+    });
+
+
   }
 
   public exit() {
