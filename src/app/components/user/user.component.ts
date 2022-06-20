@@ -77,6 +77,7 @@ public loadData(){
 
   public editUser(user:User)
   {
+    console.log(user);
     this.userService.editUser(user).subscribe(data=>{
 
       console.log(data);

@@ -17,7 +17,7 @@
     </div>
     <div class="form">
       <mat-form-field>
-        <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" [disabled]="flag==3"
+        <input matInput placeholder="Username" [(ngModel)]="data.username" name="username" [disabled]="flag==3 || flag ==2"
           required />
       </mat-form-field>
     </div>
@@ -26,12 +26,12 @@
         <input matInput placeholder="Email" [(ngModel)]="data.email" name="email" [disabled]="flag==3" required />
       </mat-form-field>
     </div>
-    <div class="form">
+    <div class="form" *ngIf="flag!=2">
       <mat-form-field>
         <input matInput placeholder="Password" type="password" [(ngModel)]="data.password" name="password" [disabled]="flag==3" required />
       </mat-form-field>
     </div>
-    <div class="form">
+    <div class="form" *ngIf="flag!=2">
   <mat-form-field>
     <mat-select [(ngModel)]="data.userType" placeholder="UserType" name="UserType" required>
       <mat-option *ngFor="let userType of userTypes" [value]="userType.typeName">

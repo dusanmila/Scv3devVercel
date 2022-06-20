@@ -94,14 +94,14 @@ public update(): void{
 }
 
 public delete(): void{
- /* this.objectService.deleteObject(this.data)
+  this.objectService.deleteObject(this.data)
   .subscribe(data => {
     this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500 });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
     this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
-  }*/
+  }
 }
 
 public close(): void{
