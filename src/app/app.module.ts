@@ -20,8 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 
-import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
-import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 
 import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
@@ -104,7 +104,6 @@ import { AlreadyFinishedComponent } from './dialogs/already-finished/already-fin
     WebcamModule,
     MatCheckboxModule,
     BrowserModule,
-    MatToolbarModule,
     MatFormFieldModule,
     MatTableModule,
     MatSelectModule,
