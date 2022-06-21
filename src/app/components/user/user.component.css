@@ -1,6 +1,7 @@
 
 .font {
   padding: 0 20px;
+  font-family: sans-serif;
 }
 
 .mat-header-cell {
@@ -10,11 +11,6 @@
 .centered{
   text-align:center;
 }
-
-.font{
-  font-family: sans-serif;
-}
-
 .search{
   color:white;
   background-color:#56baed;

@@ -8,7 +8,7 @@ import { Guid } from 'guid-typescript';
 import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
 import { Position } from 'src/app/models/position';
 import { PositionService } from 'src/app/Services/position-service.service';
-//import { DataService, Product } from '../data.service';
+
 
 
 @Component({
@@ -94,7 +94,7 @@ export class PositionComponent implements OnInit {
 
   deletePosition() {
 
-    this.positionService.deletePosition(this.selectedPosition).subscribe(data => {
+    this.positionService.deletePosition(this.selectedPosition).subscribe(() => {
       let helper = this.positions.findIndex(pos => pos.secondaryPositionId == this.selectedPosition.secondaryPositionId);
       if (helper > 0) {
         this.positions.splice(helper, 1);

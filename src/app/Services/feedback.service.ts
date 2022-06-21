@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Feedback } from '../models/feedback.model';
 import { FeedbackCategory } from '../models/feedbackCategory';
 import { FEEDBACK_URL } from '../app.constants';

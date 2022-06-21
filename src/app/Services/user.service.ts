@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { UserType } from '../models/userType';
 import { USER_URL } from '../app.constants';
@@ -105,7 +105,7 @@ export class UserService {
 
   }
 
-  public getUserByUsername(username: String): Observable<User> {
+  public getUserByUsername(username: string): Observable<User> {
 
     let retval$ = new Subject<User>();
 
@@ -118,7 +118,7 @@ export class UserService {
     return retval$.asObservable();
   }
 
-  public getUsersByUsername(username: String): Observable<User[]> {
+  public getUsersByUsername(username: string): Observable<User[]> {
 
     let retval$ = new Subject<User[]>();
 
