@@ -48,7 +48,7 @@ export class FeedbackDialogComponent implements OnInit {
   public add(): void {
     this.isLoading=true;
     this.feedbackService.createFeedback(this.data)
-      .subscribe(data => {
+      .subscribe(() => {
         this.snackBar.open('Feedback successfully added', 'Ok', { duration: 2500 });
         this.isLoading=false;
       }),

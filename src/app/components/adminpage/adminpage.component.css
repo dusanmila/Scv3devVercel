@@ -51,7 +51,6 @@
   align-items: center;
   border: dashed 1px #979797;
   margin-bottom: 1rem;
-  display: flex;
   flex-grow: 1;
 }
 .files-list .single-file img.delete {
@@ -209,7 +208,7 @@
     -moz-animation-delay: 0.8s;
     animation-delay: 0.8s;
     margin-top: 10%;
-    
+
   }
 
   .fadeIn.fourth {
@@ -223,7 +222,7 @@
     text-align:center;
     color:#56baed;
     margin:5%;
-   
+
   }
 
   .l{
@@ -232,7 +231,7 @@
     justify-content: center;
     text-align:center;
   }
-  
+
 
   .uploadHeading{
     text-align:center;
@@ -277,9 +276,9 @@
       float:right;
       margin-top: 20px;
     }
- 
 
-    
+
+
   .header {
     text-align: center;
     height: 100px;
@@ -287,4 +286,3 @@
     color: #fff;
     line-height: 100px;
   }
- 

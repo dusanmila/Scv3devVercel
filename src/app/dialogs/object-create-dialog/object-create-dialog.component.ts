@@ -47,7 +47,7 @@ export class ObjectCreateDialogComponent implements OnInit {
 public add(): void{
 
   this.objectService.createObject(this.data)
-  .subscribe( data =>{
+  .subscribe(() =>{
     this.snackBar.open('Object successfully added: ' + this.data.objectName, 'Ok', { duration: 2500 });
   } ),
   (error:Error) => {

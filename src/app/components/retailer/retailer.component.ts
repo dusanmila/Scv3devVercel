@@ -87,7 +87,7 @@ public loadData(){
 
     public searchByName(){
       this.isLoading=true;
-      this.objectService.getRetailerByName(this.search).subscribe(data => {
+      this.objectService.getRetailersByNameContains(this.search).subscribe(data => {
         console.log(data)
         type RetArray = Array<Retailer>;
         const retArr: RetArray = [
