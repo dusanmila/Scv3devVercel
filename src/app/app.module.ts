@@ -63,6 +63,7 @@ import { ObjectCreateDialogComponent } from './dialogs/object-create-dialog/obje
 
 import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
+import { AlreadyFinishedComponent } from './dialogs/already-finished/already-finished.component';
 
 
 
@@ -91,7 +92,8 @@ import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-
     PositionDialogComponent,
     ObjectCreateDialogComponent,
     AreYouSureDialogComponent,
-    UnfinishedObjectStoreCheckDialogComponent
+    UnfinishedObjectStoreCheckDialogComponent,
+    AlreadyFinishedComponent
 
   ],
   imports: [
