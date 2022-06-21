@@ -17,10 +17,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { WebcamModule } from 'ngx-webcam';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
-
-
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 
@@ -113,8 +109,7 @@ import { AlreadyFinishedComponent } from './dialogs/already-finished/already-fin
     MatIconModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatProgressSpinnerModule
 
   ],
   providers: [DatePipe],

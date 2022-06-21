@@ -28,7 +28,7 @@ export class LoginComponent  {
 
     this.isLoading = true;
 
-    if (this.isLoginFailed != false) {
+    if (!this.isLoginFailed) {
       this.isLoginFailed = false;
     }
 

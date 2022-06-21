@@ -13,7 +13,7 @@ export class AdminGuard implements CanActivate {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  async canActivate(route: ActivatedRouteSnapshot, _state: RouterStateSnapshot) {
     let routeData = route.data;
     const jwtHelper = new JwtHelperService();
     const token = localStorage.getItem("jwt");
