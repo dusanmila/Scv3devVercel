@@ -85,7 +85,7 @@ public loadData(){
     )
     }
 
-    public searchByName(){
+  /*  public searchByName(){
       this.isLoading=true;
       this.objectService.getRetailersByNameContains(this.search).subscribe(data => {
         console.log(data)
@@ -97,6 +97,15 @@ public loadData(){
         this.isLoading=false;
       });
       this.searchClicked=true;
+    }*/
+
+    public searchByName(){
+      this.isLoading = true;
+      this.objectService.getRetailersByNameContains(this.search).subscribe(data => {
+
+        this.dataSource = new MatTableDataSource<Retailer>(data);
+        this.isLoading = false;
+      });
     }
 
 
