@@ -1,12 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material/table';
 
 import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/Services/user.service';
-import { UserDialogComponent } from 'src/app/dialogs/userdialog/userdialog.component';
 import { ObjectService } from 'src/app/Services/object.service';
 import { RetailerDialogComponent } from 'src/app/dialogs/retailerdialog/retailerdialogcomponent';
 import { FormGroup } from '@angular/forms';

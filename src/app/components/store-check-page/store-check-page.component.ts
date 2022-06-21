@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Event, Router } from '@angular/router';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
@@ -8,8 +8,6 @@ import { Position } from 'src/app/models/position';
 import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
-
-import { HostListener } from '@angular/core';
 import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
 
 @Component({
