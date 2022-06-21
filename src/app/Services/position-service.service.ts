@@ -2,7 +2,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 import { Position } from '../models/position';
 import { PositionClass } from '../models/positionClass';
@@ -18,7 +17,7 @@ export class PositionService {
   constructor(private http: HttpClient) { }
 
   private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
-  
+
 
   // private readonly adress ="http://localhost:8087/api/secondaryPositions";
   // private readonly excelAdress="http://localhost:8087/api/secondaryPositionExcels"
