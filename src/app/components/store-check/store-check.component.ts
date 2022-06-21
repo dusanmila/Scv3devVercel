@@ -12,7 +12,7 @@ import { StoreCheckService } from 'src/app/Services/store-check.service';
   templateUrl: './store-check.component.html',
   styleUrls: ['./store-check.component.css']
 })
-export class StoreCheckComponent implements OnInit {
+export class StoreCheckComponent {
 
   public storeCheck!: StoreCheck;
   public objectStoreCheck!: ObjectStoreCheck;
@@ -21,9 +21,6 @@ export class StoreCheckComponent implements OnInit {
     public objectStoreCheckService: ObjectStoreCheckService,
     public dialog: MatDialog,
     public router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   public logout() {
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
