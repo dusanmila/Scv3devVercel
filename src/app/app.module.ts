@@ -113,8 +113,7 @@ import { AlreadyFinishedComponent } from './dialogs/already-finished/already-fin
     MatIconModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,
-    MatAutocompleteModule
+    MatProgressSpinnerModule
 
   ],
   providers: [DatePipe],

@@ -1,9 +1,9 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { FeedbackService } from 'src/app/Services/feedback.service';
 import { Feedback } from '../../models/feedback.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';

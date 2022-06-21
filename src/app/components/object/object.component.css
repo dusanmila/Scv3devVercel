@@ -1,6 +1,7 @@
 
 .mat-header-cell {
   background: #39ace7;
+  text-align: center;
 }
 .font{
   font-family:sans-serif;
@@ -30,14 +31,8 @@ h4 {
 .adr-name-search {
   padding-top: 20px;
 }
-.mat-header-cell{
-  text-align: center;
-}
-/*.adr-name-search mat-form-field {
-  width: 300px;
-  max-width: 90%;
-}
-*/
+
+
 .detail-search {
   margin-top: 20px;
 }

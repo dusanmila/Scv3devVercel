@@ -22,6 +22,7 @@
   top: 0;
   left: 0;
 }
+
 .container label {
   color: white;
   width: 100px;
@@ -37,13 +38,16 @@
   font-weight: 600;
   color: #38424c;
 }
+
 .fileover {
   animation: shake 1s;
   animation-iteration-count: infinite;
 }
+
 .files-list {
   margin-top: 1.5rem;
 }
+
 .files-list .single-file {
   display: flex;
   padding: 0.5rem;
@@ -53,17 +57,20 @@
   margin-bottom: 1rem;
   flex-grow: 1;
 }
+
 .files-list .single-file img.delete {
   margin-left: 0.5rem;
   cursor: pointer;
   align-self: flex-end;
 }
+
 .files-list .single-file .name {
   font-size: 14px;
   font-weight: 500;
   color: #353f4a;
   margin: 0;
 }
+
 .files-list .single-file .size {
   font-size: 12px;
   font-weight: 500;
@@ -71,13 +78,14 @@
   margin: 0;
   margin-bottom: 0.25rem;
 }
+
 .files-list .single-file .info {
   width: 100%;
 }
 
-.parentcontainer{
-  display:flex;
-  margin:0 auto;
+.parentcontainer {
+  display: flex;
+  margin: 0 auto;
 }
 
 .center {
@@ -89,12 +97,12 @@
   transform: translate(-50%, -50%);
 }
 
-.cont{
+.cont {
   position: relative;
 }
 
 
-.item2{
+.item2 {
   background-color: white;
   color: #39ace7;
   width: 120px;
@@ -104,9 +112,9 @@
   font-size: 25px;
   border: 2px solid #39ace7;
   cursor: pointer;
-  text-align:center;
+  text-align: center;
   position: relative;
-  margin-right:50px;
+  margin-right: 50px;
 }
 
 .item2:hover {
@@ -115,7 +123,8 @@
   transition: 0.3s;
 }
 
-.btn, a {
+.btn,
+a {
   text-decoration: none;
 }
 
@@ -135,89 +144,91 @@
 
 
 
-  .fadeInDown {
-    font-family:sans-serif;
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+.fadeInDown {
+  font-family: sans-serif;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
   }
 
-  @-webkit-keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
-    }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
   }
 
-  @keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
-    }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  /* Simple CSS3 Fade-in Animation */
-  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  to {
+    opacity: 1;
+  }
+}
 
-  .fadeIn {
-    opacity:0;
-    -webkit-animation:fadeIn ease-in 1;
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
-
-    -webkit-animation-fill-mode:forwards;
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
-
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  .fadeIn.first {
-    -webkit-animation-delay: 0.4s;
-    -moz-animation-delay: 0.4s;
-    animation-delay: 0.4s;
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  
   }
 
-  .fadeIn.second {
-    -webkit-animation-delay: 0.6s;
-    -moz-animation-delay: 0.6s;
-    animation-delay: 0.6s;
+  to {
+    opacity: 1;
   }
-
-  .fadeIn.third {
-    -webkit-animation-delay: 0.8s;
-    -moz-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-    margin-top: 10%;
-
-  }
-
-  .fadeIn.fourth {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    animation-delay: 1s;
-  }
+}
 
 
+.fadeIn {
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
   .heading{
     text-align:center;
     color:#56baed;
@@ -233,56 +244,96 @@
   }
 
 
-  .uploadHeading{
-    text-align:center;
-    color:#56baed;
-  }
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
 
-  .browseButton{
-    color: white;
-    width: 100px;
-    height: 20px;
-    border-radius: 21.5px;
-    background-color: #56baed;
-    padding: 8px 16px;
-  }
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
 
-  .browseButton:hover{
-    color: white;
-    width: 100px;
-    height: 20px;
-    border-radius: 21.5px;
-    padding: 8px 16px;
-    background-color:gray;
-  }
+.fadeIn.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+  margin-top: 10%;
 
-  .cont2{
-    align-items: center;
-    position:relative;
-    margin:0 auto;
-  }
+}
 
-  .analytics2{
-    font-size: large;
-    margin-right: 5%;
-    margin-left: 70%;
-  }
-
-  .analytics2 {
-      margin-left: 80%;
-    }
-    .menu{
-      display:inline;
-      float:right;
-      margin-top: 20px;
-    }
+.fadeIn.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
 
 
+.heading {
+  text-align: center;
+  color: #56baed;
+  margin: 5%;
 
-  .header {
-    text-align: center;
-    height: 100px;
-    background-color: #56baed;
-    color: #fff;
-    line-height: 100px;
-  }
+}
+
+.l {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+.uploadHeading {
+  text-align: center;
+  color: #56baed;
+}
+
+.browseButton {
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  background-color: #56baed;
+  padding: 8px 16px;
+}
+
+.browseButton:hover {
+  color: white;
+  width: 100px;
+  height: 20px;
+  border-radius: 21.5px;
+  padding: 8px 16px;
+  background-color: gray;
+}
+
+.cont2 {
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.analytics2 {
+  font-size: large;
+  margin-right: 5%;
+  margin-left: 70%;
+}
+
+
+.menu {
+  display: inline;
+  float: right;
+  margin-top: 20px;
+}
+
+
+
+.header {
+  text-align: center;
+  height: 100px;
+  background-color: #56baed;
+  color: #fff;
+  line-height: 100px;
+}
