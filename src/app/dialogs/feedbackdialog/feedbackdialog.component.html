@@ -39,7 +39,7 @@
       <label>Take photo:</label>
 
       <label for="inputFile" class="browseFile"> <img src="assets\photoicon.png" width="10%" height="10%" alt="PhotoIcon"/></label>
-      <!-- <button mat-button>Resolve</button> -->
+    
 
     </form>
     <div *ngIf="imageUploaded">
@@ -49,7 +49,7 @@
       <button mat-icon-button color="primary" *ngIf="data.img=='' || data.img=='NULL' " (click)="openInfo()">
         <mat-icon> warning </mat-icon>
       </button>
-      <button mat-button *ngIf="resolveFeedbacks" type="submit" (click)="submitForm()"
+      <button mat-button class="item2" *ngIf="resolveFeedbacks" type="submit" (click)="submitForm()"
         [disabled]="!imageUploaded && !isLoading">Resolve</button>
 
         <div *ngIf="isLoading"
