@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
-import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
@@ -59,8 +57,21 @@ export class ResolvedFeedbackComponent implements OnInit {
   }
 
 
-  public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string, imgResolve?: string) {
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username, imgResolve } });
+  // public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string, imgResolve?: string) {
+  //   const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username, imgResolve } });
+
+  //   dialogRef.componentInstance.flag = flag;
+  //   dialogRef.afterClosed()
+  //     .subscribe(res => {
+  //       if (res === 1) {
+  //         this.loadData();
+  //       }
+  //     }
+  //     )
+  // }
+
+  public openDialog(flag: number, feedback: Feedback) {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: feedback  });
 
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()

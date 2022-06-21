@@ -27,11 +27,11 @@ button {
     max-width: 80%;
 }
 
-.header i {
+.header em {
     cursor: pointer;
 }
 
-.header .head i {
+.header .head em {
     margin: 0 0 0 auto;
 }
 
@@ -110,7 +110,6 @@ td {
     border-radius: 20px;
     border: 2px solid #39ace7;
     background-color: #39ace7;
-    ;
     color: #fff;
     width: 200px;
     padding: 10px 0;
@@ -292,7 +291,6 @@ td {
     border: 2px solid #39ace7;
     background-color: #fff;
     color: #39ace7;
-    width: 200px;
     padding: 10px 0;
     margin: 30px;
     cursor: pointer;
@@ -306,6 +304,7 @@ td {
     color: #fff;
     transition: 0.3s;
 }
-.slova{
+
+.slova {
     font-size: 20px;
 }

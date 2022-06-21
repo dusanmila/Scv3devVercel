@@ -5,7 +5,6 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
-import { Observable } from 'rxjs';
 import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
 import { Position } from 'src/app/models/position';
 import { PositionService } from 'src/app/Services/position-service.service';
@@ -27,7 +26,7 @@ export class PositionComponent implements OnInit {
   selectedPosition: Position;
 
 
-isLoading=true;
+  isLoading = true;
 
 
   @Input() objectName: string;
@@ -41,36 +40,28 @@ isLoading=true;
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    if (this.objectName != null) {
-      console.log('load by object')
-      this.loadPositionsByObject();
-    } else {
-      this.loadData();
-    }
+    this.loadData();
   }
 
   public loadData() {
-    this.positionService.getPositions().subscribe(data => {
-      this.positions = data;
-      this.dataSource = new MatTableDataSource(this.positions);
-      this.isLoading=false;
-    });
-  }
-
-  public loadPositionsByObject() {
-    this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
-      this.positions = data;
-      // if (!this.resolveFeedbacks) {
-      //   this.uncheckPositions();
-      // }
-      this.dataSource = new MatTableDataSource(this.positions);
-     this.isLoading=false;
-    });
+    if (this.objectName != null) {
+      this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
+        this.positions = data;
+        this.dataSource = new MatTableDataSource(this.positions);
+        this.isLoading = false;
+      });
+    } else {
+      this.positionService.getPositions().subscribe(data => {
+        this.positions = data;
+        this.dataSource = new MatTableDataSource(this.positions);
+        this.isLoading = false;
+      });
+    }
   }
 
   public uncheckPositions() {
     this.positions.forEach(position => {
-      if (position.valid == true) {
+      if (position.valid) {
         position.valid = false;
         this.positionService.editPosition(position).subscribe(data => {
           console.log(data);
@@ -116,7 +107,7 @@ isLoading=true;
 
   public updatePosition(checked: boolean, pos: Position) {
     pos.valid = checked;
-    this.positionService.editPosition(pos).subscribe(res => {
+    this.positionService.editPosition(pos).subscribe(_res => {
       this.showFinishButton.emit(true);
     });
   }
@@ -129,7 +120,7 @@ isLoading=true;
       .subscribe(res => {
         console.log(res);
         if (res)
-          this.loadPositionsByObject();
+          this.loadData();
       }
       )
   }
