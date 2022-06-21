@@ -156,6 +156,14 @@ console.log(object.commercialist);
     return retval$.asObservable();
   }
 
+  public deleteObject(object: Obj): Observable<Obj> {
+    let retval$ = new Subject<Obj>();
+    this.http.delete<Obj>(`${OBJECT_URL}/objects/deleteObjectByObjectName/${object.objectName}`,{headers:this.headers}).subscribe((helper: Obj) => {
+      retval$.next(helper)
+    });
+    return retval$.asObservable();
+  }
+
   public getRetailerPlanogram(retailer: Retailer) {
     return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers:this.headers,responseType: 'blob' }).subscribe(pdf => {
       const blob = new Blob([pdf], { type: 'application/pdf' });
