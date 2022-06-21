@@ -56,20 +56,6 @@ export class ResolvedFeedbackComponent implements OnInit {
     });
   }
 
-
-  // public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string, imgResolve?: string) {
-  //   const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username, imgResolve } });
-
-  //   dialogRef.componentInstance.flag = flag;
-  //   dialogRef.afterClosed()
-  //     .subscribe(res => {
-  //       if (res === 1) {
-  //         this.loadData();
-  //       }
-  //     }
-  //     )
-  // }
-
   public openDialog(flag: number, feedback: Feedback) {
     const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: feedback  });
 
