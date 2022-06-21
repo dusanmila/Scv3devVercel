@@ -100,7 +100,7 @@ table{
   flex: 0 0 15% !important;
   width: 15% !important;
   overflow-wrap: break-word;
-  word-wrap: break-word;
+ 
 
   word-break: break-word;
 
@@ -119,7 +119,7 @@ table{
   flex: 0 0 30% !important;
   width: 30% !important;
   overflow-wrap: break-word;
-  word-wrap: break-word;
+  
 
   word-break: break-word;
 
@@ -137,7 +137,7 @@ table{
   flex: 0 0 50% !important;
   width: 50% !important;
   overflow-wrap: break-word;
-  word-wrap: break-word;
+ 
 
   word-break: break-word;
 
@@ -154,7 +154,15 @@ table{
   .mat-column-actions{
     margin-left:-20px;
     flex: 0 0 55% !important;
-  width: 55% !important;
+     width: 55% !important;
+ 
+  }
+}
+
+@media (min-width: 1000px) {
+  .mat-column-objectName{
+    flex: 0 0 20% !important;
+    width: 20% !important;
  
   }
 }

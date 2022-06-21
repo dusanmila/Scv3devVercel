@@ -73,7 +73,7 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   submitForm() {
-    var formData: any = new FormData();
+    const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
     formData.append('FeedbackCategoryName', this.data.feedbackCategoryName);
     formData.append('text', this.data.text);

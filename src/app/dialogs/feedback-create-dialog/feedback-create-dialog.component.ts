@@ -58,7 +58,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   submitForm() {
     this.isLoading=true;
     let username = localStorage.getItem("username") as string;
-    var formData: any = new FormData();
+    const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
     formData.append('FeedbackCategoryName', this.feedback.feedbackCategoryName);
     formData.append('Username', username);

@@ -6,16 +6,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './unfinished-object-store-check-dialog.component.html',
   styleUrls: ['./unfinished-object-store-check-dialog.component.css']
 })
-export class UnfinishedObjectStoreCheckDialogComponent implements OnInit {
+export class UnfinishedObjectStoreCheckDialogComponent   {
 
   public retval: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<UnfinishedObjectStoreCheckDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string) { }
 
-  ngOnInit(): void {
-  }
-
+ 
   public changeRetval() {
     this.retval = true;
     this.close();

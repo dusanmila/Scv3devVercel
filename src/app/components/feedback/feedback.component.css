@@ -130,9 +130,7 @@ h1{
   flex: 0 0 25% !important;
   width: 25% !important;
   overflow-wrap: break-word;
-  word-wrap: break-word;
-
-  word-break: break-word;
+  
 
   -ms-hyphens: auto;
   -moz-hyphens: auto;
@@ -148,9 +146,7 @@ h1{
   flex: 0 0 25% !important;
   width: 25% !important;
   overflow-wrap: break-word;
-  word-wrap: break-word;
 
-  word-break: break-word;
 
   -ms-hyphens: auto;
   -moz-hyphens: auto;
@@ -167,9 +163,7 @@ h1{
   flex: 0 0 25% !important;
   width: 25% !important;
   overflow-wrap: break-word;
-  word-wrap: break-word;
-
-  word-break: break-word;
+ 
 
   -ms-hyphens: auto;
   -moz-hyphens: auto;

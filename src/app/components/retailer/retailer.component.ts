@@ -17,7 +17,7 @@ import { Retailer } from 'src/app/models/retailer';
   templateUrl: './retailer.component.html',
   styleUrls: ['./retailer.component.css']
 })
-export class RetailerComponent implements OnInit {
+export class RetailerComponent  {
 
   displayedColumns = ["retailerName","planogramPdf","actions"];
 dataSource: MatTableDataSource<Retailer>;
@@ -33,12 +33,7 @@ selectedRetailer:Retailer;
 
   constructor(public objectService: ObjectService, private dialog:MatDialog) { }
 
-  ngOnInit(): void {
-
-  //  this.loadData();
-
-
-  }
+ 
 
 public loadData(){
   this.objectService.getRetailers().subscribe(data => {
@@ -59,18 +54,12 @@ public loadData(){
 
   public editRetailer(retailer:Retailer)
   {
-    this.objectService.updateRetailer(retailer).subscribe(data=>{
-
-      console.log(data);
-
-    });
+    this.objectService.updateRetailer(retailer).subscribe();
   }
 
-  deleteRetailer()
+  public deleteRetailer()
   {
-
-    this.objectService.deleteRetailer(this.selectedRetailer).subscribe(data =>{
-    });
+    this.objectService.deleteRetailer(this.selectedRetailer).subscribe();
   }
 
   public openDialog(flag:number, retailerName?:string,planogramPdf?:string){
