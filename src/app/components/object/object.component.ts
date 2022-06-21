@@ -51,7 +51,6 @@ export class ObjectComponent implements OnInit {
 
   searchClicked: boolean = false;
 
-  // private _objects: Obj[] = [];
   public object: Obj = {
     objectIdRetail: "string",
     objectIdCompany: "string",
@@ -169,11 +168,7 @@ export class ObjectComponent implements OnInit {
       this.resolveFeedbacks = true;
     }
 
-    //this.loadData();
-    // this.objectService.getObjectsByString('ste').subscribe(data => {
-    //   this._objects = data;
-    //   console.log(this._objects);
-    // });
+
   }
 
   public loadData() {
@@ -204,13 +199,7 @@ export class ObjectComponent implements OnInit {
       console.log(data);
     });
   }
-  /*
-    public createObject() {
-      console.log(this.object);
-      this.objectService.createObject(this.object).subscribe(data => {
-        console.log(data);
-      });
-    }*/
+
 
   public updateObject() {
     this.objectCreateDto.objectIdRetail = this.object.objectIdRetail;
@@ -243,7 +232,7 @@ export class ObjectComponent implements OnInit {
 
   public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string) {
     if (flag == 1) {
-      const dialogRef = this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
+      this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
 
     }
     else {
