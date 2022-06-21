@@ -236,6 +236,7 @@ a {
 
   }
 
+  
   .l{
     display: flex;
     align-items: center;
@@ -278,12 +279,7 @@ a {
 
 }
 
-.l {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+
 
 
 .uploadHeading {
