@@ -82,8 +82,8 @@ export class ObjectService {
 
   public getOneRetailer(retailer: Retailer): Observable<Retailer> {
     let retval$ = new Subject<Retailer>();
-    this.http.get<Retailer>(`${OBJECT_URL}/retailers/retailerByRetailerName/${retailer.retailerName}`).subscribe((retailer: Retailer) => {
-      retval$.next(retailer);
+    this.http.get<Retailer>(`${OBJECT_URL}/retailers/retailerByRetailerName/${retailer.retailerName}`).subscribe((helper: Retailer) => {
+      retval$.next(helper);
     });
     return retval$.asObservable();
   }

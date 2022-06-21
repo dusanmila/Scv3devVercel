@@ -13,7 +13,7 @@
   line-height: 100px;
 }
 
-i {
+em {
   color: #56baed;
   cursor: pointer;
 }
@@ -42,7 +42,7 @@ h4 {
   margin-top: 20px;
 }
 
-.detail-search i {
+.detail-search em {
   margin: 20px 0;
 }
 

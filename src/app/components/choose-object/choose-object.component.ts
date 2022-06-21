@@ -42,7 +42,6 @@ export class ChooseObjectComponent implements OnInit {
   public loadStoreCheck() {
     console.log('load store check')
     let username = localStorage.getItem("username") as string;
-    // let username = "ppetrovic";
     this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
       console.log(data);
       this.storeCheck = data;
@@ -55,7 +54,6 @@ export class ChooseObjectComponent implements OnInit {
   public createEmptyStoreCheck() {
     console.log('create empty store check');
     let username = localStorage.getItem("username") as string;
-    // let username = "ppetrovic";
     let sc: StoreCheck = {
       username: username,
       date: new Date(Date.now()),
@@ -68,7 +66,6 @@ export class ChooseObjectComponent implements OnInit {
 
   public openDialog() {
     let username = localStorage.getItem("username") as string;
-    // let username = "ppetrovic";
     this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
       console.log(data);
       this.storeCheck = data;
@@ -78,13 +75,6 @@ export class ChooseObjectComponent implements OnInit {
         this.dialog.open(EmailDialogComponent);
       }
     });
-    // const dialogRef = this.dialog.open(EmailDialogComponent);
-    // dialogRef.afterClosed()
-    //   .subscribe(res => {
-    //     if (res === 1) {
-    //     }
-    //   }
-    //   )
   }
 
   public exit() {

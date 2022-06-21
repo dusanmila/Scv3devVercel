@@ -2,13 +2,6 @@
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-
-
-    <!-- <ng-container matColumnDef="img">
-    <th mat-header-cell *matHeaderCellDef> Image </th>
-    <td mat-cell *matCellDef="let row"> <img [src]="row.img" alt="SC photo" width="50" height="50"/> </td>
-  </ng-container> -->
-
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Date</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.date | date:'dd.MM.yyyy.' }}</mat-cell>
@@ -19,24 +12,10 @@
       <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="text">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Text</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.text }}</mat-cell>
-  </ng-container> -->
-
-
-    <!-- <ng-container matColumnDef="resolved">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Resolved</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.resolved }}</mat-cell>
-    </ng-container> -->
-
     <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
       <mat-cell *matCellDef="let row" class="table-row">{{ row.username }}</mat-cell>
     </ng-container>
-
-
-
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
@@ -53,15 +32,10 @@
       (click)="openDialog(3,row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username)"></mat-row>
   </mat-table>
 
-  <div *ngIf="isLoading"
-  style="display: flex; justify-content: center; align-items: center; background: white;">
- <mat-progress-spinner
- class="mat-spinner-color"
-   mode="indeterminate">
- </mat-progress-spinner>
-</div>
+  <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+    <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
 
-  <!--<button mat-button (click)="showResolvedFeedbacks()" *ngIf="!showResolved">Show Resolved</button>
-  <button mat-button (click)="showResolvedFeedbacks()" *ngIf="showResolved">Show Unresolved</button>-->
   <button class="item2" mat-button [routerLink]="['/resolvedFeebacks/', objectName]">Show Resolved</button>
 </div>

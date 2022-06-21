@@ -23,12 +23,6 @@
       </mat-form-field>
     </div>
 
-    <!-- <div class="form">
-      <mat-form-field>
-        <input matInput [(ngModel)]="data.text" name="text" [disabled]="true" required />
-      </mat-form-field>
-    </div> -->
-
     <div class="form">
       <mat-form-field>
         <textarea matInput
@@ -44,7 +38,6 @@
       <input id="inputFile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file"  required hidden>
       <label>Take photo:</label>
       <label for="inputFile" class="browseFile"> <img src="assets\photoicon.png" width="10%" height="10%" /></label>
-      <!-- <button mat-button>Resolve</button> -->
     </form>
     <div *ngIf="imageUploaded">
       <p>Image is uploaded</p>

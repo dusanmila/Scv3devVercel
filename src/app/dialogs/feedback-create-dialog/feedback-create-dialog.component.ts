@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackCategory } from 'src/app/models/feedbackCategory';
 import { FeedbackService } from 'src/app/Services/feedback.service';
-import { FeedbackDialogComponent } from '../feedbackdialog/feedbackdialog.component';
 
 @Component({
   selector: 'app-feedback-create-dialog',

@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Event, Router } from '@angular/router';
@@ -65,8 +64,6 @@ export class StoreCheckPageComponent implements OnInit {
   public getOneObject() {
     this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
       this.object = data;
-      // if (!this.resolveFeedbacks)
-      //   this.createEmptyObjectStoreCheck();
       console.log(this.object);
     });
   }
@@ -143,7 +140,6 @@ export class StoreCheckPageComponent implements OnInit {
           if (res) {
             this.router.navigate(['/chooseObject/' + this.workModel]);
             if (!this.resolveFeedbacks) {
-              // let username = "ppetrovic";
               let username = localStorage.getItem("username") as string;
               this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
                 console.log(data);
@@ -153,7 +149,6 @@ export class StoreCheckPageComponent implements OnInit {
         }
         )
     } else {
-      // let username = "ppetrovic";
       if (!this.resolveFeedbacks) {
         let username = localStorage.getItem("username") as string;
         this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
