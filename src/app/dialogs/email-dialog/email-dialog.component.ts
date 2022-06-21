@@ -9,7 +9,7 @@ import { StoreCheckService } from 'src/app/Services/store-check.service';
   templateUrl: './email-dialog.component.html',
   styleUrls: ['./email-dialog.component.css']
 })
-export class EmailDialogComponent implements OnInit {
+export class EmailDialogComponent   {
 
   public emailsForSending: EmailsForSending = {
     "generalDirector": false,
@@ -23,9 +23,7 @@ export class EmailDialogComponent implements OnInit {
   constructor(public sotreCheckService: StoreCheckService,
               public dialogRef: MatDialogRef<EmailDialogComponent>) { }
 
-  ngOnInit(): void {
-  }
-
+  
   public send() {
     console.log(this.emailsForSending);
     let username = localStorage.getItem("username") as string;

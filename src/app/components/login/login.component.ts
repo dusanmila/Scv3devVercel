@@ -13,7 +13,7 @@ import { LoginService } from 'src/app/Services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent  {
 
   user: { username: string, password: string } = { username: "", password: "" };
 
@@ -23,8 +23,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, public loginService: LoginService) { }
 
-  ngOnInit(): void {
-  }
 
   public LoginUser() {
 

@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from '../models/objectStoreCheck';
-import { StoreCheck } from '../models/storeCheck';
 import { STORE_CHECK_URL } from '../app.constants';
 
 @Injectable({

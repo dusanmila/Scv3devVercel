@@ -11,14 +11,12 @@ import { PositionService } from 'src/app/Services/position-service.service';
   templateUrl: './adminpage.component.html',
   styleUrls: ['./adminpage.component.css']
 })
-export class AdminpageComponent implements OnInit {
+export class AdminpageComponent  {
 
 
-  constructor(private objectService:ObjectService,private positionService:PositionService,public dialog:MatDialog, public router: Router) { }
+  constructor( private objectService:ObjectService, private positionService:PositionService, public dialog:MatDialog, public router: Router ) { }
 
 
-  ngOnInit(): void {
-  }
   objectsFile: any;
   positionsFile: any;
 

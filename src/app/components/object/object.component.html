@@ -43,11 +43,6 @@
             delete </mat-icon>
         </button>
 
-        <!-- <button mat-icon-button color="primary" *ngIf="!isAdmin">
-          <mat-icon area-label="Open" [routerLink]="['/storeCheckPage', workModel, row.objectName]">open_in_new
-          </mat-icon>
-        </button> -->
-
         <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button color="primary"
           *ngIf="!isAdmin"
           (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
@@ -100,7 +95,7 @@
         <button matSuffix mat-button (click)="loadData()">Search <mat-icon>search</mat-icon></button>
       </div>
     </div>
-    <i class="fa-solid fa-circle-chevron-down fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == false"></i>
-    <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></i>
+    <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == false"></em>
+    <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></em>
   </div>
 </div>

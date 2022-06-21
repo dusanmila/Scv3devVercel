@@ -5,13 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './analyticsdialog.component.html',
   styleUrls: ['./analyticsdialog.component.css']
 })
-export class AnalyticsdialogComponent implements OnInit {
+export class AnalyticsdialogComponent {
 
   public flag: number;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  
 
 }

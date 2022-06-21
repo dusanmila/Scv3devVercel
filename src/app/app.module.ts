@@ -23,7 +23,6 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatToolbar, MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 
 import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
 

@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackCategory } from 'src/app/models/feedbackCategory';
 import { FeedbackService } from 'src/app/Services/feedback.service';
-import { FeedbackDialogComponent } from '../feedbackdialog/feedbackdialog.component';
 
 @Component({
   selector: 'app-feedback-create-dialog',
@@ -58,7 +57,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   submitForm() {
     this.isLoading=true;
     let username = localStorage.getItem("username") as string;
-    var formData: any = new FormData();
+    const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
     formData.append('FeedbackCategoryName', this.feedback.feedbackCategoryName);
     formData.append('Username', username);

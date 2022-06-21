@@ -46,27 +46,31 @@ export class PositionDialogComponent implements OnInit {
   public add() {
     this.data.objectName = this.objectName;
     this.data.valid = false;
-    this.positionService.createPosition(this.data).subscribe(data => {
-      this.changed = true;
-      this.close();
-      this.snackBar.open('Secondary position successfully added.', 'Ok', { duration: 2500 });
-    }),
-      (error: Error) => {
-        console.log(error.name + ' -> ' + error.message)
+    this.positionService.createPosition(this.data).subscribe({
+      next: () => {
+        this.changed = true;
+        this.close();
+        this.snackBar.open('Secondary position successfully added.', 'Ok', { duration: 2500 });
+      },
+      error: (err: Error) => {
+        console.log(err.name + ' -> ' + err.message)
         this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
       }
+    });
   }
 
   public delete() {
-    this.positionService.deletePosition(this.data).subscribe(data => {
-      this.changed = true;
-      this.snackBar.open('Secondary position successfully deleted.', 'Ok', { duration: 2500 });
-      this.close();
-    }),
-      (error: Error) => {
-        console.log(error.name + ' -> ' + error.message)
+    this.positionService.deletePosition(this.data).subscribe({
+      next: () => {
+        this.changed = true;
+        this.snackBar.open('Secondary position successfully deleted.', 'Ok', { duration: 2500 });
+        this.close();
+      },
+      error: (err: Error) => {
+        console.log(err.name + ' -> ' + err.message)
         this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
       }
+    });
   }
 
   public close() {

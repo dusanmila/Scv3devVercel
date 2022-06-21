@@ -3,7 +3,7 @@
     <div class="header fadeIn first">
         <div class="head">
             <h1>{{ objectName }}</h1>
-            <i class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></i>
+            <em class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></em>
         </div>
         <div class="object-info-data" *ngIf="showDetails == true">
             <div class="obj-info">
@@ -13,16 +13,16 @@
                     <li>Retailer: {{ object.retailer.retailerName }}</li>
                     <li>Assortment module: {{ object.objectInfo.assortmentModule }}</li>
                     <li>Number of registers: {{ object.objectInfo.registersNumber }}</li>
-                    <!-- <li>Director: {{ object.director.firstName }} {{ object.director.lastName }}</li>
+                    <li>Director: {{ object.director.firstName }} {{ object.director.lastName }}</li>
                     <li>Commercialist: {{ object.commercialist.firstName }} {{ object.commercialist.lastName }}</li>
                     <li>Supervisor: {{ object.supervisor.firstName }} {{ object.supervisor.lastName }}</li>
                     <li>Director: {{ object.merchandiser.firstName }} {{ object.merchandiser.lastName }}</li>
                     <li>Requisition days: {{ object.requisitionDays }}</li>
-                    <li>Merchandiser revision days: {{ object.merchandiserRevisionDays }}</li> -->
+                    <li>Merchandiser revision days: {{ object.merchandiserRevisionDays }}</li>
                 </ul>
             </div>
             <div class="object-info-tables">
-                <table class="info-table">
+                <table aria-describedby="Object info table 1" class="info-table">
                     <tr>
                         <th>Shelf Space M</th>
                         <th>Company Shelf Space M</th>
@@ -35,7 +35,7 @@
                     </tr>
                 </table>
 
-                <table class="info-table">
+                <table aria-describedby="Object info table 2" class="info-table">
                     <tr>
                         <th>Gainings 12M (RSD)</th>
                         <th>WD % Serbia</th>
@@ -53,10 +53,9 @@
                 </table>
             </div>
         </div>
-        <i class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></i>
-        <i class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></i>
+        <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></em>
+        <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></em>
     </div>
-
 
     <div class="main fadeIn second">
         <h3>UNRESOLVED FEEDBACKS:</h3>

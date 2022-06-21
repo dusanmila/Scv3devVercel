@@ -1,5 +1,4 @@
 <div class="fadeInDown">
-
     <div class="header fadeIn first">
         <h1>Choose Object</h1>
     </div>
@@ -7,31 +6,15 @@
     <div class="main fadeIn second">
         <div class="search-object">
             <input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">
-            <table class="emails-tbl" *ngIf="1>2">
-                <tr>
-                    <th>Addres</th>
-                    <th>Name</th>
-                    <th></th>
-                </tr>
-                <tr *ngFor="let object of objects">
-                    <td class="email-td">{{ object.address }}</td>
-                    <td class="email-td">{{ object.objectName }}</td>
-                    <td><i class="fa-solid fa-up-right-from-square"></i></td>
-                </tr>
-            </table>
             <app-object [workModel]="workModel" [isAdmin]="false"></app-object>
-            <button class="item3" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">Finish StoreCheck
-                </button>
+            <button class="item3" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">Finish
+                StoreCheck</button>
         </div>
-
-
 
         <div class="fadeIn third">
-           
-                <button class="item2" (click)="exit()">
-                    Exit
-                </button>
-      
-
+            <button class="item2" (click)="exit()">
+                Exit
+            </button>
         </div>
     </div>
+</div>
