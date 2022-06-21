@@ -29,7 +29,7 @@ export class FeedbackComponent implements OnInit {
 
   form: FormGroup;
 
-  isLoading=true;
+  isLoading = true;
 
   feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
@@ -74,7 +74,7 @@ export class FeedbackComponent implements OnInit {
     this.feedbackService.getUnresolvedFeedbacks().subscribe(data => {
 
       this.dataSource = new MatTableDataSource(data);
-      this.isLoading=false;
+      this.isLoading = false;
 
     });
   }
@@ -86,7 +86,7 @@ export class FeedbackComponent implements OnInit {
         this.showFinishButton.emit(true);
       }
       this.dataSource = new MatTableDataSource(data);
-      this.isLoading=false;
+      this.isLoading = false;
     });
   }
 
@@ -159,11 +159,10 @@ export class FeedbackComponent implements OnInit {
     feedback.resolved = true;
     this.feedbackService.editFeedback(feedback).subscribe(data => {
       console.log(data);
-      this.feedbackService.getUnresolvedFeedbacks().subscribe(data => {
-        this._feedbacks = data;
+      this.feedbackService.getUnresolvedFeedbacks().subscribe(res => {
+        this._feedbacks = res;
       })
     });
-
   }
 
   public openDialog(flag: number, feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
@@ -190,15 +189,6 @@ export class FeedbackComponent implements OnInit {
         }
       }
       )
-  }
-
-  public showResolvedFeedbacks() {
-    this.showResolved = !this.showResolved;
-    if (this.showResolved) {
-      // this.loadResolvedFeedbacksByObject();
-    } else {
-      this.loadUnresolvedFeedbacksByObject();
-    }
   }
 
 }

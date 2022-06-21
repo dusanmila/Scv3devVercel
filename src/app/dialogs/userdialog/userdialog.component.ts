@@ -35,7 +35,7 @@ export class UserDialogComponent implements OnInit {
 
 public add(): void{
   this.userService.createUser(this.data)
-  .subscribe( data =>{
+  .subscribe(() =>{
     this.snackBar.open('User successfully added: ' + this.data.username, 'Ok', { duration: 2500 });
   } ),
   (error:Error) => {
@@ -46,7 +46,7 @@ public add(): void{
 
 public update(): void{
   this.userService.editUser(this.data)
-  .subscribe(data => {
+  .subscribe(() => {
     this.snackBar.open('Updated user: ' + this.data.username, 'OK', { duration: 2500 });
   }),
   (error:Error) => {
@@ -57,7 +57,7 @@ public update(): void{
 
 public delete(): void{
   this.userService.deleteUser(this.data)
-  .subscribe(data => {
+  .subscribe(() => {
     this.snackBar.open('User successfully deleted', 'Ok', { duration: 2500 });
   }),
   (error:Error) => {

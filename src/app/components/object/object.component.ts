@@ -4,7 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ObjectCreateDialogComponent } from 'src/app/dialogs/object-create-dialog/object-create-dialog.component';
 import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
 import { UnfinishedObjectStoreCheckDialogComponent } from 'src/app/dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
@@ -174,11 +174,6 @@ export class ObjectComponent implements OnInit {
     //   this._objects = data;
     //   console.log(this._objects);
     // });
-
-    // this.objectService.getObjectByObjectName('Objekat1').subscribe(data => {
-    //   this.object = data;
-    //   console.log(this.object);
-    // });
   }
 
   public loadData() {
@@ -199,9 +194,6 @@ export class ObjectComponent implements OnInit {
   }
 
   public loadDataOnPageEvent(event: PageEvent) {
-    // if ((event.pageIndex + 1) * this.count > this.length) {
-    //   this.count = this.length % this.count;
-    // }
     this.page = event.pageIndex + 1;
     this.loadData();
   }
@@ -293,7 +285,6 @@ export class ObjectComponent implements OnInit {
   public createEmptyObjectStoreCheck(objectName: string, objectIdCompany: string) {
     if (!this.resolveFeedbacks) {
       let username = localStorage.getItem("username") as string;
-      // let username = "ppetrovic";
       console.log('create empty object store check');
       let osc: ObjectStoreCheckCreateDto = {
         objectIdCompany: objectIdCompany,
@@ -312,7 +303,6 @@ export class ObjectComponent implements OnInit {
     console.log('get unfinished object store check')
     if (!this.resolveFeedbacks) {
       let username = localStorage.getItem("username") as string;
-      // let username = "ppetrovic";
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
         console.log(data);
         if (data) {

@@ -84,7 +84,7 @@ public update(): void{
   this.objectCreateDto.requisitionDays=this.data.requisitionDays;
   this.objectCreateDto.objectInfo=this.data.objectInfo;
   this.objectService.updateObject(this.objectCreateDto)
-  .subscribe(data => {
+  .subscribe(() => {
     this.snackBar.open('Updated object: ' + this.data.objectName, 'OK', { duration: 2500 });
   }),
   (error:Error) => {
@@ -95,7 +95,7 @@ public update(): void{
 
 public delete(): void{
   this.objectService.deleteObject(this.data)
-  .subscribe(data => {
+  .subscribe(() => {
     this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500 });
   }),
   (error:Error) => {
