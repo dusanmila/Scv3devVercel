@@ -9,35 +9,35 @@
 
         <div class="fadeIn first">
             <img src="../../../assets/StoreCheckIcon3.png" id="icon" alt="App Icon" />
-          </div>
+        </div>
 
-          <form>
-
-
-              <input [(ngModel)]="user.username" type="text" name="username" class="fadeIn second" id="username"
-               aria-describedby="nameHelp" placeholder="Enter your username">
+        <form>
 
 
-              <input [(ngModel)]="user.password" type="password" name="password" class="fadeIn third" id="password"
-               aria-describedby="lastNameHelp" placeholder="Enter your password">
+            <input [(ngModel)]="user.username" type="text" name="username" class="fadeIn second" id="username"
+                aria-describedby="nameHelp" placeholder="Enter your username">
 
 
-              <button class="fadeIn fourth" (click)="LoginUser()" [disabled]="isLoading">Log in</button>
+            <input [(ngModel)]="user.password" type="password" name="password" class="fadeIn third" id="password"
+                aria-describedby="lastNameHelp" placeholder="Enter your password">
 
-           <div *ngIf="isLoading"
-    style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-    <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
-    </mat-progress-spinner>
-  </div>
+        
+            <button class="fadeIn fourth" (click)="LoginUser()" [disabled]="isLoading">Log in</button>
+       
+            <div *ngIf="isLoading"
+                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+                </mat-progress-spinner>
+            </div>
 
-              <p *ngIf="isLoginFailed" style="color:red">Wrong username/password.</p>
+            <p *ngIf="isLoginFailed" style="color:red">Wrong username/password.</p>
 
-              <div id="formFooter">
+            <div id="formFooter">
 
-              </div>
+            </div>
 
 
-          </form>
+        </form>
 
     </div>
 </div>

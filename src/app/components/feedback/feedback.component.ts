@@ -104,7 +104,7 @@ export class FeedbackComponent implements OnInit {
     this.form.get('file')!.updateValueAndValidity();
   }
   submitForm() {
-    var formData: any = new FormData();
+    const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
 
     formData.append('FeedbackCategoryName', this.form.get('FeedbackCategoryName')!.value);

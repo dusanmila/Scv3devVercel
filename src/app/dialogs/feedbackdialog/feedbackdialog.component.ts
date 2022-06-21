@@ -48,7 +48,7 @@ export class FeedbackDialogComponent implements OnInit {
   public add(): void {
     this.isLoading=true;
     this.feedbackService.createFeedback(this.data)
-      .subscribe(data => {
+      .subscribe(() => {
         this.snackBar.open('Feedback successfully added', 'Ok', { duration: 2500 });
         this.isLoading=false;
       }),
@@ -73,7 +73,7 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   submitForm() {
-    var formData: any = new FormData();
+    const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
     formData.append('FeedbackCategoryName', this.data.feedbackCategoryName);
     formData.append('text', this.data.text);

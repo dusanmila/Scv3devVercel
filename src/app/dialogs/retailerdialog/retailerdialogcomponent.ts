@@ -48,7 +48,7 @@ export class RetailerDialogComponent implements OnInit {
   public submit() {
 
     if (this.flag == 2) {
-      var formData: any = new FormData();
+      const formData: any = new FormData();
       formData.append('file', this.tableForm.get('file')!.value);
       formData.append('RetailerName', this.data.retailerName);
       this.objectService
@@ -84,7 +84,7 @@ export class RetailerDialogComponent implements OnInit {
   delete() {
 
     this.objectService.deleteRetailer(this.data)
-      .subscribe(data => {
+      .subscribe(() => {
         this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500 });
       }),
       (error: Error) => {
