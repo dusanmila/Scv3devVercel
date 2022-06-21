@@ -158,6 +158,6 @@ table{
   .mat-column-objectName{
     flex: 0 0 20% !important;
     width: 20% !important;
- 
+    margin-left: 5px;
   }
 }

@@ -46,6 +46,7 @@ button:hover {
 }
 button[disabled]:hover {
  background-color: #fff;
+ cursor: not-allowed;
 }
 
 .browseFile{

@@ -148,7 +148,7 @@ console.log(object.commercialist);
   }
 
 
-  public getObjectByString(string: String): Observable<Obj[]> {
+  public getObjectByString(string: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
     this.http.get<Obj[]>(`${OBJECT_URL}/objects/objectByString/${string}`).subscribe((object: Obj[]) => {
       retval$.next(object)
