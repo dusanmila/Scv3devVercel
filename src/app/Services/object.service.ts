@@ -72,6 +72,14 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public getRetailersByNameContains(str: string): Observable<Retailer[]> {
+    let retval$ = new Subject<Retailer[]>();
+    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers/retailersByNameContains/${str}`,{headers:this.headers}).subscribe((retailers: Retailer[]) => {
+      retval$.next(retailers);
+    });
+    return retval$.asObservable();
+  }
+
   public getOneObject(object: Obj): Observable<Obj> {
     let retval$ = new Subject<Obj>();
     this.http.get<Obj>(`${OBJECT_URL}/objects/objectByObjectName/${object.objectName}`).subscribe((objects: Obj) => {

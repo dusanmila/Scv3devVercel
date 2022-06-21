@@ -84,7 +84,7 @@ export class RetailerDialogComponent implements OnInit {
   delete() {
 
     this.objectService.deleteRetailer(this.data)
-      .subscribe(data => {
+      .subscribe(() => {
         this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500 });
       }),
       (error: Error) => {
