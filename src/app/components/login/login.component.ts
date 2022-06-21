@@ -1,12 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
-import { JwtHelperService } from "@auth0/angular-jwt";
-import { AUTH_URL } from 'src/app/app.constants';
+
 import { LoginService } from 'src/app/Services/login.service';
-//import { stringify } from 'querystring';
-//import { clearScreenDown } from 'readline';
+
 
 @Component({
   selector: 'app-login',

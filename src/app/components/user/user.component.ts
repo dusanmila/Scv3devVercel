@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import {  Subscription } from 'rxjs';
 
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -23,7 +23,7 @@ export class UserComponent {
   dataSource: MatTableDataSource<User>;
   subscription: Subscription;
 
-  search: String = "";
+  search: string = "";
 
   isLoading = false;
 
