@@ -6,12 +6,9 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './already-finished.component.html',
   styleUrls: ['./already-finished.component.css']
 })
-export class AlreadyFinishedComponent implements OnInit {
+export class AlreadyFinishedComponent {
 
   constructor(public dialogRef: MatDialogRef<AlreadyFinishedComponent>) { }
-
-  ngOnInit(): void {
-  }
 
   public close() {
     this.dialogRef.close();
