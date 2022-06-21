@@ -202,23 +202,19 @@ a {
     opacity: 1;
   }
 }
-/*
+
 @keyframes fadeIn {
   from {
     opacity: 0;
-  .fadeIn.third {
-    -webkit-animation-delay: 0.8s;
-    -moz-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-    margin-top: 10%;
-
+  
   }
 
   to {
     opacity: 1;
   }
 }
-*/
+
+
 .fadeIn {
   opacity: 0;
   -webkit-animation: fadeIn ease-in 1;
