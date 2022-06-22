@@ -33,7 +33,7 @@
     </div>
     <div class="form" *ngIf="flag!=2">
   <mat-form-field>
-    <mat-select [(ngModel)]="data.userType" placeholder="UserType" name="UserType" required>
+    <mat-select [(ngModel)]="data.userType" placeholder="UserType" name="UserType" [disabled]="flag==3" required>
       <mat-option *ngFor="let userType of userTypes" [value]="userType.typeName">
         {{ userType.typeName }}
       </mat-option>

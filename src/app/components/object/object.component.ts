@@ -159,6 +159,7 @@ export class ObjectComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public objectStoreCheckService: ObjectStoreCheckService) { }
+    noData=false;
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
@@ -173,6 +174,7 @@ export class ObjectComponent implements OnInit {
 
   public loadData() {
     this.isLoading=true;
+    this.noData=false;
     console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       console.log('uspeh')
@@ -180,6 +182,7 @@ export class ObjectComponent implements OnInit {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
       } else {
+        this.noData=true;
         this.length = 0;
         this.dataSource = new MatTableDataSource(this.objectArray);
       }
@@ -223,9 +226,16 @@ export class ObjectComponent implements OnInit {
 
   public searchByString(): void {
     this.isLoading = true;
+    this.noData=false;
     this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
 
-      this.dataSource = new MatTableDataSource<Obj>(data);
+      if(data.length==0){
+      this.noData=true;
+      }
+      else{
+        this.dataSource = new MatTableDataSource<Obj>(data);
+
+      }
       this.isLoading = false;
     });
   }

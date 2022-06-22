@@ -49,6 +49,10 @@ button[disabled]:hover {
  cursor: not-allowed;
 }
 
+.mat-spinner-color::ng-deep circle {
+  stroke: #56baed !important;
+}
+
 .browseFile{
   color: white;
   width: 10px;

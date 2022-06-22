@@ -59,7 +59,7 @@ import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you
 import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
 import { AlreadyFinishedComponent } from './dialogs/already-finished/already-finished.component';
 
-
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -108,7 +108,8 @@ import { AlreadyFinishedComponent } from './dialogs/already-finished/already-fin
     MatIconModule,
     MatButtonModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatToolbarModule
 
   ],
   providers: [DatePipe],
