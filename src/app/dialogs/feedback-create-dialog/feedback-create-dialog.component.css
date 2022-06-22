@@ -12,6 +12,9 @@
   flex-grow: 1;
 }
 
+.mat-spinner-color::ng-deep circle {
+  stroke: #56baed !important;
+}
 
 .item2 {
   background-color: white;

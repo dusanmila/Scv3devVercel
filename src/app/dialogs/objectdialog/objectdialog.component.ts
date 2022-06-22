@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Obj, ObjectCreateDto } from 'src/app/models/object';
 import { ObjectInfo } from 'src/app/models/objectInfo';
+import { Retailer } from 'src/app/models/retailer';
 import { User } from 'src/app/models/user.model';
 import { ObjectService } from 'src/app/Services/object.service';
 import { UserService } from 'src/app/Services/user.service';
@@ -19,7 +20,7 @@ export class ObjectDialogComponent implements OnInit {
   public flag: number;
 
   public users: User[] = [];
-
+  public retailers: Retailer[] = [];
 
   objectInfo:ObjectInfo;
   object:Obj;
@@ -57,6 +58,7 @@ export class ObjectDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
+    this.loadRetailers();
   }
 
   public loadUsers() {
@@ -65,7 +67,11 @@ export class ObjectDialogComponent implements OnInit {
     });
   }
 
-
+  public loadRetailers() {
+    this.objectService.getRetailers().subscribe(data => {
+      this.retailers = data;
+    });
+  }
 
 public update(): void{
   this.objectCreateDto.objectIdRetail=this.data.objectIdRetail;
