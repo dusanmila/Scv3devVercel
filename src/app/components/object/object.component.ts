@@ -174,6 +174,7 @@ export class ObjectComponent implements OnInit {
 
   public loadData() {
     this.isLoading=true;
+    this.noData=false;
     console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       console.log('uspeh')
@@ -181,6 +182,7 @@ export class ObjectComponent implements OnInit {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
       } else {
+        this.noData=true;
         this.length = 0;
         this.dataSource = new MatTableDataSource(this.objectArray);
       }
