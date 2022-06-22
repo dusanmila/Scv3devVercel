@@ -82,9 +82,14 @@ export class FeedbackDialogComponent implements OnInit {
     console.log(this.feedback);
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
       this.changed = true;
+      this.snackBar.open('Feedback successfully added', 'Ok', { duration: 2500 });
       this.close();
       console.log(data);
-    });
+    }),
+    (error:Error) => {
+      console.log(error.name + ' -> ' + error.message)
+      this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
+    };
   }
 
   public openInfo() {

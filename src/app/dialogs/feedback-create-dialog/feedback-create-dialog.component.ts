@@ -69,8 +69,13 @@ export class FeedbackCreateDialogComponent implements OnInit {
       this.isLoading = false;
       console.log('dodato')
       console.log(data);
+      this.snackBar.open('Feedback sucessfully added. ', 'Close', { duration: 2500 });
       this.close();
-    });
+    }),
+    (error:Error) => {
+      console.log(error.name + ' -> ' + error.message)
+      this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
+    };
   }
 
   public close(): void {
