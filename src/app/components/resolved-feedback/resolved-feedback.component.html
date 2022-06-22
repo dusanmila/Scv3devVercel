@@ -6,10 +6,7 @@
   <div class="fadeIn second">
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-      <!-- <ng-container matColumnDef="img">
-    <th mat-header-cell *matHeaderCellDef> Image </th>
-    <td mat-cell *matCellDef="let row"> <img [src]="row.img" alt="SC photo" width="50" height="50"/> </td>
-  </ng-container> -->
+
 
       <ng-container matColumnDef="date">
         <mat-header-cell *matHeaderCellDef mat-sort-header style="width:30%">Date</mat-header-cell>
@@ -21,16 +18,7 @@
         <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
       </ng-container>
 
-      <!-- <ng-container matColumnDef="text">
-  <mat-header-cell *matHeaderCellDef mat-sort-header>Text</mat-header-cell>
-  <mat-cell *matCellDef="let row">{{ row.text }}</mat-cell>
-</ng-container> -->
-
-
-      <!-- <ng-container matColumnDef="resolved">
-    <mat-header-cell *matHeaderCellDef mat-sort-header>Resolved</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.resolved }}</mat-cell>
-  </ng-container> -->
+    
 
       <ng-container matColumnDef="username">
         <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>

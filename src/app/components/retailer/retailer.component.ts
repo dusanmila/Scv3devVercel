@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-
 import { MatTableDataSource } from '@angular/material/table';
-
 import { MatDialog } from '@angular/material/dialog';
 import { ObjectService } from 'src/app/Services/object.service';
 import { RetailerDialogComponent } from 'src/app/dialogs/retailerdialog/retailerdialogcomponent';

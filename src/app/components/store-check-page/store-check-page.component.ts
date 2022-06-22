@@ -1,3 +1,4 @@
+
 import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Event, Router } from '@angular/router';
@@ -47,7 +48,7 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   @HostListener('window:popstate', ['$event'])
-  onPopState(event: Event) {
+  onPopState() {
 
     this.router.navigate(['/chooseObject/' + this.workModel]);
     if (!this.resolveFeedbacks) {
