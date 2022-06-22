@@ -22,7 +22,7 @@
       <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
     </ng-container>
 
-
+<p *ngIf="noData">No objects.</p>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
@@ -61,7 +61,7 @@
   <mat-paginator *ngIf="dataSource" [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
 
   <div *ngIf="isLoading"
-    style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+    style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed;">
     <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
     </mat-progress-spinner>
   </div>
