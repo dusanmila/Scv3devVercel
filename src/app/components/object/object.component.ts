@@ -296,7 +296,7 @@ export class ObjectComponent implements OnInit {
         console.log(data);
         if (data) {
           let newObjectName = data.object.objectName;
-          const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: objectName });
+          const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: newObjectName });
           dialogRef.afterClosed()
             .subscribe(res => {
               if (res) {
