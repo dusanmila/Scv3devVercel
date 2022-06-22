@@ -38,32 +38,6 @@
       <input matInput placeholder = "Address" [(ngModel)]="data.address" name = "address" [disabled]="flag==4" required/>
     </mat-form-field>
   </div>
-  <!--
-  <div class="form">
-    <mat-form-field>
-      <input matInput placeholder = "KAM" [(ngModel)]="data.kam" name = "kam" [disabled]="flag==3" required/>
-    </mat-form-field>
-  </div>
-  <div class="form">
-    <mat-form-field>
-      <input matInput placeholder = "Director" [(ngModel)]="data.director" name = "director" [disabled]="flag==3" required/>
-    </mat-form-field>
-  </div>
-  <div class="form">
-    <mat-form-field>
-      <input matInput placeholder = "supervisor" [(ngModel)]="data.supervisor" name = "supervisor" [disabled]="flag==3" required/>
-    </mat-form-field>
-  </div>
-  <div class="form">
-    <mat-form-field>
-      <input matInput placeholder = "Commercialist" [(ngModel)]="data.commercialist" name = "commercialist" [disabled]="flag==3" required/>
-    </mat-form-field>
-  </div>
-  <div class="form">
-  <mat-form-field>
-    <input matInput placeholder = "Merchandiser" [(ngModel)]="data.merchandiser" name = "merchandiser" [disabled]="flag==3" required/>
-  </mat-form-field>
-</div>-->
 <div class="form" *ngIf="flag!=4 && flag!=3">
   <mat-form-field>
     <mat-select [(ngModel)]="data.kam" placeholder="KAM" name="KAM" required>
@@ -187,7 +161,6 @@
 
 
 <div mat-dialog-actions>
-  <!--<button mat-button class="item2" *ngIf="flag == 1" type="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">Ok</button>-->
   <button mat-button class="item2" *ngIf="flag == 2" type="submit" [mat-dialog-close]="1"(click)="update()" [disabled]="!formControl.valid">Ok</button>
   <button mat-button class="item2" *ngIf="flag == 3" type="submit" [mat-dialog-close]="1"(click)="delete()">Delete</button>
   <button mat-button class="item2" (click)="close()">Close</button>
