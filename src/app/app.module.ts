@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,7 +22,6 @@ import { MatTableModule } from '@angular/material/table';
 
 import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
 
-import { ReactiveFormsModule } from '@angular/forms';
 import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 

@@ -1,4 +1,5 @@
-import { Component, OnInit,HostListener } from '@angular/core';
+
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Event, Router } from '@angular/router';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
@@ -47,7 +48,7 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   @HostListener('window:popstate', ['$event'])
-  onPopState(event: Event) {
+  onPopState() {
 
     this.router.navigate(['/chooseObject/' + this.workModel]);
     if (!this.resolveFeedbacks) {
