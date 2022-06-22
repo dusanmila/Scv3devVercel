@@ -127,10 +127,6 @@ export class ObjectService {
   }
 
   public updateObject(object: ObjectCreateDto): Observable<ObjectCreateDto> {
-
-console.log(object.kam);
-console.log(object.commercialist);
-
     let retval$ = new Subject<ObjectCreateDto>();
     this.http.put<ObjectCreateDto>(`${OBJECT_URL}/objects`, object,{headers:this.headers}).subscribe((helper: ObjectCreateDto) => {
       retval$.next(helper);

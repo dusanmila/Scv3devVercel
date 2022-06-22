@@ -175,9 +175,7 @@ export class ObjectComponent implements OnInit {
   public loadData() {
     this.isLoading=true;
     this.noData=false;
-    console.log(this.idCompany, this.retailer, this.city, this.format)
     this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
-      console.log('uspeh')
       if (data) {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
@@ -187,7 +185,6 @@ export class ObjectComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.objectArray);
       }
       this.isLoading = false;
-      console.log(data);
     });
   }
 
@@ -284,26 +281,21 @@ export class ObjectComponent implements OnInit {
   public createEmptyObjectStoreCheck(objectName: string, objectIdCompany: string) {
     if (!this.resolveFeedbacks) {
       let username = localStorage.getItem("username") as string;
-      console.log('create empty object store check');
       let osc: ObjectStoreCheckCreateDto = {
         objectIdCompany: objectIdCompany,
         username: username,
         pdf: ""
       }
-      console.log(osc);
       this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-        console.log(data);
         this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
       });
     }
   }
 
   public getUnfinishedObjectStoreCheck(objectName: string, objectIdCompany: string) {
-    console.log('get unfinished object store check')
     if (!this.resolveFeedbacks) {
       let username = localStorage.getItem("username") as string;
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
-        console.log(data);
         if (data) {
           let newObjectName = data.object.objectName;
           const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: newObjectName });

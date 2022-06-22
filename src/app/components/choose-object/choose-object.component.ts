@@ -40,10 +40,8 @@ export class ChooseObjectComponent implements OnInit {
   }
 
   public loadStoreCheck() {
-    console.log('load store check')
     let username = localStorage.getItem("username") as string;
     this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
-      console.log(data);
       this.storeCheck = data;
       if (!this.storeCheck) {
         this.createEmptyStoreCheck();
@@ -52,7 +50,6 @@ export class ChooseObjectComponent implements OnInit {
   }
 
   public createEmptyStoreCheck() {
-    console.log('create empty store check');
     let username = localStorage.getItem("username") as string;
     let sc: StoreCheck = {
       username: username,
@@ -67,7 +64,6 @@ export class ChooseObjectComponent implements OnInit {
   public openDialog() {
     let username = localStorage.getItem("username") as string;
     this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
-      console.log(data);
       this.storeCheck = data;
       if (!this.storeCheck) {
         this.dialog.open(AlreadyFinishedComponent);
@@ -81,7 +77,6 @@ export class ChooseObjectComponent implements OnInit {
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
     dialogRef.afterClosed()
       .subscribe(res => {
-        console.log(res)
         if (res) {
           this.router.navigate(['/storeCheck']);
         }
