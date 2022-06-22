@@ -8,8 +8,8 @@ import { Subscription } from 'rxjs';
 import { ObjectCreateDialogComponent } from 'src/app/dialogs/object-create-dialog/object-create-dialog.component';
 import { ObjectDialogComponent } from 'src/app/dialogs/objectdialog/objectdialog.component';
 import { UnfinishedObjectStoreCheckDialogComponent } from 'src/app/dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
-import { Obj } from 'src/app/models/object';
-import { ObjectCreateDto } from 'src/app/models/object';
+
+import { Obj, ObjectCreateDto } from 'src/app/models/object';
 import { ObjectInfo } from 'src/app/models/objectInfo';
 import { ObjectStoreCheckCreateDto } from 'src/app/models/objectStoreCheck';
 import { Retailer } from 'src/app/models/retailer';
