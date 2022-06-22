@@ -80,10 +80,11 @@ export class FeedbackComponent implements OnInit {
   }
 
   public loadUnresolvedFeedbacksByObject() {
-    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName).subscribe(data => {
+    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks).subscribe(data => {
       if (data) {
         console.log('postoje feedbackovi');
-        this.showFinishButton.emit(true);
+        if (!this.resolveFeedbacks)
+          this.showFinishButton.emit(true);
       }
       this.dataSource = new MatTableDataSource(data);
       this.isLoading = false;
