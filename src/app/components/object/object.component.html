@@ -22,8 +22,6 @@
       <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
     </ng-container>
 
-<p *ngIf="noData">No objects.</p>
-
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" *ngIf="isAdmin">
@@ -66,7 +64,7 @@
     </mat-progress-spinner>
   </div>
 
-
+  <mat-toolbar color="primary" *ngIf="noData">No records found message</mat-toolbar>
 
   <div class="detail-search">
     <h4>Detail search</h4>
