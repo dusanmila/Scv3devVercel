@@ -25,3 +25,8 @@
 .whitetext{
   color:white;
 }
+
+.noDataMessage{
+  background-color: white;
+  color:#56baed;
+ }

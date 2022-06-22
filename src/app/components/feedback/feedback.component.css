@@ -111,7 +111,10 @@ h1{
   stroke: #56baed !important;
   }
 
-
+  .noDataMessage{
+    background-color: white;
+    color:#56baed;
+   }
 
 
 

@@ -17,6 +17,10 @@
   margin: 2%;
 
 }
+.noDataMessage{
+  background-color: white;
+  color:#56baed;
+ }
 
 .mat-spinner-color::ng-deep circle{
   stroke: #56baed !important;

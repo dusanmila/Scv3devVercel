@@ -25,7 +25,7 @@ export class PositionComponent implements OnInit {
 
 
   isLoading = true;
-
+noData=false;
 
   @Input() objectName: string;
   @Input() resolveFeedbacks: boolean;
@@ -42,10 +42,16 @@ export class PositionComponent implements OnInit {
   }
 
   public loadData() {
+    this.noData=false;
     if (this.objectName != null) {
       this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
-        this.positions = data;
-        this.dataSource = new MatTableDataSource(this.positions);
+        if(data){
+          this.positions = data;
+          this.dataSource = new MatTableDataSource(this.positions);
+        }else{
+          this.noData=true;
+        }
+
         this.isLoading = false;
       });
     } else {

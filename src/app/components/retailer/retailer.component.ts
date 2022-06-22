@@ -22,12 +22,13 @@ search : string ="";
 searchClicked: boolean = false;
 
 isLoading=false;
+noData=false;
 
 selectedRetailer:Retailer;
 
   constructor(public objectService: ObjectService, private dialog:MatDialog) { }
 
- 
+
 
 public loadData(){
   this.objectService.getRetailers().subscribe(data => {
@@ -83,10 +84,15 @@ public loadData(){
     }*/
 
     public searchByName(){
+      this.noData=false;
       this.isLoading = true;
       this.objectService.getRetailersByNameContains(this.search).subscribe(data => {
+if(data){
+  this.dataSource = new MatTableDataSource<Retailer>(data);
+}else{
+  this.noData=true;
+}
 
-        this.dataSource = new MatTableDataSource<Retailer>(data);
         this.isLoading = false;
       });
     }
