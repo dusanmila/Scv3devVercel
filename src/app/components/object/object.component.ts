@@ -159,6 +159,7 @@ export class ObjectComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public objectStoreCheckService: ObjectStoreCheckService) { }
+    noData=false;
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
@@ -223,9 +224,16 @@ export class ObjectComponent implements OnInit {
 
   public searchByString(): void {
     this.isLoading = true;
+    this.noData=false;
     this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
 
-      this.dataSource = new MatTableDataSource<Obj>(data);
+      if(data.length==0){
+      this.noData=true;
+      }
+      else{
+        this.dataSource = new MatTableDataSource<Obj>(data);
+
+      }
       this.isLoading = false;
     });
   }
