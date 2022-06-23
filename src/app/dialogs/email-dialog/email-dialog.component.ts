@@ -25,7 +25,6 @@ export class EmailDialogComponent   {
 
   
   public send() {
-    console.log(this.emailsForSending);
     let username = localStorage.getItem("username") as string;
     this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
       console.log(data);

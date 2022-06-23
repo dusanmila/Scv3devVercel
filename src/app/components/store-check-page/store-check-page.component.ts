@@ -43,7 +43,6 @@ export class StoreCheckPageComponent implements OnInit {
     }
     this.getOneObject();
     this.getPositionsByObjectName();
-    console.log(this.resolveFeedbacks);
   }
 
   @HostListener('window:popstate', ['$event'])
@@ -62,19 +61,16 @@ export class StoreCheckPageComponent implements OnInit {
   public getOneObject() {
     this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
       this.object = data;
-      console.log(this.object);
     });
   }
 
   public getPositionsByObjectName() {
     this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
       this.positions = data;
-      console.log(this.positions);
     });
   }
 
   public getRetailerPlanogram() {
-    console.log('get retailer planogram');
     this.objectService.getRetailerPlanogram(this.object.retailer);
   }
 
@@ -90,7 +86,6 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   public createEmptyObjectStoreCheck() {
-    console.log('create empty object store check');
     let username = localStorage.getItem("username") as string;
     let osc: ObjectStoreCheckCreateDto = {
       objectIdCompany: this.object.objectIdCompany,
@@ -99,7 +94,6 @@ export class StoreCheckPageComponent implements OnInit {
     }
     this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
       this.objectStoreCheck = data;
-      console.log(this.objectStoreCheck);
     });
   }
 
@@ -134,7 +128,6 @@ export class StoreCheckPageComponent implements OnInit {
       const dialogRef = this.dialog.open(AreYouSureDialogComponent);
       dialogRef.afterClosed()
         .subscribe(res => {
-          console.log(res)
           if (res) {
             this.router.navigate(['/chooseObject/' + this.workModel]);
             if (!this.resolveFeedbacks) {
@@ -150,7 +143,6 @@ export class StoreCheckPageComponent implements OnInit {
       if (!this.resolveFeedbacks) {
         let username = localStorage.getItem("username") as string;
         this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
-          console.log(data);
           this.router.navigate(['/chooseObject/' + this.workModel]);
         });
       } else {

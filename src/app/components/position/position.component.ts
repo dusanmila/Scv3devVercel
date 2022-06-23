@@ -69,7 +69,6 @@ export class PositionComponent implements OnInit {
   }
 
   createPosition() {
-    console.log(this.position.objectName);
     this.positionService.createPosition(this.position).subscribe(data => {
       this.positions.push(data);
 
@@ -116,7 +115,6 @@ export class PositionComponent implements OnInit {
     dialogRef.componentInstance.objectName = this.objectName;
     dialogRef.afterClosed()
       .subscribe(res => {
-        console.log(res);
         if (res)
           this.loadData();
       }

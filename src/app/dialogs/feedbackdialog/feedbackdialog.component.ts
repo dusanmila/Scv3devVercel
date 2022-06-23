@@ -39,8 +39,6 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.resolveFeedbacks);
-    console.log(this.data);
   }
 
   public add(): void {
@@ -78,12 +76,9 @@ export class FeedbackDialogComponent implements OnInit {
     formData.append('text', this.data.text);
     formData.append('username', this.data.username);
     formData.append('img', this.data.img);
-    console.log(formData);
-    console.log(this.feedback);
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
       this.changed = true;
       this.close();
-      console.log(data);
     });
   }
 
