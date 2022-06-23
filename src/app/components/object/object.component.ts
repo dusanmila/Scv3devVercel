@@ -35,6 +35,8 @@ export class ObjectComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   public detailSearch: boolean = false;
+  public address: string = "";
+  public objectName: string = "";
   public idCompany: string = "";
   public retailer: string = "";
   public city: string = "";
@@ -175,7 +177,7 @@ export class ObjectComponent implements OnInit {
   public loadData() {
     this.isLoading=true;
     this.noData=false;
-    this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
+    this.objectService.getObjects(this.page, this.count, this.address, this.objectName, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       if (data) {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
