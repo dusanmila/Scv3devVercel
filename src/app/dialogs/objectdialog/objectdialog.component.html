@@ -14,9 +14,9 @@
     <input matInput placeholder = "ObjectIDCompany" [(ngModel)]="data.objectIdCompany" name = "objectIdCompany" [disabled]="flag==4" required/>
   </mat-form-field>
 </div>
-<div class="form">
+<div class="form" *ngIf="flag !=4">
   <mat-form-field>
-    <mat-select [(ngModel)]="data.retailer" placeholder="Retailer" name="Retailer" required>
+    <mat-select [(ngModel)]="data.retailer" placeholder="Retailer" name="Retailer" [disabled]="flag==4" required>
 
         <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
           {{ retailer.retailerName }}
@@ -25,7 +25,12 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div class="form" *ngIf="flag!=4 && flag!=3">
+<div class="form" *ngIf="flag==4">
+  <mat-form-field>
+    <input matInput placeholder = "Retailer" [(ngModel)]="data.retailer.retailerName" name = "retailerName" [disabled]="true" required/>
+  </mat-form-field>
+</div>
+<div class="form" *ngIf="flag!=3">
   <mat-form-field>
     <input matInput placeholder = "ObjectFormat" [(ngModel)]="data.objectFormat" name = "objectFormat" [disabled]="flag==4" required/>
   </mat-form-field>
@@ -39,7 +44,7 @@
       <input matInput placeholder = "City" [(ngModel)]="data.city" name = "city" [disabled]="flag==4" required/>
     </mat-form-field>
   </div>
-  <div class="form" *ngIf="flag!=4 && flag!=3">
+  <div class="form" *ngIf="flag!=3">
     <mat-form-field>
       <input matInput placeholder = "Address" [(ngModel)]="data.address" name = "address" [disabled]="flag==4" required/>
     </mat-form-field>
@@ -92,12 +97,12 @@
 
 
 
-<div class="form" *ngIf="flag!=4 && flag!=3">
+<div class="form" *ngIf=" flag!=3">
   <mat-form-field>
     <input matInput placeholder = "RequisitionDays" [(ngModel)]="data.requisitionDays" name = "requisitionDays" [disabled]=" flag==4" required/>
   </mat-form-field>
 </div>
-<div class="form" *ngIf="flag!=4 && flag!=3">
+<div class="form" *ngIf="flag!=3">
   <mat-form-field>
     <input matInput placeholder = "MerchandiserRevisionDays" [(ngModel)]="data.merchandiserRevisionDays" name = "merchandiserRevisionDays" [disabled]=" flag==4" required/>
   </mat-form-field>
