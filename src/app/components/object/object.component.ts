@@ -35,6 +35,8 @@ export class ObjectComponent implements OnInit {
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   public detailSearch: boolean = false;
+  public address: string = "";
+  public objectName: string = "";
   public idCompany: string = "";
   public retailer: string = "";
   public city: string = "";
@@ -172,10 +174,12 @@ export class ObjectComponent implements OnInit {
 
   }
 
-  public loadData() {
+  public loadData(pageChanged: boolean) {
+    if (!pageChanged)
+      this.page = 1;
     this.isLoading=true;
     this.noData=false;
-    this.objectService.getObjects(this.page, this.count, this.search, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
+    this.objectService.getObjects(this.page, this.count, this.address, this.objectName, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       if (data) {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
@@ -190,7 +194,7 @@ export class ObjectComponent implements OnInit {
 
   public loadDataOnPageEvent(event: PageEvent) {
     this.page = event.pageIndex + 1;
-    this.loadData();
+    this.loadData(true);
   }
 
   public selectObject(object: Obj) {
@@ -250,7 +254,7 @@ export class ObjectComponent implements OnInit {
       dialogRef.afterClosed()
         .subscribe(res => {
           if (res === 1) {
-            this.loadData();
+            this.loadData(false);
           }
         }
         )

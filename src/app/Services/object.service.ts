@@ -24,11 +24,12 @@ export class ObjectService {
 
 
 
-  public getObjects(page: number, count: number, search: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
+  public getObjects(page: number, count: number, address: string, objectName: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("page", page);
     queryParams = queryParams.append("count", count);
-    queryParams = queryParams.append("search", search);
+    queryParams = queryParams.append("address", address);
+    queryParams = queryParams.append("objectName", objectName);
     queryParams = queryParams.append("idCompany", idCompany);
     queryParams = queryParams.append("retailer", retailer);
     queryParams = queryParams.append("city", city);
