@@ -87,9 +87,10 @@ export class FeedbackComponent implements OnInit {
         if (!this.resolveFeedbacks)
           this.showFinishButton.emit(true);
 
-          this.dataSource=new MatTableDataSource(data)
+          this.dataSource=new MatTableDataSource(data);
         }else{
         this.noData=true;
+        this.dataSource=new MatTableDataSource(data);
 
       }
 

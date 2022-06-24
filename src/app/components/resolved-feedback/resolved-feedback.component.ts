@@ -48,6 +48,7 @@ export class ResolvedFeedbackComponent implements OnInit {
 
       }else{
 this.noData=true;
+this.dataSource=data;
       }
       this.isLoading = false;
 

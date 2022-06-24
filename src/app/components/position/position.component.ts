@@ -50,6 +50,7 @@ noData=false;
           this.dataSource = new MatTableDataSource(this.positions);
         }else{
           this.noData=true;
+          this.dataSource=data;
         }
 
         this.isLoading = false;

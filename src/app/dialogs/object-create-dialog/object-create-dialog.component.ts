@@ -48,11 +48,11 @@ public add(): void{
 
   this.objectService.createObject(this.data)
   .subscribe(() =>{
-    this.snackBar.open('Object successfully added: ' + this.data.objectName, 'Ok', { duration: 2500 });
+    this.snackBar.open('Object successfully added', 'Ok', { duration: 2500 });
   } ),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occured ', 'Close', { duration: 2500 });
   }
 }
 

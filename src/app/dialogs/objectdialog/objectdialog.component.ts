@@ -91,11 +91,11 @@ public update(): void{
   this.objectCreateDto.objectInfo=this.data.objectInfo;
   this.objectService.updateObject(this.objectCreateDto)
   .subscribe(() => {
-    this.snackBar.open('Updated object: ' + this.data.objectName, 'OK', { duration: 2500 });
+    this.snackBar.open('Updated object', 'Ok', { duration: 2500 });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured, try again later. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occured.', 'Close', { duration: 2500 });
   }
 }
 
@@ -106,7 +106,7 @@ public delete(): void{
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occurred', 'Close', { duration: 2500 });
   }
 }
 

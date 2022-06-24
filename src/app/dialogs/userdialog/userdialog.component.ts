@@ -36,33 +36,33 @@ export class UserDialogComponent implements OnInit {
 public add(): void{
   this.userService.createUser(this.data)
   .subscribe(() =>{
-    this.snackBar.open('User successfully added: ' + this.data.username, 'Ok', { duration: 2500 });
+    this.snackBar.open('User successfully added' + this.data.username, 'Ok', { duration: 2500 });
   } ),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occured', 'Close', { duration: 2500 });
   }
 }
 
 public update(): void{
   this.userService.editUser(this.data)
   .subscribe(() => {
-    this.snackBar.open('Updated user: ' + this.data.username, 'OK', { duration: 2500 });
+    this.snackBar.open('Updated user', 'Ok', { duration: 2500 });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured, try again later. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occured', 'Close', { duration: 2500 });
   }
 }
 
 public delete(): void{
   this.userService.deleteUser(this.data)
   .subscribe(() => {
-    this.snackBar.open('User successfully deleted', 'Ok', { duration: 2500 });
+    this.snackBar.open('User deleted', 'Ok', { duration: 2500 });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occurred', 'Close', { duration: 2500 });
   }
 }
 

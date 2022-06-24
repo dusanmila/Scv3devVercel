@@ -91,6 +91,7 @@ if(data){
   this.dataSource = new MatTableDataSource<Retailer>(data);
 }else{
   this.noData=true;
+  this.dataSource=data;
 }
 
         this.isLoading = false;

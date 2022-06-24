@@ -63,13 +63,15 @@ export class UserComponent {
     this.noData=false;
     this.isLoading = true;
     this.userService.getUsersByUsername(this.search).subscribe(data => {
+      console.log(data);
 if(data){
   this.dataSource = new MatTableDataSource<User>(data);
 
   this.searchClicked = true; //izbaciti?
 
-}else{
-  this.noData=true;
+  if(this.dataSource.data.length==0){
+    this.noData=true;
+  }
 }
 
 this.isLoading = false;
@@ -82,7 +84,7 @@ this.isLoading = false;
     this.userService.editUser(user).subscribe(data => {
 
       console.log(data);
-
+    
     });
   }
 
