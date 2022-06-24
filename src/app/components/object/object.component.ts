@@ -174,7 +174,9 @@ export class ObjectComponent implements OnInit {
 
   }
 
-  public loadData() {
+  public loadData(pageChanged: boolean) {
+    if (!pageChanged)
+      this.page = 1;
     this.isLoading=true;
     this.noData=false;
     this.objectService.getObjects(this.page, this.count, this.address, this.objectName, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
@@ -192,7 +194,7 @@ export class ObjectComponent implements OnInit {
 
   public loadDataOnPageEvent(event: PageEvent) {
     this.page = event.pageIndex + 1;
-    this.loadData();
+    this.loadData(true);
   }
 
   public selectObject(object: Obj) {
@@ -252,7 +254,7 @@ export class ObjectComponent implements OnInit {
       dialogRef.afterClosed()
         .subscribe(res => {
           if (res === 1) {
-            this.loadData();
+            this.loadData(false);
           }
         }
         )

@@ -4,8 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
+import { UnfinishedObjectStoreCheckDialogComponent } from 'src/app/dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
 import { Obj } from 'src/app/models/object';
 import { StoreCheck } from 'src/app/models/storeCheck';
+import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { ObjectService } from 'src/app/Services/object.service';
 import { StoreCheckService } from 'src/app/Services/store-check.service';
 
@@ -25,7 +27,8 @@ export class ChooseObjectComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     public storeCheckService: StoreCheckService,
-    public router: Router) { }
+    public router: Router,
+    public objectStoreCheckService: ObjectStoreCheckService) { }
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
@@ -63,12 +66,37 @@ export class ChooseObjectComponent implements OnInit {
 
   public openDialog() {
     let username = localStorage.getItem("username") as string;
-    this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
-      this.storeCheck = data;
-      if (!this.storeCheck) {
-        this.dialog.open(AlreadyFinishedComponent);
+    this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
+      if (data) {
+        let newObjectName = data.object.objectName;
+        const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: newObjectName });
+        dialogRef.afterClosed()
+          .subscribe(res => {
+            if (res) {
+              this.router.navigate(['/storeCheckPage', 'addStoreCheck', newObjectName]);
+            } else {
+              this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username);
+              this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
+                this.storeCheck = data;
+                if (!this.storeCheck) {
+                  this.dialog.open(AlreadyFinishedComponent);
+                } else {
+                  const dialogRef = this.dialog.open(EmailDialogComponent);
+                  dialogRef.componentInstance.flag = 1;
+                }
+              });
+            }
+          });
       } else {
-        this.dialog.open(EmailDialogComponent);
+        this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
+          this.storeCheck = data;
+          if (!this.storeCheck) {
+            this.dialog.open(AlreadyFinishedComponent);
+          } else {
+            const dialogRef = this.dialog.open(EmailDialogComponent);
+            dialogRef.componentInstance.flag = 1;
+          }
+        });
       }
     });
   }
