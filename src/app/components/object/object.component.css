@@ -93,13 +93,18 @@ table{
   width: 100%;
  }
 
+ .noDataMessage{
+  background-color: white;
+  color:#56baed;
+ }
+
 .mat-column-objectName {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 15% !important;
   width: 15% !important;
   overflow-wrap: break-word;
- 
+
 
   word-break: break-word;
 
@@ -118,7 +123,7 @@ table{
   flex: 0 0 30% !important;
   width: 30% !important;
   overflow-wrap: break-word;
-  
+
 
   word-break: break-word;
 
@@ -136,7 +141,7 @@ table{
   flex: 0 0 50% !important;
   width: 50% !important;
   overflow-wrap: break-word;
- 
+
 
   word-break: break-word;
 
@@ -154,7 +159,7 @@ table{
     margin-left:-20px;
     flex: 0 0 55% !important;
      width: 55% !important;
- 
+
   }
 }
 

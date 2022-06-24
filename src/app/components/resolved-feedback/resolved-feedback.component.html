@@ -18,7 +18,7 @@
         <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
       </ng-container>
 
-    
+
 
       <ng-container matColumnDef="username">
         <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
@@ -43,6 +43,7 @@
       <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
       </mat-progress-spinner>
     </div>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No feedbacks.</mat-toolbar>
     <mat-paginator [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
   </div>
   <div class="fadeIn third"> <button class="item2" (click)="exit()">Exit</button> </div>

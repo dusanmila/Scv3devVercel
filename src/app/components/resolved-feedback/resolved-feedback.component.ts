@@ -20,6 +20,7 @@ export class ResolvedFeedbackComponent implements OnInit {
   public page: number = 1;
   public length: number = 100;
   public pageEvent: PageEvent;
+  noData=false;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
@@ -41,8 +42,18 @@ export class ResolvedFeedbackComponent implements OnInit {
 
   public loadData() {
     this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
+
+      if(data){
+        console.log(data);
+        this.dataSource = new MatTableDataSource(data);
+
+      }else{
+this.noData=true;
+this.dataSource=data;
+      }
+
       this.isLoading = false;
+
     });
   }
 

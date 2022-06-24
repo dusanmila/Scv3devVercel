@@ -31,6 +31,8 @@ export class UserComponent {
 
   searchClicked: boolean = false;
 
+  noData=false;
+
 
   public get users(): User[] {
     return this._users;
@@ -58,14 +60,21 @@ export class UserComponent {
   }
 
   public searchByUsername(): void {
+    this.noData=false;
     this.isLoading = true;
     this.userService.getUsersByUsername(this.search).subscribe(data => {
+      console.log(data);
+if(data){
+  this.dataSource = new MatTableDataSource<User>(data);
 
-      this.dataSource = new MatTableDataSource<User>(data);
+  this.searchClicked = true; //izbaciti?
 
-      this.searchClicked = true;
-      this.isLoading = false;
+  if(this.dataSource.data.length==0){
+    this.noData=true;
+  }
+}
 
+this.isLoading = false;
 
     });
   }
@@ -75,7 +84,7 @@ export class UserComponent {
     this.userService.editUser(user).subscribe(data => {
 
       console.log(data);
-
+    
     });
   }
 
