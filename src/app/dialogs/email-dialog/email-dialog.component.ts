@@ -15,6 +15,8 @@ export class EmailDialogComponent implements OnInit {
 
   public flag: number;
 
+  isLoading=false;
+
   public emailsForSending: EmailsForSending = {
     "generalDirector": false,
     "sectorDirector": false,
@@ -33,31 +35,37 @@ export class EmailDialogComponent implements OnInit {
     this.dialogRef.updateSize('90%');
   }
 
-  
+
   public send() {
     let username = localStorage.getItem("username") as string;
     // koristimo za slanje celog store checka
     if (this.flag == 1) {
+      this.isLoading=true;
       this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
         console.log(data);
+        this.isLoading=false;
         this.close();
         this.router.navigate(['/storeCheck']);
       });
     }
     // koristimo za slanje object store checka
     else {
+      this.isLoading=true;
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
         if (data) {
+
           this.objectStoreCheckService.finishObjectStoreCheck(username, this.emailsForSending).subscribe(data => {
             console.log(data);
+            this.isLoading=false;
             this.dialogRef.close(2);
           });
         } else {
+          this.isLoading=false;
           this.dialogRef.close(3);
         }
       });
     }
-   
+
   }
 
   public close(): void {

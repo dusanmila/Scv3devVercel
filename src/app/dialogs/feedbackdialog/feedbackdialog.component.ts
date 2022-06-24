@@ -88,7 +88,7 @@ export class FeedbackDialogComponent implements OnInit {
       this.snackBar.open('An error occurred', 'Close', { duration: 2500 });
     };
 
-    });
+
 
   }
 
