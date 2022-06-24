@@ -51,7 +51,6 @@ export class AdminGuard implements CanActivate {
         error: (_) => { reject; isRefreshSuccess = false; }
       });
     });
-    console.log("try prosao")
     localStorage.setItem("jwt", refreshRes.token);
     localStorage.setItem("refreshToken", refreshRes.refreshToken);
     isRefreshSuccess = true;

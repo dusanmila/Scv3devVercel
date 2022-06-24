@@ -1,99 +1,120 @@
 <div class="container mat-elevation-z8 font">
   <div class="adr-name-search">
 
-    <h4>Enter address or object name</h4>
+    <!-- <h4>Enter address or object name</h4>
     <mat-form-field>
       <input type="text" matInput placeholder="Search" [(ngModel)]="search">
       <button class="search" matSuffix mat-button (click)="loadData()">
         <mat-icon class="search">search</mat-icon>
       </button>
     </mat-form-field>
-  </div>
 
-  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
+  </div> -->
+    <div class="detail-search">
+      <h4>Detail search</h4>
+      <!-- <div class="detail-search-menu" *ngIf="detailSearch"> -->
+      <div class="detail-search-menu">
+        <div class="menu-item">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Object name" [(ngModel)]="objectName">
+          </mat-form-field>
+        </div>
 
-    <ng-container matColumnDef="objectName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
-    </ng-container>
+        <div class="menu-item">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Address" [(ngModel)]="address">
+          </mat-form-field>
+        </div>
 
-    <ng-container matColumnDef="address">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Address</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
-    </ng-container>
+        <div class="menu-item">
+          <mat-form-field>
+            <input type="text" matInput placeholder="City" [(ngModel)]="city">
+          </mat-form-field>
+        </div>
+        
+        <div class="menu-item">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Id company" [(ngModel)]="idCompany">
+          </mat-form-field>
+        </div>
 
-    <ng-container matColumnDef="actions">
-      <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
-        </button>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row; let i=index">
-        <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon area-label="Edit"
-            (click)="openUpdateDialog(row)">
-            edit </mat-icon>
-        </button>
+        <div class="menu-item">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Retailer" [(ngModel)]="retailer">
+          </mat-form-field>
+        </div>
 
-        <button mat-icon-button color="primary" *ngIf="isAdmin">
-          <mat-icon area-label="Delete"
-            (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
-            delete </mat-icon>
-        </button>
+        <div class="menu-item">
+          <mat-form-field>
+            <input type="text" matInput placeholder="Baner" [(ngModel)]="format">
+          </mat-form-field>
+        </div>
 
-        <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button color="primary"
-          *ngIf="!isAdmin"
-          (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
-          Details
-        </button>
-        <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" (click)="getUnfinishedObjectStoreCheck(row.objectName, row.objectIdCompany)">
-          Start
-          <mat-icon area-label="Open">open_in_new</mat-icon>
-        </button>
+        <div class="menu-btn">
+          <button matSuffix mat-button (click)="loadData(false)">Search <mat-icon>search</mat-icon></button>
+        </div>
 
-      </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-  <mat-paginator *ngIf="dataSource" [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
 
-  <div *ngIf="isLoading"
-    style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed;">
-    <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
-    </mat-progress-spinner>
-  </div>
-
-  <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No objects.</mat-toolbar>
-
-  <div class="detail-search">
-    <h4>Detail search</h4>
-    <div class="detail-search-menu" *ngIf="detailSearch">
-      <div class="menu-item">
-        <mat-form-field>
-          <input type="text" matInput placeholder="Id company" [(ngModel)]="idCompany">
-        </mat-form-field>
       </div>
-      <div class="menu-item">
-        <mat-form-field>
-          <input type="text" matInput placeholder="Retailer" [(ngModel)]="retailer">
-        </mat-form-field>
-      </div>
-      <div class="menu-item">
-        <mat-form-field>
-          <input type="text" matInput placeholder="City" [(ngModel)]="city">
-        </mat-form-field>
-      </div>
-      <div class="menu-item">
-        <mat-form-field>
-          <input type="text" matInput placeholder="Format" [(ngModel)]="format">
-        </mat-form-field>
-      </div>
-      <div class="menu-btn">
-        <button matSuffix mat-button (click)="loadData()">Search <mat-icon>search</mat-icon></button>
-      </div>
+      <!-- <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == false"></em>
+  <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></em> -->
     </div>
-    <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == false"></em>
-    <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></em>
+
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
+
+      <ng-container matColumnDef="objectName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Address</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" *ngIf="isAdmin">
+            <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+          </button>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row; let i=index">
+          <button mat-icon-button color="primary" *ngIf="isAdmin">
+            <mat-icon area-label="Edit" (click)="openUpdateDialog(row)">
+              edit </mat-icon>
+          </button>
+
+          <button mat-icon-button color="primary" *ngIf="isAdmin">
+            <mat-icon area-label="Delete"
+              (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+              delete </mat-icon>
+          </button>
+
+          <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button
+            color="primary" *ngIf="!isAdmin"
+            (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+            Details
+          </button>
+          <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin"
+            (click)="getUnfinishedObjectStoreCheck(row.objectName, row.objectIdCompany)">
+            Start
+            <mat-icon area-label="Open">open_in_new</mat-icon>
+          </button>
+
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
+
+    <div *ngIf="isLoading"
+      style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed;">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+
+    <mat-toolbar color="primary" *ngIf="noData">No records found message</mat-toolbar>
+
   </div>
-</div>

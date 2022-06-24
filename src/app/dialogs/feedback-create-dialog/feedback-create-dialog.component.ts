@@ -62,14 +62,14 @@ export class FeedbackCreateDialogComponent implements OnInit {
     formData.append('FeedbackCategoryName', this.feedback.feedbackCategoryName);
     formData.append('Username', username);
     formData.append('Text', this.feedback.text);
-    console.log(formData);
-    console.log(this.feedback);
     this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
       this.changed = true;
       this.isLoading = false;
+
       console.log('dodato')
       console.log(data);
       this.snackBar.open('Feedback added', 'Ok', { duration: 2500 });
+
       this.close();
     }),
     (error:Error) => {

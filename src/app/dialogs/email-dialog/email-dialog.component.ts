@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { EmailsForSending } from 'src/app/models/emailsForSending';
+import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { StoreCheckService } from 'src/app/Services/store-check.service';
 
 @Component({
@@ -9,7 +11,9 @@ import { StoreCheckService } from 'src/app/Services/store-check.service';
   templateUrl: './email-dialog.component.html',
   styleUrls: ['./email-dialog.component.css']
 })
-export class EmailDialogComponent   {
+export class EmailDialogComponent implements OnInit {
+
+  public flag: number;
 
   public emailsForSending: EmailsForSending = {
     "generalDirector": false,
@@ -21,19 +25,43 @@ export class EmailDialogComponent   {
   }
 
   constructor(public sotreCheckService: StoreCheckService,
-              public dialogRef: MatDialogRef<EmailDialogComponent>) { }
+              public dialogRef: MatDialogRef<EmailDialogComponent>,
+              public objectStoreCheckService: ObjectStoreCheckService,
+              public router: Router) { }
+
+  ngOnInit(): void {
+    this.dialogRef.updateSize('90%');
+  }
 
   
   public send() {
-    console.log(this.emailsForSending);
     let username = localStorage.getItem("username") as string;
-    this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
-      console.log(data);
-    });
+    // koristimo za slanje celog store checka
+    if (this.flag == 1) {
+      this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
+        console.log(data);
+        this.close();
+        this.router.navigate(['/storeCheck']);
+      });
+    }
+    // koristimo za slanje object store checka
+    else {
+      this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
+        if (data) {
+          this.objectStoreCheckService.finishObjectStoreCheck(username, this.emailsForSending).subscribe(data => {
+            console.log(data);
+            this.dialogRef.close(2);
+          });
+        } else {
+          this.dialogRef.close(3);
+        }
+      });
+    }
+   
   }
 
   public close(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(1);
   }
 
   public onSelectionChanged(arg: MatCheckboxChange, name: string) {

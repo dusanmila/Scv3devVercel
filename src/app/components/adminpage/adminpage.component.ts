@@ -52,7 +52,6 @@ export class AdminpageComponent  {
     localStorage.setItem("refreshToken", "");
     dialogRef.afterClosed()
       .subscribe(res => {
-        console.log(res)
         if (res) {
           this.router.navigate(['/login']);
         }

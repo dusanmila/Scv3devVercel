@@ -56,7 +56,6 @@ export class RetailerDialogComponent implements OnInit {
     } else {
       this.retailer.retailerName = (<HTMLInputElement>document.getElementById("name")).value;
       this.retailer.planogramPdf = "";
-      console.log(this.retailer)
       if (this.retailer.retailerName != "") {
         this.objectService
           .createRetailer(this.retailer).subscribe(() => {

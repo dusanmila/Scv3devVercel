@@ -24,11 +24,12 @@ export class ObjectService {
 
 
 
-  public getObjects(page: number, count: number, search: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
+  public getObjects(page: number, count: number, address: string, objectName: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("page", page);
     queryParams = queryParams.append("count", count);
-    queryParams = queryParams.append("search", search);
+    queryParams = queryParams.append("address", address);
+    queryParams = queryParams.append("objectName", objectName);
     queryParams = queryParams.append("idCompany", idCompany);
     queryParams = queryParams.append("retailer", retailer);
     queryParams = queryParams.append("city", city);
@@ -127,10 +128,6 @@ export class ObjectService {
   }
 
   public updateObject(object: ObjectCreateDto): Observable<ObjectCreateDto> {
-
-console.log(object.kam);
-console.log(object.commercialist);
-
     let retval$ = new Subject<ObjectCreateDto>();
     this.http.put<ObjectCreateDto>(`${OBJECT_URL}/objects`, object,{headers:this.headers}).subscribe((helper: ObjectCreateDto) => {
       retval$.next(helper);

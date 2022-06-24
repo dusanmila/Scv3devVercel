@@ -1,4 +1,4 @@
-import { Component, OnInit,HostListener } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
@@ -9,6 +9,7 @@ import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.ser
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
+import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
 
 @Component({
   selector: 'app-store-check-page',
@@ -43,7 +44,6 @@ export class StoreCheckPageComponent implements OnInit {
     }
     this.getOneObject();
     this.getPositionsByObjectName();
-    console.log(this.resolveFeedbacks);
   }
 
   @HostListener('window:popstate', ['$event'])
@@ -62,19 +62,16 @@ export class StoreCheckPageComponent implements OnInit {
   public getOneObject() {
     this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
       this.object = data;
-      console.log(this.object);
     });
   }
 
   public getPositionsByObjectName() {
     this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
       this.positions = data;
-      console.log(this.positions);
     });
   }
 
   public getRetailerPlanogram() {
-    console.log('get retailer planogram');
     this.objectService.getRetailerPlanogram(this.object.retailer);
   }
 
@@ -82,15 +79,15 @@ export class StoreCheckPageComponent implements OnInit {
     this.showDetails = !this.showDetails;
   }
 
-  public finishObjectStoreCheck() {
-    let username = localStorage.getItem("username") as string;
-    this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
-      console.log(data);
-    });
-  }
+  // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
+  // public finishObjectStoreCheck() {
+  //   let username = localStorage.getItem("username") as string;
+  //   this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
+  //     console.log(data);
+  //   });
+  // }
 
   public createEmptyObjectStoreCheck() {
-    console.log('create empty object store check');
     let username = localStorage.getItem("username") as string;
     let osc: ObjectStoreCheckCreateDto = {
       objectIdCompany: this.object.objectIdCompany,
@@ -99,7 +96,6 @@ export class StoreCheckPageComponent implements OnInit {
     }
     this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
       this.objectStoreCheck = data;
-      console.log(this.objectStoreCheck);
     });
   }
 
@@ -107,26 +103,37 @@ export class StoreCheckPageComponent implements OnInit {
     this.showFinishButton = showButton;
   }
 
+  // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
+  // public addToStoreCheck() {
+  //   let username = localStorage.getItem("username") as string;
+  //   this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
+  //     if (data) {
+  //       const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+  //       dialogRef.afterClosed()
+  //         .subscribe(res => {
+  //           console.log(res)
+  //           if (res) {
+  //             this.finishObjectStoreCheck();
+  //             this.router.navigate(['/chooseObject/' + this.workModel]);
+  //           }
+  //         }
+  //         )
+  //     } else {
+  //       this.dialog.open(AlreadyFinishedComponent);
+  //     }
+  //   });
+
   public addToStoreCheck() {
-    let username = localStorage.getItem("username") as string;
-    this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
-      if (data) {
-        const dialogRef = this.dialog.open(AreYouSureDialogComponent);
-        dialogRef.afterClosed()
-          .subscribe(res => {
-            console.log(res)
-            if (res) {
-              this.finishObjectStoreCheck();
-              this.router.navigate(['/chooseObject/' + this.workModel]);
-            }
-          }
-          )
-      } else {
-        this.dialog.open(AlreadyFinishedComponent);
-      }
-    });
-
-
+    const dialogRef = this.dialog.open(EmailDialogComponent);
+    dialogRef.componentInstance.flag = 2;
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        if (res == 2) {
+          this.router.navigate(['/chooseObject/' + this.workModel]);
+        } else if (res == 3) {
+          this.dialog.open(AlreadyFinishedComponent);
+        }
+      });
   }
 
   public exit() {
@@ -134,7 +141,6 @@ export class StoreCheckPageComponent implements OnInit {
       const dialogRef = this.dialog.open(AreYouSureDialogComponent);
       dialogRef.afterClosed()
         .subscribe(res => {
-          console.log(res)
           if (res) {
             this.router.navigate(['/chooseObject/' + this.workModel]);
             if (!this.resolveFeedbacks) {
@@ -150,7 +156,6 @@ export class StoreCheckPageComponent implements OnInit {
       if (!this.resolveFeedbacks) {
         let username = localStorage.getItem("username") as string;
         this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
-          console.log(data);
           this.router.navigate(['/chooseObject/' + this.workModel]);
         });
       } else {

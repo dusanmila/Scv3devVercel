@@ -61,7 +61,6 @@ export class FeedbackComponent implements OnInit {
       this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
     }
     if (this.objectName != null) {
-      console.log('ucitavanje fb po objektu')
       this.loadUnresolvedFeedbacksByObject();
     } else {
       this.loadData();
@@ -83,7 +82,6 @@ export class FeedbackComponent implements OnInit {
     this.noData=false;
     this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks).subscribe(data => {
       if (data) {
-        console.log('postoje feedbackovi');
         if (!this.resolveFeedbacks)
           this.showFinishButton.emit(true);
 
@@ -136,7 +134,6 @@ export class FeedbackComponent implements OnInit {
 
 
   createFeedback() {
-    console.log(this.feedback);
     this.feedbackService.createFeedback(this.feedback).subscribe(data => {
       this._feedbacks.push(data);
 
@@ -191,7 +188,6 @@ export class FeedbackComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res) {
-          console.log('promena')
           this.loadUnresolvedFeedbacksByObject();
           this.showFinishButton.emit(true);
         }

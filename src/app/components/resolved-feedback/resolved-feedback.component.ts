@@ -42,6 +42,7 @@ export class ResolvedFeedbackComponent implements OnInit {
 
   public loadData() {
     this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
+
       if(data){
         console.log(data);
         this.dataSource = new MatTableDataSource(data);
@@ -50,6 +51,7 @@ export class ResolvedFeedbackComponent implements OnInit {
 this.noData=true;
 this.dataSource=data;
       }
+
       this.isLoading = false;
 
     });
@@ -57,10 +59,8 @@ this.dataSource=data;
 
   public loadDataOnPageEvent(event: PageEvent) {
     this.page = event.pageIndex + 1;
-    console.log(this.page);
     this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
-      console.log(data);
     });
   }
 

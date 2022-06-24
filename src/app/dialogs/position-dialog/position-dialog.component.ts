@@ -25,8 +25,6 @@ export class PositionDialogComponent implements OnInit {
     public positionService: PositionService) { }
 
   ngOnInit(): void {
-    console.log(this.data);
-    console.log(this.objectName);
     this.loadPositionClasses();
     this.loadPositionTypes();
   }

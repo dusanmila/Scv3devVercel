@@ -28,17 +28,19 @@ a {
 .item {
     background-color: #39ace7;
     color: #fff;
-    width: 600px;
+    width: 400px;
     max-width: 90%;
-    height: 200px;
-    line-height: 200px;
+    height: 100px;
+    line-height: 100px;
     text-align: center;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 20px;
     border: 2px solid #39ace7;
     cursor: pointer;
     margin: auto;
 
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.3);
+    
 
 }
 
@@ -50,18 +52,14 @@ a {
     line-height: 50px;
     text-align: center;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 20px;
     border: 2px solid #39ace7;
     cursor: pointer;
     position: relative;
     bottom: 1;
     margin: auto;
 
-    /*
-    margin-bottom: 1%;
-
-    margin-left: 50%;
-    margin-right: 50%;*/
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.3);
 
 }
 
