@@ -35,7 +35,7 @@ export class FeedbackComponent implements OnInit {
 
   selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
 
-
+  noData=false;
 
 
   public get feedbacks(): Feedback[] {
@@ -79,12 +79,19 @@ export class FeedbackComponent implements OnInit {
   }
 
   public loadUnresolvedFeedbacksByObject() {
+    this.noData=false;
     this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks).subscribe(data => {
       if (data) {
         if (!this.resolveFeedbacks)
           this.showFinishButton.emit(true);
+
+          this.dataSource=new MatTableDataSource(data);
+        }else{
+        this.noData=true;
+        this.dataSource=new MatTableDataSource(data);
+
       }
-      this.dataSource = new MatTableDataSource(data);
+
       this.isLoading = false;
     });
   }

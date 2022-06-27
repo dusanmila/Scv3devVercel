@@ -45,12 +45,12 @@ export class FeedbackDialogComponent implements OnInit {
     this.isLoading=true;
     this.feedbackService.createFeedback(this.data).subscribe({
       next: () => {
-        this.snackBar.open('Feedback successfully added', 'Ok', { duration: 2500 });
+        this.snackBar.open('Feedback added', 'Ok', { duration: 2500 });
         this.isLoading=false;
       },
       error: (err: Error) => {
         console.log(err.name + ' -> ' + err.message)
-        this.snackBar.open('An error occured. ', 'Close', { duration: 2500 });
+        this.snackBar.open('An error occured', 'Close', { duration: 2500 });
         this.isLoading=false;
       }
     });
@@ -78,8 +78,18 @@ export class FeedbackDialogComponent implements OnInit {
     formData.append('img', this.data.img);
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
       this.changed = true;
+      this.snackBar.open('Feedback added', 'Ok', { duration: 2500 });
       this.close();
-    });
+
+      console.log(data);
+    }),
+    (error:Error) => {
+      console.log(error.name + ' -> ' + error.message)
+      this.snackBar.open('An error occurred', 'Close', { duration: 2500 });
+    };
+
+
+
   }
 
   public openInfo() {

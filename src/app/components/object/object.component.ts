@@ -232,6 +232,7 @@ export class ObjectComponent implements OnInit {
 
       if(data.length==0){
       this.noData=true;
+      this.dataSource=new MatTableDataSource<Obj>(data);;
       }
       else{
         this.dataSource = new MatTableDataSource<Obj>(data);

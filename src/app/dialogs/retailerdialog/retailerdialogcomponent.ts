@@ -58,7 +58,13 @@ export class RetailerDialogComponent implements OnInit {
       this.retailer.planogramPdf = "";
       if (this.retailer.retailerName != "") {
         this.objectService
-          .createRetailer(this.retailer);
+          .createRetailer(this.retailer).subscribe(() => {
+            this.snackBar.open('Retailer created', 'Ok', { duration: 2500 });
+          }),
+          (error:Error) => {
+            console.log(error.name + ' -> ' + error.message)
+            this.snackBar.open('An error occured', 'Close', { duration: 2500 });
+          };
       }
 
 
@@ -88,7 +94,7 @@ export class RetailerDialogComponent implements OnInit {
       }),
       (error: Error) => {
         console.log(error.name + ' -> ' + error.message)
-        this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500 });
       }
   }
 }
