@@ -23,8 +23,12 @@ export class EmailDialogComponent implements OnInit {
     "salesDirector": false,
     "manager": false,
     "marketing": false,
-    "optionalEmail": ""
+    "allUsers": false,
+    "optionalEmail": "",
+    "storeCheckCreatorEmail": ""
   }
+
+  public sendToCreator: boolean = false;
 
   constructor(public sotreCheckService: StoreCheckService,
               public dialogRef: MatDialogRef<EmailDialogComponent>,
@@ -38,6 +42,11 @@ export class EmailDialogComponent implements OnInit {
 
   public send() {
     let username = localStorage.getItem("username") as string;
+    if (this.sendToCreator) {
+      // let email = localStorage.getItem("email") as string;
+      let email = "stefanradulovic58@gmail.com";
+      this.emailsForSending.storeCheckCreatorEmail = email;
+    }
     // koristimo za slanje celog store checka
     if (this.flag == 1) {
       this.isLoading=true;
@@ -83,6 +92,10 @@ export class EmailDialogComponent implements OnInit {
       this.emailsForSending.manager = arg.checked;
     } else if (name == 'marketing') {
       this.emailsForSending.marketing = arg.checked;
+    } else if (name == 'allUsers') {
+      this.emailsForSending.allUsers = arg.checked;
+    } else if (name == 'creator') {
+      this.sendToCreator = arg.checked;
     }
   }
 

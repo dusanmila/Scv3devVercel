@@ -4,5 +4,7 @@ export interface EmailsForSending {
     sectorDirector: boolean;
     salesDirector: boolean;
     marketing: boolean;
+    allUsers: boolean;
     optionalEmail: string;
+    storeCheckCreatorEmail: string;
 }
