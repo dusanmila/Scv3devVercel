@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { EmailsForSending } from '../models/emailsForSending';
 import { StoreCheck } from '../models/storeCheck';
 import { STORE_CHECK_URL } from '../app.constants';
+import { StoreCheckReceiver } from '../models/storeCheckReceiver';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,31 @@ export class StoreCheckService {
 
   public finishStoreCheck(username: string, emailsForSending: EmailsForSending) {
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, emailsForSending,{headers:this.headers}).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, emailsForSending, {headers:this.headers}).subscribe((helper: StoreCheck) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
+  public getStoreCheckReceivers() {
+    let retval$ = new Subject<StoreCheckReceiver[]>();
+    this.http.get<StoreCheckReceiver[]>(`${STORE_CHECK_URL}/storeCheckReceivers`, {headers:this.headers}).subscribe((helper) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
+  public createStoreCheckReceivers(storeCheckReceiver: StoreCheckReceiver) {
+    let retval$ = new Subject<StoreCheckReceiver>();
+    this.http.post<StoreCheckReceiver>(`${STORE_CHECK_URL}/storeCheckReceivers`, storeCheckReceiver, {headers:this.headers}).subscribe((helper) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
+  public updateStoreCheckReceivers(storeCheckReceiver: StoreCheckReceiver) {
+    let retval$ = new Subject<StoreCheckReceiver>();
+    this.http.put<StoreCheckReceiver>(`${STORE_CHECK_URL}/storeCheckReceivers`, storeCheckReceiver, {headers:this.headers}).subscribe((helper) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

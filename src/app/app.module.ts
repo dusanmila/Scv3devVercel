@@ -60,6 +60,8 @@ import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-
 import { AlreadyFinishedComponent } from './dialogs/already-finished/already-finished.component';
 
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { StoreCheckReceiverComponent } from './components/store-check-receiver/store-check-receiver.component';
+import { StoreCheckReceiverDialogComponent } from './dialogs/store-check-receiver-dialog/store-check-receiver-dialog.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ObjectCreateDialogComponent,
     AreYouSureDialogComponent,
     UnfinishedObjectStoreCheckDialogComponent,
-    AlreadyFinishedComponent
+    AlreadyFinishedComponent,
+    StoreCheckReceiverComponent,
+    StoreCheckReceiverDialogComponent
 
   ],
   imports: [
