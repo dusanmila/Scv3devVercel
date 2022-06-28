@@ -14,7 +14,7 @@
     <input matInput placeholder = "ObjectIDCompany" [(ngModel)]="data.objectIdCompany" name = "objectIdCompany" [disabled]="flag==4" required/>
   </mat-form-field>
 </div>
-<div class="form" *ngIf="flag !=4">
+<div class="form" *ngIf="flag !=4 && flag!=3">
   <mat-form-field>
     <mat-select [(ngModel)]="data.retailer" placeholder="Retailer" name="Retailer" [disabled]="flag==4" required>
 
@@ -25,11 +25,7 @@
     </mat-select>
   </mat-form-field>
 </div>
-<div class="form" *ngIf="flag==4">
-  <mat-form-field>
-    <input matInput placeholder = "Retailer" [(ngModel)]="data.retailer.retailerName" name = "retailerName" [disabled]="true" required/>
-  </mat-form-field>
-</div>
+
 <div class="form" *ngIf="flag!=3">
   <mat-form-field>
     <input matInput placeholder = "ObjectFormat" [(ngModel)]="data.objectFormat" name = "objectFormat" [disabled]="flag==4" required/>
@@ -49,51 +45,32 @@
       <input matInput placeholder = "Address" [(ngModel)]="data.address" name = "address" [disabled]="flag==4" required/>
     </mat-form-field>
   </div>
-<div class="form" *ngIf="flag!=4 && flag!=3">
-  <mat-form-field>
-    <mat-select [(ngModel)]="data.kam" placeholder="KAM" name="KAM" required>
-      <mat-option *ngFor="let user of users" [value]="user.username">
-        {{ user.username }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div class="form" *ngIf="flag!=4 && flag!=3">
-  <mat-form-field>
-    <mat-select [(ngModel)]="data.merchandiser" placeholder="Merchandiser" name="Merchandiser" required>
-      <mat-option *ngFor="let user of users" [value]="user.username">
-        {{ user.username }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div class="form" *ngIf="flag!=4 && flag!=3">
-  <mat-form-field>
-    <mat-select [(ngModel)]="data.director" placeholder="Director" name="Director" required>
-      <mat-option *ngFor="let user of users" [value]="user.username">
-        {{ user.username }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div class="form" *ngIf="flag!=4 && flag!=3">
-  <mat-form-field>
-    <mat-select [(ngModel)]="data.commercialist" placeholder="Commercialist" name="Commercialist" required>
-      <mat-option *ngFor="let user of users" [value]="user.username">
-        {{ user.username }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-<div class="form" *ngIf="flag!=4 && flag!=3">
-  <mat-form-field>
-    <mat-select [(ngModel)]="data.supervisor" placeholder="Supervisor" name="Supervisor" required>
-      <mat-option *ngFor="let user of users" [value]="user.username">
-        {{ user.username }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+
+  <div class="form"*ngIf="flag!=4 && flag!=3">
+    <mat-form-field>
+      <input matInput placeholder = "KAM" [(ngModel)]="data.kam" name = "kam" required/>
+    </mat-form-field>
+    </div>
+    <div class="form"*ngIf="flag!=4 && flag!=3">
+      <mat-form-field>
+        <input matInput placeholder = "Merchandiser" [(ngModel)]="data.merchandiser" name = "merchandiser" required/>
+      </mat-form-field>
+      </div>
+      <div class="form"*ngIf="flag!=4 && flag!=3">
+        <mat-form-field>
+          <input matInput placeholder = "Director" [(ngModel)]="data.director" name = "director" required/>
+        </mat-form-field>
+        </div>
+        <div class="form"*ngIf="flag!=4 && flag!=3">
+          <mat-form-field>
+            <input matInput placeholder = "Commercialist" [(ngModel)]="data.commercialist" name = "commercialist" required/>
+          </mat-form-field>
+          </div>
+          <div class="form"*ngIf="flag!=4 && flag!=3">
+            <mat-form-field>
+              <input matInput placeholder = "Supervisor" [(ngModel)]="data.supervisor" name = "supervisor" required/>
+            </mat-form-field>
+            </div>
 
 
 
