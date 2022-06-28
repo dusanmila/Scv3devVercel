@@ -64,46 +64,11 @@ export class ObjectComponent implements OnInit {
     objectName: "string",
     city: "string",
     address: "string",
-    kam: {
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: "",
-      userType: ""
-    },
-    director: {
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: "",
-      userType: ""
-    },
-    supervisor: {
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: "",
-      userType: ""
-    },
-    commercialist: {
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: "",
-      userType: ""
-    },
-    merchandiser: {
-      firstName: "",
-      lastName: "",
-      username: "",
-      email: "",
-      password: "",
-      userType: ""
-    },
+    kam: "string",
+    director: "string",
+    supervisor:"string",
+    commercialist:"string",
+    merchandiser: "string",
     requisitionDays: "",
     merchandiserRevisionDays: "string",
     objectInfo: {
@@ -213,10 +178,10 @@ export class ObjectComponent implements OnInit {
     this.objectCreateDto.objectName = this.object.objectName;
     this.objectCreateDto.city = this.object.city;
     this.objectCreateDto.address = this.object.address;
-    this.objectCreateDto.kam = this.object.kam.username;
-    this.objectCreateDto.director = this.object.director.username;
-    this.objectCreateDto.supervisor = this.object.commercialist.username;
-    this.objectCreateDto.merchandiser = this.object.merchandiser.username;
+    this.objectCreateDto.kam = this.object.kam;
+    this.objectCreateDto.director = this.object.director;
+    this.objectCreateDto.supervisor = this.object.commercialist;
+    this.objectCreateDto.merchandiser = this.object.merchandiser;
     this.objectCreateDto.merchandiserRevisionDays = this.object.merchandiserRevisionDays;
     this.objectCreateDto.requisitionDays = this.object.requisitionDays;
     this.objectCreateDto.objectInfo = this.object.objectInfo;

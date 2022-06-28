@@ -10,11 +10,11 @@ export interface Obj {
     objectName: string;
     city: string;
     address: string;
-    kam: User;
-    director: User;
-    supervisor: User;
-    commercialist: User;
-    merchandiser: User;
+    kam: string;
+    director: string;
+    supervisor: string;
+    commercialist: string;
+    merchandiser: string;
     requisitionDays: string;
     merchandiserRevisionDays: string;
     objectInfo: ObjectInfo;
