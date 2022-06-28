@@ -17,6 +17,13 @@
         <div class="form">
             <mat-checkbox color="primary" [(ngModel)]="emailsForSending.marketing" name="marketing" (change)="onSelectionChanged($event, 'marketing')">Marketing</mat-checkbox>
         </div>
+        <div class="form">
+            <mat-checkbox color="primary" [(ngModel)]="emailsForSending.allUsers" name="allUsers" (change)="onSelectionChanged($event, 'allUsers')">All users</mat-checkbox>
+        </div>
+
+        <div class="form">
+            <mat-checkbox color="primary" [(ngModel)]="sendToCreator" name="allUsers" (change)="onSelectionChanged($event, 'creator')">Me</mat-checkbox>
+        </div>
 
         <div class="form">
             <mat-form-field>
