@@ -1,0 +1,32 @@
+.font {
+    padding: 0 20px;
+    font-family: sans-serif;
+}
+
+.mat-header-cell {
+    background: #56baed;
+}
+
+.centered {
+    text-align: center;
+}
+
+.search {
+    color: white;
+    background-color: #56baed;
+    margin: 2%;
+
+}
+
+.noDataMessage {
+    background-color: white;
+    color: #56baed;
+}
+
+.mat-spinner-color::ng-deep circle {
+    stroke: #56baed !important;
+}
+
+.whitetext {
+    color: white;
+}
