@@ -15,7 +15,7 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
   private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
-  
+
   private readonly adress = "http://localhost:8083/feedback";
   private readonly feedbackAdress = "http://localhost:8088/api";
 
@@ -39,7 +39,7 @@ export class FeedbackService {
   public getResolvedFeedbacks(): Observable<Feedback[]> {
 
     let retval$ = new Subject<Feedback[]>();
-   
+
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/resolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
     this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks`,{headers:this.headers}).subscribe((feedbacks: Feedback[]) => {
 
@@ -53,7 +53,7 @@ export class FeedbackService {
 
   public getUnresolvedFeedbacks(): Observable<Feedback[]> {
 
-    
+
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`${this.feedbackAdress}/feedbacks/unresolvedFeedbacks`).subscribe((feedbacks: Feedback[]) => {
