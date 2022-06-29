@@ -60,7 +60,7 @@
   <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></em> -->
     </div>
 
-    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource || isAdmin">
+    <mat-table #table class="table" [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource || isAdmin">
 
       <ng-container matColumnDef="objectName">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
@@ -90,10 +90,11 @@
               delete </mat-icon>
           </button>
 
-          <button class="choose-btn marginalize" style="color: #56baed;background-color:white;" mat-button
+          <button style="color: #56baed;background-color:white;" mat-button
             color="primary" *ngIf="!isAdmin"
             (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
-            Details
+            <!-- Details -->
+            <mat-icon area-label="Info">info</mat-icon>
           </button>
           <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin"
             (click)="getUnfinishedObjectStoreCheck(row.objectName, row.objectIdCompany)">

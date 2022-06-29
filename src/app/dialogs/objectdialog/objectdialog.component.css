@@ -1,3 +1,18 @@
+.container {
+  flex-direction: column;
+  width: 400px;
+  max-width: 100%;
+}
+
+.form {
+  margin-bottom: 10px;
+}
+
+.mat-form-field {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
 .item2{
     background-color: white;
     color: #39ace7;

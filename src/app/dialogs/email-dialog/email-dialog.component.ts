@@ -53,9 +53,9 @@ export class EmailDialogComponent implements OnInit {
       this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
         console.log(data);
         this.isLoading=false;
-        this.close();
-        this.router.navigate(['/storeCheck']);
       });
+      this.close();
+      this.router.navigate(['/storeCheck']);
     }
     // koristimo za slanje object store checka
     else {
@@ -66,8 +66,8 @@ export class EmailDialogComponent implements OnInit {
           this.objectStoreCheckService.finishObjectStoreCheck(username, this.emailsForSending).subscribe(data => {
             console.log(data);
             this.isLoading=false;
-            this.dialogRef.close(2);
           });
+          this.dialogRef.close(2);
         } else {
           this.isLoading=false;
           this.dialogRef.close(3);
