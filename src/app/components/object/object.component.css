@@ -91,6 +91,7 @@ stroke: #56baed !important;
 
 table{
   width: 100%;
+  max-width: 100%;
  }
 
  .noDataMessage{
@@ -98,11 +99,11 @@ table{
   color:#56baed;
  }
 
-.mat-column-objectName {
+ .mat-column-objectName {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 15% !important;
-  width: 15% !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
   overflow-wrap: break-word;
 
 
@@ -138,7 +139,7 @@ table{
 .mat-column-actions {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 50% !important;
+  /* flex: 0 0 50% !important; */
   width: 50% !important;
   overflow-wrap: break-word;
 
@@ -154,11 +155,11 @@ table{
 
 }
 
-@media (max-width: 300px) {
+/* @media (max-width: 300px) {
   .mat-column-actions{
     margin-left:-20px;
-    flex: 0 0 55% !important;
-     width: 55% !important;
+    flex: 0 0 50% !important;
+     width: 50% !important;
 
   }
 }
@@ -169,4 +170,4 @@ table{
     width: 20% !important;
     margin-left: 5px;
   }
-}
+} */
