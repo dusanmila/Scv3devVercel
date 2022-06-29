@@ -31,7 +31,8 @@
     <form [formGroup]="form" (ngSubmit)="submitForm()">
       <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" capture="camera"
         fromControlName="file" required hidden>
-      <label>Take photo:</label>
+      <label style="margin-bottom:5%">Take photo:</label>
+
       <label for="inputFile" class="browseFile"> <img src="assets\photoicon.png" width="10%" height="10%" alt="PhotoIcon"/></label>
     </form>
     <div *ngIf="imageUploaded">
