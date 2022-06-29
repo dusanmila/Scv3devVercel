@@ -60,7 +60,7 @@
   <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></em> -->
     </div>
 
-    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource">
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell" *ngIf="dataSource || isAdmin">
 
       <ng-container matColumnDef="objectName">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
