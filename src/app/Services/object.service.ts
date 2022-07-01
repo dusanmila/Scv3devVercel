@@ -12,13 +12,13 @@ import { OBJECT_URL } from '../app.constants';
 export class ObjectService {
 
   constructor(private http: HttpClient) { }
-  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+  private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
   // private readonly address = "http://localhost:8083/object/objects";
-   private readonly address = "http://localhost:8089/api/objects";
+  private readonly address = "http://localhost:8089/api/objects";
   // private readonly excelAddress = "http://localhost:8089/api/objectExcels";
   // private readonly retailerAddress = "http://localhost:8089/api/retailers";
 
- // private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
+  // private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
   private readonly excelAddress = "https://microserviceobject.azurewebsites.net/api/objectExcels";
   private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 
@@ -35,15 +35,20 @@ export class ObjectService {
     queryParams = queryParams.append("city", city);
     queryParams = queryParams.append("format", format);
     let retval$ = new Subject<Obj[]>();
-    this.http.get<Obj[]>(`${OBJECT_URL}/objects`, {  headers:this.headers,params: queryParams }).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(`${OBJECT_URL}/objects`, { headers: this.headers, params: queryParams }).subscribe((objects: Obj[]) => {
       retval$.next(objects);
     });
     return retval$.asObservable();
   }
 
-  public getRetailers(): Observable<Retailer[]> {
+  public getRetailers(count: number, page: number, search: string): Observable<Retailer[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("count", count);
+    queryParams = queryParams.append("page", page);
+    queryParams = queryParams.append("search", search);
+
     let retval$ = new Subject<Retailer[]>();
-    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers`, {headers:this.headers}).subscribe((ret: Retailer[]) => {
+    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers`, { headers: this.headers, params: queryParams }).subscribe((ret: Retailer[]) => {
       retval$.next(ret);
     });
     return retval$.asObservable();
@@ -51,7 +56,7 @@ export class ObjectService {
 
   public getObjectByObjectName(objectName: string): Observable<Obj> {
     let retval$ = new Subject<Obj>();
-    this.http.get<Obj>(`${OBJECT_URL}/objects/objectByObjectName/${objectName}`,{headers:this.headers}).subscribe((helper: Obj) => {
+    this.http.get<Obj>(`${OBJECT_URL}/objects/objectByObjectName/${objectName}`, { headers: this.headers }).subscribe((helper: Obj) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -67,7 +72,7 @@ export class ObjectService {
 
   public getObjectsByStringContains(str: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
-    this.http.get<Obj[]>(`${OBJECT_URL}/objects/objectByStringContains/${str}`,{headers:this.headers}).subscribe((objects: Obj[]) => {
+    this.http.get<Obj[]>(`${OBJECT_URL}/objects/objectByStringContains/${str}`, { headers: this.headers }).subscribe((objects: Obj[]) => {
       retval$.next(objects);
     });
     return retval$.asObservable();
@@ -75,7 +80,7 @@ export class ObjectService {
 
   public getRetailersByNameContains(str: string): Observable<Retailer[]> {
     let retval$ = new Subject<Retailer[]>();
-    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers/retailersByNameContains/${str}`,{headers:this.headers}).subscribe((retailers: Retailer[]) => {
+    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers/retailersByNameContains/${str}`, { headers: this.headers }).subscribe((retailers: Retailer[]) => {
       retval$.next(retailers);
     });
     return retval$.asObservable();
@@ -99,7 +104,7 @@ export class ObjectService {
 
   public getRetailerByName(name: string): Observable<Retailer> {
     let retval$ = new Subject<Retailer>();
-    this.http.get<Retailer>(`${OBJECT_URL}/retailers/retailerByRetailerName/${name}`,{headers:this.headers}).subscribe((retailer: Retailer) => {
+    this.http.get<Retailer>(`${OBJECT_URL}/retailers/retailerByRetailerName/${name}`, { headers: this.headers }).subscribe((retailer: Retailer) => {
       retval$.next(retailer);
     });
     return retval$.asObservable();
@@ -107,7 +112,7 @@ export class ObjectService {
 
   public createObject(object: ObjectCreateDto): Observable<ObjectCreateDto> {
     let retval$ = new Subject<ObjectCreateDto>();
-    this.http.post<ObjectCreateDto>(`${OBJECT_URL}/objects`, object,{headers:this.headers}).subscribe((helper: ObjectCreateDto) => {
+    this.http.post<ObjectCreateDto>(`${OBJECT_URL}/objects`, object, { headers: this.headers }).subscribe((helper: ObjectCreateDto) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -115,21 +120,21 @@ export class ObjectService {
 
   public createRetailer(retailer: Retailer): Observable<Retailer> {
     let retval$ = new Subject<Retailer>();
-    this.http.post<Retailer>(`${OBJECT_URL}/retailers`, retailer,{headers:this.headers}).subscribe((helper: Retailer) => {
+    this.http.post<Retailer>(`${OBJECT_URL}/retailers`, retailer, { headers: this.headers }).subscribe((helper: Retailer) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
   }
 
   public excelImport(formData: FormData) {
-    this.http.post(`${OBJECT_URL}/objectExcels`, formData,{headers:this.headers}).subscribe((response) => {
+    this.http.post(`${OBJECT_URL}/objectExcels`, formData, { headers: this.headers }).subscribe((response) => {
       console.log(response);
     });
   }
 
   public updateObject(object: ObjectCreateDto): Observable<ObjectCreateDto> {
     let retval$ = new Subject<ObjectCreateDto>();
-    this.http.put<ObjectCreateDto>(`${OBJECT_URL}/objects`, object,{headers:this.headers}).subscribe((helper: ObjectCreateDto) => {
+    this.http.put<ObjectCreateDto>(`${OBJECT_URL}/objects`, object, { headers: this.headers }).subscribe((helper: ObjectCreateDto) => {
       retval$.next(helper);
       //dal radi samo objects dve linije iznad?
     });
@@ -138,7 +143,7 @@ export class ObjectService {
 
   public updateRetailer(retailer: Retailer): Observable<Retailer> {
     let retval$ = new Subject<Retailer>();
-    this.http.put<Retailer>(`${OBJECT_URL}/retailers`, retailer,{headers:this.headers}).subscribe((helper: Retailer) => {
+    this.http.put<Retailer>(`${OBJECT_URL}/retailers`, retailer, { headers: this.headers }).subscribe((helper: Retailer) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -155,7 +160,7 @@ export class ObjectService {
 
   public deleteRetailer(retailer: Retailer): Observable<Retailer> {
     let retval$ = new Subject<Retailer>();
-    this.http.delete<Retailer>(`${OBJECT_URL}/retailers/${retailer.retailerName}`,{headers:this.headers}).subscribe((helper: Retailer) => {
+    this.http.delete<Retailer>(`${OBJECT_URL}/retailers/${retailer.retailerName}`, { headers: this.headers }).subscribe((helper: Retailer) => {
       retval$.next(helper)
     });
     return retval$.asObservable();
@@ -163,14 +168,14 @@ export class ObjectService {
 
   public deleteObject(object: Obj): Observable<Obj> {
     let retval$ = new Subject<Obj>();
-    this.http.delete<Obj>(`${OBJECT_URL}/objects/deleteObjectByObjectName/${object.objectName}`,{headers:this.headers}).subscribe((helper: Obj) => {
+    this.http.delete<Obj>(`${OBJECT_URL}/objects/deleteObjectByObjectName/${object.objectName}`, { headers: this.headers }).subscribe((helper: Obj) => {
       retval$.next(helper)
     });
     return retval$.asObservable();
   }
 
   public getRetailerPlanogram(retailer: Retailer) {
-    return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers:this.headers,responseType: 'blob' }).subscribe(pdf => {
+    return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const blob = new Blob([pdf], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
@@ -178,22 +183,19 @@ export class ObjectService {
   }
 
   public downloadRetailerPlanogram() {
-    return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/Objekat1Planogram.pdf`, {headers:this.headers, responseType: 'blob' }).subscribe(pdf => {
+    return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/Objekat1Planogram.pdf`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const fileName = 'Planogram.pdf';
       saveAs(pdf, fileName);
     });
   }
 
-  public addPlanogram(form: FormData) {
-    this.http.put(`${OBJECT_URL}/retailers/updateRetailerWithPlanogram`, form,{headers:this.headers}).subscribe({
-      next: (response) => console.log(response),
-      error: (error) => console.log(error)
-    });
+  public addPlanogram(form: FormData): Observable<any> {
+    return this.http.put(`${OBJECT_URL}/retailers/updateRetailerWithPlanogram`, form, { headers: this.headers });
   }
 
   public createRetailerWithPlanogram(form: FormData) {
     let retval$ = new Subject<Retailer>();
-    this.http.post<Retailer>(`${OBJECT_URL}/retailers/createRetailerWithPlanogram`, form,{headers:this.headers}).subscribe((helper: Retailer) => {
+    this.http.post<Retailer>(`${OBJECT_URL}/retailers/createRetailerWithPlanogram`, form, { headers: this.headers }).subscribe((helper: Retailer) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

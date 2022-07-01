@@ -16,9 +16,9 @@
     </form>
 
     <div mat-dialog-actions>
-      <button class="test" mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag != 3" [disabled]="!data.retailerName"
+      <button class="test" mat-button type="submit" *ngIf="flag != 3" [disabled]="!data.retailerName"
         (click)="submit()">Add</button>
-      <button class="test" mat-button type="submit" [mat-dialog-close]="1" *ngIf="flag==3"
+      <button class="test" mat-button type="submit" *ngIf="flag==3"
         (click)="delete()">Delete</button>
       <button class="test" mat-button (click)="close()">Cancel</button>
     </div>

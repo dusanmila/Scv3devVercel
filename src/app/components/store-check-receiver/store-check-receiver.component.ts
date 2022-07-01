@@ -15,6 +15,8 @@ export class StoreCheckReceiverComponent implements OnInit {
   dataSource: MatTableDataSource<StoreCheckReceiver>;
   displayedColumns = ["generalDirector", "manager", "sectorDirector", "salesDirector", "marketing", "actions"];
 
+  public storeCheckReceivers: StoreCheckReceiver;
+
   constructor(public storeCheckService: StoreCheckService,
     private dialog: MatDialog) { }
 
@@ -25,6 +27,8 @@ export class StoreCheckReceiverComponent implements OnInit {
   public loadData() {
     this.storeCheckService.getStoreCheckReceivers().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
+      this.storeCheckReceivers = data[0]; 
+      console.log(data);
     });
   }
 

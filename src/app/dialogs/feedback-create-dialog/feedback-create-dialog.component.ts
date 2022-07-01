@@ -65,8 +65,6 @@ export class FeedbackCreateDialogComponent implements OnInit {
     this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
       this.changed = true;
       this.isLoading = false;
-
-      console.log('dodato')
       console.log(data);
       this.snackBar.open('Feedback added', 'Ok', { duration: 2500 });
 

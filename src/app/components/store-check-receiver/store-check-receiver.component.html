@@ -1,55 +1,37 @@
-<div class="font">
-    <div class="container mat-elevation-z8">
-
-        <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
-
-            <ng-container matColumnDef="generalDirector">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">General Director</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.generalDirector }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="salesDirector">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Sales Director</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.salesDirector }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="sectorDirector">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Sector Director</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.sectorDirector }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="manager">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Manager</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.manager }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="marketing">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Marketing</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.marketing }}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="actions">
-                <mat-header-cell *matHeaderCellDef>
-                    <button mat-icon-button color="primary" *ngIf="!dataSource">
-                        <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
-                    </button>
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i=index">
-                    <button mat-icon-button color="primary">
-                        <mat-icon area-label="Edit"
-                            (click)="openDialog(2, row.generalDirector, row.salesDirector, row.sectorDirector, row.marketing, row.manager)"> edit
-                        </mat-icon>
-                    </button>
-                </mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
-        </mat-table>
-        <!-- <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
-            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
-            </mat-progress-spinner>
-        </div> -->
-
-    </div>
-    <!-- <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No users.</mat-toolbar> -->
+<div class="container">
+    <table class="mat-table table">
+        <tr class="mat-header-row header">
+            <th class="mat-header-cell header-item">Receiver</th>
+            <th class="mat-header-cell header-email-item">Email
+                <button mat-icon-button class="action-btn" color="primary" *ngIf="!storeCheckReceivers">
+                    <mat-icon (click)="openDialog(1)" class="icon">add</mat-icon>
+                </button>
+                <button mat-icon-button class="action-btn" color="primary" *ngIf="storeCheckReceivers">
+                    <mat-icon class="icon" area-label="Edit"
+                        (click)="openDialog(2, storeCheckReceivers.generalDirector, storeCheckReceivers.salesDirector, storeCheckReceivers.sectorDirector, storeCheckReceivers.marketing, storeCheckReceivers.manager)"> edit
+                    </mat-icon>
+                </button>
+            </th>
+        </tr>
+        <tr class="mat-row" *ngIf="storeCheckReceivers">
+            <td class="mat-cell table-cell">General director</td>
+            <td class="mat-cell table-cell">{{ storeCheckReceivers.generalDirector }}</td>
+        </tr>
+        <tr class="mat-row" *ngIf="storeCheckReceivers">
+            <td class="mat-cell table-cell">Sales director</td>
+            <td class="mat-cell table-cell">{{ storeCheckReceivers.salesDirector }}</td>
+        </tr>
+        <tr class="mat-row" *ngIf="storeCheckReceivers">
+            <td class="mat-cell table-cell">Sector director</td>
+            <td class="mat-cell table-cell">{{ storeCheckReceivers.sectorDirector }}</td>
+        </tr>
+        <tr class="mat-row" *ngIf="storeCheckReceivers">
+            <td class="mat-cell table-cell">Manager</td>
+            <td class="mat-cell table-cell">{{ storeCheckReceivers.manager }}</td>
+        </tr>
+        <tr class="mat-row" *ngIf="storeCheckReceivers">
+            <td class="mat-cell table-cell">Marketing</td>
+            <td class="mat-cell table-cell">{{ storeCheckReceivers.marketing }}</td>
+        </tr>
+    </table>
 </div>

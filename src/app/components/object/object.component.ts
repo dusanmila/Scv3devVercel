@@ -58,7 +58,8 @@ export class ObjectComponent implements OnInit {
     objectIdCompany: "string",
     retailer: {
       "retailerName": "",
-      "planogramPdf": ""
+      "planogramPdf": "",
+      "totalCount": 0
     },
     objectFormat: "string",
     objectName: "string",
@@ -158,6 +159,7 @@ export class ObjectComponent implements OnInit {
   }
 
   public loadDataOnPageEvent(event: PageEvent) {
+    this.count = event.pageSize;
     this.page = event.pageIndex + 1;
     this.loadData(true);
   }
