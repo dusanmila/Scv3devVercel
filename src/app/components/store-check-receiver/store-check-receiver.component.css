@@ -1,32 +1,37 @@
-.font {
-    padding: 0 20px;
-    font-family: sans-serif;
-}
-
-.mat-header-cell {
-    background: #56baed;
-}
-
-.centered {
+.container {
     text-align: center;
+    padding: 0 20px;
 }
 
-.search {
-    color: white;
-    background-color: #56baed;
-    margin: 2%;
-
+.table {
+    width: 100%;
 }
 
-.noDataMessage {
-    background-color: white;
-    color: #56baed;
+.header {
+    background-color: #39ace7;
 }
 
-.mat-spinner-color::ng-deep circle {
-    stroke: #56baed !important;
+.header-item {
+    width: 50%;
+    color: #fff;
 }
 
-.whitetext {
-    color: white;
+.header-email-item {
+    width: 50%;
+    color: #fff;
+    position: relative;
+}
+
+.icon {
+    color: #fff;
+}
+
+.table-cell {
+    text-align: left;
+}
+
+.action-btn {
+    position: absolute;
+    right: 10%;
+    bottom: 8px;
 }

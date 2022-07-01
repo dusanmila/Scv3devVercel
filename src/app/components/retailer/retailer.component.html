@@ -1,7 +1,7 @@
 <div class="centered font">
 <mat-form-field>
   <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
-  <button class="search" matSuffix mat-button (click)="searchByName()"><mat-icon class="search">search</mat-icon></button>
+  <button class="search" matSuffix mat-button (click)="loadData(false)"><mat-icon class="search">search</mat-icon></button>
   </mat-form-field>
 </div>
 <div class="container mat-elevation-z8">
@@ -46,5 +46,7 @@
  </mat-progress-spinner>
 </div>
 <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No retailers.</mat-toolbar>
+<mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length" (page)="loadDataOnPageEvent($event)">
+</mat-paginator>
 </div>
 

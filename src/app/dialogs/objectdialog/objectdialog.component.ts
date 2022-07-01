@@ -68,7 +68,7 @@ export class ObjectDialogComponent implements OnInit {
   }
 
   public loadRetailers() {
-    this.objectService.getRetailers().subscribe(data => {
+    this.objectService.getRetailers(0, 0, "").subscribe(data => {
       this.retailers = data;
     });
   }
