@@ -82,6 +82,7 @@ export class FeedbackComponent implements OnInit {
     this.noData=false;
     this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks).subscribe(data => {
       if (data) {
+        console.log(data);
         if (!this.resolveFeedbacks)
           this.showFinishButton.emit(true);
 

@@ -35,3 +35,10 @@ button[disabled]:hover {
 h3{
   color: #39ace7;
 }
+
+button {
+  outline: none;
+}
+::ng-deep .mat-button-focus-overlay {
+  display: none;
+}
