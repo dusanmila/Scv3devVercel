@@ -10,19 +10,19 @@
         <div class="object-info-data" *ngIf="showDetails">
             <div class="object-info-slider">
                 <div class="card1">
-                    <div class="obj-info"> <u>Address:</u><b> Skadarska 5, Beograd</b></div>
-                    <div class="obj-info"> <u>Format:</u><b> Maxi</b> </div>
-                    <div class="obj-info"> <u>Retailer:</u><b> Delhaize</b></div>
-                    <div class="obj-info"> <u>Assortment module:</u><b> MEGA REG SMRZNUTI PROGRAM 1</b></div>
-                    <div class="obj-info"> <u>Number of registers:</u><b> 3</b>  </div>
+                    <div class="obj-info"> <u>Address:</u><b> {{ object.address }}, {{ object.city }}</b></div>
+                    <div class="obj-info"> <u>Format:</u><b> {{ object.objectFormat }}</b> </div>
+                    <div class="obj-info"> <u>Retailer:</u><b> {{ object.retailer.retailerName }}</b></div>
+                    <div class="obj-info"> <u>Assortment module:</u><b> {{ object.objectInfo.assortmentModule }}</b></div>
+                    <div class="obj-info"> <u>Number of registers:</u><b> {{ object.objectInfo.registersNumber }}</b>  </div>
                 </div>
                 <div class="card1">
-                    <div class="obj-info"> <u>Director:</u><b> Marko Mikić</b></div>
-                    <div class="obj-info"> <u>Commercialist:</u><b> Miroslav Zorić</b> </div>
-                    <div class="obj-info"> <u>Supervisor:</u><b> Stefan Krnić</b></div>
-                    <div class="obj-info"> <u>Merchandiser:</u><b> Zdravko Stojković</b></div>
-                    <div class="obj-info"> <u>Requisition days:</u><b> Monday, Friday</b>  </div>
-                    <div class="obj-info"> <u>Merchendiser req. days:</u><b> Monday, Friday </b>  </div>
+                    <div class="obj-info"> <u>Director:</u><b>{{ object.director}}</b></div>
+                    <div class="obj-info"> <u>Supervisor:</u><b> {{ object.supervisor}}</b></div>
+                    <div class="obj-info"> <u>Merchandiser:</u><b> {{ object.merchandiser}}</b></div>
+                    <div class="obj-info"> <u>Commercialist:</u><b> {{ object.commercialist}}</b> </div>
+                    <div class="obj-info"> <u>Requisition days:</u><b> {{ object.requisitionDays }}</b>  </div>
+                    <div class="obj-info"> <u>Merchendiser req. days:</u><b>{{ object.merchandiserRevisionDays }}</b>  </div>
                 </div>
             </div>
         <!--
@@ -53,14 +53,14 @@
                 </ul>-->
 
                 <div class="object-info-slider">
-                    <div class="card" ><div style="font-size: 250%;"><b>0,5</b></div>Shelf Space M</div>
-                    <div class="card"><div style="font-size: 250%;"><b>1,3</b></div>Company Shelf Space M</div>
-                    <div class="card"><div style="font-size: 250%;"><b>13</b></div>Company Shelf Space %</div>
-                    <div class="card2"><div style="font-size: 250%;"><b>13.221,22</b></div>Gainings 12M (RSD,mil)</div>
-                    <div class="card"><div style="font-size: 250%;"><b>9</b></div>Gainings VS 12M %</div>
-                    <div class="card"><div style="font-size: 250%;"><b>20</b></div>WD % Serbia</div>
-                    <div class="card"><div style="font-size: 250%;"><b>4</b></div>WD % Sector</div>
-                    <div class="card"><div style="font-size: 250%;"><b>12</b></div>WD % Customer</div>
+                    <div class="card" ><div style="font-size: 250%;"><b>{{ object.objectInfo.shelfSpaceM }}</b></div>Shelf Space M</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpaceM }}</b></div>Company Shelf Space M</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpacePercent }}</b></div>Company Shelf Space %</div>
+                    <div class="card2"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainings12Mrsd }}</b></div>Gainings 12M (RSD,mil)</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainingsVs12mpercent }}</b></div>Gainings VS 12M %</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSerbia }}</b></div>WD % Serbia</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSector }}</b></div>WD % Sector</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentCustomer }}</b></div>WD % Customer</div>
                 </div>
             </div>
 
