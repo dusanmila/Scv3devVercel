@@ -17,12 +17,13 @@
                     <div class="obj-info"> <u>Number of registers:</u><b> {{ object.objectInfo.registersNumber }}</b>  </div>
                 </div>
                 <div class="card1">
-                    <div class="obj-info"> <u>Director:</u><b>{{ object.director}}</b></div>
+                    <div class="obj-info"> <u>KAM:</u><b> {{ object.kam}}</b></div>
+                    <div class="obj-info"> <u>Director:</u><b> {{ object.director}}</b></div>
                     <div class="obj-info"> <u>Supervisor:</u><b> {{ object.supervisor}}</b></div>
                     <div class="obj-info"> <u>Merchandiser:</u><b> {{ object.merchandiser}}</b></div>
                     <div class="obj-info"> <u>Commercialist:</u><b> {{ object.commercialist}}</b> </div>
                     <div class="obj-info"> <u>Requisition days:</u><b> {{ object.requisitionDays }}</b>  </div>
-                    <div class="obj-info"> <u>Merchendiser req. days:</u><b>{{ object.merchandiserRevisionDays }}</b>  </div>
+                    <div class="obj-info"> <u>Merchendiser req. days:</u><b> {{ object.merchandiserRevisionDays }}</b>  </div>
                 </div>
             </div>
         <!--
@@ -56,7 +57,7 @@
                     <div class="card" ><div style="font-size: 250%;"><b>{{ object.objectInfo.shelfSpaceM }}</b></div>Shelf Space M</div>
                     <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpaceM }}</b></div>Company Shelf Space M</div>
                     <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpacePercent }}</b></div>Company Shelf Space %</div>
-                    <div class="card2"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainings12Mrsd }}</b></div>Gainings 12M (RSD,mil)</div>
+                    <div class="card2"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainings12Mrsd.toLocaleString() }}</b></div>Gainings 12M (RSD,mil)</div>
                     <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainingsVs12mpercent }}</b></div>Gainings VS 12M %</div>
                     <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSerbia }}</b></div>WD % Serbia</div>
                     <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSector }}</b></div>WD % Sector</div>
