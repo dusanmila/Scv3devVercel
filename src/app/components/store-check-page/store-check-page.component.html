@@ -5,10 +5,39 @@
             <h1>{{ objectName }}</h1>
             <!-- <em class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></em> -->
             <!-- <em class="fa-solid fa-file-lines fa-3x" (click)="getRetailerPlanogram()"></em> -->
-            <em class="fa-solid fa-file-powerpoint fa-3x" (click)="getRetailerPlanogram()"></em>
+        <em class="fa-solid fa-file-powerpoint fa-3x" style="margin-right: 10%;" (click)="getRetailerPlanogram()"></em>
         </div>
+        <div class="object-info-data" *ngIf="showDetails">
+            <div class="object-info-slider">
+                <div class="card1">
+                    <div class="obj-info"> <u>Address:</u><b> {{ object.address }}, {{ object.city }}</b></div>
+                    <div class="obj-info"> <u>Format:</u><b> {{ object.objectFormat }}</b> </div>
+                    <div class="obj-info"> <u>Retailer:</u><b> {{ object.retailer.retailerName }}</b></div>
+                    <div class="obj-info"> <u>Assortment module:</u><b> {{ object.objectInfo.assortmentModule }}</b></div>
+                    <div class="obj-info"> <u>Number of registers:</u><b> {{ object.objectInfo.registersNumber }}</b>  </div>
+                </div>
+                <div class="card1">
+                    <div class="obj-info"> <u>Director:</u><b>{{ object.director}}</b></div>
+                    <div class="obj-info"> <u>Supervisor:</u><b> {{ object.supervisor}}</b></div>
+                    <div class="obj-info"> <u>Merchandiser:</u><b> {{ object.merchandiser}}</b></div>
+                    <div class="obj-info"> <u>Commercialist:</u><b> {{ object.commercialist}}</b> </div>
+                    <div class="obj-info"> <u>Requisition days:</u><b> {{ object.requisitionDays }}</b>  </div>
+                    <div class="obj-info"> <u>Merchendiser req. days:</u><b>{{ object.merchandiserRevisionDays }}</b>  </div>
+                </div>
+            </div>
+        <!--
         <div class="object-info-data" *ngIf="showDetails == true">
-            <div class="obj-info">
+            <div class="obj-info"> Address: <div style="font-size: 120%">{{ object.address }}, {{ object.city }}</div> </div>
+            <br>
+            <div class="obj-info"> Format:<div style="font-size: 120%">{{ object.objectFormat }} </div>  </div>
+            <br>
+            <div class="obj-info">Retailer: <div style="font-size: 120%">{{ object.retailer.retailerName }} </div>  </div>
+            <br>
+            <div class="obj-info"> Assortment module: <div style="font-size: 120%">{{ object.objectInfo.assortmentModule }} </div>  </div>
+            <br>
+            <div class="obj-info"> Number of registers: <div style="font-size: 120%">{{ object.objectInfo.registersNumber }} </div>  </div>
+            <br>-->
+            <!--
                 <ul>
                     <li>Address: {{ object.address }}, {{ object.city }}</li>
                     <li>Format: {{ object.objectFormat }}</li>
@@ -21,9 +50,22 @@
                     <li>Director: {{ object.merchandiser}}</li>
                     <li>Requisition days: {{ object.requisitionDays }}</li>
                     <li>Merchandiser revision days: {{ object.merchandiserRevisionDays }}</li>
-                </ul>
+                </ul>-->
+
+                <div class="object-info-slider">
+                    <div class="card" ><div style="font-size: 250%;"><b>{{ object.objectInfo.shelfSpaceM }}</b></div>Shelf Space M</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpaceM }}</b></div>Company Shelf Space M</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpacePercent }}</b></div>Company Shelf Space %</div>
+                    <div class="card2"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainings12Mrsd }}</b></div>Gainings 12M (RSD,mil)</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainingsVs12mpercent }}</b></div>Gainings VS 12M %</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSerbia }}</b></div>WD % Serbia</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSector }}</b></div>WD % Sector</div>
+                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentCustomer }}</b></div>WD % Customer</div>
+                </div>
             </div>
-            <div class="object-info-tables">
+
+                <!--
+                <div class="object-info-tables">
                 <table aria-describedby="Object info table 1" class="info-table">
                     <tr>
                         <th>Shelf Space M</th>
@@ -54,10 +96,10 @@
                     </tr>
                 </table>
             </div>
-        </div>
+            -->
         <h4 *ngIf="showDetails == false">Details</h4>
-        <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></em>
-        <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></em>
+       <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></em>
+       <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></em>
     </div>
 
     <div class="main fadeIn second">
@@ -76,6 +118,4 @@
 
         </div>
     </div>
-
-
 </div>

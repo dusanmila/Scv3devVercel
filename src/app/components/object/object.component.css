@@ -47,8 +47,9 @@ h4 {
 }
 
 .menu-btn {
-  width: 100px;
-  max-width: 90%;
+  width: 150px;
+  max-height: 150%;
+  max-width: 100%;
   background-color: #56baed;
   border-radius: 3px;
   color: #fff;
