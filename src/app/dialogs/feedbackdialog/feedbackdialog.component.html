@@ -49,6 +49,8 @@
       <button mat-icon-button color="primary" *ngIf="data.img=='' || data.img=='NULL' " (click)="openInfo()">
         <mat-icon> warning </mat-icon>
       </button>
+
+      <button mat-button class="item2" (click)="close()">Close</button>
       <button mat-button class="item2" *ngIf="resolveFeedbacks" type="submit" (click)="submitForm()"
         [disabled]="!imageUploaded && !isLoading">Resolve</button>
 
@@ -57,8 +59,6 @@
         <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
         </mat-progress-spinner>
       </div>
-
-      <button mat-button class="item2" (click)="close()">Close</button>
     </div>
   </form>
 </div>
