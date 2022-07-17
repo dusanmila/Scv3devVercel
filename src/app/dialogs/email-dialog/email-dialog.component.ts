@@ -43,8 +43,8 @@ export class EmailDialogComponent implements OnInit {
   public send() {
     let username = localStorage.getItem("username") as string;
     if (this.sendToCreator) {
-      // let email = localStorage.getItem("email") as string;
-      let email = "stefanradulovic58@gmail.com";
+      let email = localStorage.getItem("email") as string;
+      // let email = "stefanradulovic58@gmail.com";
       this.emailsForSending.storeCheckCreatorEmail = email;
     }
     // koristimo za slanje celog store checka
