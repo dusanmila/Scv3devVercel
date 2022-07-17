@@ -25,7 +25,7 @@ export class LoginComponent  {
 
     this.isLoading = true;
 
-    if (!this.isLoginFailed) {
+    if (this.isLoginFailed) {
       this.isLoginFailed = false;
     }
 
@@ -59,10 +59,10 @@ export class LoginComponent  {
         }
       },
       error: (e) => {
-        if (e.status == 401) {
+
           this.isLoading = false;
           this.isLoginFailed = true;
-        }
+
       }
     });
 
