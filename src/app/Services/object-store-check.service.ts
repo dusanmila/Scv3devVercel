@@ -30,10 +30,10 @@ export class ObjectStoreCheckService {
     return retval$.asObservable();
   }
 
-  public finishObjectStoreCheck(username: string, emailsForSending: EmailsForSending) {
+  public finishObjectStoreCheck(username: string) {
     let retval$ = new Subject<ObjectStoreCheck>();
     // this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {},{headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
-    this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, emailsForSending, {headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
+    this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}, {headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
