@@ -10,6 +10,7 @@ import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-store-check-page',
@@ -27,7 +28,8 @@ export class StoreCheckPageComponent implements OnInit {
   public workModel: string;
   public showFinishButton: boolean = false;
 
-  constructor(public objectService: ObjectService,
+  constructor(public snackBar:MatSnackBar,
+    public objectService: ObjectService,
     public objectStoreCheckService: ObjectStoreCheckService,
     public positionService: PositionService,
     public activatedRoute: ActivatedRoute,
@@ -133,7 +135,9 @@ export class StoreCheckPageComponent implements OnInit {
         } else if (res == 3) {
           this.dialog.open(AlreadyFinishedComponent);
         }
-      });
+        this.snackBar.open('Added to StoreCheck', 'Ok', { duration: 2500 });
+      },
+      err => this.snackBar.open('Error', 'Close', { duration: 2500 }));
   }
 
   public exit() {
