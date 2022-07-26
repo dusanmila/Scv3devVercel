@@ -5,6 +5,7 @@ import { saveAs } from 'file-saver';
 import { Retailer } from '../models/retailer';
 import { Obj, ObjectCreateDto } from '../models/object';
 import { OBJECT_URL } from '../app.constants';
+import { Planogram } from '../models/planogram';
 
 @Injectable({
   providedIn: 'root'
@@ -174,6 +175,14 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public getPlanogramsByRetailer(retailerName: string): Observable<Planogram[]> {
+    let retval$ = new Subject<Planogram[]>();
+    this.http.get<Planogram[]>(`${OBJECT_URL}/planograms/planogramsByRetailer/${retailerName}`, { headers: this.headers }).subscribe((helper) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
   public getRetailerPlanogram(retailer: Retailer) {
     return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const blob = new Blob([pdf], { type: 'application/pdf' });
@@ -191,6 +200,22 @@ export class ObjectService {
 
   public addPlanogram(form: FormData): Observable<any> {
     return this.http.put(`${OBJECT_URL}/retailers/updateRetailerWithPlanogram`, form, { headers: this.headers });
+  }
+
+  public addPlanograms(form: FormData): Observable<any> {
+    return this.http.post(`${OBJECT_URL}/planograms`, form, { headers: this.headers });
+  }
+
+  public getPlanogram(planogramPdf: string) {
+    return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
+      const blob = new Blob([pdf], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
+  public deletePlanogram(planogramPdf: string) {
+    return this.http.delete(`${OBJECT_URL}/planograms/deleteByPdf/${planogramPdf}`, {headers: this.headers});
   }
 
   public createRetailerWithPlanogram(form: FormData) {

@@ -1,0 +1,17 @@
+<div class="container">
+    <h3 mat-dialog-title>{{retailerName}} planograms:</h3>
+
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <ul calss="list">
+            <li class="list-item" *ngFor="let planogram of planograms" (click)="loadPlanogram(planogram.planogramPdf)">
+                {{planogram.planogramPdf}}
+                <button mat-icon-button color="primary">
+                    <mat-icon (click)="deletePlanogram(planogram.planogramPdf);$event.stopPropagation()"> delete </mat-icon>
+                </button>
+            </li>
+        </ul>
+        <div mat-dialog-action>
+            <button mat-button (click)="close()" class="item2">Close</button>
+        </div>
+    </form>
+</div>

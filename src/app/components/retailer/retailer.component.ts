@@ -6,6 +6,7 @@ import { RetailerDialogComponent } from 'src/app/dialogs/retailerdialog/retailer
 import { FormGroup } from '@angular/forms';
 import { Retailer } from 'src/app/models/retailer';
 import { PageEvent } from '@angular/material/paginator';
+import { PlanogramDialogComponent } from 'src/app/dialogs/planogram-dialog/planogram-dialog.component';
 
 @Component({
   selector: 'app-retailer',
@@ -120,6 +121,9 @@ export class RetailerComponent implements OnInit {
       this.isLoading = false;
     });
   }
-
+  
+  public openPlanogramDialog(retailerName: string) {
+    const dialogRef = this.dialog.open(PlanogramDialogComponent, { data: retailerName });
+  }
 
 }

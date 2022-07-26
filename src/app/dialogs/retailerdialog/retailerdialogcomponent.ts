@@ -56,12 +56,11 @@ export class RetailerDialogComponent implements OnInit {
       }
     
       const formData: any = new FormData();
-      this.selectedFiles.forEach((f) => formData.append('file', f));
+      this.selectedFiles.forEach((f) => formData.append('files', f));
+      formData.append('retailerName', this.data.retailerName);
 
-    
       //formData.append('file', this.tableForm.get('file')!.value);
-      formData.append('RetailerName', this.data.retailerName);
-      this.objectService.addPlanogram(formData).subscribe({
+      this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
           console.log(data);
           this.changed = true;
@@ -96,15 +95,20 @@ export class RetailerDialogComponent implements OnInit {
 
   }
 
-  uploadFile(event: any,files: FileList) {
-
+  uploadFile(event: any) {
     this.selectedFiles = [];
-    if (files.length === 0) {
+    if (event.target.files.length === 0) {
       return;
     }
-    for (let i = 0; i < files.length; i++) {
-      this.selectedFiles.push(files[i]);
-    }
+
+    const parent = event.target;
+    [...parent.files].forEach((file) => {
+      console.log(file)
+      this.selectedFiles.push(file);
+    });
+    // for (let i = 0; i < files.length; i++) {
+    //   this.selectedFiles.push(files[i]);
+    // }
     //ovo ispod je bilo iznad treba za vise njih ali ima error neki za null ne moze u FileList
 /*
     const file = (event.target as HTMLInputElement).files![0];

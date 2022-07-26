@@ -10,6 +10,7 @@ import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
+import { PlanogramDialogComponent } from 'src/app/dialogs/planogram-dialog/planogram-dialog.component';
 
 @Component({
   selector: 'app-store-check-page',
@@ -164,6 +165,10 @@ export class StoreCheckPageComponent implements OnInit {
         this.router.navigate(['/chooseObject/' + this.workModel]);
       }
     }
+  }
+
+  public openPlanogramDialog() {
+    const dialogRef = this.dialog.open(PlanogramDialogComponent, { data: this.object.retailer.retailerName });
   }
 
 }
