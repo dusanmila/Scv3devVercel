@@ -21,9 +21,9 @@
             <input [(ngModel)]="user.password" type="password" name="password" class="fadeIn third" id="password"
                 aria-describedby="lastNameHelp" placeholder="Enter your password">
 
-        
-            <button class="fadeIn fourth" (click)="LoginUser()" [disabled]="isLoading || !user.username || !user.password">Log in</button>
-       
+
+            <button class="fadeIn fourth" (click)="LoginUser()" [disabled]="isLoading || !user.username || !user.password || disableLogin">Log in</button>
+
             <div *ngIf="isLoading"
                 style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
                 <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">

@@ -50,7 +50,7 @@ h4 {
   width: 150px;
   max-height: 150%;
   max-width: 100%;
-  background-color: #56baed;
+  background-color: white;
   border-radius: 3px;
   color: #fff;
   margin: 0 auto;
@@ -176,3 +176,22 @@ table{
     margin-left: 5px;
   }
 } */
+
+.item2{
+  background-color: white;
+  color: #39ace7;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  right: 0%;
+
+}

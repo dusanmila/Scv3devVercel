@@ -36,7 +36,7 @@ export class UserDialogComponent implements OnInit {
 public add(): void{
   this.userService.createUser(this.data)
   .subscribe(() =>{
-    this.snackBar.open('User successfully added' + this.data.username, 'Ok', { duration: 2500 });
+    this.snackBar.open('User successfully added', 'Ok', { duration: 2500 });
   } ),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)

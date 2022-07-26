@@ -28,7 +28,6 @@ export class StoreCheckReceiverComponent implements OnInit {
     this.storeCheckService.getStoreCheckReceivers().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.storeCheckReceivers = data[0]; 
-      console.log(data);
     });
   }
 

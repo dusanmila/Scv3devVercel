@@ -11,7 +11,7 @@
 
   </div> -->
     <div class="detail-search">
-      <h4>Detail search</h4>
+
       <!-- <div class="detail-search-menu" *ngIf="detailSearch"> -->
       <div class="detail-search-menu">
         <div class="menu-item">
@@ -46,13 +46,13 @@
 
         <div class="menu-item">
           <mat-form-field>
-            <input type="text" matInput placeholder="Baner" [(ngModel)]="format">
+            <input type="text" matInput placeholder="Banner" [(ngModel)]="format">
           </mat-form-field>
         </div>
 
         <div class="menu-btn">
-          <button matSuffix mat-button class="item3" (click)="loadData(false)">Search <mat-icon>search</mat-icon></button>
-        </div>
+          <button matSuffix mat-button class="item2" (click)="loadData(false)">Search <mat-icon>search</mat-icon></button>
+        </div> <!--bila klasa item3-->
 
 
       </div>
@@ -80,7 +80,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i=index">
           <button mat-icon-button color="primary" *ngIf="isAdmin">
-            <mat-icon area-label="Edit" (click)="openUpdateDialog(row)">
+            <mat-icon area-label="Edit" (click)="openUpdateDialog(2,row)">
               edit </mat-icon>
           </button>
 
@@ -92,7 +92,7 @@
 
           <button style="color: #56baed;background-color:white;" mat-button
             color="primary" *ngIf="!isAdmin"
-            (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+            (click)="openUpdateDialog(4,row)">
             <!-- Details -->
             <mat-icon area-label="Info">info</mat-icon>
           </button>

@@ -15,7 +15,8 @@
 
   <ng-container matColumnDef="planogramPdf">
     <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Planogram</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.planogramPdf }}</mat-cell>
+    <mat-cell *matCellDef="let row"><button mat-icon-button color="primary"(click)="openPlanogramDialog(row.retailerName)">Show planograms
+            </button></mat-cell>
   </ng-container>
 
 
