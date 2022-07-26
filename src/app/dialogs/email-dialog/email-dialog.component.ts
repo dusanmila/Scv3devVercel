@@ -63,7 +63,7 @@ export class EmailDialogComponent implements OnInit {
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
         if (data) {
 
-          this.objectStoreCheckService.finishObjectStoreCheck(username, this.emailsForSending).subscribe(data => {
+          this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
             console.log(data);
             this.isLoading=false;
           });

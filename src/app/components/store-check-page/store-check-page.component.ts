@@ -82,12 +82,12 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
-  // public finishObjectStoreCheck() {
-  //   let username = localStorage.getItem("username") as string;
-  //   this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
-  //     console.log(data);
-  //   });
-  // }
+  public finishObjectStoreCheck() {
+    let username = localStorage.getItem("username") as string;
+    this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
+      console.log(data);
+    });
+  }
 
   public createEmptyObjectStoreCheck() {
     let username = localStorage.getItem("username") as string;
@@ -106,39 +106,41 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
-  // public addToStoreCheck() {
-  //   let username = localStorage.getItem("username") as string;
-  //   this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
-  //     if (data) {
-  //       const dialogRef = this.dialog.open(AreYouSureDialogComponent);
-  //       dialogRef.afterClosed()
-  //         .subscribe(res => {
-  //           console.log(res)
-  //           if (res) {
-  //             this.finishObjectStoreCheck();
-  //             this.router.navigate(['/chooseObject/' + this.workModel]);
-  //           }
-  //         }
-  //         )
-  //     } else {
-  //       this.dialog.open(AlreadyFinishedComponent);
-  //     }
-  //   });
-
   public addToStoreCheck() {
-    const dialogRef = this.dialog.open(EmailDialogComponent);
-    dialogRef.componentInstance.flag = 2;
-    dialogRef.afterClosed()
-      .subscribe(res => {
-        if (res == 2) {
-          this.router.navigate(['/chooseObject/' + this.workModel]);
-        } else if (res == 3) {
-          this.dialog.open(AlreadyFinishedComponent);
-        }
-        this.snackBar.open('Added to StoreCheck', 'Ok', { duration: 2500 });
-      },
-      err => this.snackBar.open('Error', 'Close', { duration: 2500 }));
+
+    let username = localStorage.getItem("username") as string;
+    this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
+      if (data) {
+        const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+        dialogRef.afterClosed()
+          .subscribe(res => {
+            console.log(res)
+            if (res) {
+              this.finishObjectStoreCheck();
+              this.router.navigate(['/chooseObject/' + this.workModel]);
+            }
+          }
+          )
+      } else {
+        this.dialog.open(AlreadyFinishedComponent);
+      }
+    });
+
   }
+
+  // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
+  // public addToStoreCheck() {
+  //   const dialogRef = this.dialog.open(EmailDialogComponent);
+  //   dialogRef.componentInstance.flag = 2;
+  //   dialogRef.afterClosed()
+  //     .subscribe(res => {
+  //       if (res == 2) {
+  //         this.router.navigate(['/chooseObject/' + this.workModel]);
+  //       } else if (res == 3) {
+  //         this.dialog.open(AlreadyFinishedComponent);
+  //       }
+  //     });
+  // }
 
   public exit() {
     if (this.showFinishButton) {
