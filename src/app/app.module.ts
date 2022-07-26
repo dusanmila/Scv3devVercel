@@ -62,6 +62,7 @@ import { AlreadyFinishedComponent } from './dialogs/already-finished/already-fin
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { StoreCheckReceiverComponent } from './components/store-check-receiver/store-check-receiver.component';
 import { StoreCheckReceiverDialogComponent } from './dialogs/store-check-receiver-dialog/store-check-receiver-dialog.component';
+import { PlanogramDialogComponent } from './dialogs/planogram-dialog/planogram-dialog.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { StoreCheckReceiverDialogComponent } from './dialogs/store-check-receive
     UnfinishedObjectStoreCheckDialogComponent,
     AlreadyFinishedComponent,
     StoreCheckReceiverComponent,
-    StoreCheckReceiverDialogComponent
+    StoreCheckReceiverDialogComponent,
+    PlanogramDialogComponent
 
   ],
   imports: [

@@ -12,7 +12,7 @@
 
 
     <form [formGroup]="tableForm" (ngSubmit)="submit()" *ngIf="flag ==2">
-      <input mat-input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file" />
+      <input  #fileInput mat-input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file" multiple/>
     </form>
 
     <div mat-dialog-actions>

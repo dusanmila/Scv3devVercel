@@ -13,6 +13,7 @@ import { ObjectService } from 'src/app/Services/object.service';
 export class RetailerDialogComponent implements OnInit {
 
   tableForm: FormGroup;
+  selectedFiles: File[];
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<RetailerDialogComponent>,
@@ -49,10 +50,17 @@ export class RetailerDialogComponent implements OnInit {
   public submit() {
     this.isLoading=true;
     if (this.flag == 2) {
+
+      if (!this.selectedFiles || this.selectedFiles.length === 0) {
+        return;
+      }
+    
       const formData: any = new FormData();
-      formData.append('file', this.tableForm.get('file')!.value);
-      formData.append('RetailerName', this.data.retailerName);
-      this.objectService.addPlanogram(formData).subscribe({
+      this.selectedFiles.forEach((f) => formData.append('files', f));
+      formData.append('retailerName', this.data.retailerName);
+
+      //formData.append('file', this.tableForm.get('file')!.value);
+      this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
           console.log(data);
           this.changed = true;
@@ -88,11 +96,26 @@ export class RetailerDialogComponent implements OnInit {
   }
 
   uploadFile(event: any) {
+    this.selectedFiles = [];
+    if (event.target.files.length === 0) {
+      return;
+    }
+
+    const parent = event.target;
+    [...parent.files].forEach((file) => {
+      console.log(file)
+      this.selectedFiles.push(file);
+    });
+    // for (let i = 0; i < files.length; i++) {
+    //   this.selectedFiles.push(files[i]);
+    // }
+    //ovo ispod je bilo iznad treba za vise njih ali ima error neki za null ne moze u FileList
+/*
     const file = (event.target as HTMLInputElement).files![0];
     this.tableForm.patchValue({
       file: file,
     });
-    this.tableForm.get('file')!.updateValueAndValidity();
+    this.tableForm.get('file')!.updateValueAndValidity();*/
   }
 
   openInput() {
