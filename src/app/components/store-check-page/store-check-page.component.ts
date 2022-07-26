@@ -169,6 +169,7 @@ export class StoreCheckPageComponent implements OnInit {
 
   public openPlanogramDialog() {
     const dialogRef = this.dialog.open(PlanogramDialogComponent, { data: this.object.retailer.retailerName });
+    dialogRef.componentInstance.isAdmin = false;
   }
 
 }

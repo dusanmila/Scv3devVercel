@@ -11,6 +11,7 @@ import { ObjectService } from 'src/app/Services/object.service';
 export class PlanogramDialogComponent implements OnInit {
 
   public planograms: Planogram[] = [];
+  public isAdmin: boolean;
 
   constructor(public dialogRef: MatDialogRef<PlanogramDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public retailerName: string,

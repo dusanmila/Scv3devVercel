@@ -124,6 +124,7 @@ export class RetailerComponent implements OnInit {
   
   public openPlanogramDialog(retailerName: string) {
     const dialogRef = this.dialog.open(PlanogramDialogComponent, { data: retailerName });
+    dialogRef.componentInstance.isAdmin = true;
   }
 
 }
