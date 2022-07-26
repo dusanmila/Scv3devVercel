@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
 import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.component';
+import { Renderer2 } from '@angular/core';
 
+
+declare var EXIF: any;
+const fbphoto = document.querySelector('fbphoto');
 
 
 @Component({
@@ -14,7 +18,7 @@ import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.com
   templateUrl: './feedbackdialog.component.html',
   styleUrls: ['./feedbackdialog.component.css']
 })
-export class FeedbackDialogComponent implements OnInit {
+export class FeedbackDialogComponent implements OnInit,AfterViewInit {
 
   public flag: number;
   public resolveFeedbacks: boolean;
@@ -23,8 +27,13 @@ export class FeedbackDialogComponent implements OnInit {
   public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
   public changed: boolean = false;
   isLoading=false;
+  rotate=false;
 
-  constructor(public snackBar: MatSnackBar,
+
+output:string;
+@ViewChild('fbimg') fbimg: ElementRef;
+
+  constructor(private renderer:Renderer2,public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackDialogComponent>,
     private dialog:MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: Feedback,
@@ -39,7 +48,16 @@ export class FeedbackDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
+
+
+  ngAfterViewInit(): void {
+  this.getExif();
+
+}
+
+
 
   public add(): void {
     this.isLoading=true;
@@ -98,5 +116,37 @@ export class FeedbackDialogComponent implements OnInit {
 
 
   }
+
+
+ private getExif() {
+    let allMetaData: any;
+
+    //var img=<HTMLImageElement>this.fbimg.nativeElement;
+    var img = document.getElementById("fbphoto");
+
+    console.log(img)
+
+    setTimeout(function(){
+      EXIF.getData(img, function () {
+
+        console.log(this)
+        allMetaData = EXIF.getAllTags(this);
+        if(allMetaData.Orientation == 6){
+
+    this.rotate=true;
+
+    this.classList.add('rotate');
+
+        }
+
+      });
+    }, 150);
+
+
+
+
+    this.output = allMetaData;
+  }
+
 
 }

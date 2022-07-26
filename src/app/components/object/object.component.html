@@ -80,7 +80,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i=index">
           <button mat-icon-button color="primary" *ngIf="isAdmin">
-            <mat-icon area-label="Edit" (click)="openUpdateDialog(row)">
+            <mat-icon area-label="Edit" (click)="openUpdateDialog(2,row)">
               edit </mat-icon>
           </button>
 
@@ -92,7 +92,7 @@
 
           <button style="color: #56baed;background-color:white;" mat-button
             color="primary" *ngIf="!isAdmin"
-            (click)="openDialog(4,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailer,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
+            (click)="openUpdateDialog(4,row)">
             <!-- Details -->
             <mat-icon area-label="Info">info</mat-icon>
           </button>
