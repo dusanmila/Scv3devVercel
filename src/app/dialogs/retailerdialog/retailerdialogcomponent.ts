@@ -30,7 +30,7 @@ export class RetailerDialogComponent implements OnInit {
   public flag: number;
   retailerName: string;
   public changed: boolean = false;
-
+  isLoading=false;
 
   ngOnInit(): void {
     this.retailer.retailerName = this.data.retailerName;
@@ -48,7 +48,7 @@ export class RetailerDialogComponent implements OnInit {
 
 
   public submit() {
-
+    this.isLoading=true;
     if (this.flag == 2) {
 
       if (!this.selectedFiles || this.selectedFiles.length === 0) {
@@ -91,7 +91,7 @@ export class RetailerDialogComponent implements OnInit {
 
     }
 
-
+    this.isLoading=false;
 
   }
 

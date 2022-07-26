@@ -2,11 +2,11 @@
 <div *ngIf="!loading">
   <router-outlet></router-outlet>
 </div>
-
+<!--display: flex; justify-content: center; align-items: center;-->
 <div *ngIf="loading"
-style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed;margin-top:20%">
-<mat-progress-spinner
-class="mat-spinner-color"
- mode="indeterminate">
+style="background: white;color:#56baed;margin-top:20%">
+<div><img src="assets\StoreCheckIcon3.png" alt="SC icon" width="400" height="200" class="center"></div>
+<mat-progress-spinner class="mat-spinner-color center" mode="indeterminate" [diameter]="20">
 </mat-progress-spinner>
+
 </div>

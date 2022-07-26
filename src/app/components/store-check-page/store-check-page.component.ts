@@ -11,6 +11,7 @@ import { PositionService } from 'src/app/Services/position-service.service';
 import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
 import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
 import { PlanogramDialogComponent } from 'src/app/dialogs/planogram-dialog/planogram-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-store-check-page',
@@ -28,7 +29,8 @@ export class StoreCheckPageComponent implements OnInit {
   public workModel: string;
   public showFinishButton: boolean = false;
 
-  constructor(public objectService: ObjectService,
+  constructor(public snackBar:MatSnackBar,
+    public objectService: ObjectService,
     public objectStoreCheckService: ObjectStoreCheckService,
     public positionService: PositionService,
     public activatedRoute: ActivatedRoute,
@@ -106,6 +108,7 @@ export class StoreCheckPageComponent implements OnInit {
 
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
   public addToStoreCheck() {
+
     let username = localStorage.getItem("username") as string;
     this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
       if (data) {
@@ -123,6 +126,7 @@ export class StoreCheckPageComponent implements OnInit {
         this.dialog.open(AlreadyFinishedComponent);
       }
     });
+
   }
 
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka

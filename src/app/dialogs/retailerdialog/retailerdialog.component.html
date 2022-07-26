@@ -16,13 +16,17 @@
     </form>
 
     <div mat-dialog-actions>
-
+      <div *ngIf="isLoading"
+      style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+      </mat-progress-spinner>
+    </div>
       <button class="test" mat-button (click)="close()">Cancel</button>
       <button class="test" mat-button type="submit" *ngIf="flag != 3" [disabled]="!data.retailerName"
       (click)="submit()">Add</button>
     <button class="test" mat-button type="submit" *ngIf="flag==3"
       (click)="delete()">Delete</button>
-      
+
     </div>
   <br>
   <br>
