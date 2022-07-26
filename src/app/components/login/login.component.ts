@@ -16,7 +16,10 @@ export class LoginComponent  {
 
   isLoginFailed: boolean = false;
   isLoading = false;
+  disableLogin=false;
 
+  loginAttempts: number = 0;
+  rightnow:any;
 
   constructor(private router: Router, public loginService: LoginService) { }
 
@@ -29,6 +32,8 @@ export class LoginComponent  {
       this.isLoginFailed = false;
     }
 
+
+   // if(localStorage.getItem("unsuccessfulLoginExpiration")==null || new Date(localStorage.getItem("unsuccessfulLoginExpiration")!)  < new Date())
     this.loginService.login(this.user.username, this.user.password).subscribe({
       next: data => {
         console.log(data.status);
@@ -58,12 +63,25 @@ export class LoginComponent  {
         }
       },
       error: (e) => {
+        this.isLoading = false;
+        this.isLoginFailed = true;
 
-          this.isLoading = false;
-          this.isLoginFailed = true;
+        if(this.loginAttempts<5){
+          this.loginAttempts++;
+        }//else{
+
+        //  this.rightnow = new Date();
+
+//localStorage.setItem("unsuccessfulLoginExpiration",this.rightnow.setMinutes(this.rightnow.getMinutes() + 20));
+       // }
+
 
       }
     });
 
+
   }
+
+
+
 }

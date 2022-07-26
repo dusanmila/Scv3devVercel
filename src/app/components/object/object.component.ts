@@ -28,6 +28,7 @@ export class ObjectComponent implements OnInit {
   dataSource: MatTableDataSource<Obj>;
   subscription: Subscription;
   isLoading = false;
+  objInfo: ObjectInfo;
 
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
@@ -149,10 +150,12 @@ export class ObjectComponent implements OnInit {
       if (data) {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
+        console.log(data)
       } else {
         this.noData=true;
         this.length = 0;
         this.dataSource = new MatTableDataSource(this.objectArray);
+
       }
       this.isLoading = false;
     });
@@ -209,14 +212,19 @@ export class ObjectComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string) {
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string,kam?:string,merchandiser?:string,director?:string,commercialist?:string,supervisor?:string,companyShelfSpaceM?:string,companyShelfSpacePercent?:string,gainings12Mrds?:string,gainingsVs12Mpercent?:string,registersNumber?:string,shelfSpaceM?:string,WDpercentCustomer?:string,WDpercentSector?:string,WDpercentSerbia?:string,assortmentModule?:string) {
     if (flag == 1) {
       this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
 
+    }else if(flag==4){
+      this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
     }
     else {
 
-      const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address, city, retailer, objectFormat, requisitionDays, merchandiserRevisionDays } });
+
+
+      const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address, city, retailer, objectFormat, requisitionDays, merchandiserRevisionDays, kam,merchandiser,director,commercialist,supervisor} });
+
       dialogRef.componentInstance.flag = flag;
 
       dialogRef.afterClosed()
@@ -230,9 +238,9 @@ export class ObjectComponent implements OnInit {
 
   }
 
-  public openUpdateDialog(data: Obj) {
+  public openUpdateDialog(flag:number,data: Obj) {
     const dialogRef = this.dialog.open(ObjectDialogComponent, { data: data });
-    dialogRef.componentInstance.flag = 2;
+    dialogRef.componentInstance.flag = flag;
   }
 
   public applyFilter(event: Event) {

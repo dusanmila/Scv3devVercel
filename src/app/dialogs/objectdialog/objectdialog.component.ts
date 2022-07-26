@@ -59,6 +59,7 @@ export class ObjectDialogComponent implements OnInit {
   ngOnInit(): void {
     this.loadUsers();
     this.loadRetailers();
+    console.log(this.data.objectInfo.assortmentModule)
   }
 
   public loadUsers() {
