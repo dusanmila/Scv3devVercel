@@ -54,7 +54,7 @@ export class RetailerDialogComponent implements OnInit {
       if (!this.selectedFiles || this.selectedFiles.length === 0) {
         return;
       }
-    
+
       const formData: any = new FormData();
       this.selectedFiles.forEach((f) => formData.append('files', f));
       formData.append('retailerName', this.data.retailerName);
