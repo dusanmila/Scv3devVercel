@@ -166,3 +166,8 @@ a {
     margin-right: auto;
     width: 50%;
   }
+
+  .noresize{
+    max-width:100px;
+    max-height:100px;
+  }
