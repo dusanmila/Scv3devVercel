@@ -128,9 +128,7 @@ export class ObjectService {
   }
 
   public excelImport(formData: FormData) {
-    this.http.post(`${OBJECT_URL}/objectExcels`, formData, { headers: this.headers }).subscribe((response) => {
-      console.log(response);
-    });
+    return this.http.post(`${OBJECT_URL}/objectExcels`, formData, { headers: this.headers });
   }
 
   public updateObject(object: ObjectCreateDto): Observable<ObjectCreateDto> {
