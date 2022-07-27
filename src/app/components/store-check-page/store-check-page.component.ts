@@ -86,8 +86,10 @@ export class StoreCheckPageComponent implements OnInit {
   public finishObjectStoreCheck() {
     let username = localStorage.getItem("username") as string;
     this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
-      console.log(data);
-    });
+
+      this.snackBar.open('Successfully added', 'Close', { duration: 2500 });
+    },
+    err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));
   }
 
   public createEmptyObjectStoreCheck() {
@@ -120,12 +122,14 @@ export class StoreCheckPageComponent implements OnInit {
               this.finishObjectStoreCheck();
               this.router.navigate(['/chooseObject/' + this.workModel]);
             }
-          }
-          )
+          },
+          err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));
+
       } else {
         this.dialog.open(AlreadyFinishedComponent);
       }
-    });
+    },
+    err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));
 
   }
 

@@ -8,3 +8,8 @@
     margin-right: auto;
     width: 50%;
   }
+
+  .noresize{
+    max-width:400px;
+    max-height:200px;
+  }
