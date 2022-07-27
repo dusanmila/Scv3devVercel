@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { FeedbackDialogComponent } from 'src/app/dialogs/feedbackdialog/feedbackdialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FeedbackCreateDialogComponent } from 'src/app/dialogs/feedback-create-dialog/feedback-create-dialog.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-feedback',
@@ -31,12 +32,15 @@ export class FeedbackComponent implements OnInit {
 
   isLoading = true;
 
-  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
+  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
 
-  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
+  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
 
   noData=false;
 
+  public page: number = 1;
+  public count: number = 5;
+  public length: number = 0;
 
   public get feedbacks(): Feedback[] {
     return this._feedbacks;
@@ -61,7 +65,7 @@ export class FeedbackComponent implements OnInit {
       this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
     }
     if (this.objectName != null) {
-      this.loadUnresolvedFeedbacksByObject();
+      this.loadUnresolvedFeedbacksByObject(false);
     } else {
       this.loadData();
     }
@@ -71,30 +75,34 @@ export class FeedbackComponent implements OnInit {
 
   public loadData() {
     this.feedbackService.getUnresolvedFeedbacks().subscribe(data => {
-
       this.dataSource = new MatTableDataSource(data);
       this.isLoading = false;
 
     });
   }
 
-  public loadUnresolvedFeedbacksByObject() {
+  public loadUnresolvedFeedbacksByObject(pageChanged: boolean) {
     this.noData=false;
-    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks).subscribe(data => {
+    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks, this.page, this.count).subscribe(data => {
       if (data) {
-        console.log(data);
         if (!this.resolveFeedbacks)
           this.showFinishButton.emit(true);
-
+          
           this.dataSource=new MatTableDataSource(data);
         }else{
         this.noData=true;
         this.dataSource=new MatTableDataSource(data);
 
       }
-
+      this.length = data[0].totalCount;
       this.isLoading = false;
     });
+  }
+
+  public loadDataOnPageEvent(event: PageEvent) {
+    this.count = event.pageSize;
+    this.page = event.pageIndex + 1;
+    this.loadUnresolvedFeedbacksByObject(true);
   }
 
   // public loadResolvedFeedbacksByObject() {
@@ -139,7 +147,7 @@ export class FeedbackComponent implements OnInit {
       this._feedbacks.push(data);
 
     });
-    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
+    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
 
   }
 
@@ -177,7 +185,7 @@ export class FeedbackComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res) {
-          this.loadUnresolvedFeedbacksByObject();
+          this.loadUnresolvedFeedbacksByObject(false);
         }
       }
       )
@@ -189,7 +197,7 @@ export class FeedbackComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res) {
-          this.loadUnresolvedFeedbacksByObject();
+          this.loadUnresolvedFeedbacksByObject(false);
           this.showFinishButton.emit(true);
         }
       }

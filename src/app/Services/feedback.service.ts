@@ -65,9 +65,11 @@ export class FeedbackService {
 
     return retval$.asObservable();
   }
-  public getUnresolvedFeedbacksByObject(objectName: string, resolveFeedbacks: boolean) {
+  public getUnresolvedFeedbacksByObject(objectName: string, resolveFeedbacks: boolean, page: number, count: number) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("resolveFeedbacks", resolveFeedbacks);
+    queryParams = queryParams.append("page", page);
+    queryParams = queryParams.append("count", count);
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
