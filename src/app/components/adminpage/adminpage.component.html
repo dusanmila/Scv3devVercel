@@ -69,7 +69,16 @@
         <h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>
 
         <label for="fileDropRef" class="browseButton">Browse</label>
+
+      <div *ngIf="isObjLoading"
+      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+     <mat-progress-spinner
+     class="mat-spinner-color"
+       mode="indeterminate" [diameter]="30">
+     </mat-progress-spinner>
+    </div>
       </div>
+
 
 
 
@@ -81,6 +90,13 @@
         <h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>
 
         <label class="browseButton" for="fileDropRef">Browse</label>
+        <div *ngIf="isPosLoading"
+      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+     <mat-progress-spinner
+     class="mat-spinner-color"
+       mode="indeterminate" [diameter]="30">
+     </mat-progress-spinner>
+    </div>
       </div>
 
     </div>
