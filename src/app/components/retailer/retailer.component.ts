@@ -35,7 +35,7 @@ export class RetailerComponent implements OnInit {
   constructor(public objectService: ObjectService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.loadData(false);
+   // this.loadData(false);
   }
 
 
@@ -121,7 +121,7 @@ export class RetailerComponent implements OnInit {
       this.isLoading = false;
     });
   }
-  
+
   public openPlanogramDialog(retailerName: string) {
     const dialogRef = this.dialog.open(PlanogramDialogComponent, { data: retailerName });
     dialogRef.componentInstance.isAdmin = true;
