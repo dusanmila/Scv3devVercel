@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AnalyticsdialogComponent } from 'src/app/dialogs/analyticsdialog/analyticsdialog.component';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
@@ -11,10 +12,11 @@ import { PositionService } from 'src/app/Services/position-service.service';
   templateUrl: './adminpage.component.html',
   styleUrls: ['./adminpage.component.css']
 })
-export class AdminpageComponent  {
+export class AdminpageComponent {
 
 
-  constructor( private objectService:ObjectService, private positionService:PositionService, public dialog:MatDialog, public router: Router ) { }
+  constructor(private objectService: ObjectService, private positionService: PositionService, public dialog: MatDialog, public router: Router,
+    public snackBar: MatSnackBar) { }
 
 
   objectsFile: any;
@@ -30,7 +32,11 @@ export class AdminpageComponent  {
     let formData = new FormData();
     formData.set('file', this.objectsFile);
 
-    this.objectService.excelImport(formData);
+    this.objectService.excelImport(formData).subscribe(data => {
+      this.snackBar.open("Objects added.", "Close", {
+        duration: 3000
+      });
+    });
   }
 
   uploadPositionsFile(event: any) {
@@ -39,7 +45,11 @@ export class AdminpageComponent  {
     let formData = new FormData();
     formData.set('file', this.positionsFile);
 
-    this.positionService.excelImport(formData);
+    this.positionService.excelImport(formData).subscribe(data => {
+      this.snackBar.open("Secondary positions added.", "Close", {
+        duration: 3000
+      });
+    });
   }
 
 

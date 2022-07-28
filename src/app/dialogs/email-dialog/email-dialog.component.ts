@@ -55,7 +55,7 @@ export class EmailDialogComponent implements OnInit {
       this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
         console.log(data);
         this.isLoading=false;
-        this.snackBar.open("Store check succesfully sent.", "Close", {
+        this.snackBar.open("Store check successfully sent.", "Close", {
           duration: 3000
         });
       });
