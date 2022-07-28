@@ -58,9 +58,7 @@ export class PositionService {
 
   public excelImport(formData: FormData) {
 
-    this.http.post(`${POSITION_URL}/secondaryPositionExcels`, formData,{headers:this.headers}).subscribe((response) => {
-      console.log(response);
-    });
+    return this.http.post(`${POSITION_URL}/secondaryPositionExcels`, formData,{headers:this.headers});
 
   }
 
