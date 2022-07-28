@@ -16,7 +16,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
   public flag: number;
   public form: FormGroup;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
   public feedbackCategories: FeedbackCategory[] = [];
   public imageUploaded: boolean = false;
   public changed: boolean = false;
