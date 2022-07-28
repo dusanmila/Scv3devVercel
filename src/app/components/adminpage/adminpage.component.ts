@@ -22,7 +22,11 @@ export class AdminpageComponent {
   objectsFile: any;
   positionsFile: any;
 
+  isObjLoading = false;
+  isPosLoading = false;
+
   uploadObjectsFile(event: any) {
+    this.isObjLoading=true;
     this.objectsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
