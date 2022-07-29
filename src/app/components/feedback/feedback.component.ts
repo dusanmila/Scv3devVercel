@@ -36,7 +36,7 @@ export class FeedbackComponent implements OnInit {
 
   selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
 
-  noData=false;
+  noData = false;
 
   public page: number = 1;
   public count: number = 5;
@@ -82,19 +82,21 @@ export class FeedbackComponent implements OnInit {
   }
 
   public loadUnresolvedFeedbacksByObject(pageChanged: boolean) {
-    this.noData=false;
+    if (!pageChanged)
+      this.page = 1;
+    this.noData = false;
     this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks, this.page, this.count).subscribe(data => {
       if (data) {
+        this.length = data[0].totalCount;
         if (!this.resolveFeedbacks)
           this.showFinishButton.emit(true);
-          
-          this.dataSource=new MatTableDataSource(data);
-        }else{
-        this.noData=true;
-        this.dataSource=new MatTableDataSource(data);
+
+        this.dataSource = new MatTableDataSource(data);
+      } else {
+        this.noData = true;
+        this.dataSource = new MatTableDataSource(data);
 
       }
-      this.length = data[0].totalCount;
       this.isLoading = false;
     });
   }
