@@ -86,7 +86,7 @@ export class StoreCheckPageComponent implements OnInit {
   public finishObjectStoreCheck() {
     let username = localStorage.getItem("username") as string;
     this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
-
+      this.router.navigate(['/chooseObject/' + this.workModel]);
       this.snackBar.open('Successfully added', 'Close', { duration: 2500 });
     },
     err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));
@@ -120,7 +120,7 @@ export class StoreCheckPageComponent implements OnInit {
             console.log(res)
             if (res) {
               this.finishObjectStoreCheck();
-              this.router.navigate(['/chooseObject/' + this.workModel]);
+              // this.router.navigate(['/chooseObject/' + this.workModel]);
             }
           },
           err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));

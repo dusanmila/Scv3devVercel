@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { EmailsForSending } from 'src/app/models/emailsForSending';
 import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
@@ -33,7 +34,8 @@ export class EmailDialogComponent implements OnInit {
   constructor(public sotreCheckService: StoreCheckService,
               public dialogRef: MatDialogRef<EmailDialogComponent>,
               public objectStoreCheckService: ObjectStoreCheckService,
-              public router: Router) { }
+              public router: Router,
+              public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.dialogRef.updateSize('90%');
@@ -53,6 +55,9 @@ export class EmailDialogComponent implements OnInit {
       this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
         console.log(data);
         this.isLoading=false;
+        this.snackBar.open("Store check successfully sent.", "Close", {
+          duration: 3000
+        });
       });
       this.close();
       this.router.navigate(['/storeCheck']);

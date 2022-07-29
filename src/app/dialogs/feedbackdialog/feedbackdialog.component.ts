@@ -24,7 +24,7 @@ export class FeedbackDialogComponent implements OnInit,AfterViewInit {
   public resolveFeedbacks: boolean;
   public form: FormGroup;
   public imageUploaded: boolean = false;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "" };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
   public changed: boolean = false;
   isLoading=false;
   rotate=false;
