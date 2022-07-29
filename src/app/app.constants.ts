@@ -32,11 +32,10 @@ export const AUTH_URL = 'https://localhost:8081/api';
 */
 //azure monolit
 
-export const STORE_CHECK_URL = 'https://storecheckmonolith.azurewebsites.net';
-
-export const USER_URL = 'https://storecheckmonolith.azurewebsites.net';
-export const POSITION_URL = 'https://storecheckmonolith.azurewebsites.net';
-export const FEEDBACK_URL = 'https://storecheckmonolith.azurewebsites.net';
-export const OBJECT_URL = 'https://storecheckmonolith.azurewebsites.net';
-export const AUTH_URL = 'https://storecheckmonolith.azurewebsites.net';
+export const STORE_CHECK_URL = 'https://storecheckmonolith.azurewebsites.net/api';
+export const USER_URL = 'https://storecheckmonolith.azurewebsites.net/api';
+export const POSITION_URL = 'https://storecheckmonolith.azurewebsites.net/api';
+export const FEEDBACK_URL = 'https://storecheckmonolith.azurewebsites.net/api';
+export const OBJECT_URL = 'https://storecheckmonolith.azurewebsites.net/api';
+export const AUTH_URL = 'https://storecheckmonolith.azurewebsites.net/api';
 
