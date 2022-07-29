@@ -12,7 +12,7 @@ export const FEEDBACK_URL = 'https://microservicefeedback20220523153422.azureweb
 export const OBJECT_URL = 'https://microserviceobject.azurewebsites.net/api';
 export const AUTH_URL = 'https://microserviceauth.azurewebsites.net/api';
 */
-
+/*
 //monolit
 export const STORE_CHECK_URL = 'http://localhost:8081/api';
 export const USER_URL = 'http://localhost:8081/api';
@@ -20,3 +20,11 @@ export const POSITION_URL = 'http://localhost:8081/api';
 export const FEEDBACK_URL = 'http://localhost:8081/api';
 export const OBJECT_URL = 'http://localhost:8081/api';
 export const AUTH_URL = 'https://localhost:8081/api';
+*/
+//azure monolit
+export const STORE_CHECK_URL = 'https://storecheckmonolith.azurewebsites.net';
+export const USER_URL = 'https://storecheckmonolith.azurewebsites.net';
+export const POSITION_URL = 'https://storecheckmonolith.azurewebsites.net';
+export const FEEDBACK_URL = 'https://storecheckmonolith.azurewebsites.net';
+export const OBJECT_URL = 'https://storecheckmonolith.azurewebsites.net';
+export const AUTH_URL = 'https://storecheckmonolith.azurewebsites.net';
