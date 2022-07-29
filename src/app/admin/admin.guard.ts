@@ -24,36 +24,11 @@ export class AdminGuard implements CanActivate {
       console.log(jwtHelper.decodeToken(token))
       return true;
     }
-    const isRefreshSuccess = await this.tryRefreshingTokens(token!);
-    if (!isRefreshSuccess) {
-      this.router.navigate(["login"]);
-    }
-    return isRefreshSuccess;
+    this.router.navigate(["login"]);
+    
+    return false;
   }
 
 
 
-  private async tryRefreshingTokens(token: string): Promise<boolean> {
-    const refreshToken: string | null = localStorage.getItem("refreshToken");
-    if (!token || !refreshToken) {
-      return false;
-    }
-
-    const credentials = JSON.stringify({ accessToken: token, refreshToken: refreshToken });
-    let isRefreshSuccess: boolean;
-    const refreshRes = await new Promise<AuthenticatedResponse>((resolve, reject) => {
-      this.http.post<AuthenticatedResponse>(`${AUTH_URL}/tokens/refresh`, credentials, {
-        headers: new HttpHeaders({
-          "Content-Type": "application/json"
-        })
-      }).subscribe({
-        next: (res: AuthenticatedResponse) => resolve(res),
-        error: (_) => { reject; isRefreshSuccess = false; }
-      });
-    });
-    localStorage.setItem("jwt", refreshRes.token);
-    localStorage.setItem("refreshToken", refreshRes.refreshToken);
-    isRefreshSuccess = true;
-    return isRefreshSuccess;
-  }
 }
