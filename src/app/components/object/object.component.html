@@ -51,8 +51,10 @@
         </div>
 
         <div class="menu-btn">
-          <button matSuffix mat-button class="item2" (click)="loadData(false)">Search <mat-icon>search</mat-icon></button>
-        </div> <!--bila klasa item3-->
+          <button matSuffix mat-button class="item2" (click)="loadData(false)">Search <mat-icon>search</mat-icon>
+            </button>
+        </div>
+        <!--bila klasa item3-->
 
 
       </div>
@@ -79,6 +81,11 @@
           </button>
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i=index">
+          <button color="primary" mat-icon-button color="primary" *ngIf="isAdmin"
+            (click)="openUpdateDialog(4,row)">
+            <mat-icon area-label="Info">info</mat-icon>
+          </button>
+
           <button mat-icon-button color="primary" *ngIf="isAdmin">
             <mat-icon area-label="Edit" (click)="openUpdateDialog(2,row)">
               edit </mat-icon>
@@ -90,8 +97,7 @@
               delete </mat-icon>
           </button>
 
-          <button style="color: #56baed;background-color:white;" mat-button
-            color="primary" *ngIf="!isAdmin"
+          <button style="color: #56baed;background-color:white;" mat-button color="primary" *ngIf="!isAdmin"
             (click)="openUpdateDialog(4,row)">
             <!-- Details -->
             <mat-icon area-label="Info">info</mat-icon>
@@ -107,7 +113,8 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
-    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length" (page)="loadDataOnPageEvent($event)">
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length"
+      (page)="loadDataOnPageEvent($event)">
     </mat-paginator>
 
     <div *ngIf="isLoading"
