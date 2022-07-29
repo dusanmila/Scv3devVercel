@@ -39,10 +39,8 @@ export class LoginComponent  {
         console.log(data.status);
 
         if (data.token !== null) {
-          const token = data.token;
-          const refreshToken = data.refreshToken;
+          const token = data;
           localStorage.setItem("jwt", token);
-          localStorage.setItem("refreshToken", refreshToken);
 
           let role = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
           let username = JSON.parse(window.atob(token.split('.')[1]))["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
