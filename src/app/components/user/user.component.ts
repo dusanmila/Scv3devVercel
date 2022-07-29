@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import {  Subscription } from 'rxjs';
 
 
@@ -15,7 +15,7 @@ import { UserDialogComponent } from 'src/app/dialogs/userdialog/userdialog.compo
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
 
   user: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "" };
 
@@ -33,6 +33,11 @@ export class UserComponent {
 
   noData=false;
 
+  ngOnInit(): void {
+    this.loadData();
+
+
+  }
 
   public get users(): User[] {
     return this._users;
@@ -84,7 +89,7 @@ this.isLoading = false;
     this.userService.editUser(user).subscribe(data => {
 
       console.log(data);
-    
+
     });
   }
 
