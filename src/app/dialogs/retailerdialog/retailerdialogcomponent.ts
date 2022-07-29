@@ -60,14 +60,17 @@ export class RetailerDialogComponent implements OnInit {
       formData.append('retailerName', this.data.retailerName);
 
       //formData.append('file', this.tableForm.get('file')!.value);
+      this.isLoading=true;
       this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
           console.log(data);
           this.changed = true;
+          this.isLoading=false;
           this.close();
         },
         error: (err) => {
           console.log(err);
+          this.isLoading=false;
           this.close();
         }
       });

@@ -22,13 +22,18 @@ export class AdminpageComponent {
   objectsFile: any;
   positionsFile: any;
 
+  isObjLoading = false;
+  isPosLoading = false;
+
   uploadObjectsFile(event: any) {
+    this.isObjLoading=true;
     this.objectsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.objectsFile);
 
     this.objectService.excelImport(formData).subscribe(data => {
+      this.isObjLoading=false;
       this.snackBar.open("Objects added.", "Close", {
         duration: 3000
       });
@@ -36,12 +41,14 @@ export class AdminpageComponent {
   }
 
   uploadPositionsFile(event: any) {
+    this.isPosLoading=true;
     this.positionsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.positionsFile);
 
     this.positionService.excelImport(formData).subscribe(data => {
+      this.isPosLoading=false;
       this.snackBar.open("Secondary positions added.", "Close", {
         duration: 3000
       });
