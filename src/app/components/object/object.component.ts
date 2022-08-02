@@ -44,7 +44,7 @@ export class ObjectComponent implements OnInit {
   public format: string = "";
   public page: number = 1;
   public count: number = 5;
-  public length: number = 100;
+  public length: number = 0;
   public resolveFeedbacks: boolean = false;
 
   objectInfo: ObjectInfo;

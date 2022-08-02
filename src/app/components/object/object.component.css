@@ -1,11 +1,12 @@
-
 .mat-header-cell {
   background: #39ace7;
   text-align: center;
 }
-.font{
-  font-family:sans-serif;
+
+.font {
+  font-family: sans-serif;
 }
+
 .header {
   text-align: center;
   height: 100px;
@@ -65,50 +66,45 @@ h4 {
 }
 
 
-.search{
-  color:white;
-  background-color:#56baed;
+.search {
+  color: white;
+  background-color: #56baed;
   margin: 1%;
 
 }
 
 .choose-btn {
   color: #fff;
-  background-color:#56baed;
+  background-color: #56baed;
 }
 
-.marginalize{
-  margin:5%;
+.marginalize {
+  margin: 5%;
 }
 
-.mat-spinner-color::ng-deep circle{
-stroke: #56baed !important;
+.mat-spinner-color::ng-deep circle {
+  stroke: #56baed !important;
 }
-.whitetext{
-  color:white;
+
+.whitetext {
+  color: white;
 
 }
 
-.width{
+.width {
   width: 50px;
 }
 
-
-table{
-  width: 100%;
-  max-width: 100%;
- }
-
- .noDataMessage{
+.noDataMessage {
   background-color: white;
-  color:#56baed;
- }
+  color: #56baed;
+}
 
- .mat-column-objectName {
+.mat-column-objectName {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 20% !important;
-  width: 20% !important;
+  flex: 0 0 18% !important;
+  width: 18% !important;
   overflow-wrap: break-word;
 
 
@@ -177,7 +173,7 @@ table{
   }
 } */
 
-.item2{
+.item2 {
   background-color: white;
   color: #39ace7;
   width: 150px;
@@ -194,4 +190,24 @@ table{
   margin-top: 5%;
   right: 0%;
 
+}
+
+.table {
+  /* width: 100%;
+  max-width: 100%;*/
+  /* margin: 0 20px;  */
+  background-color: red;
+}
+
+mat-header-row {
+  margin-left: 17px;
+}
+
+.container {
+  margin: 0 20px;
+}
+
+.toolbar {
+  background-color: #fff;
+  color: #56baed;
 }
