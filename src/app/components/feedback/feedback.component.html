@@ -37,10 +37,10 @@
     </mat-progress-spinner>
   </div>
 
-  <mat-paginator *ngIf="length > 0" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length" (page)="loadDataOnPageEvent($event)">
+  <mat-paginator *ngIf="length > 0" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length"
+    (page)="loadDataOnPageEvent($event)">
   </mat-paginator>
-  
-   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No feedbacks</mat-toolbar>
 
-  <button class="item2" mat-button [routerLink]="['/resolvedFeebacks/', objectName]">Show Resolved</button>
+  <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No feedbacks</mat-toolbar>
+  <button mat-stroked-button color="primary" class="mat-btn" [routerLink]="['/resolvedFeebacks/', objectName]">Show Resolved</button>
 </div>

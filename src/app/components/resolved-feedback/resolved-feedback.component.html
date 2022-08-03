@@ -46,5 +46,7 @@
     <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No feedbacks.</mat-toolbar>
     <mat-paginator [length]="length" [pageSize]="count" (page)="loadDataOnPageEvent($event)"></mat-paginator>
   </div>
-  <div class="fadeIn third"> <button class="item2" (click)="exit()">Exit</button> </div>
+  <div class="fadeIn third"> 
+    <button mat-stroked-button color="primary" class="mat-btn " (click)="exit()">Exit</button>
+  </div>
 </div>
