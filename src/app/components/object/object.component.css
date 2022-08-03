@@ -211,3 +211,14 @@ mat-header-row {
   background-color: #fff;
   color: #56baed;
 }
+
+.mat-btn {
+  color: #39ace7;
+  border-color: #39ace7;
+  border-width: 2px;
+  border-radius: 10px;
+  width: 150px;
+  margin: 10px 0;
+  font-size: 16px;
+  padding: 5px;
+}

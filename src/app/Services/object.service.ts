@@ -191,7 +191,7 @@ export class ObjectService {
 
   public downloadRetailerPlanogram(planogramPdf: string) {
     return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      const fileName = 'Planogram.pdf';
+      const fileName = planogramPdf;
       saveAs(pdf, fileName);
     });
   }
