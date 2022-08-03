@@ -411,12 +411,12 @@ td {
     border: 2px solid #39ace7;
     background-color: #fff;
     color: #39ace7;
-    padding: 10% 0;
-    margin: 30%;
+    padding: 10px 0;
+    margin: 30px;
     cursor: pointer;
-    width: 145%;
-    height: 50%;
-    font-size: 16%;
+    width: 145px;
+    height: 50px;
+    font-size: 16px;
 }
 
 .item2:hover {
@@ -426,5 +426,5 @@ td {
 }
 
 .slova {
-    font-size: 16%;
+    font-size: 16px;
 }
