@@ -30,7 +30,6 @@ export class PlanogramDialogComponent implements OnInit {
 
   public loadPlanogram(planogramPdf: string) {
     this.objectService.getPlanogram(planogramPdf);
-    console.log('1');
   }
 
   public deletePlanogram(planogramPdf: string) {
