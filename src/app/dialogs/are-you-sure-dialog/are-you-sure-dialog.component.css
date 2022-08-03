@@ -31,6 +31,12 @@ button:hover {
 }
 
 
+.mat-dialog-title
+{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: -10px;
+}
 .mat-dialog-content {
     overflow-y: hidden;
 }
