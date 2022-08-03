@@ -1,215 +1,256 @@
 .header {
-    text-align: center;
-    height: 80px;
-    background-color: #56baed;
-    color: #fff;
-    line-height: 80px;
+  text-align: center;
+  height: 80px;
+  background-color: #56baed;
+  color: #fff;
+  line-height: 80px;
 }
 
 .main {
-    text-align: center;
+  text-align: center;
 }
 
 .main h4 {
-    color: grey;
+  color: grey;
 }
 
 .main .search-input {
-    width: 280px;
-    height: 40px;
-    border-radius: 25px;
-    padding: 0 10px;
-    margin-top: 10px;
-    border: none;
-    background-color: lightgray;
+  width: 280px;
+  height: 40px;
+  border-radius: 25px;
+  padding: 0 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: lightgray;
 }
 
-.emails-tbl td, th {
-    border: 1px solid grey;
+.emails-tbl td,
+th {
+  border: 1px solid grey;
 }
 
 .emails-tbl {
-    border-collapse: collapse;
-    width: 300px;
-    max-width: 100%;
-    margin: 20px auto;
-    color: grey;
+  border-collapse: collapse;
+  width: 300px;
+  max-width: 100%;
+  margin: 20px auto;
+  color: grey;
 }
 
 .emails-tbl tr {
-    height: 40px;
+  height: 40px;
 }
 
 .emails-tbl i {
-    cursor: pointer;
-    margin: 0 10px;
+  cursor: pointer;
+  margin: 0 10px;
 }
 
 .email-td {
-    text-align: left;
-    padding-left: 10px;
+  text-align: left;
+  padding-left: 10px;
 }
 
 .name-td {
-    margin: 0 auto;
-    text-align: center;
-    padding-left: 10px;
+  margin: 0 auto;
+  text-align: center;
+  padding-left: 10px;
 }
 
 .check-box-td {
-    text-align: center;
+  text-align: center;
 }
 
 .btn-finish {
-    border-radius: 20px;
-    border: 2px solid #39ace7;
-    background-color: #39ace7;
-    color: #fff;
-    width: 200px;
-    padding: 10px 0;
-    margin: 30px auto;
-    cursor: pointer;
+  border-radius: 20px;
+  border: 2px solid #39ace7;
+  background-color: #39ace7;
+  color: #fff;
+  width: 200px;
+  padding: 10px 0;
+  margin: 30px auto;
+  cursor: pointer;
 }
 
 .btn-finish:hover {
-    background-color: #fff;
-    color: #39ace7;
-    transition: 0.3s;
+  background-color: #fff;
+  color: #39ace7;
+  transition: 0.3s;
 }
 
-.item2{
-    background-color: white;
-    color: #39ace7;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 15px;
-    border: 2px solid #39ace7;
-    cursor: pointer;
-    margin: 0 auto;
-    position: relative;
-    margin-bottom: 5%;
-    margin-top: 5%;
-    right: 0%;
+.item2 {
+  background-color: white;
+  color: #39ace7;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  right: 0%;
 
 }
-.item3{
-    background-color: white;
-    color: #39ace7;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 15px;
-    border: 2px solid #39ace7;
-    cursor: pointer;
-    margin: 0 auto;
-    position: relative;
-    right: 0%;
-    margin-top: 20%;
+
+.item3 {
+  background-color: white;
+  color: #39ace7;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 15px;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  right: 0%;
+  margin-top: 20%;
 
 }
 
 .item2:hover {
-    background-color: #39ace7;
-    color: #fff;
-    transition: 0.3s;
+  background-color: #39ace7;
+  color: #fff;
+  transition: 0.3s;
 }
+
 .item3:hover {
   background-color: #39ace7;
   color: #fff;
   transition: 0.3s;
 }
-.btn, a {
-    text-decoration: none;
+
+.btn,
+a {
+  text-decoration: none;
+}
+
+
+/* ANIMATIONS */
+
+/* Simple CSS3 Fade-in-down Animation */
+.fadeInDown {
+  font-family: sans-serif;
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
   }
 
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
 
-  /* ANIMATIONS */
-
-  /* Simple CSS3 Fade-in-down Animation */
-  .fadeInDown {
-    font-family:sans-serif;
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
   }
 
-  @-webkit-keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
-    }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+/* Simple CSS3 Fade-in Animation */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  @keyframes fadeInDown {
-    0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -100%, 0);
-      transform: translate3d(0, -100%, 0);
-    }
-    100% {
-      opacity: 1;
-      -webkit-transform: none;
-      transform: none;
-    }
+  to {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  /* Simple CSS3 Fade-in Animation */
-  @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+  to {
+    opacity: 1;
+  }
+}
 
-  .fadeIn {
-    opacity:0;
-    -webkit-animation:fadeIn ease-in 1;
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
-
-    -webkit-animation-fill-mode:forwards;
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
-
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 
-  .fadeIn.first {
-    -webkit-animation-delay: 0.4s;
-    -moz-animation-delay: 0.4s;
-    animation-delay: 0.4s;
+  to {
+    opacity: 1;
   }
+}
 
-  .fadeIn.second {
-    -webkit-animation-delay: 0.6s;
-    -moz-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-  }
+.fadeIn {
+  opacity: 0;
+  -webkit-animation: fadeIn ease-in 1;
+  -moz-animation: fadeIn ease-in 1;
+  animation: fadeIn ease-in 1;
 
-  .fadeIn.third {
-    -webkit-animation-delay: 0.8s;
-    -moz-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-  }
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-  .fadeIn.fourth {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    animation-delay: 1s;
-  }
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-duration: 1s;
+}
 
+.fadeIn.first {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
 
+.fadeIn.second {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
 
+.fadeIn.third {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.fadeIn.fourth {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.mat-btn {
+  color: #39ace7;
+  border-color: #39ace7;
+  border-width: 2px;
+  border-radius: 10px;
+  width: 150px;
+  margin: 10px;
+  font-size: 16px;
+  padding: 5px;
+}
