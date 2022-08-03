@@ -428,3 +428,14 @@ td {
 .slova {
   font-size: 80%;
 }
+
+.mat-btn {
+    color: #39ace7;
+    border-color: #39ace7;
+    border-width: 2px;
+    border-radius: 10px;
+    width: 150px;
+    margin: 20px;
+    font-size: 15px;
+    padding: 5px;
+  }
