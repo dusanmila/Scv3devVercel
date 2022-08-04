@@ -28,11 +28,13 @@
     </div>
 
 
+
     <form [formGroup]="form" (ngSubmit)="submitForm()" *ngIf="!imageUploaded">
 
       <label style="margin-bottom:5%">Take photo:</label>
       <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" capture="camera"
       fromControlName="file" required>
+
     </form>
     <div *ngIf="imageUploaded">
       <p>Photo is uploaded.</p>
