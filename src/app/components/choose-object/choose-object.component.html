@@ -1,8 +1,9 @@
 <div class="fadeInDown">
 
     <div class="header fadeIn first">
-      
-      <img src="assets\StoreCheckIcon3.png" alt="SC icon" width="80" height="80" style="float:left;"><h2 style="height:80px;"> <span>Choose Object</span> </h2>
+
+        <img src="assets\StoreCheckIcon3.png" alt="SC icon" width="80" height="80" style="float:left;">
+        <h2 style="height:80px;"> <span>Choose Object</span> </h2>
 
     </div>
 
@@ -10,13 +11,17 @@
         <div class="search-object">
             <input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">
             <app-object [workModel]="workModel" [isAdmin]="false"></app-object>
-            <button matSuffix mat-button class="item3" (click)="openDialog()" *ngIf="!resolveFeedbacks && storeCheck">Finish StoreCheck</button>
         </div>
 
-        <div class="fadeIn third">
-            <button matSuffix mat-button class="item2" (click)="exit()">
-                Exit
-            </button>
+        <div class="fadeIn third btn-group">
+            <div>
+                <button mat-stroked-button color="primary" class="mat-btn" (click)="openDialog()"
+                    *ngIf="!resolveFeedbacks && storeCheck">Finish StoreCheck</button>
+            </div>
+            <div>
+            </div>
+            <button mat-stroked-button color="primary" class="mat-btn" (click)="exit()">Exit</button>
+
         </div>
     </div>
 </div>

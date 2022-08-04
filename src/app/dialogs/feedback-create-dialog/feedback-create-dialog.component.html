@@ -28,6 +28,7 @@
     </div>
 
 
+
     <form [formGroup]="form" (ngSubmit)="submitForm()" *ngIf="!imageUploaded">
       <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" capture="camera"
         fromControlName="file" required hidden>

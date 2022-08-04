@@ -189,9 +189,9 @@ export class ObjectService {
     });
   }
 
-  public downloadRetailerPlanogram() {
-    return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/Objekat1Planogram.pdf`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      const fileName = 'Planogram.pdf';
+  public downloadRetailerPlanogram(planogramPdf: string) {
+    return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
+      const fileName = planogramPdf;
       saveAs(pdf, fileName);
     });
   }
