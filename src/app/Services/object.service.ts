@@ -24,6 +24,7 @@ export class ObjectService {
   private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 
 
+  pdfToDownload:Blob;
 
   public getObjects(page: number, count: number, address: string, objectName: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
@@ -190,10 +191,13 @@ export class ObjectService {
   }
 
   public downloadRetailerPlanogram(planogramPdf: string) {
-    return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
+     this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const fileName = planogramPdf;
-      saveAs(pdf, fileName);
+      this.pdfToDownload=pdf;
+     // saveAs(pdf, fileName);
     });
+
+    return this.pdfToDownload;
   }
 
   public addPlanogram(form: FormData): Observable<any> {
