@@ -51,6 +51,8 @@ ul {
     cursor: pointer;
     /* color: #3f51b5; */
     color: #39ace7;
+    /* background-color: red; */
+    position: relative;
 }
 
 button {
@@ -58,4 +60,11 @@ button {
 }
 ::ng-deep .mat-button-focus-overlay {
     display: none;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 0;
+    /* top: 10px; */
+    bottom: -10px;
 }

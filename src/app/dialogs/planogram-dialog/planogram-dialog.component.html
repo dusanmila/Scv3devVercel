@@ -5,7 +5,7 @@
         <ul calss="list">
             <li class="list-item" *ngFor="let planogram of planograms" (click)="loadPlanogram(planogram.planogramPdf)">
                 {{planogram.planogramPdf}}
-                <button mat-icon-button color="primary" *ngIf="isAdmin">
+                <button mat-icon-button color="primary" *ngIf="isAdmin" class="delete-btn">
                     <mat-icon (click)="deletePlanogram(planogram.planogramPdf);$event.stopPropagation()"> delete </mat-icon>
                 </button>
             </li>
