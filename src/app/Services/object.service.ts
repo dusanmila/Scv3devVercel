@@ -186,7 +186,8 @@ export class ObjectService {
     return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const blob = new Blob([pdf], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
-      window.open(url);
+    //  window.open(url);
+    window.location.href=url;
     });
   }
 

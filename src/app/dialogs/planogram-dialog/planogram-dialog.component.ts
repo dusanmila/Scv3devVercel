@@ -29,8 +29,8 @@ export class PlanogramDialogComponent implements OnInit {
   }
 
   public loadPlanogram(planogramPdf: string) {
-    // this.objectService.getPlanogram(planogramPdf);
-    this.objectService.downloadRetailerPlanogram(planogramPdf);
+     this.objectService.getPlanogram(planogramPdf);
+    //this.objectService.downloadRetailerPlanogram(planogramPdf);
   }
 
   public deletePlanogram(planogramPdf: string) {
