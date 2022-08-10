@@ -93,6 +93,7 @@ output:string;
     formData.append('FeedbackCategoryName', this.data.feedbackCategoryName);
     formData.append('text', this.data.text);
     formData.append('username', this.data.username);
+    formData.append('usernameResolve', localStorage.getItem("username"));
     formData.append('img', this.data.img);
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
       this.changed = true;
