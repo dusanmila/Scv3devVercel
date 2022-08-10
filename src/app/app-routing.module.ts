@@ -13,6 +13,7 @@ import { StoreCheckPageComponent } from './components/store-check-page/store-che
 import { LoginComponent } from './components/login/login.component';
 import { ChooseObjectComponent } from './components/choose-object/choose-object.component';
 import { ResolvedFeedbackComponent } from './components/resolved-feedback/resolved-feedback.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'login',pathMatch:'full'},
@@ -25,7 +26,9 @@ const routes: Routes = [
   {path:'storeCheck',component:StoreCheckComponent,canActivate: [AdminGuard]},
   {path:'login',component:LoginComponent},
   {path:'chooseObject/:workModel',component:ChooseObjectComponent,canActivate: [AdminGuard]},
-  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent,canActivate: [AdminGuard]}
+  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent,canActivate: [AdminGuard]},
+  {path:'dashboard', component:DashboardComponent}
+
 
 ];
 

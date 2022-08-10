@@ -25,8 +25,9 @@ import { ChooseObjectComponent } from './components/choose-object/choose-object.
 import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
@@ -41,6 +42,7 @@ import { StoreCheckPageComponent } from './components/store-check-page/store-che
 import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.component';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule, MatNavList } from '@angular/material/list';
 import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
 import { RetailerDialogComponent } from './dialogs/retailerdialog/retailerdialogcomponent';
 import { RetailerComponent } from './components/retailer/retailer.component';
@@ -59,10 +61,17 @@ import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you
 import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
 import { AlreadyFinishedComponent } from './dialogs/already-finished/already-finished.component';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { StoreCheckReceiverComponent } from './components/store-check-receiver/store-check-receiver.component';
 import { StoreCheckReceiverDialogComponent } from './dialogs/store-check-receiver-dialog/store-check-receiver-dialog.component';
 import { PlanogramDialogComponent } from './dialogs/planogram-dialog/planogram-dialog.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NumberCardChartComponent } from './charts/number-card-chart/number-card-chart.component';
+import { VerticalBarChartComponent } from './charts/vertical-bar-chart/vertical-bar-chart.component';
+import { AdvancedPieChartComponent } from './charts/advanced-pie-chart/advanced-pie-chart.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -93,7 +102,11 @@ import { PlanogramDialogComponent } from './dialogs/planogram-dialog/planogram-d
     AlreadyFinishedComponent,
     StoreCheckReceiverComponent,
     StoreCheckReceiverDialogComponent,
-    PlanogramDialogComponent
+    PlanogramDialogComponent,
+    DashboardComponent,
+    NumberCardChartComponent,
+    VerticalBarChartComponent,
+    AdvancedPieChartComponent
 
   ],
   imports: [
@@ -115,7 +128,12 @@ import { PlanogramDialogComponent } from './dialogs/planogram-dialog/planogram-d
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    NgxChartsModule,
+    MatCardModule,
+    MatGridListModule
 
   ],
   providers: [DatePipe],

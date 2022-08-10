@@ -1,0 +1,80 @@
+<mat-toolbar color="primary" class="header">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{title}}</span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container" autosize="true">
+    <mat-sidenav #sidenav class="sidenav" mode="side" [(opened)]="opened" [fixedInViewport]="false" [fixedTopGap]="0"
+        [fixedBottomGap]="0">
+        <mat-nav-list>
+            <a mat-list-item class="nav-list-item" (click)="changePage(1,'Dashboard')">
+                <mat-icon class="nav-icon">dashboard</mat-icon>Dashboard
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item class="nav-list-item" (click)="changePage(2,'Users')">
+                <mat-icon class="nav-icon">supervised_user_circle</mat-icon>Users
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item class="nav-list-item" (click)="changePage(3,'Objects')">
+                <mat-icon class="nav-icon">store</mat-icon>Objects
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item class="nav-list-item" (click)="changePage(4,'Retailers')">
+                <mat-icon class="nav-icon">vertical_split</mat-icon>Retailers
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item class="nav-list-item" (click)="changePage(5,'Store Check Receivers')">
+                <mat-icon class="nav-icon">email</mat-icon>Store Check Receivers
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="sidenav-content">
+        <div class="dashboard" *ngIf="flag === 1">
+            <mat-grid-list cols="1" rowHeight="200px">
+                <mat-grid-tile class="grid-title">
+                    <mat-card class="card">
+                        <mat-card-content>
+                            <app-number-card-chart></app-number-card-chart>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+            <mat-grid-list cols="12" rowHeight="500px">
+                <mat-grid-tile colspan="5" class="grid-title">
+                    <mat-card class="card">
+                        <mat-card-title>Feedbacks by object format</mat-card-title>
+                        <mat-card-content>
+                            <app-vertical-bar-chart></app-vertical-bar-chart>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="7" class="grid-title">
+                    <mat-card class="card">
+                        <mat-card-title>Feedbacks by category</mat-card-title>
+                        <mat-card-content>
+                            <app-advanced-pie-chart></app-advanced-pie-chart>
+                        </mat-card-content>
+                    </mat-card>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </div>
+        <app-user *ngIf="flag === 2"></app-user>
+        <app-object *ngIf="flag === 3"></app-object>
+        <app-retailer *ngIf="flag === 4"></app-retailer>
+        <app-store-check-receiver *ngIf="flag === 5"></app-store-check-receiver>
+
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<!-- <mat-toolbar class="footer">Footer</mat-toolbar> -->
