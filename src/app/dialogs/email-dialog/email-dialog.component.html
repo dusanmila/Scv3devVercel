@@ -40,8 +40,8 @@
         </div>
 
         <div mat-dialog-action>
-            <button mat-button (click)="close()" class="item2">Close</button>
             <button mat-button type="submit" (click)="send()" [disabled]="!formControl.valid" class="item2">Ok</button>
+            <button mat-button (click)="close()" class="item2">Close</button>
         </div>
     </form>
 </div>
