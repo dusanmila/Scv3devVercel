@@ -121,8 +121,8 @@ h1{
 .mat-column-date {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 25% !important;
-  width: 25% !important;
+  flex: 0 0 30% !important;
+  width: 30% !important;
   overflow-wrap: break-word;
 
 
@@ -132,13 +132,15 @@ h1{
   hyphens: auto;
 
   text-align: left;
+
+  margin-left: -1%;
 }
 
 .mat-column-feedbackCategoryName {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 25% !important;
-  width: 25% !important;
+  flex: 0 0 30% !important;
+  width: 30% !important;
   overflow-wrap: break-word;
 
 
@@ -154,8 +156,8 @@ h1{
 .mat-column-username {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 25% !important;
-  width: 25% !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
   overflow-wrap: break-word;
 
 
