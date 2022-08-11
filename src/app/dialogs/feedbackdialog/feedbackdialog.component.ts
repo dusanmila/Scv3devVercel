@@ -24,7 +24,7 @@ export class FeedbackDialogComponent implements OnInit,AfterViewInit {
   public resolveFeedbacks: boolean;
   public form: FormGroup;
   public imageUploaded: boolean = false;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
   public changed: boolean = false;
   isLoading=false;
   rotate=false;
@@ -90,13 +90,11 @@ output:string;
   submitForm() {
     const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
-    formData.append('FeedbackCategoryName', this.data.feedbackCategoryName);
-    formData.append('text', this.data.text);
-    formData.append('username', this.data.username);
+    formData.append('usernameResolve', localStorage.getItem("username"));
     formData.append('img', this.data.img);
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
       this.changed = true;
-      this.snackBar.open('Feedback added', 'Ok', { duration: 2500 });
+      this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500 });
       this.close();
 
       console.log(data);

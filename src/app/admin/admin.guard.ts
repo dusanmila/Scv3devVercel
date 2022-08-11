@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
       return false;
     }
     if (token !== null && !jwtHelper.isTokenExpired(token)) {
-      console.log(jwtHelper.decodeToken(token))
+      
       return true;
     }
     this.router.navigate(["login"]);
