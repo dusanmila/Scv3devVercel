@@ -5,7 +5,7 @@
 
     <div class="form fb-img">
 
-      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}" id="fbphoto" alt="SC photo" width="250"
+      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}"  id="fbphoto" alt="SC photo" width="250"
         height="250" #fbimg/>
 
     </div>
@@ -16,9 +16,17 @@
         width="250" height="250" />
 
     </div>
+
     <div class="form">
       <mat-form-field>
         <input matInput [(ngModel)]="data.feedbackCategoryName" name="feedbackCategoryName" [disabled]="true"
+          required />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.productCategoryName" name="productCategoryName" [disabled]="true"
           required />
       </mat-form-field>
     </div>
@@ -34,7 +42,7 @@
       </mat-form-field>
     </div>
 
-    <div class="form">
+    <div class="form"  *ngIf="data.imgResolve">
       <mat-form-field>
         <input matInput [(ngModel)]="data.usernameResolve" name="usernameResolve:" [disabled]="true"
           required />

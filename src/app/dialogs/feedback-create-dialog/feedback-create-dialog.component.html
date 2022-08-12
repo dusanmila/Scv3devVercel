@@ -5,10 +5,21 @@
 
     <div class="form">
       <mat-form-field>
-        <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory"
+        <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feedbackCategory"
           required>
           <mat-option *ngFor="let category of feedbackCategories" [value]="category.feedbackCategoryName">
             {{ category.feedbackCategoryName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="feedback.productCategoryName" placeholder="Product Category" name="productCategory"
+          required>
+          <mat-option *ngFor="let category of productCategories" [value]="category.productCategoryName">
+            {{ category.productCategoryName }}
           </mat-option>
         </mat-select>
       </mat-form-field>
