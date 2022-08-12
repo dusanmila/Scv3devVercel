@@ -11,7 +11,7 @@ h1{
     width: 100%;
     /* padding: 10px; */
     text-align: center;
-    padding: 10px 0;
+    /*padding: 10px 0;*/
 }
 
 .margintop {
@@ -438,4 +438,61 @@ td {
     margin: 20px;
     font-size: 15px;
     padding: 5px;
+  }
+
+
+  .flex1 {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+  
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+    text-align: left;
+
+    margin-left: -5%;
+
+    left: 0;
+  }
+  
+  .flex2 {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 60% !important;
+    width: 60% !important;
+    overflow-wrap: break-word;
+  
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+    text-align: center;
+    margin-right: 5%;
+    margin-top: 5%;
+  }
+  
+  .flex3 {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+  
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+    text-align: left;
+
+    
   }
