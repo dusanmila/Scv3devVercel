@@ -24,6 +24,7 @@ export class ObjectService {
   private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 
 
+  pdfToDownload:Blob;
 
   public getObjects(page: number, count: number, address: string, objectName: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
@@ -182,18 +183,21 @@ export class ObjectService {
   }
 
   public getRetailerPlanogram(retailer: Retailer) {
-    return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      const blob = new Blob([pdf], { type: 'application/pdf' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
-    });
+  //  return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
+    //  const blob = new Blob([pdf], { type: 'application/pdf' });
+    //  const url = window.URL.createObjectURL(blob);
+    //  window.open(url);
+  //  });
   }
 
   public downloadRetailerPlanogram(planogramPdf: string) {
-    return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
+     this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const fileName = planogramPdf;
-      saveAs(pdf, fileName);
+      this.pdfToDownload=pdf;
+     // saveAs(pdf, fileName);
     });
+
+    return this.pdfToDownload;
   }
 
   public addPlanogram(form: FormData): Observable<any> {
@@ -205,11 +209,13 @@ export class ObjectService {
   }
 
   public getPlanogram(planogramPdf: string) {
-    return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
+   /* return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const blob = new Blob([pdf], { type: 'application/pdf' });
       const url = window.URL.createObjectURL(blob);
       window.open(url);
-    });
+    });*/
+    const url = "https://storagestorecheck.blob.core.windows.net/storecheck/"+planogramPdf;
+    window.location.href="http://docs.google.com/gview?embedded=true&url="+url;
   }
 
   public deletePlanogram(planogramPdf: string) {

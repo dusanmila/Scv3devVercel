@@ -7,4 +7,5 @@ export interface Feedback {
     username:string
     imgResolve: string
     totalCount: number
+    usernameResolve:string
   }

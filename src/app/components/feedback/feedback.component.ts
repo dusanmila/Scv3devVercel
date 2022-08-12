@@ -32,9 +32,9 @@ export class FeedbackComponent implements OnInit {
 
   isLoading = true;
 
-  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:""};
 
-  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
 
   noData = false;
 
@@ -149,7 +149,7 @@ export class FeedbackComponent implements OnInit {
       this._feedbacks.push(data);
 
     });
-    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
 
   }
 

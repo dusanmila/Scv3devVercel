@@ -12,7 +12,7 @@ export class PlanogramDialogComponent implements OnInit {
 
   public planograms: Planogram[] = [];
   public isAdmin: boolean;
- 
+
 
   constructor(public dialogRef: MatDialogRef<PlanogramDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public retailerName: string,
@@ -29,8 +29,8 @@ export class PlanogramDialogComponent implements OnInit {
   }
 
   public loadPlanogram(planogramPdf: string) {
-    // this.objectService.getPlanogram(planogramPdf);
-    this.objectService.downloadRetailerPlanogram(planogramPdf);
+     this.objectService.getPlanogram(planogramPdf);
+    //this.objectService.downloadRetailerPlanogram(planogramPdf);
   }
 
   public deletePlanogram(planogramPdf: string) {
