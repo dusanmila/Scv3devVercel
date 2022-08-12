@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Feedback } from '../models/feedback.model';
 import { FeedbackCategory } from '../models/feedbackCategory';
 import { FEEDBACK_URL } from '../app.constants';
+import { ProductCategory } from '../models/productCategory';
 
 
 
@@ -156,6 +157,19 @@ export class FeedbackService {
     });
     return retval$.asObservable();
   }
+
+  public  getProductCategories(): Observable<ProductCategory[]> {
+    let retval$ = new Subject<ProductCategory[]>();
+
+
+    // this.http.get<FeedbackCategory[]>('http://localhost:8088/api/feedbackCategories').subscribe((helper: FeedbackCategory[]) => {
+    this.http.get<ProductCategory[]>(`${FEEDBACK_URL}/feedbackCategories/productCategories`,{headers:this.headers}).subscribe((helper: ProductCategory[]) => {
+
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+ 
 
   public createFeedbackWithForm(formData: FormData): Observable<Feedback> {
     let retval$ = new Subject<Feedback>();
