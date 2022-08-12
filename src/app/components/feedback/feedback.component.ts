@@ -32,9 +32,9 @@ export class FeedbackComponent implements OnInit {
 
   isLoading = true;
 
-  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:""};
+  feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "",  text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:""};
 
-  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
+  selectedFeedback: Feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
 
   noData = false;
 
@@ -149,7 +149,7 @@ export class FeedbackComponent implements OnInit {
       this._feedbacks.push(data);
 
     });
-    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
+    this.feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
 
   }
 
@@ -181,8 +181,8 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  public openDialog(feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username } });
+  public openDialog(feedbackCategoryName?: string, productCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, productCategoryName, text, date, resolved, img, username } });
     dialogRef.componentInstance.resolveFeedbacks = this.resolveFeedbacks;
     dialogRef.afterClosed()
       .subscribe(res => {
