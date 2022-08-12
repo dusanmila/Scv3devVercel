@@ -14,7 +14,7 @@ export class AdvancedPieChartComponent implements OnInit {
   result: StatisticsModel[];
 
   single: any[];
-  view: [number, number] = [700, 300];
+  view: [number, number] = [600, 300];
 
   // options
   gradient: boolean = true;

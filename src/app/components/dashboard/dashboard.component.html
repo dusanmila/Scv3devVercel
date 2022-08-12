@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="header">
+<!-- <mat-toolbar color="primary" class="header">
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
         (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
@@ -35,39 +35,36 @@
             </a>
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content class="sidenav-content">
+    <mat-sidenav-content class="sidenav-content"> -->
         <div class="dashboard" *ngIf="flag === 1">
-            <!-- <mat-grid-list cols="1" rowHeight="200px">
-                <mat-grid-tile class="grid-title">
-                    <mat-card class="card">
+            <mat-grid-list rowHeight="220px" [cols]="breakpoint"  (window:resize)="onResize($event)">
+                <mat-grid-tile class="test-grid-title" [colspan]="breakpoint">
+                    <mat-card>
                         <mat-card-content>
                             <app-number-card-chart></app-number-card-chart>
                         </mat-card-content>
                     </mat-card>
                 </mat-grid-tile>
-            </mat-grid-list>
-
-            <mat-grid-list cols="12" rowHeight="500px">
-                <mat-grid-tile colspan="5" class="grid-title">
-                    <mat-card class="card">
+                <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
+                    <mat-card>
                         <mat-card-title>Feedbacks by object format</mat-card-title>
                         <mat-card-content>
                             <app-vertical-bar-chart></app-vertical-bar-chart>
                         </mat-card-content>
                     </mat-card>
                 </mat-grid-tile>
-                <mat-grid-tile colspan="7" class="grid-title">
-                    <mat-card class="card">
+                <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
+                    <mat-card>
                         <mat-card-title>Feedbacks by category</mat-card-title>
-                        <mat-card-content>
+                        <mat-card-title>
                             <app-advanced-pie-chart></app-advanced-pie-chart>
-                        </mat-card-content>
+                        </mat-card-title>
                     </mat-card>
                 </mat-grid-tile>
-            </mat-grid-list> -->
+            </mat-grid-list>
 
 
-            <!-- <mat-grid-list cols="4" rowHeight="200px">
+            <!-- <mat-grid-list [cols]="breakpoint" rowHeight="200px" (window:resize)="onResize($event)">
                 <mat-grid-tile class="test-grid-title">
                     <mat-card>
                         <mat-card-content>1</mat-card-content>
@@ -101,8 +98,9 @@
                 </mat-grid-tile>
             </mat-grid-list> -->
 
-            <mat-grid-list rowHeight="200px" cols="12">
+            <!-- <mat-grid-list rowHeight="200px" cols="12">
                 <mat-grid-tile colspan="12">
+                    <app-number-card-chart></app-number-card-chart>
                 </mat-grid-tile>
                 <mat-grid-tile class="test-grid-title" colspan="5" rowspan="2">
                     <app-vertical-bar-chart></app-vertical-bar-chart>
@@ -110,17 +108,17 @@
                 <mat-grid-tile class="test-grid-title" colspan="7" rowspan="2">
                     <app-advanced-pie-chart></app-advanced-pie-chart>
                 </mat-grid-tile>
-            </mat-grid-list>
+            </mat-grid-list> -->
         </div>
 
-        <app-user *ngIf="flag === 2"></app-user>
+        <!-- <app-user *ngIf="flag === 2"></app-user>
         <app-object *ngIf="flag === 3"></app-object>
         <app-retailer *ngIf="flag === 4"></app-retailer>
-        <app-store-check-receiver *ngIf="flag === 5"></app-store-check-receiver>
+        <app-store-check-receiver *ngIf="flag === 5"></app-store-check-receiver> -->
 
 
-    </mat-sidenav-content>
-</mat-sidenav-container>
+    <!-- </mat-sidenav-content>
+</mat-sidenav-container> -->
 
 
 

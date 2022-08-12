@@ -8,9 +8,10 @@ import { Tile } from '@angular/material/grid-list/tile-coordinator';
 })
 export class DashboardComponent implements OnInit {
 
-  opened: boolean = true;
+  opened: boolean = false;
   flag: number = 1;
   title: string = 'Dashboard';
+  breakpoint: number;
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 
@@ -24,11 +25,16 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
   }
   
   public changePage(flag: number, title: string) {
     this.flag = flag;
     this.title = title;
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 800) ? 2 : 4;
   }
 
 }

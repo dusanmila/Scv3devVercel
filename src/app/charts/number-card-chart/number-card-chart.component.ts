@@ -49,4 +49,8 @@ export class NumberCardChartComponent implements OnInit {
     // });
   }
 
+  onResize(event) {
+    this.view = [event.target.innerWidth / 1.35, 180];
+  }
+
 }

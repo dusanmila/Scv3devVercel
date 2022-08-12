@@ -58,4 +58,8 @@ export class VerticalBarChartComponent implements OnInit {
     });
   }
 
+  onResize(event) {
+    this.view = [event.target.innerWidth / 1.35, 300];
+  }
+
 }

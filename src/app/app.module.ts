@@ -72,6 +72,7 @@ import { VerticalBarChartComponent } from './charts/vertical-bar-chart/vertical-
 import { AdvancedPieChartComponent } from './charts/advanced-pie-chart/advanced-pie-chart.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     DashboardComponent,
     NumberCardChartComponent,
     VerticalBarChartComponent,
-    AdvancedPieChartComponent
+    AdvancedPieChartComponent,
+    SidenavComponent
 
   ],
   imports: [

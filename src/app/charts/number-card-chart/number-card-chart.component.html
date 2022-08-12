@@ -1,7 +1,5 @@
-<!-- <mat-card class="card">
-    <mat-card-content> -->
-        <ngx-charts-number-card [view]="view" [scheme]="colorScheme" [results]="single" [cardColor]="cardColor"
-            [textColor]="textColor" (select)="onSelect($event)">
-        </ngx-charts-number-card>
-    <!-- </mat-card-content>
-</mat-card> -->
+<div #containerRef class="card-body">
+    <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
+        [results]="single" [cardColor]="cardColor" [textColor]="textColor" (select)="onSelect($event)">
+    </ngx-charts-number-card>
+</div>
