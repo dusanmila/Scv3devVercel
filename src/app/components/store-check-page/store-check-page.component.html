@@ -2,10 +2,11 @@
 
     <div class="header fadeIn first">
         <div class="head">
-            <h1>{{ objectName }}</h1>
+            <img src="assets\StoreCheckIcon3.png" class="flex1" alt="SC icon" width="80" height="80">
+            <h1 class="flex2">{{ objectName }}</h1>
             <!-- <em class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></em> -->
             <!-- <em class="fa-solid fa-file-lines fa-3x" (click)="getRetailerPlanogram()"></em> -->
-        <em class="fa-solid fa-file-powerpoint fa-3x" style="margin-right: 10%;" (click)="openPlanogramDialog()"></em>
+        <em class="fa-solid fa-file-powerpoint fa-3x flex3" style="margin-right: 10%;" (click)="openPlanogramDialog()"></em>
         </div>
         <div class="object-info-data" *ngIf="showDetails">
             <div class="object-info-slider">

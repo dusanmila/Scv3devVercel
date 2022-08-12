@@ -10,12 +10,6 @@
 
     </div>
 
-    <div class="form fb-img" *ngIf="data.imgResolve">
-
-      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.imgResolve}}" alt="SC photo"
-        width="250" height="250" />
-
-    </div>
 
     <div class="form">
       <mat-form-field>
@@ -42,7 +36,16 @@
       </mat-form-field>
     </div>
 
-    <div class="form"  *ngIf="data.imgResolve">
+
+    
+    <div class="form fb-img" *ngIf="data.imgResolve">
+
+      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.imgResolve}}" alt="SC photo"
+        width="250" height="250" />
+
+    </div>
+
+    <div class="form">
       <mat-form-field>
         <input matInput [(ngModel)]="data.usernameResolve" name="usernameResolve:" [disabled]="true"
           required />
