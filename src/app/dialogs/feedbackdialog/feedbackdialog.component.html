@@ -45,7 +45,7 @@
 
     </div>
 
-    <div class="form">
+    <div class="form" *ngIf="data.imgResolve">
       <mat-form-field>
         <input matInput [(ngModel)]="data.usernameResolve" name="usernameResolve:" [disabled]="true"
           required />
