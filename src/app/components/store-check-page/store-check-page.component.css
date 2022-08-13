@@ -440,7 +440,6 @@ td {
     padding: 5px;
   }
 
-
   .flex1 {
     word-wrap: break-word !important;
     white-space: unset !important;
@@ -454,11 +453,12 @@ td {
     -webkit-hyphens: auto;
     hyphens: auto;
   
-    text-align: left;
+    text-align: center;
+    justify-content: left;
 
-    margin-left: -5%;
+    margin-left: -5.5%;
 
-    left: 0;
+    left:1px;
   }
   
   .flex2 {
@@ -474,6 +474,8 @@ td {
     -webkit-hyphens: auto;
     hyphens: auto;
   
+    justify-content: center;
+
     text-align: center;
     margin-right: 5%;
     margin-top: 5%;
@@ -487,12 +489,20 @@ td {
     overflow-wrap: break-word;
   
   
+    justify-content: center;
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
   
     text-align: left;
-
+    margin-right: 1%;
     
   }
+/*
+  @media (max-width: 400px) {
+    .mat-column-actions{
+   
+    }
+  }*/
