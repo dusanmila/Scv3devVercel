@@ -21,11 +21,11 @@ const routes: Routes = [
   {path:'admin', component:AdminpageComponent,canActivate: [AdminGuard], data: {admin: true}},
   {path:'position', component:PositionComponent,canActivate: [AdminGuard]},
   {path:'object', component:ObjectComponent,canActivate: [AdminGuard]},
-  {path:'storeCheckPage/:workModel/:objectName',component:StoreCheckPageComponent,canActivate: [AdminGuard]},
+  {path:'storeCheckPage/:workModel/:objectIdCompany',component:StoreCheckPageComponent,canActivate: [AdminGuard]},
   {path:'storeCheck',component:StoreCheckComponent,canActivate: [AdminGuard]},
   {path:'login',component:LoginComponent},
   {path:'chooseObject/:workModel',component:ChooseObjectComponent,canActivate: [AdminGuard]},
-  {path:'resolvedFeebacks/:objectName', component:ResolvedFeedbackComponent,canActivate: [AdminGuard]}
+  {path:'resolvedFeebacks/:objectIdCompany', component:ResolvedFeedbackComponent,canActivate: [AdminGuard]}
 
 ];
 

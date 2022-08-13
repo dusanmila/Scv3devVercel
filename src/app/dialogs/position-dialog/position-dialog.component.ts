@@ -14,7 +14,7 @@ import { PositionService } from 'src/app/Services/position-service.service';
 export class PositionDialogComponent implements OnInit {
 
   public flag: number;
-  public objectName: string;
+  public objectIdCompany: string;
   public positionClasses: PositionClass[];
   public positionTypes: PositionType[];
   public changed: boolean = false;
@@ -42,7 +42,7 @@ export class PositionDialogComponent implements OnInit {
   }
 
   public add() {
-    this.data.objectName = this.objectName;
+    this.data.objectIdCompany = this.objectIdCompany;
     this.data.valid = false;
     this.positionService.createPosition(this.data).subscribe({
       next: () => {

@@ -6,7 +6,7 @@
                 <img src="assets\StoreCheckIcon3.png" alt="SC icon" width="80" height="80">
             </div>
            
-           <h1 class="flex2">{{ objectName }}</h1>
+           <h1 *ngIf="object.objectName" class="flex2">{{ object.objectName }}</h1>
             <!-- <em class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></em> -->
             <!-- <em class="fa-solid fa-file-lines fa-3x" (click)="getRetailerPlanogram()"></em> -->
         <em class="fa-solid fa-file-powerpoint fa-3x flex3" style="margin-right: 10%;margin-top: 5%;" (click)="openPlanogramDialog()"></em>
@@ -109,11 +109,11 @@
 
     <div class="main fadeIn second">
         <h3>UNRESOLVED FEEDBACKS:</h3>
-        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
+        <app-feedback [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"
             (showFinishButton)="enableFinishButton($event)"></app-feedback>
         <h3>SECONDARY POSITIONS:</h3>
 
-        <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
+        <app-position [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"
             (showFinishButton)="enableFinishButton($event)"></app-position>
         <div class="margintop">
             <button mat-stroked-button color="primary" class="mat-btn" (click)="addToStoreCheck()" *ngIf="showFinishButton && !resolveFeedbacks">Add to StoreCheck</button>

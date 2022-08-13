@@ -56,9 +56,9 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
-  public getObjectByObjectName(objectName: string): Observable<Obj> {
+  public getObjectByObjectIdCompany(objectIdCompany: string): Observable<Obj> {
     let retval$ = new Subject<Obj>();
-    this.http.get<Obj>(`${OBJECT_URL}/objects/objectByObjectName/${objectName}`, { headers: this.headers }).subscribe((helper: Obj) => {
+    this.http.get<Obj>(`${OBJECT_URL}/objects/objectByObjectIdCompany/${objectIdCompany}`, { headers: this.headers }).subscribe((helper: Obj) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -168,7 +168,7 @@ export class ObjectService {
 
   public deleteObject(object: Obj): Observable<Obj> {
     let retval$ = new Subject<Obj>();
-    this.http.delete<Obj>(`${OBJECT_URL}/objects/deleteObjectByObjectName/${object.objectName}`, { headers: this.headers }).subscribe((helper: Obj) => {
+    this.http.delete<Obj>(`${OBJECT_URL}/objects/deleteObjectByObjectIdCompany/${object.objectIdCompany}`, { headers: this.headers }).subscribe((helper: Obj) => {
       retval$.next(helper)
     });
     return retval$.asObservable();

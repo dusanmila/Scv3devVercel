@@ -22,7 +22,7 @@ export class FeedbackComponent implements OnInit {
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
-  @Input() objectName: string;
+  @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
   @Output() showFinishButton = new EventEmitter<boolean>();
   // resolveFeedbacks: boolean = false;
@@ -64,7 +64,7 @@ export class FeedbackComponent implements OnInit {
     if (!this.resolveFeedbacks) {
       this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
     }
-    if (this.objectName != null) {
+    if (this.objectIdCompany != null) {
       this.loadUnresolvedFeedbacksByObject(false);
     } else {
       this.loadData();
@@ -85,7 +85,7 @@ export class FeedbackComponent implements OnInit {
     if (!pageChanged)
       this.page = 1;
     this.noData = false;
-    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks, this.page, this.count).subscribe(data => {
+    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectIdCompany, this.resolveFeedbacks, this.page, this.count).subscribe(data => {
       if (data) {
         this.length = data[0].totalCount;
         if (!this.resolveFeedbacks)
