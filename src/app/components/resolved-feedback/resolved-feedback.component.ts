@@ -15,7 +15,7 @@ import { FeedbackService } from 'src/app/Services/feedback.service';
 })
 export class ResolvedFeedbackComponent implements OnInit {
 
-  public objectName: string;
+  public objectIdCompany: string;
   public count: number = 5;
   public page: number = 1;
   public length: number = 100;
@@ -36,12 +36,12 @@ export class ResolvedFeedbackComponent implements OnInit {
     public location: Location) { }
 
   ngOnInit(): void {
-    this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
+    this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
     this.loadData();
   }
 
   public loadData() {
-    this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
+    this.feedbackService.getResolvedFeedbacksByObject(this.objectIdCompany, this.count, this.page).subscribe(data => {
 
       if(data){
         console.log(data);
@@ -59,7 +59,7 @@ this.dataSource=data;
 
   public loadDataOnPageEvent(event: PageEvent) {
     this.page = event.pageIndex + 1;
-    this.feedbackService.getResolvedFeedbacksByObject(this.objectName, this.count, this.page).subscribe(data => {
+    this.feedbackService.getResolvedFeedbacksByObject(this.objectIdCompany, this.count, this.page).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     });
   }

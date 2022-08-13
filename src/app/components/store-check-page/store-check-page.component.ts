@@ -20,7 +20,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class StoreCheckPageComponent implements OnInit {
 
-  public objectName: string = "Objekat1";
+  public objectIdCompany: string = "";
   public object: Obj;
   public objectStoreCheck: ObjectStoreCheck;
   public positions: Position[];
@@ -38,7 +38,7 @@ export class StoreCheckPageComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit(): void {
-    this.objectName = this.activatedRoute.snapshot.paramMap.get("objectName") as string;
+    this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
     if (this.workModel == "addStoreCheck") {
       this.resolveFeedbacks = false;
@@ -46,7 +46,7 @@ export class StoreCheckPageComponent implements OnInit {
       this.resolveFeedbacks = true;
     }
     this.getOneObject();
-    this.getPositionsByObjectName();
+    this.getPositionsByObjectIdCompany();
   }
 
   @HostListener('window:popstate', ['$event'])
@@ -63,13 +63,13 @@ export class StoreCheckPageComponent implements OnInit {
   }
 
   public getOneObject() {
-    this.objectService.getObjectByObjectName(this.objectName).subscribe(data => {
+    this.objectService.getObjectByObjectIdCompany(this.objectIdCompany).subscribe(data => {
       this.object = data;
     });
   }
 
-  public getPositionsByObjectName() {
-    this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
+  public getPositionsByObjectIdCompany() {
+    this.positionService.getPositionsByObjectIdCompany(this.objectIdCompany).subscribe(data => {
       this.positions = data;
     });
   }
