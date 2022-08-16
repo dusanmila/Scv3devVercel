@@ -2,16 +2,12 @@
     overflow-x: hidden;
 }
 
-h1{
-    margin-left: 10%;
-}
+
 .header {
     background-color: #56baed;
     color: #fff;
     width: 100%;
-    /* padding: 10px; */
     text-align: center;
-    /*padding: 10px 0;*/
 }
 
 .margintop {
@@ -39,68 +35,11 @@ button {
 }
 
 
-.object-info-data {
-  max-width: 100%;
-  overflow-wrap: break-word;
-  margin-right: 5%;
-  padding-right: 5%;
-
-}
-
-.header .obj-info {
-    width: 100%;
-    text-align: left;
-    margin: 0 auto;
-    max-width: 100%;
-    /* padding: 0 5px; */
-    margin-left: 10%;
-    margin-top: 1%;
-}
-
-.object-info-slider {
-  display: flex;
-  flex-direction: row;
-text-align: center;
-align-items: center;
-width: 95%;
-}
-
-.card1  {
-    /*float: left;*/
-    max-width: 50%;
-    border: 0;
-    flex-basis: 50%;
-    margin-bottom: 0%;
-    margin-left: 15%;
-  }
-  .card {
-      /*float: left;*/
-      max-width: 12%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border: 0;
-      flex-basis: 10%;
-      flex-grow: 0;
-      flex-shrink: 0;
-      text-align: center;
-    }
-    .card2 {
-      /*float: left;*/
-      max-width: 15%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border: 0;
-      flex-basis: 10%;
-      flex-grow: 0;
-      flex-shrink: 0;
-    }
-
-@media (max-width: 800px) {
 h1 {
     margin-left: 0%;
 }
 .card1  {
-  /*float: left;*/
+
   max-width: 90%;
   padding: .5rem;
   margin-bottom: 1rem;
@@ -111,7 +50,7 @@ h1 {
   margin-left: 10%;
 }
 .card {
-    /*float: left;*/
+
     max-width: 30%;
     padding: .5rem;
     margin-bottom: 1rem;
@@ -121,7 +60,7 @@ h1 {
     flex-shrink: 0;
   }
   .card2 {
-    /*float: left;*/
+   
     max-width: 50%;
     padding: .75rem;
     margin-bottom: 1rem;
@@ -158,12 +97,9 @@ h1 {
     text-align: left;
     margin: 0 auto;
     max-width: 100%;
-    /* padding: 0 5px; */
     margin-left: 5%;
     margin-top: 2%;
 }
-}
-
 
 
 
@@ -209,7 +145,7 @@ td {
     width: 100%;
     background-color: #fff;
     text-align: center;
-    /* margin-left: 10px; */
+    
 }
 
 .main h3 {
@@ -500,9 +436,3 @@ td {
     margin-right: 1%;
     
   }
-/*
-  @media (max-width: 400px) {
-    .mat-column-actions{
-   
-    }
-  }*/
