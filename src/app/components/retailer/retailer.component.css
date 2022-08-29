@@ -30,3 +30,56 @@
   background-color: white;
   color:#56baed;
  }
+
+
+ 
+
+ .mat-column-retailerName {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 32% !important;
+  width: 32% !important;
+  overflow-wrap: break-word;
+
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  text-align: left;
+}
+
+
+.mat-column-planogramPdf {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 18% !important;
+  width: 18% !important;
+  overflow-wrap: break-word;
+
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  text-align: left;
+}
+
+
+.mat-column-actions {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 35% !important;
+  width: 35% !important;
+  overflow-wrap: break-word;
+
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  text-align: left;
+}
