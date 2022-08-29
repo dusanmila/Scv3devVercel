@@ -87,9 +87,9 @@ export class StoreCheckPageComponent implements OnInit {
     let username = localStorage.getItem("username") as string;
     this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
       this.router.navigate(['/chooseObject/' + this.workModel]);
-      this.snackBar.open('Successfully added', 'Close', { duration: 2500 });
+      this.snackBar.open('Successfully added', 'Close', { duration: 2500, panelClass: ['blue-snackbar'] });
     },
-    err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));
+    err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
   }
 
   public createEmptyObjectStoreCheck() {
@@ -123,13 +123,13 @@ export class StoreCheckPageComponent implements OnInit {
               // this.router.navigate(['/chooseObject/' + this.workModel]);
             }
           },
-          err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));
+          err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
 
       } else {
         this.dialog.open(AlreadyFinishedComponent);
       }
     },
-    err=> this.snackBar.open('Error', 'Close', { duration: 2500 }));
+    err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
 
   }
 

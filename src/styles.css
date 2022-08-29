@@ -4,4 +4,17 @@
     padding: 0;
 }
 
+.blue-snackbar {
+    background-color: #39ace7;
+    color: #fff;
+}
+
+.red-snackbar {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+.mat-simple-snackbar-action {
+    color: #fff !important;
+}
 

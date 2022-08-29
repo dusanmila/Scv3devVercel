@@ -92,22 +92,22 @@ public update(): void{
   this.objectCreateDto.objectInfo=this.data.objectInfo;
   this.objectService.updateObject(this.objectCreateDto)
   .subscribe(() => {
-    this.snackBar.open('Updated object', 'Ok', { duration: 2500 });
+    this.snackBar.open('Updated object', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured.', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }
 }
 
 public delete(): void{
   this.objectService.deleteObject(this.data)
   .subscribe(() => {
-    this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500 });
+    this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occurred', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }
 }
 

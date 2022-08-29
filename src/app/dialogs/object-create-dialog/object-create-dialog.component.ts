@@ -49,11 +49,11 @@ public add(): void{
 
   this.objectService.createObject(this.data)
   .subscribe(() =>{
-    this.snackBar.open('Object successfully added', 'Ok', { duration: 2500 });
+    this.snackBar.open('Object successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
   } ),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occured ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }
 }
 
@@ -61,22 +61,22 @@ public add(): void{
 public update(): void{
   this.objectService.updateObject(this.data)
   .subscribe(data => {
-    this.snackBar.open('Updated object: ' + this.data.objectName, 'OK', { duration: 2500 });
+    this.snackBar.open('Updated object: ' + this.data.objectName, 'OK', { duration: 2500, panelClass: ['blue-snackbar'] });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured, try again later. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occured, try again later. ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }
 }*/
 
 public delete(): void{
  /* this.objectService.deleteObject(this.data)
   .subscribe(data => {
-    this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500 });
+    this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
   }),
   (error:Error) => {
     console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
+    this.snackBar.open('An error occurred. ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }*/
 }
 

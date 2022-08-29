@@ -72,13 +72,13 @@ export class FeedbackCreateDialogComponent implements OnInit {
       this.changed = true;
       this.isLoading = false;
       console.log(data);
-      this.snackBar.open('Feedback added', 'Ok', { duration: 2500 });
+      this.snackBar.open('Feedback added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
 
       this.close();
     }),
     (error:Error) => {
       console.log(error.name + ' -> ' + error.message)
-      this.snackBar.open('An error occurred.', 'Close', { duration: 2500 });
+      this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
     };
   }
 
