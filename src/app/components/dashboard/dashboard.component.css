@@ -1,0 +1,51 @@
+.header {
+    background-color: #56baed;
+}
+
+.sidenav-container {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav {
+    width: 250px;
+    max-width: 100%;
+}
+
+.nav-list-item {
+    color: #56baed;
+}
+
+.nav-icon {
+    margin-right: 20px;
+    color: #56baed;
+}
+
+.row {
+    display: flex;
+}
+
+.card {
+    max-width: 100%;
+    max-height: 100%;
+    /* height: 500px; */
+}
+
+.grid-title {
+    /* background-color: red; */
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+.test-grid-title {
+    /* background-color: red; */
+}
