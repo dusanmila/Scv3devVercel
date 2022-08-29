@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'resolvedFeebacks/:objectName', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   // { path: 'dashboard', component: DashboardComponent },
   {
-    path: 'sidenav', children: [
+    path: 'admin2', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },
       { path: 'object', component: ObjectComponent, canActivate: [AdminGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
