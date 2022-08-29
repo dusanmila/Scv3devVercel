@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Feedback } from '../models/feedback.model';
 import { FeedbackCategory } from '../models/feedbackCategory';
 import { FEEDBACK_URL } from '../app.constants';
+import { ProductCategory } from '../models/productCategory';
 
 
 
@@ -65,7 +66,7 @@ export class FeedbackService {
 
     return retval$.asObservable();
   }
-  public getUnresolvedFeedbacksByObject(objectName: string, resolveFeedbacks: boolean, page: number, count: number) {
+  public getUnresolvedFeedbacksByObject(objectIdCompany: string, resolveFeedbacks: boolean, page: number, count: number) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("resolveFeedbacks", resolveFeedbacks);
     queryParams = queryParams.append("page", page);
@@ -73,21 +74,21 @@ export class FeedbackService {
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/unresolvedFeedbacks/${objectName}`).subscribe((feedbacks: Feedback[]) => {
-    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/unresolvedFeedbacks/${objectName}`,{headers:this.headers, params: queryParams}).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/unresolvedFeedbacks/${objectIdCompany}`,{headers:this.headers, params: queryParams}).subscribe((feedbacks: Feedback[]) => {
 
       retval$.next(feedbacks);
     });
     return retval$.asObservable();
   }
 
-  public getResolvedFeedbacksByObject(objectName: string, count: number, page: number) {
+  public getResolvedFeedbacksByObject(objectIdCompany: string, count: number, page: number) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("count", count);
     queryParams = queryParams.append("page", page);
     let retval$ = new Subject<Feedback[]>();
 
     // this.http.get<Feedback[]>(`http://localhost:8088/api/feedbacks/resolvedFeedbacks/${objectName}`, {params: queryParams}).subscribe((feedbacks: Feedback[]) => {
-    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks/${objectName}`, {headers:this.headers, params: queryParams }).subscribe((feedbacks: Feedback[]) => {
+    this.http.get<Feedback[]>(`${FEEDBACK_URL}/feedbacks/resolvedFeedbacks/${objectIdCompany}`, {headers:this.headers, params: queryParams }).subscribe((feedbacks: Feedback[]) => {
 
       retval$.next(feedbacks);
     });
@@ -156,6 +157,19 @@ export class FeedbackService {
     });
     return retval$.asObservable();
   }
+
+  public  getProductCategories(): Observable<ProductCategory[]> {
+    let retval$ = new Subject<ProductCategory[]>();
+
+
+    // this.http.get<FeedbackCategory[]>('http://localhost:8088/api/feedbackCategories').subscribe((helper: FeedbackCategory[]) => {
+    this.http.get<ProductCategory[]>(`${FEEDBACK_URL}/feedbackCategories/productCategories`,{headers:this.headers}).subscribe((helper: ProductCategory[]) => {
+
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+ 
 
   public createFeedbackWithForm(formData: FormData): Observable<Feedback> {
     let retval$ = new Subject<Feedback>();

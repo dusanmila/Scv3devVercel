@@ -2,7 +2,7 @@
     <h3 mat-dialog-title>Send store check to:</h3>
 
     <form class="mat-dialog-content" #formControl="ngForm">
-        <div class="form">
+        <!-- <div class="form">
             <mat-checkbox color="primary" [checked]="emailsForSending.generalDirector" name="generalDirector" (change)="onSelectionChanged($event, 'generalDirector')">General director</mat-checkbox>
         </div>
         <div class="form">
@@ -16,7 +16,7 @@
         </div>
         <div class="form">
             <mat-checkbox color="primary" [(ngModel)]="emailsForSending.marketing" name="marketing" (change)="onSelectionChanged($event, 'marketing')">Marketing</mat-checkbox>
-        </div>
+        </div> -->
         <div class="form">
             <mat-checkbox color="primary" [(ngModel)]="emailsForSending.allUsers" name="allUsers" (change)="onSelectionChanged($event, 'allUsers')">All users</mat-checkbox>
         </div>
@@ -40,8 +40,8 @@
         </div>
 
         <div mat-dialog-action>
-            <button mat-button (click)="close()" class="item2">Close</button>
             <button mat-button type="submit" (click)="send()" [disabled]="!formControl.valid" class="item2">Ok</button>
+            <button mat-button (click)="close()" class="item2">Close</button>
         </div>
     </form>
 </div>

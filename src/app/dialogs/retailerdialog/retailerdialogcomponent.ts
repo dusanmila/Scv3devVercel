@@ -81,12 +81,12 @@ export class RetailerDialogComponent implements OnInit {
         this.objectService
           .createRetailer(this.retailer).subscribe(() => {
             this.changed = true;
-            this.snackBar.open('Retailer created', 'Ok', { duration: 2500 });
+            this.snackBar.open('Retailer created', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
             this.close();
           }),
           (error:Error) => {
             console.log(error.name + ' -> ' + error.message)
-            this.snackBar.open('An error occured', 'Close', { duration: 2500 });
+            this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
             this.close();
           };
       }
@@ -130,12 +130,12 @@ export class RetailerDialogComponent implements OnInit {
     this.objectService.deleteRetailer(this.data)
       .subscribe(() => {
         this.changed = true;
-        this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500 });
+        this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }),
       (error: Error) => {
         console.log(error.name + ' -> ' + error.message)
-        this.snackBar.open('An error occurred ', 'Close', { duration: 2500 });
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }
   }

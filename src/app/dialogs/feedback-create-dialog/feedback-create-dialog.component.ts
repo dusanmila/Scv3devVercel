@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackCategory } from 'src/app/models/feedbackCategory';
+import { ProductCategory } from 'src/app/models/productCategory';
 import { FeedbackService } from 'src/app/Services/feedback.service';
 
 @Component({
@@ -16,8 +17,9 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
   public flag: number;
   public form: FormGroup;
-  public feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+  public feedback: Feedback = { feedbackCategoryName: "",  productCategoryName: "",text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0,usernameResolve:"" };
   public feedbackCategories: FeedbackCategory[] = [];
+  public productCategories: ProductCategory[] = [];
   public imageUploaded: boolean = false;
   public changed: boolean = false;
   isLoading=false;
@@ -36,12 +38,15 @@ export class FeedbackCreateDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadFeedbackCategories();
+    this.loadCategories();
   }
 
-  public loadFeedbackCategories() {
+  public loadCategories() {
     this.feedbackService.getFeedbackCategories().subscribe(data => {
       this.feedbackCategories = data;
+    });
+    this.feedbackService.getProductCategories().subscribe(data => {
+      this.productCategories = data;
     });
   }
 
@@ -59,20 +64,21 @@ export class FeedbackCreateDialogComponent implements OnInit {
     let username = localStorage.getItem("username") as string;
     const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
-    formData.append('FeedbackCategoryName', this.feedback.feedbackCategoryName);
-    formData.append('Username', username);
-    formData.append('Text', this.feedback.text);
+    formData.append('feedbackCategoryName', this.feedback.feedbackCategoryName);
+    formData.append('productCategoryName', this.feedback.productCategoryName);
+    formData.append('username', username);
+    formData.append('text', this.feedback.text);
     this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
       this.changed = true;
       this.isLoading = false;
       console.log(data);
-      this.snackBar.open('Feedback added', 'Ok', { duration: 2500 });
+      this.snackBar.open('Feedback added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
 
       this.close();
     }),
     (error:Error) => {
       console.log(error.name + ' -> ' + error.message)
-      this.snackBar.open('An error occurred.', 'Close', { duration: 2500 });
+      this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
     };
   }
 

@@ -5,10 +5,21 @@
 
     <div class="form">
       <mat-form-field>
-        <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feetbackCategory"
+        <mat-select [(ngModel)]="feedback.feedbackCategoryName" placeholder="Feedback Category" name="feedbackCategory"
           required>
           <mat-option *ngFor="let category of feedbackCategories" [value]="category.feedbackCategoryName">
             {{ category.feedbackCategoryName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="feedback.productCategoryName" placeholder="Product Category" name="productCategory"
+          required>
+          <mat-option *ngFor="let category of productCategories" [value]="category.productCategoryName">
+            {{ category.productCategoryName }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -46,10 +57,10 @@
             </mat-progress-spinner>
           </div>
 
-      <button mat-button class="test" (click)="close()">Close</button>
-      <button mat-button class="test" type="submit" [disabled]="isLoading" (click)="submitForm()"
-        [disabled]="!formControl.valid || !imageUploaded"><span class="feedbackSpan"><a
+          <button mat-button class="test" type="submit" [disabled]="isLoading" (click)="submitForm()"
+          [disabled]="!formControl.valid || !imageUploaded"><span class="feedbackSpan"><a
             onmouseover="this.style.color='white';" onmouseout="this.style.color='#39ace7'">Add</a></span></button>
+            <button mat-button class="test" (click)="close()">Close</button>
     </div>
   </form>
 </div>

@@ -12,6 +12,7 @@
       <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
     </ng-container>
 
+    
     <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
       <mat-cell *matCellDef="let row" class="table-row">{{ row.username }}</mat-cell>
@@ -29,7 +30,7 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
-      (click)="openDialog(row.feedbackCategoryName,row.text,row.date,row.resolved,row.img,row.username)"></mat-row>
+      (click)="openDialog(row.feedbackCategoryName,row.productCategoryName,row.text,row.date,row.resolved,row.img,row.username)"></mat-row>
   </mat-table>
 
   <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
@@ -42,5 +43,5 @@
   </mat-paginator>
 
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No feedbacks</mat-toolbar>
-  <button mat-stroked-button color="primary" class="mat-btn" [routerLink]="['/resolvedFeebacks/', objectName]">Show Resolved</button>
+  <button mat-stroked-button color="primary" class="mat-btn" [routerLink]="['/resolvedFeebacks/', objectIdCompany]">Show Resolved</button>
 </div>

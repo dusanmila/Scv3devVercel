@@ -20,14 +20,14 @@ export class PositionComponent implements OnInit {
   dataSource: MatTableDataSource<Position>;
 
 
-  position: Position = { secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "", valid: false };
+  position: Position = { secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", valid: false };
   selectedPosition: Position;
 
 
   isLoading = true;
 noData=false;
 
-  @Input() objectName: string;
+  @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
   @Output() showFinishButton = new EventEmitter<boolean>();
 
@@ -43,8 +43,8 @@ noData=false;
 
   public loadData() {
     this.noData=false;
-    if (this.objectName != null) {
-      this.positionService.getPositionsByObjectName(this.objectName).subscribe(data => {
+    if (this.objectIdCompany != null) {
+      this.positionService.getPositionsByObjectIdCompany(this.objectIdCompany).subscribe(data => {
         if(data){
           this.positions = data;
           this.dataSource = new MatTableDataSource(this.positions);
@@ -80,7 +80,7 @@ noData=false;
       this.positions.push(data);
 
     });
-    this.position = { secondaryPositionId: Guid.create(), objectName: "", posClassName: "", posTypeName: "", valid: false };
+    this.position = { secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", valid: false };
 
   }
 
@@ -119,7 +119,7 @@ noData=false;
   public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean) {
     const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid } });
     dialogRef.componentInstance.flag = flag;
-    dialogRef.componentInstance.objectName = this.objectName;
+    dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res)

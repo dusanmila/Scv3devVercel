@@ -1,5 +1,6 @@
 export interface Feedback {
     feedbackCategoryName: string
+    productCategoryName: string
     text: string  
     date: string
     resolved: boolean
@@ -7,4 +8,5 @@ export interface Feedback {
     username:string
     imgResolve: string
     totalCount: number
+    usernameResolve:string
   }

@@ -2,10 +2,16 @@
 
     <div class="header fadeIn first">
         <div class="head">
-            <h1>{{ objectName }}</h1>
+
+            <div class="flex1" >
+
+            </div>
+
+            <h1 *ngIf="object" class="flex2">{{object.objectName}}</h1>
             <!-- <em class="fa-solid fa-file-pdf fa-3x" (click)="getRetailerPlanogram()"></em> -->
             <!-- <em class="fa-solid fa-file-lines fa-3x" (click)="getRetailerPlanogram()"></em> -->
-        <em class="fa-solid fa-file-powerpoint fa-3x" style="margin-right: 10%;" (click)="openPlanogramDialog()"></em>
+            <em class="fa-solid fa-file-powerpoint fa-3x flex3" style="margin-right: 10%;margin-top: 5%;"
+                (click)="openPlanogramDialog()"></em>
         </div>
         <div class="object-info-data" *ngIf="showDetails">
             <div class="object-info-slider">
@@ -13,8 +19,10 @@
                     <div class="obj-info"> <u>Address:</u><b> {{ object.address }}, {{ object.city }}</b></div>
                     <div class="obj-info"> <u>Format:</u><b> {{ object.objectFormat }}</b> </div>
                     <div class="obj-info"> <u>Retailer:</u><b> {{ object.retailer.retailerName }}</b></div>
-                    <div class="obj-info"> <u>Assortment module:</u><b> {{ object.objectInfo.assortmentModule }}</b></div>
-                    <div class="obj-info"> <u>Number of registers:</u><b> {{ object.objectInfo.registersNumber }}</b>  </div>
+                    <div class="obj-info"> <u>Assortment module:</u><b> {{ object.objectInfo.assortmentModule }}</b>
+                    </div>
+                    <div class="obj-info"> <u>Number of registers:</u><b> {{ object.objectInfo.registersNumber }}</b>
+                    </div>
                 </div>
                 <div class="card1">
                     <div class="obj-info"> <u>KAM:</u><b> {{ object.kam}}</b></div>
@@ -22,11 +30,12 @@
                     <div class="obj-info"> <u>Supervisor:</u><b> {{ object.supervisor}}</b></div>
                     <div class="obj-info"> <u>Merchandiser:</u><b> {{ object.merchandiser}}</b></div>
                     <div class="obj-info"> <u>Commercialist:</u><b> {{ object.commercialist}}</b> </div>
-                    <div class="obj-info"> <u>Requisition days:</u><b> {{ object.requisitionDays }}</b>  </div>
-                    <div class="obj-info"> <u>Merchendiser req. days:</u><b> {{ object.merchandiserRevisionDays }}</b>  </div>
+                    <div class="obj-info"> <u>Requisition days:</u><b> {{ object.requisitionDays }}</b> </div>
+                    <div class="obj-info"> <u>Merchendiser req. days:</u><b> {{ object.merchandiserRevisionDays }}</b>
+                    </div>
                 </div>
             </div>
-        <!--
+            <!--
         <div class="object-info-data" *ngIf="showDetails == true">
             <div class="obj-info"> Address: <div style="font-size: 120%">{{ object.address }}, {{ object.city }}</div> </div>
             <br>
@@ -53,19 +62,39 @@
                     <li>Merchandiser revision days: {{ object.merchandiserRevisionDays }}</li>
                 </ul>-->
 
-                <div class="object-info-slider">
-                    <div class="card" ><div style="font-size: 250%;"><b>{{ object.objectInfo.shelfSpaceM }}</b></div>Shelf Space M</div>
-                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpaceM }}</b></div>Company Shelf Space M</div>
-                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpacePercent }}</b></div>Company Shelf Space %</div>
-                    <div class="card2"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainings12Mrsd.toLocaleString() }}</b></div>Gainings 12M (RSD,mil)</div>
-                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.gainingsVs12mpercent }}</b></div>Gainings VS 12M %</div>
-                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSerbia }}</b></div>WD % Serbia</div>
-                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSector }}</b></div>WD % Sector</div>
-                    <div class="card"><div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentCustomer }}</b></div>WD % Customer</div>
+            <div class="object-info-slider">
+                <div class="card">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.shelfSpaceM }}</b></div>Shelf Space M
+                </div>
+                <div class="card">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpaceM }}</b></div>Company Shelf
+                    Space M
+                </div>
+                <div class="card">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpacePercent }}</b></div>Company
+                    Shelf Space %
+                </div>
+                <div class="card2">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.gainings12Mrsd.toLocaleString() }}</b></div>
+                    Gainings 12M (RSD,mil)
+                </div>
+                <div class="card">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.gainingsVs12mpercent }}</b></div>Gainings VS
+                    12M %
+                </div>
+                <div class="card">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSerbia }}</b></div>WD % Serbia
+                </div>
+                <div class="card">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSector }}</b></div>WD % Sector
+                </div>
+                <div class="card">
+                    <div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentCustomer }}</b></div>WD % Customer
                 </div>
             </div>
+        </div>
 
-                <!--
+        <!--
                 <div class="object-info-tables">
                 <table aria-describedby="Object info table 1" class="info-table">
                     <tr>
@@ -99,20 +128,21 @@
             </div>
             -->
         <h4 *ngIf="showDetails == false">Details</h4>
-       <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></em>
-       <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></em>
+        <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></em>
+        <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></em>
     </div>
 
     <div class="main fadeIn second">
         <h3>UNRESOLVED FEEDBACKS:</h3>
-        <app-feedback [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
+        <app-feedback [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"
             (showFinishButton)="enableFinishButton($event)"></app-feedback>
         <h3>SECONDARY POSITIONS:</h3>
 
-        <app-position [objectName]="objectName" [resolveFeedbacks]="resolveFeedbacks"
+        <app-position [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"
             (showFinishButton)="enableFinishButton($event)"></app-position>
         <div class="margintop">
-            <button mat-stroked-button color="primary" class="mat-btn" (click)="addToStoreCheck()" *ngIf="showFinishButton && !resolveFeedbacks">Add to StoreCheck</button>
+            <button mat-stroked-button color="primary" class="mat-btn" (click)="addToStoreCheck()"
+                *ngIf="showFinishButton && !resolveFeedbacks">Add to StoreCheck</button>
             <button mat-stroked-button color="primary" class="mat-btn" (click)="exit()">Exit</button>
         </div>
     </div>

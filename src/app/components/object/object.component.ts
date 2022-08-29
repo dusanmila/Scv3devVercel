@@ -267,7 +267,7 @@ export class ObjectComponent implements OnInit {
         pdf: ""
       }
       this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-        this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
+        this.router.navigate(['/storeCheckPage', this.workModel, objectIdCompany]);
       });
     }
   }
@@ -278,11 +278,12 @@ export class ObjectComponent implements OnInit {
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
         if (data) {
           let newObjectName = data.object.objectName;
+          let newObjectIdCompany = data.object.objectIdCompany;
           const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: newObjectName });
           dialogRef.afterClosed()
             .subscribe(res => {
               if (res) {
-                this.router.navigate(['/storeCheckPage', this.workModel, newObjectName]);
+                this.router.navigate(['/storeCheckPage', this.workModel, newObjectIdCompany]);
               } else {
                 this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username);
                 this.createEmptyObjectStoreCheck(objectName, objectIdCompany);
@@ -293,7 +294,7 @@ export class ObjectComponent implements OnInit {
         }
       });
     } else {
-      this.router.navigate(['/storeCheckPage', this.workModel, objectName]);
+      this.router.navigate(['/storeCheckPage', this.workModel, objectIdCompany]);
     }
   }
 

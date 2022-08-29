@@ -22,7 +22,7 @@ export class FeedbackComponent implements OnInit {
   dataSource: MatTableDataSource<Feedback>;
   subscription: Subscription;
 
-  @Input() objectName: string;
+  @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
   @Output() showFinishButton = new EventEmitter<boolean>();
   // resolveFeedbacks: boolean = false;
@@ -32,9 +32,9 @@ export class FeedbackComponent implements OnInit {
 
   isLoading = true;
 
-  feedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+  feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "",  text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:""};
 
-  selectedFeedback: Feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+  selectedFeedback: Feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
 
   noData = false;
 
@@ -64,7 +64,7 @@ export class FeedbackComponent implements OnInit {
     if (!this.resolveFeedbacks) {
       this.displayedColumns = ["date", "feedbackCategoryName", "username", "actions"];
     }
-    if (this.objectName != null) {
+    if (this.objectIdCompany != null) {
       this.loadUnresolvedFeedbacksByObject(false);
     } else {
       this.loadData();
@@ -85,7 +85,7 @@ export class FeedbackComponent implements OnInit {
     if (!pageChanged)
       this.page = 1;
     this.noData = false;
-    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectName, this.resolveFeedbacks, this.page, this.count).subscribe(data => {
+    this.feedbackService.getUnresolvedFeedbacksByObject(this.objectIdCompany, this.resolveFeedbacks, this.page, this.count).subscribe(data => {
       if (data) {
         this.length = data[0].totalCount;
         if (!this.resolveFeedbacks)
@@ -149,7 +149,7 @@ export class FeedbackComponent implements OnInit {
       this._feedbacks.push(data);
 
     });
-    this.feedback = { feedbackCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0 };
+    this.feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
 
   }
 
@@ -181,8 +181,8 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  public openDialog(feedbackCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, text, date, resolved, img, username } });
+  public openDialog(feedbackCategoryName?: string, productCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, productCategoryName, text, date, resolved, img, username } });
     dialogRef.componentInstance.resolveFeedbacks = this.resolveFeedbacks;
     dialogRef.afterClosed()
       .subscribe(res => {
