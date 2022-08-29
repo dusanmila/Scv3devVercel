@@ -48,11 +48,11 @@ export class PositionDialogComponent implements OnInit {
       next: () => {
         this.changed = true;
         this.close();
-        this.snackBar.open('Secondary position added', 'Ok', { duration: 2500 });
+        this.snackBar.open('Secondary position added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       },
       error: (err: Error) => {
         console.log(err.name + ' -> ' + err.message)
-        this.snackBar.open('An error occured', 'Close', { duration: 2500 });
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
     });
   }
@@ -61,12 +61,12 @@ export class PositionDialogComponent implements OnInit {
     this.positionService.deletePosition(this.data).subscribe({
       next: () => {
         this.changed = true;
-        this.snackBar.open('Secondary position deleted', 'Ok', { duration: 2500 });
+        this.snackBar.open('Secondary position deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       },
       error: (err: Error) => {
         console.log(err.name + ' -> ' + err.message)
-        this.snackBar.open('An error occured', 'Close', { duration: 2500 });
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
     });
   }

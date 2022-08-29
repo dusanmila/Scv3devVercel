@@ -56,7 +56,8 @@ export class EmailDialogComponent implements OnInit {
         console.log(data);
         this.isLoading=false;
         this.snackBar.open("Store check successfully sent.", "Close", {
-          duration: 3000
+          duration: 2500,
+          panelClass: ['blue-snackbar']
         });
       });
       this.close();
