@@ -17,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RetailerComponent } from './components/retailer/retailer.component';
 import { StoreCheckReceiverComponent } from './components/store-check-receiver/store-check-receiver.component';
+import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   // { path: 'dashboard', component: DashboardComponent },
+  { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
   {
     path: 'admin2', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },

@@ -1,0 +1,69 @@
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FeedbackCategory } from 'src/app/models/feedbackCategory';
+import { FeedbackCategoryService } from 'src/app/Services/feedback-category.service';
+
+@Component({
+  selector: 'app-feedback-category-dialog',
+  templateUrl: './feedback-category-dialog.component.html',
+  styleUrls: ['./feedback-category-dialog.component.css']
+})
+export class FeedbackCategoryDialogComponent implements OnInit {
+
+  flag: number;
+  isLoading: boolean = false;
+  changed: boolean = false;
+
+  constructor(public snackBar: MatSnackBar,
+    public dialogRef: MatDialogRef<FeedbackCategoryDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: FeedbackCategory,
+    public feedbackCategoryService: FeedbackCategoryService) { }
+
+  ngOnInit(): void {
+  }
+
+  add() {
+    this.feedbackCategoryService.createFeedbackCategory(this.data).subscribe(data => {
+      this.changed = true;
+      this.snackBar.open('Feedback categody successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      this.close();
+    }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.close();
+      }
+  }
+
+  update() {
+    this.feedbackCategoryService.updateFeedbackCategory(this.data).subscribe(data => {
+      this.changed = true;
+      this.snackBar.open('Feedback categody successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      this.close();
+    }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.close();
+      }
+  }
+
+  delete() {
+    this.feedbackCategoryService.deleteFeedbackCategory(this.data.feedbackCategoryName).subscribe(data => {
+      this.changed = true;
+      this.snackBar.open('Feedback categody successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+      this.close();
+    }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.close();
+      }
+  }
+
+  close() {
+    this.dialogRef.close(this.changed);
+  }
+
+}
