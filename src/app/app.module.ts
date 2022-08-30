@@ -109,8 +109,7 @@ import { FeedbackCategoryComponent } from './compoments/feedback-category/feedba
     NumberCardChartComponent,
     VerticalBarChartComponent,
     AdvancedPieChartComponent,
-    SidenavComponent,
-    FeedbackCategoryComponent
+    SidenavComponent
 
   ],
   imports: [
