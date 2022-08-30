@@ -1,53 +1,52 @@
 <div class="centered font">
-<mat-form-field>
-  <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
-  <button class="search" matSuffix mat-button (click)="loadData(false)"><mat-icon class="search">search</mat-icon></button>
-  </mat-form-field>
-</div>
-<div class="container mat-elevation-z8">
-
-<mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
-
-  <ng-container matColumnDef="retailerName">
-    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
-    <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
-  </ng-container>
-
-  <ng-container matColumnDef="planogramPdf">
-    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Planogram</mat-header-cell>
-    <mat-cell *matCellDef="let row"><button mat-icon-button color="primary"(click)="openPlanogramDialog(row.retailerName)">Preview
-            </button></mat-cell>
-  </ng-container>
-
-
-
-  <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef>
-      <button mat-icon-button color="primary">
-<mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
-      </button>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row; let i=index">
-     <button mat-icon-button color="primary"><mat-icon (click)="openDialog(3,row.retailerName,row.planogramPdf)"> delete </mat-icon>
-            </button>
-            <button mat-icon-button color="primary"(click)="openDialog(2,row.retailerName,row.planogramPdf)"> Add planogram
-            </button>
-
-
-    </mat-cell>
-  </ng-container>
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
-  <div *ngIf="isLoading"
-  style="display: flex; justify-content: center; align-items: center; background: white;">
- <mat-progress-spinner
- class="mat-spinner-color"
-   mode="indeterminate">
- </mat-progress-spinner>
-</div>
-<mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No retailers</mat-toolbar>
-<mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length" (page)="loadDataOnPageEvent($event)">
-</mat-paginator>
-</div>
-
+  <mat-form-field>
+    <input type="text" matInput placeholder="Search" [(ngModel)]= "search">
+    <button class="search" matSuffix mat-button (click)="loadData(false)"><mat-icon class="search">search</mat-icon></button>
+    </mat-form-field>
+  </div>
+  <div class="container mat-elevation-z8">
+  
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+  
+    <ng-container matColumnDef="retailerName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="planogramPdf">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Planogram</mat-header-cell>
+      <mat-cell *matCellDef="let row"><button mat-icon-button color="primary"(click)="openPlanogramDialog(row.retailerName)">Show planograms
+              </button></mat-cell>
+    </ng-container>
+  
+  
+  
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary">
+  <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i=index">
+       <button mat-icon-button color="primary"><mat-icon (click)="openDialog(3,row.retailerName,row.planogramPdf)"> delete </mat-icon>
+              </button>
+              <button mat-icon-button color="primary"(click)="openDialog(2,row.retailerName,row.planogramPdf)"> Add planogram
+              </button>
+  
+  
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <div *ngIf="isLoading"
+    style="display: flex; justify-content: center; align-items: center; background: white;">
+   <mat-progress-spinner
+   class="mat-spinner-color"
+     mode="indeterminate">
+   </mat-progress-spinner>
+  </div>
+  <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No retailers</mat-toolbar>
+  <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length" (page)="loadDataOnPageEvent($event)">
+  </mat-paginator>
+  </div>
