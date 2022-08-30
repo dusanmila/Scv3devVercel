@@ -57,12 +57,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-  public selectUser(user: User) {
-    this.userService.getOneUser(user).subscribe(data => {
-      this.selectedUser = data;
-    });
-    this.user = user;
-  }
+
 
   public searchByUsername(): void {
     this.noData=false;
@@ -85,13 +80,7 @@ this.isLoading = false;
   }
 
 
-  public editUser(user: User) {
-    this.userService.editUser(user).subscribe(data => {
-
-      console.log(data);
-
-    });
-  }
+ 
 
   public openDialog(flag: number, firstName?: string, lastName?: string, username?: string, email?: string, userType?: string) {
     const dialogRef = this.dialog.open(UserDialogComponent, { data: { firstName, lastName, username, email, userType } });

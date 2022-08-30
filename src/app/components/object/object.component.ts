@@ -175,25 +175,6 @@ export class ObjectComponent implements OnInit {
   }
 
 
-  public updateObject() {
-    this.objectCreateDto.objectIdRetail = this.object.objectIdRetail;
-    this.objectCreateDto.retailer = this.object.retailer.retailerName;
-    this.objectCreateDto.objectIdCompany = this.object.objectIdCompany;
-    this.objectCreateDto.objectFormat = this.object.objectFormat;
-    this.objectCreateDto.objectName = this.object.objectName;
-    this.objectCreateDto.city = this.object.city;
-    this.objectCreateDto.address = this.object.address;
-    this.objectCreateDto.kam = this.object.kam;
-    this.objectCreateDto.director = this.object.director;
-    this.objectCreateDto.supervisor = this.object.commercialist;
-    this.objectCreateDto.merchandiser = this.object.merchandiser;
-    this.objectCreateDto.merchandiserRevisionDays = this.object.merchandiserRevisionDays;
-    this.objectCreateDto.requisitionDays = this.object.requisitionDays;
-    this.objectCreateDto.objectInfo = this.object.objectInfo;
-    this.objectService.updateObject(this.objectCreateDto).subscribe(data => {
-      console.log(data);
-    });
-  }
 
   public searchByString(): void {
     this.isLoading = true;

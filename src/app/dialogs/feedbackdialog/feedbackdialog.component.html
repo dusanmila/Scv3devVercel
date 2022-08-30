@@ -37,7 +37,7 @@
     </div>
 
 
-    
+
     <div class="form fb-img" *ngIf="data.imgResolve">
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.imgResolve}}" alt="SC photo"
@@ -52,7 +52,7 @@
       </mat-form-field>
     </div>
 
-    <form [formGroup]="form" *ngIf="resolveFeedbacks" (ngSubmit)="submitForm()">
+    <form [formGroup]="form" *ngIf="resolveFeedbacks && !imageUploaded" (ngSubmit)="submitForm()">
       <input id="inputFile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file"  required hidden>
       <label>Take photo:</label>
 
@@ -61,7 +61,10 @@
 
     </form>
     <div *ngIf="imageUploaded">
-      <p>Image is uploaded</p>
+      <p>Photo is uploaded.</p>
+    </div>
+    <div *ngIf="submitClicked && !imageUploaded">
+      <p style="color:red">Photo must be uploaded.</p>
     </div>
     <div mat-dialog-actions>
       <button mat-icon-button color="primary" *ngIf="data.img=='' || data.img=='NULL' " (click)="openInfo()">

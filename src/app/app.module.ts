@@ -73,6 +73,10 @@ import { AdvancedPieChartComponent } from './charts/advanced-pie-chart/advanced-
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
+import { FeedbackCategoryDialogComponent } from './dialogs/feedback-category-dialog/feedback-category-dialog.component';
+import { ProductCategoryDialogComponent } from './dialogs/product-category-dialog/product-category-dialog.component';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +112,11 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     NumberCardChartComponent,
     VerticalBarChartComponent,
     AdvancedPieChartComponent,
-    SidenavComponent
+    SidenavComponent,
+    FeedbackCategoryComponent,
+    FeedbackCategoryDialogComponent,
+    ProductCategoryDialogComponent,
+    ProductCategoryComponent
 
   ],
   imports: [
