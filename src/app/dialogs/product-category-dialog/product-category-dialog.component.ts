@@ -1,32 +1,32 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FeedbackCategory } from 'src/app/models/feedbackCategory';
-import { FeedbackCategoryService } from 'src/app/Services/feedback-category.service';
+import { ProductCategory } from 'src/app/models/productCategory';
+import { ProductCategoryService } from 'src/app/Services/product-category.service';
 
 @Component({
-  selector: 'app-feedback-category-dialog',
-  templateUrl: './feedback-category-dialog.component.html',
-  styleUrls: ['./feedback-category-dialog.component.css']
+  selector: 'app-product-category-dialog',
+  templateUrl: './product-category-dialog.component.html',
+  styleUrls: ['./product-category-dialog.component.css']
 })
-export class FeedbackCategoryDialogComponent implements OnInit {
+export class ProductCategoryDialogComponent implements OnInit {
 
   flag: number;
   isLoading: boolean = false;
   changed: boolean = false;
 
   constructor(public snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<FeedbackCategoryDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: FeedbackCategory,
-    public feedbackCategoryService: FeedbackCategoryService) { }
+    public dialogRef: MatDialogRef<ProductCategoryDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: ProductCategory,
+    public productCategoryService: ProductCategoryService) { }
 
   ngOnInit(): void {
   }
 
   add() {
-    this.feedbackCategoryService.createFeedbackCategory(this.data).subscribe(data => {
+    this.productCategoryService.createProductCategory(this.data).subscribe(data => {
       this.changed = true;
-      this.snackBar.open('Feedback category successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      this.snackBar.open('Product category successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
@@ -37,9 +37,9 @@ export class FeedbackCategoryDialogComponent implements OnInit {
   }
 
   update() {
-    this.feedbackCategoryService.updateFeedbackCategory(this.data).subscribe(data => {
+    this.productCategoryService.updateProductCategory(this.data).subscribe(data => {
       this.changed = true;
-      this.snackBar.open('Feedback category successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      this.snackBar.open('Product category successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
@@ -50,9 +50,9 @@ export class FeedbackCategoryDialogComponent implements OnInit {
   }
 
   delete() {
-    this.feedbackCategoryService.deleteFeedbackCategory(this.data.feedbackCategoryName).subscribe(data => {
+    this.productCategoryService.deleteProductCategory(this.data.productCategoryName).subscribe(data => {
       this.changed = true;
-      this.snackBar.open('Feedback category successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+      this.snackBar.open('Product category successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
       this.close();
     }),
       (error: Error) => {

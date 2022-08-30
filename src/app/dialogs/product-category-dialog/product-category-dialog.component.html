@@ -1,13 +1,13 @@
 <div class="container">
-    <h3 mat-dialog-title *ngIf="flag == 1">Add feedback category</h3>
-    <h3 mat-dialog-title *ngIf="flag == 2">Update {{data.feedbackCategoryName}}</h3>
-    <h3 mat-dialog-title *ngIf="flag == 3">Delete {{data.feedbackCategoryName}}</h3>
+    <h3 mat-dialog-title *ngIf="flag == 1">Add product category</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Edit {{data.productCategoryName</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Delete {{data.productCategoryName}}</h3>
 
     <form class="mat-dialog-content" #formControl="ngForm">
         <div class="form">
             <mat-form-field>
-                <input matInput id="name" name="text" placeholder="Feedback category"
-                    [(ngModel)]="data.feedbackCategoryName" [disabled]="flag==3" required />
+                <input matInput id="name" name="text" placeholder="Product category"
+                    [(ngModel)]="data.productCategoryName" [disabled]="flag==3" required />
             </mat-form-field>
         </div>
 
@@ -17,9 +17,9 @@
                 <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
                 </mat-progress-spinner>
             </div>
-            <button class="test" mat-button type="submit" *ngIf="flag == 1" [disabled]="!data.feedbackCategoryName"
+            <button class="test" mat-button type="submit" *ngIf="flag == 1" [disabled]="!data.productCategoryName"
                 (click)="add()">Add</button>
-            <button class="test" mat-button type="submit" *ngIf="flag == 2" [disabled]="!data.feedbackCategoryName"
+            <button class="test" mat-button type="submit" *ngIf="flag == 2" [disabled]="!data.productCategoryName"
                 (click)="update()">Ok</button>
             <button class="test" mat-button type="submit" *ngIf="flag==3" (click)="delete()">Delete</button>
             <button class="test" mat-button (click)="close()">Cancel</button>

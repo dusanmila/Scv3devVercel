@@ -75,6 +75,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
 import { FeedbackCategoryDialogComponent } from './dialogs/feedback-category-dialog/feedback-category-dialog.component';
+import { ProductCategoryDialogComponent } from './dialogs/product-category-dialog/product-category-dialog.component';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +114,9 @@ import { FeedbackCategoryDialogComponent } from './dialogs/feedback-category-dia
     AdvancedPieChartComponent,
     SidenavComponent,
     FeedbackCategoryComponent,
-    FeedbackCategoryDialogComponent
+    FeedbackCategoryDialogComponent,
+    ProductCategoryDialogComponent,
+    ProductCategoryComponent
 
   ],
   imports: [

@@ -7,6 +7,7 @@ import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackCategory } from 'src/app/models/feedbackCategory';
 import { ProductCategory } from 'src/app/models/productCategory';
 import { FeedbackService } from 'src/app/Services/feedback.service';
+import { ProductCategoryService } from 'src/app/Services/product-category.service';
 
 @Component({
   selector: 'app-feedback-create-dialog',
@@ -29,6 +30,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<FeedbackCreateDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Feedback,
     public feedbackService: FeedbackService,
+    public productCategoryServices: ProductCategoryService,
     public fb: FormBuilder,
     private http: HttpClient) {
 
@@ -46,7 +48,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
     this.feedbackService.getFeedbackCategories().subscribe(data => {
       this.feedbackCategories = data;
     });
-    this.feedbackService.getProductCategories().subscribe(data => {
+    this.productCategoryServices.getProductCategories().subscribe(data => {
       this.productCategories = data;
     });
   }
