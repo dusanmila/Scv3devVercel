@@ -64,37 +64,9 @@ noData=false;
     }
   }
 
-  public uncheckPositions() {
-    this.positions.forEach(position => {
-      if (position.valid) {
-        position.valid = false;
-        this.positionService.editPosition(position).subscribe(data => {
-          console.log(data);
-        });
-      }
-    });
-  }
 
-  createPosition() {
-    this.positionService.createPosition(this.position).subscribe(data => {
-      this.positions.push(data);
 
-    });
-    this.position = { secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", valid: false };
-
-  }
-
-  selectPosition(position: Position) {
-    this.positionService.getOnePosition(position).subscribe(data => {
-      this.selectedPosition = data;
-    })
-    this.selectedPosition = position;
-
-  }
-
-  /*  editPosition(position: Position) {
-      this.positionService.editPosition(position).subscribe();
-    }*/
+ 
 
   deletePosition() {
 

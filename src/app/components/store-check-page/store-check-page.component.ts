@@ -92,17 +92,7 @@ export class StoreCheckPageComponent implements OnInit {
     err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
   }
 
-  public createEmptyObjectStoreCheck() {
-    let username = localStorage.getItem("username") as string;
-    let osc: ObjectStoreCheckCreateDto = {
-      objectIdCompany: this.object.objectIdCompany,
-      username: username,
-      pdf: ""
-    }
-    this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-      this.objectStoreCheck = data;
-    });
-  }
+
 
   public enableFinishButton(showButton: boolean) {
     this.showFinishButton = showButton;
@@ -133,19 +123,7 @@ export class StoreCheckPageComponent implements OnInit {
 
   }
 
-  // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
-  // public addToStoreCheck() {
-  //   const dialogRef = this.dialog.open(EmailDialogComponent);
-  //   dialogRef.componentInstance.flag = 2;
-  //   dialogRef.afterClosed()
-  //     .subscribe(res => {
-  //       if (res == 2) {
-  //         this.router.navigate(['/chooseObject/' + this.workModel]);
-  //       } else if (res == 3) {
-  //         this.dialog.open(AlreadyFinishedComponent);
-  //       }
-  //     });
-  // }
+
 
   public exit() {
     if (this.showFinishButton) {

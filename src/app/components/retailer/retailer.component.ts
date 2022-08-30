@@ -73,9 +73,6 @@ export class RetailerComponent implements OnInit {
 
 
 
-  public editRetailer(retailer: Retailer) {
-    this.objectService.updateRetailer(retailer).subscribe();
-  }
 
   public deleteRetailer() {
     this.objectService.deleteRetailer(this.selectedRetailer).subscribe();
@@ -93,19 +90,7 @@ export class RetailerComponent implements OnInit {
       )
   }
 
-  /*  public searchByName(){
-      this.isLoading=true;
-      this.objectService.getRetailersByNameContains(this.search).subscribe(data => {
-        console.log(data)
-        type RetArray = Array<Retailer>;
-        const retArr: RetArray = [
-          data
-      ];
-        this.dataSource=new MatTableDataSource<Retailer>(retArr);
-        this.isLoading=false;
-      });
-      this.searchClicked=true;
-    }*/
+ 
 
   public searchByName() {
     this.noData = false;
