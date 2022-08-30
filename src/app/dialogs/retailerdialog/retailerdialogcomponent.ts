@@ -99,6 +99,7 @@ export class RetailerDialogComponent implements OnInit {
   }
 
   uploadFile(event: any) {
+    this.isLoading=true;
     this.selectedFiles = [];
     if (event.target.files.length === 0) {
       return;
@@ -109,6 +110,7 @@ export class RetailerDialogComponent implements OnInit {
       console.log(file)
       this.selectedFiles.push(file);
     });
+    this.isLoading=false;
     // for (let i = 0; i < files.length; i++) {
     //   this.selectedFiles.push(files[i]);
     // }
