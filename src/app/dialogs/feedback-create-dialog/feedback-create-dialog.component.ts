@@ -22,6 +22,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   public productCategories: ProductCategory[] = [];
   public imageUploaded: boolean = false;
   public changed: boolean = false;
+  submitClicked:boolean=false;
   isLoading=false;
 
   constructor(public snackBar: MatSnackBar,
@@ -60,6 +61,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
   }
 
   submitForm() {
+    this.submitClicked=true;
     this.isLoading=true;
     let username = localStorage.getItem("username") as string;
     const formData: any = new FormData();
