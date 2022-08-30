@@ -28,7 +28,6 @@ export class AdminpageComponent {
   uploadObjectsFile(event: any) {
     this.isObjLoading=true;
     this.objectsFile = event.target.files[0];
-    console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.objectsFile);
 

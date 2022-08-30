@@ -170,7 +170,7 @@ export class ObjectComponent implements OnInit {
   public selectObject(object: Obj) {
     this.object = object;
     this.objectService.getOneObject(this.object).subscribe(data => {
-      console.log(data);
+    ;
     });
   }
 

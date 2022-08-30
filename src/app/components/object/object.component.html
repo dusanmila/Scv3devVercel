@@ -101,13 +101,14 @@
   
             <button style="color: #56baed;background-color:white;" mat-button color="primary" *ngIf="!isAdmin"
               (click)="openUpdateDialog(4,row)">
-              <!-- Details -->
+             
               <mat-icon area-label="Info">info</mat-icon>
             </button>
             <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin"
               (click)="getUnfinishedObjectStoreCheck(row.objectName, row.objectIdCompany)">
+           
               Start
-              <mat-icon area-label="Open">open_in_new</mat-icon>
+              <mat-icon area-label="Open" class="openIcon">open_in_new</mat-icon>
             </button>
   
           </mat-cell>

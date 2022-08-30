@@ -122,8 +122,8 @@ h4 {
 .mat-column-address {
   word-wrap: break-word !important;
   white-space: unset !important;
-  flex: 0 0 30% !important;
-  width: 30% !important;
+  flex: 0 0 32% !important;
+  width: 32% !important;
   overflow-wrap: break-word;
 
 
@@ -140,8 +140,8 @@ h4 {
 .mat-column-actions {
   word-wrap: break-word !important;
   white-space: unset !important;
-  /* flex: 0 0 50% !important; */
-  width: 50% !important;
+   flex: 0 0 41% !important; 
+  width: 41% !important;
   overflow-wrap: break-word;
 
 
@@ -156,6 +156,14 @@ h4 {
 
 }
 
+.openIcon{
+  margin-left: -3px;
+}
+@media (max-width: 370px) {
+  .openIcon{
+    display: block;
+  }
+}
 /* @media (max-width: 300px) {
   .mat-column-actions{
     margin-left:-20px;

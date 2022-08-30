@@ -36,7 +36,6 @@ export class LoginComponent  {
    // if(localStorage.getItem("unsuccessfulLoginExpiration")==null || new Date(localStorage.getItem("unsuccessfulLoginExpiration")!)  < new Date())
     this.loginService.login(this.user.username, this.user.password).subscribe({
       next: data => {
-        console.log(data.status);
 
         if (data.token !== null) {
           const token = data;
