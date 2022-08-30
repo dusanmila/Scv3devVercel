@@ -22,7 +22,6 @@ export const FEEDBACK_URL = 'https://storecheckmonolith.azurewebsites.net/api';
 export const OBJECT_URL = 'https://storecheckmonolith.azurewebsites.net/api';
 export const AUTH_URL = 'https://storecheckmonolith.azurewebsites.net/api';*/
 
-
  export const STORE_CHECK_URL = 'http://localhost:8081/api';
  export const USER_URL = 'http://localhost:8081/api';
  export const POSITION_URL = 'http://localhost:8081/api';
@@ -39,6 +38,7 @@ export const FEEDBACK_URL = 'https://storecheckmonolith.azurewebsites.net/api';
 export const OBJECT_URL = 'https://storecheckmonolith.azurewebsites.net/api';
 export const AUTH_URL = 'https://storecheckmonolith.azurewebsites.net/api';
 */
+
 // hetzner server
 // export const STORE_CHECK_URL = 'https://storecheck.nortz.rs/api';
 // export const USER_URL = 'https://storecheck.nortz.rs/api';
