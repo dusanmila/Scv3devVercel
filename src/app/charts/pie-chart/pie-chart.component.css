@@ -1,0 +1,33 @@
+.card-body {
+  width: 1200px;
+  height: 180px;
+  /* background-color: green; */
+}
+
+@media screen and (max-width: 1200px) {
+  .card-body {
+      width: 1000px;
+      /* background-color: yellow; */
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .card-body {
+      width: 800px;
+      /* background-color: red; */
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card-body {
+      width: 600px;
+      /* background-color: blue; */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-body {
+      width: 400px;
+      /* background-color: brown; */
+  }
+}
