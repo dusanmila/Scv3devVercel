@@ -92,9 +92,6 @@ noData=false;
 
   }
 
-  /*  editPosition(position: Position) {
-      this.positionService.editPosition(position).subscribe();
-    }*/
 
   deletePosition() {
 

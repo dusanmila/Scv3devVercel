@@ -81,10 +81,6 @@ a {
     margin-top: 30px;
 }
 
-
-  /* ANIMATIONS */
-
-  /* Simple CSS3 Fade-in-down Animation */
   .fadeInDown {
 
     -webkit-animation-name: fadeInDown;
@@ -120,8 +116,6 @@ a {
       transform: none;
     }
   }
-
-  /* Simple CSS3 Fade-in Animation */
   @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
   @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }

@@ -51,20 +51,6 @@ export class UserService {
 
 
 
-  /*
-  public createUser(user:User):Observable<User>{
-
-    let retval$ = new Subject<User>();
-
-    this.http.post<User>(`${USER_URL}/users`, user).subscribe((helper: User) => {
-
-      retval$.next(helper)
-
-    });
-
-    return retval$.asObservable();
-  }
-*/
   public deleteUser(user: User): Observable<User> {
 
 

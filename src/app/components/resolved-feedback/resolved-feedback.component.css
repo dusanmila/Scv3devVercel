@@ -41,16 +41,7 @@
   margin-top: -5%;
   margin-bottom: 5%;
   width: 100%;
-}/*
-.header {
-  text-align: center;
-  height: 100px;
-  background-color: #56baed;
-  color: #fff;
-  line-height: 100px;
-  margin-top: -5%;
-}*/
-
+}
 
 
 .item2 {
@@ -140,8 +131,6 @@ mat-header-cell:nth-child(5) {
     transform: none;
   }
 }
-
-/* Simple CSS3 Fade-in Animation */
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;

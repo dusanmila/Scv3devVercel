@@ -35,7 +35,7 @@ export class RetailerComponent implements OnInit {
   constructor(public objectService: ObjectService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-   // this.loadData(false);
+  
   }
 
 
@@ -93,19 +93,6 @@ export class RetailerComponent implements OnInit {
       )
   }
 
-  /*  public searchByName(){
-      this.isLoading=true;
-      this.objectService.getRetailersByNameContains(this.search).subscribe(data => {
-        console.log(data)
-        type RetArray = Array<Retailer>;
-        const retArr: RetArray = [
-          data
-      ];
-        this.dataSource=new MatTableDataSource<Retailer>(retArr);
-        this.isLoading=false;
-      });
-      this.searchClicked=true;
-    }*/
 
   public searchByName() {
     this.noData = false;

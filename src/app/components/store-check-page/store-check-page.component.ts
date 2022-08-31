@@ -133,20 +133,6 @@ export class StoreCheckPageComponent implements OnInit {
 
   }
 
-  // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
-  // public addToStoreCheck() {
-  //   const dialogRef = this.dialog.open(EmailDialogComponent);
-  //   dialogRef.componentInstance.flag = 2;
-  //   dialogRef.afterClosed()
-  //     .subscribe(res => {
-  //       if (res == 2) {
-  //         this.router.navigate(['/chooseObject/' + this.workModel]);
-  //       } else if (res == 3) {
-  //         this.dialog.open(AlreadyFinishedComponent);
-  //       }
-  //     });
-  // }
-
   public exit() {
     if (this.showFinishButton) {
       const dialogRef = this.dialog.open(AreYouSureDialogComponent);

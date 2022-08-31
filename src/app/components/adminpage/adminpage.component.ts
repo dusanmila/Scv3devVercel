@@ -43,7 +43,6 @@ export class AdminpageComponent {
   uploadPositionsFile(event: any) {
     this.isPosLoading=true;
     this.positionsFile = event.target.files[0];
-    console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.positionsFile);
 

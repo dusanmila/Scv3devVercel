@@ -150,7 +150,6 @@ export class ObjectComponent implements OnInit {
       if (data) {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
-        console.log(data)
       } else {
         this.noData=true;
         this.length = 0;
