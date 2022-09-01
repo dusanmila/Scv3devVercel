@@ -1,5 +1,9 @@
+import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit } from '@angular/core';
 import { Tile } from '@angular/material/grid-list/tile-coordinator';
+import { stringify } from 'querystring';
+import { isEmpty } from 'rxjs';
+import { StatisticsService } from 'src/app/Services/statistics.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +17,18 @@ export class DashboardComponent implements OnInit {
   title: string = 'Dashboard';
   breakpoint: number;
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  selectedMonth: string;
+  query:string;
+  selectQuery: string ="select count(feedbackid) as firstInt from feedback";
+  
+  selectedYear:string;
+  selectedMonth:string;
+  selectedDay:string;
+  selectedUser:string;
+  selectedObject:string;
+  selectedFormat:string;
   selectedRetailer: string;
-  query: string;
+
+  first:boolean=true;
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 
@@ -26,7 +39,7 @@ export class DashboardComponent implements OnInit {
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
 
-  constructor() { }
+  constructor(public statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
     this.changeQuery();
@@ -61,5 +74,101 @@ export class DashboardComponent implements OnInit {
                   ' group by FeedbackCategoryName';
     
   }
+
+
+  public queryUpdate()
+  {
+
+   if(this.selectedUser!="")
+   {
+    if (this.first=false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+
+    this.selectQuery=this.selectQuery+"where username="+this.selectedUser+" or usernameResolve="+this.selectedUser;
+    this.first=false;
+   }
+
+   if(this.selectedYear!="")
+   {
+    if (this.first=false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+
+    this.selectQuery=this.selectQuery+"where DATEPART(yy,[Date])="+this.selectedYear;
+    this.first=false
+   }
+   if(this.selectedMonth!="")
+   {
+    if (this.first=false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+
+    this.selectQuery=this.selectQuery+"where DATEPART(mm,[Date])="+this.selectedMonth;
+    this.first=false
+   }
+   if(this.selectedDay!="")
+   {
+    if (this.first=false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+
+    this.selectQuery=this.selectQuery+"where DATEPART(dd,[Date])="+this.selectedDay;
+    this.first=false
+   }
+
+   if(this.selectedObject!="" )
+   {
+    if (this.first=false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+
+    this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
+    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname="
+    + this.selectedObject;
+    this.first=false
+   }
+
+   if( this.selectedFormat!="" )
+   {
+    if (this.first=false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+
+    this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
+    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat="
+    + this.selectedFormat;
+    this.first=false
+   }
+
+   if( this.selectedRetailer!="" )
+   {
+    if (this.first=false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+
+    this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
+    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
+    +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName="
+    + this.selectedFormat;
+    this.first=false
+   }
+  }
+
+  public send()
+  {
+    this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {
+      console.log(data);
+    });
+  }
+    
+  
 
 }
