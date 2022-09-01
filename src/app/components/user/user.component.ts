@@ -1,6 +1,6 @@
 
-import { Component,OnInit } from '@angular/core';
-import {  Subscription } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 
 import { MatTableDataSource } from '@angular/material/table';
@@ -31,12 +31,16 @@ export class UserComponent implements OnInit {
 
   searchClicked: boolean = false;
 
-  noData=false;
+  noData = false;
+
+  @Input() isDashboard: boolean = false;
 
   ngOnInit(): void {
+    if (this.isDashboard) {
+      this.displayedColumns.splice(3, 3);
+      this.displayedColumns.splice(0, 2);
+    }
     this.loadData();
-
-
   }
 
   public get users(): User[] {
@@ -60,27 +64,27 @@ export class UserComponent implements OnInit {
 
 
   public searchByUsername(): void {
-    this.noData=false;
+    this.noData = false;
     this.isLoading = true;
     this.userService.getUsersByUsername(this.search).subscribe(data => {
       console.log(data);
-if(data){
-  this.dataSource = new MatTableDataSource<User>(data);
+      if (data) {
+        this.dataSource = new MatTableDataSource<User>(data);
 
-  this.searchClicked = true; //izbaciti?
+        this.searchClicked = true; //izbaciti?
 
-  if(this.dataSource.data.length==0){
-    this.noData=true;
-  }
-}
+        if (this.dataSource.data.length == 0) {
+          this.noData = true;
+        }
+      }
 
-this.isLoading = false;
+      this.isLoading = false;
 
     });
   }
 
 
- 
+
 
   public openDialog(flag: number, firstName?: string, lastName?: string, username?: string, email?: string, userType?: string) {
     const dialogRef = this.dialog.open(UserDialogComponent, { data: { firstName, lastName, username, email, userType } });

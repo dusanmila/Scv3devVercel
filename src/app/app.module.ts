@@ -77,6 +77,7 @@ import { FeedbackCategoryComponent } from './components/feedback-category/feedba
 import { FeedbackCategoryDialogComponent } from './dialogs/feedback-category-dialog/feedback-category-dialog.component';
 import { ProductCategoryDialogComponent } from './dialogs/product-category-dialog/product-category-dialog.component';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -143,7 +144,8 @@ import { ProductCategoryComponent } from './components/product-category/product-
     MatListModule,
     NgxChartsModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
+    MatButtonToggleModule
 
   ],
   providers: [DatePipe],

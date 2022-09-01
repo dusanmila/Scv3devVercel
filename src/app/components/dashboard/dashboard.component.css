@@ -49,3 +49,62 @@
 .test-grid-title {
     /* background-color: red; */
 }
+
+
+
+
+
+
+.filter-section {
+    width: 100%;
+    margin: 20px auto 0 auto;
+}
+
+.filter-section-item {
+    border: 2px solid #56baed;
+    border-radius: 100px;
+    background-color: #fff;
+    color: #56baed;
+    width: auto;
+    margin: 10px;
+}
+
+.table-section {
+    width: 100%;
+    display: flex;
+}
+
+.table-section-item {
+    margin-top: 50px;
+    width: 25%;
+}
+
+.month-section {
+    height: 200px;
+    width: 80%;
+    margin: 100px auto 0 auto;
+}
+
+.month-btn {
+    border: 2px solid #56baed;
+    border-radius: 100px;
+    background-color: #fff;
+    color: #56baed;
+    width: 100px;
+    margin: 10px;
+}
+
+.month-btn:hover {
+    background-color: #56baed;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.selected-month-btn {
+    border: 2px solid #56baed;
+    border-radius: 100px;
+    background-color: #56baed;
+    color: #fff;
+    width: 100px;
+    margin: 10px;
+}

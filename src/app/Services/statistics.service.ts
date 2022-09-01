@@ -12,7 +12,7 @@ export class StatisticsService {
 
   public GetCountListByQuerry(query: string): Observable<StatisticsModel[]> {
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`http://localhost:8081/api/statistics/geCountListByQuerry/${query}`).subscribe((helper: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`http://localhost:8081/api/statistics/getCountListByQuerry/${query}`).subscribe((helper: StatisticsModel[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
