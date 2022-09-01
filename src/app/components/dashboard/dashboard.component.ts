@@ -27,8 +27,10 @@ export class DashboardComponent implements OnInit {
   selectedObject:string;
   selectedFormat:string;
   selectedRetailer: string;
+  selectedUser: string;
+  selectedObject: string;
 
-  first:boolean=true;
+  first:boolean=true;t
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 
@@ -57,7 +59,17 @@ export class DashboardComponent implements OnInit {
 
   selectRetailer(retailer: string) {
     this.selectedRetailer = retailer;
-    console.log(this.selectedRetailer)
+    console.log(this.selectedRetailer);
+  }
+
+  selectUser(user: string) {
+    this.selectedUser = user;
+    console.log(this.selectedUser);
+  }
+
+  selectObject(object: string) {
+    this.selectedObject = object;
+    console.log(this.selectedObject);
   }
 
   selectMonth(month: string) {
