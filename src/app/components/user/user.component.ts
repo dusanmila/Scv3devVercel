@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 
@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
 
   user: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "" };
 
-  selectedUser: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "" };
+  //selectedUser: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "" };
 
   displayedColumns = ["firstName", "lastName", "username", "email", "userType", "actions"];
   dataSource: MatTableDataSource<User>;
@@ -34,6 +34,7 @@ export class UserComponent implements OnInit {
   noData = false;
 
   @Input() isDashboard: boolean = false;
+  @Output() selectedUser = new EventEmitter<string>();
 
   ngOnInit(): void {
     if (this.isDashboard) {
@@ -100,6 +101,10 @@ export class UserComponent implements OnInit {
 
   public setSearchClicked() {
     this.searchClicked = true;
+  }
+
+  public selectUser(username: string) {
+    this.selectedUser.emit(username);
   }
 
 }
