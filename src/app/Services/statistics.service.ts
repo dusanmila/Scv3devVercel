@@ -58,4 +58,12 @@ export class StatisticsService {
     return retval$.asObservable();
   }
 
+  public getFeedbackCount(query) : Observable <any>{
+    let retval$ = new Subject<any[]>();
+    this.http.get<any>(`http://localhost:8081/api/statistics/getCountByQuerry/${query}`).subscribe((helper: any) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
 }
