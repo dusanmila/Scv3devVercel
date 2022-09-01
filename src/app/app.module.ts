@@ -78,6 +78,9 @@ import { FeedbackCategoryDialogComponent } from './dialogs/feedback-category-dia
 import { ProductCategoryDialogComponent } from './dialogs/product-category-dialog/product-category-dialog.component';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+import { PieChart2Component } from './charts/pie-chart2/pie-chart2.component';
+import { PieChart3Component } from './charts/pie-chart3/pie-chart3.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +120,10 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     FeedbackCategoryComponent,
     FeedbackCategoryDialogComponent,
     ProductCategoryDialogComponent,
-    ProductCategoryComponent
+    ProductCategoryComponent,
+    PieChartComponent,
+    PieChart2Component,
+    PieChart3Component
 
   ],
   imports: [
