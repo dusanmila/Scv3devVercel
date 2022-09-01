@@ -1,5 +1,5 @@
 <div class="font">
-  <div class="centered">
+  <div class="centered" *ngIf="!isDashboard">
     <mat-form-field>
 
       <input type="text" matInput placeholder="Search" [(ngModel)]="search">
@@ -13,7 +13,7 @@
 
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-      <ng-container  matColumnDef="firstName">
+      <ng-container matColumnDef="firstName">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">First name</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
       </ng-container>
@@ -62,13 +62,10 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
     </mat-table>
-    <div *ngIf="isLoading"
-    style="display: flex; justify-content: center; align-items: center; background: white;">
-   <mat-progress-spinner
-   class="mat-spinner-color"
-     mode="indeterminate">
-   </mat-progress-spinner>
-  </div>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
 
   </div>
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No users</mat-toolbar>

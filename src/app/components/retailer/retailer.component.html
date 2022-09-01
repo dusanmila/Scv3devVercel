@@ -1,4 +1,4 @@
-<div class="centered font">
+<div class="centered font" *ngIf="!isDashboard">
   <mat-form-field>
     <input type="text" matInput placeholder="Search" [(ngModel)]="search">
     <button class="search" matSuffix mat-button (click)="loadData(false)">
@@ -41,14 +41,14 @@
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="selectRetailer(row)"></mat-row>
   </mat-table>
   <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
     <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
     </mat-progress-spinner>
   </div>
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No retailers</mat-toolbar>
-  <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSizeOptions]="[5, 10, 25, 100]" [length]="length"
+  <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSizeOptions]="[2, 5, 10, 25, 100]" [length]="length"
     (page)="loadDataOnPageEvent($event)">
   </mat-paginator>
 </div>

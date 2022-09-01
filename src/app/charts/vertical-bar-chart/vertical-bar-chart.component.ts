@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
@@ -12,6 +12,7 @@ import { data } from './data';
 })
 export class VerticalBarChartComponent implements OnInit {
 
+  @Input() query: string;
   result: StatisticsModel[];
 
   single: any[];
@@ -43,7 +44,8 @@ export class VerticalBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCountOfFeedbackByObjectFormat();
+    // this.getCountOfFeedbackByObjectFormat();
+    this.getResultByQuery();
   }
 
   onSelect(event) {
@@ -51,8 +53,8 @@ export class VerticalBarChartComponent implements OnInit {
   }
 
   public getCountOfFeedbackByObjectFormat() {
-    let query = 'select Count(feedbackId) as "Value", ObjectFormat as Name from Feedback f inner join ObjectStoreCheck osc on (osc.ObjectStoreCheckId=f.ObjectStoreCheckId)inner join [Object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) group by ObjectFormat';
-    this.statisticsService.GetCountListByQuerry(query).subscribe(data => {
+    this.query = 'select Count(feedbackId) as "Value", ObjectFormat as Name from Feedback f inner join ObjectStoreCheck osc on (osc.ObjectStoreCheckId=f.ObjectStoreCheckId)inner join [Object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) group by ObjectFormat';
+    this.statisticsService.GetCountListByQuerry(this.query).subscribe(data => {
       this.result = data;
       console.log(data);
     });
@@ -60,6 +62,13 @@ export class VerticalBarChartComponent implements OnInit {
 
   onResize(event) {
     this.view = [event.target.innerWidth / 1.35, 300];
+  }
+
+  getResultByQuery() {
+    this.statisticsService.GetCountListByQuerry(this.query).subscribe(data => {
+      this.result = data;
+      console.log(data);
+    });
   }
 
 }
