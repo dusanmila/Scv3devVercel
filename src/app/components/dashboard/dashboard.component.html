@@ -2,6 +2,8 @@
 
     <div class="filter-section">
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{ selectedRetailer }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{ selectedUser }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{ selectedObject }} <mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth" (click)="selectMonth('')">{{ selectedMonth }} <mat-icon>close</mat-icon></button>
     </div>
 
@@ -10,7 +12,10 @@
             <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
         </div>
         <div class="table-section-item">
-            <app-user [isDashboard]="true"></app-user>
+            <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
+        </div>
+        <div class="table-section-item">
+            <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
         </div>
     </div>
 
