@@ -1,5 +1,5 @@
 <div class="container font">
-  <div class="adr-name-search">
+  <div>
 
     <!-- <h4>Enter address or object name</h4>
     <mat-form-field>
@@ -10,13 +10,13 @@
     </mat-form-field>
 
   </div> -->
-    <div class="detail-search" *ngIf="!isDashboard">
+    <div class="detail-search"  *ngIf="!isDashboard">
 
       <!-- <div class="detail-search-menu" *ngIf="detailSearch"> -->
       <div class="detail-search-menu">
         <div class="menu-item">
           <mat-form-field>
-            <input type="text" matInput placeholder="Object name" [(ngModel)]="objectName">
+            <input type="text" matInput placeholder="Object name" [(ngModel)]="objectName"> 
           </mat-form-field>
         </div>
 
@@ -28,7 +28,7 @@
 
         <div class="menu-item">
           <mat-form-field>
-            <input type="text" matInput placeholder="City" [(ngModel)]="city">
+            <input type="text" matInput placeholder="City" [(ngModel)]="city" >
           </mat-form-field>
         </div>
 
@@ -53,7 +53,7 @@
         <div class="menu-btn">
           <!-- <button matSuffix mat-button class="item2" (click)="loadData(false)">Search <mat-icon>search</mat-icon>
             </button> -->
-            <button mat-stroked-button color="primary" class="mat-btn" (click)="loadData(false)">Search <mat-icon>search</mat-icon></button>
+            <button mat-stroked-button color="primary" class="mat-btn" (click)="loadData(false)" *ngIf="!isDashboard">Search <mat-icon>search</mat-icon></button>
         </div>
         <!--bila klasa item3-->
 
@@ -63,17 +63,24 @@
   <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></em> -->
     </div>
 
+    <mat-form-field  *ngIf="isDashboard">
+      <input type="text" matInput placeholder="Search objects" [(ngModel)]="objectName"> 
+      <button class="search" matSuffix mat-button (click)="loadData(false)">
+        <mat-icon class="search">search</mat-icon>
+      </button>
+    </mat-form-field>
+
     <div class="table mat-elevation-z8" *ngIf="dataSource || isAdmin">
       <mat-table #table class="table" [dataSource]="dataSource" matSort class="mat-cell">
 
         <ng-container matColumnDef="objectName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.objectName }}</mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">{{ isDashboard ? "Objects" : "Name" }}</mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Name">{{ row.objectName }}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="address">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Address</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.address }}</mat-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Address</mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="Address">{{ row.address }}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="actions">

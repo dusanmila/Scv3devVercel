@@ -1,7 +1,6 @@
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit } from '@angular/core';
 import { Tile } from '@angular/material/grid-list/tile-coordinator';
-import { stringify } from 'querystring';
 import { isEmpty } from 'rxjs';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 
@@ -27,8 +26,6 @@ export class DashboardComponent implements OnInit {
   selectedObject:string;
   selectedFormat:string;
   selectedRetailer: string;
-  selectedUser: string;
-  selectedObject: string;
 
   first:boolean=true;t
 

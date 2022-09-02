@@ -1,6 +1,6 @@
-<div class="centered font" *ngIf="!isDashboard">
+<div class="centered font">
   <mat-form-field>
-    <input type="text" matInput placeholder="Search" [(ngModel)]="search">
+    <input type="text" matInput placeholder="Search retailers" [(ngModel)]="search">
     <button class="search" matSuffix mat-button (click)="loadData(false)">
       <mat-icon class="search">search</mat-icon>
     </button>
@@ -11,12 +11,12 @@
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
     <ng-container matColumnDef="retailerName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Name</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">{{ isDashboard ? "Retailers" : "Name" }}</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="planogramPdf">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Planogram</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Planogram</mat-header-cell>
       <mat-cell *matCellDef="let row"><button mat-icon-button color="primary"
           (click)="openPlanogramDialog(row.retailerName)">Show planograms
         </button></mat-cell>
