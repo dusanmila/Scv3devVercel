@@ -39,7 +39,7 @@ export class NumberCardChartComponent implements OnInit {
   }
 
   public loadData() {
-    this.statisticsService.GetCountData().subscribe(data => {
+    this.statisticsService.getCountData().subscribe(data => {
       this.result = data;
     });
     // this.statisticsService.GetObjectCount().subscribe(data => {

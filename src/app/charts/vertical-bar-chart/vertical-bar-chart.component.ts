@@ -54,7 +54,7 @@ export class VerticalBarChartComponent implements OnInit {
 
   public getCountOfFeedbackByObjectFormat() {
     this.query = 'select Count(feedbackId) as "Value", ObjectFormat as Name from Feedback f inner join ObjectStoreCheck osc on (osc.ObjectStoreCheckId=f.ObjectStoreCheckId)inner join [Object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) group by ObjectFormat';
-    this.statisticsService.GetCountListByQuerry(this.query).subscribe(data => {
+    this.statisticsService.getCountListByQuerry(this.query).subscribe(data => {
       this.result = data;
       console.log(data);
     });
@@ -65,7 +65,7 @@ export class VerticalBarChartComponent implements OnInit {
   }
 
   getResultByQuery() {
-    this.statisticsService.GetCountListByQuerry(this.query).subscribe(data => {
+    this.statisticsService.getCountListByQuerry(this.query).subscribe(data => {
       this.result = data;
       console.log(data);
     });

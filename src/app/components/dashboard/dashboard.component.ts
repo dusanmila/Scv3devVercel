@@ -16,18 +16,34 @@ export class DashboardComponent implements OnInit {
   title: string = 'Dashboard';
   breakpoint: number;
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  query:string;
-  selectQuery: string ="select count(feedbackid) as firstInt from feedback";
-  
-  selectedYear:string;
-  selectedMonth:string;
-  selectedDay:string;
-  selectedUser:string;
-  selectedObject:string;
-  selectedFormat:string;
-  selectedRetailer: string;
+  query: string;
+  selectQuery: string ;
+  //= "select count(feedbackid) as Count from feedback ";
 
-  first:boolean=true;t
+  selectFeedbackCategoryQuery: string; 
+  /*= "select count(feedbackid) as firstInt, feedbackCategoryName as firstString" +
+    "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId)";*/
+
+  selectProductCategoryQuery: string ;
+  /*= "select count(feedbackid) as firstInt, productCategoryName as firstString" +
+    "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId)" +
+    "group by productCategoryName";*/
+
+
+ 
+  ObjectQuery: string = "inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
+  + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
+
+
+  selectedYear: string = "";
+  selectedMonth: string = "";
+  selectedDay: string = "";
+  selectedUser: string = "";
+  selectedObject: string = "";
+  selectedFormat: string = "";
+  selectedRetailer: string = "";
+
+  first: boolean = true; t
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 
@@ -41,7 +57,7 @@ export class DashboardComponent implements OnInit {
   constructor(public statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
-    this.changeQuery();
+
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
   }
 
@@ -74,110 +90,160 @@ export class DashboardComponent implements OnInit {
     console.log(this.selectedMonth);
   }
 
-  changeQuery() {
-    this.query = 'select count(FeedbackId) as "Value", FeedbackCategoryName as "Name"' + 
-                  ' from Feedback f left join FeedbackCategory fc on (f.FeedbackCategoryId = fc.FeedbackCategoryId)' + 
-                  ' left join ObjectStoreCheck osc on (f.ObjectStoreCheckId = osc.ObjectStoreCheckId)' +
-                  ' left join [Object] o on (osc.ObjectIdCompany = o.ObjectIdCompany)' +
-                  ' left join Retailer r on (o.RetailerId = r.RetailerId)' +
-                  ' group by FeedbackCategoryName';
+
+
+  public queryUpdate() {
+
+
+    if (this.selectedObject != "") {
+
+
+      this.selectQuery = this.selectQuery +"f "+ this.ObjectQuery + this.selectedObject + "'";
+
+
+      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
+
+      this.selectProductCategoryQuery=this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
+
+      this.first = false
+    }
+    /*
+       if(this.selectedFormat!="" )
+       {
+       
     
+        this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
+        + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat='"
+        + this.selectedFormat+"'";
+        this.first=false
+       }
+    
+       if( this.selectedRetailer!="" )
+       {
+        
+    
+        this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
+        + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
+        +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName='"
+        + this.selectedFormat+"'";
+        this.first=false
+       }*/
+
+    if (this.selectedUser != "") {
+      if (this.first == false) {
+        this.selectQuery = this.selectQuery + " and ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
+      }
+      else {
+        this.selectQuery = this.selectQuery + "where ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
+      }
+
+      this.selectQuery = this.selectQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
+
+      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery +"(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
+
+      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
+
+
+      this.first = false;
+    }
+
+    if (this.selectedYear != "") {
+      if (this.first == false) {
+        this.selectQuery = this.selectQuery + " and ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
+      }
+      else {
+        this.selectQuery = this.selectQuery + "where ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
+      }
+
+      this.selectQuery = this.selectQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+
+      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+
+      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+
+
+      this.first = false
+    }
+    if (this.selectedMonth != "") {
+      if (this.first == false) {
+        this.selectQuery = this.selectQuery + " and ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
+      }
+      else {
+        this.selectQuery = this.selectQuery + "where ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
+      }
+
+      this.selectQuery = this.selectQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+      
+      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+
+      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+
+      this.first = false
+    }
+    if (this.selectedDay != "") {
+      if (this.first == false) {
+        this.selectQuery = this.selectQuery + " and ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
+      }
+      else {
+        this.selectQuery = this.selectQuery + "where ";
+        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
+      }
+
+      this.selectQuery = this.selectQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+
+      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+
+      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+
+      this.first = false
+    }
   }
 
+  public send() {
 
-  public queryUpdate()
-  {
+    this.selectQuery = "select count(feedbackid) as Count from feedback ";
+    
+    this.selectFeedbackCategoryQuery= "select count(feedbackid) as Value, feedbackCategoryName as Name " +
+      "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId) ";
 
-   if(this.selectedUser!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
+    this.selectProductCategoryQuery= "select count(feedbackid) as Value, productCategoryName as Name " +
+    "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId) " 
 
-    this.selectQuery=this.selectQuery+"where username="+this.selectedUser+" or usernameResolve="+this.selectedUser;
-    this.first=false;
-   }
+    this.queryUpdate();
+    
+    this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery+"group by FeedbackCategoryName";
+    
+    this.selectProductCategoryQuery=this.selectProductCategoryQuery+"group by ProductCategoryName";
 
-   if(this.selectedYear!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
 
-    this.selectQuery=this.selectQuery+"where DATEPART(yy,[Date])="+this.selectedYear;
-    this.first=false
-   }
-   if(this.selectedMonth!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"where DATEPART(mm,[Date])="+this.selectedMonth;
-    this.first=false
-   }
-   if(this.selectedDay!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"where DATEPART(dd,[Date])="+this.selectedDay;
-    this.first=false
-   }
-
-   if(this.selectedObject!="" )
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname="
-    + this.selectedObject;
-    this.first=false
-   }
-
-   if( this.selectedFormat!="" )
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat="
-    + this.selectedFormat;
-    this.first=false
-   }
-
-   if( this.selectedRetailer!="" )
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
-    +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName="
-    + this.selectedFormat;
-    this.first=false
-   }
-  }
-
-  public send()
-  {
     this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {
-      console.log(data);
+      console.log("number"+data);
+    });
+
+    this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
+      console.log("category"+data);
+    });
+
+    this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
+      console.log("product"+data);
     });
   }
-    
-  
+
+
 
 }

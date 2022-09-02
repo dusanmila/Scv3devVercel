@@ -7,6 +7,7 @@
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth" (click)="selectMonth('')">{{ selectedMonth }} <mat-icon>close</mat-icon></button>
     </div>
 
+    <button (click)="send()"> send</button>
     <div class="table-section">
         <div class="table-section-item">
             <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>

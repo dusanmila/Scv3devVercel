@@ -61,7 +61,7 @@ export class PieChart3Component implements OnInit{
   }
 
   public loadData() {
-    this.statisticsService.GetTop3ObjectsByFeedbacks().subscribe(data => {
+    this.statisticsService.getTop3ObjectsByFeedbacks().subscribe(data => {
       this.result = data;
     });
   }
