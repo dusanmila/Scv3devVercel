@@ -3,7 +3,7 @@
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
         <ng-container matColumnDef="feedbackCategoryName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Feedback Category</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Feedback Category</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
         </ng-container>
 

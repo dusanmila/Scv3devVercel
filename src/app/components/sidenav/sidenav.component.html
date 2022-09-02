@@ -38,6 +38,16 @@
                 <mat-icon class="nav-icon">email</mat-icon>Store Check Receivers
             </a>
         </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item class="nav-list-item" [routerLink]="['feedbackCategory']">
+                <mat-icon class="nav-icon">ballot</mat-icon>Feedback Categories
+            </a>
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item class="nav-list-item" [routerLink]="['productCategory']">
+                <mat-icon class="nav-icon">fastfood</mat-icon>Product Categories
+            </a>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
         <router-outlet></router-outlet>
