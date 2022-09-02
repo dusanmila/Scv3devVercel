@@ -1,7 +1,7 @@
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit } from '@angular/core';
 import { Tile } from '@angular/material/grid-list/tile-coordinator';
-import { stringify } from 'querystring';
+
 import { isEmpty } from 'rxjs';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 
@@ -18,17 +18,15 @@ export class DashboardComponent implements OnInit {
   breakpoint: number;
   months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   query:string;
-  selectQuery: string ="select count(feedbackid) as firstInt from feedback";
+  selectQuery: string ="select count(feedbackid) as Count from feedback ";
   
-  selectedYear:string;
-  selectedMonth:string;
-  selectedDay:string;
-  selectedUser:string;
-  selectedObject:string;
-  selectedFormat:string;
-  selectedRetailer: string;
-  selectedUser: string;
-  selectedObject: string;
+  selectedYear:string="";
+  selectedMonth:string="";
+  selectedDay:string="";
+  selectedUser:string="";
+  selectedObject:string="";
+  selectedFormat:string="";
+  selectedRetailer: string="";
 
   first:boolean=true;t
 
@@ -91,91 +89,103 @@ export class DashboardComponent implements OnInit {
   public queryUpdate()
   {
 
-   if(this.selectedUser!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"where username="+this.selectedUser+" or usernameResolve="+this.selectedUser;
-    this.first=false;
-   }
-
-   if(this.selectedYear!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"where DATEPART(yy,[Date])="+this.selectedYear;
-    this.first=false
-   }
-   if(this.selectedMonth!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"where DATEPART(mm,[Date])="+this.selectedMonth;
-    this.first=false
-   }
-   if(this.selectedDay!="")
-   {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"where DATEPART(dd,[Date])="+this.selectedDay;
-    this.first=false
-   }
-
+    
    if(this.selectedObject!="" )
    {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
-
-    this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname="
-    + this.selectedObject;
+   
+    this.selectQuery=this.selectQuery+"f inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
+    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='"
+    + this.selectedObject+"'";
     this.first=false
    }
-
-   if( this.selectedFormat!="" )
+/*
+   if(this.selectedFormat!="" )
    {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
+   
 
     this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat="
-    + this.selectedFormat;
+    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat='"
+    + this.selectedFormat+"'";
     this.first=false
    }
 
    if( this.selectedRetailer!="" )
    {
-    if (this.first=false)
-    {
-      this.selectQuery=this.selectQuery+" and ";
-    }
+    
 
     this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
     + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
-    +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName="
-    + this.selectedFormat;
+    +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName='"
+    + this.selectedFormat+"'";
+    this.first=false
+   }*/
+  
+   if(this.selectedUser!="")
+   {
+    if (this.first==false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+    else
+    {
+      this.selectQuery=this.selectQuery+"where ";
+    }
+
+    this.selectQuery=this.selectQuery+"(f.username='"+this.selectedUser+"' or f.usernameResolve='"+this.selectedUser+"')";
+    this.first=false;
+   }
+
+   if(this.selectedYear!="")
+   {
+    if (this.first==false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+    else
+    {
+      this.selectQuery=this.selectQuery+"where ";
+    }
+
+
+    this.selectQuery=this.selectQuery+"DATEPART(yy,[Date])="+this.selectedYear;
+    this.first=false
+   }
+   if(this.selectedMonth!="")
+   {
+    if (this.first==false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+    else
+    {
+      this.selectQuery=this.selectQuery+"where ";
+    }
+
+
+    this.selectQuery=this.selectQuery+"DATENAME(mm, [Date])='"+this.selectedMonth+"'";
+    this.first=false
+   }
+   if(this.selectedDay!="")
+   {
+    if (this.first==false)
+    {
+      this.selectQuery=this.selectQuery+" and ";
+    }
+    else
+    {
+      this.selectQuery=this.selectQuery+"where ";
+    }
+
+
+    this.selectQuery=this.selectQuery+"DATEPART(dd,[Date])="+this.selectedDay;
     this.first=false
    }
   }
 
   public send()
   {
+    this.selectQuery ="select count(feedbackid) as Count from feedback ";
+    this.queryUpdate();
     this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {
       console.log(data);
     });
