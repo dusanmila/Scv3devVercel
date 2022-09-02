@@ -1,4 +1,4 @@
 export interface StatisticsModel {
-    name: string;
-    count: number;
+    Name: string;
+    Value: number;
 }
