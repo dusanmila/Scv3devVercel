@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/Services/user.service';
 import { UserDialogComponent } from 'src/app/dialogs/userdialog/userdialog.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user',
@@ -17,26 +18,25 @@ import { UserDialogComponent } from 'src/app/dialogs/userdialog/userdialog.compo
 })
 export class UserComponent implements OnInit {
 
-  user: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "" };
-
-  //selectedUser: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "" };
-
-  displayedColumns = ["firstName", "lastName", "username", "email", "userType", "actions"];
-  dataSource: MatTableDataSource<User>;
-  subscription: Subscription;
-
-  search: string = "";
-
-  isLoading = false;
-
-  searchClicked: boolean = false;
-
-  noData = false;
-
   @Input() isDashboard: boolean = false;
   @Output() selectedUser = new EventEmitter<string>();
 
+  user: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "", totalCount: 0 };
+  //selectedUser: User = { firstName: "", lastName: "", username: "", email: "", password: "", userType: "" };
+  displayedColumns = ["firstName", "lastName", "username", "email", "userType", "actions"];
+  dataSource: MatTableDataSource<User>;
+  subscription: Subscription;
+  isLoading = false;
+  searchClicked: boolean = false;
+  noData = false;
+  search: string = "";
+  page: number = 1;
+  count: number = 5;
+  length: number = 0;
+
   ngOnInit(): void {
+    if (this.isDashboard)
+      this.count = 2;
     if (this.isDashboard) {
       this.displayedColumns.splice(3, 3);
       this.displayedColumns.splice(0, 2);
@@ -53,16 +53,27 @@ export class UserComponent implements OnInit {
 
   constructor(public userService: UserService, private dialog: MatDialog) { }
 
-
   public loadData() {
-    this.userService.getUsers().subscribe(data => {
-
-      this.dataSource = new MatTableDataSource(data);
+    this.isLoading = true;
+    this.userService.getUsers(this.count, this.page, this.search).subscribe(data => {
+      if (data) {
+        this.dataSource = new MatTableDataSource<User>(data);
+        this.length = data[0].totalCount;
+        this.noData = false;
+      } else {
+        this.noData = true;
+        this.dataSource = data;
+        this.length = 0
+      }
       this.isLoading = false;
     });
   }
 
-
+  public loadDataOnPageEvent(event: PageEvent) {
+    this.count = event.pageSize;
+    this.page = event.pageIndex + 1;
+    this.loadData();
+  }
 
   public searchByUsername(): void {
     this.noData = false;

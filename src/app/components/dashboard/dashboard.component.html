@@ -10,10 +10,10 @@
     <button (click)="send()"> send</button>
     <div class="table-section">
         <div class="table-section-item">
-            <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+            <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
         </div>
         <div class="table-section-item">
-            <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
+            <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
         </div>
         <div class="table-section-item">
             <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>

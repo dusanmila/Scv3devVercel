@@ -45,7 +45,7 @@ export class ObjectComponent implements OnInit {
   public city: string = "";
   public format: string = "";
   public page: number = 1;
-  public count: number = 2;
+  public count: number = 5;
   public length: number = 0;
   public resolveFeedbacks: boolean = false;
 
@@ -133,6 +133,8 @@ export class ObjectComponent implements OnInit {
   noData = false;
 
   ngOnInit(): void {
+    if (this.isDashboard)
+      this.count = 2;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
     if (this.workModel == "addStoreCheck") {
       this.resolveFeedbacks = false;

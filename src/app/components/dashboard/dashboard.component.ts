@@ -1,7 +1,6 @@
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit } from '@angular/core';
 import { Tile } from '@angular/material/grid-list/tile-coordinator';
-
 import { isEmpty } from 'rxjs';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 
@@ -31,7 +30,7 @@ export class DashboardComponent implements OnInit {
     "group by productCategoryName";*/
 
 
-  
+ 
   ObjectQuery: string = "inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
   + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 

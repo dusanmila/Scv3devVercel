@@ -32,12 +32,14 @@ export class RetailerComponent implements OnInit {
   selectedRetailer2: Retailer;
 
   public page: number = 1;
-  public count: number = 2;
+  public count: number = 5;
   public length: number = 0;
 
   constructor(public objectService: ObjectService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if (this.isDashboard)
+      this.count = 2;
     this.loadData(false);
     if (this.isDashboard) {
       this.displayedColumns.splice(1, 2);
