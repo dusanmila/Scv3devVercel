@@ -53,7 +53,7 @@ export class AdvancedPieChartComponent implements OnInit {
 
   public getCountOfFeedbackByCategory() {
     let query = 'select feedbackCategoryName as "Name", count(feedbackId) as "Value" from feedback f left join feedbackCategory fc on (f.feedbackCategoryId = fc.feedbackCategoryId) group by feedbackCategoryName';
-    this.statisticsService.GetCountListByQuerry(query).subscribe(data => {
+    this.statisticsService.getCountListByQuerry(query).subscribe(data => {
       this.result = data;
     });
   }
