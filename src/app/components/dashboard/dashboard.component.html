@@ -1,10 +1,14 @@
 <div class="dashboard" *ngIf="flag === 1">
 
     <div class="filter-section">
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{ selectedRetailer }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{ selectedUser }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{ selectedObject }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth" (click)="selectMonth('')">{{ selectedMonth }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
+            selectedRetailer }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
+            selectedUser }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
+            selectedObject }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth" (click)="selectMonth('')">{{
+            selectedMonth }} <mat-icon>close</mat-icon></button>
     </div>
 
     <button (click)="send()"> send</button>
@@ -21,7 +25,8 @@
     </div>
 
     <div class="month-section">
-        <button mat-stroked-button [class]="selectedMonth === month ? 'selected-month-btn' : 'month-btn'" *ngFor="let month of months" (click)="selectMonth(month)">{{ month }}</button>
+        <button mat-stroked-button [class]="selectedMonth === month ? 'selected-month-btn' : 'month-btn'"
+            *ngFor="let month of months" (click)="selectMonth(month)">{{ month }}</button>
     </div>
 
     <mat-grid-list rowHeight="220px" [cols]="breakpoint" (window:resize)="onResize($event)">
@@ -34,20 +39,24 @@
         </mat-grid-tile>
         <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
             <mat-card>
-                <mat-card-title>Feedbacks by object format</mat-card-title>
+                <mat-card-title>Feedback categories</mat-card-title>
                 <mat-card-content>
-                    <app-vertical-bar-chart [query]="query" *ngIf="query"></app-vertical-bar-chart>
+                    <app-vertical-bar-chart [data]="feedbackCategoryResult" *ngIf="feedbackCategoryResult">
+                    </app-vertical-bar-chart>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
             <mat-card>
-                <mat-card-title>Feedbacks by category</mat-card-title>
+                <mat-card-title>Product categories</mat-card-title>
                 <mat-card-title>
-                    <app-advanced-pie-chart></app-advanced-pie-chart>
+                    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+                    </app-advanced-pie-chart>
                 </mat-card-title>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
-</div>
 
+    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult"></app-advanced-pie-chart>
+    
+</div>

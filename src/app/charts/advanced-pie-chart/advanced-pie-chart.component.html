@@ -1,5 +1,6 @@
 <div #containerRef class="card-body">
-  <ngx-charts-advanced-pie-chart [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
-    [label]="label" (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+  <ngx-charts-advanced-pie-chart [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
+    [results]="data" [gradient]="gradient" [label]="label" [valueFormatting]="valueFormatting" (select)="onSelect($event)" (activate)="onActivate($event)"
+    (deactivate)="onDeactivate($event)">
   </ngx-charts-advanced-pie-chart>
 </div>

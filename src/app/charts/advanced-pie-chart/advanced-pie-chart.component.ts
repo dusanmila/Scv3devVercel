@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { numbers } from '@material/dialog';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
@@ -11,7 +12,7 @@ import { single } from './data';
 })
 export class AdvancedPieChartComponent implements OnInit {
 
-  result: StatisticsModel[];
+  @Input() data: StatisticsModel[];
 
   single: any[];
   view: [number, number] = [600, 300];
@@ -36,7 +37,6 @@ export class AdvancedPieChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCountOfFeedbackByCategory();
   }
 
   onSelect(data): void {
@@ -51,11 +51,9 @@ export class AdvancedPieChartComponent implements OnInit {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
   }
 
-  public getCountOfFeedbackByCategory() {
-    let query = 'select feedbackCategoryName as "Name", count(feedbackId) as "Value" from feedback f left join feedbackCategory fc on (f.feedbackCategoryId = fc.feedbackCategoryId) group by feedbackCategoryName';
-    this.statisticsService.getCountListByQuerry(query).subscribe(data => {
-      this.result = data;
-    });
+  valueFormatting = (value: number) => {
+    console.log('dadad')
+    console.log(value);
   }
 
 }
