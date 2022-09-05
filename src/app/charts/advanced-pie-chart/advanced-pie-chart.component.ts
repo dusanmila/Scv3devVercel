@@ -20,10 +20,10 @@ export class AdvancedPieChartComponent implements OnInit {
   // options
   gradient: boolean = true;
   showLegend: boolean = true;
-  showLabels: boolean = true;
+  showLabels: boolean = false;
   isDoughnut: boolean = false;
 
-  label: string = 'Total Feebacks';
+  label: string = 'Total Feedbacks';
 
   colorScheme: Color = {
     name: 'myScheme',
@@ -49,11 +49,6 @@ export class AdvancedPieChartComponent implements OnInit {
 
   onDeactivate(data): void {
     console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
-
-  valueFormatting = (value: number) => {
-    console.log('dadad')
-    console.log(value);
   }
 
 }
