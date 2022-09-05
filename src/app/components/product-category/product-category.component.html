@@ -3,7 +3,7 @@
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
         <ng-container matColumnDef="productCategoryName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Product Category</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product Category</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.productCategoryName }}</mat-cell>
         </ng-container>
 

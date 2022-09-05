@@ -122,7 +122,7 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="selectObject(row.objectName)"></mat-row>
       </mat-table>
-      <mat-paginator *ngIf="length > 0" [pageIndex]="page-1" [pageSizeOptions]="[2, 5, 10, 25, 100]" [length]="length"
+      <mat-paginator *ngIf="length > 0" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]" [length]="length"
         (page)="loadDataOnPageEvent($event)">
       </mat-paginator>
     </div>

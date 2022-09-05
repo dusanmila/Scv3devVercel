@@ -1,7 +1,10 @@
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { Tile } from '@angular/material/grid-list/tile-coordinator';
 import { isEmpty } from 'rxjs';
+import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 
 @Component({
@@ -43,7 +46,21 @@ export class DashboardComponent implements OnInit {
   selectedFormat: string = "";
   selectedRetailer: string = "";
 
-  first: boolean = true; t
+  feedbackCategoryResult: StatisticsModel[];
+  productCategoryResult: StatisticsModel[];
+
+  first: boolean = true; 
+
+  // version = VERSION;
+  date = new Date();
+  chosenYearDate: Date;
+  chosenMonthDate: Date = new Date(2020,0,1);
+  chosenSemesterDate: Date;
+  chosenWeekDate: Date;
+  chosenDate: Date;
+  monthInputCtrl: FormControl = new FormControl(new Date(2020,0,1));
+
+  visible = true;
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 
@@ -236,14 +253,14 @@ export class DashboardComponent implements OnInit {
     });
 
     this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
-      console.log("category"+data);
+      console.log(data);
+      this.feedbackCategoryResult = data;
     });
 
     this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
       console.log("product"+data);
+      this.productCategoryResult = data;
     });
   }
-
-
 
 }

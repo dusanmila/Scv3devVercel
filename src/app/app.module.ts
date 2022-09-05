@@ -70,17 +70,19 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NumberCardChartComponent } from './charts/number-card-chart/number-card-chart.component';
 import { VerticalBarChartComponent } from './charts/vertical-bar-chart/vertical-bar-chart.component';
 import { AdvancedPieChartComponent } from './charts/advanced-pie-chart/advanced-pie-chart.component';
-import {MatCardModule} from '@angular/material/card';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
 import { FeedbackCategoryDialogComponent } from './dialogs/feedback-category-dialog/feedback-category-dialog.component';
 import { ProductCategoryDialogComponent } from './dialogs/product-category-dialog/product-category-dialog.component';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
 import { PieChart2Component } from './charts/pie-chart2/pie-chart2.component';
 import { PieChart3Component } from './charts/pie-chart3/pie-chart3.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -151,7 +153,9 @@ import { PieChart3Component } from './charts/pie-chart3/pie-chart3.component';
     NgxChartsModule,
     MatCardModule,
     MatGridListModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 
   ],
   providers: [DatePipe],

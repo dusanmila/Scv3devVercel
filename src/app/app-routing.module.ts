@@ -33,15 +33,15 @@ const routes: Routes = [
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   // { path: 'dashboard', component: DashboardComponent },
-  { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
-  { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] },
   {
     path: 'admin2', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },
       { path: 'object', component: ObjectComponent, canActivate: [AdminGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
       { path: 'retailer', component: RetailerComponent, canActivate: [AdminGuard] },
-      { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] }
+      { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] },
+      { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
+      { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] }
     ],
     component: SidenavComponent,
     canActivate: [AdminGuard]

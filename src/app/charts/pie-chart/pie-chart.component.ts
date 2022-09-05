@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, Input, NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
@@ -15,6 +15,7 @@ import { single } from './data';
 export class PieChartComponent implements OnInit{
 
   result: StatisticsModel[] = [];
+  @Input() data: StatisticsModel[];
 
   single: any[];
  // view: any[] = [700, 400];
@@ -25,8 +26,9 @@ export class PieChartComponent implements OnInit{
   showLabels: boolean = true;
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
+  trimLabels: boolean = false;
 
-  view: [number, number] = [600, 300];
+  view: [number, number] = [1000, 300];
 
  /* colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
