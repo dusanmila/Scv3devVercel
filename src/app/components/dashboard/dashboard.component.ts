@@ -25,11 +25,10 @@ export class DashboardComponent implements OnInit {
   //= "select count(feedbackid) as Count from feedback ";
 
 
-
   days2: string[];
 
   years: string[] = [
-    '2022', '2021', '2020'
+    '2022', '2023', '2024', '2025', '2026'
   ];
 
   months: string[] = [
@@ -55,6 +54,7 @@ export class DashboardComponent implements OnInit {
 
 
 
+
   ObjectQuery: string = "inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
     + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 
@@ -68,6 +68,8 @@ export class DashboardComponent implements OnInit {
   selectedUser: string = "";
   selectedObject: string = "";
   selectedRetailer: string = "";
+
+  resolved: boolean = false;
 
   feedbackCategoryResult: StatisticsModel[];
   productCategoryResult: StatisticsModel[];
@@ -106,6 +108,10 @@ export class DashboardComponent implements OnInit {
     this.title = title;
   }
 
+  radioBtnClicked() {
+    console.log(this.resolved)
+  }
+
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 800) ? 2 : 4;
   }
@@ -130,16 +136,14 @@ export class DashboardComponent implements OnInit {
 
   selectMonth(month: string) {
     this.selectedMonth = month;
-
-
-
     console.log(this.selectedMonth);
     this.send();
   }
 
-  setYear(year: any) {
-    this.selectedYear = year;
-    console.log(this.selectedYear)
+  setYear(value) {
+    this.selectedYear = value;
+    console.log(this.selectedYear);
+    this.send();
   }
 
   setMonth(value) {
@@ -154,12 +158,13 @@ export class DashboardComponent implements OnInit {
     }
 
     console.log(this.selectedMonth)
+    this.send();
+
   }
 
-  setDay(day: any) {
-
-    this.selectedDay = day;
-
+  setDay(value) {
+    this.selectedDay = value;
+    this.send();
   }
 
 
@@ -287,7 +292,6 @@ export class DashboardComponent implements OnInit {
     this.queryUpdate();
 
 
-
     if (this.first == false) {
       this.selectQuery = this.selectQuery + " and resolved= '" + this.resolved + "'";
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and resolved= '" + this.resolved + "'";
@@ -305,6 +309,7 @@ export class DashboardComponent implements OnInit {
     this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " group by FeedbackCategoryName";
 
     this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
+
 
 
     this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {

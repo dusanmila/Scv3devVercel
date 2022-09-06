@@ -1,5 +1,11 @@
 <div class="dashboard" *ngIf="flag === 1">
 
+    <mat-card class="card">
+        <mat-card-content class="card-content">
+            <app-number-card-chart></app-number-card-chart>
+        </mat-card-content>
+    </mat-card>
+
     <div class="filter-section">
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
             selectedUser }} <mat-icon>close</mat-icon></button>
@@ -7,9 +13,16 @@
             selectedRetailer }} <mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
             selectedObject }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth" (click)="selectMonth('')">{{
-            selectedMonth }} <mat-icon>close</mat-icon></button>
-        </div>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedYear && !selectedMonth && !selectedDay"
+            (click)="setYear('')">{{
+            selectedYear }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth && selectedYear && !selectedDay"
+            (click)="setMonth(''); setYear('');">
+            {{selectedMonth}}-{{ selectedYear }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedDay && selectedMonth && selectedYear"
+            (click)="setDay(''); setMonth(''); setYear('');">
+            {{ selectedDay }}-{{selectedMonth}}-{{selectedYear}} <mat-icon>close</mat-icon></button>
+    </div>
 
     <div class="table-section">
         <div class="table-section-item">
@@ -28,43 +41,73 @@
         <button mat-stroked-button [class]="selectedMonth === month ? 'selected-month-btn' : 'month-btn'"
             *ngFor="let month of months" (click)="selectMonth(month)">{{ month }}</button>
     </div> -->
-<div class="centered div-container">
-  <div class="div-element">
-<mat-form-field appearance="fill">
-  <mat-label>Year</mat-label>
-  <mat-select (selectionChange)="setYear($event)">
-    <mat-option *ngFor="let year of years" [value]="year">
-      {{year}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
+    <div class="centered div-container">
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Year</mat-label>
+                <mat-select (selectionChange)="setYear($event.value)" [value]="selectedYear">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                        {{year}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-<div class="div-element">
-<mat-form-field appearance="fill">
-  <mat-label>Month</mat-label>
-  <mat-select (selectionChange)="setMonth($event.value)">
-    <mat-option *ngFor="let month of months" [value]="month">
-      {{month}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Month</mat-label>
+                <mat-select (selectionChange)="setMonth($event.value)" [disabled]="!selectedYear"
+                    [value]="selectedMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">
+                        {{month}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-<div class="div-element">
-<mat-form-field appearance="fill">
-  <mat-label>Day</mat-label>
-  <mat-select (selectionChange)="setDay($event)">
-    <mat-option *ngFor="let day of days2" [value]="day">
-      {{day}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
-</div>
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Day</mat-label>
+                <mat-select (selectionChange)="setDay($event.value)" [disabled]="!selectedMonth" [value]="selectedDay">
+                    <mat-option *ngFor="let day of days2" [value]="day">
+                        {{day}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="radio-group">
+        <mat-radio-group aria-label="Select an option"  [(ngModel)]="resolved">
+            <mat-radio-button [value]="false" color="primary" class="radio-group-item" (click)="radioBtnClicked()">Unresolved</mat-radio-button>
+            <mat-radio-button [value]="true" color="primary" class="radio-group-item" (click)="radioBtnClicked()">Resolved</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <mat-card class="card chart-card">
+        <mat-card-title>Feedback categories</mat-card-title>
+        <mat-card-content>
+            <div class="chart">
+                <app-vertical-bar-chart [data]="feedbackCategoryResult" *ngIf="feedbackCategoryResult">
+                </app-vertical-bar-chart>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card chart-card">
+        <mat-card-title>Product categories</mat-card-title>
+        <mat-card-content>
+            <div class="chart">
+                <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+                </app-advanced-pie-chart>
+            </div>
+        </mat-card-content>
+    </mat-card>
 
 
-    <mat-grid-list rowHeight="220px" [cols]="breakpoint" (window:resize)="onResize($event)">
+
+
+    <!-- <mat-grid-list rowHeight="220px" [cols]="breakpoint" (window:resize)="onResize($event)">
         <mat-grid-tile class="test-grid-title" [colspan]="breakpoint">
             <mat-card>
                 <mat-card-content>
@@ -85,8 +128,9 @@
             <mat-card>
                 <mat-card-title>Product categories</mat-card-title>
                 <mat-card-content>
-                    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult"></app-advanced-pie-chart>
+                    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+                    </app-advanced-pie-chart>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list> -->

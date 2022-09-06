@@ -49,6 +49,20 @@
 
 
 
+
+.card {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+}
+
 .filter-section {
     width: 100%;
     margin: 0 auto;
@@ -119,7 +133,7 @@
     margin: 10px;
 }
 
-.centered{
+.centered {
 
     margin: auto;
     width: 80%;
@@ -129,16 +143,40 @@
 }
 
 .div-container {
-  width: 50%;
-  height: 50%;
+    width: 50%;
+    height: 50%;
 
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 
 }
+
 .div-element {
-  margin-top: 10%;
-  width: 20%;
-  height: 50%;
-padding-right:13%;
+    margin-top: 10%;
+    width: 20%;
+    height: 50%;
+    padding-right: 13%;
+}
+
+.chart-card {
+    margin-bottom: 50px;
+}
+
+.chart {
+    width: 80%;
+    height: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.radio-group-item {
+    margin: 0 10px;
 }
