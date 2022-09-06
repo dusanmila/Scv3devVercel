@@ -78,10 +78,11 @@
     </div>
 
     <div class="radio-group">
-        <mat-radio-group aria-label="Select an option"  [(ngModel)]="resolved">
-            <mat-radio-button [value]="false" color="primary" class="radio-group-item" (click)="radioBtnClicked()">Unresolved</mat-radio-button>
-            <mat-radio-button [value]="true" color="primary" class="radio-group-item" (click)="radioBtnClicked()">Resolved</mat-radio-button>
+        <mat-radio-group aria-label="Select an option"  [(ngModel)]="resolved" (change)="radioBtnClicked()">
+            <mat-radio-button [value]="false" color="primary" class="radio-group-item">Unresolved</mat-radio-button>
+            <mat-radio-button [value]="true" color="primary" class="radio-group-item">Resolved</mat-radio-button>
         </mat-radio-group>
+
     </div>
 
     <mat-card class="card chart-card">

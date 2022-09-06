@@ -69,8 +69,6 @@ export class DashboardComponent implements OnInit {
   selectedObject: string = "";
   selectedRetailer: string = "";
 
-  resolved: boolean = false;
-
   feedbackCategoryResult: StatisticsModel[];
   productCategoryResult: StatisticsModel[];
 
@@ -110,6 +108,7 @@ export class DashboardComponent implements OnInit {
 
   radioBtnClicked() {
     console.log(this.resolved)
+    this.send();
   }
 
   onResize(event) {
