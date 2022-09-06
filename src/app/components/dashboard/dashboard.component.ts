@@ -116,6 +116,8 @@ export class DashboardComponent implements OnInit {
   }
 
   selectRetailer(retailer: string) {
+    if (this.selectedObject)
+      this.selectedObject = '';
     this.selectedRetailer = retailer;
     console.log(this.selectedRetailer);
     this.send();
@@ -128,6 +130,8 @@ export class DashboardComponent implements OnInit {
   }
 
   selectObject(object: string) {
+    if (this.selectedRetailer)
+      this.selectedRetailer = '';
     this.selectedObject = object;
     console.log(this.selectedObject);
     this.send();
