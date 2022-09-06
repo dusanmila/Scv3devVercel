@@ -31,3 +31,7 @@
         /* background-color: brown; */
     }
 }
+
+::ng-deep .advanced-pie-legend .legend-items-container {
+    line-height: 32px;
+}
