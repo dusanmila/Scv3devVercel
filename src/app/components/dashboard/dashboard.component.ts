@@ -18,12 +18,39 @@ export class DashboardComponent implements OnInit {
   flag: number = 1;
   title: string = 'Dashboard';
   breakpoint: number;
-  months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
   query: string;
   selectQuery: string ;
   //= "select count(feedbackid) as Count from feedback ";
 
-  selectFeedbackCategoryQuery: string; 
+  selectedYear:string;
+  selectedDay:string;
+  selectedMonth:string;
+
+  days2: string[];
+
+  years: string[] = [
+   '2022','2021','2020'
+  ];
+
+ months: string[] = [
+    'January','February','March','April','May','June','July','August','September','October','November','December'
+   ];
+
+   days31: string[] = [
+    '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'   ];
+
+
+
+   days30: string[] = [
+    '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'   ];
+
+    days28: string[] = [
+      '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'];
+
+
+
+  selectFeedbackCategoryQuery: string;
   /*= "select count(feedbackid) as firstInt, feedbackCategoryName as firstString" +
     "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId)";*/
 
@@ -33,14 +60,12 @@ export class DashboardComponent implements OnInit {
     "group by productCategoryName";*/
 
 
- 
+
   ObjectQuery: string = "inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
   + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 
 
-  selectedYear: string = "";
-  selectedMonth: string = "";
-  selectedDay: string = "";
+
   selectedUser: string = "";
   selectedObject: string = "";
   selectedFormat: string = "";
@@ -49,7 +74,7 @@ export class DashboardComponent implements OnInit {
   feedbackCategoryResult: StatisticsModel[];
   productCategoryResult: StatisticsModel[];
 
-  first: boolean = true; 
+  first: boolean = true;
 
   // version = VERSION;
   date = new Date();
@@ -107,10 +132,37 @@ export class DashboardComponent implements OnInit {
 
   selectMonth(month: string) {
     this.selectedMonth = month;
+
+
+
     console.log(this.selectedMonth);
     this.send();
   }
 
+  setYear(year:any){
+this.selectedYear=year;
+console.log(this.selectedYear)
+  }
+
+setMonth(value){
+this.selectedMonth=value;
+
+if(this.selectedMonth==='April'||this.selectedMonth==='June'||this.selectedMonth==='September' || this.selectedMonth==='November'){
+  this.days2=this.days30;
+}else if(this.selectedMonth==='February'){
+this.days2=this.days28;
+}else{
+  this.days2=this.days31;
+}
+
+  console.log(this.selectedMonth)
+}
+
+setDay(day:any){
+
+this.selectedDay=day;
+
+}
 
 
   public queryUpdate() {
@@ -131,18 +183,18 @@ export class DashboardComponent implements OnInit {
     /*
        if(this.selectedFormat!="" )
        {
-       
-    
+
+
         this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
         + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat='"
         + this.selectedFormat+"'";
         this.first=false
        }
-    
+
        if( this.selectedRetailer!="" )
        {
-        
-    
+
+
         this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
         + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
         +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName='"
@@ -206,7 +258,7 @@ export class DashboardComponent implements OnInit {
       }
 
       this.selectQuery = this.selectQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
-      
+
       this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
 
       this.selectProductCategoryQuery=this.selectProductCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
@@ -238,17 +290,17 @@ export class DashboardComponent implements OnInit {
   public send() {
 
     this.selectQuery = "select count(feedbackid) as Count from feedback ";
-    
+
     this.selectFeedbackCategoryQuery= "select count(feedbackid) as Value, feedbackCategoryName as Name " +
       "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId) ";
 
     this.selectProductCategoryQuery= "select count(feedbackid) as Value, productCategoryName as Name " +
-    "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId) " 
+    "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId) "
 
     this.queryUpdate();
-    
+
     this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery+"group by FeedbackCategoryName";
-    
+
     this.selectProductCategoryQuery=this.selectProductCategoryQuery+"group by ProductCategoryName";
 
 
