@@ -23,9 +23,7 @@ export class DashboardComponent implements OnInit {
   selectQuery: string ;
   //= "select count(feedbackid) as Count from feedback ";
 
-  selectedYear:string;
-  selectedDay:string;
-  selectedMonth:string;
+  
 
   days2: string[];
 
@@ -51,24 +49,23 @@ export class DashboardComponent implements OnInit {
 
 
   selectFeedbackCategoryQuery: string;
-  /*= "select count(feedbackid) as firstInt, feedbackCategoryName as firstString" +
-    "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId)";*/
 
   selectProductCategoryQuery: string ;
-  /*= "select count(feedbackid) as firstInt, productCategoryName as firstString" +
-    "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId)" +
-    "group by productCategoryName";*/
 
 
 
   ObjectQuery: string = "inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
   + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 
+  RetilerQuery: string="inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId) inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
+  +" inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
 
 
+  selectedYear:string= "";
+  selectedDay:string= "";
+  selectedMonth:string= "";
   selectedUser: string = "";
   selectedObject: string = "";
-  selectedFormat: string = "";
   selectedRetailer: string = "";
 
   feedbackCategoryResult: StatisticsModel[];
@@ -180,27 +177,20 @@ this.selectedDay=day;
 
       this.first = false
     }
-    /*
-       if(this.selectedFormat!="" )
-       {
-
-
-        this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-        + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat='"
-        + this.selectedFormat+"'";
-        this.first=false
-       }
+    
+       
 
        if( this.selectedRetailer!="" )
        {
 
+        this.selectQuery=this.selectQuery+"f "+ this.RetilerQuery+this.selectedRetailer + "'";
 
-        this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-        + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
-        +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName='"
-        + this.selectedFormat+"'";
+        this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + this.RetilerQuery + this.selectedRetailer + "'";
+
+        this.selectProductCategoryQuery=this.selectProductCategoryQuery + this.RetilerQuery + this.selectedRetailer + "'";  
+
         this.first=false
-       }*/
+       }
 
     if (this.selectedUser != "") {
       if (this.first == false) {
