@@ -83,6 +83,7 @@ import { PieChart2Component } from './charts/pie-chart2/pie-chart2.component';
 import { PieChart3Component } from './charts/pie-chart3/pie-chart3.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -155,7 +156,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatGridListModule,
     MatButtonToggleModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatRadioModule
 
   ],
   providers: [DatePipe],

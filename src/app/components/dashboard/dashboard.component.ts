@@ -20,33 +20,33 @@ export class DashboardComponent implements OnInit {
   breakpoint: number;
 
   query: string;
-  selectQuery: string ;
+  selectQuery: string;
   //= "select count(feedbackid) as Count from feedback ";
 
-  selectedYear:string;
-  selectedDay:string;
-  selectedMonth:string;
+  selectedYear: string = "";
+  selectedDay: string = "";
+  selectedMonth: string = "";
 
   days2: string[];
 
   years: string[] = [
-   '2022','2021','2020'
+    '2022', '2023', '2024', '2025', '2026'
   ];
 
- months: string[] = [
-    'January','February','March','April','May','June','July','August','September','October','November','December'
-   ];
+  months: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+  ];
 
-   days31: string[] = [
-    '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'   ];
+  days31: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
 
 
 
-   days30: string[] = [
-    '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'   ];
+  days30: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
 
-    days28: string[] = [
-      '01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28'];
+  days28: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28'];
 
 
 
@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
   /*= "select count(feedbackid) as firstInt, feedbackCategoryName as firstString" +
     "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId)";*/
 
-  selectProductCategoryQuery: string ;
+  selectProductCategoryQuery: string;
   /*= "select count(feedbackid) as firstInt, productCategoryName as firstString" +
     "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId)" +
     "group by productCategoryName";*/
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
 
 
   ObjectQuery: string = "inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-  + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
+    + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 
 
 
@@ -70,6 +70,8 @@ export class DashboardComponent implements OnInit {
   selectedObject: string = "";
   selectedFormat: string = "";
   selectedRetailer: string = "";
+
+  resolved: boolean = false;
 
   feedbackCategoryResult: StatisticsModel[];
   productCategoryResult: StatisticsModel[];
@@ -79,11 +81,11 @@ export class DashboardComponent implements OnInit {
   // version = VERSION;
   date = new Date();
   chosenYearDate: Date;
-  chosenMonthDate: Date = new Date(2020,0,1);
+  chosenMonthDate: Date = new Date(2020, 0, 1);
   chosenSemesterDate: Date;
   chosenWeekDate: Date;
   chosenDate: Date;
-  monthInputCtrl: FormControl = new FormControl(new Date(2020,0,1));
+  monthInputCtrl: FormControl = new FormControl(new Date(2020, 0, 1));
 
   visible = true;
 
@@ -106,6 +108,10 @@ export class DashboardComponent implements OnInit {
   public changePage(flag: number, title: string) {
     this.flag = flag;
     this.title = title;
+  }
+
+  radioBtnClicked() {
+    console.log(this.resolved)
   }
 
   onResize(event) {
@@ -132,37 +138,36 @@ export class DashboardComponent implements OnInit {
 
   selectMonth(month: string) {
     this.selectedMonth = month;
-
-
-
     console.log(this.selectedMonth);
     this.send();
   }
 
-  setYear(year:any){
-this.selectedYear=year;
-console.log(this.selectedYear)
+  setYear(value) {
+    this.selectedYear = value;
+    console.log(this.selectedYear);
+    this.send();
   }
 
-setMonth(value){
-this.selectedMonth=value;
+  setMonth(value) {
+    this.selectedMonth = value;
 
-if(this.selectedMonth==='April'||this.selectedMonth==='June'||this.selectedMonth==='September' || this.selectedMonth==='November'){
-  this.days2=this.days30;
-}else if(this.selectedMonth==='February'){
-this.days2=this.days28;
-}else{
-  this.days2=this.days31;
-}
+    if (this.selectedMonth === 'April' || this.selectedMonth === 'June' || this.selectedMonth === 'September' || this.selectedMonth === 'November') {
+      this.days2 = this.days30;
+    } else if (this.selectedMonth === 'February') {
+      this.days2 = this.days28;
+    } else {
+      this.days2 = this.days31;
+    }
 
-  console.log(this.selectedMonth)
-}
+    console.log(this.selectedMonth)
+    this.send();
 
-setDay(day:any){
+  }
 
-this.selectedDay=day;
-
-}
+  setDay(value) {
+    this.selectedDay = value;
+    this.send();
+  }
 
 
   public queryUpdate() {
@@ -171,12 +176,12 @@ this.selectedDay=day;
     if (this.selectedObject != "") {
 
 
-      this.selectQuery = this.selectQuery +"f "+ this.ObjectQuery + this.selectedObject + "'";
+      this.selectQuery = this.selectQuery + "f " + this.ObjectQuery + this.selectedObject + "'";
 
 
-      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
 
-      this.selectProductCategoryQuery=this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
 
       this.first = false
     }
@@ -216,9 +221,9 @@ this.selectedDay=day;
 
       this.selectQuery = this.selectQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
 
-      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery +"(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
 
-      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
 
 
       this.first = false;
@@ -238,9 +243,9 @@ this.selectedDay=day;
 
       this.selectQuery = this.selectQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
 
-      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
 
-      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
 
 
       this.first = false
@@ -259,9 +264,9 @@ this.selectedDay=day;
 
       this.selectQuery = this.selectQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
 
-      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
 
-      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
 
       this.first = false
     }
@@ -279,9 +284,9 @@ this.selectedDay=day;
 
       this.selectQuery = this.selectQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
 
-      this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
 
-      this.selectProductCategoryQuery=this.selectProductCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
 
       this.first = false
     }
@@ -291,21 +296,21 @@ this.selectedDay=day;
 
     this.selectQuery = "select count(feedbackid) as Count from feedback ";
 
-    this.selectFeedbackCategoryQuery= "select count(feedbackid) as Value, feedbackCategoryName as Name " +
+    this.selectFeedbackCategoryQuery = "select count(feedbackid) as Value, feedbackCategoryName as Name " +
       "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId) ";
 
-    this.selectProductCategoryQuery= "select count(feedbackid) as Value, productCategoryName as Name " +
-    "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId) "
+    this.selectProductCategoryQuery = "select count(feedbackid) as Value, productCategoryName as Name " +
+      "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId) "
 
     this.queryUpdate();
 
-    this.selectFeedbackCategoryQuery=this.selectFeedbackCategoryQuery+"group by FeedbackCategoryName";
+    this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "group by FeedbackCategoryName";
 
-    this.selectProductCategoryQuery=this.selectProductCategoryQuery+"group by ProductCategoryName";
+    this.selectProductCategoryQuery = this.selectProductCategoryQuery + "group by ProductCategoryName";
 
 
     this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {
-      console.log("number"+data);
+      console.log("number" + data);
     });
 
     this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
@@ -314,7 +319,7 @@ this.selectedDay=day;
     });
 
     this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
-      console.log("product"+data);
+      console.log("product" + data);
       this.productCategoryResult = data;
     });
   }

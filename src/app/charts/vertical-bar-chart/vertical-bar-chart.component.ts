@@ -27,7 +27,7 @@ export class VerticalBarChartComponent implements OnInit {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Format';
+  xAxisLabel = 'Feedback categories';
   showYAxisLabel = true;
   yAxisLabel = 'Feedbacks';
 
