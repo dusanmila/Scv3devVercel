@@ -15,6 +15,7 @@ import { StatisticsService } from 'src/app/Services/statistics.service';
 export class DashboardComponent implements OnInit {
 
   opened: boolean = false;
+  resolved: boolean = false;
   flag: number = 1;
   title: string = 'Dashboard';
   breakpoint: number;
@@ -23,9 +24,6 @@ export class DashboardComponent implements OnInit {
   selectQuery: string;
   //= "select count(feedbackid) as Count from feedback ";
 
-  selectedYear: string = "";
-  selectedDay: string = "";
-  selectedMonth: string = "";
 
   days2: string[];
 
@@ -51,24 +49,24 @@ export class DashboardComponent implements OnInit {
 
 
   selectFeedbackCategoryQuery: string;
-  /*= "select count(feedbackid) as firstInt, feedbackCategoryName as firstString" +
-    "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId)";*/
 
   selectProductCategoryQuery: string;
-  /*= "select count(feedbackid) as firstInt, productCategoryName as firstString" +
-    "from ProductCategory pc inner join Feedback f on (f.ProductCategoryId=pc.ProductCategoryId)" +
-    "group by productCategoryName";*/
+
 
 
 
   ObjectQuery: string = "inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
     + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 
+  RetilerQuery: string = "inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId) inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
+    + " inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
 
 
+  selectedYear: string = "";
+  selectedDay: string = "";
+  selectedMonth: string = "";
   selectedUser: string = "";
   selectedObject: string = "";
-  selectedFormat: string = "";
   selectedRetailer: string = "";
 
   resolved: boolean = false;
@@ -175,9 +173,7 @@ export class DashboardComponent implements OnInit {
 
     if (this.selectedObject != "") {
 
-
-      this.selectQuery = this.selectQuery + "f " + this.ObjectQuery + this.selectedObject + "'";
-
+      this.selectQuery = this.selectQuery + this.ObjectQuery + this.selectedObject + "'";
 
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
 
@@ -185,27 +181,18 @@ export class DashboardComponent implements OnInit {
 
       this.first = false
     }
-    /*
-       if(this.selectedFormat!="" )
-       {
 
 
-        this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-        + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) where objectFormat='"
-        + this.selectedFormat+"'";
-        this.first=false
-       }
 
-       if( this.selectedRetailer!="" )
-       {
+    if (this.selectedRetailer != "") {
+      this.selectQuery = this.selectQuery + this.RetilerQuery + this.selectedRetailer + "'";
 
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + this.RetilerQuery + this.selectedRetailer + "'";
 
-        this.selectQuery=this.selectQuery+"f inner join  objectstorecheck osc on(f.ObjectStoreCheckId=osc.ObjectStoreCheckId)"
-        + " inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany)"
-        +" inner join Retailer r on (o.RetailerId=r.RetailerId)  where retailerName='"
-        + this.selectedFormat+"'";
-        this.first=false
-       }*/
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + this.RetilerQuery + this.selectedRetailer + "'";
+
+      this.first = false
+    }
 
     if (this.selectedUser != "") {
       if (this.first == false) {
@@ -294,7 +281,7 @@ export class DashboardComponent implements OnInit {
 
   public send() {
 
-    this.selectQuery = "select count(feedbackid) as Count from feedback ";
+    this.selectQuery = "select count(feedbackid) as Count from feedback f ";
 
     this.selectFeedbackCategoryQuery = "select count(feedbackid) as Value, feedbackCategoryName as Name " +
       "from FeedbackCategory fc inner join Feedback f on (f.FeedbackCategoryId=fc.FeedbackCategoryId) ";
@@ -304,9 +291,25 @@ export class DashboardComponent implements OnInit {
 
     this.queryUpdate();
 
-    this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "group by FeedbackCategoryName";
 
-    this.selectProductCategoryQuery = this.selectProductCategoryQuery + "group by ProductCategoryName";
+    if (this.first == false) {
+      this.selectQuery = this.selectQuery + " and resolved= '" + this.resolved + "'";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and resolved= '" + this.resolved + "'";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and resolved= '" + this.resolved + "'";
+    }
+    else {
+      this.selectQuery = this.selectQuery + "where resolved= '" + this.resolved + "'";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where resolved= '" + this.resolved + "'";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where resolved= '" + this.resolved + "'";
+
+    }
+
+    this.first = true
+
+    this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " group by FeedbackCategoryName";
+
+    this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
+
 
 
     this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {
