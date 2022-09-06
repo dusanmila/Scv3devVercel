@@ -74,8 +74,8 @@ export class DashboardComponent implements OnInit {
   constructor(public statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
-
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
+    this.send();
   }
 
   public changePage(flag: number, title: string) {
@@ -90,21 +90,25 @@ export class DashboardComponent implements OnInit {
   selectRetailer(retailer: string) {
     this.selectedRetailer = retailer;
     console.log(this.selectedRetailer);
+    this.send();
   }
 
   selectUser(user: string) {
     this.selectedUser = user;
     console.log(this.selectedUser);
+    this.send();
   }
 
   selectObject(object: string) {
     this.selectedObject = object;
     console.log(this.selectedObject);
+    this.send();
   }
 
   selectMonth(month: string) {
     this.selectedMonth = month;
     console.log(this.selectedMonth);
+    this.send();
   }
 
 

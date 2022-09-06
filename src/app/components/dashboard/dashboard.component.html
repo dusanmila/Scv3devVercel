@@ -9,9 +9,8 @@
             selectedObject }} <mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth" (click)="selectMonth('')">{{
             selectedMonth }} <mat-icon>close</mat-icon></button>
-    </div>
+        </div>
 
-    <button (click)="send()"> send</button>
     <div class="table-section">
         <div class="table-section-item">
             <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
@@ -49,14 +48,10 @@
         <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
             <mat-card>
                 <mat-card-title>Product categories</mat-card-title>
-                <mat-card-title>
-                    <pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult"></pie-chart>
-                </mat-card-title>
+                <mat-card-content>
+                    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult"></app-advanced-pie-chart>
+                </mat-card-content>
             </mat-card>
         </mat-grid-tile>
     </mat-grid-list>
-
-    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult"></app-advanced-pie-chart>
-    <pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult"></pie-chart>
-
 </div>
