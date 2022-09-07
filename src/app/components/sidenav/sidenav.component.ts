@@ -21,16 +21,18 @@ export class SidenavComponent implements OnInit {
 
   public changeTitle() {
     let url = this.router.url;
-    if (url === '/sidenav/dashboard')
+    if (url === '/admin/dashboard')
       this.title = 'Dashboard';
-    else if (url === '/sidenav/user')
+    else if (url === '/admin/user')
       this.title = 'Users';
-    else if (url === '/sidenav/object')
+    else if (url === '/admin/object')
       this.title = 'Objects';
-    else if (url === '/sidenav/retailer')
+    else if (url === '/admin/retailer')
       this.title = 'Retailers';
-    else if (url === '/sidenav/storeCheckReceiver')
+    else if (url === '/admin/storeCheckReceiver')
       this.title = 'Store Check Receivers';
+    else if (url === '/admin/uploads')
+      this.title = 'Upload Files';
   }
 
   public logout() {
