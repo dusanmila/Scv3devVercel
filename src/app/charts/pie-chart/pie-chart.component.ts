@@ -1,6 +1,6 @@
-import { Component, Input, NgModule, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Color, NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
+import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 import { single } from './data';
@@ -30,9 +30,6 @@ export class PieChartComponent implements OnInit{
 
   view: [number, number] = [1000, 300];
 
- /* colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };*/
 
   constructor(public statisticsService: StatisticsService) {
     Object.assign(this, { single });

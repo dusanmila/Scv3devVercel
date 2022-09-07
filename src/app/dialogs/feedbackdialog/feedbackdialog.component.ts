@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
 import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.component';
-import { Renderer2 } from '@angular/core';
 
 
-declare var EXIF: any;
+
+let EXIF: any;
 
 
 @Component({
@@ -17,7 +17,7 @@ declare var EXIF: any;
   templateUrl: './feedbackdialog.component.html',
   styleUrls: ['./feedbackdialog.component.css']
 })
-export class FeedbackDialogComponent implements OnInit,AfterViewInit {
+export class FeedbackDialogComponent implements AfterViewInit {
 
   public flag: number;
   public resolveFeedbacks: boolean;
@@ -46,9 +46,7 @@ output:string;
     });
   }
 
-  ngOnInit(): void {
 
-  }
 
 
   ngAfterViewInit(): void {
@@ -122,7 +120,7 @@ this.isLoading=false;
     let allMetaData: any;
 
     //var img=<HTMLImageElement>this.fbimg.nativeElement;
-    var img = document.getElementById("fbphoto");
+    let img = document.getElementById("fbphoto");
 
 
 

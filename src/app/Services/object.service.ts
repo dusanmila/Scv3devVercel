@@ -14,7 +14,7 @@ export class ObjectService {
 
   constructor(private http: HttpClient) { }
   private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
- 
+
 
 
   pdfToDownload:Blob;
@@ -187,7 +187,7 @@ export class ObjectService {
      this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       const fileName = planogramPdf;
       this.pdfToDownload=pdf;
-     // saveAs(pdf, fileName);
+     
     });
 
     return this.pdfToDownload;
