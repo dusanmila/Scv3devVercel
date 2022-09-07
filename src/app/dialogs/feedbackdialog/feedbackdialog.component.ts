@@ -10,7 +10,6 @@ import { Renderer2 } from '@angular/core';
 
 
 declare var EXIF: any;
-const fbphoto = document.querySelector('fbphoto');
 
 
 @Component({
@@ -125,7 +124,7 @@ this.isLoading=false;
     //var img=<HTMLImageElement>this.fbimg.nativeElement;
     var img = document.getElementById("fbphoto");
 
-  
+
 
     setTimeout(function(){
       EXIF.getData(img, function () {

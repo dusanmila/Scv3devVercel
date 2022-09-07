@@ -25,7 +25,7 @@ export class PositionComponent implements OnInit {
 
 
   isLoading = true;
-noData=false;
+  noData=false;
 
   @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
@@ -76,7 +76,7 @@ noData=false;
         this.positions.splice(helper, 1);
       }
       else {
-        console.log("Error while deleting position.")
+        console.log("Error while deleting position")
       }
     });
   }

@@ -59,16 +59,7 @@ export class ObjectCreateDialogComponent implements OnInit {
 
 
 
-  public delete(): void {
-    /* this.objectService.deleteObject(this.data)
-     .subscribe(data => {
-       this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
-     }),
-     (error:Error) => {
-       console.log(error.name + ' -> ' + error.message)
-       this.snackBar.open('An error occurred. ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-     }*/
-  }
+
 
   public close(): void {
     this.dialogRef.close();

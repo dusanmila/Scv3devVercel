@@ -110,7 +110,7 @@ export class FeedbackComponent implements OnInit {
   public resolveFeedback(feedback: Feedback) {
     feedback.resolved = true;
     this.feedbackService.editFeedback(feedback).subscribe(data => {
-     
+
       this.feedbackService.getUnresolvedFeedbacks().subscribe(res => {
         this._feedbacks = res;
       })
@@ -129,9 +129,9 @@ export class FeedbackComponent implements OnInit {
       )
   }
 
-  public openCreateDialog(flag: number) {
+  public openCreateDialog() {
     const dialogRef = this.dialog.open(FeedbackCreateDialogComponent);
-    dialogRef.componentInstance.flag = flag;
+
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res) {

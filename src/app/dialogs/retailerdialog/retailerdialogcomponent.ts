@@ -26,7 +26,7 @@ export class RetailerDialogComponent implements OnInit {
     });
   }
   retailer: Retailer = { retailerName: "", planogramPdf: "", totalCount: 0 };
-  // retailers: Retailer[];
+
   public flag: number;
   retailerName: string;
   public changed: boolean = false;
@@ -58,13 +58,13 @@ export class RetailerDialogComponent implements OnInit {
       this.isLoading=true;
       this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
-         
+
           this.changed = true;
           this.isLoading=false;
           this.close();
         },
         error: (err) => {
-         
+
           this.isLoading=false;
           this.close();
         }

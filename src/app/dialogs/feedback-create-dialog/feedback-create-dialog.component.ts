@@ -16,7 +16,7 @@ import { ProductCategoryService } from 'src/app/Services/product-category.servic
 })
 export class FeedbackCreateDialogComponent implements OnInit {
 
-  public flag: number;
+
   public form: FormGroup;
   public feedback: Feedback = { feedbackCategoryName: "",  productCategoryName: "",text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0,usernameResolve:"" };
   public feedbackCategories: FeedbackCategory[] = [];

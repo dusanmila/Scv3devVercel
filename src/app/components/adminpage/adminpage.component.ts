@@ -33,7 +33,7 @@ export class AdminpageComponent {
 
     this.objectService.excelImport(formData).subscribe(data => {
       this.isObjLoading=false;
-      this.snackBar.open("Objects added.", "Close", {
+      this.snackBar.open("Objects added", "Close", {
         duration: 2500,
         panelClass: ['blue-snackbar']
       });
@@ -48,7 +48,7 @@ export class AdminpageComponent {
 
     this.positionService.excelImport(formData).subscribe(data => {
       this.isPosLoading=false;
-      this.snackBar.open("Secondary positions added.", "Close", {
+      this.snackBar.open("Secondary positions added", "Close", {
         duration: 2500,
         panelClass: ['blue-snackbar']
       });

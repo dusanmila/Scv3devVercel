@@ -12,7 +12,7 @@
       <mat-cell *matCellDef="let row">{{ row.feedbackCategoryName }}</mat-cell>
     </ng-container>
 
-    
+
     <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
       <mat-cell *matCellDef="let row" class="table-row">{{ row.username }}</mat-cell>
@@ -20,7 +20,7 @@
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
-        <button mat-icon-button color="primary" (click)="openCreateDialog(1)">
+        <button mat-icon-button color="primary" (click)="openCreateDialog()">
           <mat-icon>add</mat-icon>
         </button>
       </mat-header-cell>
