@@ -19,29 +19,28 @@ import { RetailerComponent } from './components/retailer/retailer.component';
 import { StoreCheckReceiverComponent } from './components/store-check-receiver/store-check-receiver.component';
 import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
+import { UploadsComponent } from './components/uploads/uploads.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'feedback', component: FeedbackComponent, canActivate: [AdminGuard] },
-  // {path:'user', component:UserComponent,canActivate: [AdminGuard]},
-  { path: 'admin', component: AdminpageComponent, canActivate: [AdminGuard], data: { admin: true } },
+  { path: 'admin2', component: AdminpageComponent, canActivate: [AdminGuard], data: { admin: true } },
   { path: 'position', component: PositionComponent, canActivate: [AdminGuard] },
-  // {path:'object', component:ObjectComponent,canActivate: [AdminGuard]},
   { path: 'storeCheckPage/:workModel/:objectIdCompany', component: StoreCheckPageComponent, canActivate: [AdminGuard] },
   { path: 'storeCheck', component: StoreCheckComponent, canActivate: [AdminGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
-  // { path: 'dashboard', component: DashboardComponent },
   {
-    path: 'admin2', children: [
+    path: 'admin', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },
       { path: 'object', component: ObjectComponent, canActivate: [AdminGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
       { path: 'retailer', component: RetailerComponent, canActivate: [AdminGuard] },
       { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] },
       { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
-      { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] }
+      { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] },
+      { path: 'uploads', component: UploadsComponent, canActivate: [AdminGuard] }
     ],
     component: SidenavComponent,
     canActivate: [AdminGuard]

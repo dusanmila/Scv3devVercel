@@ -27,7 +27,7 @@ export class PieChart3Component implements OnInit{
   view: [number, number] = [600, 300];
 
   constructor(public statisticsService: StatisticsService) {
-    //Object.assign(this, { single });
+   
   }
 
   ngOnInit(): void {

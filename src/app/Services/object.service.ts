@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { saveAs } from 'file-saver';
 import { Retailer } from '../models/retailer';
 import { Obj, ObjectCreateDto } from '../models/object';
 import { OBJECT_URL } from '../app.constants';

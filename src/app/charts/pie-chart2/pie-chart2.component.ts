@@ -29,7 +29,7 @@ export class PieChart2Component implements OnInit{
 
 
   constructor(public statisticsService: StatisticsService) {
-    //Object.assign(this, { single });
+   
   }
 
   ngOnInit(): void {

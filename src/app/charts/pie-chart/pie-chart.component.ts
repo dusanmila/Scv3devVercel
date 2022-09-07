@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
-import { single } from './data';
 
 @Component({
   selector: 'pie-chart',
@@ -32,7 +31,7 @@ export class PieChartComponent implements OnInit{
 
 
   constructor(public statisticsService: StatisticsService) {
-    Object.assign(this, { single });
+  
   }
 
   ngOnInit(): void {
