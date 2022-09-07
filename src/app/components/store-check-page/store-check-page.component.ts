@@ -110,7 +110,7 @@ export class StoreCheckPageComponent implements OnInit {
             console.log(res)
             if (res) {
               this.finishObjectStoreCheck();
-              // this.router.navigate(['/chooseObject/' + this.workModel]);
+             
             }
           },
           err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
