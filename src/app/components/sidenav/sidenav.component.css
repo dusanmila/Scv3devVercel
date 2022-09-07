@@ -11,15 +11,9 @@
     border-width: 2px;
 }
 
-.test {
-    background-color: red;
-    position: relative;
-    top: 0;
-}
-
 .sidenav-container {
-    /* position: absolute; */
-    top: 0;
+    position: absolute;
+    top: 60px;
     bottom: 0;
     left: 0;
     right: 0;
