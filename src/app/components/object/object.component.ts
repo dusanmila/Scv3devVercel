@@ -156,7 +156,6 @@ export class ObjectComponent implements OnInit {
       if (data) {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
-        console.log(data)
       } else {
         this.noData = true;
         this.length = 0;
@@ -172,6 +171,7 @@ export class ObjectComponent implements OnInit {
     this.page = event.pageIndex + 1;
     this.loadData(true);
   }
+
 
   public searchByString(): void {
     this.isLoading = true;

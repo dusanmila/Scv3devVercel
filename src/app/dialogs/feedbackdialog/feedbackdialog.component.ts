@@ -10,7 +10,6 @@ import { Renderer2 } from '@angular/core';
 
 
 declare var EXIF: any;
-const fbphoto = document.querySelector('fbphoto');
 
 
 @Component({
@@ -125,12 +124,11 @@ this.isLoading=false;
     //var img=<HTMLImageElement>this.fbimg.nativeElement;
     var img = document.getElementById("fbphoto");
 
-    console.log(img)
+
 
     setTimeout(function(){
       EXIF.getData(img, function () {
 
-        console.log(this)
         allMetaData = EXIF.getAllTags(this);
         if(allMetaData.Orientation == 6){
 

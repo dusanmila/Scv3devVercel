@@ -38,12 +38,14 @@ export class RetailerComponent implements OnInit {
   constructor(public objectService: ObjectService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
     if (this.isDashboard)
       this.count = 2;
     this.loadData(false);
     if (this.isDashboard) {
       this.displayedColumns.splice(1, 2);
     }
+
   }
 
 
@@ -99,7 +101,6 @@ export class RetailerComponent implements OnInit {
       }
       )
   }
-
 
 
   public searchByName() {

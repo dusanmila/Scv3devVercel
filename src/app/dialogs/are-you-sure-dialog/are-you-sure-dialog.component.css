@@ -41,7 +41,6 @@ button:hover {
     overflow-y: hidden;
 }
 
-/* Otklanja sivu pozadinu sa dugmeta */
 button {
     outline: none;
 }

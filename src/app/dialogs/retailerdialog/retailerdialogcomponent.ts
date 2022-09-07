@@ -26,7 +26,7 @@ export class RetailerDialogComponent implements OnInit {
     });
   }
   retailer: Retailer = { retailerName: "", planogramPdf: "", totalCount: 0 };
-  // retailers: Retailer[];
+
   public flag: number;
   retailerName: string;
   public changed: boolean = false;
@@ -35,11 +35,7 @@ export class RetailerDialogComponent implements OnInit {
   ngOnInit(): void {
     this.retailer.retailerName = this.data.retailerName;
     this.retailer.planogramPdf = this.data.planogramPdf;
-    // this.objectService.getRetailers()
-    //   .subscribe((data) => {
-    //     this.retailers = data;
 
-    //   })
   }
   public close() {
     this.dialogRef.close(this.changed);
@@ -59,17 +55,16 @@ export class RetailerDialogComponent implements OnInit {
       this.selectedFiles.forEach((f) => formData.append('files', f));
       formData.append('retailerName', this.data.retailerName);
 
-      //formData.append('file', this.tableForm.get('file')!.value);
       this.isLoading=true;
       this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
-          console.log(data);
+
           this.changed = true;
           this.isLoading=false;
           this.close();
         },
         error: (err) => {
-          console.log(err);
+
           this.isLoading=false;
           this.close();
         }
@@ -110,17 +105,10 @@ export class RetailerDialogComponent implements OnInit {
       console.log(file)
       this.selectedFiles.push(file);
     });
+
     this.isLoading=false;
-    // for (let i = 0; i < files.length; i++) {
-    //   this.selectedFiles.push(files[i]);
-    // }
-    //ovo ispod je bilo iznad treba za vise njih ali ima error neki za null ne moze u FileList
-/*
-    const file = (event.target as HTMLInputElement).files![0];
-    this.tableForm.patchValue({
-      file: file,
-    });
-    this.tableForm.get('file')!.updateValueAndValidity();*/
+
+
   }
 
   openInput() {

@@ -107,74 +107,10 @@ export class FeedbackComponent implements OnInit {
     this.loadUnresolvedFeedbacksByObject(true);
   }
 
-  // public loadResolvedFeedbacksByObject() {
-  //   this.feedbackService.getResolvedFeedbacksByObject(this.objectName).subscribe(data => {
-  //     this.dataSource = new MatTableDataSource(data);
-  //   });
-  // }
-
-  uploadFile(event: any) {
-    const file = (event.target as HTMLInputElement).files![0];
-    this.form.patchValue({
-      file: file,
-    });
-    this.form.get('file')!.updateValueAndValidity();
-  }
-  submitForm() {
-    const formData: any = new FormData();
-    formData.append('file', this.form.get('file')!.value);
-
-    formData.append('FeedbackCategoryName', this.form.get('FeedbackCategoryName')!.value);
-    formData.append('text', this.form.get('text')!.value);
-    formData.append('username', this.form.get('username')!.value);
-    formData.append('date', this.form.get('date')!.value);
-    this.http
-      .post('https://microservicefeedback.azurewebsites.net/api/feedbacks', formData)
-      // .post('http://localhost:8088/api/feedbacks', formData)
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-          console.log('prikazi')
-          this.showFinishButton.emit(true);
-        },
-        error: (error) => console.log(error)
-
-      });
-  }
-
-
-
-  createFeedback() {
-    this.feedbackService.createFeedback(this.feedback).subscribe(data => {
-      this._feedbacks.push(data);
-
-    });
-    this.feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve:"" };
-
-  }
-
-  selectFeedback(feedback: Feedback) {
-    this.feedbackService.getOneFeedback(feedback).subscribe(data => {
-      this.selectedFeedback = data;
-    });
-    this.feedback = feedback;
-
-  }
-
-
-
-  editFeedback(feedback: Feedback) {
-    this.feedbackService.editFeedback(feedback).subscribe(data => {
-
-      console.log(data);
-
-    });
-  }
-
   public resolveFeedback(feedback: Feedback) {
     feedback.resolved = true;
     this.feedbackService.editFeedback(feedback).subscribe(data => {
-      console.log(data);
+
       this.feedbackService.getUnresolvedFeedbacks().subscribe(res => {
         this._feedbacks = res;
       })
@@ -193,9 +129,9 @@ export class FeedbackComponent implements OnInit {
       )
   }
 
-  public openCreateDialog(flag: number) {
+  public openCreateDialog() {
     const dialogRef = this.dialog.open(FeedbackCreateDialogComponent);
-    dialogRef.componentInstance.flag = flag;
+
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res) {
