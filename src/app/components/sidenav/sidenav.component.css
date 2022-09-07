@@ -1,5 +1,7 @@
 .header {
     background-color: #56baed;
+    position: fixed;
+    z-index: 2;
 }
 
 .example-spacer {
@@ -12,7 +14,7 @@
 }
 
 .sidenav-container {
-    position: absolute;
+    position: relative;
     top: 60px;
     bottom: 0;
     left: 0;
@@ -22,6 +24,8 @@
 .sidenav {
     width: 250px;
     max-width: 100%;
+    position: fixed;
+    top: 60px;
 }
 
 .sidenav-content {
@@ -36,3 +40,4 @@
     margin-right: 20px;
     color: #56baed;
 }
+
