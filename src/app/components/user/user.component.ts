@@ -1,5 +1,6 @@
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { Subscription } from 'rxjs';
 
 
@@ -28,11 +29,13 @@ export class UserComponent implements OnInit {
   subscription: Subscription;
   isLoading = false;
   searchClicked: boolean = false;
+
   noData = false;
   search: string = "";
   page: number = 1;
   count: number = 5;
   length: number = 0;
+
 
   ngOnInit(): void {
     if (this.isDashboard)
@@ -79,7 +82,9 @@ export class UserComponent implements OnInit {
     this.noData = false;
     this.isLoading = true;
     this.userService.getUsersByUsername(this.search).subscribe(data => {
+
       console.log(data);
+
       if (data) {
         this.dataSource = new MatTableDataSource<User>(data);
 

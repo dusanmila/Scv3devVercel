@@ -57,17 +57,7 @@ export class ObjectCreateDialogComponent implements OnInit {
       }
   }
 
-  /*
-  public update(): void{
-    this.objectService.updateObject(this.data)
-    .subscribe(data => {
-      this.snackBar.open('Updated object: ' + this.data.objectName, 'OK', { duration: 2500, panelClass: ['blue-snackbar'] });
-    }),
-    (error:Error) => {
-      console.log(error.name + ' -> ' + error.message)
-      this.snackBar.open('An error occured, try again later. ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-    }
-  }*/
+
 
   public delete(): void {
     /* this.objectService.deleteObject(this.data)

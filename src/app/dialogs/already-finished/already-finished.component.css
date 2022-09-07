@@ -35,7 +35,6 @@ button:hover {
     background-color: red;
 }
 
-/* Otklanja sivu pozadinu sa dugmeta */
 button {
     outline: none;
 }

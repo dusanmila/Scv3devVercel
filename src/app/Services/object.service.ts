@@ -209,11 +209,7 @@ export class ObjectService {
   }
 
   public getPlanogram(planogramPdf: string) {
-   /* return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      const blob = new Blob([pdf], { type: 'application/pdf' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
-    });*/
+  
     const url = "https://storagestorecheck.blob.core.windows.net/storecheck/"+planogramPdf;
     window.location.href="http://docs.google.com/gview?embedded=true&url="+url;
   }
