@@ -1,8 +1,6 @@
 import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
-import { Tile } from '@angular/material/grid-list/tile-coordinator';
 import { isEmpty } from 'rxjs';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
@@ -74,7 +72,6 @@ export class DashboardComponent implements OnInit {
 
   first: boolean = true;
 
-  // version = VERSION;
   date = new Date();
   chosenYearDate: Date;
   chosenMonthDate: Date = new Date(2020, 0, 1);

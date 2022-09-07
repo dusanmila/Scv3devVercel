@@ -35,12 +35,7 @@
             <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
         </div>
     </div>
-
-    <!--
-    <div class="month-section">
-        <button mat-stroked-button [class]="selectedMonth === month ? 'selected-month-btn' : 'month-btn'"
-            *ngFor="let month of months" (click)="selectMonth(month)">{{ month }}</button>
-    </div> -->
+    
     <div class="centered div-container">
         <div class="div-element">
             <mat-form-field appearance="fill">
@@ -104,34 +99,3 @@
             </div>
         </mat-card-content>
     </mat-card>
-
-
-
-
-    <!-- <mat-grid-list rowHeight="220px" [cols]="breakpoint" (window:resize)="onResize($event)">
-        <mat-grid-tile class="test-grid-title" [colspan]="breakpoint">
-            <mat-card>
-                <mat-card-content>
-                    <app-number-card-chart></app-number-card-chart>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
-            <mat-card>
-                <mat-card-title>Feedback categories</mat-card-title>
-                <mat-card-content>
-                    <app-vertical-bar-chart [data]="feedbackCategoryResult" *ngIf="feedbackCategoryResult">
-                    </app-vertical-bar-chart>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
-            <mat-card>
-                <mat-card-title>Product categories</mat-card-title>
-                <mat-card-content>
-                    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
-                    </app-advanced-pie-chart>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list> -->

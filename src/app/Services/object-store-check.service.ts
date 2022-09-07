@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from '../models/objectStoreCheck';
 import { STORE_CHECK_URL } from '../app.constants';
-import { EmailsForSending } from '../models/emailsForSending';
 
 @Injectable({
   providedIn: 'root'
