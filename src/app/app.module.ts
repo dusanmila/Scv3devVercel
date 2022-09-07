@@ -83,7 +83,8 @@ import { PieChart2Component } from './charts/pie-chart2/pie-chart2.component';
 import { PieChart3Component } from './charts/pie-chart3/pie-chart3.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
+import { UploadsComponent } from './components/uploads/uploads.component';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,8 @@ import {MatRadioModule} from '@angular/material/radio';
     ProductCategoryComponent,
     PieChartComponent,
     PieChart2Component,
-    PieChart3Component
+    PieChart3Component,
+    UploadsComponent
 
   ],
   imports: [

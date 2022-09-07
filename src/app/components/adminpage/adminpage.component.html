@@ -18,8 +18,8 @@
         </div>
 
 
-        <div class="fadeIn second item2"  (click)="logout()">
-           Log out
+        <div class="fadeIn second item2" (click)="logout()">
+          Log out
 
         </div>
 
@@ -80,13 +80,11 @@
 
         <label for="fileDropRef" class="browseButton">Browse</label>
 
-      <div *ngIf="isObjLoading"
-      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
-     <mat-progress-spinner
-     class="mat-spinner-color"
-       mode="indeterminate" [diameter]="30">
-     </mat-progress-spinner>
-    </div>
+        <div *ngIf="isObjLoading"
+          style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+          <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+          </mat-progress-spinner>
+        </div>
       </div>
 
 
@@ -101,12 +99,10 @@
 
         <label class="browseButton" for="fileDropRef">Browse</label>
         <div *ngIf="isPosLoading"
-      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
-     <mat-progress-spinner
-     class="mat-spinner-color"
-       mode="indeterminate" [diameter]="30">
-     </mat-progress-spinner>
-    </div>
+          style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+          <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+          </mat-progress-spinner>
+        </div>
       </div>
 
     </div>
