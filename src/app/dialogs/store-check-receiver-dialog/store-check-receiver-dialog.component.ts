@@ -8,7 +8,7 @@ import { StoreCheckService } from 'src/app/Services/store-check.service';
   templateUrl: './store-check-receiver-dialog.component.html',
   styleUrls: ['./store-check-receiver-dialog.component.css']
 })
-export class StoreCheckReceiverDialogComponent implements OnInit {
+export class StoreCheckReceiverDialogComponent {
 
   public flag: number;
   public changed: boolean = false;
@@ -17,10 +17,7 @@ export class StoreCheckReceiverDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: StoreCheckReceiver,
     public storeCheckService: StoreCheckService) { }
 
-  ngOnInit(): void {
-  }
-
-  public add() {
+ public add() {
     this.storeCheckService.createStoreCheckReceivers(this.data).subscribe(result => {
       this.changed = true;
       this.close();

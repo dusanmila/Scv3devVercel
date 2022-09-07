@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
-import { single } from './data';
 
 @Component({
   selector: 'app-number-card-chart',
@@ -27,7 +26,7 @@ export class NumberCardChartComponent implements OnInit {
   textColor: string = '#fff';
   
   constructor(public statisticsService: StatisticsService) {
-    Object.assign(this, { single });
+    
   }
 
   ngOnInit(): void {

@@ -9,7 +9,7 @@ import { FeedbackCategoryService } from 'src/app/Services/feedback-category.serv
   templateUrl: './feedback-category-dialog.component.html',
   styleUrls: ['./feedback-category-dialog.component.css']
 })
-export class FeedbackCategoryDialogComponent implements OnInit {
+export class FeedbackCategoryDialogComponent{
 
   flag: number;
   isLoading: boolean = false;
@@ -20,8 +20,7 @@ export class FeedbackCategoryDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: FeedbackCategory,
     public feedbackCategoryService: FeedbackCategoryService) { }
 
-  ngOnInit(): void {
-  }
+ 
 
   add() {
     this.feedbackCategoryService.createFeedbackCategory(this.data).subscribe(data => {

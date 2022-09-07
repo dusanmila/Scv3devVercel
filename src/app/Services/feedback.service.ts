@@ -4,7 +4,6 @@ import { Observable, Subject } from 'rxjs';
 import { Feedback } from '../models/feedback.model';
 import { FeedbackCategory } from '../models/feedbackCategory';
 import { FEEDBACK_URL } from '../app.constants';
-import { ProductCategory } from '../models/productCategory';
 
 
 
