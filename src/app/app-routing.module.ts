@@ -17,6 +17,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { RetailerComponent } from './components/retailer/retailer.component';
 import { StoreCheckReceiverComponent } from './components/store-check-receiver/store-check-receiver.component';
+import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,7 +39,9 @@ const routes: Routes = [
       { path: 'object', component: ObjectComponent, canActivate: [AdminGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
       { path: 'retailer', component: RetailerComponent, canActivate: [AdminGuard] },
-      { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] }
+      { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] },
+      { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
+      { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] }
     ],
     component: SidenavComponent,
     canActivate: [AdminGuard]

@@ -1,6 +1,6 @@
 .card-body {
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     /* background-color: green; */
 }
 
@@ -30,4 +30,8 @@
         width: 400px;
         /* background-color: brown; */
     }
+}
+
+::ng-deep .advanced-pie-legend .legend-items-container {
+    line-height: 32px;
 }

@@ -24,6 +24,10 @@
     max-width: 100%;
 }
 
+.sidenav-content {
+    padding: 30px 0;
+}
+
 .nav-list-item {
     color: #56baed;
 }

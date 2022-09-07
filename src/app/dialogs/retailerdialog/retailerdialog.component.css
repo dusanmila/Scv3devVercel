@@ -42,3 +42,7 @@ button {
 ::ng-deep .mat-button-focus-overlay {
   display: none;
 }
+
+.mat-spinner-color::ng-deep circle {
+  stroke: #56baed !important;
+}

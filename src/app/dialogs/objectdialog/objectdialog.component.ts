@@ -22,8 +22,8 @@ export class ObjectDialogComponent implements OnInit {
   public users: User[] = [];
   public retailers: Retailer[] = [];
 
-  objectInfo:ObjectInfo;
-  object:Obj;
+  objectInfo: ObjectInfo;
+  object: Obj;
 
   public objectCreateDto: ObjectCreateDto = {
     objectIdRetail: "",
@@ -54,7 +54,7 @@ export class ObjectDialogComponent implements OnInit {
     }
   }
 
-  constructor(public snackBar:MatSnackBar, public dialogRef:MatDialogRef<ObjectDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: Obj, public objectService: ObjectService, public userService: UserService) { }
+  constructor(public snackBar: MatSnackBar, public dialogRef: MatDialogRef<ObjectDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Obj, public objectService: ObjectService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.loadUsers();
@@ -63,7 +63,7 @@ export class ObjectDialogComponent implements OnInit {
   }
 
   public loadUsers() {
-    this.userService.getUsers().subscribe(data => {
+    this.userService.getUsers(0, 0, '').subscribe(data => {
       this.users = data;
     });
   }
@@ -74,45 +74,45 @@ export class ObjectDialogComponent implements OnInit {
     });
   }
 
-public update(): void{
-  this.objectCreateDto.objectIdRetail=this.data.objectIdRetail;
-  this.objectCreateDto.retailer=this.data.retailer.retailerName;
-  this.objectCreateDto.objectIdCompany=this.data.objectIdCompany;
-  this.objectCreateDto.objectFormat=this.data.objectFormat;
-  this.objectCreateDto.objectName=this.data.objectName;
-  this.objectCreateDto.city=this.data.city;
-  this.objectCreateDto.address=this.data.address;
-  this.objectCreateDto.kam=this.data.kam.toString();
-  this.objectCreateDto.director=this.data.director.toString();
-  this.objectCreateDto.supervisor=this.data.supervisor.toString();
-   this.objectCreateDto.commercialist=this.data.commercialist.toString();
-  this.objectCreateDto.merchandiser=this.data.merchandiser.toString();
-  this.objectCreateDto.merchandiserRevisionDays=this.data.merchandiserRevisionDays;
-  this.objectCreateDto.requisitionDays=this.data.requisitionDays;
-  this.objectCreateDto.objectInfo=this.data.objectInfo;
-  this.objectService.updateObject(this.objectCreateDto)
-  .subscribe(() => {
-    this.snackBar.open('Updated object', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-  }),
-  (error:Error) => {
-    console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+  public update(): void {
+    this.objectCreateDto.objectIdRetail = this.data.objectIdRetail;
+    this.objectCreateDto.retailer = this.data.retailer.retailerName;
+    this.objectCreateDto.objectIdCompany = this.data.objectIdCompany;
+    this.objectCreateDto.objectFormat = this.data.objectFormat;
+    this.objectCreateDto.objectName = this.data.objectName;
+    this.objectCreateDto.city = this.data.city;
+    this.objectCreateDto.address = this.data.address;
+    this.objectCreateDto.kam = this.data.kam.toString();
+    this.objectCreateDto.director = this.data.director.toString();
+    this.objectCreateDto.supervisor = this.data.supervisor.toString();
+    this.objectCreateDto.commercialist = this.data.commercialist.toString();
+    this.objectCreateDto.merchandiser = this.data.merchandiser.toString();
+    this.objectCreateDto.merchandiserRevisionDays = this.data.merchandiserRevisionDays;
+    this.objectCreateDto.requisitionDays = this.data.requisitionDays;
+    this.objectCreateDto.objectInfo = this.data.objectInfo;
+    this.objectService.updateObject(this.objectCreateDto)
+      .subscribe(() => {
+        this.snackBar.open('Updated object', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
   }
-}
 
-public delete(): void{
-  this.objectService.deleteObject(this.data)
-  .subscribe(() => {
-    this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
-  }),
-  (error:Error) => {
-    console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+  public delete(): void {
+    this.objectService.deleteObject(this.data)
+      .subscribe(() => {
+        this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+      }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
   }
-}
 
-public close(): void{
-this.dialogRef.close();
-}
+  public close(): void {
+    this.dialogRef.close();
+  }
 
 }

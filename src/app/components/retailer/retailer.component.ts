@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { ObjectService } from 'src/app/Services/object.service';
@@ -15,6 +15,9 @@ import { PlanogramDialogComponent } from 'src/app/dialogs/planogram-dialog/plano
 })
 export class RetailerComponent implements OnInit {
 
+  @Input() isDashboard: boolean = false;
+  @Output() selectedRetailer = new EventEmitter<string>();
+
   displayedColumns = ["retailerName", "planogramPdf", "actions"];
   dataSource: MatTableDataSource<Retailer>;
 
@@ -26,7 +29,7 @@ export class RetailerComponent implements OnInit {
   isLoading = false;
   noData = false;
 
-  selectedRetailer: Retailer;
+  selectedRetailer2: Retailer;
 
   public page: number = 1;
   public count: number = 5;
@@ -35,7 +38,14 @@ export class RetailerComponent implements OnInit {
   constructor(public objectService: ObjectService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-  
+
+    if (this.isDashboard)
+      this.count = 2;
+    this.loadData(false);
+    if (this.isDashboard) {
+      this.displayedColumns.splice(1, 2);
+    }
+
   }
 
 
@@ -65,20 +75,19 @@ export class RetailerComponent implements OnInit {
   }
 
   public selectRetailer(retailer: Retailer) {
-    this.objectService.getOneRetailer(retailer).subscribe(data => {
-      this.selectedRetailer = data;
-    });
+    this.selectedRetailer.emit(retailer.retailerName);
+
+    // this.objectService.getOneRetailer(retailer).subscribe(data => {
+    //   this.selectedRetailer = data;
+    // });
   }
 
 
 
 
-  public editRetailer(retailer: Retailer) {
-    this.objectService.updateRetailer(retailer).subscribe();
-  }
 
   public deleteRetailer() {
-    this.objectService.deleteRetailer(this.selectedRetailer).subscribe();
+    this.objectService.deleteRetailer(this.selectedRetailer2).subscribe();
   }
 
   public openDialog(flag: number, retailerName?: string, planogramPdf?: string) {

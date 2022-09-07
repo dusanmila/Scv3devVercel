@@ -1,125 +1,137 @@
-<!-- <mat-toolbar color="primary" class="header">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
-        (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>{{title}}</span>
-</mat-toolbar>
+<div class="dashboard" *ngIf="flag === 1">
 
-<mat-sidenav-container class="sidenav-container" autosize="true">
-    <mat-sidenav #sidenav class="sidenav" mode="side" [(opened)]="opened" [fixedInViewport]="false" [fixedTopGap]="0"
-        [fixedBottomGap]="0">
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" (click)="changePage(1,'Dashboard')">
-                <mat-icon class="nav-icon">dashboard</mat-icon>Dashboard
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" (click)="changePage(2,'Users')">
-                <mat-icon class="nav-icon">supervised_user_circle</mat-icon>Users
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" (click)="changePage(3,'Objects')">
-                <mat-icon class="nav-icon">store</mat-icon>Objects
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" (click)="changePage(4,'Retailers')">
-                <mat-icon class="nav-icon">vertical_split</mat-icon>Retailers
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" (click)="changePage(5,'Store Check Receivers')">
-                <mat-icon class="nav-icon">email</mat-icon>Store Check Receivers
-            </a>
-        </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content class="sidenav-content"> -->
-        <div class="dashboard" *ngIf="flag === 1">
-            <mat-grid-list rowHeight="220px" [cols]="breakpoint"  (window:resize)="onResize($event)">
-                <mat-grid-tile class="test-grid-title" [colspan]="breakpoint">
-                    <mat-card>
-                        <mat-card-content>
-                            <app-number-card-chart></app-number-card-chart>
-                        </mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
-                    <mat-card>
-                        <mat-card-title>Feedbacks by object format</mat-card-title>
-                        <mat-card-content>
-                            <app-vertical-bar-chart></app-vertical-bar-chart>
-                        </mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
-                    <mat-card>
-                        <mat-card-title>Feedbacks by category</mat-card-title>
-                        <mat-card-title>
-                            <app-advanced-pie-chart></app-advanced-pie-chart>
-                        </mat-card-title>
-                    </mat-card>
-                </mat-grid-tile>
-            </mat-grid-list>
+    <mat-card class="card">
+        <mat-card-content class="card-content">
+            <app-number-card-chart></app-number-card-chart>
+        </mat-card-content>
+    </mat-card>
 
+    <div class="filter-section">
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
+            selectedUser }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
+            selectedRetailer }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
+            selectedObject }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedYear && !selectedMonth && !selectedDay"
+            (click)="setYear('')">{{
+            selectedYear }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth && selectedYear && !selectedDay"
+            (click)="setMonth(''); setYear('');">
+            {{selectedMonth}}-{{ selectedYear }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedDay && selectedMonth && selectedYear"
+            (click)="setDay(''); setMonth(''); setYear('');">
+            {{ selectedDay }}-{{selectedMonth}}-{{selectedYear}} <mat-icon>close</mat-icon></button>
+    </div>
 
-            <!-- <mat-grid-list [cols]="breakpoint" rowHeight="200px" (window:resize)="onResize($event)">
-                <mat-grid-tile class="test-grid-title">
-                    <mat-card>
-                        <mat-card-content>1</mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title">
-                    <mat-card>
-                        <mat-card-content>2</mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title">
-                    <mat-card>
-                        <mat-card-content>3</mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title">
-                    <mat-card>
-                        <mat-card-content>4</mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
+    <div class="table-section">
+        <div class="table-section-item">
+            <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
+        </div>
+        <div class="table-section-item">
+            <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+        </div>
+        <div class="table-section-item">
+            <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
+        </div>
+    </div>
 
-                <mat-grid-tile class="test-grid-title" colspan="2">
-                    <mat-card>
-                        <mat-card-content>5</mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title" colspan="2">
-                    <mat-card>
-                        <mat-card-content>6</mat-card-content>
-                    </mat-card>
-                </mat-grid-tile>
-            </mat-grid-list> -->
-
-            <!-- <mat-grid-list rowHeight="200px" cols="12">
-                <mat-grid-tile colspan="12">
-                    <app-number-card-chart></app-number-card-chart>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title" colspan="5" rowspan="2">
-                    <app-vertical-bar-chart></app-vertical-bar-chart>
-                </mat-grid-tile>
-                <mat-grid-tile class="test-grid-title" colspan="7" rowspan="2">
-                    <app-advanced-pie-chart></app-advanced-pie-chart>
-                </mat-grid-tile>
-            </mat-grid-list> -->
+    <!--
+    <div class="month-section">
+        <button mat-stroked-button [class]="selectedMonth === month ? 'selected-month-btn' : 'month-btn'"
+            *ngFor="let month of months" (click)="selectMonth(month)">{{ month }}</button>
+    </div> -->
+    <div class="centered div-container">
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Year</mat-label>
+                <mat-select (selectionChange)="setYear($event.value)" [value]="selectedYear">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                        {{year}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
-        <!-- <app-user *ngIf="flag === 2"></app-user>
-        <app-object *ngIf="flag === 3"></app-object>
-        <app-retailer *ngIf="flag === 4"></app-retailer>
-        <app-store-check-receiver *ngIf="flag === 5"></app-store-check-receiver> -->
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Month</mat-label>
+                <mat-select (selectionChange)="setMonth($event.value)" [disabled]="!selectedYear"
+                    [value]="selectedMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">
+                        {{month}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Day</mat-label>
+                <mat-select (selectionChange)="setDay($event.value)" [disabled]="!selectedMonth" [value]="selectedDay">
+                    <mat-option *ngFor="let day of days2" [value]="day">
+                        {{day}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="radio-group">
+        <mat-radio-group aria-label="Select an option"  [(ngModel)]="resolved" (change)="radioBtnClicked()">
+            <mat-radio-button [value]="false" color="primary" class="radio-group-item">Unresolved</mat-radio-button>
+            <mat-radio-button [value]="true" color="primary" class="radio-group-item">Resolved</mat-radio-button>
+        </mat-radio-group>
+
+    </div>
+
+    <mat-card class="card chart-card">
+        <mat-card-title>Feedback categories</mat-card-title>
+        <mat-card-content>
+            <div class="chart">
+                <app-vertical-bar-chart [data]="feedbackCategoryResult" *ngIf="feedbackCategoryResult">
+                </app-vertical-bar-chart>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="card chart-card">
+        <mat-card-title>Product categories</mat-card-title>
+        <mat-card-content>
+            <div class="chart">
+                <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+                </app-advanced-pie-chart>
+            </div>
+        </mat-card-content>
+    </mat-card>
 
 
-    <!-- </mat-sidenav-content>
-</mat-sidenav-container> -->
 
 
-
-<!-- <mat-toolbar class="footer">Footer</mat-toolbar> -->
+    <!-- <mat-grid-list rowHeight="220px" [cols]="breakpoint" (window:resize)="onResize($event)">
+        <mat-grid-tile class="test-grid-title" [colspan]="breakpoint">
+            <mat-card>
+                <mat-card-content>
+                    <app-number-card-chart></app-number-card-chart>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
+            <mat-card>
+                <mat-card-title>Feedback categories</mat-card-title>
+                <mat-card-content>
+                    <app-vertical-bar-chart [data]="feedbackCategoryResult" *ngIf="feedbackCategoryResult">
+                    </app-vertical-bar-chart>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile class="test-grid-title" colspan="2" rowspan="2">
+            <mat-card>
+                <mat-card-title>Product categories</mat-card-title>
+                <mat-card-content>
+                    <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+                    </app-advanced-pie-chart>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list> -->

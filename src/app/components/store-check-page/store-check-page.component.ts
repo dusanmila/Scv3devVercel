@@ -92,17 +92,7 @@ export class StoreCheckPageComponent implements OnInit {
     err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
   }
 
-  public createEmptyObjectStoreCheck() {
-    let username = localStorage.getItem("username") as string;
-    let osc: ObjectStoreCheckCreateDto = {
-      objectIdCompany: this.object.objectIdCompany,
-      username: username,
-      pdf: ""
-    }
-    this.objectStoreCheckService.createObjectStoreCheck(osc).subscribe(data => {
-      this.objectStoreCheck = data;
-    });
-  }
+
 
   public enableFinishButton(showButton: boolean) {
     this.showFinishButton = showButton;
@@ -132,6 +122,8 @@ export class StoreCheckPageComponent implements OnInit {
     err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
 
   }
+
+
 
   public exit() {
     if (this.showFinishButton) {

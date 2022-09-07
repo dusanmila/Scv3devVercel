@@ -28,7 +28,7 @@ export class FeedbackDialogComponent implements OnInit,AfterViewInit {
   public changed: boolean = false;
   isLoading=false;
   rotate=false;
-
+submitClicked=false;
 
 output:string;
 @ViewChild('fbimg') fbimg: ElementRef;
@@ -88,6 +88,8 @@ output:string;
   }
 
   submitForm() {
+    this.submitClicked=true;
+    this.isLoading=true;
     const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
     formData.append('usernameResolve', localStorage.getItem("username"));
@@ -96,11 +98,12 @@ output:string;
       this.changed = true;
       this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
-
+this.isLoading=false;
       console.log(data);
     }),
     (error:Error) => {
       console.log(error.name + ' -> ' + error.message)
+      this.isLoading=false;
       this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
     };
 
