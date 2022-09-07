@@ -180,7 +180,7 @@ export class ObjectComponent implements OnInit {
 
       if (data.length == 0) {
         this.noData = true;
-        this.dataSource = new MatTableDataSource<Obj>(data);;
+        this.dataSource = new MatTableDataSource<Obj>(data);
       }
       else {
         this.dataSource = new MatTableDataSource<Obj>(data);
@@ -190,7 +190,7 @@ export class ObjectComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string, kam?: string, merchandiser?: string, director?: string, commercialist?: string, supervisor?: string, companyShelfSpaceM?: string, companyShelfSpacePercent?: string, gainings12Mrds?: string, gainingsVs12Mpercent?: string, registersNumber?: string, shelfSpaceM?: string, WDpercentCustomer?: string, WDpercentSector?: string, WDpercentSerbia?: string, assortmentModule?: string) {
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string, kam?: string, merchandiser?: string, director?: string, commercialist?: string, supervisor?: string) {
     if (flag == 1) {
       this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
 

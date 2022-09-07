@@ -2,14 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
-import { single } from './data';
 
 @Component({
   selector: 'app-advanced-pie-chart',
   templateUrl: './advanced-pie-chart.component.html',
   styleUrls: ['./advanced-pie-chart.component.css']
 })
-export class AdvancedPieChartComponent implements OnInit {
+export class AdvancedPieChartComponent {
 
   @Input() data: StatisticsModel[];
 
@@ -32,10 +31,7 @@ export class AdvancedPieChartComponent implements OnInit {
   };
 
   constructor(public statisticsService: StatisticsService) {
-    Object.assign(this, { single });
-  }
-
-  ngOnInit(): void {
+  
   }
 
   onSelect(data): void {

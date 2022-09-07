@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { AuthenticatedResponse } from '../models/authenticatedResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +19,11 @@ export class AdminGuard implements CanActivate {
       return false;
     }
     if (token !== null && !jwtHelper.isTokenExpired(token)) {
-      
+
       return true;
     }
     this.router.navigate(["login"]);
-    
+
     return false;
   }
 

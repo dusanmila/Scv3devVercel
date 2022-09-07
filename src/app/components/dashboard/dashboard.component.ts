@@ -1,7 +1,5 @@
-import { StringMap } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { isEmpty } from 'rxjs';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 
@@ -183,7 +181,6 @@ export class DashboardComponent implements OnInit {
     }
 
 
-
     if (this.selectedRetailer != "") {
       this.selectQuery = this.selectQuery + this.RetilerQuery + this.selectedRetailer + "'";
 
@@ -194,17 +191,11 @@ export class DashboardComponent implements OnInit {
       this.first = false
     }
 
-    if (this.selectedUser != "") {
-      if (this.first == false) {
-        this.selectQuery = this.selectQuery + " and ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
-      }
-      else {
-        this.selectQuery = this.selectQuery + "where ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
-      }
+    if (this.selectedUser != "" && !this.first) {
+
+      this.selectQuery = this.selectQuery + " and ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
 
       this.selectQuery = this.selectQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
 
@@ -212,22 +203,28 @@ export class DashboardComponent implements OnInit {
 
       this.selectProductCategoryQuery = this.selectProductCategoryQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
 
+      this.first = false;
+    }
+
+    else if (this.selectedUser != "" && this.first ) {
+      this.selectQuery = this.selectQuery + "where ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
+      this.selectQuery = this.selectQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
+
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
+
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "(f.username='" + this.selectedUser + "' or f.usernameResolve='" + this.selectedUser + "')";
 
       this.first = false;
     }
 
-    if (this.selectedYear != "") {
-      if (this.first == false) {
-        this.selectQuery = this.selectQuery + " and ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
-      }
-      else {
-        this.selectQuery = this.selectQuery + "where ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
-      }
 
+    if (this.selectedYear != "" && !this.first ) {
+
+      this.selectQuery = this.selectQuery + " and ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
       this.selectQuery = this.selectQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
 
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
@@ -237,18 +234,28 @@ export class DashboardComponent implements OnInit {
 
       this.first = false
     }
-    if (this.selectedMonth != "") {
-      if (this.first == false) {
-        this.selectQuery = this.selectQuery + " and ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
-      }
-      else {
-        this.selectQuery = this.selectQuery + "where ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
-      }
 
+    else if (this.selectedYear != "" && this.first) {
+      this.selectQuery = this.selectQuery + "where ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
+      this.selectQuery = this.selectQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "DATEPART(yy,[Date])=" + this.selectedYear;
+
+
+      this.first = false
+    }
+
+
+
+    if (this.selectedMonth != "" && !this.first) {
+
+      this.selectQuery = this.selectQuery + " and ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
       this.selectQuery = this.selectQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
 
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
@@ -257,18 +264,39 @@ export class DashboardComponent implements OnInit {
 
       this.first = false
     }
-    if (this.selectedDay != "") {
-      if (this.first == false) {
-        this.selectQuery = this.selectQuery + " and ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
-      }
-      else {
-        this.selectQuery = this.selectQuery + "where ";
-        this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
-        this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
-      }
 
+    else if (this.selectedMonth != "" && this.first) {
+      this.selectQuery = this.selectQuery + "where ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
+      this.selectQuery = this.selectQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "DATENAME(mm, [Date])='" + this.selectedMonth + "'";
+
+      this.first = false
+    }
+
+
+    if (this.selectedDay != "" && !this.first) {
+
+      this.selectQuery = this.selectQuery + " and ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and ";
+      this.selectQuery = this.selectQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
+
+      this.first = false
+    }
+
+    else if (this.selectedDay != "" && this.first) {
+      this.selectQuery = this.selectQuery + "where ";
+      this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
       this.selectQuery = this.selectQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
 
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "DATEPART(dd,[Date])=" + this.selectedDay;
@@ -292,7 +320,7 @@ export class DashboardComponent implements OnInit {
     this.queryUpdate();
 
 
-    if (this.first == false) {
+    if (!this.first) {
       this.selectQuery = this.selectQuery + " and resolved= '" + this.resolved + "'";
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and resolved= '" + this.resolved + "'";
       this.selectProductCategoryQuery = this.selectProductCategoryQuery + " and resolved= '" + this.resolved + "'";

@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { saveAs } from 'file-saver';
 import { Retailer } from '../models/retailer';
 import { Obj, ObjectCreateDto } from '../models/object';
 import { OBJECT_URL } from '../app.constants';
@@ -14,7 +13,7 @@ export class ObjectService {
 
   constructor(private http: HttpClient) { }
   private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
- 
+
 
 
   pdfToDownload:Blob;
@@ -186,7 +185,7 @@ export class ObjectService {
   public downloadRetailerPlanogram(planogramPdf: string) {
      this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
       this.pdfToDownload=pdf;
-     // saveAs(pdf, fileName);
+
     });
 
     return this.pdfToDownload;
@@ -203,7 +202,7 @@ export class ObjectService {
   public getPlanogram(planogramPdf: string) {
 
     const url = "https://storagestorecheck.blob.core.windows.net/storecheck/"+planogramPdf;
-    window.location.href="http://docs.google.com/gview?embedded=true&url="+url;
+    window.location.href="https://docs.google.com/gview?embedded=true&url="+url;
   }
 
   public deletePlanogram(planogramPdf: string) {

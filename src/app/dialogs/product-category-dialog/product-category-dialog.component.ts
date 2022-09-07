@@ -9,7 +9,7 @@ import { ProductCategoryService } from 'src/app/Services/product-category.servic
   templateUrl: './product-category-dialog.component.html',
   styleUrls: ['./product-category-dialog.component.css']
 })
-export class ProductCategoryDialogComponent implements OnInit {
+export class ProductCategoryDialogComponent  {
 
   flag: number;
   isLoading: boolean = false;
@@ -20,8 +20,6 @@ export class ProductCategoryDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: ProductCategory,
     public productCategoryService: ProductCategoryService) { }
 
-  ngOnInit(): void {
-  }
 
   add() {
     this.productCategoryService.createProductCategory(this.data).subscribe(data => {
