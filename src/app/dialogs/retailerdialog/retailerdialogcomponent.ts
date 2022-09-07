@@ -107,16 +107,7 @@ export class RetailerDialogComponent implements OnInit {
     });
 
     this.isLoading=false;
-    // for (let i = 0; i < files.length; i++) {
-    //   this.selectedFiles.push(files[i]);
-    // }
-    //ovo ispod je bilo iznad treba za vise njih ali ima error neki za null ne moze u FileList
-/*
-    const file = (event.target as HTMLInputElement).files![0];
-    this.tableForm.patchValue({
-      file: file,
-    });
-    this.tableForm.get('file')!.updateValueAndValidity();*/
+
 
   }
 

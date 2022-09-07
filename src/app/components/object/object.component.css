@@ -148,11 +148,12 @@ h4 {
   -webkit-hyphens: auto;
   hyphens: auto;
 
-
+}
 
 .openIcon{
   margin-left: -3px;
 }
+
 @media (max-width: 370px) {
   .openIcon{
     display: block;
@@ -195,9 +196,6 @@ h4 {
 }
 
 
-mat-header-row {
-  /* margin-left: 17px; */
-}
 
 .container {
   margin: 0 20px;
