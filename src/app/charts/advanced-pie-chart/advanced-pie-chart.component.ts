@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { numbers } from '@material/dialog';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';

@@ -28,7 +28,6 @@ export class ObjectCreateDialogComponent implements OnInit {
   constructor(public snackBar: MatSnackBar, public dialogRef: MatDialogRef<ObjectCreateDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: ObjectCreateDto, public objectService: ObjectService, public userService: UserService) { }
 
   ngOnInit(): void {
-    // this.dialogRef.updateSize('40%');
     this.loadUsers();
     this.loadRetailers();
   }

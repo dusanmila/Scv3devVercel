@@ -42,7 +42,7 @@ import { StoreCheckPageComponent } from './components/store-check-page/store-che
 import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.component';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatListModule, MatNavList } from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
 import { RetailerDialogComponent } from './dialogs/retailerdialog/retailerdialogcomponent';
 import { RetailerComponent } from './components/retailer/retailer.component';
