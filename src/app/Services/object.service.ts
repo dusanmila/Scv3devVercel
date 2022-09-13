@@ -184,7 +184,6 @@ export class ObjectService {
 
   public downloadRetailerPlanogram(planogramPdf: string) {
      this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      const fileName = planogramPdf;
       this.pdfToDownload=pdf;
 
     });

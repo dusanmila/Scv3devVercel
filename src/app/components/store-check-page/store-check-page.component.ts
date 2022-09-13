@@ -3,13 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import { Obj } from 'src/app/models/object';
-import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from 'src/app/models/objectStoreCheck';
+import { ObjectStoreCheck } from 'src/app/models/objectStoreCheck';
 import { Position } from 'src/app/models/position';
 import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { AlreadyFinishedComponent } from 'src/app/dialogs/already-finished/already-finished.component';
-import { EmailDialogComponent } from 'src/app/dialogs/email-dialog/email-dialog.component';
 import { PlanogramDialogComponent } from 'src/app/dialogs/planogram-dialog/planogram-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

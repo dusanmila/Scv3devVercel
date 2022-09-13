@@ -1,18 +1,6 @@
 <div class="container font">
   <div>
-
-    <!-- <h4>Enter address or object name</h4>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Search" [(ngModel)]="search">
-      <button class="search" matSuffix mat-button (click)="loadData()">
-        <mat-icon class="search">search</mat-icon>
-      </button>
-    </mat-form-field>
-
-  </div> -->
     <div class="detail-search"  *ngIf="!isDashboard">
-
-      <!-- <div class="detail-search-menu" *ngIf="detailSearch"> -->
       <div class="detail-search-menu">
         <div class="menu-item">
           <mat-form-field>
@@ -51,16 +39,9 @@
         </div>
 
         <div class="menu-btn">
-          <!-- <button matSuffix mat-button class="item2" (click)="loadData(false)">Search <mat-icon>search</mat-icon>
-            </button> -->
             <button mat-stroked-button color="primary" class="mat-btn" (click)="loadData(false)" *ngIf="!isDashboard">Search <mat-icon>search</mat-icon></button>
         </div>
-        <!--bila klasa item3-->
-
-
       </div>
-      <!-- <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == false"></em>
-  <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showDetailSearch()" *ngIf="detailSearch == true"></em> -->
     </div>
 
     <mat-form-field  *ngIf="isDashboard">

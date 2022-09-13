@@ -76,10 +76,6 @@ export class RetailerComponent implements OnInit {
 
   public selectRetailer(retailer: Retailer) {
     this.selectedRetailer.emit(retailer.retailerName);
-
-    // this.objectService.getOneRetailer(retailer).subscribe(data => {
-    //   this.selectedRetailer = data;
-    // });
   }
 
 

@@ -70,7 +70,6 @@ export class DashboardComponent implements OnInit {
 
   first: boolean = true;
 
-  // version = VERSION;
   date = new Date();
   chosenYearDate: Date;
   chosenMonthDate: Date = new Date(2020, 0, 1);
