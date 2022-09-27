@@ -144,7 +144,9 @@ export class ObjectComponent implements OnInit {
     if (this.isDashboard) {
       this.displayedColumns.splice(1, 2);
     }
-    this.loadData(false);
+    if (this.isDashboard) {
+      this.loadData(false);
+    }
   }
 
   public loadData(pageChanged: boolean) {
