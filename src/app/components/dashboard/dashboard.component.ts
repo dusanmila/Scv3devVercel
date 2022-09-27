@@ -344,16 +344,16 @@ if(value==="All"){
 
     this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
 
-
+    this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
+      console.log(data);
+      this.feedbackCategoryResult = data;
+    });
 
     this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {
       console.log("number" + data);
     });
 
-    this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
-      console.log(data);
-      this.feedbackCategoryResult = data;
-    });
+   
 
     this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
       console.log("product" + data);
