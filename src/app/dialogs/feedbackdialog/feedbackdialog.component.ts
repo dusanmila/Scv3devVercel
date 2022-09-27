@@ -23,7 +23,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public resolveFeedbacks: boolean;
   public form: FormGroup;
   public imageUploaded: boolean = false;
-  public feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "", text: "", date: "", resolved: false, img: "", username: "", imgResolve: "", totalCount: 0, usernameResolve: "" };
+  public feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "", text: "",textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "", isImgHorizontal:false, totalCount: 0, usernameResolve: "" };
   public changed: boolean = false;
   isLoading = false;
   rotate = false;
@@ -47,6 +47,10 @@ export class FeedbackDialogComponent implements AfterViewInit {
   }
 
 
+  ngOnInit(): void {
+   
+    this.dialogRef.updateSize('100%','60%');
+  }
 
   ngAfterViewInit(): void {
     this.getExif();
@@ -88,6 +92,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
     formData.append('file', this.form.get('file')!.value);
     formData.append('usernameResolve', localStorage.getItem("username"));
     formData.append('img', this.data.img);
+    formData.append('textResolve', this.data.textResolve);
     this.feedbackService.resolveFeedback(formData).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });

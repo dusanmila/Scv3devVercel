@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   days2: string[];
 
   years: string[] = [
-    '2022', '2023', '2024', '2025', '2026'
+    'All','2022', '2023', '2024', '2025', '2026'
   ];
 
   months: string[] = [
@@ -139,7 +139,13 @@ export class DashboardComponent implements OnInit {
   }
 
   setYear(value) {
-    this.selectedYear = value;
+
+if(value==="All"){
+  this.selectedYear="";
+}else{
+  this.selectedYear=value;
+}
+
     console.log(this.selectedYear);
     this.send();
   }
@@ -338,16 +344,16 @@ export class DashboardComponent implements OnInit {
 
     this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
 
-
+    this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
+      console.log(data);
+      this.feedbackCategoryResult = data;
+    });
 
     this.statisticsService.getFeedbackCount(this.selectQuery).subscribe(data => {
       console.log("number" + data);
     });
 
-    this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
-      console.log(data);
-      this.feedbackCategoryResult = data;
-    });
+   
 
     this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
       console.log("product" + data);
