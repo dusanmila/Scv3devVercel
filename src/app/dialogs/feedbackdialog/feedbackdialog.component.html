@@ -5,8 +5,8 @@
 
     <div class="form fb-img">
 
-      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}"  id="fbphoto" alt="SC photo" width="250"
-        height="250" #fbimg/>
+      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}" id="fbphoto" alt="SC photo"
+        width="250" height="250" #fbimg />
 
     </div>
 
@@ -20,19 +20,14 @@
 
     <div class="form">
       <mat-form-field>
-        <input matInput [(ngModel)]="data.productCategoryName" name="productCategoryName" [disabled]="true"
-          required />
+        <input matInput [(ngModel)]="data.productCategoryName" name="productCategoryName" [disabled]="true" required />
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field>
-        <textarea matInput
-                cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="200"
-                [(ngModel)]="data.text" name="text" [disabled]="true" required></textarea>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="200" [(ngModel)]="data.text" name="text" [disabled]="true" required></textarea>
       </mat-form-field>
     </div>
 
@@ -54,16 +49,33 @@
 
     <div class="form" *ngIf="data.imgResolve">
       <mat-form-field>
-        <input matInput [(ngModel)]="data.usernameResolve" name="usernameResolve:" [disabled]="true"
-          required />
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="200" [(ngModel)]="data.textResolve" name="textResolve" [disabled]="true"
+          required></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form" *ngIf="data.imgResolve">
+      <mat-form-field>
+        <input matInput [(ngModel)]="data.usernameResolve" name="usernameResolve:" [disabled]="true" required />
+      </mat-form-field>
+    </div>
+
+    <div class="form" *ngIf="resolveFeedbacks">
+      <mat-form-field>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="10" placeholder="Type text..." maxlength="2000" [(ngModel)]="data.textResolve"
+          name="textResolve" required></textarea>
       </mat-form-field>
     </div>
 
     <form [formGroup]="form" *ngIf="resolveFeedbacks && !imageUploaded" (ngSubmit)="submitForm()">
-      <input id="inputFile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera" fromControlName="file"  required hidden>
+      <input id="inputFile" type="file" (change)="uploadFile($event)" accept="image/*" capture="camera"
+        fromControlName="file" required hidden>
       <label>Take photo:</label>
 
-      <label for="inputFile" class="browseFile"> <img src="assets\photoicon.png" width="10%" height="10%" alt="PhotoIcon"/></label>
+      <label for="inputFile" class="browseFile"> <img src="assets\photoicon.png" width="10%" height="10%"
+          alt="PhotoIcon" /></label>
 
 
     </form>
@@ -73,6 +85,9 @@
     <div *ngIf="submitClicked && !imageUploaded">
       <p style="color:red">Photo must be uploaded.</p>
     </div>
+
+
+
     <div mat-dialog-actions>
       <button mat-icon-button color="primary" *ngIf="data.img=='' || data.img=='NULL' " (click)="openInfo()">
         <mat-icon> warning </mat-icon>
