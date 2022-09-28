@@ -38,17 +38,19 @@ button {
 h1 {
     margin-left: 0%;
 }
-.card1  {
 
-  max-width: 90%;
-  padding: .5rem;
-  margin-bottom: 1rem;
-  border: 0;
-  flex-basis: 90%;
-  flex-grow: 0;
-  flex-shrink: 0;
-  margin-left: 10%;
+.card1 {
+
+    max-width: 90%;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    border: 0;
+    flex-basis: 90%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-left: 10%;
 }
+
 .card {
 
     max-width: 30%;
@@ -58,9 +60,10 @@ h1 {
     flex-basis: 33.333%;
     flex-grow: 0;
     flex-shrink: 0;
-  }
-  .card2 {
-   
+}
+
+.card2 {
+
     max-width: 50%;
     padding: .75rem;
     margin-bottom: 1rem;
@@ -68,7 +71,7 @@ h1 {
     flex-basis: 50%;
     flex-grow: 0;
     flex-shrink: 0;
-  }
+}
 
 
 .object-info-data {
@@ -80,17 +83,17 @@ h1 {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: auto;
-  }
+}
 
-  .object-info-slider {
-   align-items: stretch;
+.object-info-slider {
+    align-items: stretch;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
 
-  }
+}
 
 .header .obj-info {
     width: 400px;
@@ -145,7 +148,7 @@ td {
     width: 100%;
     background-color: #fff;
     text-align: center;
-    
+
 }
 
 .main h3 {
@@ -361,7 +364,7 @@ td {
 }
 
 .slova {
-  font-size: 80%;
+    font-size: 80%;
 }
 
 .mat-btn {
@@ -373,65 +376,73 @@ td {
     margin: 20px;
     font-size: 15px;
     padding: 5px;
-  }
+}
 
-  .flex1 {
+.flex1 {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 20% !important;
     width: 20% !important;
     overflow-wrap: break-word;
-  
-  
+
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-  
+
     text-align: center;
     justify-content: left;
 
     margin-left: -5.5%;
 
-    left:1px;
-  }
-  
-  .flex2 {
+    left: 1px;
+}
+
+.flex2 {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 60% !important;
     width: 60% !important;
     overflow-wrap: break-word;
-  
-  
+
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-  
+
     justify-content: center;
 
     text-align: center;
     margin-right: 5%;
     margin-top: 5%;
-  }
-  
-  .flex3 {
+}
+
+.flex3 {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 20% !important;
     width: 20% !important;
     overflow-wrap: break-word;
-  
-  
+
+
     justify-content: center;
 
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-  
+
     text-align: left;
     margin-right: 1%;
-    
-  }
+
+}
+
+.details {
+    padding: 20px 0 10px 0;
+}
+
+.detail-text {
+    margin-bottom: 5px;
+}
