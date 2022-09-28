@@ -48,7 +48,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
 
   ngOnInit(): void {
-   
+
     this.dialogRef.updateSize('100%','60%');
   }
 
@@ -86,25 +86,28 @@ export class FeedbackDialogComponent implements AfterViewInit {
   }
 
   submitForm() {
-    this.submitClicked = true;
-    this.isLoading = true;
-    const formData: any = new FormData();
-    formData.append('file', this.form.get('file')!.value);
-    formData.append('usernameResolve', localStorage.getItem("username"));
-    formData.append('img', this.data.img);
-    formData.append('textResolve', this.data.textResolve);
-    this.feedbackService.resolveFeedback(formData).subscribe(data => {
-      this.changed = true;
-      this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-      this.close();
-      this.isLoading = false;
-      console.log(data);
-    }),
-      (error: Error) => {
-        console.log(error.name + ' -> ' + error.message)
+    if(this.imageUploaded){
+      this.submitClicked = true;
+      this.isLoading = true;
+      const formData: any = new FormData();
+      formData.append('file', this.form.get('file')!.value);
+      formData.append('usernameResolve', localStorage.getItem("username"));
+      formData.append('img', this.data.img);
+      formData.append('textResolve', this.data.textResolve);
+      this.feedbackService.resolveFeedback(formData).subscribe(data => {
+        this.changed = true;
+        this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+        this.close();
         this.isLoading = false;
-        this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-      };
+        console.log(data);
+      }),
+        (error: Error) => {
+          console.log(error.name + ' -> ' + error.message)
+          this.isLoading = false;
+          this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        };
+    }
+
 
 
 
