@@ -88,8 +88,7 @@ export class PositionComponent implements OnInit {
     });
   }
 
-  public updatePosition(checked: boolean, pos: Position, event) {
-    console.log(event)
+  public updatePosition(checked: boolean, pos: Position) {
     pos.valid = checked;
     this.positionService.editPosition(pos).subscribe(_res => {
       this.showFinishButton.emit(true);
