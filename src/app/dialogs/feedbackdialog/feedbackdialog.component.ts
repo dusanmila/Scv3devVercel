@@ -56,20 +56,26 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-  this.getExif();
+  this.adjustImage();
 
   }
 
-  async getExif(){
+  async adjustImage(){
 
    const img = document.getElementById('fbphoto') as HTMLImageElement;
+
+
 
     window.exifr.parse(img!).then((exif) => {if (exif.Orientation == 6) {
 
       img.classList.add('rotate');
 
     }})
-
+    if(this.data.isImgHorizontal){
+      img.classList.add('horizontal');
+    }else if(!this.data.isImgHorizontal){
+      img.classList.add('vertical');
+    }
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
       window.exifr.parse(imgres!).then((exif) => {if (exif.Orientation == 6) {
