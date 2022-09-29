@@ -69,11 +69,12 @@ export class ChooseObjectComponent implements OnInit {
     this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
       if (data) {
         let newObjectName = data.object.objectName;
+        let newObjectIdCompany = data.object.objectIdCompany;
         const dialogRef = this.dialog.open(UnfinishedObjectStoreCheckDialogComponent, { data: newObjectName });
         dialogRef.afterClosed()
           .subscribe(res => {
             if (res) {
-              this.router.navigate(['/storeCheckPage', 'addStoreCheck', newObjectName]);
+              this.router.navigate(['/storeCheckPage', 'addStoreCheck', newObjectIdCompany]);
             } else {
               this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username);
               this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {

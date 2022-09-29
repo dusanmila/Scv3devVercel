@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { AreaChartStackedComponent } from '@swimlane/ngx-charts';
 import { Guid } from 'guid-typescript';
 import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
 import { Position } from 'src/app/models/position';
@@ -87,7 +88,8 @@ export class PositionComponent implements OnInit {
     });
   }
 
-  public updatePosition(checked: boolean, pos: Position) {
+  public updatePosition(checked: boolean, pos: Position, event) {
+    console.log(event)
     pos.valid = checked;
     this.positionService.editPosition(pos).subscribe(_res => {
       this.showFinishButton.emit(true);
