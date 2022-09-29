@@ -18,7 +18,7 @@
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <mat-checkbox color="primary" (click)="updatePosition(cb.checked, row, $event); $event.stopPropagation();" #cb
+        <mat-checkbox color="primary" (change)="updatePosition(cb.checked, row);" (click)="$event.stopPropagation()" #cb
           [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>
 
         <button mat-icon-button color="primary"
