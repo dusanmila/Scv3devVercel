@@ -2,45 +2,48 @@
   margin: 0 20px;
 }
 
-h1{
-    color: blue;
-    text-align: center;
-    margin-top: 40px;
+h1 {
+  color: blue;
+  text-align: center;
+  margin-top: 40px;
 }
-#editBtn{
-    margin: 20px;
+
+#editBtn {
+  margin: 20px;
 }
-.font{
+
+.font {
   font-family: sans-serif;
 }
+
 .button {
-    color: white;
-    background-color: blue;
-    padding: 4px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 2px;
-  }
+  color: white;
+  background-color: blue;
+  padding: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 2px;
+}
 
-  ul.links {
-    padding-bottom: 10px;
-  }
+ul.links {
+  padding-bottom: 10px;
+}
 
-  .table-row {
-    height: 30px !important;
-  }
+.table-row {
+  height: 30px !important;
+}
 
-  .heading{
-    color:gray;
-    text-align: center;
-  }
+.heading {
+  color: gray;
+  text-align: center;
+}
 
-.item2{
+.item2 {
   background-color: white;
   color: #39ace7;
   width: 145px;
@@ -51,15 +54,15 @@ h1{
   font-size: 80%;
   border: 2px solid #39ace7;
   cursor: pointer;
-  margin:  auto;
+  margin: auto;
   position: relative;
   bottom: 0;
   margin-bottom: 4%;
   margin-top: 5%;
 }
 
-.item1{
-    background-color: white;
+.item1 {
+  background-color: white;
   color: #39ace7;
   width: 140px;
   height: 50px;
@@ -82,39 +85,40 @@ h1{
   transition: 0.3s;
 }
 
-.btn, a {
+.btn,
+a {
   text-decoration: none;
 }
 
 
 
-.browseFile{
+.browseFile {
   color: white;
   width: 100px;
   height: 20px;
   border-radius: 21.5px;
   background-color: #56baed;
   padding: 8px 16px;
-  margin:40%;
+  margin: 40%;
 }
 
-.browseFile:hover{
+.browseFile:hover {
   color: white;
   width: 100px;
   height: 20px;
   border-radius: 21.5px;
   padding: 8px 16px;
-  background-color:gray;
+  background-color: gray;
 }
 
-.mat-spinner-color::ng-deep circle{
+.mat-spinner-color::ng-deep circle {
   stroke: #56baed !important;
-  }
+}
 
-  .noDataMessage{
-    background-color: white;
-    color:#56baed;
-   }
+.noDataMessage {
+  background-color: white;
+  color: #56baed;
+}
 
 
 
@@ -178,4 +182,8 @@ h1{
   margin: 20px;
   font-size: 15px;
   padding: 5px;
+}
+
+.column-name {
+  font-size: 16px;
 }

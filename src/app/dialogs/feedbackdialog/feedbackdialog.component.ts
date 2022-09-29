@@ -25,7 +25,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public resolveFeedbacks: boolean;
   public form: FormGroup;
   public imageUploaded: boolean = false;
-  public feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "", text: "",textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "", isImgHorizontal:false, totalCount: 0, usernameResolve: "" };
+  public feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "", text: "", textResolve: "", date: "", resolved: false, img: "", username: "", imgResolve: "", isImgHorizontal: false, totalCount: 0, usernameResolve: "" };
   public changed: boolean = false;
   isLoading = false;
   submitClicked = false;
@@ -50,7 +50,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   ngOnInit(): void {
 
-    this.dialogRef.updateSize('100%','60%');
+    this.dialogRef.updateSize('100%', '60%');
   }
 
 
@@ -62,13 +62,13 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   async adjustImage(){
 
-   const img = document.getElementById('fbphoto') as HTMLImageElement;
+    const img = document.getElementById('fbphoto') as HTMLImageElement;
 
 
 
     window.exifr.parse(img!).then((exif) => {if (exif.Orientation == 6) {
 
-      img.classList.add('rotate');
+        img.classList.add('rotate');
 
     }})
     if(this.data.isImgHorizontal){
@@ -78,12 +78,14 @@ export class FeedbackDialogComponent implements AfterViewInit {
     }
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
-      window.exifr.parse(imgres!).then((exif) => {if (exif.Orientation == 6) {
+      window.exifr.parse(imgres!).then((exif) => {
+        if (exif.Orientation == 6) {
 
-        imgres.classList.add('rotate');
+          imgres.classList.add('rotate');
 
-      }})
-     }
+        }
+      })
+    }
 
 
   }
@@ -104,6 +106,24 @@ export class FeedbackDialogComponent implements AfterViewInit {
     });
   }
 
+  public delete(): void {
+    this.isLoading = true;
+    this.feedbackService.deleteFeedback(this.data.img).subscribe({
+      next: () => {
+        this.snackBar.open('Feedback deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.changed = true;
+        this.close();
+        this.isLoading = false;
+      },
+      error: (err: Error) => {
+        console.log(err.name + ' -> ' + err.message)
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.close();
+        this.isLoading = false;
+      }
+    });
+  }
+
   public close(): void {
     this.dialogRef.close(this.changed);
   }
@@ -118,7 +138,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   }
 
   submitForm() {
-    if(this.imageUploaded){
+    if (this.imageUploaded) {
       this.submitClicked = true;
       this.isLoading = true;
       const formData: any = new FormData();

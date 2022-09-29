@@ -74,44 +74,45 @@ th {
 
 .btn-finish:hover {
 
-    background-color: #fff;
-    color: #39ace7;
-    transition: 0.3s;
+  background-color: #fff;
+  color: #39ace7;
+  transition: 0.3s;
 }
 
-.item2{
-    background-color: white;
-    color: #39ace7;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 80%;
-    border: 2px solid #39ace7;
-    cursor: pointer;
-    margin: 0 auto;
-    position: relative;
-    margin-bottom: 5%;
-    margin-top: 10%;
-    right: 0%;
+.item2 {
+  background-color: white;
+  color: #39ace7;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 80%;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: 5%;
+  margin-top: 10%;
+  right: 0%;
 
 }
-.item3{
-    background-color: white;
-    color: #39ace7;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 80%;
-    border: 2px solid #39ace7;
-    cursor: pointer;
-    margin: 0 auto;
-    position: relative;
-    right: 0%;
-    margin-top: 20%;
+
+.item3 {
+  background-color: white;
+  color: #39ace7;
+  width: 150px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 80%;
+  border: 2px solid #39ace7;
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+  right: 0%;
+  margin-top: 20%;
 
 
 }
@@ -243,7 +244,7 @@ a {
 }
 
 .btn-group {
-  margin-top: 40px;
+  margin-top: 0px;
 }
 
 .mat-btn {
