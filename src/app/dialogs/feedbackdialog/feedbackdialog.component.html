@@ -6,7 +6,7 @@
     <div class="form fb-img">
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}" id="fbphoto" alt="SC photo"
-        width="250" height="250" #fbimg />
+        width="250" height="250" #fbphoto />
 
     </div>
 
@@ -33,19 +33,14 @@
 
 
 
-    <div class="form fb-img" *ngIf="data.imgResolve && data.isImgHorizontal">
+    <div class="form fb-img" *ngIf="data.imgResolve">
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.imgResolve}}" alt="SC photo"
-        width="250" height="200" />
+        width="250" height="200" id="fbphotoresolve"/>
 
     </div>
 
-    <div class="form fb-img" *ngIf="data.imgResolve && !data.isImgHorizontal">
 
-      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.imgResolve}}" alt="SC photo"
-        width="200" height="250" />
-
-    </div>
 
     <div class="form" *ngIf="data.imgResolve">
       <mat-form-field>
@@ -94,7 +89,7 @@
       </button>
 
       <button mat-button class="item2" *ngIf="resolveFeedbacks" type="submit" (click)="submitForm()"
-      [disabled]="!isLoading">Resolve</button>
+      [disabled]="isLoading">Resolve</button>
       <button mat-button class="item2" (click)="close()">Close</button>
       <div *ngIf="isLoading"
       style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
