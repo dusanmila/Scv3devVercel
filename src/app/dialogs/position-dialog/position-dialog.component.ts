@@ -4,7 +4,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Position } from 'src/app/models/position';
 import { PositionClass } from 'src/app/models/positionClass';
 import { PositionType } from 'src/app/models/positionType';
+import { ProductCategory } from 'src/app/models/productCategory';
 import { PositionService } from 'src/app/Services/position-service.service';
+import { ProductCategoryService } from 'src/app/Services/product-category.service';
 
 @Component({
   selector: 'app-position-dialog',
@@ -17,16 +19,22 @@ export class PositionDialogComponent implements OnInit {
   public objectIdCompany: string;
   public positionClasses: PositionClass[];
   public positionTypes: PositionType[];
+  public productCategories: ProductCategory[];
   public changed: boolean = false;
+  public suppliers = ['Frikom', 'Other'];
+  public locations = ['Magacin', 'Prodajni prostor'];
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PositionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Position,
-    public positionService: PositionService) { }
+    public positionService: PositionService,
+    public productCategoryService: ProductCategoryService) { }
 
   ngOnInit(): void {
+    console.log(this.data)
     this.loadPositionClasses();
     this.loadPositionTypes();
+    this.loadProductCategories();
   }
 
   public loadPositionClasses() {
@@ -38,6 +46,12 @@ export class PositionDialogComponent implements OnInit {
   public loadPositionTypes() {
     this.positionService.getPositionTypes().subscribe(data => {
       this.positionTypes = data;
+    });
+  }
+
+  public loadProductCategories() {
+    this.productCategoryService.getProductCategories().subscribe(data => {
+      this.productCategories = data;
     });
   }
 

@@ -21,20 +21,21 @@
         <mat-checkbox color="primary" (change)="updatePosition(cb.checked, row)" #cb [disabled]="resolveFeedbacks"
           [(ngModel)]="row.valid"></mat-checkbox>
 
-        <button mat-icon-button color="primary" (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid)" style="margin-left:30%">
+        <button mat-icon-button color="primary"
+          (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location); $event.stopPropagation();"
+          style="margin-left:30%">
           <mat-icon area-label="Delete"> delete </mat-icon>
         </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
+      (click)="openDialog(3, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location)">
+    </mat-row>
   </mat-table>
-  <div *ngIf="isLoading"
-  style="display: flex; justify-content: center; align-items: center; background: white;">
- <mat-progress-spinner
- class="mat-spinner-color"
-   mode="indeterminate">
- </mat-progress-spinner>
-</div>
-<mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No positions</mat-toolbar>
+  <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+    <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
+  <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No positions</mat-toolbar>
 </div>
