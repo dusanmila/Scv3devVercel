@@ -3,11 +3,11 @@
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
     <ng-container matColumnDef="posClassName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Class</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="column-name">Class</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.posClassName}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="posTypeName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="column-name">Type</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.posTypeName}}</mat-cell>
     </ng-container>
 
@@ -18,8 +18,8 @@
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <mat-checkbox color="primary" (change)="updatePosition(cb.checked, row)" #cb [disabled]="resolveFeedbacks"
-          [(ngModel)]="row.valid"></mat-checkbox>
+        <mat-checkbox color="primary" (click)="updatePosition(cb.checked, row, $event); $event.stopPropagation();" #cb
+          [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>
 
         <button mat-icon-button color="primary"
           (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location); $event.stopPropagation();"

@@ -27,12 +27,12 @@
   border-radius: 2px;
 }
 
-.noDataMessage{
+.noDataMessage {
   background-color: white;
-  color:#56baed;
- }
+  color: #56baed;
+}
 
- .header {
+.header {
   text-align: center;
   height: 80px;
   background-color: #56baed;
@@ -131,6 +131,7 @@ mat-header-cell:nth-child(5) {
     transform: none;
   }
 }
+
 @-webkit-keyframes fadeIn {
   from {
     opacity: 0;
@@ -313,4 +314,8 @@ mat-header-cell:nth-child(5) {
   margin: 20px;
   font-size: 15px;
   padding: 5px;
+}
+
+.column-name {
+  font-size: 16px;
 }
