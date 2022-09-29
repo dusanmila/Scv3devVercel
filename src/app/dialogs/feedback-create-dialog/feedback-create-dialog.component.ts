@@ -65,27 +65,32 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
   submitForm() {
     this.submitClicked=true;
-    this.isLoading=true;
-    let username = localStorage.getItem("username") as string;
-    const formData: any = new FormData();
-    formData.append('file', this.form.get('file')!.value);
-    formData.append('feedbackCategoryName', this.feedback.feedbackCategoryName);
-    formData.append('productCategoryName', this.feedback.productCategoryName);
-    formData.append('username', username);
-    formData.append('text', this.feedback.text);
-    this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
-      this.changed = true;
-      this.isLoading = false;
-      console.log(data);
-      this.snackBar.open('Feedback added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+    if(this.imageUploaded){
+      this.isLoading=true;
+      let username = localStorage.getItem("username") as string;
+      const formData: any = new FormData();
+      formData.append('file', this.form.get('file')!.value);
+      formData.append('feedbackCategoryName', this.feedback.feedbackCategoryName);
+      formData.append('productCategoryName', this.feedback.productCategoryName);
+      formData.append('username', username);
+      formData.append('text', this.feedback.text);
+      this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
+        this.changed = true;
+        this.isLoading = false;
+        console.log(data);
+        this.snackBar.open('Feedback added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
 
-      this.close();
-    }),
-    (error:Error) => {
-      console.log(error.name + ' -> ' + error.message)
-      this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-    };
+        this.close();
+      }),
+      (error:Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      };
+    }
+
   }
+
+
 
   public close(): void {
     this.dialogRef.close(this.changed);

@@ -6,7 +6,7 @@
     <div class="form fb-img">
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}" id="fbphoto" alt="SC photo"
-        width="250" height="250" #fbimg />
+        width="250" height="250" #fbphoto />
 
     </div>
 
@@ -36,9 +36,11 @@
     <div class="form fb-img" *ngIf="data.imgResolve">
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.imgResolve}}" alt="SC photo"
-        width="250" height="250" />
+        width="250" height="200" id="fbphotoresolve"/>
 
     </div>
+
+
 
     <div class="form" *ngIf="data.imgResolve">
       <mat-form-field>
@@ -79,20 +81,21 @@
       <p style="color:red">Photo must be uploaded.</p>
     </div>
 
-    
+
 
     <div mat-dialog-actions>
       <button mat-icon-button color="primary" *ngIf="data.img=='' || data.img=='NULL' " (click)="openInfo()">
         <mat-icon> warning </mat-icon>
       </button>
+
+      <button mat-button class="item2" *ngIf="resolveFeedbacks" type="submit" (click)="submitForm()"
+      [disabled]="isLoading">Resolve</button>
+      <button mat-button class="item2" (click)="close()">Close</button>
       <div *ngIf="isLoading"
       style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
       <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
       </mat-progress-spinner>
     </div>
-      <button mat-button class="item2" *ngIf="resolveFeedbacks" type="submit" (click)="submitForm()"
-        [disabled]="!imageUploaded && !isLoading">Resolve</button>
-      <button mat-button class="item2" (click)="close()">Close</button>
 
     </div>
   </form>

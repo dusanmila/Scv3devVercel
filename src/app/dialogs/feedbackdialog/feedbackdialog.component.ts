@@ -7,6 +7,8 @@ import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/Services/feedback.service';
 import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.component';
 
+import * as exifr from 'exifr'
+
 
 
 let EXIF: any;
@@ -26,7 +28,6 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "", text: "",textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "", isImgHorizontal:false, totalCount: 0, usernameResolve: "" };
   public changed: boolean = false;
   isLoading = false;
-  rotate = false;
   submitClicked = false;
 
   output: string;
@@ -48,14 +49,39 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
 
   ngOnInit(): void {
-   
+
     this.dialogRef.updateSize('100%','60%');
   }
 
+
   ngAfterViewInit(): void {
-    this.getExif();
+
+  this.getExif();
 
   }
+
+  async getExif(){
+
+   const img = document.getElementById('fbphoto') as HTMLImageElement;
+
+    window.exifr.parse(img!).then((exif) => {if (exif.Orientation == 6) {
+
+      img.classList.add('rotate');
+
+    }})
+
+    if(this.data.imgResolve){
+      const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
+      window.exifr.parse(imgres!).then((exif) => {if (exif.Orientation == 6) {
+
+        imgres.classList.add('rotate');
+
+      }})
+     }
+
+
+  }
+
 
   public add(): void {
     this.isLoading = true;
@@ -86,25 +112,28 @@ export class FeedbackDialogComponent implements AfterViewInit {
   }
 
   submitForm() {
-    this.submitClicked = true;
-    this.isLoading = true;
-    const formData: any = new FormData();
-    formData.append('file', this.form.get('file')!.value);
-    formData.append('usernameResolve', localStorage.getItem("username"));
-    formData.append('img', this.data.img);
-    formData.append('textResolve', this.data.textResolve);
-    this.feedbackService.resolveFeedback(formData).subscribe(data => {
-      this.changed = true;
-      this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-      this.close();
-      this.isLoading = false;
-      console.log(data);
-    }),
-      (error: Error) => {
-        console.log(error.name + ' -> ' + error.message)
+    if(this.imageUploaded){
+      this.submitClicked = true;
+      this.isLoading = true;
+      const formData: any = new FormData();
+      formData.append('file', this.form.get('file')!.value);
+      formData.append('usernameResolve', localStorage.getItem("username"));
+      formData.append('img', this.data.img);
+      formData.append('textResolve', this.data.textResolve);
+      this.feedbackService.resolveFeedback(formData).subscribe(data => {
+        this.changed = true;
+        this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+        this.close();
         this.isLoading = false;
-        this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-      };
+        console.log(data);
+      }),
+        (error: Error) => {
+          console.log(error.name + ' -> ' + error.message)
+          this.isLoading = false;
+          this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        };
+    }
+
 
 
 
@@ -118,36 +147,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   }
 
 
-  private getExif() {
-    let allMetaData: any;
 
-    //var img=<HTMLImageElement>this.fbimg.nativeElement;
-
-    let img = document.getElementById("fbphoto");
-
-
-
-
-    setTimeout(function () {
-      EXIF.getData(img, function () {
-
-        allMetaData = EXIF.getAllTags(this);
-        if (allMetaData.Orientation == 6) {
-
-          this.rotate = true;
-
-          this.classList.add('rotate');
-
-        }
-
-      });
-    }, 2000);
-
-
-
-
-    this.output = allMetaData;
-  }
 
 
 }

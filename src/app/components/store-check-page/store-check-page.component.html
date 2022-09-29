@@ -3,11 +3,11 @@
     <div class="header fadeIn first">
         <div class="head">
 
-            <div class="flex1" >
+            <div class="flex1">
 
             </div>
 
-            <h1 *ngIf="object" class="flex2">{{object.objectName}}</h1>
+            <h2 *ngIf="object" class="flex2">{{object.objectName}}</h2>
 
             <em class="fa-solid fa-file-powerpoint fa-3x flex3" style="margin-right: 10%;margin-top: 5%;"
                 (click)="openPlanogramDialog()"></em>
@@ -15,12 +15,15 @@
         <div class="object-info-data" *ngIf="showDetails">
             <div class="object-info-slider">
                 <div class="card1">
-                    <div class="obj-info"> <u>Address:</u><strong> {{ object.address }}, {{ object.city }}</strong></div>
+                    <div class="obj-info"> <u>Address:</u><strong> {{ object.address }}, {{ object.city }}</strong>
+                    </div>
                     <div class="obj-info"> <u>Format:</u><strong> {{ object.objectFormat }}</strong></div>
                     <div class="obj-info"> <u>Retailer:</u><strong> {{ object.retailer.retailerName }}</strong></div>
-                    <div class="obj-info"> <u>Assortment module:</u><strong> {{ object.objectInfo.assortmentModule }}</strong>
+                    <div class="obj-info"> <u>Assortment module:</u><strong> {{ object.objectInfo.assortmentModule
+                            }}</strong>
                     </div>
-                    <div class="obj-info"> <u>Number of registers:</u><strong> {{ object.objectInfo.registersNumber }}</strong>
+                    <div class="obj-info"> <u>Number of registers:</u><strong> {{ object.objectInfo.registersNumber
+                            }}</strong>
                     </div>
                 </div>
                 <div class="card1">
@@ -30,7 +33,8 @@
                     <div class="obj-info"> <u>Merchandiser:</u><strong> {{ object.merchandiser}}</strong></div>
                     <div class="obj-info"> <u>Commercialist:</u><strong> {{ object.commercialist}}</strong> </div>
                     <div class="obj-info"> <u>Requisition days:</u><strong> {{ object.requisitionDays }}</strong> </div>
-                    <div class="obj-info"> <u>Merchendiser req. days:</u><strong> {{ object.merchandiserRevisionDays }}</strong>
+                    <div class="obj-info"> <u>Merchendiser req. days:</u><strong> {{ object.merchandiserRevisionDays
+                            }}</strong>
                     </div>
                 </div>
             </div>
@@ -67,10 +71,14 @@
             </div>
         </div>
 
-       
-        <h4 *ngIf="showDetails == false">Details</h4>
-        <em class="fa-solid fa-circle-chevron-down fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == false"></em>
-        <em class="fa-solid fa-circle-chevron-up fa-1x" (click)="showObjectInfos()" *ngIf="showDetails == true"></em>
+
+        <div class="details">
+            <h4 *ngIf="showDetails == false" class="detail-text">Details</h4>
+            <em class="fa-solid fa-circle-chevron-down fa-lg" (click)="showObjectInfos()"
+                *ngIf="showDetails == false"></em>
+            <em class="fa-solid fa-circle-chevron-up fa-lg" (click)="showObjectInfos()"
+                *ngIf="showDetails == true"></em>
+        </div>
     </div>
 
     <div class="main fadeIn second">
