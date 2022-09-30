@@ -9,6 +9,7 @@ export interface Feedback {
     username:string
     imgResolve: string
     isImgHorizontal:boolean
+    isImgResolveHorizontal:boolean
     totalCount: number
     usernameResolve:string
   }
