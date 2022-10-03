@@ -80,3 +80,17 @@ button {
   -ms-transform: rotate(270deg);
   transform: rotate(270deg);
 }
+
+.horizontal{
+  height: 250px;
+  width:200px;
+}
+
+.vertical{
+  height: 200px;
+  width:250px;
+}
+
+.marginbottom{
+  margin-bottom:10%;
+}

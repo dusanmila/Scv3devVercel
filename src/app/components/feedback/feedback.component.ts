@@ -32,9 +32,9 @@ export class FeedbackComponent implements OnInit {
 
   isLoading = true;
 
-  feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "",  text: "",textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "", isImgHorizontal:false, totalCount: 0, usernameResolve:""};
+  feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "",  text: "",textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "", isImgHorizontal:false, isImgResolveHorizontal:false, totalCount: 0, usernameResolve:""};
 
-  selectedFeedback: Feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "",textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "",isImgHorizontal:false, totalCount: 0, usernameResolve:"" };
+  selectedFeedback: Feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "",textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "",isImgHorizontal:false, isImgResolveHorizontal:false, totalCount: 0, usernameResolve:"" };
 
   noData = false;
 
