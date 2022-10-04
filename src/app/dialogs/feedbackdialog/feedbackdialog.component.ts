@@ -87,9 +87,9 @@ export class FeedbackDialogComponent implements AfterViewInit {
       })
 
       if(this.data.isImgResolveHorizontal){
-        img.classList.add('horizontal');
+        imgres.classList.add('horizontal');
       }else if(!this.data.isImgResolveHorizontal){
-        img.classList.add('vertical');
+        imgres.classList.add('vertical');
       }
 
     }
