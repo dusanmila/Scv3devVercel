@@ -50,7 +50,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   ngOnInit(): void {
 
-    this.dialogRef.updateSize('100%', '60%');
+    this.dialogRef.updateSize('100%', '80%');
   }
 
 
@@ -87,9 +87,9 @@ export class FeedbackDialogComponent implements AfterViewInit {
       })
 
       if(this.data.isImgResolveHorizontal){
-        img.classList.add('horizontal');
+        imgres.classList.add('horizontal');
       }else if(!this.data.isImgResolveHorizontal){
-        img.classList.add('vertical');
+        imgres.classList.add('vertical');
       }
 
     }

@@ -1,37 +1,37 @@
 <div class="parentcontainer" style="margin-bottom: 5%;">
 
-    <div class="container">
-      <h2 class="uploadHeading " style="color:#56baed;">OBJECTS</h2>
-      <input type="file" #fileDropRef (change)="uploadObjectsFile($event)" id="fileDropRef" hidden />
+  <div class="container">
+    <h3 class="uploadHeading " style="color:#56baed;">Objects</h3>
+    <input type="file" #objectFileDropRef (change)="uploadObjectsFile($event)" id="objectFileDropRef" hidden />
 
 
-      <h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>
+    <h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>
 
-      <label class="label" for="fileDropRef" class="browseButton">Browse</label>
+    <label for="objectFileDropRef" class="browseButton">Browse</label>
 
-      <div *ngIf="isObjLoading"
-        style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
-        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
-        </mat-progress-spinner>
-      </div>
+    <div *ngIf="isObjLoading"
+      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+      </mat-progress-spinner>
     </div>
-
-
-
-
-    <div class="container">
-      <h2 class="uploadHeading " style="color:#56baed;">POSITIONS</h2>
-      <input type="file" #fileDropRef (change)="uploadPositionsFile($event)" id="fileDropRef" hidden />
-
-
-      <h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>
-
-      <label class="browseButton" for="fileDropRef">Browse</label>
-      <div *ngIf="isPosLoading"
-        style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
-        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
-        </mat-progress-spinner>
-      </div>
-    </div>
-
   </div>
+
+
+
+
+  <div class="container">
+    <h3 class="uploadHeading " style="color:#56baed;">Positions</h3>
+    <input type="file" #positionFileDropRef (change)="uploadPositionsFile($event)" id="positionFileDropRef" hidden />
+
+
+    <h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>
+
+    <label class="browseButton" for="positionFileDropRef">Browse</label>
+    <div *ngIf="isPosLoading"
+      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+      </mat-progress-spinner>
+    </div>
+  </div>
+
+</div>
