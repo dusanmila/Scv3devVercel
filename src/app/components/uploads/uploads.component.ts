@@ -9,7 +9,7 @@ import { PositionService } from 'src/app/Services/position-service.service';
   styleUrls: ['./uploads.component.css']
 })
 export class UploadsComponent implements OnInit {
-  
+
   objectsFile: any;
   positionsFile: any;
   isObjLoading = false;
@@ -24,14 +24,13 @@ export class UploadsComponent implements OnInit {
 
 
   uploadObjectsFile(event: any) {
-    this.isObjLoading=true;
+    this.isObjLoading = true;
     this.objectsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.objectsFile);
-
     this.objectService.excelImport(formData).subscribe(data => {
-      this.isObjLoading=false;
+      this.isObjLoading = false;
       this.snackBar.open("Objects added.", "Close", {
         duration: 2500,
         panelClass: ['blue-snackbar']
@@ -40,19 +39,23 @@ export class UploadsComponent implements OnInit {
   }
 
   uploadPositionsFile(event: any) {
-    this.isPosLoading=true;
+    this.isPosLoading = true;
     this.positionsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.positionsFile);
 
     this.positionService.excelImport(formData).subscribe(data => {
-      this.isPosLoading=false;
+      this.isPosLoading = false;
       this.snackBar.open("Secondary positions added.", "Close", {
         duration: 2500,
         panelClass: ['blue-snackbar']
       });
     });
+  }
+
+  clickObj() {
+    console.log('objekti klik')
   }
 
 }
