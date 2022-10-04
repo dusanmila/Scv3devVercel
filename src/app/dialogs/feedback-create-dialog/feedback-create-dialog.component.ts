@@ -42,7 +42,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
-    this.dialogRef.updateSize('100%','50%');
+    this.dialogRef.updateSize('100%','60%');
   }
 
   public loadCategories() {
