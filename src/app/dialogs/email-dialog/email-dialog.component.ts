@@ -46,17 +46,17 @@ export class EmailDialogComponent implements OnInit {
     let username = localStorage.getItem("username") as string;
     if (this.sendToCreator) {
       let email = localStorage.getItem("email") as string;
-      // let email = "stefanradulovic58@gmail.com";
       this.emailsForSending.storeCheckCreatorEmail = email;
     }
     // koristimo za slanje celog store checka
     if (this.flag == 1) {
       this.isLoading=true;
       this.sotreCheckService.finishStoreCheck(username, this.emailsForSending).subscribe(data => {
-        console.log(data);
+       
         this.isLoading=false;
         this.snackBar.open("Store check successfully sent.", "Close", {
-          duration: 3000
+          duration: 2500,
+          panelClass: ['blue-snackbar']
         });
       });
       this.close();
@@ -69,7 +69,7 @@ export class EmailDialogComponent implements OnInit {
         if (data) {
 
           this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
-            console.log(data);
+           
             this.isLoading=false;
           });
           this.dialogRef.close(2);

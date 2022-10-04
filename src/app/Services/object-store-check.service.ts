@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { ObjectStoreCheck, ObjectStoreCheckCreateDto } from '../models/objectStoreCheck';
 import { STORE_CHECK_URL } from '../app.constants';
-import { EmailsForSending } from '../models/emailsForSending';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class ObjectStoreCheckService {
     });
     return retval$.asObservable();
   }
-  
+
   public createObjectStoreCheck(osc: ObjectStoreCheckCreateDto) {
     let retval$ = new Subject<ObjectStoreCheck>();
     this.http.post<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks`, osc,{headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
@@ -32,7 +31,7 @@ export class ObjectStoreCheckService {
 
   public finishObjectStoreCheck(username: string) {
     let retval$ = new Subject<ObjectStoreCheck>();
-    // this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {},{headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
+
     this.http.put<ObjectStoreCheck>(`${STORE_CHECK_URL}/objectStoreChecks/ObjectStoreCheckPdfByUsername/${username}`, {}, {headers:this.headers}).subscribe((helper: ObjectStoreCheck) => {
       retval$.next(helper);
     });

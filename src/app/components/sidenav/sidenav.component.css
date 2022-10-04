@@ -1,0 +1,43 @@
+.header {
+    background-color: #56baed;
+    position: fixed;
+    z-index: 2;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.logout-btn {
+    border-color: #fff;
+    border-width: 2px;
+}
+
+.sidenav-container {
+    position: relative;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav {
+    width: 250px;
+    max-width: 100%;
+    position: fixed;
+    top: 60px;
+}
+
+.sidenav-content {
+    padding: 30px 0;
+}
+
+.nav-list-item {
+    color: #56baed;
+}
+
+.nav-icon {
+    margin-right: 20px;
+    color: #56baed;
+}
+

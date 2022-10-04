@@ -22,19 +22,18 @@ export class ObjectCreateDialogComponent implements OnInit {
   public users: User[] = [];
   public retailers: Retailer[] = [];
 
-  objectInfo:ObjectInfo;
-  object:Obj;
+  objectInfo: ObjectInfo;
+  object: Obj;
 
-  constructor(public snackBar:MatSnackBar, public dialogRef:MatDialogRef<ObjectCreateDialogComponent>, @Inject (MAT_DIALOG_DATA) public data: ObjectCreateDto, public objectService: ObjectService, public userService: UserService) { }
+  constructor(public snackBar: MatSnackBar, public dialogRef: MatDialogRef<ObjectCreateDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: ObjectCreateDto, public objectService: ObjectService, public userService: UserService) { }
 
   ngOnInit(): void {
-    // this.dialogRef.updateSize('40%');
     this.loadUsers();
     this.loadRetailers();
   }
 
   public loadUsers() {
-    this.userService.getUsers().subscribe(data => {
+    this.userService.getUsers(0, 0, '').subscribe(data => {
       this.users = data;
     });
   }
@@ -45,44 +44,25 @@ export class ObjectCreateDialogComponent implements OnInit {
     });
   }
 
-public add(): void{
+  public add(): void {
 
-  this.objectService.createObject(this.data)
-  .subscribe(() =>{
-    this.snackBar.open('Object successfully added', 'Ok', { duration: 2500 });
-  } ),
-  (error:Error) => {
-    console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured ', 'Close', { duration: 2500 });
+    this.objectService.createObject(this.data)
+      .subscribe(() => {
+        this.snackBar.open('Object successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occured ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
   }
-}
 
-/*
-public update(): void{
-  this.objectService.updateObject(this.data)
-  .subscribe(data => {
-    this.snackBar.open('Updated object: ' + this.data.objectName, 'OK', { duration: 2500 });
-  }),
-  (error:Error) => {
-    console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occured, try again later. ', 'Close', { duration: 2500 });
+
+
+
+
+  public close(): void {
+    this.dialogRef.close();
   }
-}*/
-
-public delete(): void{
- /* this.objectService.deleteObject(this.data)
-  .subscribe(data => {
-    this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500 });
-  }),
-  (error:Error) => {
-    console.log(error.name + ' -> ' + error.message)
-    this.snackBar.open('An error occurred. ', 'Close', { duration: 2500 });
-  }*/
-}
-
-public close(): void{
-this.dialogRef.close();
-}
 
 }
 

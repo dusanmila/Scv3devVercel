@@ -1,0 +1,5 @@
+<div #containerRef class="card-body">
+    <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
+        [results]="result" [cardColor]="cardColor" [textColor]="textColor" (select)="onSelect($event)">
+    </ngx-charts-number-card>
+</div>

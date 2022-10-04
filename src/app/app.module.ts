@@ -25,8 +25,9 @@ import { ChooseObjectComponent } from './components/choose-object/choose-object.
 import { UserDialogComponent } from './dialogs/userdialog/userdialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
@@ -41,6 +42,7 @@ import { StoreCheckPageComponent } from './components/store-check-page/store-che
 import { ObjectDialogComponent } from './dialogs/objectdialog/objectdialog.component';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatListModule } from '@angular/material/list';
 import { FeedbackDialogComponent } from './dialogs/feedbackdialog/feedbackdialog.component';
 import { RetailerDialogComponent } from './dialogs/retailerdialog/retailerdialogcomponent';
 import { RetailerComponent } from './components/retailer/retailer.component';
@@ -59,10 +61,30 @@ import { AreYouSureDialogComponent } from './dialogs/are-you-sure-dialog/are-you
 import { UnfinishedObjectStoreCheckDialogComponent } from './dialogs/unfinished-object-store-check-dialog/unfinished-object-store-check-dialog.component';
 import { AlreadyFinishedComponent } from './dialogs/already-finished/already-finished.component';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { StoreCheckReceiverComponent } from './components/store-check-receiver/store-check-receiver.component';
 import { StoreCheckReceiverDialogComponent } from './dialogs/store-check-receiver-dialog/store-check-receiver-dialog.component';
 import { PlanogramDialogComponent } from './dialogs/planogram-dialog/planogram-dialog.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NumberCardChartComponent } from './charts/number-card-chart/number-card-chart.component';
+import { VerticalBarChartComponent } from './charts/vertical-bar-chart/vertical-bar-chart.component';
+import { AdvancedPieChartComponent } from './charts/advanced-pie-chart/advanced-pie-chart.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
+import { FeedbackCategoryDialogComponent } from './dialogs/feedback-category-dialog/feedback-category-dialog.component';
+import { ProductCategoryDialogComponent } from './dialogs/product-category-dialog/product-category-dialog.component';
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+import { PieChart2Component } from './charts/pie-chart2/pie-chart2.component';
+import { PieChart3Component } from './charts/pie-chart3/pie-chart3.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatRadioModule } from '@angular/material/radio';
+import { UploadsComponent } from './components/uploads/uploads.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +115,20 @@ import { PlanogramDialogComponent } from './dialogs/planogram-dialog/planogram-d
     AlreadyFinishedComponent,
     StoreCheckReceiverComponent,
     StoreCheckReceiverDialogComponent,
-    PlanogramDialogComponent
+    PlanogramDialogComponent,
+    DashboardComponent,
+    NumberCardChartComponent,
+    VerticalBarChartComponent,
+    AdvancedPieChartComponent,
+    SidenavComponent,
+    FeedbackCategoryComponent,
+    FeedbackCategoryDialogComponent,
+    ProductCategoryDialogComponent,
+    ProductCategoryComponent,
+    PieChartComponent,
+    PieChart2Component,
+    PieChart3Component,
+    UploadsComponent
 
   ],
   imports: [
@@ -115,7 +150,16 @@ import { PlanogramDialogComponent } from './dialogs/planogram-dialog/planogram-d
     MatButtonModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    NgxChartsModule,
+    MatCardModule,
+    MatGridListModule,
+    MatButtonToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule
 
   ],
   providers: [DatePipe],

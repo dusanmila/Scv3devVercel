@@ -26,7 +26,7 @@ export class RetailerDialogComponent implements OnInit {
     });
   }
   retailer: Retailer = { retailerName: "", planogramPdf: "", totalCount: 0 };
-  // retailers: Retailer[];
+
   public flag: number;
   retailerName: string;
   public changed: boolean = false;
@@ -35,11 +35,7 @@ export class RetailerDialogComponent implements OnInit {
   ngOnInit(): void {
     this.retailer.retailerName = this.data.retailerName;
     this.retailer.planogramPdf = this.data.planogramPdf;
-    // this.objectService.getRetailers()
-    //   .subscribe((data) => {
-    //     this.retailers = data;
 
-    //   })
   }
   public close() {
     this.dialogRef.close(this.changed);
@@ -59,17 +55,16 @@ export class RetailerDialogComponent implements OnInit {
       this.selectedFiles.forEach((f) => formData.append('files', f));
       formData.append('retailerName', this.data.retailerName);
 
-      //formData.append('file', this.tableForm.get('file')!.value);
       this.isLoading=true;
       this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
-          console.log(data);
+
           this.changed = true;
           this.isLoading=false;
           this.close();
         },
         error: (err) => {
-          console.log(err);
+
           this.isLoading=false;
           this.close();
         }
@@ -81,12 +76,12 @@ export class RetailerDialogComponent implements OnInit {
         this.objectService
           .createRetailer(this.retailer).subscribe(() => {
             this.changed = true;
-            this.snackBar.open('Retailer created', 'Ok', { duration: 2500 });
+            this.snackBar.open('Retailer created', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
             this.close();
           }),
           (error:Error) => {
             console.log(error.name + ' -> ' + error.message)
-            this.snackBar.open('An error occured', 'Close', { duration: 2500 });
+            this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
             this.close();
           };
       }
@@ -99,6 +94,7 @@ export class RetailerDialogComponent implements OnInit {
   }
 
   uploadFile(event: any) {
+    this.isLoading=true;
     this.selectedFiles = [];
     if (event.target.files.length === 0) {
       return;
@@ -109,16 +105,10 @@ export class RetailerDialogComponent implements OnInit {
       console.log(file)
       this.selectedFiles.push(file);
     });
-    // for (let i = 0; i < files.length; i++) {
-    //   this.selectedFiles.push(files[i]);
-    // }
-    //ovo ispod je bilo iznad treba za vise njih ali ima error neki za null ne moze u FileList
-/*
-    const file = (event.target as HTMLInputElement).files![0];
-    this.tableForm.patchValue({
-      file: file,
-    });
-    this.tableForm.get('file')!.updateValueAndValidity();*/
+
+    this.isLoading=false;
+
+
   }
 
   openInput() {
@@ -130,12 +120,12 @@ export class RetailerDialogComponent implements OnInit {
     this.objectService.deleteRetailer(this.data)
       .subscribe(() => {
         this.changed = true;
-        this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500 });
+        this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }),
       (error: Error) => {
         console.log(error.name + ' -> ' + error.message)
-        this.snackBar.open('An error occurred ', 'Close', { duration: 2500 });
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }
   }

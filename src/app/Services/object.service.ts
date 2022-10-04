@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { saveAs } from 'file-saver';
 import { Retailer } from '../models/retailer';
 import { Obj, ObjectCreateDto } from '../models/object';
 import { OBJECT_URL } from '../app.constants';
@@ -14,14 +13,7 @@ export class ObjectService {
 
   constructor(private http: HttpClient) { }
   private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
-  // private readonly address = "http://localhost:8083/object/objects";
-  private readonly address = "http://localhost:8089/api/objects";
-  // private readonly excelAddress = "http://localhost:8089/api/objectExcels";
-  // private readonly retailerAddress = "http://localhost:8089/api/retailers";
 
-  // private readonly address = "https://microserviceobject.azurewebsites.net/api/objects";
-  private readonly excelAddress = "https://microserviceobject.azurewebsites.net/api/objectExcels";
-  private readonly retailerAddress = "https://microserviceobject.azurewebsites.net/api/retailers";
 
 
   pdfToDownload:Blob;
@@ -192,9 +184,8 @@ export class ObjectService {
 
   public downloadRetailerPlanogram(planogramPdf: string) {
      this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      const fileName = planogramPdf;
       this.pdfToDownload=pdf;
-     // saveAs(pdf, fileName);
+
     });
 
     return this.pdfToDownload;
@@ -209,13 +200,9 @@ export class ObjectService {
   }
 
   public getPlanogram(planogramPdf: string) {
-   /* return this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      const blob = new Blob([pdf], { type: 'application/pdf' });
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
-    });*/
+
     const url = "https://storagestorecheck.blob.core.windows.net/storecheck/"+planogramPdf;
-    window.location.href="http://docs.google.com/gview?embedded=true&url="+url;
+    window.location.href="https://docs.google.com/gview?embedded=true&url="+url;
   }
 
   public deletePlanogram(planogramPdf: string) {

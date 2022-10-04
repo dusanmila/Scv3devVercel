@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
@@ -32,6 +32,8 @@ export class ObjectComponent implements OnInit {
 
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
+  @Input() public isDashboard: boolean = false;
+  @Output() public selectedObject = new EventEmitter<string>();
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
@@ -68,8 +70,8 @@ export class ObjectComponent implements OnInit {
     address: "string",
     kam: "string",
     director: "string",
-    supervisor:"string",
-    commercialist:"string",
+    supervisor: "string",
+    commercialist: "string",
     merchandiser: "string",
     requisitionDays: "",
     merchandiserRevisionDays: "string",
@@ -128,31 +130,36 @@ export class ObjectComponent implements OnInit {
     public router: Router,
     public activatedRoute: ActivatedRoute,
     public objectStoreCheckService: ObjectStoreCheckService) { }
-    noData=false;
+  noData = false;
 
   ngOnInit(): void {
+    if (this.isDashboard)
+      this.count = 2;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
     if (this.workModel == "addStoreCheck") {
       this.resolveFeedbacks = false;
     } else if (this.workModel == "resolveFeedbacks") {
       this.resolveFeedbacks = true;
     }
-
-
+    if (this.isDashboard) {
+      this.displayedColumns.splice(1, 2);
+    }
+    if (this.isDashboard) {
+      this.loadData(false);
+    }
   }
 
   public loadData(pageChanged: boolean) {
     if (!pageChanged)
       this.page = 1;
-    this.isLoading=true;
-    this.noData=false;
+    this.isLoading = true;
+    this.noData = false;
     this.objectService.getObjects(this.page, this.count, this.address, this.objectName, this.idCompany, this.retailer, this.city, this.format).subscribe(data => {
       if (data) {
         this.length = data[0].totalCount;
         this.dataSource = new MatTableDataSource(data);
-        console.log(data)
       } else {
-        this.noData=true;
+        this.noData = true;
         this.length = 0;
         this.dataSource = new MatTableDataSource(this.objectArray);
 
@@ -167,44 +174,17 @@ export class ObjectComponent implements OnInit {
     this.loadData(true);
   }
 
-  public selectObject(object: Obj) {
-    this.object = object;
-    this.objectService.getOneObject(this.object).subscribe(data => {
-      console.log(data);
-    });
-  }
-
-
-  public updateObject() {
-    this.objectCreateDto.objectIdRetail = this.object.objectIdRetail;
-    this.objectCreateDto.retailer = this.object.retailer.retailerName;
-    this.objectCreateDto.objectIdCompany = this.object.objectIdCompany;
-    this.objectCreateDto.objectFormat = this.object.objectFormat;
-    this.objectCreateDto.objectName = this.object.objectName;
-    this.objectCreateDto.city = this.object.city;
-    this.objectCreateDto.address = this.object.address;
-    this.objectCreateDto.kam = this.object.kam;
-    this.objectCreateDto.director = this.object.director;
-    this.objectCreateDto.supervisor = this.object.commercialist;
-    this.objectCreateDto.merchandiser = this.object.merchandiser;
-    this.objectCreateDto.merchandiserRevisionDays = this.object.merchandiserRevisionDays;
-    this.objectCreateDto.requisitionDays = this.object.requisitionDays;
-    this.objectCreateDto.objectInfo = this.object.objectInfo;
-    this.objectService.updateObject(this.objectCreateDto).subscribe(data => {
-      console.log(data);
-    });
-  }
 
   public searchByString(): void {
     this.isLoading = true;
-    this.noData=false;
+    this.noData = false;
     this.objectService.getObjectsByStringContains(this.search).subscribe(data => {
 
-      if(data.length==0){
-      this.noData=true;
-      this.dataSource=new MatTableDataSource<Obj>(data);;
+      if (data.length == 0) {
+        this.noData = true;
+        this.dataSource = new MatTableDataSource<Obj>(data);
       }
-      else{
+      else {
         this.dataSource = new MatTableDataSource<Obj>(data);
 
       }
@@ -212,18 +192,18 @@ export class ObjectComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string,kam?:string,merchandiser?:string,director?:string,commercialist?:string,supervisor?:string,companyShelfSpaceM?:string,companyShelfSpacePercent?:string,gainings12Mrds?:string,gainingsVs12Mpercent?:string,registersNumber?:string,shelfSpaceM?:string,WDpercentCustomer?:string,WDpercentSector?:string,WDpercentSerbia?:string,assortmentModule?:string) {
+  public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string, kam?: string, merchandiser?: string, director?: string, commercialist?: string, supervisor?: string) {
     if (flag == 1) {
       this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
 
-    }else if(flag==4){
+    } else if (flag == 4) {
       this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
     }
     else {
 
 
 
-      const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address, city, retailer, objectFormat, requisitionDays, merchandiserRevisionDays, kam,merchandiser,director,commercialist,supervisor} });
+      const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address, city, retailer, objectFormat, requisitionDays, merchandiserRevisionDays, kam, merchandiser, director, commercialist, supervisor } });
 
       dialogRef.componentInstance.flag = flag;
 
@@ -238,7 +218,7 @@ export class ObjectComponent implements OnInit {
 
   }
 
-  public openUpdateDialog(flag:number,data: Obj) {
+  public openUpdateDialog(flag: number, data: Obj) {
     const dialogRef = this.dialog.open(ObjectDialogComponent, { data: data });
     dialogRef.componentInstance.flag = flag;
   }
@@ -296,6 +276,10 @@ export class ObjectComponent implements OnInit {
     } else {
       this.router.navigate(['/storeCheckPage', this.workModel, objectIdCompany]);
     }
+  }
+
+  public selectObject(objectName: string) {
+    this.selectedObject.emit(objectName);
   }
 
 }

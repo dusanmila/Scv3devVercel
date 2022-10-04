@@ -2,6 +2,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { AreaChartStackedComponent } from '@swimlane/ngx-charts';
 import { Guid } from 'guid-typescript';
 import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
 import { Position } from 'src/app/models/position';
@@ -20,12 +21,17 @@ export class PositionComponent implements OnInit {
   dataSource: MatTableDataSource<Position>;
 
 
-  position: Position = { secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", valid: false };
+  position: Position = {
+    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", valid: false,
+    productCategory: '',
+    supplier: '',
+    location: ''
+  };
   selectedPosition: Position;
 
 
   isLoading = true;
-noData=false;
+  noData = false;
 
   @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
@@ -42,15 +48,16 @@ noData=false;
   }
 
   public loadData() {
-    this.noData=false;
+    this.noData = false;
     if (this.objectIdCompany != null) {
       this.positionService.getPositionsByObjectIdCompany(this.objectIdCompany).subscribe(data => {
-        if(data){
+        console.log(data);
+        if (data) {
           this.positions = data;
           this.dataSource = new MatTableDataSource(this.positions);
-        }else{
-          this.noData=true;
-          this.dataSource=data;
+        } else {
+          this.noData = true;
+          this.dataSource = data;
         }
 
         this.isLoading = false;
@@ -64,37 +71,9 @@ noData=false;
     }
   }
 
-  public uncheckPositions() {
-    this.positions.forEach(position => {
-      if (position.valid) {
-        position.valid = false;
-        this.positionService.editPosition(position).subscribe(data => {
-          console.log(data);
-        });
-      }
-    });
-  }
 
-  createPosition() {
-    this.positionService.createPosition(this.position).subscribe(data => {
-      this.positions.push(data);
 
-    });
-    this.position = { secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", valid: false };
 
-  }
-
-  selectPosition(position: Position) {
-    this.positionService.getOnePosition(position).subscribe(data => {
-      this.selectedPosition = data;
-    })
-    this.selectedPosition = position;
-
-  }
-
-  /*  editPosition(position: Position) {
-      this.positionService.editPosition(position).subscribe();
-    }*/
 
   deletePosition() {
 
@@ -104,7 +83,7 @@ noData=false;
         this.positions.splice(helper, 1);
       }
       else {
-        console.log("Error while deleting position.")
+        console.log("Error while deleting position")
       }
     });
   }
@@ -116,8 +95,8 @@ noData=false;
     });
   }
 
-  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean) {
-    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid } });
+  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string) {
+    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;
     dialogRef.afterClosed()

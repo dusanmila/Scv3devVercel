@@ -2,48 +2,50 @@
   margin: 0 20px;
 }
 
-h1{
-    color: blue;
-    text-align: center;
-    margin-top: 40px;
+h1 {
+  color: blue;
+  text-align: center;
+  margin-top: 40px;
 }
 
-.noDataMessage{
+.noDataMessage {
   background-color: white;
-  color:#56baed;
- }
-
-#editBtn{
-    margin: 20px;
+  color: #56baed;
 }
-.font{
+
+#editBtn {
+  margin: 20px;
+}
+
+.font {
   font-family: sans-serif;
 }
+
 .button {
-    color: white;
-    background-color: blue;
-    padding: 4px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 2px;
-  }
+  color: white;
+  background-color: blue;
+  padding: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 2px;
+}
 
-  ul.links {
-    padding-bottom: 10px;
-  }
+ul.links {
+  padding-bottom: 10px;
+}
 
-  .table-row {
-    height: 30px !important;
-  }
+.table-row {
+  height: 30px !important;
+}
 
-  .mat-spinner-color::ng-deep circle{
-    stroke: #56baed !important;
-    }
+.mat-spinner-color::ng-deep circle {
+  stroke: #56baed !important;
+}
 
 
 .mat-column-posClassName {
@@ -80,4 +82,8 @@ h1{
   hyphens: auto;
 
   text-align: left;
+}
+
+.column-name {
+  font-size: 16px;
 }

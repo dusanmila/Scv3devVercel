@@ -18,8 +18,8 @@
         </div>
 
 
-        <div class="fadeIn second item2"  (click)="logout()">
-           Log out
+        <div class="fadeIn second item2" (click)="logout()">
+          Log out
 
         </div>
 
@@ -50,6 +50,16 @@
   </div>
 
   <div class="fadeIn third">
+    <h2 class="heading">Feedback Categories</h2>
+    <app-feedback-category></app-feedback-category>
+  </div>
+
+  <div class="fadeIn third">
+    <h2 class="heading">Product Categories</h2>
+    <app-product-category></app-product-category>
+  </div>
+
+  <div class="fadeIn third">
     <h2 class="heading">Store Check Receivers</h2>
     <app-store-check-receiver></app-store-check-receiver>
   </div>
@@ -70,13 +80,11 @@
 
         <label for="fileDropRef" class="browseButton">Browse</label>
 
-      <div *ngIf="isObjLoading"
-      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
-     <mat-progress-spinner
-     class="mat-spinner-color"
-       mode="indeterminate" [diameter]="30">
-     </mat-progress-spinner>
-    </div>
+        <div *ngIf="isObjLoading"
+          style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+          <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+          </mat-progress-spinner>
+        </div>
       </div>
 
 
@@ -91,12 +99,10 @@
 
         <label class="browseButton" for="fileDropRef">Browse</label>
         <div *ngIf="isPosLoading"
-      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
-     <mat-progress-spinner
-     class="mat-spinner-color"
-       mode="indeterminate" [diameter]="30">
-     </mat-progress-spinner>
-    </div>
+          style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white;">
+          <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+          </mat-progress-spinner>
+        </div>
       </div>
 
     </div>

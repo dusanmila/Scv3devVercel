@@ -2,8 +2,8 @@
   <div class="centered">
     <mat-form-field>
 
-      <input type="text" matInput placeholder="Search" [(ngModel)]="search">
-      <button matSuffix mat-button class="search" (click)="searchByUsername()">
+      <input type="text" matInput placeholder="Search users" [(ngModel)]="search">
+      <button matSuffix mat-button class="search" (click)="loadData()">
         <mat-icon class="search">search</mat-icon>
       </button>
 
@@ -13,31 +13,31 @@
 
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-      <ng-container  matColumnDef="firstName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">First name</mat-header-cell>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">First name</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.firstName }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="lastName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Last name</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Last name</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.lastName }}</mat-cell>
       </ng-container>
 
 
       <ng-container matColumnDef="username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Username</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">{{ isDashboard ? "Users" : "Username" }}</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">Email</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Email</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
       </ng-container>
 
 
 
       <ng-container matColumnDef="userType">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext">User type</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">User type</mat-header-cell>
         <mat-cell *matCellDef="let row">{{ row.userType }}</mat-cell>
       </ng-container>
 
@@ -60,16 +60,15 @@
         </mat-cell>
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+      <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="selectUser(row.username)"></mat-row>
     </mat-table>
-    <div *ngIf="isLoading"
-    style="display: flex; justify-content: center; align-items: center; background: white;">
-   <mat-progress-spinner
-   class="mat-spinner-color"
-     mode="indeterminate">
-   </mat-progress-spinner>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No users</mat-toolbar>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]" [length]="length"
+    (page)="loadDataOnPageEvent($event)">
+  </mat-paginator>
   </div>
-
-  </div>
-  <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No users</mat-toolbar>
 </div>

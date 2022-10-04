@@ -44,7 +44,7 @@ export class ResolvedFeedbackComponent implements OnInit {
     this.feedbackService.getResolvedFeedbacksByObject(this.objectIdCompany, this.count, this.page).subscribe(data => {
 
       if(data){
-        console.log(data);
+       
         this.dataSource = new MatTableDataSource(data);
 
       }else{
