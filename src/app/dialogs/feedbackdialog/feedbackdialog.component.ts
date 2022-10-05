@@ -69,27 +69,38 @@ export class FeedbackDialogComponent implements AfterViewInit {
     window.exifr.parse(img!).then((exif) => {if (exif.Orientation == 6) {
 
         img.classList.add('rotate');
+        console.log(exif)
+
+
 
     }})
+
     if(this.data.isImgHorizontal){
       img.classList.add('horizontal');
-    }else if(!this.data.isImgHorizontal){
+      console.log('usao u horz')
+    }else{
       img.classList.add('vertical');
+      console.log('usao uver')
     }
+
+    console.log("is img hor" +this.data.isImgHorizontal)
+
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
       window.exifr.parse(imgres!).then((exif) => {
         if (exif.Orientation == 6) {
 
-          imgres.classList.add('rotate');
-
+        //  imgres.classList.add('rotate');
+          console.log(exif)
         }
       })
-
+      console.log("is img res hor" +this.data.isImgResolveHorizontal)
       if(this.data.isImgResolveHorizontal){
+
         imgres.classList.add('horizontal');
       }else if(!this.data.isImgResolveHorizontal){
         imgres.classList.add('vertical');
+
       }
 
     }
