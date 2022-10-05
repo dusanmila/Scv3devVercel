@@ -22,6 +22,7 @@ export class ChooseObjectComponent implements OnInit {
   public resolveFeedbacks: boolean;
   public workModel: string;
   public storeCheck: StoreCheck;
+  public showFinishStoreCheck: boolean;
 
   constructor(public objectService: ObjectService,
     public activatedRoute: ActivatedRoute,
@@ -46,7 +47,13 @@ export class ChooseObjectComponent implements OnInit {
     let username = localStorage.getItem("username") as string;
     this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
       this.storeCheck = data;
-      if (!this.storeCheck) {
+      if (data) {
+        if (data.objectStoreChecks.length > 0) {
+          this.showFinishStoreCheck = true;
+        } else {
+          this.showFinishStoreCheck = false;
+        }
+      } else {
         this.createEmptyStoreCheck();
       }
     });
@@ -57,7 +64,8 @@ export class ChooseObjectComponent implements OnInit {
     let sc: StoreCheck = {
       username: username,
       date: new Date(Date.now()),
-      finished: false
+      finished: false,
+      objectStoreChecks: []
     }
     this.storeCheckService.createStoreCheck(sc).subscribe(data => {
       console.log(data);
@@ -76,15 +84,18 @@ export class ChooseObjectComponent implements OnInit {
             if (res) {
               this.router.navigate(['/storeCheckPage', 'addStoreCheck', newObjectIdCompany]);
             } else {
-              this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username);
-              this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
-                this.storeCheck = data;
-                if (!this.storeCheck) {
-                  this.dialog.open(AlreadyFinishedComponent);
-                } else {
-                  const dialogRef = this.dialog.open(EmailDialogComponent);
-                  dialogRef.componentInstance.flag = 1;
-                }
+              this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
+                this.storeCheckService.getUnfinishedStoreCheckByUsername(username).subscribe(data => {
+                  this.storeCheck = data;
+                  if (!this.storeCheck) {
+                    this.dialog.open(AlreadyFinishedComponent);
+                  } else if (data && data.objectStoreChecks.length <= 0) {
+                    this.showFinishStoreCheck = false;
+                  } else {
+                    const dialogRef = this.dialog.open(EmailDialogComponent);
+                    dialogRef.componentInstance.flag = 1;
+                  }
+                });
               });
             }
           });
