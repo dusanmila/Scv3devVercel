@@ -29,6 +29,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public changed: boolean = false;
   isLoading = false;
   submitClicked = false;
+  isRotated=false;
 
   output: string;
   @ViewChild('fbimg') fbimg: ElementRef;
@@ -62,28 +63,54 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   async adjustImage(){
 
+
+
     const img = document.getElementById('fbphoto') as HTMLImageElement;
 
+    window.exifr.parse(img!).then((exif) => {
+
+      if (exif.Orientation == 6) {
+      this.isRotated=true;
+      }
+
+      if(this.isRotated){
+
+        if(this.data.isImgHorizontal==true){
+
+          img.setAttribute('height','250');
+          img.setAttribute('width','200');
+
+        }else{
+          console.log('usao ver')
+          img.setAttribute('height','200');
+          img.setAttribute('width','250');
 
 
-    window.exifr.parse(img!).then((exif) => {if (exif.Orientation == 6) {
+        }
+      }else{
+        console.log('uso nije rot')
+        if(this.data.isImgHorizontal==true){
+          img.setAttribute('class','horizontal');
 
-        img.classList.add('rotate');
-        console.log(exif)
+        }else{
+          img.setAttribute('class','vertical');
+
+
+        }
+      }
+
+   if(this.isRotated){
+    img.setAttribute('class','rotate');
+   }
+
+
+    })
 
 
 
-    }})
 
-    if(this.data.isImgHorizontal){
-      img.classList.add('horizontal');
-      console.log('usao u horz')
-    }else{
-      img.classList.add('vertical');
-      console.log('usao uver')
-    }
 
-    console.log("is img hor" +this.data.isImgHorizontal)
+
 
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
@@ -91,15 +118,15 @@ export class FeedbackDialogComponent implements AfterViewInit {
         if (exif.Orientation == 6) {
 
         //  imgres.classList.add('rotate');
-          console.log(exif)
+
         }
       })
-      console.log("is img res hor" +this.data.isImgResolveHorizontal)
-      if(this.data.isImgResolveHorizontal){
 
-        imgres.classList.add('horizontal');
-      }else if(!this.data.isImgResolveHorizontal){
-        imgres.classList.add('vertical');
+      if(this.data.isImgResolveHorizontal==true){
+
+        imgres.setAttribute('class','horizontal');
+      }else{
+        imgres.setAttribute('class','vertical');
 
       }
 
