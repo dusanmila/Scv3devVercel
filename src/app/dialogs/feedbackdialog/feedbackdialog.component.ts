@@ -74,10 +74,9 @@ export class FeedbackDialogComponent implements AfterViewInit {
       }
 
       if(this.isRotated){
-console.log('is rotated' + this.isRotated)
-console.log('is horizontal' +this.data.isImgHorizontal)
+
         if(this.data.isImgHorizontal==true){
-console.log('uso hor')
+
           img.setAttribute('height','250');
           img.setAttribute('width','200');
 
@@ -89,14 +88,14 @@ console.log('uso hor')
 
         }
       }else{
-        console.log('uso else')
+
         if(this.data.isImgHorizontal==true){
-          console.log('uso hor')
-          img.setAttribute('height','200');
+
+          img.setAttribute('height','170');
           img.setAttribute('width','250');
 
         }else{
-          console.log('uso v')
+
           img.setAttribute('height','250');
           img.setAttribute('width','200');
 
@@ -118,11 +117,11 @@ console.log('uso hor')
 console.log(this.data.isImgResolveHorizontal)
 
       if(this.data.isImgResolveHorizontal==true){
-        console.log('uso res hor')
+
         imgres.setAttribute('height','200');
           imgres.setAttribute('width','250');
       }else{
-        console.log('uso res else')
+       
         imgres.setAttribute('height','250');
         imgres.setAttribute('width','200');
 
