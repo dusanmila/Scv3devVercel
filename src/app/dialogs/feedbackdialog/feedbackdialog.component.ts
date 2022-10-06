@@ -74,26 +74,31 @@ export class FeedbackDialogComponent implements AfterViewInit {
       }
 
       if(this.isRotated){
-
+console.log('is rotated' + this.isRotated)
+console.log('is horizontal' +this.data.isImgHorizontal)
         if(this.data.isImgHorizontal==true){
-
+console.log('uso hor')
           img.setAttribute('height','250');
           img.setAttribute('width','200');
 
         }else{
-          console.log('usao ver')
+          console.log('uso else')
           img.setAttribute('height','200');
           img.setAttribute('width','250');
 
 
         }
       }else{
-        console.log('uso nije rot')
+        console.log('uso else')
         if(this.data.isImgHorizontal==true){
-          img.setAttribute('class','horizontal');
+          console.log('uso hor')
+          img.setAttribute('height','200');
+          img.setAttribute('width','250');
 
         }else{
-          img.setAttribute('class','vertical');
+          console.log('uso v')
+          img.setAttribute('height','250');
+          img.setAttribute('width','200');
 
 
         }
@@ -107,26 +112,19 @@ export class FeedbackDialogComponent implements AfterViewInit {
     })
 
 
-
-
-
-
-
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
-      window.exifr.parse(imgres!).then((exif) => {
-        if (exif.Orientation == 6) {
 
-        //  imgres.classList.add('rotate');
-
-        }
-      })
+console.log(this.data.isImgResolveHorizontal)
 
       if(this.data.isImgResolveHorizontal==true){
-
-        imgres.setAttribute('class','horizontal');
+        console.log('uso res hor')
+        imgres.setAttribute('height','200');
+          imgres.setAttribute('width','250');
       }else{
-        imgres.setAttribute('class','vertical');
+        console.log('uso res else')
+        imgres.setAttribute('height','250');
+        imgres.setAttribute('width','200');
 
       }
 
