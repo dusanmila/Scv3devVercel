@@ -29,6 +29,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public changed: boolean = false;
   isLoading = false;
   submitClicked = false;
+  isRotated=false;
 
   output: string;
   @ViewChild('fbimg') fbimg: ElementRef;
@@ -62,34 +63,71 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   async adjustImage(){
 
+
+
     const img = document.getElementById('fbphoto') as HTMLImageElement;
 
+    window.exifr.parse(img!).then((exif) => {
+
+      if (exif.Orientation == 6) {
+      this.isRotated=true;
+      }
+
+      if(this.isRotated){
+
+        if(this.data.isImgHorizontal==true){
+
+          img.setAttribute('height','250');
+          img.setAttribute('width','200');
+
+        }else{
+          console.log('usao ver')
+          img.setAttribute('height','200');
+          img.setAttribute('width','250');
 
 
-    window.exifr.parse(img!).then((exif) => {if (exif.Orientation == 6) {
+        }
+      }else{
+        console.log('uso nije rot')
+        if(this.data.isImgHorizontal==true){
+          img.setAttribute('class','horizontal');
 
-        img.classList.add('rotate');
+        }else{
+          img.setAttribute('class','vertical');
 
-    }})
-    if(this.data.isImgHorizontal){
-      img.classList.add('horizontal');
-    }else if(!this.data.isImgHorizontal){
-      img.classList.add('vertical');
-    }
+
+        }
+      }
+
+   if(this.isRotated){
+    img.setAttribute('class','rotate');
+   }
+
+
+    })
+
+
+
+
+
+
+
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
       window.exifr.parse(imgres!).then((exif) => {
         if (exif.Orientation == 6) {
 
-          imgres.classList.add('rotate');
+        //  imgres.classList.add('rotate');
 
         }
       })
 
-      if(this.data.isImgResolveHorizontal){
-        imgres.classList.add('horizontal');
-      }else if(!this.data.isImgResolveHorizontal){
-        imgres.classList.add('vertical');
+      if(this.data.isImgResolveHorizontal==true){
+
+        imgres.setAttribute('class','horizontal');
+      }else{
+        imgres.setAttribute('class','vertical');
+
       }
 
     }

@@ -82,15 +82,15 @@ button {
 }
 
 .horizontal{
-  height: 250px;
-  width:200px;
-}
-
-.vertical{
   height: 200px;
   width:250px;
 }
 
+.vertical{
+  height: 250px;
+  width:200px;
+}
+
 .marginbottom{
-  margin-bottom:10%;
+ margin-bottom:10%;
 }
