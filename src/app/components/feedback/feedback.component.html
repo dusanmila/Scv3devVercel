@@ -30,7 +30,7 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
-      (click)="openDialog(row.feedbackCategoryName,row.productCategoryName,row.text,row.date,row.resolved,row.img,row.username)">
+      (click)="openDialog(row.feedbackCategoryName,row.productCategoryName,row.text,row.date,row.resolved,row.img,row.isImgHorizontal,row.isImgResolveHorizontal,row.username)">
     </mat-row>
   </mat-table>
 

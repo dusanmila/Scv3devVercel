@@ -74,14 +74,15 @@ export class FeedbackDialogComponent implements AfterViewInit {
       }
 
       if(this.isRotated){
-
+console.log('is rotated' + this.isRotated)
+console.log('is horizontal' +this.data.isImgHorizontal)
         if(this.data.isImgHorizontal==true){
-
+console.log('uso hor')
           img.setAttribute('height','250');
           img.setAttribute('width','200');
 
         }else{
-
+          console.log('uso else')
           img.setAttribute('height','200');
           img.setAttribute('width','250');
 
