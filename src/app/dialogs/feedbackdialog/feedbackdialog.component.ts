@@ -109,19 +109,15 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
-      window.exifr.parse(imgres!).then((exif) => {
-        if (exif.Orientation == 6) {
 
-        //  imgres.classList.add('rotate');
-
-        }
-      })
+console.log(this.data.isImgResolveHorizontal)
 
       if(this.data.isImgResolveHorizontal==true){
-
+        console.log('uso res hor')
         imgres.setAttribute('height','200');
           imgres.setAttribute('width','250');
       }else{
+        console.log('uso res else')
         imgres.setAttribute('height','250');
         imgres.setAttribute('width','200');
 
