@@ -3,10 +3,10 @@
 
   <form class="mat-dialog-content" #formControl="ngForm">
 
-    <div class="form fb-img marginbottom">
+    <div class="form fb-img marginbottom" #photodiv>
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}" id="fbphoto" alt="SC photo"
-        width="250" height="250" #fbphoto />
+        width="200" height="200" #fbphoto />
 
     </div>
 
@@ -36,7 +36,7 @@
     <div class="form fb-img" *ngIf="data.imgResolve">
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.imgResolve}}" alt="SC photo"
-        width="250" height="200" id="fbphotoresolve" />
+        width="200" height="200" id="fbphotoresolve" />
 
     </div>
 
