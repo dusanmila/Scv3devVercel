@@ -89,12 +89,16 @@ console.log('uso hor')
 
         }
       }else{
-
+        console.log('uso else')
         if(this.data.isImgHorizontal==true){
-          img.setAttribute('class','horizontal');
+          console.log('uso hor')
+          img.setAttribute('height','200');
+          img.setAttribute('width','250');
 
         }else{
-          img.setAttribute('class','vertical');
+          console.log('uso v')
+          img.setAttribute('height','250');
+          img.setAttribute('width','200');
 
 
         }
