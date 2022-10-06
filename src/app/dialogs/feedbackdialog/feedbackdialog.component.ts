@@ -81,14 +81,14 @@ export class FeedbackDialogComponent implements AfterViewInit {
           img.setAttribute('width','200');
 
         }else{
-          console.log('usao ver')
+
           img.setAttribute('height','200');
           img.setAttribute('width','250');
 
 
         }
       }else{
-        console.log('uso nije rot')
+
         if(this.data.isImgHorizontal==true){
           img.setAttribute('class','horizontal');
 
@@ -107,11 +107,6 @@ export class FeedbackDialogComponent implements AfterViewInit {
     })
 
 
-
-
-
-
-
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
       window.exifr.parse(imgres!).then((exif) => {
@@ -124,9 +119,11 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
       if(this.data.isImgResolveHorizontal==true){
 
-        imgres.setAttribute('class','horizontal');
+        imgres.setAttribute('height','200');
+          imgres.setAttribute('width','250');
       }else{
-        imgres.setAttribute('class','vertical');
+        imgres.setAttribute('height','250');
+        imgres.setAttribute('width','200');
 
       }
 
