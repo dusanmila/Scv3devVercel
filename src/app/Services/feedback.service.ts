@@ -170,8 +170,7 @@ export class FeedbackService {
 
   public resolveFeedback(formData: FormData): Observable<Feedback> {
     let retval$ = new Subject<Feedback>();
-    //  this.http.put<Feedback>('http://localhost:8088/api/feedbacks', formData).subscribe((helper: Feedback) => {
-
+   
     this.http.put<Feedback>(`${FEEDBACK_URL}/feedbacks`, formData, { headers: this.headers }).subscribe((helper: Feedback) => {
       retval$.next(helper);
     });
