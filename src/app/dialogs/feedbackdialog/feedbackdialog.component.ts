@@ -78,10 +78,10 @@ export class FeedbackDialogComponent implements AfterViewInit {
         if(this.data.isImgHorizontal==true){
 
           img.setAttribute('height','250');
-          img.setAttribute('width','200');
+          img.setAttribute('width','180');
 
         }else{
-          console.log('uso else')
+
           img.setAttribute('height','200');
           img.setAttribute('width','250');
 
@@ -91,7 +91,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
         if(this.data.isImgHorizontal==true){
 
-          img.setAttribute('height','170');
+          img.setAttribute('height','180');
           img.setAttribute('width','250');
 
         }else{
@@ -104,7 +104,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
       }
 
    if(this.isRotated){
-    img.setAttribute('class','rotate');
+          img.setAttribute('class','rotate');
    }
 
 
@@ -114,14 +114,13 @@ export class FeedbackDialogComponent implements AfterViewInit {
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
 
-console.log(this.data.isImgResolveHorizontal)
 
       if(this.data.isImgResolveHorizontal==true){
 
-        imgres.setAttribute('height','200');
-          imgres.setAttribute('width','250');
+        imgres.setAttribute('height','180');
+        imgres.setAttribute('width','250');
       }else{
-       
+
         imgres.setAttribute('height','250');
         imgres.setAttribute('width','200');
 
