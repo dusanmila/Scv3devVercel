@@ -133,6 +133,9 @@ export class ObjectComponent implements OnInit {
   noData = false;
 
   ngOnInit(): void {
+    let url = this.router.url;
+    if (url === '/admin/object')
+      this.isAdmin = true;
     if (this.isDashboard)
       this.count = 2;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
