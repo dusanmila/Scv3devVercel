@@ -52,6 +52,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   ngOnInit(): void {
 
     this.dialogRef.updateSize('100%', '80%');
+
   }
 
 
