@@ -40,18 +40,11 @@ h4 {
 
 .menu-row {
   display: flex;
-  /* background-color: red; */
   justify-content: space-between;
 }
 
 .menu-item {
   width: 30%;
-  /* background-color: yellow; */
-}
-
-.menu .menu-item mat-form-field {
-  /* width: 300px;
-  max-width: 90%; */
 }
 
 .mat-form-field {
@@ -244,7 +237,6 @@ h4 {
 @media screen and (max-width: 960px) {
   .menu-row {
     display: block;
-    /* background-color: blue; */
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -253,7 +245,6 @@ h4 {
   .menu-item {
     width: 300px;
     max-width: 90%;
-    /* background-color: green; */
     margin: 0 auto;
   }
 }
