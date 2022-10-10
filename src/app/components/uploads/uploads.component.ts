@@ -58,4 +58,12 @@ export class UploadsComponent implements OnInit {
     console.log('objekti klik')
   }
 
+  downloadTemplate(flag: number) {
+    console.log('downloading...')
+    if (flag === 1)
+      this.objectService.downloadExcelTemplate();
+    else
+      this.positionService.downloadExcelTemplate();
+  }
+
 }
