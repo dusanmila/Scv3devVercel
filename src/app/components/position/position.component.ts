@@ -35,6 +35,7 @@ export class PositionComponent implements OnInit {
 
   @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
+  @Input() public isAdmin: boolean = false;
   @Output() showFinishButton = new EventEmitter<boolean>();
 
 
