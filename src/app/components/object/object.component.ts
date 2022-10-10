@@ -134,8 +134,9 @@ export class ObjectComponent implements OnInit {
 
   ngOnInit(): void {
     let url = this.router.url;
-    if (url === '/admin/object')
+    if (url === '/admin/object') {
       this.isAdmin = true;
+    }
     if (this.isDashboard)
       this.count = 2;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
@@ -147,7 +148,7 @@ export class ObjectComponent implements OnInit {
     if (this.isDashboard) {
       this.displayedColumns.splice(1, 2);
     }
-    if (this.isDashboard) {
+    if (this.isDashboard || this.isAdmin) {
       this.loadData(false);
     }
   }

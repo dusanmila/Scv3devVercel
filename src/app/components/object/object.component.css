@@ -38,19 +38,32 @@ h4 {
   margin: 20px 0;
 }
 
-.menu-item mat-form-field {
-  width: 300px;
-  max-width: 90%;
+.menu-row {
+  display: flex;
+  /* background-color: red; */
+  justify-content: space-between;
+}
+
+.menu-item {
+  width: 30%;
+  /* background-color: yellow; */
+}
+
+.menu .menu-item mat-form-field {
+  /* width: 300px;
+  max-width: 90%; */
+}
+
+.mat-form-field {
+  width: 100%;
 }
 
 .menu-btn {
   width: 150px;
   max-height: 150%;
   max-width: 100%;
-  background-color: white;
   border-radius: 3px;
-  color: #fff;
-  margin: 0 auto;
+  margin: 10px auto;
 }
 
 .item3 {
@@ -152,11 +165,11 @@ h4 {
 
 .mat-btn {
   color: #39ace7;
+  background-color: #fff;
   border-color: #39ace7;
   border-width: 2px;
   border-radius: 10px;
   width: 150px;
-  margin: 10px 0;
   font-size: 15px;
   padding: 5px;
 }
@@ -225,5 +238,22 @@ h4 {
 
   .mat-table .mat-cell:first-child {
     margin-top: 4%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .menu-row {
+    display: block;
+    /* background-color: blue; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .menu-item {
+    width: 300px;
+    max-width: 90%;
+    /* background-color: green; */
+    margin: 0 auto;
   }
 }
