@@ -98,6 +98,15 @@ export class PositionService {
     return retval$.asObservable();
   }
 
+  public updatePosition(position: Position): Observable<Position> {
+    let retval$ = new Subject<Position>();
+    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
+      retval$.next(helper);
+
+    });
+    return retval$.asObservable();
+  }
+
   public getPositionClasses(): Observable<PositionClass[]> {
     let retval$ = new Subject<PositionClass[]>();
     this.http.get<PositionClass[]>(`${POSITION_URL}/positionClasses`, { headers: this.headers }).subscribe((helper: PositionClass[]) => {

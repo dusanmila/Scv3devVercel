@@ -7,6 +7,7 @@ import { PositionType } from 'src/app/models/positionType';
 import { ProductCategory } from 'src/app/models/productCategory';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { ProductCategoryService } from 'src/app/Services/product-category.service';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-position-dialog',
@@ -23,6 +24,17 @@ export class PositionDialogComponent implements OnInit {
   public changed: boolean = false;
   public suppliers = ['Frikom', 'Other'];
   public locations = ['Magacin', 'Prodajni prostor'];
+
+  positionDto : Position = {
+    secondaryPositionId:Guid.create(),
+    objectIdCompany: "",
+    posClassName: "",
+    posTypeName: "",
+    productCategory: "",
+    supplier: "",
+    location: "",
+    valid: false
+  };
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PositionDialogComponent>,
@@ -83,6 +95,27 @@ export class PositionDialogComponent implements OnInit {
         this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
     });
+  }
+
+  public update(): void {
+this.positionDto.secondaryPositionId=this.data.secondaryPositionId;
+    this.positionDto.location=this.data.location;
+    this.positionDto.objectIdCompany=this.objectIdCompany;
+    this.positionDto.posClassName=this.data.posClassName;
+    this.positionDto.posTypeName=this.data.posTypeName;
+    this.positionDto.supplier = this.data.supplier;
+    this.positionDto.productCategory=this.data.productCategory;
+
+    this.positionService.updatePosition(this.positionDto)
+      .subscribe(() => {
+        this.snackBar.open('Updated position', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+        this.close();
+      }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.close();
+      }
   }
 
   public close() {
