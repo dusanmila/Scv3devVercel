@@ -31,6 +31,10 @@ export class SidenavComponent implements OnInit {
       this.title = 'Retailers';
     else if (url === '/admin/storeCheckReceiver')
       this.title = 'Store Check Receivers';
+    else if (url === '/admin/secondaryPosition')
+      this.title = 'Secondanry Positions';
+    else if (url === '/admin/product')
+      this.title = 'Products';
     else if (url === '/admin/uploads')
       this.title = 'Upload Files';
   }
