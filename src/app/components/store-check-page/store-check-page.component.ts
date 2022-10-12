@@ -27,6 +27,7 @@ export class StoreCheckPageComponent implements OnInit {
   public resolveFeedbacks: boolean = false;
   public workModel: string;
   public showFinishButton: boolean = false;
+  public positionCheck: boolean=false;
 
   constructor(public snackBar:MatSnackBar,
     public objectService: ObjectService,
@@ -43,6 +44,9 @@ export class StoreCheckPageComponent implements OnInit {
       this.resolveFeedbacks = false;
     } else if (this.workModel == "resolveFeedbacks") {
       this.resolveFeedbacks = true;
+    }
+    else if(this.workModel="position"){
+      this.positionCheck=true;
     }
     this.getOneObject();
     this.getPositionsByObjectIdCompany();

@@ -82,9 +82,11 @@
     </div>
 
     <div class="main fadeIn second">
-        <h3>UNRESOLVED FEEDBACKS:</h3>
-        <app-feedback [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"
-            (showFinishButton)="enableFinishButton($event)"></app-feedback>
+        <div *ngIf="!positionCheck">
+            <h3>UNRESOLVED FEEDBACKS:</h3>
+            <app-feedback [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"
+                (showFinishButton)="enableFinishButton($event)"></app-feedback>
+        </div>
         <h3>SECONDARY POSITIONS:</h3>
 
         <app-position [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"

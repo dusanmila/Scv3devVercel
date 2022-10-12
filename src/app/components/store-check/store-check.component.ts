@@ -16,11 +16,17 @@ export class StoreCheckComponent {
 
   public storeCheck!: StoreCheck;
   public objectStoreCheck!: ObjectStoreCheck;
+  menager:boolean=false;
 
   constructor(public storeCheckService: StoreCheckService,
     public objectStoreCheckService: ObjectStoreCheckService,
     public dialog: MatDialog,
-    public router: Router) { }
+    public router: Router) {
+      if (localStorage.getItem("role")=="Menager")
+      {
+        this.menager=true;
+      }
+     }
 
   public logout() {
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
