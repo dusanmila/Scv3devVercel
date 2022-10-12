@@ -85,6 +85,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatRadioModule } from '@angular/material/radio';
 import { UploadsComponent } from './components/uploads/uploads.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +130,9 @@ import { UploadsComponent } from './components/uploads/uploads.component';
     PieChartComponent,
     PieChart2Component,
     PieChart3Component,
-    UploadsComponent
+    UploadsComponent,
+    ProductComponent,
+    ProductDialogComponent
 
   ],
   imports: [
