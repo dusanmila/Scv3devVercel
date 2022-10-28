@@ -129,6 +129,13 @@ export class PositionService {
       saveAs(template, fileName);
     });
   }
+
+  public export() {
+    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel`, { headers: this.headers, responseType: 'blob' }).subscribe(excel => {
+      const fileName = 'SecondaryPositions.xlsx';
+      saveAs(excel, fileName);
+    });
+  }
 }
 
 

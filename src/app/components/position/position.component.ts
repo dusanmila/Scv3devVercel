@@ -96,6 +96,10 @@ export class PositionComponent implements OnInit {
     });
   }
 
+  public exportPositions() {
+    this.positionService.export();
+  }
+
   public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, img?: string,isImgHorizontal?:boolean) {
     const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location,img,isImgHorizontal } });
     dialogRef.componentInstance.flag = flag;
