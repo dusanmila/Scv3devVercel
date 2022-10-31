@@ -13,3 +13,4 @@ export const FEEDBACK_URL = 'http://localhost:8081/api';
 export const OBJECT_URL = 'http://localhost:8081/api';
 export const AUTH_URL = 'http://localhost:8081/api';
 export const SERVICE_URL = 'http://localhost:8081/api';
+export const PRODUCT_URL = 'http://localhost:8081/api';
