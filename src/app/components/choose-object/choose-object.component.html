@@ -13,14 +13,13 @@
             <app-object [workModel]="workModel" [isAdmin]="false"></app-object>
         </div>
 
-        <div class="fadeIn third btn-group">
-            <div>
-                <button mat-stroked-button color="primary" class="mat-btn" (click)="openDialog()"
-                    *ngIf="!resolveFeedbacks && showFinishStoreCheck">Finish StoreCheck</button>
-            </div>
-            <div>
-            </div>
-            <button mat-stroked-button color="primary" class="mat-btn" (click)="exit()">Exit</button>
+        <div class="fadeIn third btn-group" style="margin-top:10px ;">
+         
+                <button mat-stroked-button color="primary" class="item2" (click)="openDialog()"
+                    *ngIf="!resolveFeedbacks && showFinishStoreCheck">Finish</button>
+            
+            
+            <button mat-stroked-button color="primary" class="item2" style="margin-left:10px;" (click)="exit()">Exit</button>
 
         </div>
     </div>

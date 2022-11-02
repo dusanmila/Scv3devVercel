@@ -155,7 +155,7 @@
           (change)="uploadFile($event)"
           accept="image/*"
           fromControlName="file"
-          required
+
           hidden
           capture="camera"
         />
@@ -174,7 +174,7 @@
       </div>
     </div>
     <div *ngIf="data.img || flag==4">
-      <div class="form pos-img" *ngIf="data.img">
+      <div class="form pos-img" *ngIf="data.img != 'undefined'">
         <img
           src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
             data.img
@@ -186,18 +186,19 @@
         />
       </div>
       <br>
-      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded && flag==4">
+      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded">
         <input
           type="file"
           id="inputFile"
           (change)="uploadFile($event)"
           accept="image/*"
           fromControlName="file"
-          required
+
           hidden
           capture="camera"
         />
-        <label style="margin-bottom:5%">Update photo:</label>
+        <label *ngIf="data.img && data.img != 'undefined'" style="margin-bottom:5%">Update photo:</label>
+        <label *ngIf="!data.img || data.img == 'undefined'" style="margin-bottom:5%">Take photo:</label>
 
         <label for="inputFile" class="browseFile">
           <img
@@ -225,10 +226,10 @@
       <button
         class="item2"
         mat-button
-        *ngIf="flag == 4"
+        *ngIf="flag == 4 || (flag==3&&imageUploaded)"
         type="submit"
         (click)="submitFormUpdate()"
-        [disabled]="!formControl.valid"
+
       >
         Ok
       </button>

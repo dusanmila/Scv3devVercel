@@ -25,7 +25,7 @@ export class StoreCheckComponent {
     public dialog: MatDialog,
     public activatedRoute: ActivatedRoute,
     public router: Router) {
-      if (localStorage.getItem("role")=="Menager")
+      if (localStorage.getItem("role")=="Manager")
       {
         this.menager=true;
       }
