@@ -29,7 +29,7 @@
      <!--  <button mat-icon-button color="primary" (click)="openDialog(4,row.secondaryPositionId,row.objectName,row.posClassName,row.posTypeName,row.valid,row.productCategory,row.supplier,row.location,row.img,row.isImgHorizontal); $event.stopPropagation();">
           <mat-icon area-label="Edit">
             edit </mat-icon>
-        </button>--> 
+        </button>-->
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -44,4 +44,6 @@
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No positions</mat-toolbar>
 </div>
 <br>
-<button mat-raised-button color="primary" class="exportButton" (click)="exportPositions()">Export</button>
+<div *ngIf="positionCheck">
+  <button mat-raised-button color="primary" class="exportButton" style="margin-left: 10px;" (click)="exportPositions()">Export</button>
+</div>
