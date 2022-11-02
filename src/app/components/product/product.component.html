@@ -1,3 +1,7 @@
+<mat-toolbar class="header">
+    <h2>Price scanner</h2>
+</mat-toolbar>
+
 <div class="centered font">
     <mat-form-field>
         <input type="text" matInput placeholder="Search products" [(ngModel)]="search">
@@ -20,10 +24,48 @@
             <mat-cell *matCellDef="let row">{{ row.productName }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Weight
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.weight }}g</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="manufacturer">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Manufacturer
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.manufacturer }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="price">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Price
             </mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.price }}</mat-cell>
+            <mat-cell *matCellDef="let row; let i = index">
+                <form>
+                    <mat-form-field class="price-input">
+                        <input type="numeric" matInput [formControl]="priceFormControls[i]" name="price"
+                            (change)="changePrice(row)" [(ngModel)]="row.price">
+                        <mat-error *ngIf="priceFormControls[i].hasError('pattern')">
+                            Invalid format
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actionPrice">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Action price
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index">
+                <form>
+                    <mat-form-field class="price-input">
+                        <input type="numeric" matInput [formControl]="actionPriceFormControls[i]" name="actionPrice"
+                            (change)="changePrice(row)" [(ngModel)]="row.actionPrice">
+                        <mat-error *ngIf="actionPriceFormControls[i].hasError('pattern')">
+                            Invalid format
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="actions">
@@ -35,11 +77,13 @@
             <mat-cell *matCellDef="let row; let i=index">
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Edit"
-                        (click)="openDialog(2, row.productIdCompany, row.productName, row.price)">edit</mat-icon>
+                        (click)="openDialog(2, row.productIdCompany, row.productName, row.price, row.actionPrice, row.manufacturer, row.weight)">
+                        edit</mat-icon>
                 </button>
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Delete"
-                        (click)="openDialog(3, row.productIdCompany, row.productName, row.price)">delete</mat-icon>
+                        (click)="openDialog(3, row.productIdCompany, row.productName, row.price, row.actionPrice, row.manufacturer, row.weight)">
+                        delete</mat-icon>
                 </button>
             </mat-cell>
         </ng-container>
@@ -52,7 +96,7 @@
         </mat-progress-spinner>
     </div>
     <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No products</mat-toolbar>
-    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+    <!-- <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
         [length]="length" (page)="loadDataOnPageEvent($event)">
-    </mat-paginator>
+    </mat-paginator> -->
 </div>

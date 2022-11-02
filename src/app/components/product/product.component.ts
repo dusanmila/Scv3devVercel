@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,15 +14,20 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class ProductComponent implements OnInit {
 
-  count: number = 5;
-  page: number = 1;
+  count: number = 0;
+  page: number = 0;
   search: string = '';
   length: number = 0;
   isLoading: boolean = false;
   noData: boolean = false;
   dataSource: MatTableDataSource<Product>;
+  reg = /^-?\d*[.,]?\d{0,2}$/;
+  priceFormControls: FormControl[] = [];
+  actionPriceFormControls: FormControl[] = [];
+  priceFormControl = new FormControl('', [Validators.required, Validators.pattern(this.reg)]);
+  actionPriceFormControl = new FormControl('', [Validators.required, Validators.pattern(this.reg)]);
 
-  displayedColumns = ['productIdCompany', 'productName', 'price', 'actions'];
+  displayedColumns = ['productIdCompany', 'productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
 
   constructor(private productService: ProductService, private dialog: MatDialog) { }
 
@@ -38,6 +44,10 @@ export class ProductComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Product>(data);
         this.length = data[0].totalCount;
         this.noData = false;
+        data.forEach(i => {
+          this.priceFormControls.push(new FormControl('', [Validators.required, Validators.pattern(this.reg)]));
+          this.actionPriceFormControls.push(new FormControl('', [Validators.required, Validators.pattern(this.reg)]));
+        });
       } else {
         this.noData = true;
         this.dataSource = data;
@@ -53,14 +63,23 @@ export class ProductComponent implements OnInit {
     this.loadData(true);
   }
 
-  openDialog(flag: number, productIdCompany?: string, productName?: string, price?: number) {
-    const dialogRef = this.dialog.open(ProductDialogComponent, { data: { productIdCompany, productName, price } });
+  openDialog(flag: number, productIdCompany?: string, productName?: string, price?: number, actionPrice?: number, manufacturer?: string, weight?: number) {
+    const dialogRef = this.dialog.open(ProductDialogComponent, { data: { productIdCompany, productName, price, actionPrice, manufacturer, weight } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.loadData(false);
       }
     });
+  }
+
+  changePrice(product: Product) {
+    this.productService.updateProduct(product).subscribe(data => {
+      console.log(data);
+    },
+      error => {
+        console.log(error);
+      });
   }
 
 }
