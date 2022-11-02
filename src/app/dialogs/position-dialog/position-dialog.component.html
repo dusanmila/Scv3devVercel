@@ -186,7 +186,7 @@
         />
       </div>
       <br>
-      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded && flag==4">
+      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded">
         <input
           type="file"
           id="inputFile"
@@ -197,7 +197,8 @@
           hidden
           capture="camera"
         />
-        <label style="margin-bottom:5%">Update photo:</label>
+        <label *ngIf="data.img && data.img != 'undefined'" style="margin-bottom:5%">Update photo:</label>
+        <label *ngIf="!data.img || data.img == 'undefined'" style="margin-bottom:5%">Take photo:</label>
 
         <label for="inputFile" class="browseFile">
           <img
@@ -225,10 +226,10 @@
       <button
         class="item2"
         mat-button
-        *ngIf="flag == 4"
+        *ngIf="flag == 4 || (flag==3&&imageUploaded)"
         type="submit"
         (click)="submitFormUpdate()"
-        [disabled]="!formControl.valid"
+
       >
         Ok
       </button>

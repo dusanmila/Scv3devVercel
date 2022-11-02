@@ -187,16 +187,16 @@ console.log(this.positionDto.img)
       const formData: any = new FormData();
       formData.append('file', this.form.get('file')!.value);
       formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
-      formData.append('objectIdCompany', this.objectIdCompany);
+   /*   formData.append('objectIdCompany', this.objectIdCompany);
       formData.append('posClassName', this.positionDto.posClassName);
       formData.append('posTypeName', this.positionDto.posTypeName);
       formData.append('productCategory', this.positionDto.productCategory);
       formData.append('supplier', this.positionDto.supplier);
-      formData.append('location', this.positionDto.location);
+      formData.append('location', this.positionDto.location);*/
       formData.append('img', this.positionDto.img);
-      formData.append('valid', this.positionDto.valid);
+      //formData.append('is', this.positionDto.valid);
 
-      this.positionService.updatePosition(formData).subscribe(data => {
+      this.positionService.updatePositionAddPhoto(formData).subscribe(data => {
         this.changed = true;
         this.isLoading = false;
         console.log(data);
