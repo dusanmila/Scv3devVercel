@@ -89,6 +89,10 @@
             <app-feedback [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks"
                 (showFinishButton)="enableFinishButton($event)"></app-feedback>
         </div>
+        <div>
+         <br>   
+        </div>
+        <div *ngIf="!resolveFeedbacks">
         <h3>SECONDARY POSITIONS:</h3>
 
         <app-position [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks" [positionCheck]="positionCheck"
@@ -98,5 +102,6 @@
                 *ngIf="showFinishButton && !resolveFeedbacks">Add</button>
             <button mat-stroked-button color="primary" class="item2" style="margin-bottom: 10px; margin-left:10px;" (click)="exit()">Exit</button>
         </div>
+    </div>
     </div>
 </div>
