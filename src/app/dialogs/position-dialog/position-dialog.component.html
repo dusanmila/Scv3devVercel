@@ -155,7 +155,7 @@
           (change)="uploadFile($event)"
           accept="image/*"
           fromControlName="file"
-          required
+
           hidden
           capture="camera"
         />
@@ -174,7 +174,7 @@
       </div>
     </div>
     <div *ngIf="data.img || flag==4">
-      <div class="form pos-img" *ngIf="data.img">
+      <div class="form pos-img" *ngIf="data.img != 'undefined'">
         <img
           src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
             data.img
@@ -193,7 +193,7 @@
           (change)="uploadFile($event)"
           accept="image/*"
           fromControlName="file"
-          required
+
           hidden
           capture="camera"
         />

@@ -148,7 +148,7 @@ console.log(this.positionDto.img)
 
   submitFormCreate() {
     this.submitClicked=true;
-    if(this.imageUploaded){
+
       this.isLoading=true;
       let username = localStorage.getItem("username") as string;
       const formData: any = new FormData();
@@ -175,7 +175,7 @@ console.log(this.positionDto.img)
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       };
-    }
+
 
   }
 
