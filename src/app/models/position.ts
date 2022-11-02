@@ -8,5 +8,7 @@ export interface Position {
     productCategory: string;
     supplier: string;
     location: string;
+    img:string;
+    isImgHorizontal:boolean;
     valid: boolean;
 }

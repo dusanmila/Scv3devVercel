@@ -22,11 +22,11 @@
           [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>
 
         <button mat-icon-button color="primary"
-          (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location); $event.stopPropagation();"
+          (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location, row.img); $event.stopPropagation();"
           style="margin-left:30%">
           <mat-icon area-label="Delete"> delete </mat-icon>
         </button>
-        <button mat-icon-button color="primary" (click)="openDialog(4,row.secondaryPositionId,row.objectName,row.posClassName,row.posTypeName,row.valid,row.productCategory,row.supplier,row.location); $event.stopPropagation();">
+        <button mat-icon-button color="primary" (click)="openDialog(4,row.secondaryPositionId,row.objectName,row.posClassName,row.posTypeName,row.valid,row.productCategory,row.supplier,row.location,row.img,row.isImgHorizontal); $event.stopPropagation();">
           <mat-icon area-label="Edit">
             edit </mat-icon>
         </button>
@@ -34,7 +34,7 @@
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
-      (click)="openDialog(3, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location)">
+      (click)="openDialog(3, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location, row.img,row.isImgHorizontal)">
     </mat-row>
   </mat-table>
   <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
@@ -43,3 +43,5 @@
   </div>
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No positions</mat-toolbar>
 </div>
+<br>
+<button mat-raised-button color="primary" class="exportButton" (click)="exportPositions()">Export</button>
