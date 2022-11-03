@@ -215,23 +215,6 @@ td {
     text-align: center;
 }
 
-.btn-finish {
-    border-radius: 20px;
-    border: 2px solid #39ace7;
-    background-color: #39ace7;
-    color: #fff;
-    width: 200px;
-    padding: 10px 0;
-    margin: 30px;
-    cursor: pointer;
-}
-
-.btn-finish:hover {
-    background-color: #fff;
-    color: #39ace7;
-    transition: 0.3s;
-}
-
 .finish-sc td {
     border: 1px solid grey;
 }
