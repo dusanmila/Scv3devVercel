@@ -75,3 +75,8 @@ button {
   height: 250px;
   width:200px;
 }
+
+
+.mat-spinner-color::ng-deep circle {
+  stroke: #56baed !important;
+}
