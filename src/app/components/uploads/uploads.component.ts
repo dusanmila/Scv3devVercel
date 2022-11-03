@@ -17,6 +17,7 @@ export class UploadsComponent implements OnInit {
   isObjLoading = false;
   isPosLoading = false;
   isProdLoading = false;
+  errorMessage!: string;
 
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
@@ -26,51 +27,72 @@ export class UploadsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   uploadObjectsFile(event: any) {
+    this.errorMessage = '';
     this.isObjLoading = true;
     this.objectsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.objectsFile);
-    this.objectService.excelImport(formData).subscribe(data => {
-      this.isObjLoading = false;
-      this.snackBar.open("Objects added.", "Close", {
-        duration: 2500,
-        panelClass: ['blue-snackbar']
-      });
+    this.objectService.excelImport(formData).subscribe({
+      next: data => {
+        this.isObjLoading = false;
+        this.snackBar.open("Objects added.", "Close", {
+          duration: 2500,
+          panelClass: ['blue-snackbar']
+        });
+      },
+      error: err => {
+        this.isObjLoading = false;
+        this.errorMessage = err.message;
+        console.log(this.errorMessage)
+      }
     });
   }
 
   uploadPositionsFile(event: any) {
+    this.errorMessage = '';
     this.isPosLoading = true;
     this.positionsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.positionsFile);
 
-    this.positionService.excelImport(formData).subscribe(data => {
-      this.isPosLoading = false;
-      this.snackBar.open("Secondary positions added.", "Close", {
-        duration: 2500,
-        panelClass: ['blue-snackbar']
-      });
+    this.positionService.excelImport(formData).subscribe({
+      next: data => {
+        this.isPosLoading = false;
+        this.snackBar.open("Secondary positions added.", "Close", {
+          duration: 2500,
+          panelClass: ['blue-snackbar']
+        });
+      },
+      error: err => {
+        this.isPosLoading = false;
+        this.errorMessage = err.message;
+      }
     });
   }
 
   uploadProductsFile(event: any) {
+    this.errorMessage = ''
     this.isProdLoading = true;
     this.productsFile = event.target.files[0];
     console.log(event.target.files[0].name);
     let formData = new FormData();
     formData.set('file', this.productsFile);
 
-    this.productService.excelImport(formData).subscribe(data => {
-      this.isProdLoading = false;
-      this.snackBar.open("Products added.", "Close", {
-        duration: 2500,
-        panelClass: ['blue-snackbar']
-      });
+    this.productService.excelImport(formData).subscribe({
+      next: data => {
+        this.isProdLoading = false;
+        this.snackBar.open("Products added.", "Close", {
+          duration: 2500,
+          panelClass: ['blue-snackbar']
+        });
+      },
+      error: err => {
+        this.isProdLoading = false;
+        this.errorMessage = err.message;
+      }
     });
   }
 
