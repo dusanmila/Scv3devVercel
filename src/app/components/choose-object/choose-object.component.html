@@ -14,12 +14,13 @@
         </div>
 
         <div class="fadeIn third btn-group" style="margin-top:10px ;">
-         
-                <button mat-stroked-button color="primary" class="item2" (click)="openDialog()"
-                    *ngIf="!resolveFeedbacks && showFinishStoreCheck">Finish</button>
-            
-            
-            <button mat-stroked-button color="primary" class="item2" style="margin-left:10px;" (click)="exit()">Exit</button>
+
+            <button mat-stroked-button color="primary" class="item2" (click)="openDialog()"
+                *ngIf="workModel === 'addStoreCheck' && showFinishStoreCheck">Finish</button>
+
+
+            <button mat-stroked-button color="primary" class="item2" style="margin-left:10px;"
+                (click)="exit()">Exit</button>
 
         </div>
     </div>
