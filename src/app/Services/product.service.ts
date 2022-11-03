@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as saveAs from 'file-saver';
 import { Observable, Subject } from 'rxjs';
 import { PRODUCT_URL } from '../app.constants';
 import { Product } from '../models/product';
@@ -33,12 +34,23 @@ export class ProductService {
     return retval$.asObservable();
   }
 
+  public downloadExcelTemplate() {
+    this.http.get(`${PRODUCT_URL}/products/downloadExcelTemplate`, { headers: this.headers, responseType: 'blob' }).subscribe(template => {
+      const fileName = 'StoreCheck_SecondaryPositions_Template.xlsx';
+      saveAs(template, fileName);
+    });
+  }
+
   createProduct(product: Product): Observable<Product> {
     let retval$ = new Subject<Product>();
     this.http.post<Product>(`${PRODUCT_URL}/products`, product, { headers: this.headers }).subscribe((product: Product) => {
       retval$.next(product);
     });
     return retval$.asObservable();
+  }
+
+  public excelImport(formData: FormData) {
+    return this.http.post(`${PRODUCT_URL}/products/importExcel`, formData, { headers: this.headers });
   }
 
   updateProduct(product: Product): Observable<Product> {
