@@ -47,19 +47,6 @@
     text-transform: uppercase;
 }
 
-/* .header {
-    padding: 40px 0;
-    background-color: #56baed;
-    color: #fff;
-    justify-content: center;
-    align-items: center;
-}
-
-.header h2 {
-    text-transform: uppercase;
-    font-size: 30px;
-} */
-
 /* Promena izgleda table */
 @media screen and (max-width: 650px) {
     .mat-table {
