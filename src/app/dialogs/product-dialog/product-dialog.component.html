@@ -17,8 +17,26 @@
         </div>
         <div class="form">
             <mat-form-field>
+                <input matInput placeholder="Weight" [(ngModel)]="data.weight" name="weight" [disabled]="flag === 3"
+                    type="number" required />
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Manufacturer" [(ngModel)]="data.manufacturer" name="manufacturer"
+                    [disabled]="flag === 3" required />
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field>
                 <input matInput placeholder="Price" [(ngModel)]="data.price" name="price" type="number"
                     [disabled]="flag === 3" required />
+            </mat-form-field>
+        </div>
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Action price" [(ngModel)]="data.actionPrice" name="actionPrice"
+                    type="number" [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
         <div mat-dialog-actions class="wrap">

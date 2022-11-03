@@ -19,7 +19,7 @@ import { StoreCheckService } from 'src/app/Services/store-check.service';
 export class ChooseObjectComponent implements OnInit {
 
   public objects: Obj[] = [];
-  public resolveFeedbacks: boolean;
+  // public resolveFeedbacks: boolean;
   public workModel: string;
   public storeCheck: StoreCheck;
   public showFinishStoreCheck: boolean;
@@ -33,12 +33,15 @@ export class ChooseObjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
-    if (this.workModel == "addStoreCheck") {
-      this.resolveFeedbacks = false;
-    } else if (this.workModel == "resolveFeedbacks") {
-      this.resolveFeedbacks = true;
-    }
-    if (!this.resolveFeedbacks) {
+    // if (this.workModel == "addStoreCheck") {
+    //   this.resolveFeedbacks = false;
+    // } else if (this.workModel == "resolveFeedbacks") {
+    //   this.resolveFeedbacks = true;
+    // }
+    // if (!this.resolveFeedbacks) {
+    //   this.loadStoreCheck();
+    // }
+    if (this.workModel === 'addStoreCheck') {
       this.loadStoreCheck();
     }
   }

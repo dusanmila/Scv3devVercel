@@ -47,7 +47,8 @@ export class ObjectComponent implements OnInit {
   public page: number = 1;
   public count: number = 5;
   public length: number = 0;
-  public resolveFeedbacks: boolean = false;
+  // public resolveFeedbacks: boolean = false;
+  // public positionCheck: boolean = false;
 
   objectInfo: ObjectInfo;
 
@@ -140,11 +141,13 @@ export class ObjectComponent implements OnInit {
     if (this.isDashboard)
       this.count = 2;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
-    if (this.workModel == "addStoreCheck") {
-      this.resolveFeedbacks = false;
-    } else if (this.workModel == "resolveFeedbacks") {
-      this.resolveFeedbacks = true;
-    }
+    // if (this.workModel == "addStoreCheck") {
+    //   this.resolveFeedbacks = false;
+    // } else if (this.workModel == "resolveFeedbacks") {
+    //   this.resolveFeedbacks = true;
+    // } else if (this.workModel = "position") {
+    //   this.positionCheck = true;
+    // }
     if (this.isDashboard) {
       this.displayedColumns.splice(1, 2);
     }
@@ -243,7 +246,7 @@ export class ObjectComponent implements OnInit {
   }
 
   public createEmptyObjectStoreCheck(objectName: string, objectIdCompany: string) {
-    if (!this.resolveFeedbacks) {
+    if (this.workModel === 'addStoreCheck') {
       let username = localStorage.getItem("username") as string;
       let osc: ObjectStoreCheckCreateDto = {
         objectIdCompany: objectIdCompany,
@@ -257,7 +260,7 @@ export class ObjectComponent implements OnInit {
   }
 
   public getUnfinishedObjectStoreCheck(objectName: string, objectIdCompany: string) {
-    if (!this.resolveFeedbacks) {
+    if (this.workModel === 'addStoreCheck') {
       let username = localStorage.getItem("username") as string;
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
         if (data) {
