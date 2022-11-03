@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
+import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
   selector: 'app-uploads',
@@ -12,11 +13,14 @@ export class UploadsComponent implements OnInit {
 
   objectsFile: any;
   positionsFile: any;
+  productsFile: any;
   isObjLoading = false;
   isPosLoading = false;
+  isProdLoading = false;
 
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
+    public productService: ProductService,
     public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -54,16 +58,30 @@ export class UploadsComponent implements OnInit {
     });
   }
 
-  clickObj() {
-    console.log('objekti klik')
+  uploadProductsFile(event: any) {
+    this.isProdLoading = true;
+    this.productsFile = event.target.files[0];
+    console.log(event.target.files[0].name);
+    let formData = new FormData();
+    formData.set('file', this.productsFile);
+
+    this.productService.excelImport(formData).subscribe(data => {
+      this.isProdLoading = false;
+      this.snackBar.open("Products added.", "Close", {
+        duration: 2500,
+        panelClass: ['blue-snackbar']
+      });
+    });
   }
 
   downloadTemplate(flag: number) {
     console.log('downloading...')
     if (flag === 1)
       this.objectService.downloadExcelTemplate();
-    else
+    else if (flag === 2)
       this.positionService.downloadExcelTemplate();
+    else if (flag === 3)
+      this.productService.downloadExcelTemplate();
   }
 
 }

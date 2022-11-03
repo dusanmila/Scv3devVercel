@@ -21,6 +21,7 @@ export class ProductDialogComponent implements OnInit {
     public productService: ProductService) { }
 
   ngOnInit(): void {
+    console.log(this.data);
   }
 
   add() {
