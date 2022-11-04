@@ -21,12 +21,12 @@ export class NumberCardChartComponent implements OnInit {
     group: ScaleType.Ordinal,
     domain: ['#00abe7', '#2dc7ff', '#ead2ac', '#eaba6b']
   };
-  
+
   cardColor: string = '#0081af';
   textColor: string = '#fff';
-  
+
   constructor(public statisticsService: StatisticsService) {
-    
+
   }
 
   ngOnInit(): void {
@@ -41,11 +41,7 @@ export class NumberCardChartComponent implements OnInit {
     this.statisticsService.getCountData().subscribe(data => {
       this.result = data;
     });
-    // this.statisticsService.GetObjectCount().subscribe(data => {
-    //   console.log(data);
-    //   this.result.push(data);
-    //   this.result = [...this.result];
-    // });
+  
   }
 
   onResize(event) {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
@@ -31,7 +31,7 @@ export class AdvancedPieChartComponent {
   };
 
   constructor(public statisticsService: StatisticsService) {
-  
+
   }
 
   onSelect(data): void {

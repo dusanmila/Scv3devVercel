@@ -1,6 +1,5 @@
 import { ObjectInfo } from "./objectInfo";
 import { Retailer } from "./retailer";
-import { User } from "./user.model";
 
 export interface Obj {
     objectIdRetail: string;

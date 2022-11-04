@@ -77,9 +77,6 @@ export class StoreCheckPageComponent implements OnInit {
     });
   }
 
-  public getRetailerPlanogram() {
-    this.objectService.getRetailerPlanogram(this.object.retailer);
-  }
 
   public showObjectInfos() {
     this.showDetails = !this.showDetails;
