@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { AreaChartStackedComponent } from '@swimlane/ngx-charts';
+
 import { Guid } from 'guid-typescript';
 import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
 import { Position } from 'src/app/models/position';

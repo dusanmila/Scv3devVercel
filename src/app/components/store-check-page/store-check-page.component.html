@@ -43,32 +43,32 @@
 
             <div class="object-info-slider">
                 <div class="card">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.shelfSpaceM }}</b></div>Shelf Space M
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.shelfSpaceM }}</strong></div>Shelf Space M
                 </div>
                 <div class="card">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpaceM }}</b></div>Company Shelf
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.companyShelfSpaceM }}</strong></div>Company Shelf
                     Space M
                 </div>
                 <div class="card">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.companyShelfSpacePercent }}</b></div>Company
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.companyShelfSpacePercent }}</strong></div>Company
                     Shelf Space %
                 </div>
                 <div class="card2">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.gainings12Mrsd.toLocaleString() }}</b></div>
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.gainings12Mrsd.toLocaleString() }}</strong></div>
                     Gainings 12M (RSD,mil)
                 </div>
                 <div class="card">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.gainingsVs12mpercent }}</b></div>Gainings VS
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.gainingsVs12mpercent }}</strong></div>Gainings VS
                     12M %
                 </div>
                 <div class="card">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSerbia }}</b></div>WD % Serbia
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.wdpercentSerbia }}</strong></div>WD % Serbia
                 </div>
                 <div class="card">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentSector }}</b></div>WD % Sector
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.wdpercentSector }}</strong></div>WD % Sector
                 </div>
                 <div class="card">
-                    <div style="font-size: 250%;"><b>{{ object.objectInfo.wdpercentCustomer }}</b></div>WD % Customer
+                    <div style="font-size: 250%;"><strong>{{ object.objectInfo.wdpercentCustomer }}</strong></div>WD % Customer
                 </div>
             </div>
         </div>
@@ -90,18 +90,19 @@
                 (showFinishButton)="enableFinishButton($event)"></app-feedback>
         </div>
         <div>
-         <br>   
+         <br>
         </div>
         <div *ngIf="!resolveFeedbacks">
         <h3>SECONDARY POSITIONS:</h3>
 
         <app-position [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks" [positionCheck]="positionCheck"
             (showFinishButton)="enableFinishButton($event)"></app-position>
+        </div>
         <div class="margintop">
             <button mat-stroked-button color="primary" class="item2" (click)="addToStoreCheck()"
                 *ngIf="showFinishButton && !resolveFeedbacks">Add</button>
             <button mat-stroked-button color="primary" class="item2" style="margin-bottom: 10px; margin-left:10px;" (click)="exit()">Exit</button>
         </div>
-    </div>
+   
     </div>
 </div>

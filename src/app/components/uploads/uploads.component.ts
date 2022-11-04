@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/Services/product.service';
   templateUrl: './uploads.component.html',
   styleUrls: ['./uploads.component.css']
 })
-export class UploadsComponent implements OnInit {
+export class UploadsComponent {
 
   objectsFile: any;
   positionsFile: any;
@@ -24,8 +24,6 @@ export class UploadsComponent implements OnInit {
     public productService: ProductService,
     public snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {
-  }
 
   uploadObjectsFile(event: any) {
     this.errorMessage = '';

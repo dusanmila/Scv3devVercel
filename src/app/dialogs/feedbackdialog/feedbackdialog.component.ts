@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, ViewChild, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,11 +8,6 @@ import { FeedbackService } from 'src/app/Services/feedback.service';
 import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.component';
 
 import * as exifr from 'exifr'
-
-
-
-let EXIF: any;
-
 
 @Component({
   selector: 'app-feedback-dialog',
@@ -68,7 +63,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
     const img = document.getElementById('fbphoto') as HTMLImageElement;
 
-    window.exifr.parse(img!).then((exif) => {
+    window.exifr.parse(img).then((exif) => {
 
       if (exif.Orientation == 6) {
       this.isRotated=true;
@@ -76,7 +71,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
       if(this.isRotated){
 
-        if(this.data.isImgHorizontal==true){
+        if(this.data.isImgHorizontal){
 
           img.setAttribute('height','250');
           img.setAttribute('width','180');
@@ -90,7 +85,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
         }
       }else{
 
-        if(this.data.isImgHorizontal==true){
+        if(this.data.isImgHorizontal){
 
           img.setAttribute('height','180');
           img.setAttribute('width','250');
@@ -116,7 +111,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
 
 
-      if(this.data.isImgResolveHorizontal==true){
+      if(this.data.isImgResolveHorizontal){
 
         imgres.setAttribute('height','180');
         imgres.setAttribute('width','250');
