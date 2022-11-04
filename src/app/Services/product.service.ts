@@ -36,7 +36,7 @@ export class ProductService {
 
   public downloadExcelTemplate() {
     this.http.get(`${PRODUCT_URL}/products/downloadExcelTemplate`, { headers: this.headers, responseType: 'blob' }).subscribe(template => {
-      const fileName = 'StoreCheck_SecondaryPositions_Template.xlsx';
+      const fileName = 'StoreCheck_Products_Template.xlsx';
       saveAs(template, fileName);
     });
   }

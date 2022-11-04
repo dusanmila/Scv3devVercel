@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { ProductDialogComponent } from 'src/app/dialogs/product-dialog/product-dialog.component';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
@@ -20,18 +21,22 @@ export class ProductComponent implements OnInit {
   length: number = 0;
   isLoading: boolean = false;
   noData: boolean = false;
+  showHeader: boolean = true;
   dataSource: MatTableDataSource<Product>;
   reg = /^-?\d*[.,]?\d{0,2}$/;
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
-  priceFormControl = new FormControl('', [Validators.required, Validators.pattern(this.reg)]);
-  actionPriceFormControl = new FormControl('', [Validators.required, Validators.pattern(this.reg)]);
 
   displayedColumns = ['productIdCompany', 'productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
 
-  constructor(private productService: ProductService, private dialog: MatDialog) { }
+  constructor(private productService: ProductService,
+    private dialog: MatDialog,
+    private router: Router) { }
 
   ngOnInit(): void {
+    let url = this.router.url;
+    if (url === '/admin/product')
+      this.showHeader = false;
     this.loadData(false);
   }
 
