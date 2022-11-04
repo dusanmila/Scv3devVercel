@@ -19,7 +19,6 @@
       <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
       </mat-progress-spinner>
     </div>
-    <p *ngIf="errorMessage">{{errorMessage}}</p>
   </div>
 
   <div class="container">
@@ -65,4 +64,4 @@
 
 </div>
 
-<p *ngIf="errorMessage">{{errorMessage}}</p>
+<p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
