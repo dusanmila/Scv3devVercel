@@ -117,8 +117,8 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  public openDialog(feedbackCategoryName?: string, productCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, username?: string) {
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, productCategoryName, text, date, resolved, img, username } });
+  public openDialog(feedbackCategoryName?: string, productCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, isImgHorizontal?: boolean, isImgResolveHorizontal?:boolean, username?: string) {
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: { feedbackCategoryName, productCategoryName, text, date, resolved, img, isImgHorizontal,isImgResolveHorizontal, username } });
     dialogRef.componentInstance.resolveFeedbacks = this.resolveFeedbacks;
     dialogRef.afterClosed()
       .subscribe(res => {

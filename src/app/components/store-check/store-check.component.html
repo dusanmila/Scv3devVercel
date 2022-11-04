@@ -1,13 +1,24 @@
 <div class="center">
-    <img src="assets\StoreCheckIcon3.png" alt="Store Check" class="sc-icon">
+    <img src="assets/StoreMetrics.jpg" alt="Store Check" class="sc-icon">
 </div>
 <div class="menu fadeInDown">
-    <div class="item start-sc fadeIn first" [routerLink]="['/chooseObject/addStoreCheck']">
+
+    <div *ngIf="menager" class="item start-sc fadeIn first" [routerLink]="['/chooseObject/addStoreCheck']">
         STORE CHECK
     </div>
-    <div class="item resolve-fb fadeIn second" [routerLink]="['/chooseObject/resolveFeedbacks']">
+
+    <div *ngIf="!menager" class="item resolve-fb fadeIn second" [routerLink]="['/chooseObject/resolveFeedbacks']">
         RESOLVE FEEDBACKS
     </div>
+
+    <div class="item resolve-fb fadeIn second" [routerLink]="['/chooseObject/positions']">
+        SECONDARY POSITIONS
+    </div>
+    <div class="item resolve-fb fadeIn second" [routerLink]="['/product']">
+        PRICE SCANNER
+    </div>
+
+
     <div class="item2 resolve-fb fadeIn third" (click)="logout()">
         LOG OUT
     </div>

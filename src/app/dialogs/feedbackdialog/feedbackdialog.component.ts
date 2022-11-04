@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, ViewChild, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -8,11 +8,6 @@ import { FeedbackService } from 'src/app/Services/feedback.service';
 import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.component';
 
 import * as exifr from 'exifr'
-
-
-
-let EXIF: any;
-
 
 @Component({
   selector: 'app-feedback-dialog',
@@ -51,7 +46,8 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   ngOnInit(): void {
 
-    this.dialogRef.updateSize('100%', '80%');
+    this.dialogRef.updateSize('100%', '69%');
+
   }
 
 
@@ -67,7 +63,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
     const img = document.getElementById('fbphoto') as HTMLImageElement;
 
-    window.exifr.parse(img!).then((exif) => {
+    window.exifr.parse(img).then((exif) => {
 
       if (exif.Orientation == 6) {
       this.isRotated=true;
@@ -75,58 +71,54 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
       if(this.isRotated){
 
-        if(this.data.isImgHorizontal==true){
+        if(this.data.isImgHorizontal){
 
           img.setAttribute('height','250');
-          img.setAttribute('width','200');
+          img.setAttribute('width','180');
 
         }else{
-          console.log('usao ver')
+
           img.setAttribute('height','200');
           img.setAttribute('width','250');
 
 
         }
       }else{
-        console.log('uso nije rot')
-        if(this.data.isImgHorizontal==true){
-          img.setAttribute('class','horizontal');
+
+        if(this.data.isImgHorizontal){
+
+          img.setAttribute('height','180');
+          img.setAttribute('width','250');
 
         }else{
-          img.setAttribute('class','vertical');
+
+          img.setAttribute('height','250');
+          img.setAttribute('width','200');
 
 
         }
       }
 
    if(this.isRotated){
-    img.setAttribute('class','rotate');
+          img.setAttribute('class','rotate');
    }
 
 
     })
 
 
-
-
-
-
-
     if(this.data.imgResolve){
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
-      window.exifr.parse(imgres!).then((exif) => {
-        if (exif.Orientation == 6) {
 
-        //  imgres.classList.add('rotate');
 
-        }
-      })
+      if(this.data.isImgResolveHorizontal){
 
-      if(this.data.isImgResolveHorizontal==true){
-
-        imgres.setAttribute('class','horizontal');
+        imgres.setAttribute('height','180');
+        imgres.setAttribute('width','250');
       }else{
-        imgres.setAttribute('class','vertical');
+
+        imgres.setAttribute('height','250');
+        imgres.setAttribute('width','200');
 
       }
 

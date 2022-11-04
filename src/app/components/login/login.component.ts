@@ -65,12 +65,7 @@ export class LoginComponent  {
 
         if(this.loginAttempts<5){
           this.loginAttempts++;
-        }//else{
-
-        //  this.rightnow = new Date();
-
-//localStorage.setItem("unsuccessfulLoginExpiration",this.rightnow.setMinutes(this.rightnow.getMinutes() + 20));
-       // }
+        }
 
 
       }

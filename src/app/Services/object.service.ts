@@ -5,6 +5,7 @@ import { Retailer } from '../models/retailer';
 import { Obj, ObjectCreateDto } from '../models/object';
 import { OBJECT_URL } from '../app.constants';
 import { Planogram } from '../models/planogram';
+import * as saveAs from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ObjectService {
 
 
 
-  pdfToDownload:Blob;
+  pdfToDownload: Blob;
 
   public getObjects(page: number, count: number, address: string, objectName: string, idCompany: string, retailer: string, city: string, format: string): Observable<Obj[]> {
     let queryParams = new HttpParams();
@@ -174,17 +175,10 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
-  public getRetailerPlanogram(retailer: Retailer) {
-  //  return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-    //  const blob = new Blob([pdf], { type: 'application/pdf' });
-    //  const url = window.URL.createObjectURL(blob);
-    //  window.open(url);
-  //  });
-  }
 
   public downloadRetailerPlanogram(planogramPdf: string) {
-     this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-      this.pdfToDownload=pdf;
+    this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
+      this.pdfToDownload = pdf;
 
     });
 
@@ -201,12 +195,12 @@ export class ObjectService {
 
   public getPlanogram(planogramPdf: string) {
 
-    const url = "https://storagestorecheck.blob.core.windows.net/storecheck/"+planogramPdf;
-    window.location.href="https://docs.google.com/gview?embedded=true&url="+url;
+    const url = "https://storagestorecheck.blob.core.windows.net/storecheck/" + planogramPdf;
+    window.location.href = "https://docs.google.com/gview?embedded=true&url=" + url;
   }
 
   public deletePlanogram(planogramPdf: string) {
-    return this.http.delete(`${OBJECT_URL}/planograms/deleteByPdf/${planogramPdf}`, {headers: this.headers});
+    return this.http.delete(`${OBJECT_URL}/planograms/deleteByPdf/${planogramPdf}`, { headers: this.headers });
   }
 
   public createRetailerWithPlanogram(form: FormData) {
@@ -217,4 +211,10 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public downloadExcelTemplate() {
+    this.http.get(`${OBJECT_URL}/objectExcels`, { headers: this.headers, responseType: 'blob' }).subscribe(template => {
+      const fileName = 'StoreCheck_Objects_Template.xlsx';
+      saveAs(template, fileName);
+    });
+  }
 }

@@ -45,3 +45,20 @@
 .label {
     cursor: pointer;
 }
+
+.download-template {
+    margin-top: 50px;
+}
+
+.download-template em {
+    color: #56baed;
+}
+
+.download-template label {
+    color: #56baed;
+}
+
+.error-message {
+    color: #ff0000;
+    margin-left: 20px;
+}

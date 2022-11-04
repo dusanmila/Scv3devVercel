@@ -1,7 +1,10 @@
+/*@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+*/
 .container {
     display: flex;
     flex-direction: column;
-    height: 150px;
+    width: 400px;
+    max-width: 100%;
 }
 
 .form {
@@ -14,36 +17,36 @@
 }
 
 .test {
-    background-color: #fff;
+    background-color: white;
     color: #39ace7;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    margin-top: -13%;
     border: 2px solid #39ace7;
-    margin-bottom: 10px;
+
 }
+
+h3 {
+    color: #39ace7;
+}
+
 
 button:hover {
     color: #fff;
     background-color: #39ace7;
     transition: 0.3s;
 }
-.wrap{
-    height: 90px;
+
+button[disabled]:hover {
+    background-color: #fff;
 }
 
-
-.mat-dialog-title
-{
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: -10px;
-}
-.mat-dialog-content {
-    overflow-y: hidden;
+.wrap {
+    margin-top: 10px;
 }
 
 button {
     outline: none;
 }
+
 ::ng-deep .mat-button-focus-overlay {
     display: none;
 }

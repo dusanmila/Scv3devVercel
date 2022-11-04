@@ -7,6 +7,7 @@ import { Position } from '../models/position';
 import { PositionClass } from '../models/positionClass';
 import { PositionType } from '../models/positionType';
 import { POSITION_URL } from '../app.constants';
+import * as saveAs from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class PositionService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly headers:HttpHeaders=new HttpHeaders({'Authorization':"Bearer "+localStorage.getItem("jwt")});
+  private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
 
 
 
@@ -25,7 +26,7 @@ export class PositionService {
 
     let retval$ = new Subject<Position[]>();
 
-    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions`, {headers:this.headers}).subscribe((clients: Position[]) => {
+    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions`, { headers: this.headers }).subscribe((clients: Position[]) => {
 
       retval$.next(clients)
 
@@ -36,7 +37,7 @@ export class PositionService {
 
   public getPositionsByObjectIdCompany(objectIdCompany: string): Observable<Position[]> {
     let retval$ = new Subject<Position[]>();
-    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions/secondaryPositionByObjectIdCompany/${objectIdCompany}`,{headers:this.headers}).subscribe((positions: Position[]) => {
+    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions/secondaryPositionByObjectIdCompany/${objectIdCompany}`, { headers: this.headers }).subscribe((positions: Position[]) => {
       retval$.next(positions)
     });
     return retval$.asObservable();
@@ -45,7 +46,7 @@ export class PositionService {
   public createPosition(position: Position): Observable<Position> {
 
     let retval$ = new Subject<Position>();
-    this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position,{headers:this.headers}).subscribe((helper: Position) => {
+    this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -53,7 +54,7 @@ export class PositionService {
 
   public excelImport(formData: FormData) {
 
-    return this.http.post(`${POSITION_URL}/secondaryPositionExcels`, formData,{headers:this.headers});
+    return this.http.post(`${POSITION_URL}/secondaryPositionExcels`, formData, { headers: this.headers });
 
   }
 
@@ -61,7 +62,7 @@ export class PositionService {
 
     let retval$ = new Subject<Position>();
 
-    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position,{headers:this.headers}).subscribe((helper: Position) => {
+    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
 
       retval$.next(helper)
 
@@ -77,7 +78,7 @@ export class PositionService {
 
     let retval$ = new Subject<Position>();
 
-    this.http.get<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`,{headers:this.headers}).subscribe((helper: Position) => {
+    this.http.get<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`, { headers: this.headers }).subscribe((helper: Position) => {
       retval$.next(helper)
     });
 
@@ -89,7 +90,7 @@ export class PositionService {
 
 
     let retval$ = new Subject<Position>();
-    this.http.delete<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`,{headers:this.headers}).subscribe((helper: Position) => {
+    this.http.delete<Position>(`${POSITION_URL}/secondaryPositions/${position.secondaryPositionId}`, { headers: this.headers }).subscribe((helper: Position) => {
       retval$.next(helper)
     })
 
@@ -97,9 +98,28 @@ export class PositionService {
     return retval$.asObservable();
   }
 
+  public updatePosition(position: Position): Observable<Position> {
+    let retval$ = new Subject<Position>();
+    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
+      retval$.next(helper);
+
+    });
+    return retval$.asObservable();
+  }
+
+  public updatePositionAddPhoto(position: Position): Observable<Position> {
+    
+    let retval$ = new Subject<Position>();
+    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
+      retval$.next(helper);
+
+    });
+    return retval$.asObservable();
+  }
+
   public getPositionClasses(): Observable<PositionClass[]> {
     let retval$ = new Subject<PositionClass[]>();
-    this.http.get<PositionClass[]>(`${POSITION_URL}/positionClasses`,{headers:this.headers}).subscribe((helper: PositionClass[]) => {
+    this.http.get<PositionClass[]>(`${POSITION_URL}/positionClasses`, { headers: this.headers }).subscribe((helper: PositionClass[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -107,10 +127,24 @@ export class PositionService {
 
   public getPositionTypes(): Observable<PositionType[]> {
     let retvla$ = new Subject<PositionType[]>();
-    this.http.get<PositionType[]>(`${POSITION_URL}/positionTypes`,{headers:this.headers}).subscribe((helper: PositionType[]) => {
+    this.http.get<PositionType[]>(`${POSITION_URL}/positionTypes`, { headers: this.headers }).subscribe((helper: PositionType[]) => {
       retvla$.next(helper);
     });
     return retvla$.asObservable();
+  }
+
+  public downloadExcelTemplate() {
+    this.http.get(`${POSITION_URL}/secondaryPositionExcels`, { headers: this.headers, responseType: 'blob' }).subscribe(template => {
+      const fileName = 'StoreCheck_SecondaryPositions_Template.xlsx';
+      saveAs(template, fileName);
+    });
+  }
+
+  public export() {
+    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel`, { headers: this.headers, responseType: 'blob' }).subscribe(excel => {
+      const fileName = 'SecondaryPositions.xlsx';
+      saveAs(excel, fileName);
+    });
   }
 }
 

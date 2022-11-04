@@ -20,6 +20,7 @@ import { StoreCheckReceiverComponent } from './components/store-check-receiver/s
 import { FeedbackCategoryComponent } from './components/feedback-category/feedback-category.component';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { UploadsComponent } from './components/uploads/uploads.component';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
+  { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
   {
     path: 'admin', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },
@@ -40,6 +42,8 @@ const routes: Routes = [
       { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] },
       { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
       { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] },
+      { path: 'secondaryPosition', component: PositionComponent, canActivate: [AdminGuard] },
+      { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
       { path: 'uploads', component: UploadsComponent, canActivate: [AdminGuard] }
     ],
     component: SidenavComponent,

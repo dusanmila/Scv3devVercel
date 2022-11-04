@@ -1,4 +1,4 @@
-export var single = [
+export let single = [
     {
       "name": "Maxi",
       "value": 8940000
@@ -12,8 +12,8 @@ export var single = [
       "value": 7200000
     }
   ];
-  
-  export var multi = [
+
+  export let multi = [
     {
       "name": "Germany",
       "series": [
@@ -27,7 +27,7 @@ export var single = [
         }
       ]
     },
-  
+
     {
       "name": "USA",
       "series": [
@@ -41,7 +41,7 @@ export var single = [
         }
       ]
     },
-  
+
     {
       "name": "France",
       "series": [
@@ -57,7 +57,7 @@ export var single = [
     }
   ];
 
-  export var data = [
+  export let data = [
     {
       "name": "Germany",
       "value": 40632,

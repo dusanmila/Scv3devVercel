@@ -2,7 +2,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { AreaChartStackedComponent } from '@swimlane/ngx-charts';
+
 import { Guid } from 'guid-typescript';
 import { PositionDialogComponent } from 'src/app/dialogs/position-dialog/position-dialog.component';
 import { Position } from 'src/app/models/position';
@@ -22,7 +22,7 @@ export class PositionComponent implements OnInit {
 
 
   position: Position = {
-    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", valid: false,
+    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "",img:"",isImgHorizontal:false, valid: false,
     productCategory: '',
     supplier: '',
     location: ''
@@ -35,6 +35,8 @@ export class PositionComponent implements OnInit {
 
   @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
+  @Input() public isAdmin: boolean = false;
+  @Input() positionCheck: boolean;
   @Output() showFinishButton = new EventEmitter<boolean>();
 
 
@@ -95,8 +97,12 @@ export class PositionComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string) {
-    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location } });
+  public exportPositions() {
+    this.positionService.export();
+  }
+
+  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, img?: string,isImgHorizontal?:boolean) {
+    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location,img,isImgHorizontal } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;
     dialogRef.afterClosed()

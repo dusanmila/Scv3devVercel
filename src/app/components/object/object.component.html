@@ -1,51 +1,56 @@
 <div class="container font">
   <div>
-    <div class="detail-search"  *ngIf="!isDashboard">
+    <div class="detail-search" *ngIf="!isDashboard">
       <div class="detail-search-menu">
-        <div class="menu-item">
-          <mat-form-field>
-            <input type="text" matInput placeholder="Object name" [(ngModel)]="objectName"> 
-          </mat-form-field>
+        <div class="menu-row">
+          <div class="menu-item">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Object name" [(ngModel)]="objectName">
+            </mat-form-field>
+          </div>
+
+          <div class="menu-item">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Address" [(ngModel)]="address">
+            </mat-form-field>
+          </div>
+
+          <div class="menu-item">
+            <mat-form-field>
+              <input type="text" matInput placeholder="City" [(ngModel)]="city">
+            </mat-form-field>
+          </div>
         </div>
 
-        <div class="menu-item">
-          <mat-form-field>
-            <input type="text" matInput placeholder="Address" [(ngModel)]="address">
-          </mat-form-field>
-        </div>
+        <div class="menu-row">
+          <div class="menu-item">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Id company" [(ngModel)]="idCompany">
+            </mat-form-field>
+          </div>
 
-        <div class="menu-item">
-          <mat-form-field>
-            <input type="text" matInput placeholder="City" [(ngModel)]="city" >
-          </mat-form-field>
-        </div>
+          <div class="menu-item">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Retailer" [(ngModel)]="retailer">
+            </mat-form-field>
+          </div>
 
-        <div class="menu-item">
-          <mat-form-field>
-            <input type="text" matInput placeholder="Id company" [(ngModel)]="idCompany">
-          </mat-form-field>
-        </div>
-
-        <div class="menu-item">
-          <mat-form-field>
-            <input type="text" matInput placeholder="Retailer" [(ngModel)]="retailer">
-          </mat-form-field>
-        </div>
-
-        <div class="menu-item">
-          <mat-form-field>
-            <input type="text" matInput placeholder="Banner" [(ngModel)]="format">
-          </mat-form-field>
+          <div class="menu-item">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Banner" [(ngModel)]="format">
+            </mat-form-field>
+          </div>
         </div>
 
         <div class="menu-btn">
-            <button mat-stroked-button color="primary" class="mat-btn" (click)="loadData(false)" *ngIf="!isDashboard">Search <mat-icon>search</mat-icon></button>
+          <button  mat-stroked-button color="primary" class="item2" (click)="loadData(false)"
+            *ngIf="!isDashboard">Search <mat-icon>search</mat-icon></button>
         </div>
       </div>
     </div>
 
-    <mat-form-field  *ngIf="isDashboard">
-      <input type="text" matInput placeholder="Search objects" [(ngModel)]="objectName"> 
+    <mat-form-field *ngIf="isDashboard">
+      <input type="text" matInput placeholder="Search objects" [(ngModel)]="objectName">
       <button class="search" matSuffix mat-button (click)="loadData(false)">
         <mat-icon class="search">search</mat-icon>
       </button>
@@ -55,15 +60,16 @@
       <mat-table #table class="table" [dataSource]="dataSource" matSort class="mat-cell">
 
         <ng-container matColumnDef="objectName">
-          <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">{{ isDashboard ? "Objects" : "Name" }}</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">{{ isDashboard ? "Objects" :
+            "Name" }}</mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="Name">{{ row.objectName }}</mat-cell>
         </ng-container>
-  
+
         <ng-container matColumnDef="address">
           <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Address</mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="Address">{{ row.address }}</mat-cell>
         </ng-container>
-  
+
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef>
             <button mat-icon-button color="primary" *ngIf="isAdmin">
@@ -71,41 +77,41 @@
             </button>
           </mat-header-cell>
           <mat-cell *matCellDef="let row; let i=index">
-            <button color="primary" mat-icon-button color="primary" *ngIf="isAdmin"
-              (click)="openUpdateDialog(4,row)">
+            <button color="primary" mat-icon-button color="primary" *ngIf="isAdmin" (click)="openUpdateDialog(4,row)">
               <mat-icon area-label="Info">info</mat-icon>
             </button>
-  
+
             <button mat-icon-button color="primary" *ngIf="isAdmin">
               <mat-icon area-label="Edit" (click)="openUpdateDialog(2,row)">
                 edit </mat-icon>
             </button>
-  
+
             <button mat-icon-button color="primary" *ngIf="isAdmin">
               <mat-icon area-label="Delete"
                 (click)="openDialog(3,row.objectName,row.objectIdCompany,row.objectIdRetail,row.address,row.city,row.retailerName,row.objectFormat,row.requisitionDays,row.merchandiserRevisionDays)">
                 delete </mat-icon>
             </button>
-  
+
             <button style="color: #56baed;background-color:white;" mat-button color="primary" *ngIf="!isAdmin"
               (click)="openUpdateDialog(4,row)">
-             
+
               <mat-icon area-label="Info">info</mat-icon>
             </button>
             <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin"
               (click)="getUnfinishedObjectStoreCheck(row.objectName, row.objectIdCompany)">
-           
+
               Start
               <mat-icon area-label="Open" class="openIcon">open_in_new</mat-icon>
             </button>
-  
+
           </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="selectObject(row.objectName)"></mat-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
+          (click)="selectObject(row.objectName)"></mat-row>
       </mat-table>
-      <mat-paginator *ngIf="length > 0" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]" [length]="length"
-        (page)="loadDataOnPageEvent($event)">
+      <mat-paginator *ngIf="length > 0" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
       </mat-paginator>
     </div>
 

@@ -44,12 +44,12 @@ export class ResolvedFeedbackComponent implements OnInit {
     this.feedbackService.getResolvedFeedbacksByObject(this.objectIdCompany, this.count, this.page).subscribe(data => {
 
       if(data){
-       
+
         this.dataSource = new MatTableDataSource(data);
 
       }else{
-this.noData=true;
-this.dataSource=data;
+        this.noData=true;
+        this.dataSource=data;
       }
 
       this.isLoading = false;
