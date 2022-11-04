@@ -87,15 +87,18 @@ console.log(this.positionDto.img)
   }
 
   public add() {
+    this.isLoading=true;
     this.data.objectIdCompany = this.objectIdCompany;
     this.data.valid = false;
     this.positionService.createPosition(this.data).subscribe({
       next: () => {
         this.changed = true;
         this.close();
+        this.isLoading=false;
         this.snackBar.open('Secondary position added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       },
       error: (err: Error) => {
+        this.isLoading=false;
         console.log(err.name + ' -> ' + err.message)
         this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
@@ -103,20 +106,25 @@ console.log(this.positionDto.img)
   }
 
   public delete() {
+    this.isLoading=true;
     this.positionService.deletePosition(this.data).subscribe({
       next: () => {
         this.changed = true;
         this.snackBar.open('Secondary position deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+this.isLoading=false;
         this.close();
+
       },
       error: (err: Error) => {
         console.log(err.name + ' -> ' + err.message)
+        this.isLoading=false;
         this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
     });
   }
 
   public update(): void {
+    this.isLoading=true;
    // this.positionDto.secondaryPositionId=this.secPos.secondaryPositionId;
     this.positionDto.location=this.positionDto.location;
     this.positionDto.objectIdCompany=this.positionDto.objectIdCompany;
@@ -128,10 +136,12 @@ console.log(this.positionDto.img)
     this.positionService.updatePosition(this.positionDto)
       .subscribe(() => {
         this.snackBar.open('Updated position', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+this.isLoading=false;
         this.close();
       }),
       (error: Error) => {
         console.log(error.name + ' -> ' + error.message)
+        this.isLoading=false
         this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }
@@ -172,6 +182,7 @@ console.log(this.positionDto.img)
         this.close();
       }),
       (error:Error) => {
+        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       };
@@ -206,6 +217,7 @@ console.log(this.positionDto.img)
       }),
       (error:Error) => {
         console.log(error.name + ' -> ' + error.message)
+        this.isLoading=false;
         this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       };
     }

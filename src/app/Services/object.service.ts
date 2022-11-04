@@ -175,13 +175,6 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
-  public getRetailerPlanogram(retailer: Retailer) {
-    //  return this.http.get(`${OBJECT_URL}/retailers/retailerPlanogram/${retailer.planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
-    //  const blob = new Blob([pdf], { type: 'application/pdf' });
-    //  const url = window.URL.createObjectURL(blob);
-    //  window.open(url);
-    //  });
-  }
 
   public downloadRetailerPlanogram(planogramPdf: string) {
     this.http.get(`${OBJECT_URL}/planograms/planogramByPdf/${planogramPdf}`, { headers: this.headers, responseType: 'blob' }).subscribe(pdf => {
