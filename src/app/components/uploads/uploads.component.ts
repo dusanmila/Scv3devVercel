@@ -44,8 +44,7 @@ export class UploadsComponent implements OnInit {
       },
       error: err => {
         this.isObjLoading = false;
-        this.errorMessage = err.message;
-        console.log(this.errorMessage)
+        this.errorMessage = err.error;
       }
     });
   }
@@ -68,7 +67,7 @@ export class UploadsComponent implements OnInit {
       },
       error: err => {
         this.isPosLoading = false;
-        this.errorMessage = err.message;
+        this.errorMessage = err.error;
       }
     });
   }
@@ -90,8 +89,9 @@ export class UploadsComponent implements OnInit {
         });
       },
       error: err => {
+        console.log(err);
         this.isProdLoading = false;
-        this.errorMessage = err.message;
+        this.errorMessage = err.error;
       }
     });
   }
