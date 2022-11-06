@@ -97,11 +97,12 @@
 
         <app-position [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="resolveFeedbacks" [positionCheck]="positionCheck"
             (showFinishButton)="enableFinishButton($event)"></app-position>
+        </div>
         <div class="margintop">
             <button mat-stroked-button color="primary" class="item2" (click)="addToStoreCheck()"
                 *ngIf="showFinishButton && !resolveFeedbacks">Add</button>
             <button mat-stroked-button color="primary" class="item2" style="margin-bottom: 10px; margin-left:10px;" (click)="exit()">Exit</button>
         </div>
-    </div>
+   
     </div>
 </div>

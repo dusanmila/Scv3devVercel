@@ -22,7 +22,7 @@ export class PositionComponent implements OnInit {
 
 
   position: Position = {
-    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "",img:"",isImgHorizontal:false, valid: false,
+    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", img: "", isImgHorizontal: false, valid: false,
     productCategory: '',
     supplier: '',
     location: ''
@@ -64,21 +64,10 @@ export class PositionComponent implements OnInit {
 
         this.isLoading = false;
       });
-    } else {
-      this.positionService.getPositions().subscribe(data => {
-        this.positions = data;
-        this.dataSource = new MatTableDataSource(this.positions);
-        this.isLoading = false;
-      });
     }
   }
 
-
-
-
-
   deletePosition() {
-
     this.positionService.deletePosition(this.selectedPosition).subscribe(() => {
       let helper = this.positions.findIndex(pos => pos.secondaryPositionId == this.selectedPosition.secondaryPositionId);
       if (helper > 0) {
@@ -108,8 +97,8 @@ export class PositionComponent implements OnInit {
     this.positionService.export();
   }
 
-  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, img?: string,isImgHorizontal?:boolean) {
-    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location,img,isImgHorizontal } });
+  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, img?: string, isImgHorizontal?: boolean) {
+    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location, img, isImgHorizontal } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;
     dialogRef.afterClosed()
