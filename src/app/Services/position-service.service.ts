@@ -58,17 +58,34 @@ export class PositionService {
 
   }
 
-  public editPosition(position: Position): Observable<Position> {
+  public editPositionCheck(position: Position): Observable<Position> {
 
     let retval$ = new Subject<Position>();
 
-    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
 
-      retval$.next(helper)
+  this.http.put<Position>(`${POSITION_URL}/secondaryPositions/check`,position, { headers: this.headers }).subscribe((helper: Position) => {
 
-    });
+    retval$.next(helper)
 
-    return retval$.asObservable();
+  });
+  return retval$.asObservable();
+
+}
+
+
+  public editPositionUncheck(position: Position): Observable<Position> {
+
+    let retval$ = new Subject<Position>();
+
+
+  this.http.put<Position>(`${POSITION_URL}/secondaryPositions/uncheck`,position, { headers: this.headers }).subscribe((helper: Position) => {
+
+    retval$.next(helper)
+
+  });
+
+
+ return retval$.asObservable();
 
   }
 
@@ -108,7 +125,7 @@ export class PositionService {
   }
 
   public updatePositionAddPhoto(position: Position): Observable<Position> {
-    
+
     let retval$ = new Subject<Position>();
     this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
       retval$.next(helper);

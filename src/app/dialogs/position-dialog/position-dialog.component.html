@@ -159,9 +159,9 @@
           hidden
           capture="camera"
         />
-        <label style="margin-bottom:5%">Take photo:</label>
+        <label style="margin-bottom:5% " *ngIf="flag!=2">Take photo:</label>
 
-        <label for="inputFile" class="browseFile">
+        <label for="inputFile" class="browseFile" *ngIf="flag!=2">
           <img
             src="assets\photoicon.png"
             width="10%"
@@ -197,10 +197,10 @@
           hidden
           capture="camera"
         />
-        <label *ngIf="data.img && data.img != 'undefined'" style="margin-bottom:5%">Update photo:</label>
-        <label *ngIf="!data.img || data.img == 'undefined'" style="margin-bottom:5%">Take photo:</label>
+        <label *ngIf="data.img && data.img != 'undefined' && flag !=2" style="margin-bottom:5%">Update photo:</label>
+        <label *ngIf="!data.img || data.img == 'undefined' && flag !=2" style="margin-bottom:5%">Take photo:</label>
 
-        <label for="inputFile" class="browseFile">
+        <label for="inputFile" class="browseFile" *ngIf="flag!=2">
           <img
             src="assets\photoicon.png"
             width="10%"
