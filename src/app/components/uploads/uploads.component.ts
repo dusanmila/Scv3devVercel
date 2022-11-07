@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/Services/product.service';
   templateUrl: './uploads.component.html',
   styleUrls: ['./uploads.component.css']
 })
-export class UploadsComponent {
+export class UploadsComponent implements OnInit {
 
   objectsFile: any;
   positionsFile: any;
@@ -18,12 +18,18 @@ export class UploadsComponent {
   isPosLoading = false;
   isProdLoading = false;
   errorMessage!: string;
+  isObjectsEmpty=false;
+  objectsDeleted=false;
 
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
     public productService: ProductService,
     public snackBar: MatSnackBar) { }
 
+    ngOnInit(){
+ this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
+
+    }
 
   uploadObjectsFile(event: any) {
     this.errorMessage = '';
@@ -102,6 +108,10 @@ export class UploadsComponent {
       this.positionService.downloadExcelTemplate();
     else if (flag === 3)
       this.productService.downloadExcelTemplate();
+  }
+
+  deleteObjects(){
+    this.objectService.deleteObjects().subscribe(()=>this.isObjectsEmpty=true);
   }
 
 }

@@ -6,8 +6,8 @@
 
     <h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>
 
-    <label for="objectFileDropRef" class="browseButton">Browse</label>
-
+    <label for="objectFileDropRef" class="browseButton" *ngIf="isObjectsEmpty">Browse</label>
+    <button mat-button color="warn" *ngIf="!isObjectsEmpty" (click)="deleteObjects()">Delete objects</button>
     <div class="download-template">
       <em id="download-obj-template" class="fa-solid fa-download fa-2x" (click)="downloadTemplate(1)"></em>
       <br>
