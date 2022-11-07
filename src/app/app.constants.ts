@@ -1,4 +1,4 @@
- 
+
 export const STORE_CHECK_URL = 'https://storecheckbeta.azurewebsites.net/api';
  export const USER_URL = 'https://storecheckbeta.azurewebsites.net/api';
  export const POSITION_URL = 'https://storecheckbeta.azurewebsites.net/api';
