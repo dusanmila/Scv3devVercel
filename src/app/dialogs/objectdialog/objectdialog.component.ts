@@ -59,6 +59,7 @@ export class ObjectDialogComponent implements OnInit {
   ngOnInit(): void {
     this.loadUsers();
     this.loadRetailers();
+    console.log(this.data);
 
   }
 
@@ -75,21 +76,24 @@ export class ObjectDialogComponent implements OnInit {
   }
 
   public update(): void {
-    this.objectCreateDto.objectIdRetail = this.data.objectIdRetail;
-    this.objectCreateDto.retailer = this.data.retailer.retailerName;
-    this.objectCreateDto.objectIdCompany = this.data.objectIdCompany;
-    this.objectCreateDto.objectFormat = this.data.objectFormat;
-    this.objectCreateDto.objectName = this.data.objectName;
-    this.objectCreateDto.city = this.data.city;
-    this.objectCreateDto.address = this.data.address;
-    this.objectCreateDto.kam = this.data.kam.toString();
-    this.objectCreateDto.director = this.data.director.toString();
-    this.objectCreateDto.supervisor = this.data.supervisor.toString();
-    this.objectCreateDto.commercialist = this.data.commercialist.toString();
-    this.objectCreateDto.merchandiser = this.data.merchandiser.toString();
-    this.objectCreateDto.merchandiserRevisionDays = this.data.merchandiserRevisionDays;
-    this.objectCreateDto.requisitionDays = this.data.requisitionDays;
-    this.objectCreateDto.objectInfo = this.data.objectInfo;
+    this.data.objectIdRetail==null?null:this.objectCreateDto.objectIdRetail = this.data.objectIdRetail;
+   this.data.retailer==null?null: this.objectCreateDto.retailer = this.data.retailer.retailerName;
+    this.data.objectIdCompany==null?null:this.objectCreateDto.objectIdCompany = this.data.objectIdCompany;
+    this.data.objectFormat==null?null:this.objectCreateDto.objectFormat = this.data.objectFormat;
+   this.data.objectName==null?null: this.objectCreateDto.objectName = this.data.objectName;
+    this.data.city==null?null:this.objectCreateDto.city = this.data.city;
+    this.data.address==null?null:this.objectCreateDto.address = this.data.address;
+    this.data.kam==null?null:this.objectCreateDto.kam = this.data.kam.toString();
+
+    this.data.director == null ? null : this.objectCreateDto.director = this.data.director.toString();
+
+
+    this.data.supervisor==null?null:this.objectCreateDto.supervisor = this.data.supervisor.toString();
+    this.data.commercialist==null?null:this.objectCreateDto.commercialist = this.data.commercialist.toString();
+    this.data.merchandiser==null?null:this.objectCreateDto.merchandiser = this.data.merchandiser.toString();
+    this.data.merchandiserRevisionDays==null?null:this.objectCreateDto.merchandiserRevisionDays = this.data.merchandiserRevisionDays;
+    this.data.requisitionDays==null?null:this.objectCreateDto.requisitionDays = this.data.requisitionDays;
+    this.data.objectInfo==null?null:this.objectCreateDto.objectInfo = this.data.objectInfo;
     this.objectService.updateObject(this.objectCreateDto)
       .subscribe(() => {
         this.snackBar.open('Updated object', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
