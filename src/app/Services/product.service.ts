@@ -64,4 +64,18 @@ export class ProductService {
   deleteProduct(productIdCompany: string): Observable<any> {
     return this.http.delete<any>(`${PRODUCT_URL}/products/${productIdCompany}`, { headers: this.headers });
   }
+
+
+  public deleteProducts() {
+    return this.http.delete(`${PRODUCT_URL}/products`, { headers: this.headers });
+  }
+
+  public checkNoData(): Observable<boolean> {
+
+    let retval$ = new Subject<boolean>();
+    this.http.get<boolean>(`${PRODUCT_URL}/products/checkNoData`, { headers: this.headers }).subscribe((ret: boolean) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
 }

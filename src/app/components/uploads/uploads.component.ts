@@ -19,7 +19,9 @@ export class UploadsComponent implements OnInit {
   isProdLoading = false;
   errorMessage!: string;
   isObjectsEmpty=false;
-  objectsDeleted=false;
+  isPositionsEmpty=false;
+  isProductsEmpty=false;
+
 
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
@@ -28,6 +30,8 @@ export class UploadsComponent implements OnInit {
 
     ngOnInit(){
  this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
+ this.positionService.checkNoData().subscribe((data)=>this.isPositionsEmpty=data);
+ this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
 
     }
 
@@ -111,7 +115,39 @@ export class UploadsComponent implements OnInit {
   }
 
   deleteObjects(){
-    this.objectService.deleteObjects().subscribe(()=>this.isObjectsEmpty=true);
+    this.objectService.deleteObjects().subscribe({
+      next: () => {
+        this.isObjectsEmpty=true;
+
+      },
+      error: (err: Error) => {
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
+    });
+  }
+
+  deletePositions(){
+    this.positionService.deletePositions().subscribe({
+      next: () => {
+        this.isPositionsEmpty=true;
+
+      },
+      error: (err: Error) => {
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
+    });
+  }
+
+  deleteProducts(){
+    this.productService.deleteProducts().subscribe({
+      next: () => {
+        this.isProductsEmpty=true;
+
+      },
+      error: (err: Error) => {
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
+    });
   }
 
 }

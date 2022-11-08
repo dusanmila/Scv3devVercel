@@ -163,6 +163,20 @@ export class PositionService {
       saveAs(excel, fileName);
     });
   }
+
+  public deletePositions() {
+    return this.http.delete(`${POSITION_URL}/secondaryPositionsExcels`, { headers: this.headers });
+  }
+
+  public checkNoData(): Observable<boolean> {
+
+    let retval$ = new Subject<boolean>();
+    this.http.get<boolean>(`${POSITION_URL}/secondaryPositionExcels/checkNoData`, { headers: this.headers }).subscribe((ret: boolean) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
 }
 
 
