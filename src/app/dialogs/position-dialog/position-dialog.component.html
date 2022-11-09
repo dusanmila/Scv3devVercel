@@ -4,13 +4,50 @@
   <h3 mat-dialog-title *ngIf="flag == 3">Secondary position</h3>
   <h3 mat-dialog-title *ngIf="flag == 4">Update secondary position</h3>
   <form class="mat-dialog-content" #formControl="ngForm">
+
+    <div class="form" *ngIf="flag == 1 || flag == 4">
+      <mat-form-field>
+        <mat-select
+          [(ngModel)]="positionDto.posTypeName"
+          placeholder="Dimensions"
+          name="posClassType"
+          required="flag == 1"
+        >
+          <mat-option
+            *ngFor="let type of positionTypes"
+            [value]="type.positionTypeName"
+          >
+            {{ type.positionTypeName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form" *ngIf="flag == 2 || flag == 3">
+      <mat-form-field>
+        <mat-label>Dimensions</mat-label>
+        <input
+          matInput
+          [(ngModel)]="positionDto.posTypeName"
+          name="posTypeName"
+          [disabled]="true"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder = "Comment" [(ngModel)]="positionDto.comment" name = "comment" [disabled]=" flag==2||flag==3"/>
+      </mat-form-field>
+    </div>
+
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
         <mat-select
           [(ngModel)]="positionDto.posClassName"
           placeholder="Secondary Position Class"
           name="posClassName"
-          required="flag == 1"
+
         >
           <mat-option
             *ngFor="let class of positionClasses"
@@ -29,40 +66,12 @@
           [(ngModel)]="positionDto.posClassName"
           name="posClassName"
           [disabled]="true"
-          required
+
         />
       </mat-form-field>
     </div>
 
-    <div class="form" *ngIf="flag == 1 || flag == 4">
-      <mat-form-field>
-        <mat-select
-          [(ngModel)]="positionDto.posTypeName"
-          placeholder="Secondary Position Type"
-          name="posClassType"
-          required="flag == 1"
-        >
-          <mat-option
-            *ngFor="let type of positionTypes"
-            [value]="type.positionTypeName"
-          >
-            {{ type.positionTypeName }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="form" *ngIf="flag == 2 || flag == 3">
-      <mat-form-field>
-        <mat-label>Position type</mat-label>
-        <input
-          matInput
-          [(ngModel)]="positionDto.posTypeName"
-          name="posTypeName"
-          [disabled]="true"
-          required
-        />
-      </mat-form-field>
-    </div>
+
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
@@ -70,13 +79,13 @@
           [(ngModel)]="positionDto.productCategory"
           placeholder="Product Category"
           name="productCategory"
-          required="flag == 1"
+
         >
           <mat-option
-            *ngFor="let category of productCategories"
-            [value]="category.productCategoryName"
+            *ngFor="let productCategory of productCategories"
+            [value]="productCategory.productCategoryName"
           >
-            {{ category.productCategoryName }}
+            {{ productCategory.productCategoryName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -89,7 +98,7 @@
           [(ngModel)]="positionDto.productCategory"
           name="productCategory"
           [disabled]="true"
-          required
+
         />
       </mat-form-field>
     </div>
@@ -100,7 +109,7 @@
           [(ngModel)]="positionDto.supplier"
           placeholder="Supplier"
           name="supplier"
-          required="flag == 1"
+
         >
           <mat-option *ngFor="let supplier of suppliers" [value]="supplier">
             {{ supplier }}
@@ -116,7 +125,7 @@
           [(ngModel)]="positionDto.supplier"
           name="supplier"
           [disabled]="true"
-          required
+
         />
       </mat-form-field>
     </div>
@@ -127,7 +136,7 @@
           [(ngModel)]="positionDto.location"
           placeholder="Location"
           name="location"
-          required="flag == 1"
+
         >
           <mat-option *ngFor="let location of locations" [value]="location">
             {{ location }}
@@ -143,7 +152,7 @@
           [(ngModel)]="positionDto.location"
           name="location"
           [disabled]="true"
-          required
+
         />
       </mat-form-field>
     </div>

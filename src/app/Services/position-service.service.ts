@@ -44,7 +44,6 @@ export class PositionService {
   }
 
   public createPosition(position: Position): Observable<Position> {
-
     let retval$ = new Subject<Position>();
     this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
       retval$.next(helper);
@@ -158,10 +157,8 @@ export class PositionService {
   }
 
   public export() {
-    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel`, { headers: this.headers, responseType: 'blob' }).subscribe(excel => {
-      const fileName = 'SecondaryPositions.xlsx';
-      saveAs(excel, fileName);
-    });
+    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel`, { headers: this.headers, responseType: 'blob' });
+
   }
 
   public deletePositions() {
