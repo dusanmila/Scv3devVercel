@@ -24,8 +24,9 @@
 
     <div class="form">
       <mat-form-field>
-        <input matInput placeholder="Comment" [(ngModel)]="positionDto.comment" name="comment"
-          [disabled]=" flag==2||flag==3" />
+        <textarea  matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="positionDto.comment" name="comment"
+          [disabled]=" flag==2||flag==3" > </textarea>
       </mat-form-field>
     </div>
 
@@ -79,7 +80,7 @@
       </mat-form-field>
     </div>
 
-    <div class="form" *ngIf="flag == 1 || flag == 4">
+    <div class="form" *ngIf="flag == 1 || flag == 4" style="margin-bottom: 20px;">
       <mat-form-field>
         <mat-select [(ngModel)]="positionDto.location" placeholder="Location" name="location">
           <mat-option *ngFor="let location of locations" [value]="location">
@@ -88,7 +89,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="form" *ngIf="flag == 2 || flag == 3">
+    <div class="form" *ngIf="flag == 2 || flag == 3" style="margin-bottom: 20px;">
       <mat-form-field>
         <mat-label>Location</mat-label>
         <input matInput [(ngModel)]="positionDto.location" name="location" [disabled]="true" />
@@ -119,16 +120,18 @@
           }}" alt="Position photo" width="200" height="200" id="posphoto" />
       </div>
       <br>
-      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded">
+      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded" style="margin-top: 10px;">
         <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" fromControlName="file" hidden
           capture="camera" />
-        <label *ngIf="data.img && data.img != 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Update
-          photo:</label>
-        <label *ngIf="!data.img || data.img == 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Take
-          photo:</label>
 
-        <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
-          <img src="assets\photoicon.png" width="10%" height="10%" alt="PhotoIcon" /></label>
+        <div class="photo-input">
+          <label *ngIf="data.img && data.img != 'undefined' && flag !=2 && flag != 3">Update
+            photo:</label>
+          <label *ngIf="!data.img || data.img == 'undefined' && flag !=2 && flag != 3">Take
+            photo:</label>
+          <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
+            <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
+        </div>
       </form>
       <div *ngIf="imageUploaded">
         <p>Photo is uploaded.</p>
