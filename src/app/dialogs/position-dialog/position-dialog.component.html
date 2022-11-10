@@ -99,7 +99,7 @@
         <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" fromControlName="file" hidden
           capture="camera" />
 
-        <div class="photo-input" >
+        <div class="photo-input">
           <!-- <p style="margin-bottom:5% " *ngIf="flag!=2 && flag !=3">Click to add photo:</p> -->
           <p *ngIf="flag!=2 && flag !=3">Click to add photo:</p>
           <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
@@ -112,7 +112,7 @@
         <p>Photo is uploaded.</p>
       </div>
     </div>
-    <div *ngIf="data.img || flag==4" >
+    <div *ngIf="data.img || flag==4">
       <div class="form pos-img" *ngIf="data.img != 'undefined'">
         <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
             data.img
@@ -122,13 +122,15 @@
       <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded" style="margin-top: 10px;">
         <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" fromControlName="file" hidden
           capture="camera" />
-        <label *ngIf="data.img && data.img != 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Update
-          photo:</label>
-        <label *ngIf="!data.img || data.img == 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Take
-          photo:</label>
 
-        <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
-          <img src="assets\photoicon.png" width="10%" height="10%" alt="PhotoIcon" /></label>
+        <div class="photo-input">
+          <label *ngIf="data.img && data.img != 'undefined' && flag !=2 && flag != 3">Update
+            photo:</label>
+          <label *ngIf="!data.img || data.img == 'undefined' && flag !=2 && flag != 3">Take
+            photo:</label>
+          <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
+            <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
+        </div>
       </form>
       <div *ngIf="imageUploaded">
         <p>Photo is uploaded.</p>
