@@ -49,6 +49,15 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public checkNoData(): Observable<boolean> {
+
+    let retval$ = new Subject<boolean>();
+    this.http.get<boolean>(`${OBJECT_URL}/objectExcels/checkNoData`, { headers: this.headers }).subscribe((ret: boolean) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
   public getObjectByObjectIdCompany(objectIdCompany: string): Observable<Obj> {
     let retval$ = new Subject<Obj>();
     this.http.get<Obj>(`${OBJECT_URL}/objects/objectByObjectIdCompany/${objectIdCompany}`, { headers: this.headers }).subscribe((helper: Obj) => {
@@ -201,6 +210,10 @@ export class ObjectService {
 
   public deletePlanogram(planogramPdf: string) {
     return this.http.delete(`${OBJECT_URL}/planograms/deleteByPdf/${planogramPdf}`, { headers: this.headers });
+  }
+
+  public deleteObjects() {
+    return this.http.delete(`${OBJECT_URL}/objectExcels`, { headers: this.headers });
   }
 
   public createRetailerWithPlanogram(form: FormData) {

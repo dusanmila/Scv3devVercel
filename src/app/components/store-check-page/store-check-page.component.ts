@@ -24,12 +24,10 @@ export class StoreCheckPageComponent implements OnInit {
   public objectStoreCheck: ObjectStoreCheck;
   public positions: Position[];
   public showDetails: boolean = false;
-  public resolveFeedbacks: boolean = false;
   public workModel: string;
   public showFinishButton: boolean = false;
-  public positionCheck: boolean=false;
 
-  constructor(public snackBar:MatSnackBar,
+  constructor(public snackBar: MatSnackBar,
     public objectService: ObjectService,
     public objectStoreCheckService: ObjectStoreCheckService,
     public positionService: PositionService,
@@ -40,14 +38,6 @@ export class StoreCheckPageComponent implements OnInit {
   ngOnInit(): void {
     this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
-    if (this.workModel == "addStoreCheck") {
-      this.resolveFeedbacks = false;
-    } else if (this.workModel == "resolveFeedbacks") {
-      this.resolveFeedbacks = true;
-    }
-    else if(this.workModel="position"){
-      this.positionCheck=true;
-    }
     this.getOneObject();
     this.getPositionsByObjectIdCompany();
   }
@@ -56,7 +46,7 @@ export class StoreCheckPageComponent implements OnInit {
   onPopState() {
 
     this.router.navigate(['/chooseObject/' + this.workModel]);
-    if (!this.resolveFeedbacks) {
+    if (this.workModel === "addStoreCheck") {
       let username = localStorage.getItem("username") as string;
       this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
         console.log(data);
@@ -85,12 +75,12 @@ export class StoreCheckPageComponent implements OnInit {
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
   public finishObjectStoreCheck() {
     let username = localStorage.getItem("username") as string;
-    this.router.navigate(['/chooseObject/' + this.workModel]);
-    this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
 
+    this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
+      this.router.navigate(['/chooseObject/' + this.workModel]);
       this.snackBar.open('Successfully added', 'Close', { duration: 2500, panelClass: ['blue-snackbar'] });
     },
-    err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
+      err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
   }
 
 
@@ -114,26 +104,26 @@ export class StoreCheckPageComponent implements OnInit {
 
             }
           },
-          err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
+            err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
 
       } else {
         this.dialog.open(AlreadyFinishedComponent);
       }
     },
-    err=> this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
+      err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
 
   }
 
 
 
   public exit() {
-    if (this.showFinishButton) {
+    if (this.showFinishButton && this.workModel === "addStoreCheck") {
       const dialogRef = this.dialog.open(AreYouSureDialogComponent);
       dialogRef.afterClosed()
         .subscribe(res => {
           if (res) {
             this.router.navigate(['/chooseObject/' + this.workModel]);
-            if (!this.resolveFeedbacks) {
+            if (this.workModel === "addStoreCheck") {
               let username = localStorage.getItem("username") as string;
               this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
                 console.log(data);
@@ -143,7 +133,7 @@ export class StoreCheckPageComponent implements OnInit {
         }
         )
     } else {
-      if (!this.resolveFeedbacks) {
+      if (this.workModel === "addStoreCheck") {
         let username = localStorage.getItem("username") as string;
         this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username).subscribe(data => {
           this.router.navigate(['/chooseObject/' + this.workModel]);
