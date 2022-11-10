@@ -20,7 +20,7 @@ export class ResolvedFeedbackComponent implements OnInit {
   public page: number = 1;
   public length: number = 100;
   public pageEvent: PageEvent;
-  noData=false;
+  noData = false;
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
@@ -43,13 +43,13 @@ export class ResolvedFeedbackComponent implements OnInit {
   public loadData() {
     this.feedbackService.getResolvedFeedbacksByObject(this.objectIdCompany, this.count, this.page).subscribe(data => {
 
-      if(data){
+      if (data) {
 
         this.dataSource = new MatTableDataSource(data);
 
-      }else{
-        this.noData=true;
-        this.dataSource=data;
+      } else {
+        this.noData = true;
+        this.dataSource = data;
       }
 
       this.isLoading = false;
@@ -65,12 +65,12 @@ export class ResolvedFeedbackComponent implements OnInit {
   }
 
   public openDialog(flag: number, feedback: Feedback) {
-    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: feedback  });
+    const dialogRef = this.dialog.open(FeedbackDialogComponent, { data: feedback });
 
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {
-        if (res === 1) {
+        if (res) {
           this.loadData();
         }
       }
