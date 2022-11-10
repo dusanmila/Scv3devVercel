@@ -30,7 +30,9 @@ export class RetailerDialogComponent implements OnInit {
   public flag: number;
   retailerName: string;
   public changed: boolean = false;
-  isLoading=false;
+  isLoading = false;
+  isUploaded: boolean = false;
+  selectedFilesCount: number = 0;
 
   ngOnInit(): void {
     this.retailer.retailerName = this.data.retailerName;
@@ -44,7 +46,7 @@ export class RetailerDialogComponent implements OnInit {
 
 
   public submit() {
-    this.isLoading=true;
+    this.isLoading = true;
     if (this.flag == 2) {
 
       if (!this.selectedFiles || this.selectedFiles.length === 0) {
@@ -55,17 +57,17 @@ export class RetailerDialogComponent implements OnInit {
       this.selectedFiles.forEach((f) => formData.append('files', f));
       formData.append('retailerName', this.data.retailerName);
 
-      this.isLoading=true;
+      this.isLoading = true;
       this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
 
           this.changed = true;
-          this.isLoading=false;
+          this.isLoading = false;
           this.close();
         },
         error: (err) => {
 
-          this.isLoading=false;
+          this.isLoading = false;
           this.close();
         }
       });
@@ -79,7 +81,7 @@ export class RetailerDialogComponent implements OnInit {
             this.snackBar.open('Retailer created', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
             this.close();
           }),
-          (error:Error) => {
+          (error: Error) => {
             console.log(error.name + ' -> ' + error.message)
             this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
             this.close();
@@ -89,12 +91,12 @@ export class RetailerDialogComponent implements OnInit {
 
     }
 
-    this.isLoading=false;
+    this.isLoading = false;
 
   }
 
   uploadFile(event: any) {
-    this.isLoading=true;
+    this.isLoading = true;
     this.selectedFiles = [];
     if (event.target.files.length === 0) {
       return;
@@ -106,9 +108,9 @@ export class RetailerDialogComponent implements OnInit {
       this.selectedFiles.push(file);
     });
 
-    this.isLoading=false;
-
-
+    this.isLoading = false;
+    this.selectedFilesCount = parent.files.length;
+    this.isUploaded = true;
   }
 
   openInput() {
