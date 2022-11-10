@@ -6,29 +6,38 @@
   <form class="mat-dialog-content" #formControl="ngForm">
     <div class="form">
       <mat-form-field>
-        <input matInput id="name" name="text" placeholder="Retailer name" [(ngModel)]="data.retailerName" [disabled]="flag==2 || flag==3" required />
+        <input matInput id="name" name="text" placeholder="Retailer name" [(ngModel)]="data.retailerName"
+          [disabled]="flag==2 || flag==3" required />
       </mat-form-field>
     </div>
 
 
     <form [formGroup]="tableForm" (ngSubmit)="submit()" *ngIf="flag ==2">
-      <input  #fileInput mat-input type="file" (change)="uploadFile($event)" accept=".pdf" fromControlName="file" multiple/>
+      <input #fileInput id="fileInput" mat-input type="file" (change)="uploadFile($event)" accept=".pdf"
+        fromControlName="file" multiple hidden />
+
+      <div class="files-input">
+        <label for="fileInput">
+          <em class="fa-solid fa-upload fa-2x"></em>
+        </label>
+      </div>
+      <p class="uploaded-message" *ngIf="!isUploaded">No files choosen.</p>
+      <p class="uploaded-message" *ngIf="isUploaded">{{selectedFilesCount}} files choosen.</p>
     </form>
 
     <div mat-dialog-actions>
       <div *ngIf="isLoading"
-      style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
-      </mat-progress-spinner>
-    </div>
-    <button class="test" mat-button type="submit" *ngIf="flag != 3" [disabled]="!data.retailerName"
-    (click)="submit()">Add</button>
-    <button class="test" mat-button type="submit" *ngIf="flag==3"
-    (click)="delete()">Delete</button>
-    <button class="test" mat-button (click)="close()">Cancel</button>
+        style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+        </mat-progress-spinner>
+      </div>
+      <button class="test" mat-button type="submit" *ngIf="flag != 3" [disabled]="!data.retailerName"
+        (click)="submit()">Add</button>
+      <button class="test" mat-button type="submit" *ngIf="flag==3" (click)="delete()">Delete</button>
+      <button class="test" mat-button (click)="close()">Cancel</button>
 
     </div>
-  <br>
-  <br>
+    <br>
+    <br>
   </form>
 </div>

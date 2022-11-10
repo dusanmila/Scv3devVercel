@@ -24,16 +24,16 @@ export class PositionDialogComponent implements OnInit {
   public positionTypes: PositionType[];
   public productCategories: ProductCategory[];
   public changed: boolean = false;
-  public submitClicked:boolean=false;
-  public imageUploaded:boolean=false;
-  public isLoading:boolean=false;
-  public secPos = { secondaryPositionId: "",  objectIdCompany: "", posClassName: "", posTypeName:"", productCategory: "", supplier:"", location: "",comment: "", img:"",isImgHorizontal:false, valid:false};
+  public submitClicked: boolean = false;
+  public imageUploaded: boolean = false;
+  public isLoading: boolean = false;
+  public secPos = { secondaryPositionId: "", objectIdCompany: "", posClassName: "", posTypeName: "", productCategory: "", supplier: "", location: "", comment: "", img: "", isImgHorizontal: false, valid: false };
   public suppliers = ['Frikom', 'Other'];
   public locations = ['Magacin', 'Prodajni prostor'];
-  isRotated=false;
+  isRotated = false;
 
-  positionDto : Position = {
-    secondaryPositionId:Guid.create(),
+  positionDto: Position = {
+    secondaryPositionId: Guid.create(),
     objectIdCompany: "",
     posClassName: "",
     posTypeName: "",
@@ -41,8 +41,8 @@ export class PositionDialogComponent implements OnInit {
     supplier: "",
     location: "",
     comment: "",
-    img:"",
-    isImgHorizontal:false,
+    img: "",
+    isImgHorizontal: false,
     valid: false
   };
 
@@ -51,17 +51,18 @@ export class PositionDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<PositionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Position,
     public positionService: PositionService,
-    public productCategoryService: ProductCategoryService,public fb: FormBuilder) {
-      this.form = this.fb.group({
+    public productCategoryService: ProductCategoryService, public fb: FormBuilder) {
+    this.form = this.fb.group({
       file: [null],
       img: ['']
-    });}
+    });
+  }
 
   ngOnInit(): void {
 
-this.positionDto=this.data;
+    this.positionDto = this.data;
 
-console.log(this.positionDto)
+    console.log(this.positionDto)
 
     this.loadPositionClasses();
     this.loadPositionTypes();
@@ -87,18 +88,18 @@ console.log(this.positionDto)
   }
 
   public add() {
-    this.isLoading=true;
+    this.isLoading = true;
     this.data.objectIdCompany = this.objectIdCompany;
     this.data.valid = false;
     this.positionService.createPosition(this.data).subscribe({
       next: () => {
         this.changed = true;
         this.close();
-        this.isLoading=false;
+        this.isLoading = false;
         this.snackBar.open('Secondary position added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       },
       error: (err: Error) => {
-        this.isLoading=false;
+        this.isLoading = false;
         console.log(err.name + ' -> ' + err.message)
         this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
@@ -106,45 +107,44 @@ console.log(this.positionDto)
   }
 
   public delete() {
-    this.isLoading=true;
+    this.isLoading = true;
     this.positionService.deletePosition(this.data).subscribe({
       next: () => {
         this.changed = true;
         this.snackBar.open('Secondary position deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
-this.isLoading=false;
+        this.isLoading = false;
         this.close();
-
       },
       error: (err: Error) => {
         console.log(err.name + ' -> ' + err.message)
-        this.isLoading=false;
+        this.isLoading = false;
         this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
     });
   }
 
   public update(): void {
-console.log(this.positionDto)
+    console.log(this.positionDto)
 
 
-    this.isLoading=true;
-   // this.positionDto.secondaryPositionId=this.secPos.secondaryPositionId;
-    this.positionDto.location=this.data.location;
-    this.positionDto.objectIdCompany=this.data.objectIdCompany;
-    this.positionDto.posClassName=this.data.posClassName;
-    this.positionDto.posTypeName=this.data.posTypeName;
+    this.isLoading = true;
+    // this.positionDto.secondaryPositionId=this.secPos.secondaryPositionId;
+    this.positionDto.location = this.data.location;
+    this.positionDto.objectIdCompany = this.data.objectIdCompany;
+    this.positionDto.posClassName = this.data.posClassName;
+    this.positionDto.posTypeName = this.data.posTypeName;
     this.positionDto.supplier = this.data.supplier;
-    this.positionDto.productCategory=this.data.productCategory;
+    this.positionDto.productCategory = this.data.productCategory;
 
     this.positionService.updatePosition(this.positionDto)
       .subscribe(() => {
         this.snackBar.open('Updated position', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-        this.isLoading=false;
+        this.isLoading = false;
         this.close();
       }),
       (error: Error) => {
         console.log(error.name + ' -> ' + error.message)
-        this.isLoading=false
+        this.isLoading = false
         this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }
@@ -160,33 +160,33 @@ console.log(this.positionDto)
   }
 
   submitFormCreate() {
-    this.submitClicked=true;
+    this.submitClicked = true;
 
-      this.isLoading=true;
-      let username = localStorage.getItem("username") as string;
-      const formData: any = new FormData();
-      formData.append('file', this.form.get('file')!.value);
-      formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
-      formData.append('objectIdCompany', this.objectIdCompany);
-      formData.append('posClassName', this.positionDto.posClassName);
-      formData.append('posTypeName', this.positionDto.posTypeName);
-      formData.append('productCategory', this.positionDto.productCategory);
-      formData.append('supplier', this.positionDto.supplier);
-      formData.append('location', this.positionDto.location);
-      formData.append('comment', this.positionDto.comment);
-      formData.append('img', this.positionDto.img);
-      formData.append('valid', this.positionDto.valid);
+    this.isLoading = true;
+    let username = localStorage.getItem("username") as string;
+    const formData: any = new FormData();
+    formData.append('file', this.form.get('file')!.value);
+    formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
+    formData.append('objectIdCompany', this.objectIdCompany);
+    formData.append('posClassName', this.positionDto.posClassName);
+    formData.append('posTypeName', this.positionDto.posTypeName);
+    formData.append('productCategory', this.positionDto.productCategory);
+    formData.append('supplier', this.positionDto.supplier);
+    formData.append('location', this.positionDto.location);
+    formData.append('comment', this.positionDto.comment);
+    formData.append('img', this.positionDto.img);
+    formData.append('valid', this.positionDto.valid);
 
-      this.positionService.createPosition(formData).subscribe(data => {
-        this.changed = true;
+    this.positionService.createPosition(formData).subscribe(data => {
+      this.changed = true;
+      this.isLoading = false;
+      console.log(data);
+      this.snackBar.open('Position added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+
+      this.close();
+    }),
+      (error: Error) => {
         this.isLoading = false;
-        console.log(data);
-        this.snackBar.open('Position added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-
-        this.close();
-      }),
-      (error:Error) => {
-        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       };
@@ -195,36 +195,36 @@ console.log(this.positionDto)
   }
 
   submitFormUpdate() {
-    this.submitClicked=true;
+    this.submitClicked = true;
 
-      this.isLoading=true;
-      let username = localStorage.getItem("username") as string;
-      const formData: any = new FormData();
-      formData.append('file', this.form.get('file')!.value);
-      formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
-      formData.append('objectIdCompany', this.objectIdCompany);
-      formData.append('posClassName', this.positionDto.posClassName);
-      formData.append('posTypeName', this.positionDto.posTypeName);
-      formData.append('productCategory', this.positionDto.productCategory);
-      formData.append('supplier', this.positionDto.supplier);
-      formData.append('location', this.positionDto.location);
-      formData.append('comment', this.positionDto.comment);
-      if(this.imageUploaded){
+    this.isLoading = true;
+    let username = localStorage.getItem("username") as string;
+    const formData: any = new FormData();
+    formData.append('file', this.form.get('file')!.value);
+    formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
+    formData.append('objectIdCompany', this.objectIdCompany);
+    formData.append('posClassName', this.positionDto.posClassName);
+    formData.append('posTypeName', this.positionDto.posTypeName);
+    formData.append('productCategory', this.positionDto.productCategory);
+    formData.append('supplier', this.positionDto.supplier);
+    formData.append('location', this.positionDto.location);
+    formData.append('comment', this.positionDto.comment);
+    if (this.imageUploaded) {
       formData.append('img', this.positionDto.img);
-      }
-      formData.append('isValid', this.positionDto.valid);
+    }
+    formData.append('isValid', this.positionDto.valid);
 
-      this.positionService.updatePosition(formData).subscribe(data => {
-        this.changed = true;
-        this.isLoading = false;
-        console.log(data);
-        this.snackBar.open('Position updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+    this.positionService.updatePosition(formData).subscribe(data => {
+      this.changed = true;
+      this.isLoading = false;
+      console.log(data);
+      this.snackBar.open('Position updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
 
-        this.close();
-      }),
-      (error:Error) => {
+      this.close();
+    }),
+      (error: Error) => {
         console.log(error.name + ' -> ' + error.message)
-        this.isLoading=false;
+        this.isLoading = false;
         this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       };
 
@@ -233,61 +233,61 @@ console.log(this.positionDto)
 
   ngAfterViewInit(): void {
 
-if(this.positionDto.img){
-  this.adjustImage();
-}
-
-
+    if (this.positionDto.img) {
+      this.adjustImage();
     }
 
-    async adjustImage(){
+
+  }
+
+  async adjustImage() {
 
 
 
-      const img = document.getElementById('posphoto') as HTMLImageElement;
+    const img = document.getElementById('posphoto') as HTMLImageElement;
 
-      window.exifr.parse(img!).then((exif) => {
+    window.exifr.parse(img!).then((exif) => {
 
-        if (exif.Orientation == 6) {
-        this.isRotated=true;
+      if (exif.Orientation == 6) {
+        this.isRotated = true;
+      }
+
+      if (this.isRotated) {
+
+        if (this.data.isImgHorizontal == true) {
+
+          img.setAttribute('height', '250');
+          img.setAttribute('width', '180');
+
+        } else {
+
+          img.setAttribute('height', '200');
+          img.setAttribute('width', '250');
+
         }
+      } else {
 
-        if(this.isRotated){
+        if (this.data.isImgHorizontal == true) {
 
-          if(this.data.isImgHorizontal==true){
+          img.setAttribute('height', '180');
+          img.setAttribute('width', '250');
 
-            img.setAttribute('height','250');
-            img.setAttribute('width','180');
+        } else {
 
-          }else{
-
-            img.setAttribute('height','200');
-            img.setAttribute('width','250');
-
-          }
-        }else{
-
-          if(this.data.isImgHorizontal==true){
-
-            img.setAttribute('height','180');
-            img.setAttribute('width','250');
-
-          }else{
-
-            img.setAttribute('height','250');
-            img.setAttribute('width','200');
+          img.setAttribute('height', '250');
+          img.setAttribute('width', '200');
 
 
-          }
         }
+      }
 
-     if(this.isRotated){
-            img.setAttribute('class','rotate');
-     }
+      if (this.isRotated) {
+        img.setAttribute('class', 'rotate');
+      }
 
-      })
+    })
 
-    }
+  }
 
   public close() {
     this.dialogRef.close(this.changed);

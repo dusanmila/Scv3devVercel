@@ -14,8 +14,11 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" (click)="openDialog(1)">
-          <mat-icon>add</mat-icon>Add position
+          <mat-icon>add</mat-icon>
         </button>
+        <div>
+          Add position
+        </div>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
        <!--<mat-checkbox color="primary" (change)="updatePosition(cb.checked, row);" (click)="$event.stopPropagation()" #cb
