@@ -87,4 +87,8 @@ export class ProductComponent implements OnInit {
       });
   }
 
+  public exit() {
+    this.router.navigate(['storeCheck']);
+  }
+
 }
