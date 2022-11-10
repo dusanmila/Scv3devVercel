@@ -51,6 +51,7 @@ ul {
     cursor: pointer;
     color: #39ace7;
     position: relative;
+    margin-top: 10px;
 }
 
 button {
