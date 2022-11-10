@@ -36,7 +36,7 @@ export class SidenavComponent implements OnInit {
     else if (url === '/admin/product')
       this.title = 'Products';
     else if (url === '/admin/uploads')
-      this.title = 'Upload Files';
+      this.title = 'Import / Export Files';
   }
 
   public logout() {

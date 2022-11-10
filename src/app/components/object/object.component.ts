@@ -260,6 +260,7 @@ isObjectSelected=false;
   }
 
   public getUnfinishedObjectStoreCheck(objectName: string, objectIdCompany: string) {
+
     this.isObjectSelected=true;
     if (this.workModel === 'addStoreCheck') {
       let username = localStorage.getItem("username") as string;

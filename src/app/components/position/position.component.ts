@@ -109,19 +109,19 @@ isExporting=false;
       comment="";
     }
 
-    if(posClassName="undefined"){
+    if(posClassName=="undefined"){
       posClassName="";
     }
 
-    if(productCategory="undefined"){
+    if(productCategory=="undefined"){
       productCategory="";
     }
 
-    if(supplier="undefined"){
+    if(supplier=="undefined"){
       supplier="";
     }
 
-    if(location="undefined"){
+    if(location=="undefined"){
       location="";
     }
 
