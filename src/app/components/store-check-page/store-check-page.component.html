@@ -9,7 +9,7 @@
 
             <h2 *ngIf="object" class="flex2">{{object.objectName}}</h2>
 
-            <div *ngIf="workModel !== 'position'">
+            <div *ngIf="workModel !== 'positions'">
                 <em class="fa-solid fa-file-powerpoint fa-3x flex3" style="margin-right: 10%;margin-top: 5%;"
                     (click)="openPlanogramDialog()"></em>
             </div>
@@ -100,11 +100,11 @@
         <div>
             <br>
         </div>
-        <div *ngIf="workModel !== 'position'">
+        <div *ngIf="workModel !== 'positions'">
             <h3>SECONDARY POSITIONS:</h3>
 
             <app-position [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="workModel === 'resolveFeedbacks'"
-                [positionCheck]="workModel === 'position'" (showFinishButton)="enableFinishButton($event)">
+                [positionCheck]="workModel === 'positions'" (showFinishButton)="enableFinishButton($event)">
             </app-position>
         </div>
         <div class="margintop">
