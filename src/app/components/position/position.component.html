@@ -44,8 +44,8 @@
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No positions</mat-toolbar>
 </div>
 <br>
-<div *ngIf="positionCheck">
-  <button mat-raised-button color="primary" class="exportButton" style="margin-left: 10px;" (click)="exportPositions()">Export</button>
+<div *ngIf="positionCheck && isAdmin">
+  <button mat-raised-button color="primary" class="exportButton" style="margin-left: 10px;" (click)="exportPositions()">Export positions</button>
 </div>
 <br>
 <div *ngIf="isExporting"

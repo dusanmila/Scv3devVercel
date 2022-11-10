@@ -3,6 +3,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ObjectService } from 'src/app/Services/object.service';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { ProductService } from 'src/app/Services/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-uploads',
@@ -26,7 +29,8 @@ export class UploadsComponent implements OnInit {
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
     public productService: ProductService,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog) { }
 
     ngOnInit(){
  this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
@@ -114,40 +118,76 @@ export class UploadsComponent implements OnInit {
       this.productService.downloadExcelTemplate();
   }
 
-  deleteObjects(){
-    this.objectService.deleteObjects().subscribe({
-      next: () => {
-        this.isObjectsEmpty=true;
-
-      },
-      error: (err: Error) => {
-        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-      }
-    });
-  }
-
   deletePositions(){
-    this.positionService.deletePositions().subscribe({
-      next: () => {
-        this.isPositionsEmpty=true;
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    dialogRef.afterClosed()
+      .subscribe(res => {
 
-      },
-      error: (err: Error) => {
-        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-      }
-    });
+        if (res) {
+          this.positionService.deletePositions().subscribe({
+            next: () => {
+              this.isPositionsEmpty=true;
+
+            },
+            error: (err: Error) => {
+              console.log(err)
+              this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+            }
+          });
+
+        }
+      })
   }
 
   deleteProducts(){
-    this.productService.deleteProducts().subscribe({
-      next: () => {
-        this.isProductsEmpty=true;
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    dialogRef.afterClosed()
+      .subscribe(res => {
 
-      },
-      error: (err: Error) => {
-        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-      }
+        if (res) {
+          this.productService.deleteProducts().subscribe({
+            next: () => {
+              this.isProductsEmpty=true;
+
+            },
+            error: (err: Error) => {
+              this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+            }
+          });
+
+        }
+      })
+  }
+
+  deleteObjects(){
+     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+        dialogRef.afterClosed()
+          .subscribe(res => {
+
+            if (res) {
+              this.objectService.deleteObjects().subscribe({
+                next: () => {
+                  this.isObjectsEmpty=true;
+
+                },
+                error: (err: Error) => {
+                  this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+                }
+              });
+
+            }
+          })
+
+  }
+
+  public exportPositions() {
+    this.isPosLoading=true;
+    this.positionService.export().subscribe((excel)=>{
+      this.isPosLoading=false;
+      const fileName = 'SecondaryPositions.xlsx';
+     saveAs(excel, fileName);
     });
+
   }
 
 }
