@@ -7,16 +7,9 @@
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
-        <mat-select
-          [(ngModel)]="positionDto.posTypeName"
-          placeholder="Dimensions"
-          name="posClassType"
-          required="flag == 1"
-        >
-          <mat-option
-            *ngFor="let type of positionTypes"
-            [value]="type.positionTypeName"
-          >
+        <mat-select [(ngModel)]="positionDto.posTypeName" placeholder="Dimensions" name="posClassType"
+          required="flag == 1">
+          <mat-option *ngFor="let type of positionTypes" [value]="type.positionTypeName">
             {{ type.positionTypeName }}
           </mat-option>
         </mat-select>
@@ -25,34 +18,21 @@
     <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Dimensions</mat-label>
-        <input
-          matInput
-          [(ngModel)]="positionDto.posTypeName"
-          name="posTypeName"
-          [disabled]="true"
-          required
-        />
+        <input matInput [(ngModel)]="positionDto.posTypeName" name="posTypeName" [disabled]="true" required />
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field>
-        <input matInput placeholder = "Comment" [(ngModel)]="positionDto.comment" name = "comment" [disabled]=" flag==2||flag==3"/>
+        <input matInput placeholder="Comment" [(ngModel)]="positionDto.comment" name="comment"
+          [disabled]=" flag==2||flag==3" />
       </mat-form-field>
     </div>
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
-        <mat-select
-          [(ngModel)]="positionDto.posClassName"
-          placeholder="Secondary Position Class"
-          name="posClassName"
-
-        >
-          <mat-option
-            *ngFor="let class of positionClasses"
-            [value]="class.positionClassName"
-          >
+        <mat-select [(ngModel)]="positionDto.posClassName" placeholder="Secondary Position Class" name="posClassName">
+          <mat-option *ngFor="let class of positionClasses" [value]="class.positionClassName">
             {{ class.positionClassName }}
           </mat-option>
         </mat-select>
@@ -61,13 +41,7 @@
     <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Position class</mat-label>
-        <input
-          matInput
-          [(ngModel)]="positionDto.posClassName"
-          name="posClassName"
-          [disabled]="true"
-
-        />
+        <input matInput [(ngModel)]="positionDto.posClassName" name="posClassName" [disabled]="true" />
       </mat-form-field>
     </div>
 
@@ -75,16 +49,8 @@
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
-        <mat-select
-          [(ngModel)]="positionDto.productCategory"
-          placeholder="Product Category"
-          name="productCategory"
-
-        >
-          <mat-option
-            *ngFor="let productCategory of productCategories"
-            [value]="productCategory.productCategoryName"
-          >
+        <mat-select [(ngModel)]="positionDto.productCategory" placeholder="Product Category" name="productCategory">
+          <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory.productCategoryName">
             {{ productCategory.productCategoryName}}
           </mat-option>
         </mat-select>
@@ -93,24 +59,13 @@
     <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Product category</mat-label>
-        <input
-          matInput
-          [(ngModel)]="positionDto.productCategory"
-          name="productCategory"
-          [disabled]="true"
-
-        />
+        <input matInput [(ngModel)]="positionDto.productCategory" name="productCategory" [disabled]="true" />
       </mat-form-field>
     </div>
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
-        <mat-select
-          [(ngModel)]="positionDto.supplier"
-          placeholder="Supplier"
-          name="supplier"
-
-        >
+        <mat-select [(ngModel)]="positionDto.supplier" placeholder="Supplier" name="supplier">
           <mat-option *ngFor="let supplier of suppliers" [value]="supplier">
             {{ supplier }}
           </mat-option>
@@ -120,24 +75,13 @@
     <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Supplier</mat-label>
-        <input
-          matInput
-          [(ngModel)]="positionDto.supplier"
-          name="supplier"
-          [disabled]="true"
-
-        />
+        <input matInput [(ngModel)]="positionDto.supplier" name="supplier" [disabled]="true" />
       </mat-form-field>
     </div>
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
-        <mat-select
-          [(ngModel)]="positionDto.location"
-          placeholder="Location"
-          name="location"
-
-        >
+        <mat-select [(ngModel)]="positionDto.location" placeholder="Location" name="location">
           <mat-option *ngFor="let location of locations" [value]="location">
             {{ location }}
           </mat-option>
@@ -147,36 +91,22 @@
     <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Location</mat-label>
-        <input
-          matInput
-          [(ngModel)]="positionDto.location"
-          name="location"
-          [disabled]="true"
-
-        />
+        <input matInput [(ngModel)]="positionDto.location" name="location" [disabled]="true" />
       </mat-form-field>
     </div>
     <div *ngIf="!data.img">
       <form [formGroup]="form" (ngSubmit)="submitFormCreate()" *ngIf="!imageUploaded">
-        <input
-          type="file"
-          id="inputFile"
-          (change)="uploadFile($event)"
-          accept="image/*"
-          fromControlName="file"
+        <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" fromControlName="file" hidden
+          capture="camera" />
 
-          hidden
-          capture="camera"
-        />
-        <label style="margin-bottom:5% " *ngIf="flag!=2 && flag !=3">Take photo:</label>
-
-        <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
-          <img
-            src="assets\photoicon.png"
-            width="10%"
-            height="10%"
-            alt="PhotoIcon"
-        /></label>
+        <div class="photo-input">
+          <!-- <p style="margin-bottom:5% " *ngIf="flag!=2 && flag !=3">Click to add photo:</p> -->
+          <p *ngIf="flag!=2 && flag !=3">Click to add photo:</p>
+          <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
+            <!-- <img src="assets\photoicon.png" width="10%" height="10%" alt="PhotoIcon" /></label> -->
+            <img src="assets\photoicon.png" alt="PhotoIcon" />
+          </label>
+        </div>
       </form>
       <div *ngIf="imageUploaded">
         <p>Photo is uploaded.</p>
@@ -184,79 +114,44 @@
     </div>
     <div *ngIf="data.img || flag==4">
       <div class="form pos-img" *ngIf="data.img != 'undefined'">
-        <img
-          src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
+        <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
             data.img
-          }}"
-          alt="Position photo"
-          width="200"
-          height="200"
-          id="posphoto"
-        />
+          }}" alt="Position photo" width="200" height="200" id="posphoto" />
       </div>
       <br>
       <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="!imageUploaded">
-        <input
-          type="file"
-          id="inputFile"
-          (change)="uploadFile($event)"
-          accept="image/*"
-          fromControlName="file"
-
-          hidden
-          capture="camera"
-        />
-        <label *ngIf="data.img && data.img != 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Update photo:</label>
-        <label *ngIf="!data.img || data.img == 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Take photo:</label>
+        <input type="file" id="inputFile" (change)="uploadFile($event)" accept="image/*" fromControlName="file" hidden
+          capture="camera" />
+        <label *ngIf="data.img && data.img != 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Update
+          photo:</label>
+        <label *ngIf="!data.img || data.img == 'undefined' && flag !=2 && flag != 3" style="margin-bottom:5%">Take
+          photo:</label>
 
         <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
-          <img
-            src="assets\photoicon.png"
-            width="10%"
-            height="10%"
-            alt="PhotoIcon"
-        /></label>
+          <img src="assets\photoicon.png" width="10%" height="10%" alt="PhotoIcon" /></label>
       </form>
       <div *ngIf="imageUploaded">
         <p>Photo is uploaded.</p>
       </div>
     </div>
     <div mat-dialog-actions>
-      <button
-        class="item2"
-        mat-button
-        *ngIf="flag == 1"
-        type="submit"
-        (click)="submitFormCreate()"
-        [disabled]="!formControl.valid"
-      >
+      <button class="item2" mat-button *ngIf="flag == 1" type="submit" (click)="submitFormCreate()"
+        [disabled]="!formControl.valid">
         Ok
       </button>
-      <button
-        class="item2"
-        mat-button
-        *ngIf="flag == 4 || (flag==3&&imageUploaded)"
-        type="submit"
-        (click)="submitFormUpdate()"
-
-      >
+      <button class="item2" mat-button *ngIf="flag == 4 || (flag==3&&imageUploaded)" type="submit"
+        (click)="submitFormUpdate()">
         Ok
       </button>
-      <button
-        mat-button
-        class="item2"
-        *ngIf="flag == 2"
-        type="submit"
-        (click)="delete()"
-      >
+      <button mat-button class="item2" *ngIf="flag == 2" type="submit" (click)="delete()">
         Delete
       </button>
       <button mat-button class="item2" (click)="close()">Cancel</button>
       <div *ngIf="isLoading"
-      style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
-      </mat-progress-spinner>
-    </div>
+        style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+        </mat-progress-spinner>
+      </div>
     </div>
 
   </form>

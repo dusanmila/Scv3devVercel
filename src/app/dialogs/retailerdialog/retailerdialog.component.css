@@ -32,17 +32,34 @@ button:hover {
 button[disabled]:hover {
   background-color: #fff;
 }
-h3{
+
+h3 {
   color: #39ace7;
 }
 
 button {
   outline: none;
 }
+
 ::ng-deep .mat-button-focus-overlay {
   display: none;
 }
 
 .mat-spinner-color::ng-deep circle {
   stroke: #56baed !important;
+}
+
+.files-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.files-input em {
+  color: #56baed;
+}
+
+.uploaded-message {
+  text-align: center;
+  margin-top: 10px;
 }
