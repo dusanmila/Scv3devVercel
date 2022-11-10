@@ -24,8 +24,9 @@
 
     <div class="form">
       <mat-form-field>
-        <input matInput placeholder="Comment" [(ngModel)]="positionDto.comment" name="comment"
-          [disabled]=" flag==2||flag==3" />
+        <textarea  matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="positionDto.comment" name="comment"
+          [disabled]=" flag==2||flag==3" > </textarea>
       </mat-form-field>
     </div>
 
