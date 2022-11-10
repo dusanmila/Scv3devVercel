@@ -104,7 +104,27 @@ isExporting=false;
   }
 
   public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, comment?: string, img?: string, isImgHorizontal?: boolean) {
- 
+
+    if(comment=="undefined"){
+      comment="";
+    }
+
+    if(posClassName="undefined"){
+      posClassName="";
+    }
+
+    if(productCategory="undefined"){
+      productCategory="";
+    }
+
+    if(supplier="undefined"){
+      supplier="";
+    }
+
+    if(location="undefined"){
+      location="";
+    }
+
     const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location, comment,img, isImgHorizontal } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;

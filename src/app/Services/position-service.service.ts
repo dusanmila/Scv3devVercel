@@ -162,7 +162,7 @@ export class PositionService {
   }
 
   public deletePositions() {
-    return this.http.delete(`${POSITION_URL}/secondaryPositionsExcels`, { headers: this.headers });
+    return this.http.delete(`${POSITION_URL}/secondaryPositionExcels`, { headers: this.headers });
   }
 
   public checkNoData(): Observable<boolean> {

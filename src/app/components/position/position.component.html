@@ -14,8 +14,11 @@
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" (click)="openDialog(1)">
-          <mat-icon>add</mat-icon>Add position
+          <mat-icon>add</mat-icon>
         </button>
+        <div>
+          Add position
+        </div>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
        <!--<mat-checkbox color="primary" (change)="updatePosition(cb.checked, row);" (click)="$event.stopPropagation()" #cb
@@ -44,8 +47,8 @@
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No positions</mat-toolbar>
 </div>
 <br>
-<div *ngIf="positionCheck">
-  <button mat-raised-button color="primary" class="exportButton" style="margin-left: 10px;" (click)="exportPositions()">Export</button>
+<div *ngIf="positionCheck && isAdmin">
+  <button mat-raised-button color="primary" class="exportButton" style="margin-left: 10px;" (click)="exportPositions()">Export positions</button>
 </div>
 <br>
 <div *ngIf="isExporting"

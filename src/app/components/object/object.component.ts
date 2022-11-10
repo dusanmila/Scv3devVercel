@@ -51,7 +51,7 @@ export class ObjectComponent implements OnInit {
   // public positionCheck: boolean = false;
 
   objectInfo: ObjectInfo;
-
+isObjectSelected=false;
 
   search: string = "";
 
@@ -260,6 +260,7 @@ export class ObjectComponent implements OnInit {
   }
 
   public getUnfinishedObjectStoreCheck(objectName: string, objectIdCompany: string) {
+    this.isObjectSelected=true;
     if (this.workModel === 'addStoreCheck') {
       let username = localStorage.getItem("username") as string;
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
@@ -275,6 +276,8 @@ export class ObjectComponent implements OnInit {
                 this.objectStoreCheckService.deleteUnfinishedObjectStoreCheck(username);
                 this.createEmptyObjectStoreCheck(objectName, objectIdCompany);
               }
+
+
             });
         } else {
           this.createEmptyObjectStoreCheck(objectName, objectIdCompany);
@@ -286,6 +289,7 @@ export class ObjectComponent implements OnInit {
   }
 
   public selectObject(objectName: string) {
+    this.isObjectSelected=true;
     this.selectedObject.emit(objectName);
   }
 

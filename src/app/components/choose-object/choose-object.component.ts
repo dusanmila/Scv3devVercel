@@ -23,6 +23,7 @@ export class ChooseObjectComponent implements OnInit {
   public workModel: string;
   public storeCheck: StoreCheck;
   public showFinishStoreCheck: boolean;
+  isLoading=false;
 
   constructor(public objectService: ObjectService,
     public activatedRoute: ActivatedRoute,

@@ -97,7 +97,7 @@
 
               <mat-icon area-label="Info">info</mat-icon>
             </button>
-            <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin"
+            <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin" [disabled]="isObjectSelected"
               (click)="getUnfinishedObjectStoreCheck(row.objectName, row.objectIdCompany)">
 
               Start
