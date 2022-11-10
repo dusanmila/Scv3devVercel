@@ -92,7 +92,7 @@
     </div>
 
     <div class="main fadeIn second">
-        <div *ngIf="">
+        <div *ngIf="workModel === 'resolveFeedbacks' || workModel === 'addStoreCheck'">
             <h3>UNRESOLVED FEEDBACKS:</h3>
             <app-feedback [objectIdCompany]="objectIdCompany" [resolveFeedbacks]="workModel === 'resolveFeedbacks'"
                 (showFinishButton)="enableFinishButton($event)"></app-feedback>
