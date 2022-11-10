@@ -27,7 +27,7 @@ export class PositionDialogComponent implements OnInit {
   public submitClicked:boolean=false;
   public imageUploaded:boolean=false;
   public isLoading:boolean=false;
-  public secPos = { secondaryPositionId: "",  objectIdCompany: "", posClassName: "", posTypeName:"", productCategory: "", supplier:"", location: "",img:"",isImgHorizontal:false, valid:false};
+  public secPos = { secondaryPositionId: "",  objectIdCompany: "", posClassName: "", posTypeName:"", productCategory: "", supplier:"", location: "",comment: "", img:"",isImgHorizontal:false, valid:false};
   public suppliers = ['Frikom', 'Other'];
   public locations = ['Magacin', 'Prodajni prostor'];
   isRotated=false;
@@ -40,6 +40,7 @@ export class PositionDialogComponent implements OnInit {
     productCategory: "",
     supplier: "",
     location: "",
+    comment: "",
     img:"",
     isImgHorizontal:false,
     valid: false
@@ -61,7 +62,6 @@ export class PositionDialogComponent implements OnInit {
 this.positionDto=this.data;
 
 console.log(this.positionDto)
-console.log(this.positionDto.img)
 
     this.loadPositionClasses();
     this.loadPositionTypes();
@@ -124,19 +124,22 @@ this.isLoading=false;
   }
 
   public update(): void {
+console.log(this.positionDto)
+
+
     this.isLoading=true;
    // this.positionDto.secondaryPositionId=this.secPos.secondaryPositionId;
-    this.positionDto.location=this.positionDto.location;
-    this.positionDto.objectIdCompany=this.positionDto.objectIdCompany;
-    this.positionDto.posClassName=this.positionDto.posClassName;
-    this.positionDto.posTypeName=this.positionDto.posTypeName;
-    this.positionDto.supplier = this.positionDto.supplier;
-    this.positionDto.productCategory=this.positionDto.productCategory;
+    this.positionDto.location=this.data.location;
+    this.positionDto.objectIdCompany=this.data.objectIdCompany;
+    this.positionDto.posClassName=this.data.posClassName;
+    this.positionDto.posTypeName=this.data.posTypeName;
+    this.positionDto.supplier = this.data.supplier;
+    this.positionDto.productCategory=this.data.productCategory;
 
     this.positionService.updatePosition(this.positionDto)
       .subscribe(() => {
         this.snackBar.open('Updated position', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-this.isLoading=false;
+        this.isLoading=false;
         this.close();
       }),
       (error: Error) => {
@@ -170,6 +173,7 @@ this.isLoading=false;
       formData.append('productCategory', this.positionDto.productCategory);
       formData.append('supplier', this.positionDto.supplier);
       formData.append('location', this.positionDto.location);
+      formData.append('comment', this.positionDto.comment);
       formData.append('img', this.positionDto.img);
       formData.append('valid', this.positionDto.valid);
 
@@ -192,22 +196,25 @@ this.isLoading=false;
 
   submitFormUpdate() {
     this.submitClicked=true;
-    if(this.imageUploaded){
+
       this.isLoading=true;
       let username = localStorage.getItem("username") as string;
       const formData: any = new FormData();
       formData.append('file', this.form.get('file')!.value);
       formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
-   /*   formData.append('objectIdCompany', this.objectIdCompany);
+      formData.append('objectIdCompany', this.objectIdCompany);
       formData.append('posClassName', this.positionDto.posClassName);
       formData.append('posTypeName', this.positionDto.posTypeName);
       formData.append('productCategory', this.positionDto.productCategory);
       formData.append('supplier', this.positionDto.supplier);
-      formData.append('location', this.positionDto.location);*/
+      formData.append('location', this.positionDto.location);
+      formData.append('comment', this.positionDto.comment);
+      if(this.imageUploaded){
       formData.append('img', this.positionDto.img);
-      //formData.append('is', this.positionDto.valid);
+      }
+      formData.append('isValid', this.positionDto.valid);
 
-      this.positionService.updatePositionAddPhoto(formData).subscribe(data => {
+      this.positionService.updatePosition(formData).subscribe(data => {
         this.changed = true;
         this.isLoading = false;
         console.log(data);
@@ -220,7 +227,7 @@ this.isLoading=false;
         this.isLoading=false;
         this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       };
-    }
+
 
   }
 
@@ -245,9 +252,6 @@ if(this.positionDto.img){
         this.isRotated=true;
         }
 
-console.log("isrotated"+this.isRotated)
-console.log("ishor"+this.data.isImgHorizontal)
-
         if(this.isRotated){
 
           if(this.data.isImgHorizontal==true){
@@ -259,8 +263,6 @@ console.log("ishor"+this.data.isImgHorizontal)
 
             img.setAttribute('height','200');
             img.setAttribute('width','250');
-
-
 
           }
         }else{
@@ -283,11 +285,7 @@ console.log("ishor"+this.data.isImgHorizontal)
             img.setAttribute('class','rotate');
      }
 
-
       })
-
-
-
 
     }
 

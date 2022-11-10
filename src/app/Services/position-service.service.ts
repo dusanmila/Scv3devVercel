@@ -44,7 +44,6 @@ export class PositionService {
   }
 
   public createPosition(position: Position): Observable<Position> {
-
     let retval$ = new Subject<Position>();
     this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
       retval$.next(helper);
@@ -58,17 +57,34 @@ export class PositionService {
 
   }
 
-  public editPosition(position: Position): Observable<Position> {
+  public editPositionCheck(position: Position): Observable<Position> {
 
     let retval$ = new Subject<Position>();
 
-    this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
 
-      retval$.next(helper)
+  this.http.put<Position>(`${POSITION_URL}/secondaryPositions/check`,position, { headers: this.headers }).subscribe((helper: Position) => {
 
-    });
+    retval$.next(helper)
 
-    return retval$.asObservable();
+  });
+  return retval$.asObservable();
+
+}
+
+
+  public editPositionUncheck(position: Position): Observable<Position> {
+
+    let retval$ = new Subject<Position>();
+
+
+  this.http.put<Position>(`${POSITION_URL}/secondaryPositions/uncheck`,position, { headers: this.headers }).subscribe((helper: Position) => {
+
+    retval$.next(helper)
+
+  });
+
+
+ return retval$.asObservable();
 
   }
 
@@ -108,7 +124,7 @@ export class PositionService {
   }
 
   public updatePositionAddPhoto(position: Position): Observable<Position> {
-    
+
     let retval$ = new Subject<Position>();
     this.http.put<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
       retval$.next(helper);
@@ -141,11 +157,23 @@ export class PositionService {
   }
 
   public export() {
-    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel`, { headers: this.headers, responseType: 'blob' }).subscribe(excel => {
-      const fileName = 'SecondaryPositions.xlsx';
-      saveAs(excel, fileName);
-    });
+    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel`, { headers: this.headers, responseType: 'blob' });
+
   }
+
+  public deletePositions() {
+    return this.http.delete(`${POSITION_URL}/secondaryPositionsExcels`, { headers: this.headers });
+  }
+
+  public checkNoData(): Observable<boolean> {
+
+    let retval$ = new Subject<boolean>();
+    this.http.get<boolean>(`${POSITION_URL}/secondaryPositionExcels/checkNoData`, { headers: this.headers }).subscribe((ret: boolean) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
 }
 
 

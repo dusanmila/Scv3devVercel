@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/Services/product.service';
   templateUrl: './uploads.component.html',
   styleUrls: ['./uploads.component.css']
 })
-export class UploadsComponent {
+export class UploadsComponent implements OnInit {
 
   objectsFile: any;
   positionsFile: any;
@@ -18,12 +18,22 @@ export class UploadsComponent {
   isPosLoading = false;
   isProdLoading = false;
   errorMessage!: string;
+  isObjectsEmpty=false;
+  isPositionsEmpty=false;
+  isProductsEmpty=false;
+
 
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
     public productService: ProductService,
     public snackBar: MatSnackBar) { }
 
+    ngOnInit(){
+ this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
+ this.positionService.checkNoData().subscribe((data)=>this.isPositionsEmpty=data);
+ this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
+
+    }
 
   uploadObjectsFile(event: any) {
     this.errorMessage = '';
@@ -102,6 +112,42 @@ export class UploadsComponent {
       this.positionService.downloadExcelTemplate();
     else if (flag === 3)
       this.productService.downloadExcelTemplate();
+  }
+
+  deleteObjects(){
+    this.objectService.deleteObjects().subscribe({
+      next: () => {
+        this.isObjectsEmpty=true;
+
+      },
+      error: (err: Error) => {
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
+    });
+  }
+
+  deletePositions(){
+    this.positionService.deletePositions().subscribe({
+      next: () => {
+        this.isPositionsEmpty=true;
+
+      },
+      error: (err: Error) => {
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
+    });
+  }
+
+  deleteProducts(){
+    this.productService.deleteProducts().subscribe({
+      next: () => {
+        this.isProductsEmpty=true;
+
+      },
+      error: (err: Error) => {
+        this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      }
+    });
   }
 
 }

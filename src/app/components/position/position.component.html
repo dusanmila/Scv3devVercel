@@ -7,34 +7,34 @@
       <mat-cell *matCellDef="let row">{{ row.posClassName}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="posTypeName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="column-name">Type</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="column-name">Dimensions</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.posTypeName}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" (click)="openDialog(1)">
-          <mat-icon>add</mat-icon>
+          <mat-icon>add</mat-icon>Add position
         </button>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-        <mat-checkbox color="primary" (change)="updatePosition(cb.checked, row);" (click)="$event.stopPropagation()" #cb
-          [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>
+       <!--<mat-checkbox color="primary" (change)="updatePosition(cb.checked, row);" (click)="$event.stopPropagation()" #cb
+          [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>-->
 
         <button mat-icon-button color="primary"
-          (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location, row.img); $event.stopPropagation();"
+          (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location,row.comment, row.img); $event.stopPropagation();"
           style="margin-left:30%">
           <mat-icon area-label="Delete"> delete </mat-icon>
         </button>
-     <!--  <button mat-icon-button color="primary" (click)="openDialog(4,row.secondaryPositionId,row.objectName,row.posClassName,row.posTypeName,row.valid,row.productCategory,row.supplier,row.location,row.img,row.isImgHorizontal); $event.stopPropagation();">
+      <button mat-icon-button color="primary" (click)="openDialog(4,row.secondaryPositionId,row.objectName,row.posClassName,row.posTypeName,row.valid,row.productCategory,row.supplier,row.location,row.comment,row.img,row.isImgHorizontal); $event.stopPropagation();">
           <mat-icon area-label="Edit">
             edit </mat-icon>
-        </button>-->
+        </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
-      (click)="openDialog(3, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location, row.img,row.isImgHorizontal)">
+      (click)="openDialog(3, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location,row.comment, row.img,row.isImgHorizontal)">
     </mat-row>
   </mat-table>
   <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
@@ -47,3 +47,10 @@
 <div *ngIf="positionCheck">
   <button mat-raised-button color="primary" class="exportButton" style="margin-left: 10px;" (click)="exportPositions()">Export</button>
 </div>
+<br>
+<div *ngIf="isExporting"
+style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+<mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+</mat-progress-spinner>
+</div>
+
