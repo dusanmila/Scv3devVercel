@@ -3,30 +3,58 @@
 </div>
 <div class="menu fadeInDown">
 
-    <div *ngIf="menager" class="disableditem start-sc fadeIn first"> <!-- ENABLE: [routerLink]="['/chooseObject/addStoreCheck']"-->
-      <p><img src="assets\store.png" width="50px" height="50px" style="margin-top:15px;float:left;margin-left:45px"></p>  <div style="float:left">STORE CHECK</div>
+    <div *ngIf="menager" class="item start-sc fadeIn first"> <!-- ENABLE: [routerLink]="['/chooseObject/addStoreCheck']"-->
+        <p>
+          <img src="../../../assets/belo.png" width="50px" height="50px" 
+          style="margin-top:15px; float:left; margin-left:20px;">
+        </p> 
+       <div style="justify-content: center;margin-right: 70px;">STORE CHECK</div>
     </div>
 
-    <div *ngIf="!menager" class="disableditem resolve-fb fadeIn second">  <!-- ENABLE: [routerLink]="['/chooseObject/resolveFeedbacks']"-->
-        RESOLVE FEEDBACKS
+    <div *ngIf="!menager" class="item resolve-fb fadeIn second">  <!-- ENABLE: [routerLink]="['/chooseObject/resolveFeedbacks']"-->
+        <p>
+            <img src="../../../assets/geo.png" width="50px" height="50px" 
+            style="margin-top:15px; float:left; margin-left:20px;">
+          </p> 
+         <div style="justify-content: center;">RESOLVE FEEDBACKS</div>
     </div>
 
     <div class="item resolve-fb fadeIn second" [routerLink]="['/chooseObject/positions']">
-        SECONDARY POSITIONS
+        <p>
+            <img src="../../../assets/belopoz.png" width="50px" height="50px" 
+            style="margin-top:15px; float:left; margin-left:20px;">
+          </p> 
+         <div style="justify-content: center;margin-right: 30px;">SECONDARY POSITIONS</div>
     </div>
-    <div class="disableditem resolve-fb fadeIn second" > <!-- ENABLE: [routerLink]="['/product']"-->
-        PRICE SCANNER
+    <div class="item resolve-fb fadeIn second" > <!-- ENABLE: [routerLink]="['/product']"-->
+        
+        <p>
+            <img src="../../../assets/icons8-barcode-scanner-64.png" width="50px" height="50px" 
+            style="margin-top:15px; float:left; margin-left:20px;">
+          </p> 
+         <div style="justify-content: center;margin-right: 70px;">PRICE SCANNER</div>
     </div>
-    <div class="disableditem resolve-fb fadeIn second">
-       RETURNS
+    <div class="item resolve-fb fadeIn second">
+       
+       <p>
+        <img src="../../../assets/icons8-u-turn-to-left-30.png" width="50px" height="50px" 
+        style="margin-top:15px; float:left; margin-left:20px;">
+      </p> 
+     <div style="justify-content: center;margin-right: 70px;">RETURNS</div>
     </div>
-<br>
-<br>
-    <button mat-raised-button class="fadeIn" color="primary" color="nortz" (click)="logout()">
+
+<div class="item2 resolve-fb fadeIn third" (click)="logout()">
+        
+    <p>
+        <img src="../../../assets/exit.png" width="30px" height="30px" 
+        style="margin-top:10px; float:left; margin-left:5px;">
+      </p> 
+     <div style="justify-content: center;">LOG OUT</div>
+</div>
+<!--  
+<button mat-raised-button class="fadeIn" color="primary" color="nortz" (click)="logout()">
       <strong>Log out </strong> <mat-icon>logout</mat-icon></button>
 
-    <!--
-    <div class="item2 resolve-fb fadeIn third" (click)="logout()">
-        LOG OUT
-    </div>-->
+    --> 
+    
 </div>
