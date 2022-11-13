@@ -50,7 +50,7 @@ a {
   background-color: #8d9294;
   color: #fff;
   width: 300px;
-  max-width: 90%;
+  
   height: 80px;
   line-height: 80px;
   text-align: center;
@@ -228,4 +228,9 @@ a {
 .sc-icon {
   width: 200px;
   height: 200px;
+}
+
+.mat-nortz {
+  background-color: #39ace7;
+  color: #fff;
 }

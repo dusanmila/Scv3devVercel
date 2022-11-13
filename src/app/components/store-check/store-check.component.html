@@ -4,7 +4,7 @@
 <div class="menu fadeInDown">
 
     <div *ngIf="menager" class="disableditem start-sc fadeIn first"> <!-- ENABLE: [routerLink]="['/chooseObject/addStoreCheck']"-->
-        STORE CHECK
+      <p><img src="assets\store.png" width="50px" height="50px" style="margin-top:15px;float:left;margin-left:45px"></p>  <div style="float:left">STORE CHECK</div>
     </div>
 
     <div *ngIf="!menager" class="disableditem resolve-fb fadeIn second">  <!-- ENABLE: [routerLink]="['/chooseObject/resolveFeedbacks']"-->
@@ -20,9 +20,13 @@
     <div class="disableditem resolve-fb fadeIn second">
        RETURNS
     </div>
+<br>
+<br>
+    <button mat-raised-button class="fadeIn" color="primary" color="nortz" (click)="logout()">
+      <strong>Log out </strong> <mat-icon>logout</mat-icon></button>
 
-
+    <!--
     <div class="item2 resolve-fb fadeIn third" (click)="logout()">
         LOG OUT
-    </div>
+    </div>-->
 </div>
