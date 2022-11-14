@@ -23,13 +23,14 @@
 
   <div class="container">
     <h3 class="uploadHeading " style="color:#56baed;">Positions</h3>
-    <input type="file" #positionFileDropRef (change)="uploadPositionsFile($event)" id="positionFileDropRef" *ngIf="isObjectsEmpty" hidden />
-<BR>
-   <!--<h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>-->
+    <input type="file" #positionFileDropRef (change)="uploadPositionsFile($event)" id="positionFileDropRef" hidden />
 
-    <label for="positionFileDropRef" class="browseButton" *ngIf="isPositionsEmpty">Browse</label>
+    <BR>
+   <!--<h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>-->
+   <label for="positionFileDropRef" class="browseButton" *ngIf="isPositionsEmpty">Browse</label>
+   <label class="browseButton" *ngIf="!isPositionsEmpty" (click)="exportPositions()">Export</label>
     <button mat-button color="warn" *ngIf="!isPositionsEmpty" (click)="deletePositions()">Delete positions</button>
-    <button mat-button color="primary" *ngIf="!isPositionsEmpty" (click)="exportPositions()">Export positions</button>
+
     <div class="download-template">
       <em id="download-obj-template" class="fa-solid fa-download fa-2x" (click)="downloadTemplate(2)"></em>
       <br>
