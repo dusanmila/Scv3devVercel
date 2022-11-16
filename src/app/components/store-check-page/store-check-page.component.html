@@ -110,6 +110,13 @@
         <div class="margintop">
             <button mat-stroked-button color="primary" class="item2" (click)="addToStoreCheck()"
                 *ngIf="showFinishButton && workModel === 'addStoreCheck'">Add</button>
+                <br>
+                <div *ngIf="isLoading"
+                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed;">
+                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+                </mat-progress-spinner>
+              </div>
+              <br>
             <button mat-stroked-button color="primary" class="item2" style="margin-bottom: 10px; margin-left:10px;"
                 (click)="exit()">Exit</button>
         </div>

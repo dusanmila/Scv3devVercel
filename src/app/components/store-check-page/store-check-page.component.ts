@@ -26,6 +26,7 @@ export class StoreCheckPageComponent implements OnInit {
   public showDetails: boolean = false;
   public workModel: string;
   public showFinishButton: boolean = false;
+  isLoading=false;
 
   constructor(public snackBar: MatSnackBar,
     public objectService: ObjectService,
@@ -91,26 +92,29 @@ export class StoreCheckPageComponent implements OnInit {
 
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
   public addToStoreCheck() {
-
+    this.isLoading=true;
     let username = localStorage.getItem("username") as string;
     this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
       if (data) {
         const dialogRef = this.dialog.open(AreYouSureDialogComponent);
         dialogRef.afterClosed()
           .subscribe(res => {
-            console.log(res)
+            this.isLoading=false;
             if (res) {
+
               this.finishObjectStoreCheck();
 
             }
           },
             err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
-
+            this.isLoading=false;
       } else {
+        this.isLoading=false;
         this.dialog.open(AlreadyFinishedComponent);
       }
     },
-      err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
+
+      err => {this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });  this.isLoading=false;});
 
   }
 
