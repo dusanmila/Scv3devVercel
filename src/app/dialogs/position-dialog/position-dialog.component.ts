@@ -248,7 +248,7 @@ export class PositionDialogComponent implements OnInit {
 
     window.exifr.parse(img!).then((exif) => {
 
-      if (exif.Orientation == 6) {
+      if (exif && exif.Orientation == 6) {
         this.isRotated = true;
       }
 
