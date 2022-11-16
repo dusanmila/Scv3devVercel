@@ -63,3 +63,7 @@ button {
   text-align: center;
   margin-top: 10px;
 }
+
+.mat-button {
+  border-radius: 10px !important;
+}

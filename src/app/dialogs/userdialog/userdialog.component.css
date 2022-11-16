@@ -21,9 +21,9 @@
     color: #39ace7;
     margin-top: -13%;
     border: 2px solid #39ace7;
-    
+
   }
-  
+
 h3{
     color: #39ace7;
 }
@@ -40,4 +40,8 @@ button[disabled]:hover {
 
 .wrap {
   margin-top: 10px;
+}
+
+.mat-button {
+  border-radius: 10px !important;
 }

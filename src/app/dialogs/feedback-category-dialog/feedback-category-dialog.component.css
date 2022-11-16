@@ -44,3 +44,7 @@ button {
 ::ng-deep .mat-button-focus-overlay {
     display: none;
 }
+
+.mat-button {
+  border-radius: 10px !important;
+}

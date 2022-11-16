@@ -99,3 +99,7 @@ button[disabled]:hover {
 .wrap {
   height: 70px;
 }
+
+.mat-button {
+  border-radius: 10px !important;
+}

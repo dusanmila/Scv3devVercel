@@ -31,3 +31,7 @@ button:hover {
 button[disabled]:hover {
  background-color: #fff;
 }
+
+.mat-button {
+  border-radius: 10px !important;
+}

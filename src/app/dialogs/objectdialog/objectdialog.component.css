@@ -20,7 +20,7 @@
     border: 2px solid #39ace7;
   }
 
-  
+
   button:hover {
     color: #fff;
     background-color: #39ace7;
@@ -42,4 +42,8 @@ button {
 }
 ::ng-deep .mat-button-focus-overlay {
   display: none;
+}
+
+.mat-button {
+  border-radius: 10px !important;
 }

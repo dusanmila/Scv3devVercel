@@ -69,4 +69,7 @@ button {
 }
 
 
+.mat-button {
+  border-radius: 10px !important;
+}
 

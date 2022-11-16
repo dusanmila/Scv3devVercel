@@ -42,3 +42,7 @@ button[disabled]:hover {
 .wrap {
     margin-top: 10px;
 }
+
+.mat-button {
+  border-radius: 10px !important;
+}
