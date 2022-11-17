@@ -1,0 +1,83 @@
+<div class="header" *ngIf="showHeader">
+    <img src="assets\StoreCheckIcon3.png" alt="SC icon" width="80" height="80" style="float:left;">
+    <h2 style="height:80px;"> <span>Returns</span> </h2>
+</div>
+
+<div class="centered font">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Search returns" [(ngModel)]="search">
+        <button class="search" matSuffix mat-button (click)="loadData(false)">
+            <mat-icon class="search">search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div class="container mat-elevation-z8">
+    <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="returnId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Id
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Id">{{ row.ProductName }}</mat-cell>
+        </ng-container>
+       
+        <ng-container matColumnDef="returnName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Return name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Return name">{{ row.Quantity }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Weight
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Weight">{{ row.ExpiryDate }}g</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="manufacturer">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Manufacturer
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Manufacturer">{{ row.ObjectName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Price
+            </mat-header-cell>
+            
+        </ng-container>
+
+        
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary">
+                    <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+                </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index">
+                <button mat-icon-button color="primary">
+                    <mat-icon area-label="Edit"
+                        (click)="openDialog(2, row.ReturnId, row.ObjectId, row.ProductId, row.Quantity, row.ExpiryDate, row.Comment,row.Discount)">
+                        edit</mat-icon>
+                </button>
+                <button mat-icon-button color="primary">
+                    <mat-icon area-label="Delete"
+                        (click)="openDialog(3, row.ReturnId, row.ObjectId, row.ProductId, row.Quantity, row.ExpiryDate, row.Comment,row.Discount)">
+                        delete</mat-icon>
+                </button>
+                ReturnId:Guid;
+   
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
+        </mat-row>
+    </mat-table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No returns</mat-toolbar>
+    <!-- <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator> -->
+</div>
+
+<button mat-stroked-button color="primary" class="item2" (click)="exit()">Exit</button>
