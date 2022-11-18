@@ -21,6 +21,7 @@ import { FeedbackCategoryComponent } from './components/feedback-category/feedba
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { UploadsComponent } from './components/uploads/uploads.component';
 import { ProductComponent } from './components/product/product.component';
+import { ReturnComponent } from './components/returns/returns.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
+  { path: 'returns', component: ReturnComponent, canActivate: [AdminGuard] },
   {
     path: 'admin', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },

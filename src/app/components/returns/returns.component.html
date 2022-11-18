@@ -13,37 +13,29 @@
 </div>
 <div class="container mat-elevation-z8">
     <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
-        <ng-container matColumnDef="returnId">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Id
+        <ng-container matColumnDef="productName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product Name
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="Id">{{ row.ProductName }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="product Name">{{ row.productName }}</mat-cell>
         </ng-container>
        
-        <ng-container matColumnDef="returnName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Return name
+        <ng-container matColumnDef="quantity">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Quantity 
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="Return name">{{ row.Quantity }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="quantity">{{ row.quantity }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="weight">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Weight
+        <ng-container matColumnDef="expiryDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Expiry Date
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="Weight">{{ row.ExpiryDate }}g</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="expir yDate">{{ row.expiryDate }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="manufacturer">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Manufacturer
+        <ng-container matColumnDef="objectName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Object Name
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="Manufacturer">{{ row.ObjectName }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="object Name">{{ row.objectName }}</mat-cell>
         </ng-container>
-
-        <ng-container matColumnDef="price">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Price
-            </mat-header-cell>
-            
-        </ng-container>
-
-        
 
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>
@@ -54,15 +46,15 @@
             <mat-cell *matCellDef="let row; let i=index">
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Edit"
-                        (click)="openDialog(2, row.ReturnId, row.ObjectId, row.ProductId, row.Quantity, row.ExpiryDate, row.Comment,row.Discount)">
+                        (click)="openDialog(2, row.returnId, row.objectId, row.productId, row.quantity, row.expiryDate, row.comment, row.discount)">
                         edit</mat-icon>
                 </button>
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Delete"
-                        (click)="openDialog(3, row.ReturnId, row.ObjectId, row.ProductId, row.Quantity, row.ExpiryDate, row.Comment,row.Discount)">
+                        (click)="openDialog(3, row.returnId, row.objectId, row.productId, row.quantity, row.expiryDate, row.comment, row.discount)">
                         delete</mat-icon>
                 </button>
-                ReturnId:Guid;
+               
    
             </mat-cell>
         </ng-container>

@@ -1,50 +1,45 @@
 <div class="container">
     <h3 mat-dialog-title *ngIf="flag == 1">Add return</h3>
-    <h3 mat-dialog-title *ngIf="flag == 2">Update user: {{data.ReturnId}}</h3>
-    <h3 mat-dialog-title *ngIf="flag == 3">Delete user: {{data.ReturnId}}</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Update user: {{data.returnId}}</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Delete user: {{data.returnId}}</h3>
 
 
 
     <form class="mat-dialog-content" #formControl="ngForm">
+       
         <div class="form">
             <mat-form-field>
-                <input matInput placeholder="Product Name" [(ngModel)]="data.Product.productName" name="productName"
+                <input matInput placeholder="Product Id Company" [(ngModel)]="data.productIdCompany" name="productIdCompany"
                     [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
-                <input matInput placeholder="Product Id" [(ngModel)]="data.Product.productIdCompany" name="productIdCompany"
-                    [disabled]="flag === 3" required />
-            </mat-form-field>
-        </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="Quantity" [(ngModel)]="data.Quantity" name="quantity" [disabled]="flag === 3"
+                <input matInput placeholder="Quantity" [(ngModel)]="data.quantity" name="quantity" [disabled]="flag === 3"
                     type="number" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
-                <input matInput placeholder="Expiry Date" [(ngModel)]="data.ExpiryDate" name="expiryDate"
+                <input matInput placeholder="Expiry Date" [(ngModel)]="data.expiryDate" name="expiryDate"
                     [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
-                <input matInput placeholder="Object" [(ngModel)]="data.Object" name="object" type="object"
+                <input matInput placeholder="Object Id Company" [(ngModel)]="data.objectIdCompany" name="objectIdCompany" type="object"
                     [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
-                <input matInput placeholder="Suggested Discount" [(ngModel)]="data.Discount" name="discount"
+                <input matInput placeholder="Suggested Discount" [(ngModel)]="data.discount" name="discount"
                     type="number" [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
-                <input matInput placeholder="Comment" [(ngModel)]="data.Comment" name="comment"
+                <input matInput placeholder="Comment" [(ngModel)]="data.comment" name="comment"
                     type="number" [disabled]="flag === 3" required />
             </mat-form-field>
         </div>

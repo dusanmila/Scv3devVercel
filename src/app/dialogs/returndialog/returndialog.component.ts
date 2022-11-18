@@ -51,7 +51,7 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   delete() {
-    this.returnService.deleteReturn(this.data.ReturnId).subscribe(data => {
+    this.returnService.deleteReturn(this.data.returnId).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Return successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
       this.close();

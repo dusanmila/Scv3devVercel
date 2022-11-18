@@ -1,14 +1,19 @@
 import { Guid } from "guid-typescript";
-import { Obj } from "./object";
-import { Product } from "./product";
 
 export interface Return {
-    ReturnId:Guid;
-    Object:Obj;
-    Product: Product;
-    Quantity: number;
-    ExpiryDate: Date;
-    Discount: number;
-    Comment: number;
+    returnId:Guid;
+    productName: string;
+    productIdCompany:string;
+    objectName:string;
+    objectAddress:string
+    objectCity:string;
+    objectIdCompany:string;
+    objectIdRetail:string;
+    retailerName:string;
+    quantity: number;
+    expiryDate: Date;
+    discount: number;
+    comment: number;
     totalCount: number;
 }
+

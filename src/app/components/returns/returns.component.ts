@@ -29,7 +29,7 @@ export class ReturnComponent implements OnInit {
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
 
-  displayedColumns = ['ProductName', 'Quantity', 'ExpiryDate', 'ObjectName'];
+  displayedColumns = ['productName', 'quantity', 'expiryDate', 'objectName','actions'];
 
   constructor(private returnService: ReturnService,
     private dialog: MatDialog,
@@ -70,8 +70,8 @@ export class ReturnComponent implements OnInit {
     this.loadData(true);
   }
 
-  openDialog(flag: number, ReturnId?: string, ObjectId?: Guid, ProductId?: Guid, Quantity?: number, ExpiryDatee?: Date, Comment?:string, Discount?:number) {
-    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { ReturnId, ObjectId, ProductId, Quantity, ExpiryDatee, Comment,Discount } });
+  openDialog(flag: number, returnId?: string, objectId?: Guid, productId?: Guid, quantity?: number, expiryDatee?: Date, comment?:string, discount?:number) {
+    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { returnId, objectId, productId, quantity, expiryDatee, comment, discount } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
