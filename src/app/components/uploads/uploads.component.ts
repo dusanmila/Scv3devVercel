@@ -190,4 +190,14 @@ export class UploadsComponent implements OnInit {
 
   }
 
+  public exportProducts() {
+    this.isProdLoading=true;
+    this.productService.export().subscribe((excel)=>{
+      this.isProdLoading=false;
+      const fileName = 'Products.xlsx';
+     saveAs(excel, fileName);
+    });
+
+  }
+
 }
