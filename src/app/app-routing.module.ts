@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
-  { path: 'returns', component: ReturnComponent, canActivate: [AdminGuard] },
+  { path: 'returns/:objectIdCompany', component: ReturnComponent, canActivate: [AdminGuard] },
   {
     path: 'admin', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },

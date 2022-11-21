@@ -75,7 +75,7 @@
 }
 
 /* Promena izgleda table */
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 150px) {
     .mat-table {
         border: 0;
         vertical-align: middle

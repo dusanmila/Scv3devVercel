@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { ReturnDialogComponent } from 'src/app/dialogs/returndialog/returndialog.component';
 //import { ReturnDialogComponent } from 'src/app/dialogs/returns-dialog/returns-dialog.component';
@@ -16,7 +16,7 @@ import { ReturnService } from 'src/app/Services/returns.service';
   styleUrls: ['./returns.component.css']
 })
 export class ReturnComponent implements OnInit {
-
+  public objectIdCompany: string = "";
   count: number = 0;
   page: number = 0;
   search: string = '';
@@ -29,13 +29,15 @@ export class ReturnComponent implements OnInit {
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
 
-  displayedColumns = ['productName', 'quantity', 'expiryDate', 'objectName','actions'];
+  displayedColumns = ['productName', 'quantity', 'expiryDate','actions'];
 
   constructor(private returnService: ReturnService,
     private dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    public activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
     let url = this.router.url;
     if (url === '/admin/returns')
       this.showHeader = false;
@@ -43,6 +45,7 @@ export class ReturnComponent implements OnInit {
   }
 
   loadData(pageChanged: boolean) {
+    console.log(this.objectIdCompany);
     if (!pageChanged)
       this.page = 1;
     this.returnService.getReturn(this.count, this.page, this.search).subscribe(data => {
@@ -70,8 +73,8 @@ export class ReturnComponent implements OnInit {
     this.loadData(true);
   }
 
-  openDialog(flag: number, returnId?: string, objectId?: Guid, productId?: Guid, quantity?: number, expiryDatee?: Date, comment?:string, discount?:number) {
-    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { returnId, objectId, productId, quantity, expiryDatee, comment, discount } });
+  openDialog(flag: number, returnId?:Guid, retailerName?: string, objectName?: string, objectAddress?: string, objectCity?:string, objectIdCompany?:string,objectIdRetail?:string,productName?:string,productIdCompany?:string, quantity?: number, expiryDate?: Date, comment?:string, discount?:number) {
+    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { returnId, retailerName,objectName, objectAddress, objectCity, objectIdCompany,objectIdRetail, productName,productIdCompany, quantity, expiryDate, comment, discount } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
@@ -79,7 +82,6 @@ export class ReturnComponent implements OnInit {
       }
     });
   }
-
 
   public exit() {
     this.router.navigate(['storeCheck']);

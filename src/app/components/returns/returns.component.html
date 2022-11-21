@@ -18,9 +18,9 @@
             </mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="product Name">{{ row.productName }}</mat-cell>
         </ng-container>
-       
+
         <ng-container matColumnDef="quantity">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Quantity 
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Quantity
             </mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="quantity">{{ row.quantity }}</mat-cell>
         </ng-container>
@@ -28,14 +28,9 @@
         <ng-container matColumnDef="expiryDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Expiry Date
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="expir yDate">{{ row.expiryDate }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="expiry Date">{{ row.expiryDate | date: 'dd.MMM.yy.' }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="objectName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Object Name
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="object Name">{{ row.objectName }}</mat-cell>
-        </ng-container>
 
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>
@@ -44,22 +39,26 @@
                 </button>
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i=index">
+                <button style="border: 2px solid blue;" mat-icon-button color="primary"
+                    (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                
+                    View
+                </button>
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Edit"
-                        (click)="openDialog(2, row.returnId, row.objectId, row.productId, row.quantity, row.expiryDate, row.comment, row.discount)">
+                        (click)="openDialog(2, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
                         edit</mat-icon>
                 </button>
-                <button mat-icon-button color="primary">
-                    <mat-icon area-label="Delete"
-                        (click)="openDialog(3, row.returnId, row.objectId, row.productId, row.quantity, row.expiryDate, row.comment, row.discount)">
-                        delete</mat-icon>
+                <button style="border: 2px solid blue;" mat-icon-button color="primary"
+                    (click)="openDialog(3, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                    Sold
                 </button>
                
-   
+
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">          
         </mat-row>
     </mat-table>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">

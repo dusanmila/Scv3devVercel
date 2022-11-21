@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
 
-  displayedColumns = ['productIdCompany', 'productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
+  displayedColumns = [ 'productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
 
   constructor(private productService: ProductService,
     private dialog: MatDialog,
