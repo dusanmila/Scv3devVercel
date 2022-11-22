@@ -92,16 +92,16 @@ isExporting=false;
     }
 
   }
-
+/*
   public exportPositions() {
     this.isExporting=true;
-    this.positionService.export().subscribe((excel)=>{
+    this.positionService.export(true).subscribe((excel)=>{
       this.isExporting=false;
       const fileName = 'SecondaryPositions.xlsx';
      saveAs(excel, fileName);
     });
 
-  }
+  }*/
 
   public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, comment?: string, img?: string, isImgHorizontal?: boolean) {
 

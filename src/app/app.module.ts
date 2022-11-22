@@ -2,6 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -163,7 +165,8 @@ import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.
     MatButtonToggleModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatRadioModule
+    MatRadioModule,
+    MatAutocompleteModule
 
   ],
   providers: [DatePipe],
