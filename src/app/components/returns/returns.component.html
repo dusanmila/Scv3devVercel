@@ -39,7 +39,7 @@
                 </button>
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i=index">
-                <button style="border: 2px solid blue;" mat-icon-button color="primary"
+                <button  mat-icon-button color="primary"
                     (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
                 
                     View
@@ -49,7 +49,7 @@
                         (click)="openDialog(2, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
                         edit</mat-icon>
                 </button>
-                <button style="border: 2px solid blue;" mat-icon-button color="primary"
+                <button  mat-icon-button color="primary"
                     (click)="openDialog(3, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
                     Sold
                 </button>
