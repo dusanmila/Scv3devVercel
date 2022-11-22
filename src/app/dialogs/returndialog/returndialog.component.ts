@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -18,7 +19,10 @@ export class ReturnDialogComponent implements OnInit {
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ReturnDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Return,
-    public returnService: ReturnService) { }
+    public returnService: ReturnService,
+    private datePipe: DatePipe) { 
+      data.expiryDate=datePipe.transform(data.expiryDate, 'dd-MMM-yy')
+    }
 
   ngOnInit(): void {
     console.log(this.data);
