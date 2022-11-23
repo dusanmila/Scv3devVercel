@@ -156,8 +156,8 @@ export class PositionService {
     });
   }
 
-  public export(withImages:boolean,retailer:string,object:string) {
-    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel/`+withImages+'/'+retailer+'/'+object, { headers: this.headers, responseType: 'blob' });
+  public export(withImages:boolean,retailer:string,object:string,type:string) {
+    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel/`+withImages+'/'+retailer+'/'+object+'/'+type, { headers: this.headers, responseType: 'blob' });
 
   }
 

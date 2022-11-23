@@ -10,6 +10,7 @@ import { Retailer } from 'src/app/models/retailer';
 import { Obj } from 'src/app/models/object';
 import { map, Observable, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { PositionType } from 'src/app/models/positionType';
 
 @Component({
   selector: 'app-uploads',
@@ -31,12 +32,14 @@ export class UploadsComponent implements OnInit {
   isWithImages=false;
   selectedRetailer:string="All";
   selectedObject:string="All";
+  selectedType:string="All";
   filteredOptions: Observable<Obj[]>;
 
   error:boolean=false;
 
   retailers: Retailer[];
   objects: Obj[];
+  types: PositionType[];
 
 
   constructor(public objectService: ObjectService,
@@ -50,6 +53,7 @@ export class UploadsComponent implements OnInit {
   this.positionService.checkNoData().subscribe((data)=>this.isPositionsEmpty=data);
   this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
   this.objectService.getRetailersNoPagination().subscribe((data)=>this.retailers=data);
+  this.positionService.getPositionTypes().subscribe((data)=>this.types=data);
   this.objectService.getObjectsNoPagination().subscribe((data)=>{
     this.objects=data;
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -206,7 +210,7 @@ export class UploadsComponent implements OnInit {
 if(this.selectedObject=="All" || this.selectedRetailer=="All"){
   this.isPosLoading=true;
   console.log(this.selectedObject)
-  this.positionService.export(this.isWithImages,this.selectedRetailer,this.selectedObject).subscribe((excel)=>{
+  this.positionService.export(this.isWithImages,this.selectedRetailer,this.selectedObject,this.selectedType).subscribe((excel)=>{
     this.isPosLoading=false;
     const fileName = 'SecondaryPositions.xlsx';
    saveAs(excel, fileName);
