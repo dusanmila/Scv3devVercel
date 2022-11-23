@@ -230,4 +230,14 @@ if(this.selectedObject=="All" || this.selectedRetailer=="All"){
     return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
   }
 
+  public exportProducts() {
+    this.isProdLoading=true;
+    this.productService.export().subscribe((excel)=>{
+      this.isProdLoading=false;
+      const fileName = 'Products.xlsx';
+     saveAs(excel, fileName);
+    });
+
+  }
+
 }

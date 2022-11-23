@@ -89,6 +89,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { UploadsComponent } from './components/uploads/uploads.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
+import { ReturnComponent } from './components/returns/returns.component';
+import { ReturnDialogComponent } from './dialogs/returndialog/returndialog.component';
 
 @NgModule({
   declarations: [
@@ -134,7 +136,9 @@ import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.
     PieChart3Component,
     UploadsComponent,
     ProductComponent,
-    ProductDialogComponent
+    ProductDialogComponent,
+    ReturnComponent,
+    ReturnDialogComponent
 
   ],
   imports: [

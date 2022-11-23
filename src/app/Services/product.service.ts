@@ -78,4 +78,10 @@ export class ProductService {
     });
     return retval$.asObservable();
   }
+
+  public export() {
+    return this.http.get(`${PRODUCT_URL}/products/exportExcel`, { headers: this.headers, responseType: 'blob' });
+
+  }
+
 }

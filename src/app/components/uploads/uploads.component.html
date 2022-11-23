@@ -88,6 +88,7 @@
    <!--<h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>-->
 
     <label for="productFileDropRef" class="browseButton" *ngIf="isProductsEmpty">Browse</label>
+    <label class="browseButton" *ngIf="!isProductsEmpty" (click)="exportProducts()">Export</label>
     <button mat-button color="warn" *ngIf="!isProductsEmpty" (click)="deleteProducts()">Delete products</button>
 
 

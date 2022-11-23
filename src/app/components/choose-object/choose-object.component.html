@@ -18,10 +18,18 @@
             <button mat-stroked-button color="primary" class="item2" (click)="openDialog()"
                 *ngIf="workModel === 'addStoreCheck' && showFinishStoreCheck">Finish</button>
 
+                <button mat-stroked-button color="primary" class="item2" (click)="exportReturns()"
+                *ngIf="isReturns">Export</button>
+
 
             <button mat-stroked-button color="primary" class="item2" style="margin-left:10px;"
                 (click)="exit()">Exit <mat-icon>exit_to_app</mat-icon></button>
 
         </div>
+        <div *ngIf="isExportReturnsLoading"
+style="display: flex; justify-content: center; align-items: center; background: white; background: transparent;">
+<mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+</mat-progress-spinner>
+</div>
     </div>
 </div>

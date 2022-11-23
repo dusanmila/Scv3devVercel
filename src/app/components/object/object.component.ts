@@ -29,6 +29,7 @@ export class ObjectComponent implements OnInit {
   subscription: Subscription;
   isLoading = false;
   objInfo: ObjectInfo;
+  isReturns :boolean=false;
 
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
@@ -141,6 +142,11 @@ isObjectSelected=false;
     if (this.isDashboard)
       this.count = 2;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
+
+    if(this.workModel='returns')
+    {
+      this.isReturns=true;
+    }
     // if (this.workModel == "addStoreCheck") {
     //   this.resolveFeedbacks = false;
     // } else if (this.workModel == "resolveFeedbacks") {
@@ -287,6 +293,11 @@ isObjectSelected=false;
     } else {
       this.router.navigate(['/storeCheckPage', this.workModel, objectIdCompany]);
     }
+  }
+
+  public returnPage(objectIdCompany:string)
+  {
+    this.router.navigate(['/returns', objectIdCompany]);
   }
 
   public selectObject(objectName: string) {

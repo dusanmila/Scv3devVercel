@@ -1,0 +1,74 @@
+<div class="header" *ngIf="showHeader">
+    <img src="assets\StoreCheckIcon3.png" alt="SC icon" width="80" height="80" style="float:left;">
+    <h2 style="height:80px;"> <span>Returns</span> </h2>
+</div>
+
+<div class="centered font">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Search returns" [(ngModel)]="search">
+        <button class="search" matSuffix mat-button (click)="loadData(false)">
+            <mat-icon class="search">search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div class="container mat-elevation-z8">
+    <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="productName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="product Name">{{ row.productName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Quantity
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="quantity">{{ row.quantity }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="expiryDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Expiry Date
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="expiry Date">{{ row.expiryDate | date: 'dd.MMM.yy.' }}</mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary">
+                    <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+                </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index">
+                <button style="border: 2px solid blue;" mat-icon-button color="primary"
+                    (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                
+                    View
+                </button>
+                <button mat-icon-button color="primary">
+                    <mat-icon area-label="Edit"
+                        (click)="openDialog(2, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                        edit</mat-icon>
+                </button>
+                <button style="border: 2px solid blue;" mat-icon-button color="primary"
+                    (click)="openDialog(3, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                    Sold
+                </button>
+               
+
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">          
+        </mat-row>
+    </mat-table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No returns</mat-toolbar>
+    <!-- <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator> -->
+</div>
+
+<button mat-stroked-button color="primary" class="item2" (click)="exit()">Exit</button>

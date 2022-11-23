@@ -9,7 +9,9 @@ import { Obj } from 'src/app/models/object';
 import { StoreCheck } from 'src/app/models/storeCheck';
 import { ObjectStoreCheckService } from 'src/app/Services/object-store-check.service';
 import { ObjectService } from 'src/app/Services/object.service';
+import { ReturnService } from 'src/app/Services/returns.service';
 import { StoreCheckService } from 'src/app/Services/store-check.service';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-choose-object',
@@ -22,18 +24,24 @@ export class ChooseObjectComponent implements OnInit {
   // public resolveFeedbacks: boolean;
   public workModel: string;
   public storeCheck: StoreCheck;
+  public isReturns:boolean=false;
   public showFinishStoreCheck: boolean;
   isLoading=false;
+  isExportReturnsLoading=false;
 
   constructor(public objectService: ObjectService,
     public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     public storeCheckService: StoreCheckService,
     public router: Router,
-    public objectStoreCheckService: ObjectStoreCheckService) { }
+    public objectStoreCheckService: ObjectStoreCheckService,
+    public returnsService:ReturnService) { }
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
+    if (this.workModel === "returns") {
+        this.isReturns = true;
+       }
     // if (this.workModel == "addStoreCheck") {
     //   this.resolveFeedbacks = false;
     // } else if (this.workModel == "resolveFeedbacks") {
@@ -115,6 +123,17 @@ export class ChooseObjectComponent implements OnInit {
         });
       }
     });
+  }
+
+
+  public exportReturns() {
+    this.isExportReturnsLoading=true;
+    this.returnsService.export().subscribe((excel)=>{
+      this.isExportReturnsLoading=false;
+      const fileName = 'Returns.xlsx';
+     saveAs(excel, fileName);
+    });
+
   }
 
   public exit() {
