@@ -37,7 +37,11 @@
       <label for="download-obj-template">Download template</label>
     </div>
     <br>
-
+    <div *ngIf="isPosLoading"
+    style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white; background: transparent;">
+    <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+    </mat-progress-spinner>
+  </div>
     <div class="check">
       <h4>Export options:</h4>
       <br>
@@ -48,7 +52,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Position type</mat-label>
     <mat-select [(ngModel)]="selectedType">
-      <mat-option>
+      <mat-option value="All">
         All
       </mat-option>
       <mat-option *ngFor="let type of types" [value]="type.positionTypeName">
@@ -61,7 +65,7 @@
 <mat-form-field appearance="fill">
   <mat-label>Retailer</mat-label>
   <mat-select [(ngModel)]="selectedRetailer">
-    <mat-option>
+    <mat-option value="All">
       All
     </mat-option>
     <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
@@ -83,7 +87,7 @@
            [(ngModel)]="selectedObject"
           >
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option>
+      <mat-option value="All">
         All
       </mat-option>
       <mat-option *ngFor="let option of filteredOptions | async" [value]="option.objectName">
@@ -92,8 +96,23 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
-<p *ngIf="error">Choose either retailer or object.</p>
+<p *ngIf="error">Can't filter object and retailer at the same time.</p>
+<div class="select">
+  <mat-form-field appearance="fill">
+    <mat-label>Object format</mat-label>
+    <mat-select [(ngModel)]="selectedFormat">
+      <mat-option value="All">
+        All
+      </mat-option>
+      <mat-option *ngFor="let format of formats" [value]="format">
+        {{format}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   </div>
+  </div>
+
+
 
   <div class="container">
     <h3 class="uploadHeading " style="color:#56baed;">Products</h3>

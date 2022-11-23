@@ -246,4 +246,12 @@ export class ObjectService {
       saveAs(template, fileName);
     });
   }
+
+  public getObjectFormats(){
+    let retvla$ = new Subject<string[]>();
+    this.http.get<string[]>(`${OBJECT_URL}/objects/objectFormats`, { headers: this.headers }).subscribe((helper: string[]) => {
+      retvla$.next(helper);
+    });
+    return retvla$.asObservable();
+  }
 }

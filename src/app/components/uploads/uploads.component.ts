@@ -33,6 +33,7 @@ export class UploadsComponent implements OnInit {
   selectedRetailer:string="All";
   selectedObject:string="All";
   selectedType:string="All";
+  selectedFormat:string="All";
   filteredOptions: Observable<Obj[]>;
 
   error:boolean=false;
@@ -40,6 +41,7 @@ export class UploadsComponent implements OnInit {
   retailers: Retailer[];
   objects: Obj[];
   types: PositionType[];
+  formats:string[];
 
 
   constructor(public objectService: ObjectService,
@@ -54,6 +56,7 @@ export class UploadsComponent implements OnInit {
   this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
   this.objectService.getRetailersNoPagination().subscribe((data)=>this.retailers=data);
   this.positionService.getPositionTypes().subscribe((data)=>this.types=data);
+  this.objectService.getObjectFormats().subscribe((data)=>this.formats=data);
   this.objectService.getObjectsNoPagination().subscribe((data)=>{
     this.objects=data;
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -209,8 +212,8 @@ export class UploadsComponent implements OnInit {
 
 if(this.selectedObject=="All" || this.selectedRetailer=="All"){
   this.isPosLoading=true;
-  console.log(this.selectedObject)
-  this.positionService.export(this.isWithImages,this.selectedRetailer,this.selectedObject,this.selectedType).subscribe((excel)=>{
+  console.log("obj"+this.selectedObject + "format"+this.selectedFormat +"ret"+ this.selectedRetailer + "type"+this.selectedType)
+  this.positionService.export(this.isWithImages,this.selectedRetailer,this.selectedObject,this.selectedType,this.selectedFormat).subscribe((excel)=>{
     this.isPosLoading=false;
     const fileName = 'SecondaryPositions.xlsx';
    saveAs(excel, fileName);
