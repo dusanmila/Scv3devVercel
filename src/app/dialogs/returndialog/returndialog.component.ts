@@ -23,15 +23,16 @@ export class ReturnDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Return,
     public returnService: ReturnService,
     public productService: ProductService,
-    private datePipe: DatePipe) { 
-      data.expiryDate=datePipe.transform(data.expiryDate, 'dd-MMM-yy')
-    }
+    private datePipe: DatePipe) {
+    data.expiryDate = datePipe.transform(data.expiryDate, 'dd-MMM-yy')
+  }
 
   ngOnInit(): void {
     console.log(this.data);
   }
 
   add() {
+    console.log(this.data);
     this.returnService.createReturn(this.data).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Return successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
@@ -70,13 +71,19 @@ export class ReturnDialogComponent implements OnInit {
       }
   }
 
-  getProducts()
-  {
-    this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data=>{
+  getProducts() {
+    this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data => {
       console.log(data);
-      this.searchResults=data;
+      this.searchResults = data;
 
     });
+  }
+
+  changeProductIdCompany(event) {
+    // this.data.productIdCompany = productIdCompany;
+    // console.log(this.data.productIdCompany);
+    // console.log(productIdCompany)
+    console.log(event)
   }
 
   close() {

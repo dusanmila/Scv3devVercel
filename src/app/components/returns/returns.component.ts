@@ -29,7 +29,7 @@ export class ReturnComponent implements OnInit {
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
 
-  displayedColumns = ['productName', 'quantity', 'expiryDate','actions'];
+  displayedColumns = ['productName', 'quantity', 'expiryDate', 'actions'];
 
   constructor(private returnService: ReturnService,
     private dialog: MatDialog,
@@ -73,8 +73,8 @@ export class ReturnComponent implements OnInit {
     this.loadData(true);
   }
 
-  openDialog(flag: number, returnId?:Guid, retailerName?: string, objectName?: string, objectAddress?: string, objectCity?:string, objectIdCompany?:string,objectIdRetail?:string,productName?:string,productIdCompany?:string, quantity?: number, expiryDate?: Date, comment?:string, discount?:number) {
-    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { returnId, retailerName,objectName, objectAddress, objectCity, objectIdCompany,objectIdRetail, productName,productIdCompany, quantity, expiryDate, comment, discount } });
+  openDialog(flag: number, returnId?: Guid, retailerName?: string, objectName?: string, objectAddress?: string, objectCity?: string, objectIdCompany?: string, objectIdRetail?: string, productName?: string, productIdCompany?: string, quantity?: number, expiryDate?: Date, comment?: string, discount?: number) {
+    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { returnId, retailerName, objectName, objectAddress, objectCity, objectIdCompany: this.objectIdCompany, objectIdRetail, productName, productIdCompany, quantity, expiryDate, comment, discount } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
