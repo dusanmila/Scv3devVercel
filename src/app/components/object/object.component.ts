@@ -143,7 +143,7 @@ isObjectSelected=false;
       this.count = 2;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
 
-    if(this.workModel='returns')
+    if(this.workModel=='returns')
     {
       this.isReturns=true;
     }

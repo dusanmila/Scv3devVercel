@@ -8,12 +8,24 @@
 
     <form class="mat-dialog-content" #formControl="ngForm">
        
-        <div class="form">
+        <div *ngIf="flag!=1" class="form">
             <mat-form-field>
                 <input matInput placeholder="Product Id Company" [(ngModel)]="data.productIdCompany" name="productIdCompany"
                     [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
+        <div class="form">
+            <mat-form-field>
+                <input  type="text" matInput placeholder="productName" (input)="getProducts()" [(ngModel)]="data.productName" name="productName" 
+                list="this.SearchResults" [disabled]="flag === 3 || flag===4" required />
+            </mat-form-field>
+        </div>
+        <!--<mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        -->
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Quantity" [(ngModel)]="data.quantity" name="quantity" [disabled]="flag === 3 || flag===4"
@@ -26,12 +38,7 @@
                  [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="Object Id Company" [(ngModel)]="data.objectIdCompany" name="objectIdCompany" type="object"
-                    [disabled]="flag === 3 || flag===4" required />
-            </mat-form-field>
-        </div>
+        
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Suggested Discount" [(ngModel)]="data.discount" name="discount"
@@ -44,44 +51,10 @@
                     [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="objectCity" [(ngModel)]="data.objectCity" name="objectCity"
-                    [disabled]="flag === 3 || flag===4" required />
-            </mat-form-field>
-        </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="objectAddress" [(ngModel)]="data.objectAddress" name="objectAddress"
-                     [disabled]="flag === 3 || flag===4" required />
-            </mat-form-field>
-        </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="objectName" [(ngModel)]="data.objectName" name="objectName"
-                    [disabled]="flag === 3 || flag===4" required />
-            </mat-form-field>
-        </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="productName" [(ngModel)]="data.productName" name="productName"
-                     [disabled]="flag === 3 || flag===4" required />
-            </mat-form-field>
-        </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="retailerName" [(ngModel)]="data.retailerName" name="retailerName"
-                     [disabled]="flag === 3 || flag===4" required />
-            </mat-form-field>
-        </div>
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="objectIdRetail" [(ngModel)]="data.objectIdRetail" name="objectIdRetail"
-                     [disabled]="flag === 3 || flag===4" required />
-            </mat-form-field>
-        </div>
         
-
+       
+       
+        
 
 
 

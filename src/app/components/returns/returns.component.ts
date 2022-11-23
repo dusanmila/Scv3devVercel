@@ -84,7 +84,7 @@ export class ReturnComponent implements OnInit {
   }
 
   public exit() {
-    this.router.navigate(['storeCheck']);
+    this.router.navigate(['/chooseObject/returns']);
   }
 
 }
