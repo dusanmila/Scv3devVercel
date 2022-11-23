@@ -6,6 +6,10 @@ import { ProductService } from 'src/app/Services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import * as saveAs from 'file-saver';
+import { Retailer } from 'src/app/models/retailer';
+import { Obj } from 'src/app/models/object';
+import { map, Observable, startWith } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-uploads',
@@ -13,7 +17,7 @@ import * as saveAs from 'file-saver';
   styleUrls: ['./uploads.component.css']
 })
 export class UploadsComponent implements OnInit {
-
+  myControl = new FormControl('');
   objectsFile: any;
   positionsFile: any;
   productsFile: any;
@@ -24,6 +28,15 @@ export class UploadsComponent implements OnInit {
   isObjectsEmpty=false;
   isPositionsEmpty=false;
   isProductsEmpty=false;
+  isWithImages=false;
+  selectedRetailer:string="All";
+  selectedObject:string="All";
+  filteredOptions: Observable<Obj[]>;
+
+  error:boolean=false;
+
+  retailers: Retailer[];
+  objects: Obj[];
 
 
   constructor(public objectService: ObjectService,
@@ -33,9 +46,17 @@ export class UploadsComponent implements OnInit {
     public dialog: MatDialog) { }
 
     ngOnInit(){
- this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
- this.positionService.checkNoData().subscribe((data)=>this.isPositionsEmpty=data);
- this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
+  this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
+  this.positionService.checkNoData().subscribe((data)=>this.isPositionsEmpty=data);
+  this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
+  this.objectService.getRetailersNoPagination().subscribe((data)=>this.retailers=data);
+  this.objectService.getObjectsNoPagination().subscribe((data)=>{
+    this.objects=data;
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  });
 
     }
 
@@ -181,13 +202,32 @@ export class UploadsComponent implements OnInit {
   }
 
   public exportPositions() {
-    this.isPosLoading=true;
-    this.positionService.export().subscribe((excel)=>{
-      this.isPosLoading=false;
-      const fileName = 'SecondaryPositions.xlsx';
-     saveAs(excel, fileName);
-    });
 
+if(this.selectedObject=="All" || this.selectedRetailer=="All"){
+  this.isPosLoading=true;
+  console.log(this.selectedObject)
+  this.positionService.export(this.isWithImages,this.selectedRetailer,this.selectedObject).subscribe((excel)=>{
+    this.isPosLoading=false;
+    const fileName = 'SecondaryPositions.xlsx';
+   saveAs(excel, fileName);
+  });
+}else{
+  this.error=true;
+}
+
+
+
+  }
+
+  public checkWithImages(event){
+    this.isWithImages=event.checked;
+
+  }
+
+  private _filter(value: string): Obj[] {
+    const filterValue = value.toLowerCase();
+
+    return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
   }
 
   public exportProducts() {

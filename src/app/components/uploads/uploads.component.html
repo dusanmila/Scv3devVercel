@@ -37,11 +37,48 @@
       <label for="download-obj-template">Download template</label>
     </div>
     <br>
-    <div *ngIf="isPosLoading"
-      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white; background: transparent;">
-      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
-      </mat-progress-spinner>
+
+    <div class="check">
+      <h4>Export options:</h4>
+      <br>
+      <mat-checkbox class="example-margin" color="primary" (change)="checkWithImages($event)">With images</mat-checkbox>
     </div>
+<div class="select">
+<mat-form-field appearance="fill">
+  <mat-label>Retailer</mat-label>
+  <mat-select [(ngModel)]="selectedRetailer">
+    <mat-option>
+      All
+    </mat-option>
+    <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
+      {{retailer.retailerName}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+<br>
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Object</mat-label>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           [(ngModel)]="selectedObject"
+          >
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option>
+        All
+      </mat-option>
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.objectName">
+        {{option.objectName}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<p *ngIf="error">Choose either retailer or object.</p>
   </div>
 
   <div class="container">
@@ -53,6 +90,7 @@
     <label for="productFileDropRef" class="browseButton" *ngIf="isProductsEmpty">Browse</label>
     <label class="browseButton" *ngIf="!isProductsEmpty" (click)="exportProducts()">Export</label>
     <button mat-button color="warn" *ngIf="!isProductsEmpty" (click)="deleteProducts()">Delete products</button>
+
 
     <div class="download-template">
       <em id="download-obj-template" class="fa-solid fa-download fa-2x" (click)="downloadTemplate(3)"></em>
