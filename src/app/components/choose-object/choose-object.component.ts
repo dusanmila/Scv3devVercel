@@ -12,6 +12,11 @@ import { ObjectService } from 'src/app/Services/object.service';
 import { ReturnService } from 'src/app/Services/returns.service';
 import { StoreCheckService } from 'src/app/Services/store-check.service';
 import * as saveAs from 'file-saver';
+import { Product } from 'src/app/models/product';
+import { ProductService } from 'src/app/Services/product.service';
+import { FormControl } from '@angular/forms';
+import { map, Observable, startWith } from 'rxjs';
+import { Retailer } from 'src/app/models/retailer';
 
 @Component({
   selector: 'app-choose-object',
@@ -19,17 +24,28 @@ import * as saveAs from 'file-saver';
   styleUrls: ['./choose-object.component.css']
 })
 export class ChooseObjectComponent implements OnInit {
-
+  myControl = new FormControl('');
   public objects: Obj[] = [];
+   public products: Product[] = [];
+   public retailers: Retailer[] = [];
+    filteredOptions: Observable<Obj[]>;
   // public resolveFeedbacks: boolean;
   public workModel: string;
   public storeCheck: StoreCheck;
   public isReturns:boolean=false;
   public showFinishStoreCheck: boolean;
   isLoading=false;
+  isExport=false;
   isExportReturnsLoading=false;
 
+  error=false;
+
+  selectedObject:string="All";
+  selectedProduct:string="All";
+  selectedRetailer:string="All";
+
   constructor(public objectService: ObjectService,
+    public productService: ProductService,
     public activatedRoute: ActivatedRoute,
     public dialog: MatDialog,
     public storeCheckService: StoreCheckService,
@@ -53,6 +69,16 @@ export class ChooseObjectComponent implements OnInit {
     if (this.workModel === 'addStoreCheck') {
       this.loadStoreCheck();
     }
+    this.objectService.getObjectsNoPagination().subscribe((data)=>this.objects=data);
+    this.productService.getProductsNoPagination().subscribe((data)=>this.products=data);
+    this.objectService.getObjectsNoPagination().subscribe((data)=>{
+      this.objects=data;
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value || '')),
+      );
+    });
+    this.objectService.getRetailersNoPagination().subscribe((data)=>this.retailers=data);
   }
 
   public loadStoreCheck() {
@@ -127,12 +153,18 @@ export class ChooseObjectComponent implements OnInit {
 
 
   public exportReturns() {
-    this.isExportReturnsLoading=true;
-    this.returnsService.export().subscribe((excel)=>{
-      this.isExportReturnsLoading=false;
-      const fileName = 'Returns.xlsx';
-     saveAs(excel, fileName);
-    });
+  
+    if(this.selectedObject!="All" && this.selectedRetailer!="All"){
+    this.error=true;
+    }else{
+      this.isExportReturnsLoading=true;
+      this.returnsService.export(this.selectedProduct, this.selectedObject,this.selectedRetailer).subscribe((excel)=>{
+        this.isExportReturnsLoading=false;
+        const fileName = 'Returns.xlsx';
+       saveAs(excel, fileName);
+      });
+    }
+
 
   }
 
@@ -146,5 +178,12 @@ export class ChooseObjectComponent implements OnInit {
       }
       )
   }
+
+  private _filter(value: string): Obj[] {
+    const filterValue = value.toLowerCase();
+
+    return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
+  }
+
 
 }

@@ -11,6 +11,8 @@ import { Obj } from 'src/app/models/object';
 import { map, Observable, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { PositionType } from 'src/app/models/positionType';
+import { ProductCategoryService } from 'src/app/Services/product-category.service';
+import { ProductCategory } from 'src/app/models/productCategory';
 
 @Component({
   selector: 'app-uploads',
@@ -34,6 +36,7 @@ export class UploadsComponent implements OnInit {
   selectedObject:string="All";
   selectedType:string="All";
   selectedFormat:string="All";
+  selectedCategory:string="All";
   filteredOptions: Observable<Obj[]>;
 
   error:boolean=false;
@@ -42,11 +45,13 @@ export class UploadsComponent implements OnInit {
   objects: Obj[];
   types: PositionType[];
   formats:string[];
+  categories:ProductCategory[];
 
 
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
     public productService: ProductService,
+    public productCategoryService:ProductCategoryService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
@@ -57,6 +62,7 @@ export class UploadsComponent implements OnInit {
   this.objectService.getRetailersNoPagination().subscribe((data)=>this.retailers=data);
   this.positionService.getPositionTypes().subscribe((data)=>this.types=data);
   this.objectService.getObjectFormats().subscribe((data)=>this.formats=data);
+  this.productCategoryService.getProductCategories().subscribe((data)=>this.categories=data);
   this.objectService.getObjectsNoPagination().subscribe((data)=>{
     this.objects=data;
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -239,12 +245,13 @@ if(this.selectedObject=="All" || this.selectedRetailer=="All"){
 
   public exportProducts() {
     this.isProdLoading=true;
-    this.productService.export().subscribe((excel)=>{
+    this.productService.export(this.selectedCategory).subscribe((excel)=>{
       this.isProdLoading=false;
       const fileName = 'Products.xlsx';
      saveAs(excel, fileName);
     });
 
   }
+
 
 }

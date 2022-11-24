@@ -136,6 +136,19 @@
       <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
       </mat-progress-spinner>
     </div>
+    <div class="select">
+      <mat-form-field appearance="fill">
+        <mat-label>Product category</mat-label>
+        <mat-select [(ngModel)]="selectedCategory">
+          <mat-option value="All">
+            All
+          </mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.productCategoryName">
+            {{category.productCategoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      </div>
   </div>
 
 </div>
