@@ -6,8 +6,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { ReturnDialogComponent } from 'src/app/dialogs/returndialog/returndialog.component';
+import { Obj } from 'src/app/models/object';
 //import { ReturnDialogComponent } from 'src/app/dialogs/returns-dialog/returns-dialog.component';
 import { Return } from 'src/app/models/returns';
+import { ObjectService } from 'src/app/Services/object.service';
 import { ReturnService } from 'src/app/Services/returns.service';
 
 @Component({
@@ -17,6 +19,7 @@ import { ReturnService } from 'src/app/Services/returns.service';
 })
 export class ReturnComponent implements OnInit {
   public objectIdCompany: string = "";
+  public object:Obj;
   count: number = 0;
   page: number = 0;
   search: string = '';
@@ -24,6 +27,8 @@ export class ReturnComponent implements OnInit {
   isLoading: boolean = false;
   noData: boolean = false;
   showHeader: boolean = true;
+  
+  
   dataSource: MatTableDataSource<Return>;
   reg = /^-?\d*[.,]?\d{0,2}$/;
   priceFormControls: FormControl[] = [];
@@ -32,23 +37,36 @@ export class ReturnComponent implements OnInit {
   displayedColumns = ['productName', 'quantity', 'expiryDate', 'actions'];
 
   constructor(private returnService: ReturnService,
+    private objectService:ObjectService,
     private dialog: MatDialog,
     private router: Router,
-    public activatedRoute: ActivatedRoute,) { }
+    public activatedRoute: ActivatedRoute,) { 
+    
+    }
 
   ngOnInit(): void {
+    
     this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
     let url = this.router.url;
     if (url === '/admin/returns')
       this.showHeader = false;
+
+    this.objectService.getObjectByObjectIdCompany(this.objectIdCompany).subscribe(data=>{
+      if(data)
+      {
+        this.object=data;
+      }
+
+    })
+
     this.loadData(false);
   }
 
   loadData(pageChanged: boolean) {
-    console.log(this.objectIdCompany);
+    
     if (!pageChanged)
       this.page = 1;
-    this.returnService.getReturn(this.count, this.page, this.search).subscribe(data => {
+    this.returnService.getReturnsByObject(this.count, this.page, this.search,this.objectIdCompany).subscribe(data => {
       this.isLoading = true;
       if (data) {
         this.dataSource = new MatTableDataSource<Return>(data);

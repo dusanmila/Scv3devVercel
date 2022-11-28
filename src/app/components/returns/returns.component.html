@@ -2,9 +2,12 @@
     <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
     <h2 style="height:80px;"> <span>Returns</span> </h2>
 </div>
-
-<div > <u>ObjectName:</u><strong>objekat ime itd ispod cepati proslediti u ruti koji objekat u pitanju</strong></div>
-
+<div style="margin: 20px;background-color: #39ace7;color:white">
+    <div style="margin:10px;">Object Name:<strong> {{object.objectName}}</strong></div>
+    <div style="margin:10px;">Object Address:<strong> {{object.address}}, {{object.city}}</strong></div>
+    <div style="margin:10px;">Object company ID:<strong> {{object.objectIdCompany}}, {{object.city}}</strong></div>
+    <div style="margin:10px;">Object retail ID:<strong> {{object.objectIdRetail}}, {{object.city}}</strong></div>
+</div>
 <div class="centered font">
     <mat-form-field>
         <input type="text" matInput placeholder="Search returns" [(ngModel)]="search">
@@ -30,7 +33,8 @@
         <ng-container matColumnDef="expiryDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Expiry Date
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="expiry Date">{{ row.expiryDate | date: 'dd-MMM-yy.' }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="expiry Date">{{ row.expiryDate | date: 'dd-MMM-yy.' }}
+            </mat-cell>
         </ng-container>
 
 
@@ -41,9 +45,9 @@
                 </button>
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i=index">
-                <button  mat-icon-button color="primary"
+                <button mat-icon-button color="primary"
                     (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
-                
+
                     View
                 </button>
                 <button mat-icon-button color="primary">
@@ -51,16 +55,16 @@
                         (click)="openDialog(2, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
                         edit</mat-icon>
                 </button>
-                <button  mat-icon-button color="primary"
+                <button mat-icon-button color="primary"
                     (click)="openDialog(3, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
                     Sold
                 </button>
-               
+
 
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">          
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
         </mat-row>
     </mat-table>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">

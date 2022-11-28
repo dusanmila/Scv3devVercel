@@ -28,11 +28,12 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
+   
   }
 
   add() {
-    console.log(this.data);
+   
+    this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
     this.returnService.createReturn(this.data).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Return successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
@@ -46,6 +47,7 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   update() {
+    this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
     this.returnService.updateReturn(this.data).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Return successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
@@ -58,10 +60,25 @@ export class ReturnDialogComponent implements OnInit {
       }
   }
 
+  sold()
+  {
+    this.returnService.sold(this.data.returnId).subscribe(data => {
+      this.changed = true;
+      this.snackBar.open('Return successfully sold', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      this.close();
+    }),
+      (error: Error) => {
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.close();
+      }
+  
+  }
+
   delete() {
     this.returnService.deleteReturn(this.data.returnId).subscribe(data => {
       this.changed = true;
-      this.snackBar.open('Return successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+      this.snackBar.open('Return successfully deleted', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
@@ -73,8 +90,9 @@ export class ReturnDialogComponent implements OnInit {
 
   getProducts() {
     this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data => {
-      console.log(data);
+      
       this.searchResults = data;
+      
 
     });
   }
