@@ -3,7 +3,7 @@
 </div>
 <div class="menu fadeInDown">
 
-  <div *ngIf="!menager" class="disableditem fadeIn second">
+  <div *ngIf="!menager" class="disableditem fadeIn second" [routerLink]="['/chooseObject/resolveFeedbacks']">
     <!-- ENABLE: [routerLink]="['/chooseObject/resolveFeedbacks']"-->
     <p>
       <img src="../../../assets/belo.png" width="50px" height="50px"
@@ -54,7 +54,7 @@
     <div style="justify-content: center;">LOG OUT</div>
   </div>
 
-  <!--  
+  <!--
   <button mat-raised-button class="fadeIn" color="primary" color="nortz" (click)="logout()">
       <strong>Log out </strong> <mat-icon>logout</mat-icon></button>
 

@@ -26,6 +26,14 @@ export class ProductService {
     return retval$.asObservable();
   }
 
+  getProductsNoPagination(){
+    let retval$ = new Subject<Product[]>();
+    this.http.get<Product[]>(`${PRODUCT_URL}/products`, { headers: this.headers}).subscribe((products: Product[]) => {
+      retval$.next(products);
+    });
+    return retval$.asObservable();
+  }
+
   getProductByProductIdCompany(productIdCompany: string): Observable<Product> {
     let retval$ = new Subject<Product>();
     this.http.get<Product>(`${PRODUCT_URL}/products/${productIdCompany}`, { headers: this.headers }).subscribe((product: Product) => {
@@ -89,4 +97,10 @@ export class ProductService {
     });
     return retval$.asObservable();
   }
+
+  public export(productCategory:string) {
+    return this.http.get(`${PRODUCT_URL}/products/exportExcel/`+productCategory, { headers: this.headers, responseType: 'blob' });
+
+  }
+
 }

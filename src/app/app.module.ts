@@ -2,6 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -170,6 +172,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatNativeDateModule,
     MatRadioModule,
     MatAutocompleteModule
+
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

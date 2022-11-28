@@ -6,6 +6,13 @@ import { ProductService } from 'src/app/Services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 import * as saveAs from 'file-saver';
+import { Retailer } from 'src/app/models/retailer';
+import { Obj } from 'src/app/models/object';
+import { map, Observable, startWith } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { PositionType } from 'src/app/models/positionType';
+import { ProductCategoryService } from 'src/app/Services/product-category.service';
+import { ProductCategory } from 'src/app/models/productCategory';
 
 @Component({
   selector: 'app-uploads',
@@ -13,7 +20,7 @@ import * as saveAs from 'file-saver';
   styleUrls: ['./uploads.component.css']
 })
 export class UploadsComponent implements OnInit {
-
+  myControl = new FormControl('');
   objectsFile: any;
   positionsFile: any;
   productsFile: any;
@@ -24,18 +31,45 @@ export class UploadsComponent implements OnInit {
   isObjectsEmpty=false;
   isPositionsEmpty=false;
   isProductsEmpty=false;
+  isWithImages=false;
+  selectedRetailer:string="All";
+  selectedObject:string="All";
+  selectedType:string="All";
+  selectedFormat:string="All";
+  selectedCategory:string="All";
+  filteredOptions: Observable<Obj[]>;
+
+  error:boolean=false;
+
+  retailers: Retailer[];
+  objects: Obj[];
+  types: PositionType[];
+  formats:string[];
+  categories:ProductCategory[];
 
 
   constructor(public objectService: ObjectService,
     public positionService: PositionService,
     public productService: ProductService,
+    public productCategoryService:ProductCategoryService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog) { }
 
     ngOnInit(){
- this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
- this.positionService.checkNoData().subscribe((data)=>this.isPositionsEmpty=data);
- this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
+  this.objectService.checkNoData().subscribe((data)=>this.isObjectsEmpty=data);
+  this.positionService.checkNoData().subscribe((data)=>this.isPositionsEmpty=data);
+  this.productService.checkNoData().subscribe((data)=>this.isProductsEmpty=data);
+  this.objectService.getRetailersNoPagination().subscribe((data)=>this.retailers=data);
+  this.positionService.getPositionTypes().subscribe((data)=>this.types=data);
+  this.objectService.getObjectFormats().subscribe((data)=>this.formats=data);
+  this.productCategoryService.getProductCategories().subscribe((data)=>this.categories=data);
+  this.objectService.getObjectsNoPagination().subscribe((data)=>{
+    this.objects=data;
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  });
 
     }
 
@@ -181,13 +215,43 @@ export class UploadsComponent implements OnInit {
   }
 
   public exportPositions() {
-    this.isPosLoading=true;
-    this.positionService.export().subscribe((excel)=>{
-      this.isPosLoading=false;
-      const fileName = 'SecondaryPositions.xlsx';
+
+if(this.selectedObject=="All" || this.selectedRetailer=="All"){
+  this.isPosLoading=true;
+  console.log("obj"+this.selectedObject + "format"+this.selectedFormat +"ret"+ this.selectedRetailer + "type"+this.selectedType)
+  this.positionService.export(this.isWithImages,this.selectedRetailer,this.selectedObject,this.selectedType,this.selectedFormat).subscribe((excel)=>{
+    this.isPosLoading=false;
+    const fileName = 'SecondaryPositions.xlsx';
+   saveAs(excel, fileName);
+  });
+}else{
+  this.error=true;
+}
+
+
+
+  }
+
+  public checkWithImages(event){
+    this.isWithImages=event.checked;
+
+  }
+
+  private _filter(value: string): Obj[] {
+    const filterValue = value.toLowerCase();
+
+    return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
+  }
+
+  public exportProducts() {
+    this.isProdLoading=true;
+    this.productService.export(this.selectedCategory).subscribe((excel)=>{
+      this.isProdLoading=false;
+      const fileName = 'Products.xlsx';
      saveAs(excel, fileName);
     });
 
   }
+
 
 }

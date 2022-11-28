@@ -36,6 +36,14 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public getObjectsNoPagination(){
+    let retval$ = new Subject<Obj[]>();
+    this.http.get<Obj[]>(`${OBJECT_URL}/objects`, { headers: this.headers }).subscribe((objects: Obj[]) => {
+      retval$.next(objects);
+    });
+    return retval$.asObservable();
+  }
+
   public getRetailers(count: number, page: number, search: string): Observable<Retailer[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("count", count);
@@ -44,6 +52,14 @@ export class ObjectService {
 
     let retval$ = new Subject<Retailer[]>();
     this.http.get<Retailer[]>(`${OBJECT_URL}/retailers`, { headers: this.headers, params: queryParams }).subscribe((ret: Retailer[]) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
+  public getRetailersNoPagination(){
+    let retval$ = new Subject<Retailer[]>();
+    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers`, { headers: this.headers}).subscribe((ret: Retailer[]) => {
       retval$.next(ret);
     });
     return retval$.asObservable();
@@ -229,5 +245,13 @@ export class ObjectService {
       const fileName = 'StoreCheck_Objects_Template.xlsx';
       saveAs(template, fileName);
     });
+  }
+
+  public getObjectFormats(){
+    let retvla$ = new Subject<string[]>();
+    this.http.get<string[]>(`${OBJECT_URL}/objects/objectFormats`, { headers: this.headers }).subscribe((helper: string[]) => {
+      retvla$.next(helper);
+    });
+    return retvla$.asObservable();
   }
 }

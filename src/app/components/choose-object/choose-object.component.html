@@ -9,19 +9,82 @@
 
     <div class="main fadeIn second">
         <div class="search-object">
-            <input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">
+          <!--<input class="search-input" type="text" placeholder="Search object" *ngIf="objects.length > 0">-->
             <app-object [workModel]="workModel" [isAdmin]="false"></app-object>
         </div>
 
-        <div class="fadeIn third btn-group" style="margin-top:10px ;">
+        <div class="fadeIn third btn-group" style="margin-top:10px;">
 
             <button mat-stroked-button color="primary" class="item2" (click)="openDialog()"
                 *ngIf="workModel === 'addStoreCheck' && showFinishStoreCheck">Finish</button>
 
+                <button mat-stroked-button color="primary" class="item2" (click)="isExport=true"
+                *ngIf="isReturns">Export</button>
 
             <button mat-stroked-button color="primary" class="item2" style="margin-left:10px;"
                 (click)="exit()">Exit <mat-icon>exit_to_app</mat-icon></button>
 
         </div>
+        <div class="returnsExportOptions" *ngIf="isReturns && isExport">
+         <h4>Export options:</h4>
+<br>
+          <div class="select">
+            <mat-form-field appearance="fill">
+              <mat-label>Product</mat-label>
+              <mat-select [(ngModel)]="selectedProduct">
+                <mat-option value="All">
+                  All
+                </mat-option>
+                <mat-option *ngFor="let product of products" [value]="product.productName">
+                  {{product.productName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            </div>
+        </div>
+        <form class="example-form" *ngIf="isReturns && isExport">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Object</mat-label>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [formControl]="myControl"
+                   [matAutocomplete]="auto"
+                   [(ngModel)]="selectedObject"
+                  >
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option value="All">
+                All
+              </mat-option>
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.objectName">
+                {{option.objectName}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+        <div class="select" *ngIf="isReturns && isExport">
+          <mat-form-field appearance="fill">
+            <mat-label>Retailer</mat-label>
+            <mat-select [(ngModel)]="selectedRetailer">
+              <mat-option value="All">
+                All
+              </mat-option>
+              <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
+                {{retailer.retailerName}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          <p *ngIf="error">Can't filter object and retailer at the same time.</p>
+          <button mat-stroked-button color="primary" class="item2" (click)="exportReturns()"
+                *ngIf="isReturns && isExport">Ok</button>
+                <br>
+                <br>
+        <div *ngIf="isExportReturnsLoading"
+style="display: flex; justify-content: center; align-items: center; background: white; background: transparent;">
+<mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+</mat-progress-spinner>
+</div>
     </div>
 </div>
