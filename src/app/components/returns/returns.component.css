@@ -72,10 +72,74 @@
     background-color: #39ace7;
     color: #fff;
     transition: 0.3s;
+
 }
+.mat-column-quantity {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
+    overflow-wrap: break-word;
+  
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+    text-align: left;
+  
+  }
+  
+  .mat-column-productName {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+  
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+    text-align: left;
+  
+  }
+  .mat-column-expiryDate {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 20% !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+  
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  
+    text-align: left;
+  
+  }
+  
+
 
 /* Promena izgleda table */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 350px) {
+    .mat-column-expiryDate {
+        flex: 0 0 50% !important;
+    width: 50% !important;
+    }
+    .mat-column-productName{
+        flex: 0 0 50% !important;
+    width: 50% !important;
+    }
+    .mat-column-quantity{
+        flex: 0 0 50% !important;
+        width: 50% !important;
+    }
     .mat-table {
         border: 0;
         vertical-align: middle

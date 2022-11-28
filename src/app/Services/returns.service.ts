@@ -15,7 +15,7 @@ export class ReturnService {
 
   private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
 
-  getReturn(count: number, page: number, search: string): Observable<Return[]> {
+  getReturns(count: number, page: number, search: string): Observable<Return[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("count", count);
     queryParams = queryParams.append("page", page);
@@ -27,6 +27,17 @@ export class ReturnService {
     return retval$.asObservable();
   }
 
+  getReturnsByObject(count: number, page: number, search: string,objectIdCompany:string): Observable<Return[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("count", count);
+    queryParams = queryParams.append("page", page);
+    queryParams = queryParams.append("search", search);
+    let retval$ = new Subject<Return[]>();
+    this.http.get<Return[]>(`${RETURN_URL}/returns/getByObject/${objectIdCompany}`, { headers: this.headers, params: queryParams }).subscribe((returns: Return[]) => {
+      retval$.next(returns);
+    });
+    return retval$.asObservable();
+  }
   getReturnByReturnId(returnId: Guid): Observable<Return> {
     let retval$ = new Subject<Return>();
     this.http.get<Return>(`${RETURN_URL}/returns/${returnId}`, { headers: this.headers }).subscribe((returns: Return) => {
@@ -50,11 +61,10 @@ export class ReturnService {
     return retval$.asObservable();
   }
 
-
-  updateReturn(returns: Return): Observable<Return> {
-    let retval$ = new Subject<Return>();
-    this.http.put<Return>(`${RETURN_URL}/returns`, returns, { headers: this.headers }).subscribe((returns: Return) => {
-      retval$.next(returns);
+  updateReturn(returns: Return): Observable<boolean> {
+    let retval$ = new Subject<boolean>();
+    this.http.put<boolean>(`${RETURN_URL}/returns`, returns, { headers: this.headers }).subscribe((data) => {
+     retval$.next(data);
     });
     return retval$.asObservable();
   }
@@ -63,8 +73,14 @@ export class ReturnService {
     return this.http.delete<any>(`${RETURN_URL}/returns/${returnId}`, { headers: this.headers });
   }
 
+
+  public sold(returnId: Guid): Observable<any> {
+   
+    return this.http.put<any>(`${RETURN_URL}/returns/soldReturn/${returnId}`, {}, { headers: this.headers });
+
   public export(product:string,object:string,retailer:string) {
     return this.http.get(`${RETURN_URL}/returns/exportExcel/`+product+'/'+object+'/'+retailer, { headers: this.headers, responseType: 'blob' });
+
 
   }
 

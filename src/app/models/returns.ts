@@ -11,7 +11,7 @@ export interface Return {
     objectIdRetail:string;
     retailerName:string;
     quantity: number;
-    expiryDate: Date;
+    expiryDate: string | null;
     discount: number;
     comment: number;
     totalCount: number;
