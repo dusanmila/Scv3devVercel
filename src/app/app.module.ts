@@ -91,7 +91,6 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
 import { ReturnComponent } from './components/returns/returns.component';
 import { ReturnDialogComponent } from './dialogs/returndialog/returndialog.component';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
