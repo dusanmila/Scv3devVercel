@@ -54,3 +54,7 @@ button {
 .mat-button {
   border-radius: 10px !important;
 }
+
+.mat-spinner-color::ng-deep circle {
+    stroke: #56baed !important;
+  }
