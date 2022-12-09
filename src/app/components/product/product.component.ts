@@ -27,7 +27,7 @@ export class ProductComponent implements OnInit {
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
 
-  displayedColumns = [ 'productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
+  displayedColumns = ['productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
 
   constructor(private productService: ProductService,
     private dialog: MatDialog,
@@ -35,8 +35,10 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     let url = this.router.url;
-    if (url === '/admin/product')
+    if (url === '/admin/product') {
       this.showHeader = false;
+      this.displayedColumns.push('actions');
+    }
     this.loadData(false);
   }
 
