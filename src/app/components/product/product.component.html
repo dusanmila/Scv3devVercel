@@ -1,5 +1,5 @@
 <div class="header" *ngIf="showHeader">
-    <img src="assets\StoreCheckIcon3.png" alt="SC icon" width="80" height="80" style="float:left;">
+    <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
     <h2 style="height:80px;"> <span>Price scanner</span> </h2>
 </div>
 
@@ -20,7 +20,7 @@
         </ng-container>
 -->
         <ng-container matColumnDef="productName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product name
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name" style="justify-content: left;">Name
             </mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="Product name">{{ row.productName }}</mat-cell>
         </ng-container>
@@ -54,7 +54,7 @@
         </ng-container>
 
         <ng-container matColumnDef="actionPrice">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Action price
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Price
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i = index" data-label="Action price">
                 <form>
