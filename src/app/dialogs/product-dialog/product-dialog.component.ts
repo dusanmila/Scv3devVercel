@@ -25,15 +25,15 @@ export class ProductDialogComponent implements OnInit {
   }
 
   add() {
-    this.isLoading=true;
+    this.isLoading = true;
     this.productService.createProduct(this.data).subscribe(data => {
-      this.isLoading=false;
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Product successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
-        this.isLoading=false;
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -41,15 +41,15 @@ export class ProductDialogComponent implements OnInit {
   }
 
   update() {
-    this.isLoading=true;
+    this.isLoading = true;
     this.productService.updateProduct(this.data).subscribe(data => {
-      this.isLoading=false;
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Product successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
-        this.isLoading=false;
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -57,15 +57,15 @@ export class ProductDialogComponent implements OnInit {
   }
 
   delete() {
-    this.isLoading=true;
+    this.isLoading = true;
     this.productService.deleteProduct(this.data.productIdCompany).subscribe(data => {
-      this.isLoading=false;
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Product successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
       this.close();
     }),
       (error: Error) => {
-        this.isLoading=false;
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
