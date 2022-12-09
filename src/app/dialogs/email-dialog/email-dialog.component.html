@@ -2,7 +2,7 @@
     <h3 mat-dialog-title>Send store check to:</h3>
 
     <form class="mat-dialog-content" #formControl="ngForm">
-       
+
         <div class="form">
             <mat-checkbox color="primary" [(ngModel)]="emailsForSending.allUsers" name="allUsers" (change)="onSelectionChanged($event, 'allUsers')">All users</mat-checkbox>
         </div>
@@ -28,6 +28,11 @@
         <div mat-dialog-action>
             <button mat-button type="submit" (click)="send()" [disabled]="!formControl.valid" class="item2">Ok</button>
             <button mat-button (click)="close()" class="item2">Close</button>
+            <div *ngIf="isLoading"
+            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+            </mat-progress-spinner>
+          </div>
         </div>
     </form>
 </div>

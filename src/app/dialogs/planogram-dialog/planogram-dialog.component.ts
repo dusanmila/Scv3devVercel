@@ -14,6 +14,8 @@ export class PlanogramDialogComponent implements OnInit {
   public isAdmin: boolean;
   public planogramLoading:boolean=false;
 
+  isLoading=false;
+
 
   constructor(public dialogRef: MatDialogRef<PlanogramDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public retailerName: string,
@@ -36,7 +38,9 @@ export class PlanogramDialogComponent implements OnInit {
   }
 
   public deletePlanogram(planogramPdf: string) {
+    this.isLoading=true;
     this.objectService.deletePlanogram(planogramPdf).subscribe(data => {
+      this.isLoading=false;
       this.loadData();
     });
   }

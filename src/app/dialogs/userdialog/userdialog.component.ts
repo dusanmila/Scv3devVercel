@@ -18,6 +18,8 @@ export class UserDialogComponent implements OnInit {
 
   public userTypes: UserType[] = [];
 
+  isLoading=false;
+
   constructor(public snackBar:MatSnackBar,
               public dialogRef:MatDialogRef<UserDialogComponent>,
               @Inject (MAT_DIALOG_DATA) public data: User,
@@ -34,33 +36,42 @@ export class UserDialogComponent implements OnInit {
   }
 
 public add(): void{
+  this.isLoading=true;
   this.userService.createUser(this.data)
   .subscribe(() =>{
+    this.isLoading=false;
     this.snackBar.open('User successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
   } ),
   (error:Error) => {
+    this.isLoading=false;
     console.log(error.name + ' -> ' + error.message)
     this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }
 }
 
 public update(): void{
+  this.isLoading=true;
   this.userService.editUser(this.data)
   .subscribe(() => {
+    this.isLoading=false;
     this.snackBar.open('Updated user', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
   }),
   (error:Error) => {
+    this.isLoading=false;
     console.log(error.name + ' -> ' + error.message)
     this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }
 }
 
 public delete(): void{
+  this.isLoading=true;
   this.userService.deleteUser(this.data)
   .subscribe(() => {
+    this.isLoading=false;
     this.snackBar.open('User deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
   }),
   (error:Error) => {
+    this.isLoading=false;
     console.log(error.name + ' -> ' + error.message)
     this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
   }

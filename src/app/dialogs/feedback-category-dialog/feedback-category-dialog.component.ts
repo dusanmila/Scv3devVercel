@@ -20,15 +20,18 @@ export class FeedbackCategoryDialogComponent{
     @Inject(MAT_DIALOG_DATA) public data: FeedbackCategory,
     public feedbackCategoryService: FeedbackCategoryService) { }
 
- 
+
 
   add() {
+    this.isLoading=true;
     this.feedbackCategoryService.createFeedbackCategory(this.data).subscribe(data => {
+      this.isLoading=false;
       this.changed = true;
       this.snackBar.open('Feedback category successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -36,12 +39,15 @@ export class FeedbackCategoryDialogComponent{
   }
 
   update() {
+    this.isLoading=true;
     this.feedbackCategoryService.updateFeedbackCategory(this.data).subscribe(data => {
+      this.isLoading=false;
       this.changed = true;
       this.snackBar.open('Feedback category successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -49,12 +55,15 @@ export class FeedbackCategoryDialogComponent{
   }
 
   delete() {
+    this.isLoading=true;
     this.feedbackCategoryService.deleteFeedbackCategory(this.data.feedbackCategoryName).subscribe(data => {
+      this.isLoading=false;
       this.changed = true;
       this.snackBar.open('Feedback category successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();

@@ -57,7 +57,7 @@
               <mat-option value="All">
                 All
               </mat-option>
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.objectName">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option.objectIdRetail">
                 {{option.objectName}}
               </mat-option>
             </mat-autocomplete>

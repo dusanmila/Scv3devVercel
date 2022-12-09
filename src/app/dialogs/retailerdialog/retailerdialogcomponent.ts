@@ -60,13 +60,13 @@ export class RetailerDialogComponent implements OnInit {
       this.isLoading = true;
       this.objectService.addPlanograms(formData).subscribe({
         next: (data) => {
-
+          this.isLoading = false;
           this.changed = true;
           this.isLoading = false;
           this.close();
         },
         error: (err) => {
-
+          this.isLoading = false;
           this.isLoading = false;
           this.close();
         }
@@ -77,11 +77,13 @@ export class RetailerDialogComponent implements OnInit {
       if (this.retailer.retailerName != "") {
         this.objectService
           .createRetailer(this.retailer).subscribe(() => {
+            this.isLoading = false;
             this.changed = true;
             this.snackBar.open('Retailer created', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
             this.close();
           }),
           (error: Error) => {
+            this.isLoading = false;
             console.log(error.name + ' -> ' + error.message)
             this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
             this.close();
@@ -91,7 +93,7 @@ export class RetailerDialogComponent implements OnInit {
 
     }
 
-    this.isLoading = false;
+
 
   }
 
@@ -118,14 +120,16 @@ export class RetailerDialogComponent implements OnInit {
   }
 
   delete() {
-
+this.isLoading=true;
     this.objectService.deleteRetailer(this.data)
       .subscribe(() => {
+        this.isLoading=false;
         this.changed = true;
         this.snackBar.open('Retailer successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }),
       (error: Error) => {
+        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();

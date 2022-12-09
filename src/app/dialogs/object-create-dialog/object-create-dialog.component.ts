@@ -25,6 +25,8 @@ export class ObjectCreateDialogComponent implements OnInit {
   objectInfo: ObjectInfo;
   object: Obj;
 
+  isLoading = false;
+
   constructor(public snackBar: MatSnackBar, public dialogRef: MatDialogRef<ObjectCreateDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: ObjectCreateDto, public objectService: ObjectService, public userService: UserService) { }
 
   ngOnInit(): void {
@@ -45,12 +47,14 @@ export class ObjectCreateDialogComponent implements OnInit {
   }
 
   public add(): void {
-
+this.isLoading=true;
     this.objectService.createObject(this.data)
       .subscribe(() => {
+        this.isLoading=false;
         this.snackBar.open('Object successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       }),
       (error: Error) => {
+           this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occured ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }

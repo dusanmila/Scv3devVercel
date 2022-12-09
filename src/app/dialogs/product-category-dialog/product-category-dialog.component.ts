@@ -22,12 +22,15 @@ export class ProductCategoryDialogComponent  {
 
 
   add() {
+    this.isLoading=true;
     this.productCategoryService.createProductCategory(this.data).subscribe(data => {
+      this.isLoading=false;
       this.changed = true;
       this.snackBar.open('Product category successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();

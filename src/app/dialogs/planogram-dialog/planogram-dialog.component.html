@@ -16,7 +16,7 @@
 
             <button mat-button (click)="close()" class="item2">Close</button>
 
-            <div *ngIf="planogramLoading"
+            <div *ngIf="planogramLoading || isLoading"
             style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
             <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
             </mat-progress-spinner>

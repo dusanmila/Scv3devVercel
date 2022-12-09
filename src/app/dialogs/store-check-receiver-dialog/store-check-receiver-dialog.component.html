@@ -35,7 +35,11 @@
             <button mat-button class="test" *ngIf="flag == 2" type="submit" (click)="update()"
             [disabled]="!formControl.valid">Ok</button>
             <button mat-button class="test" (click)="close()">Cancel</button>
-            
+            <div *ngIf="isLoading"
+        style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+        </mat-progress-spinner>
+      </div>
         </div>
     </form>
 </div>

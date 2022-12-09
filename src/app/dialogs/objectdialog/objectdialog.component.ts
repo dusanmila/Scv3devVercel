@@ -25,6 +25,8 @@ export class ObjectDialogComponent implements OnInit {
   objectInfo: ObjectInfo;
   object: Obj;
 
+  isLoading=false;
+
   public objectCreateDto: ObjectCreateDto = {
     objectIdRetail: "",
     objectIdCompany: "",
@@ -76,6 +78,7 @@ export class ObjectDialogComponent implements OnInit {
   }
 
   public update(): void {
+    this.isLoading=true;
     this.data.objectIdRetail==null?null:this.objectCreateDto.objectIdRetail = this.data.objectIdRetail;
    this.data.retailer==null?null: this.objectCreateDto.retailer = this.data.retailer.retailerName;
     this.data.objectIdCompany==null?null:this.objectCreateDto.objectIdCompany = this.data.objectIdCompany;
@@ -96,20 +99,25 @@ export class ObjectDialogComponent implements OnInit {
     this.data.objectInfo==null?null:this.objectCreateDto.objectInfo = this.data.objectInfo;
     this.objectService.updateObject(this.objectCreateDto)
       .subscribe(() => {
+        this.isLoading=false;
         this.snackBar.open('Updated object', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       }),
       (error: Error) => {
+        this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
   }
 
   public delete(): void {
+    this.isLoading=true;
     this.objectService.deleteObject(this.data)
       .subscribe(() => {
+        this.isLoading=false;
         this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
       }),
       (error: Error) => {
+         this.isLoading=false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
