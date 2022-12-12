@@ -25,6 +25,11 @@
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
+            <div *ngIf="isAutocompleteLoading"
+            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+            </mat-progress-spinner>
+          </div>
         </div>
         <div class="form">
             <mat-form-field>

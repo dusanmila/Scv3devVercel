@@ -15,6 +15,7 @@ export class ReturnDialogComponent implements OnInit {
 
   flag: number;
   isLoading: boolean = false;
+  isAutocompleteLoading:boolean=false;
   changed: boolean = false;
   searchResults: any[] = [];
 
@@ -101,9 +102,11 @@ this.isLoading=true;
 
   getProducts() {
     this.isLoading=true;
+    this.isAutocompleteLoading=true;
     this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data => {
 
       this.isLoading=false;
+      this.isAutocompleteLoading=false;
       this.searchResults = data;
 
     });
