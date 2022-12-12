@@ -19,16 +19,16 @@ import { ReturnService } from 'src/app/Services/returns.service';
 })
 export class ReturnComponent implements OnInit {
   public objectIdCompany: string = "";
-  public object:Obj;
-  count: number = 0;
+  public object: Obj;
+  count: number = 5;
   page: number = 0;
   search: string = '';
   length: number = 0;
   isLoading: boolean = false;
   noData: boolean = false;
   showHeader: boolean = true;
-  
-  
+
+
   dataSource: MatTableDataSource<Return>;
   reg = /^-?\d*[.,]?\d{0,2}$/;
   priceFormControls: FormControl[] = [];
@@ -37,24 +37,23 @@ export class ReturnComponent implements OnInit {
   displayedColumns = ['productName', 'quantity', 'expiryDate', 'actions'];
 
   constructor(private returnService: ReturnService,
-    private objectService:ObjectService,
+    private objectService: ObjectService,
     private dialog: MatDialog,
     private router: Router,
-    public activatedRoute: ActivatedRoute,) { 
-    
-    }
+    public activatedRoute: ActivatedRoute,) {
+
+  }
 
   ngOnInit(): void {
-    
+
     this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
     let url = this.router.url;
     if (url === '/admin/returns')
       this.showHeader = false;
 
-    this.objectService.getObjectByObjectIdCompany(this.objectIdCompany).subscribe(data=>{
-      if(data)
-      {
-        this.object=data;
+    this.objectService.getObjectByObjectIdCompany(this.objectIdCompany).subscribe(data => {
+      if (data) {
+        this.object = data;
       }
 
     })
@@ -63,10 +62,10 @@ export class ReturnComponent implements OnInit {
   }
 
   loadData(pageChanged: boolean) {
-    
+
     if (!pageChanged)
       this.page = 1;
-    this.returnService.getReturnsByObject(this.count, this.page, this.search,this.objectIdCompany).subscribe(data => {
+    this.returnService.getReturnsByObject(this.count, this.page, this.search, this.objectIdCompany).subscribe(data => {
       this.isLoading = true;
       if (data) {
         this.dataSource = new MatTableDataSource<Return>(data);
