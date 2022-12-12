@@ -6,49 +6,53 @@
 
 
 
-    <form class="mat-dialog-content" #formControl="ngForm">
+    <form class="mat-dialog-content" #formControl="ngForm" [formGroup]="myForm">
 
-        <div *ngIf="flag !== 1 && flag !== 2" class="form">
+        <!-- <div *ngIf="flag !== 1 && flag !== 2" class="form">
             <mat-form-field>
                 <input matInput placeholder="Product Id Company" [(ngModel)]="data.productIdCompany"
                     name="productIdCompany" [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
-        </div>
+        </div> -->
         <div class="form">
             <mat-form-field>
                 <input type="text" matInput placeholder="Product Name" (input)="getProducts()" [matAutocomplete]="auto"
                     [(ngModel)]="data.productName" name="productName" list="this.SearchResults"
-                    [disabled]="flag === 3 || flag===4" required />
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="changeProductIdCompany($event)">
-                    <mat-option *ngFor="let option of searchResults" [value]="option.productName">
+                    [disabled]="flag === 3 || flag===4" required formControlName="productName" />
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith"
+                    (optionSelected)="changeProduct($event)">
+                    <mat-option *ngFor="let option of searchResults" [value]="option">
                         {{option.productName}}
                     </mat-option>
                 </mat-autocomplete>
+                <mat-error *ngIf="myForm.controls['productName'].hasError('incorrect')">
+                    Please select a valid product
+                </mat-error>
             </mat-form-field>
         </div>
-        <div class="form">
+        <div class=" form">
             <mat-form-field>
                 <input matInput placeholder="Quantity" [(ngModel)]="data.quantity" name="quantity"
-                    [disabled]="flag === 3 || flag===4" required />
+                    formControlName="quantity" [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Expiry Date" [(ngModel)]="data.expiryDate" name="expiryDate"
-                    [disabled]="flag === 3 || flag===4" required />
+                    formControlName="expiryDate" [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
 
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Suggested Discount" [(ngModel)]="data.discount" name="discount"
-                    [disabled]="flag === 3 || flag===4" required />
+                    formControlName="discount" [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Comment" [(ngModel)]="data.comment" name="comment"
-                    [disabled]="flag === 3 || flag===4" required />
+                    formControlName="comment" [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
 

@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Product } from 'src/app/models/product';
 import { Return } from 'src/app/models/returns';
 import { ProductService } from 'src/app/Services/product.service';
 import { ReturnService } from 'src/app/Services/returns.service';
@@ -13,27 +15,39 @@ import { ReturnService } from 'src/app/Services/returns.service';
 })
 export class ReturnDialogComponent implements OnInit {
 
+  myForm: FormGroup;
+
   flag: number;
   isLoading: boolean = false;
   changed: boolean = false;
   searchResults: any[] = [];
+  showErrorMessage: boolean = false;
+  product!: string;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ReturnDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Return,
     public returnService: ReturnService,
     public productService: ProductService,
-    private datePipe: DatePipe) {
+    private datePipe: DatePipe,
+    private fb: FormBuilder) {
     data.expiryDate = datePipe.transform(data.expiryDate, 'dd-MMM-yy')
   }
 
   ngOnInit(): void {
-   
+    this.product = this.data.productName;
+    this.myForm = new FormGroup({
+      productName: new FormControl('', [ValidateProduct]),
+      quantity: new FormControl(''),
+      expiryDate: new FormControl(''),
+      discount: new FormControl(''),
+      comment: new FormControl('')
+    });
   }
 
   add() {
-   
     this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
+    this.data.productName = this.product;
     this.returnService.createReturn(this.data).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Return successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
@@ -60,8 +74,7 @@ export class ReturnDialogComponent implements OnInit {
       }
   }
 
-  sold()
-  {
+  sold() {
     this.returnService.sold(this.data.returnId).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Return successfully sold', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
@@ -72,7 +85,7 @@ export class ReturnDialogComponent implements OnInit {
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
       }
-  
+
   }
 
   delete() {
@@ -90,22 +103,31 @@ export class ReturnDialogComponent implements OnInit {
 
   getProducts() {
     this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data => {
-      
       this.searchResults = data;
-      
-
     });
   }
 
-  changeProductIdCompany(event) {
-    // this.data.productIdCompany = productIdCompany;
-    // console.log(this.data.productIdCompany);
-    // console.log(productIdCompany)
-    console.log(event)
+  changeProduct(event) {
+    this.product = event.option.value.productName;
   }
 
   close() {
     this.dialogRef.close(this.changed);
   }
 
+  displayWith(product?: any) {
+    return product ? product.productName : undefined;
+  }
+
+  // displayWith(product?: any) {
+  //   return product ? product : undefined;
+  // }
+}
+
+function ValidateProduct(control: AbstractControl): { [key: string]: any } | null {
+  const selection: any = control.value;
+  if (typeof selection === "string") {
+    return { incorrect: true };
+  }
+  return null;
 }

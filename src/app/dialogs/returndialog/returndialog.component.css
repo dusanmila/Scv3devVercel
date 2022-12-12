@@ -52,5 +52,11 @@ button {
 }
 
 .mat-button {
-  border-radius: 10px !important;
+    border-radius: 10px !important;
+}
+
+.error-message {
+    font-family: sans-serif;
+    color: #ff0000;
+    font-size: 12px;
 }

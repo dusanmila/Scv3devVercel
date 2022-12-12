@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReturndialogComponent } from './returndialog.component';
+import { ReturnDialogComponent } from './returndialog.component';
 
 describe('ReturndialogComponent', () => {
-  let component: ReturndialogComponent;
-  let fixture: ComponentFixture<ReturndialogComponent>;
+  let component: ReturnDialogComponent;
+  let fixture: ComponentFixture<ReturnDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReturndialogComponent ]
+      declarations: [ReturnDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReturndialogComponent);
+    fixture = TestBed.createComponent(ReturnDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
