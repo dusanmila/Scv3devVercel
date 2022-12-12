@@ -29,6 +29,11 @@
                     Please select a valid product
                 </mat-error>
             </mat-form-field>
+            <div *ngIf="isAutocompleteLoading"
+            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+            </mat-progress-spinner>
+          </div>
         </div>
         <div class=" form">
             <mat-form-field>
@@ -36,12 +41,19 @@
                     formControlName="quantity" [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
         </div>
-        <div class="form">
+     <!--   <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Expiry Date" [(ngModel)]="data.expiryDate" name="expiryDate"
                     formControlName="expiryDate" [disabled]="flag === 3 || flag===4" required />
             </mat-form-field>
-        </div>
+        </div>-->
+        <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="data.expiryDate" name="date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
         <div class="form">
             <mat-form-field>
@@ -64,6 +76,11 @@
                 [disabled]="!formControl.valid">Ok</button>
             <button mat-button class="test" *ngIf="flag === 3" type="submit" (click)="sold()">Sold</button>
             <button mat-button class="test" (click)="close()">Cancel</button>
+            <div *ngIf="isLoading"
+            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+            </mat-progress-spinner>
+          </div>
         </div>
     </form>
 </div>

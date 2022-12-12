@@ -19,6 +19,7 @@ export class ReturnDialogComponent implements OnInit {
 
   flag: number;
   isLoading: boolean = false;
+  isAutocompleteLoading: boolean = false;
   changed: boolean = false;
   searchResults: any[] = [];
   showErrorMessage: boolean = false;
@@ -35,25 +36,21 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.product = this.data.productName;
-    this.myForm = new FormGroup({
-      productName: new FormControl('', [ValidateProduct]),
-      quantity: new FormControl(''),
-      expiryDate: new FormControl(''),
-      discount: new FormControl(''),
-      comment: new FormControl('')
-    });
+
   }
 
   add() {
+
     this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
     this.data.productName = this.product;
     this.returnService.createReturn(this.data).subscribe(data => {
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Return successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -61,13 +58,16 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   update() {
+    this.isLoading = true;
     this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
     this.returnService.updateReturn(this.data).subscribe(data => {
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Return successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -76,11 +76,13 @@ export class ReturnDialogComponent implements OnInit {
 
   sold() {
     this.returnService.sold(this.data.returnId).subscribe(data => {
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Return successfully sold', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -89,12 +91,15 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   delete() {
+    this.isLoading = true;
     this.returnService.deleteReturn(this.data.returnId).subscribe(data => {
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Return successfully deleted', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -102,8 +107,13 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   getProducts() {
+    this.isLoading = true;
+    this.isAutocompleteLoading = true;
     this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data => {
+
       this.searchResults = data;
+
+
     });
   }
 

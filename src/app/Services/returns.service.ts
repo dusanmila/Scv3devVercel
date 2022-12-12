@@ -75,12 +75,12 @@ export class ReturnService {
 
 
   public sold(returnId: Guid): Observable<any> {
-   
+
     return this.http.put<any>(`${RETURN_URL}/returns/soldReturn/${returnId}`, {}, { headers: this.headers });
   }
-  
-  public export(product:string,object:string,retailer:string) {
-    return this.http.get(`${RETURN_URL}/returns/exportExcel/`+product+'/'+object+'/'+retailer, { headers: this.headers, responseType: 'blob' });
+
+  public export(product:string,object:string,retailer:string, date:string|null) {
+    return this.http.get(`${RETURN_URL}/returns/exportExcel/`+product+'/'+object+'/'+retailer + '/'+date, { headers: this.headers, responseType: 'blob' });
 
 
   }
