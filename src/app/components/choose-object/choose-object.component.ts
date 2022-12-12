@@ -17,6 +17,7 @@ import { ProductService } from 'src/app/Services/product.service';
 import { FormControl } from '@angular/forms';
 import { map, Observable, startWith } from 'rxjs';
 import { Retailer } from 'src/app/models/retailer';
+import { DatePipe } from '@angular/common'
 
 @Component({
   selector: 'app-choose-object',
@@ -43,6 +44,7 @@ export class ChooseObjectComponent implements OnInit {
   selectedObject:string="All";
   selectedProduct:string="All";
   selectedRetailer:string="All";
+  selectedDate:Date;
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
@@ -51,7 +53,8 @@ export class ChooseObjectComponent implements OnInit {
     public storeCheckService: StoreCheckService,
     public router: Router,
     public objectStoreCheckService: ObjectStoreCheckService,
-    public returnsService:ReturnService) { }
+    public returnsService:ReturnService,
+    public datepipe: DatePipe) { }
 
   ngOnInit(): void {
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
@@ -153,12 +156,12 @@ export class ChooseObjectComponent implements OnInit {
 
 
   public exportReturns() {
-  
+
     if(this.selectedObject!="All" && this.selectedRetailer!="All"){
     this.error=true;
     }else{
       this.isExportReturnsLoading=true;
-      this.returnsService.export(this.selectedProduct, this.selectedObject,this.selectedRetailer).subscribe((excel)=>{
+      this.returnsService.export(this.selectedProduct, this.selectedObject,this.selectedRetailer, this.selectedDate==undefined?"All":this.datepipe.transform(this.selectedDate, 'yyyyMMdd')).subscribe((excel)=>{
         this.isExportReturnsLoading=false;
         const fileName = 'Returns.xlsx';
        saveAs(excel, fileName);
