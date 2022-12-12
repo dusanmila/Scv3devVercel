@@ -55,14 +55,12 @@ button {
     border-radius: 10px !important;
 }
 
-<<<<<<< HEAD
 .error-message {
     font-family: sans-serif;
     color: #ff0000;
     font-size: 12px;
 }
-=======
+
 .mat-spinner-color::ng-deep circle {
     stroke: #56baed !important;
-  }
->>>>>>> 4ea0d71b0eadb079e3de793bf9fb40893b1dc01c
+}
