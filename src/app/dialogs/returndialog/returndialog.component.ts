@@ -36,11 +36,18 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.product = this.data.productName;
+    this.myForm = new FormGroup({
+      productName: new FormControl('', [ValidateProduct]),
+      quantity: new FormControl(''),
+      expiryDate: new FormControl(''),
+      discount: new FormControl(''),
+      comment: new FormControl('')
+    });
+    console.log(this.data)
   }
 
   add() {
-
     this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
     this.data.productName = this.product;
     this.returnService.createReturn(this.data).subscribe(data => {
