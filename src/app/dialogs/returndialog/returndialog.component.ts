@@ -117,10 +117,11 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   getProducts() {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.isAutocompleteLoading = true;
     this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data => {
       this.searchResults = data;
+      this.isAutocompleteLoading = false;
     });
   }
 
