@@ -32,7 +32,7 @@ export class ReturnDialogComponent implements OnInit {
     public productService: ProductService,
     private datePipe: DatePipe,
     private fb: FormBuilder) {
-    data.expiryDate = datePipe.transform(data.expiryDate, 'dd-MMM-yy')
+    // data.expiryDate = datePipe.transform(data.expiryDate, 'dd-MMM-yy')
   }
 
   ngOnInit(): void {
