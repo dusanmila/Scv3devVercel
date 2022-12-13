@@ -42,9 +42,9 @@ export class ProductService {
     return retval$.asObservable();
   }
 
-  getProductByProductName(productName: string): Observable<Product> {
-    let retval$ = new Subject<Product>();
-    this.http.get<Product>(`${PRODUCT_URL}/products/productByProductName/${productName}`, { headers: this.headers }).subscribe((product: Product) => {
+  getProductByProductName(productName: string): Observable<any> {
+    let retval$ = new Subject<any>();
+    this.http.get<any>(`${PRODUCT_URL}/products/productByProductName/${productName}`, { headers: this.headers }).subscribe((product) => {
       retval$.next(product);
     });
     return retval$.asObservable();

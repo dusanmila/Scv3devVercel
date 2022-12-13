@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -37,6 +37,9 @@ export class ReturnDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = this.data.productName;
+    this.productService.getProductByProductName(this.product).subscribe(data => {
+      this.data.productName = data;
+    });
     this.myForm = new FormGroup({
       productName: new FormControl('', [ValidateProduct]),
       quantity: new FormControl(''),
@@ -44,7 +47,6 @@ export class ReturnDialogComponent implements OnInit {
       discount: new FormControl(''),
       comment: new FormControl('')
     });
-    console.log(this.data)
   }
 
   add() {
@@ -67,6 +69,7 @@ export class ReturnDialogComponent implements OnInit {
   update() {
     this.isLoading = true;
     this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
+    this.data.productName = this.product;
     this.returnService.updateReturn(this.data).subscribe(data => {
       this.isLoading = false;
       this.changed = true;
@@ -117,10 +120,7 @@ export class ReturnDialogComponent implements OnInit {
     this.isLoading = true;
     this.isAutocompleteLoading = true;
     this.productService.getProductByProductIdCompanyOrName(this.data.productName).subscribe(data => {
-
       this.searchResults = data;
-
-
     });
   }
 
@@ -133,16 +133,17 @@ export class ReturnDialogComponent implements OnInit {
   }
 
   displayWith(product?: any) {
+    if (typeof product === "string") {
+      return product ? product : undefined;
+    }
     return product ? product.productName : undefined;
   }
 
-  // displayWith(product?: any) {
-  //   return product ? product : undefined;
-  // }
 }
 
 function ValidateProduct(control: AbstractControl): { [key: string]: any } | null {
   const selection: any = control.value;
+
   if (typeof selection === "string") {
     return { incorrect: true };
   }
