@@ -81,12 +81,14 @@ export class ProductComponent implements OnInit {
   }
 
   changePrice(product: Product) {
-    this.productService.updateProduct(product).subscribe(data => {
-      console.log(data);
-    },
-      error => {
+    this.productService.updateProduct(product).subscribe({
+      next: data => {
+        console.log(data);
+      },
+      error: error => {
         console.log(error);
-      });
+      }
+    });
   }
 
   public exit() {

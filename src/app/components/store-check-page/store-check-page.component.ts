@@ -26,7 +26,7 @@ export class StoreCheckPageComponent implements OnInit {
   public showDetails: boolean = false;
   public workModel: string;
   public showFinishButton: boolean = false;
-  isLoading=false;
+  isLoading = false;
 
   constructor(public snackBar: MatSnackBar,
     public objectService: ObjectService,
@@ -77,11 +77,13 @@ export class StoreCheckPageComponent implements OnInit {
   public finishObjectStoreCheck() {
     let username = localStorage.getItem("username") as string;
 
-    this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe(data => {
-      this.router.navigate(['/chooseObject/' + this.workModel]);
-      this.snackBar.open('Successfully added', 'Close', { duration: 2500, panelClass: ['blue-snackbar'] });
-    },
-      err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
+    this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe({
+      next: data => {
+        this.router.navigate(['/chooseObject/' + this.workModel]);
+        this.snackBar.open('Successfully added', 'Close', { duration: 2500, panelClass: ['blue-snackbar'] });
+      },
+      error: err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] })
+    });
   }
 
 
@@ -92,30 +94,32 @@ export class StoreCheckPageComponent implements OnInit {
 
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
   public addToStoreCheck() {
-    this.isLoading=true;
+    this.isLoading = true;
     let username = localStorage.getItem("username") as string;
-    this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
-      if (data) {
-        const dialogRef = this.dialog.open(AreYouSureDialogComponent);
-        dialogRef.afterClosed()
-          .subscribe(res => {
-            this.isLoading=false;
-            if (res) {
+    this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe({
+      next: data => {
+        if (data) {
+          const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+          dialogRef.afterClosed()
+            .subscribe({
+              next: res => {
+                this.isLoading = false;
+                if (res) {
 
-              this.finishObjectStoreCheck();
+                  this.finishObjectStoreCheck();
 
-            }
-          },
-            err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }));
-            this.isLoading=false;
-      } else {
-        this.isLoading=false;
-        this.dialog.open(AlreadyFinishedComponent);
-      }
-    },
-
-      err => {this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });  this.isLoading=false;});
-
+                }
+              },
+              error: err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] })
+            });
+          this.isLoading = false;
+        } else {
+          this.isLoading = false;
+          this.dialog.open(AlreadyFinishedComponent);
+        }
+      },
+      error: err => { this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] }); this.isLoading = false; }
+    });
   }
 
 
