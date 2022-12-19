@@ -175,7 +175,7 @@ export class PositionDialogComponent implements OnInit {
     formData.append('location', this.positionDto.location);
     formData.append('comment', this.positionDto.comment);
     formData.append('img', this.positionDto.img);
-    formData.append('valid', this.positionDto.valid);
+    formData.append('valid', true);
 
     this.positionService.createPosition(formData).subscribe(data => {
       this.changed = true;
