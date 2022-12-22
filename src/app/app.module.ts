@@ -91,6 +91,8 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
 import { ReturnComponent } from './components/returns/returns.component';
 import { ReturnDialogComponent } from './dialogs/returndialog/returndialog.component';
+import { PromoEvaluatorComponent } from './components/promo-evaluator/promo-evaluator.component';
+import { PromoEvaluatorDialogComponent } from './dialogs/promo-evaluation-dialog/promo-evaluation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -138,7 +140,9 @@ import { ReturnDialogComponent } from './dialogs/returndialog/returndialog.compo
     ProductComponent,
     ProductDialogComponent,
     ReturnComponent,
-    ReturnDialogComponent
+    ReturnDialogComponent,
+    PromoEvaluatorComponent,
+    PromoEvaluatorDialogComponent
 
   ],
   imports: [
