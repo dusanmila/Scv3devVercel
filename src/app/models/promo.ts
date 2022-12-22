@@ -1,9 +1,8 @@
 export interface Promo {
-    promoId: string;
     creatorUsername: string;
-    productId: string;
-    dateStart: Date;
-    dateEnd: Date;
+    productIdCompany: string;
+    dateStart: string | null;
+    dateEnd: string | null;
     rebate: number;
     regularSale: number;
     type: string;

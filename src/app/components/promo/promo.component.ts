@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
@@ -17,8 +18,8 @@ export class PromoComponent implements OnInit {
   selectedRetailer: Retailer;
   products: Product[];
   selectedProduct: Product;
-  startDate: Date;
-  endDate: Date;
+  startDate: string | null;
+  endDate: string | null;
   rebate: number;
   regularSale: number;
   promoTypes: string[] = ['Type 1', 'Type 2'];
@@ -35,7 +36,8 @@ export class PromoComponent implements OnInit {
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
-    public promoService: PromoService) { }
+    public promoService: PromoService,
+    public datePipe: DatePipe) { }
 
   ngOnInit(): void {
     this.getPromos();
@@ -48,6 +50,8 @@ export class PromoComponent implements OnInit {
       this.promos = data;
       if (!data) {
         this.noData = true;
+      } else {
+        this.noData = false;
       }
     });
   }
@@ -70,14 +74,17 @@ export class PromoComponent implements OnInit {
 
   selectProduct(event) {
     this.selectedProduct = event.value;
+    console.log(this.selectedProduct)
   }
 
   selectStartDate(event) {
     this.startDate = event.value;
+    this.startDate = this.datePipe.transform(this.startDate, 'yyyy-MM-dd');
   }
 
   selectEndDate(event) {
     this.endDate = event.value;
+    this.endDate = this.datePipe.transform(this.endDate, 'yyyy-MM-dd');
   }
 
   selectPromoType(event) {
@@ -87,9 +94,8 @@ export class PromoComponent implements OnInit {
   createPromotion() {
     let username = localStorage.getItem("username") as string;
     let promo: Promo = {
-      promoId: '',
       creatorUsername: username,
-      productId: this.selectedProduct.productIdCompany,
+      productIdCompany: this.selectedProduct.productIdCompany,
       dateStart: this.startDate,
       dateEnd: this.endDate,
       rebate: this.rebate,
@@ -105,9 +111,12 @@ export class PromoComponent implements OnInit {
       objectName: '',
       objectIdRetail: '',
     }
+    console.log(promo);
     this.promoService.createPromo(promo).subscribe(data => {
-      console.log(data);
-      this.getPromos();
+      if (data) {
+        console.log(data);
+        this.getPromos();
+      }
     });
   }
 

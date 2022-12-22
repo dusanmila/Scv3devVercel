@@ -47,7 +47,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Type</mat-label>
-        <mat-select (onSelectionChange)="selectPromoType($event)" required name="type">
+        <mat-select (selectionChange)="selectPromoType($event)" required name="type">
             <mat-option *ngFor="let promoType of promoTypes" [value]="promoType">
                 {{promoType}}
             </mat-option>
