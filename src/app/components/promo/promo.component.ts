@@ -31,7 +31,7 @@ export class PromoComponent implements OnInit {
   resultSale: number;
   currentDate: Date = new Date();
   promos: Promo[];
-  displayedColumns: string[] = ['retailer'];
+  displayedColumns: string[] = ['retailer', 'product', 'startDate', 'endDate'];
   noData: boolean = false;
 
   constructor(public objectService: ObjectService,
