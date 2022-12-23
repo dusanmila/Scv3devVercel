@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { EmailsForSending } from '../models/emailsForSending';
@@ -31,9 +31,13 @@ export class StoreCheckService {
     return retval$.asObservable();
   }
 
-  public finishStoreCheck(username: string, emailsForSending: EmailsForSending) {
+  public finishStoreCheck(username: string, storeCheckReceivers: StoreCheckReceiver[], sendToAllUsers: boolean, sendToCreator: boolean, optionalEmail: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('optionalEmail', optionalEmail);
+    queryParams = queryParams.append('sendToAllUsers', sendToAllUsers);
+    queryParams = queryParams.append('sendToCreator', sendToCreator);
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, emailsForSending, { headers: this.headers }).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, { storeCheckReceivers }, { params: queryParams, headers: this.headers }).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
