@@ -51,7 +51,6 @@ export class EmailDialogComponent implements OnInit {
   getStoreCheckReceivers() {
     this.storeCheckReceiverService.getStoreCheckReceivers().subscribe(data => {
       this.storeCheckReceivers = data;
-      console.log(data);
     });
   }
 

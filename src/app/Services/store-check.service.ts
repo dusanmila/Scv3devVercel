@@ -32,8 +32,6 @@ export class StoreCheckService {
   }
 
   public finishStoreCheck(username: string, storeCheckReceivers: StoreCheckReceiver[], sendToAllUsers: boolean, sendToCreator: boolean, optionalEmail: string) {
-    console.log(storeCheckReceivers);
-    console.log(optionalEmail);
     let queryParams = new HttpParams();
     queryParams = queryParams.append('optionalEmail', optionalEmail);
     queryParams = queryParams.append('sendToAllUsers', sendToAllUsers);
