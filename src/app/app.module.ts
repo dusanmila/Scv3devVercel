@@ -94,6 +94,7 @@ import { ReturnDialogComponent } from './dialogs/returndialog/returndialog.compo
 import { PromoEvaluatorComponent } from './components/promo-evaluator/promo-evaluator.component';
 import { PromoEvaluatorDialogComponent } from './dialogs/promo-evaluation-dialog/promo-evaluation-dialog.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
