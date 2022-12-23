@@ -1,5 +1,5 @@
-<div class="container mat-elevation-z8">
-    <!-- <table class="mat-table table" aria-describedby="store check receivers">
+<!-- <div class="container mat-elevation-z8">
+    <table class="mat-table table" aria-describedby="store check receivers">
         <tr class="mat-header-row header">
             <th class="mat-header-cell header-item column-name">Receiver</th>
             <th class="mat-header-cell header-email-item column-name">Email
@@ -33,5 +33,42 @@
             <td class="mat-cell table-cell">Marketing</td>
             <td class="mat-cell table-cell">{{ storeCheckReceivers.marketing }}</td>
         </tr>
-    </table> -->
+    </table>
+</div> -->
+
+<div class="container mat-elevation-z8">
+    <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Name</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Email</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary">
+                    <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+                </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index">
+                <button mat-icon-button color="primary">
+                    <mat-icon (click)="openDialog(2, row.name, row.email)"> edit </mat-icon>
+                </button>
+                <button mat-icon-button color="primary">
+                    <mat-icon (click)="openDialog(3, row.name, row.email)"> delete </mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No retailers</mat-toolbar>
 </div>
