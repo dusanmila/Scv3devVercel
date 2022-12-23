@@ -1,38 +1,43 @@
 <div class="container">
-    <h3 mat-dialog-title>Send store check to:</h3>
+  <h3 mat-dialog-title>Send store check to:</h3>
 
-    <form class="mat-dialog-content" #formControl="ngForm">
+  <form class="mat-dialog-content" #formControl="ngForm">
 
-        <div class="form">
-            <mat-checkbox color="primary" [(ngModel)]="emailsForSending.allUsers" name="allUsers" (change)="onSelectionChanged($event, 'allUsers')">All users</mat-checkbox>
-        </div>
+    <div class="form">
+      <mat-checkbox color="primary" [(ngModel)]="emailsForSending.allUsers" name="allUsers"
+        (change)="onSelectionChanged($event, 'allUsers')">All users</mat-checkbox>
+    </div>
 
-        <div class="form">
-            <mat-checkbox color="primary" [(ngModel)]="sendToCreator" name="allUsers" (change)="onSelectionChanged($event, 'creator')">Me</mat-checkbox>
-        </div>
+    <div class="form">
+      <mat-checkbox color="primary" [(ngModel)]="sendToCreator" name="allUsers"
+        (change)="onSelectionChanged($event, 'creator')">Me</mat-checkbox>
+    </div>
 
-        <div class="form">
-            <mat-form-field>
-              <input matInput type="email" placeholder="Optional email" name="optionalEmail" [(ngModel)]="emailsForSending.optionalEmail">
-            </mat-form-field>
-          </div>
+    <div class="form" *ngFor="let storeCheckReceiver of storeCheckReceivers">
+      <mat-checkbox color="primary" [name]="storeCheckReceiver.name"
+        (change)="onReceiversChanged($event, storeCheckReceiver)">{{storeCheckReceiver.name}}</mat-checkbox>
+    </div>
 
-          <div *ngIf="isLoading"
-          style="display: flex; justify-content: center; align-items: center; background: white;">
-         <mat-progress-spinner
-         class="mat-spinner-color"
-           mode="indeterminate" [diameter]="30">
-         </mat-progress-spinner>
-        </div>
 
-        <div mat-dialog-action>
-            <button mat-button type="submit" (click)="send()" [disabled]="!formControl.valid" class="item2">Ok</button>
-            <button mat-button (click)="close()" class="item2">Close</button>
-            <div *ngIf="isLoading"
-            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
-            </mat-progress-spinner>
-          </div>
-        </div>
-    </form>
+    <div class="form">
+      <mat-form-field>
+        <input matInput type="email" placeholder="Optional email" name="optionalEmail" [(ngModel)]="optionalEmail">
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
+      </mat-progress-spinner>
+    </div>
+
+    <div mat-dialog-action>
+      <button mat-button type="submit" (click)="send()" [disabled]="!formControl.valid" class="item2">Ok</button>
+      <button mat-button (click)="close()" class="item2">Close</button>
+      <div *ngIf="isLoading"
+        style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+        </mat-progress-spinner>
+      </div>
+    </div>
+  </form>
 </div>

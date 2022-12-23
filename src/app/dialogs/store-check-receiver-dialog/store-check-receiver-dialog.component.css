@@ -44,9 +44,17 @@ button[disabled]:hover {
 }
 
 .mat-button {
-  border-radius: 10px !important;
+    border-radius: 10px !important;
 }
 
 .mat-spinner-color::ng-deep circle {
     stroke: #56baed !important;
-  }
+}
+
+button {
+    outline: none;
+}
+
+::ng-deep .mat-button-focus-overlay {
+    display: none;
+}
