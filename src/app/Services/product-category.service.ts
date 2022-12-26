@@ -40,5 +40,14 @@ export class ProductCategoryService {
   public deleteProductCategory(productCategoryName): Observable<any> {
     return this.http.delete<any>(`${PRODUCT_URL}/productCategories/deleteByProductCategoryName/${productCategoryName}`, { headers: this.headers });
   }
+
+  public getProductCategoriesByPosition(positionId): Observable<ProductCategory[]> {
+    let retval$ = new Subject<ProductCategory[]>();
+    this.http.get<ProductCategory[]>(`${PRODUCT_URL}/productCategories/byPosition/`+positionId, { headers: this.headers }).subscribe((productCategories: ProductCategory[]) => {
+      retval$.next(productCategories);
+    });
+    return retval$.asObservable();
+  }
+
   
 }
