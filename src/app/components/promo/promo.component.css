@@ -1,0 +1,16 @@
+.mat-header-cell {
+    background: #56baed;
+}
+
+.whitetext {
+    color: white;
+}
+
+.column-name {
+    font-size: 16px;
+}
+
+.noDataMessage {
+    background-color: white;
+    color: #56baed;
+}

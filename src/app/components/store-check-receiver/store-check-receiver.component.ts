@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { StoreCheckReceiverDialogComponent } from 'src/app/dialogs/store-check-receiver-dialog/store-check-receiver-dialog.component';
 import { StoreCheckReceiver } from 'src/app/models/storeCheckReceiver';
-import { StoreCheckService } from 'src/app/Services/store-check.service';
+import { StoreCheckReceiverService } from 'src/app/Services/store-check-receiver.service';
 
 @Component({
   selector: 'app-store-check-receiver',
@@ -13,11 +13,13 @@ import { StoreCheckService } from 'src/app/Services/store-check.service';
 export class StoreCheckReceiverComponent implements OnInit {
 
   dataSource: MatTableDataSource<StoreCheckReceiver>;
-  displayedColumns = ["generalDirector", "manager", "sectorDirector", "salesDirector", "marketing", "actions"];
+  displayedColumns = ['name', 'email', 'actions'];
+  noData: boolean = false;
+  isLoading: boolean = false;
 
-  public storeCheckReceivers: StoreCheckReceiver;
+  public storeCheckReceivers: StoreCheckReceiver[];
 
-  constructor(public storeCheckService: StoreCheckService,
+  constructor(public storeCheckReceiverService: StoreCheckReceiverService,
     private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -25,14 +27,21 @@ export class StoreCheckReceiverComponent implements OnInit {
   }
 
   public loadData() {
-    this.storeCheckService.getStoreCheckReceivers().subscribe(data => {
+    this.isLoading = true;
+    this.storeCheckReceiverService.getStoreCheckReceivers().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
-      this.storeCheckReceivers = data[0]; 
+      this.storeCheckReceivers = data;
+      this.isLoading = false;
+      if (data) {
+        this.noData = false;
+      } else {
+        this.noData = true;
+      }
     });
   }
 
-  public openDialog(flag: number, generalDirector?: string, salesDirector?: string, sectorDirector?: string, marketing?: string, manager?: string) {
-    const dialogRef = this.dialog.open(StoreCheckReceiverDialogComponent, { data: { generalDirector, salesDirector, sectorDirector, marketing, manager } });
+  public openDialog(flag: number, name?: string, email?: string) {
+    const dialogRef = this.dialog.open(StoreCheckReceiverDialogComponent, { data: { name, email } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {

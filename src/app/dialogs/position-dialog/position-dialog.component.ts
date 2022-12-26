@@ -8,7 +8,9 @@ import { ProductCategory } from 'src/app/models/productCategory';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { ProductCategoryService } from 'src/app/Services/product-category.service';
 import { Guid } from 'guid-typescript';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {  PositionProductCategoryService } from 'src/app/Services/position-product-category-service.component';
+import { PositionProductCategory } from 'src/app/models/positionProductCategory';
 
 @Component({
   selector: 'app-position-dialog',
@@ -32,6 +34,11 @@ export class PositionDialogComponent implements OnInit {
   public locations = ['Magacin', 'Prodajni prostor'];
   isRotated = false;
 
+  public selectedProductCategories:ProductCategory[]=[];
+  public positionProductCategory:PositionProductCategory={positionProductCategoryId:"",positionId:"",productCategoryId:""};
+
+public secPosId: Guid = Guid.create();
+
   positionDto: Position = {
     secondaryPositionId: Guid.create(),
     objectIdCompany: "",
@@ -51,7 +58,9 @@ export class PositionDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<PositionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Position,
     public positionService: PositionService,
-    public productCategoryService: ProductCategoryService, public fb: FormBuilder) {
+    public productCategoryService: ProductCategoryService,
+    public positionProductCategoryService:PositionProductCategoryService,
+     public fb: FormBuilder) {
     this.form = this.fb.group({
       file: [null],
       img: ['']
@@ -159,14 +168,20 @@ export class PositionDialogComponent implements OnInit {
     this.imageUploaded = true;
   }
 
+  
+
   submitFormCreate() {
     this.submitClicked = true;
+
+
+console.log(this.selectedProductCategories)
+
 
     this.isLoading = true;
     let username = localStorage.getItem("username") as string;
     const formData: any = new FormData();
     formData.append('file', this.form.get('file')!.value);
-    formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
+    formData.append('secondaryPositionId', this.secPosId);
     formData.append('objectIdCompany', this.objectIdCompany);
     formData.append('posClassName', this.positionDto.posClassName);
     formData.append('posTypeName', this.positionDto.posTypeName);
@@ -184,6 +199,19 @@ export class PositionDialogComponent implements OnInit {
       this.snackBar.open('Position added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
 
       this.close();
+      for (var cat of this.selectedProductCategories) {
+
+        this.positionProductCategory.positionId=this.secPosId.toString();
+        this.positionProductCategory.productCategoryId=cat.productCategoryId.toString();
+      
+        this.positionProductCategoryService.createPositionProductCategory(this.positionProductCategory).subscribe(data => {
+          console.log('successfully added')
+        }),
+          (error: Error) => {
+            console.log(error.name + ' -> ' + error.message)
+            this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+          };
+      }
     }),
       (error: Error) => {
         this.isLoading = false;
@@ -191,8 +219,9 @@ export class PositionDialogComponent implements OnInit {
         this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       };
 
-
+    
   }
+
 
   submitFormUpdate() {
     this.submitClicked = true;
