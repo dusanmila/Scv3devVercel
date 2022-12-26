@@ -143,7 +143,7 @@ import { PromoComponent } from './components/promo/promo.component';
     ReturnComponent,
     ReturnDialogComponent,
     PromoEvaluatorComponent,
-    PromoEvaluatorDialogComponent
+    PromoEvaluatorDialogComponent,
     PromoComponent
   ],
   imports: [
