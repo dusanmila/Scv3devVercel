@@ -18,7 +18,7 @@
             <mat-form-field>
                 <input type="text" matInput placeholder="Select product from list" (input)="getProducts()"
                     [matAutocomplete]="auto" [(ngModel)]="data.productName" name="productName" list="this.SearchResults"
-                    [attr.disabled]="flag === 3 || flag===4" required formControlName="productName" />
+                    required formControlName="productName" />
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith"
                     (optionSelected)="changeProduct($event)">
                     <mat-option *ngFor="let option of searchResults" [value]="option">
@@ -38,7 +38,7 @@
         <div class=" form">
             <mat-form-field>
                 <input matInput placeholder="Quantity" [(ngModel)]="data.quantity" name="quantity"
-                    formControlName="quantity" [attr.disabled]="flag === 3 || flag===4" required />
+                    formControlName="quantity" required />
             </mat-form-field>
         </div>
         <!--   <div class="form">
@@ -59,13 +59,13 @@
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Suggested Discount" [(ngModel)]="data.discount" name="discount"
-                    formControlName="discount" [attr.disabled]="flag === 3 || flag===4" required />
+                    formControlName="discount" required />
             </mat-form-field>
         </div>
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Comment" [(ngModel)]="data.comment" name="comment"
-                    formControlName="comment" [attr.disabled]="flag === 3 || flag===4" required />
+                    formControlName="comment" required />
             </mat-form-field>
         </div>
 
@@ -76,6 +76,7 @@
             <button mat-button class="test" *ngIf="flag === 2" type="submit" (click)="update()"
                 [disabled]="!formControl.valid">Ok</button>
             <button mat-button class="test" *ngIf="flag === 3" type="submit" (click)="sold()">Sold</button>
+            <button mat-button class="test" *ngIf="flag === 4" type="submit" (click)="delete()">Delete</button>
             <button mat-button class="test" (click)="close()">Cancel</button>
             <div *ngIf="isLoading"
                 style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
