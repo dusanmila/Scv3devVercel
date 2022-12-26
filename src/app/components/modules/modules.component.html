@@ -1,0 +1,28 @@
+<div class="center">
+    <img src="../../../assets/Store Metrics Logo PNG.png" alt="Store Check" class="sc-icon">
+</div>
+<div class="menu fadeInDown">
+    <div class="item fadeIn first" [routerLink]="['/storeCheck']">
+        <p>
+            <img src="../../../assets/belo.png" width="50px" height="50px"
+                style="margin-top:15px; float:left; margin-left:20px;">
+        </p>
+        <div style="justify-content: center;margin-right: 50px;">STORE METRICS</div>
+    </div>
+
+    <div class="item promo-item fadeIn second" [routerLink]="['/promo']">
+        <p>
+            <img src="../../../assets/icons8-price-tag-48.png" width="50px" height="50px"
+                style="margin-top:15px; float:left; margin-left:20px;">
+        </p>
+        <div style="justify-content: center;margin-right: 30px;">PROMO MANAGEMENT</div>
+    </div>
+
+    <div class="item2 promo-item fadeIn third" (click)="logout()">
+        <p>
+            <img src="../../../assets/exit.png" width="30px" height="30px"
+                style="margin-top:10px; float:left; margin-left:5px;">
+        </p>
+        <div style="justify-content: center;">LOG OUT</div>
+    </div>
+</div>
