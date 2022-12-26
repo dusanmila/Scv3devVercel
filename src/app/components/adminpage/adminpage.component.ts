@@ -66,7 +66,6 @@ export class AdminpageComponent {
   public logout() {
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
     localStorage.setItem("jwt", "");
-    localStorage.setItem("refreshToken", "");
     dialogRef.afterClosed()
       .subscribe(res => {
         if (res) {

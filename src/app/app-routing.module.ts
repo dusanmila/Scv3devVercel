@@ -23,6 +23,7 @@ import { UploadsComponent } from './components/uploads/uploads.component';
 import { ProductComponent } from './components/product/product.component';
 import { ReturnComponent } from './components/returns/returns.component';
 import { PromoEvaluatorComponent } from './components/promo-evaluator/promo-evaluator.component';
+import { PromoComponent } from './components/promo/promo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
   { path: 'returns/:objectIdCompany', component: ReturnComponent, canActivate: [AdminGuard] },
+  { path: 'promo', component: PromoComponent, canActivate: [AdminGuard] },
   {
     path: 'admin', children: [
       { path: 'user', component: UserComponent, canActivate: [AdminGuard] },
@@ -50,7 +52,8 @@ const routes: Routes = [
       { path: 'uploads', component: UploadsComponent, canActivate: [AdminGuard] }
     ],
     component: SidenavComponent,
-    canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
+    data: { admin: true }
   }
 ];
 

@@ -91,7 +91,7 @@ export class UserService {
 
   }
 
-  public getUserByUsername(username: string): Observable<User> {
+  public getUserByUsername(username: string): Observable<any> {
 
     let retval$ = new Subject<User>();
 

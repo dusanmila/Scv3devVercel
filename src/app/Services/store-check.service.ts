@@ -37,7 +37,7 @@ export class StoreCheckService {
     queryParams = queryParams.append('sendToAllUsers', sendToAllUsers);
     queryParams = queryParams.append('sendToCreator', sendToCreator);
     let retval$ = new Subject<StoreCheck>();
-    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, { storeCheckReceivers }, { params: queryParams, headers: this.headers }).subscribe((helper: StoreCheck) => {
+    this.http.put<StoreCheck>(`${STORE_CHECK_URL}/storeChecks/finishStoreCheck/${username}`, storeCheckReceivers, { params: queryParams, headers: this.headers }).subscribe((helper: StoreCheck) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

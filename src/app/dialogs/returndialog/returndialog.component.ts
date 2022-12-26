@@ -41,11 +41,11 @@ export class ReturnDialogComponent implements OnInit {
       this.data.productName = data;
     });
     this.myForm = new FormGroup({
-      productName: new FormControl('', [ValidateProduct]),
-      quantity: new FormControl(''),
-      expiryDate: new FormControl(''),
-      discount: new FormControl(''),
-      comment: new FormControl('')
+      productName: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }, [ValidateProduct]),
+      quantity: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
+      expiryDate: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
+      discount: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
+      comment: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 })
     });
   }
 
