@@ -13,18 +13,17 @@ export const RETURN_URL = 'https://storecheckbeta.azurewebsites.net/api';
 export const PROMO_URL ='https://storecheckbeta.azurewebsites.net/api';
 export const POSITION_PRODUCT_CATEGORY_URL ='https://storecheckbeta.azurewebsites.net/api';
 */
- export const STORE_CHECK_URL = 'http://localhost:8081/api';
- export const USER_URL = 'http://localhost:8081/api';
- export const POSITION_URL = 'http://localhost:8081/api';
- export const FEEDBACK_URL = 'http://localhost:8081/api';
- export const OBJECT_URL = 'http://localhost:8081/api';
- export const AUTH_URL = 'http://localhost:8081/api';
- export const SERVICE_URL = 'http://localhost:8081/api';
- export const PRODUCT_URL = 'http://localhost:8081/api';
- export const RETURN_URL = 'http://localhost:8081/api';
- export const PROMO_URL ='http://localhost:8081/api';
- export const POSITION_PRODUCT_CATEGORY_URL ='http://localhost:8081/api';
- export const PROMO_URL = 'https://storecheckbeta.azurewebsites.net/api';
+export const STORE_CHECK_URL = 'http://localhost:8081/api';
+export const USER_URL = 'http://localhost:8081/api';
+export const POSITION_URL = 'http://localhost:8081/api';
+export const FEEDBACK_URL = 'http://localhost:8081/api';
+export const OBJECT_URL = 'http://localhost:8081/api';
+export const AUTH_URL = 'http://localhost:8081/api';
+export const SERVICE_URL = 'http://localhost:8081/api';
+export const PRODUCT_URL = 'http://localhost:8081/api';
+export const RETURN_URL = 'http://localhost:8081/api';
+export const PROMO_URL = 'http://localhost:8081/api';
+export const POSITION_PRODUCT_CATEGORY_URL = 'http://localhost:8081/api';
 
 
 
