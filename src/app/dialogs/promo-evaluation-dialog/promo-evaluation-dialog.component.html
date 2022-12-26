@@ -1,15 +1,43 @@
 <div class="container">
     <h3 mat-dialog-title *ngIf="flag == 1">Add promo evaluator</h3>
-    <h3 mat-dialog-title *ngIf="flag == 2">Edit {{data.Username}}</h3>
-    <h3 mat-dialog-title *ngIf="flag == 3">Delete {{data.Username}}</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Edit promo evaluator</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Delete promo evaluator</h3>
 
-    <form class="mat-dialog-content" #formControl="ngForm">
+    <form class="mat-dialog-content" #formControl="ngForm" [formGroup]="myForm">
+        
+
+       
         <div class="form">
             <mat-form-field>
-                <input matInput id="name" name="text" placeholder="Product category"
-                    [(ngModel)]="data.Username" [disabled]="flag==3" required />
+                <input type="text" matInput placeholder="Select user from list" (input)="getUsers()"
+                    [matAutocomplete]="auto" [(ngModel)]="data.username" name="username" list="this.SearchResults"
+                   required formControlName="username" />
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith"
+                    (optionSelected)="changeUser($event)">
+                    <mat-option *ngFor="let option of searchResults" [value]="option">
+                        {{option.username}}
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="myForm.controls['username'].hasError('incorrect')">
+                    Please select a valid user
+                </mat-error>
             </mat-form-field>
+            <div *ngIf="isAutocompleteLoading"
+                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+                </mat-progress-spinner>
+            </div>
         </div>
+
+
+        <div class="form">
+            <mat-form-field>
+                <input matInput id="rebate" name="rebate" formControlName="rebate" placeholder="Rabate %"
+                    [(ngModel)]="data.rebate" required /> 
+            </mat-form-field>
+            
+        </div>
+       
 
         <div mat-dialog-actions>
             <div *ngIf="isLoading"
@@ -17,9 +45,9 @@
                 <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
                 </mat-progress-spinner>
             </div>
-            <button class="test" mat-button type="submit" *ngIf="flag == 1" [disabled]="!data.Username"
+            <button class="test" mat-button type="submit" *ngIf="flag == 1" [disabled]="!data.username"
                 (click)="add()">Add</button>
-            <button class="test" mat-button type="submit" *ngIf="flag == 2" [disabled]="!data.Username"
+            <button class="test" mat-button type="submit" *ngIf="flag == 2" [disabled]="!data.username"
                 (click)="update()">Ok</button>
             <button class="test" mat-button type="submit" *ngIf="flag==3" (click)="delete()">Delete</button>
             <button class="test" mat-button (click)="close()">Cancel</button>

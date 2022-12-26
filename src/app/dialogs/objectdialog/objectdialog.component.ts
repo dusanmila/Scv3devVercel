@@ -56,7 +56,9 @@ export class ObjectDialogComponent implements OnInit {
     }
   }
 
-  constructor(public snackBar: MatSnackBar, public dialogRef: MatDialogRef<ObjectDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Obj, public objectService: ObjectService, public userService: UserService) { }
+  constructor(public snackBar: MatSnackBar, 
+    public dialogRef: MatDialogRef<ObjectDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: Obj, 
+    public objectService: ObjectService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.loadUsers();

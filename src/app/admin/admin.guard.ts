@@ -16,13 +16,15 @@ export class AdminGuard implements CanActivate {
     const token = localStorage.getItem("jwt");
     const role = localStorage.getItem("role");
     if (routeData['admin'] === true && role !== "Admin") {
+      localStorage.setItem("jwt", "");
       return false;
     }
     if (token !== null && !jwtHelper.isTokenExpired(token)) {
-
+    
       return true;
     }
     this.router.navigate(["login"]);
+    localStorage.setItem("jwt", "");
 
     return false;
   }
