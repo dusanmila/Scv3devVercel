@@ -91,6 +91,8 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductDialogComponent } from './dialogs/product-dialog/product-dialog.component';
 import { ReturnComponent } from './components/returns/returns.component';
 import { ReturnDialogComponent } from './dialogs/returndialog/returndialog.component';
+import { PromoEvaluatorComponent } from './components/promo-evaluator/promo-evaluator.component';
+import { PromoEvaluatorDialogComponent } from './dialogs/promo-evaluation-dialog/promo-evaluation-dialog.component';
 import { PromoComponent } from './components/promo/promo.component';
 
 @NgModule({
@@ -140,8 +142,9 @@ import { PromoComponent } from './components/promo/promo.component';
     ProductDialogComponent,
     ReturnComponent,
     ReturnDialogComponent,
+    PromoEvaluatorComponent,
+    PromoEvaluatorDialogComponent
     PromoComponent
-
   ],
   imports: [
     AppRoutingModule,

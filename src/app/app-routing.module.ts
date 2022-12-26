@@ -22,6 +22,7 @@ import { ProductCategoryComponent } from './components/product-category/product-
 import { UploadsComponent } from './components/uploads/uploads.component';
 import { ProductComponent } from './components/product/product.component';
 import { ReturnComponent } from './components/returns/returns.component';
+import { PromoEvaluatorComponent } from './components/promo-evaluator/promo-evaluator.component';
 import { PromoComponent } from './components/promo/promo.component';
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
       { path: 'retailer', component: RetailerComponent, canActivate: [AdminGuard] },
       { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] },
+      { path: 'promoEvaluator', component: PromoEvaluatorComponent, canActivate: [AdminGuard] },
       { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
       { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] },
       { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },

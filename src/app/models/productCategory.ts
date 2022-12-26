@@ -1,3 +1,6 @@
+import { Guid } from "guid-typescript"
+
 export interface ProductCategory {
-    productCategoryName: string
+    productCategoryId:Guid;
+    productCategoryName: string;
 }

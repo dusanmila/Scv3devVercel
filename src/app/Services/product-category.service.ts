@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { FEEDBACK_URL } from '../app.constants';
+import { PRODUCT_URL } from '../app.constants';
 import { ProductCategory } from '../models/productCategory';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class ProductCategoryService {
 
   public getProductCategories(): Observable<ProductCategory[]> {
     let retval$ = new Subject<ProductCategory[]>();
-    this.http.get<ProductCategory[]>(`${FEEDBACK_URL}/productCategories`, { headers: this.headers }).subscribe((productCategories: ProductCategory[]) => {
+    this.http.get<ProductCategory[]>(`${PRODUCT_URL}/productCategories`, { headers: this.headers }).subscribe((productCategories: ProductCategory[]) => {
       retval$.next(productCategories);
     });
     return retval$.asObservable();
@@ -23,7 +23,7 @@ export class ProductCategoryService {
 
   public createProductCategory(productCategory: ProductCategory): Observable<ProductCategory> {
     let retval$ = new Subject<ProductCategory>();
-    this.http.post<ProductCategory>(`${FEEDBACK_URL}/productCategories`, productCategory, { headers: this.headers }).subscribe((productCategory: ProductCategory) => {
+    this.http.post<ProductCategory>(`${PRODUCT_URL}/productCategories`, productCategory, { headers: this.headers }).subscribe((productCategory: ProductCategory) => {
       retval$.next(productCategory);
     });
     return retval$.asObservable();
@@ -31,14 +31,14 @@ export class ProductCategoryService {
 
   public updateProductCategory(productCategory: ProductCategory): Observable<ProductCategory> {
     let retval$ = new Subject<ProductCategory>();
-    this.http.put<ProductCategory>(`${FEEDBACK_URL}/productCategories`, productCategory, { headers: this.headers }).subscribe((productCategory: ProductCategory) => {
+    this.http.put<ProductCategory>(`${PRODUCT_URL}/productCategories`, productCategory, { headers: this.headers }).subscribe((productCategory: ProductCategory) => {
       retval$.next(productCategory);
     });
     return retval$.asObservable();
   }
 
   public deleteProductCategory(productCategoryName): Observable<any> {
-    return this.http.delete<any>(`${FEEDBACK_URL}/productCategories/deleteByProductCategoryName/${productCategoryName}`, { headers: this.headers });
+    return this.http.delete<any>(`${PRODUCT_URL}/productCategories/deleteByProductCategoryName/${productCategoryName}`, { headers: this.headers });
   }
   
 }

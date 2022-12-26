@@ -48,7 +48,7 @@
 
 
 
-    <div class="form" *ngIf="flag == 1 || flag == 4">
+    <!--<div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
         <mat-select [(ngModel)]="positionDto.productCategory" placeholder="Product Category" name="productCategory">
           <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory.productCategoryName">
@@ -56,13 +56,23 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <div class="form" *ngIf="flag == 2 || flag == 3">
+    </div>-->
+
+    <div class="form" *ngIf="flag==1 || flag==4">
+    <mat-form-field>
+      <mat-label>Product categories</mat-label>
+      <mat-select [(value)]="selectedProductCategories" multiple>
+        <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory">{{productCategory.productCategoryName}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!--  <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Product category</mat-label>
         <input matInput [(ngModel)]="positionDto.productCategory" name="productCategory" [disabled]="true" />
       </mat-form-field>
-    </div>
+    </div>-->
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
