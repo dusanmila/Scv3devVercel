@@ -4,6 +4,7 @@ export interface Promo {
     promoId: Guid;
     creatorUsername: string;
     productIdCompany: string;
+    productName: string;
     dateStart: string | null;
     dateEnd: string | null;
     rebate: number;

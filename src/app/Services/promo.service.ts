@@ -14,11 +14,12 @@ export class PromoService {
 
   constructor(public http: HttpClient) { }
 
-  getPromos(count: number, page: number, type: string): Observable<Promo[]> {
+  getPromos(count: number, page: number, type: string, username: string): Observable<Promo[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('count', count);
     queryParams = queryParams.append('page', page);
     queryParams = queryParams.append('type', type);
+    queryParams = queryParams.append('username', username);
     let retval$ = new Subject<Promo[]>();
     this.http.get<Promo[]>(`${PROMO_URL}/promos`, { params: queryParams, headers: this.headers }).subscribe((promos: Promo[]) => {
       retval$.next(promos);
