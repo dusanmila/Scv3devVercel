@@ -1,4 +1,7 @@
+import { Guid } from "guid-typescript";
+
 export interface Promo {
+    promoId: Guid;
     creatorUsername: string;
     productIdCompany: string;
     dateStart: string | null;

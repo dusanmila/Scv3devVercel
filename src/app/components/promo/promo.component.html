@@ -117,6 +117,9 @@
                 <button mat-stroked-button color="primary" (click)="confirmPromo(row)">Confirm
                     <!-- <mat-icon area-label="Confirm">check</mat-icon> -->
                 </button>
+                <button mat-icon-button color="primary" (click)="deletePromo(row.promoId)">
+                    <mat-icon area-label="Delete">delete</mat-icon>
+                </button>
             </mat-cell>
         </ng-container>
 

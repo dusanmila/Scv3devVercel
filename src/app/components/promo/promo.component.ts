@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Guid } from 'guid-typescript';
 import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
 import { Retailer } from 'src/app/models/retailer';
@@ -53,13 +54,11 @@ export class PromoComponent implements OnInit {
   }
 
   getPromos(pageChanged: boolean) {
-    console.log(this.count, this.page, this.type)
     if (!pageChanged)
       this.page = 1;
     this.promoService.getPromos(this.count, this.page, this.type).subscribe(data => {
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
-      console.log(data);
       if (!data) {
         this.noData = true;
       } else {
@@ -112,6 +111,7 @@ export class PromoComponent implements OnInit {
   createPromotion() {
     let username = localStorage.getItem("username") as string;
     let promo: Promo = {
+      promoId: Guid.createEmpty(),
       creatorUsername: username,
       productIdCompany: this.selectedProduct.productIdCompany,
       dateStart: this.startDate,
@@ -130,9 +130,9 @@ export class PromoComponent implements OnInit {
       objectIdRetail: '',
       totalCount: 0
     }
+    console.log(promo)
     this.promoService.createPromo(promo).subscribe(data => {
       if (data) {
-        console.log(data);
         this.getPromos(false);
       }
     });
@@ -140,12 +140,25 @@ export class PromoComponent implements OnInit {
 
   changeType(event) {
     this.type = event.value;
+    if (this.type === "FOR_CONFIRMATION") {
+      this.displayedColumns.push('actions');
+    } else {
+      let index = this.displayedColumns.indexOf('actions');
+      if (index >= 0)
+        this.displayedColumns.splice(index, 1);
+    }
     this.getPromos(false);
   }
 
   confirmPromo(promo: Promo) {
     this.promoService.confirmPromo(promo).subscribe(data => {
-      console.log(data);
+      this.getPromos(false);
+    });
+  }
+
+  deletePromo(promoId: Guid) {
+    this.promoService.deletePromo(promoId).subscribe(data => {
+      this.getPromos(false);
     });
   }
 

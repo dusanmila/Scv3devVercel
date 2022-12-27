@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
 import { Promo } from '../models/promo';
@@ -35,5 +36,9 @@ export class PromoService {
 
   confirmPromo(promo: Promo): Observable<any> {
     return this.http.put<any>(`${PROMO_URL}/promos/confirm`, promo, { headers: this.headers });
+  }
+
+  deletePromo(promoId: Guid): Observable<any> {
+    return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
   }
 }
