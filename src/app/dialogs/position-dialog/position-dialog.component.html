@@ -67,6 +67,13 @@
     </mat-form-field>
   </div>
 
+  <div class="form" *ngIf="flag==2 || flag == 3">
+    <mat-form-field>
+      <mat-label>Product categories</mat-label>
+      <input matInput [value]="currentProdCatString" name="currentProdCatString" [disabled]="true" />
+    </mat-form-field>
+  </div>
+
   <!--  <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Product category</mat-label>

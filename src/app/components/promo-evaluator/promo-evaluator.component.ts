@@ -12,7 +12,7 @@ import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service'
 })
 export class PromoEvaluatorComponent implements OnInit {
 
-  displayedColumns = ["promoEvaluatorName", "actions"];
+  displayedColumns = ["Username", "Rebate", "actions"];
   dataSource: MatTableDataSource<PromoEvaluator>;
   isLoading: boolean = false;
   noData: boolean = false;
@@ -24,8 +24,10 @@ export class PromoEvaluatorComponent implements OnInit {
   }
 
   public loadData() {
+
     this.isLoading = true;
     this.promoEvaluatorService.getPromoEvaluators().subscribe(data => {
+      console.log(data);
       if (data) {
         this.dataSource = new MatTableDataSource<PromoEvaluator>(data);
         this.noData = false;
@@ -37,9 +39,9 @@ export class PromoEvaluatorComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, Name?: string) {
-    const dialogRef = this.dialog.open(PromoEvaluatorDialogComponent, { data: { Name } });
-    //dialogRef.componentInstance.flag = flag;
+  public openDialog(flag: number, username?: string, rebate?:number) {
+    const dialogRef = this.dialog.open(PromoEvaluatorDialogComponent, { data: { username, rebate } });
+    dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.loadData();

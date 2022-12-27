@@ -54,7 +54,8 @@ const routes: Routes = [
       { path: 'uploads', component: UploadsComponent, canActivate: [AdminGuard] }
     ],
     component: SidenavComponent,
-    canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
+    data: { admin: true }
   }
 ];
 

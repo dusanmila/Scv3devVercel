@@ -9,7 +9,7 @@ import { PositionService } from 'src/app/Services/position-service.service';
 import { ProductCategoryService } from 'src/app/Services/product-category.service';
 import { Guid } from 'guid-typescript';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import {  PositionProductCategoryService } from 'src/app/Services/position-product-category-service.component';
+import {  PositionProductCategoryService } from 'src/app/Services/position-product-category.service';
 import { PositionProductCategory } from 'src/app/models/positionProductCategory';
 
 @Component({
@@ -36,6 +36,9 @@ export class PositionDialogComponent implements OnInit {
 
   public selectedProductCategories:ProductCategory[]=[];
   public positionProductCategory:PositionProductCategory={positionProductCategoryId:"",positionId:"",productCategoryId:""};
+  public currentProdCategories:ProductCategory[]=[];
+
+  public currentProdCatString:string=" ";
 
 public secPosId: Guid = Guid.create();
 
@@ -76,11 +79,25 @@ public secPosId: Guid = Guid.create();
     this.loadPositionClasses();
     this.loadPositionTypes();
     this.loadProductCategories();
+    this.loadCurrentProdCat();
   }
 
   public loadPositionClasses() {
     this.positionService.getPositionClasses().subscribe(data => {
       this.positionClasses = data;
+    });
+  }
+
+  public loadCurrentProdCat() {
+    this.productCategoryService.getProductCategoriesByPosition(this.data.secondaryPositionId).subscribe(data => {
+      this.currentProdCategories = data;
+console.log(this.currentProdCategories)
+      this.currentProdCategories.forEach(cat => {
+        this.currentProdCatString += " " + cat.productCategoryName +" ";
+    });
+
+      
+     
     });
   }
 
@@ -147,6 +164,7 @@ public secPosId: Guid = Guid.create();
 
     this.positionService.updatePosition(this.positionDto)
       .subscribe(() => {
+        this.positionProductCategoryService.createPositionProductCategory
         this.snackBar.open('Updated position', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
         this.isLoading = false;
         this.close();
@@ -244,6 +262,24 @@ console.log(this.selectedProductCategories)
     formData.append('isValid', this.positionDto.valid);
 
     this.positionService.updatePosition(formData).subscribe(data => {
+      console.log(this.selectedProductCategories)
+      for (var cat of this.selectedProductCategories) {
+if(this.flag==1){
+  this.positionProductCategory.positionId=this.secPosId.toString();
+}else{
+this.positionProductCategory.positionId=this.data.secondaryPositionId.toString();
+}
+        
+        this.positionProductCategory.productCategoryId=cat.productCategoryId.toString();
+      console.log(this.positionProductCategory)
+        this.positionProductCategoryService.createPositionProductCategory(this.positionProductCategory).subscribe(() => {
+          console.log('successfully added')
+        }),
+          (error: Error) => {
+            console.log(error.name + ' -> ' + error.message)
+            this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+          };
+      }
       this.changed = true;
       this.isLoading = false;
       console.log(data);

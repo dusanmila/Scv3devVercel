@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { FEEDBACK_URL, PROMO_URL } from '../app.constants';
+import {  PROMO_URL } from '../app.constants';
 import { PromoEvaluator } from '../models/promoEvaluator';
 
 @Injectable({

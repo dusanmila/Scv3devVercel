@@ -2,12 +2,6 @@
     <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
     <h2 style="height:80px;"> <span>Returns</span> </h2>
 </div>
-<!-- <div style="margin: 20px;background-color: #39ace7;color:white">
-    <div style="margin:10px;">Object Name:<strong> {{object.objectName}}</strong></div>
-    <div style="margin:10px;">Object Address:<strong> {{object.address}}, {{object.city}}</strong></div>
-    <div style="margin:10px;">Object company ID:<strong> {{object.objectIdCompany}}, {{object.city}}</strong></div>
-    <div style="margin:10px;">Object retail ID:<strong> {{object.objectIdRetail}}, {{object.city}}</strong></div>
-</div> -->
 
 <mat-card class="object-info" *ngIf="object">
     <mat-card-content>
@@ -17,11 +11,7 @@
             <li><em class="fa-solid fa-store"></em> Comany ID - {{object.objectIdCompany}}</li>
             <li><em class="fa-solid fa-id-badge"></em> Retail ID - {{object.objectIdRetail}}</li>
         </ul>
-        <!-- <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-        </p> -->
+       
     </mat-card-content>
 </mat-card>
 
