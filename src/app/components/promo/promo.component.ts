@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
 import { Retailer } from 'src/app/models/retailer';
@@ -31,8 +33,13 @@ export class PromoComponent implements OnInit {
   resultSale: number;
   currentDate: Date = new Date();
   promos: Promo[];
-  displayedColumns: string[] = ['retailer', 'product', 'startDate', 'endDate'];
+  displayedColumns: string[] = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
+  dataSource: MatTableDataSource<Promo>;
   noData: boolean = false;
+  count: number = 5;
+  page: number = 1;
+  length: number = 0;
+  type: string = 'FOR_CONFIRMATION';
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
@@ -40,20 +47,32 @@ export class PromoComponent implements OnInit {
     public datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.getPromos();
+    this.getPromos(false);
     this.getRetailers();
     this.getProducts();
   }
 
-  getPromos() {
-    this.promoService.getPromos().subscribe(data => {
+  getPromos(pageChanged: boolean) {
+    console.log(this.count, this.page, this.type)
+    if (!pageChanged)
+      this.page = 1;
+    this.promoService.getPromos(this.count, this.page, this.type).subscribe(data => {
       this.promos = data;
+      this.dataSource = new MatTableDataSource<Promo>(data);
+      console.log(data);
       if (!data) {
         this.noData = true;
       } else {
+        this.length = data[0].totalCount;
         this.noData = false;
       }
     });
+  }
+
+  public loadDataOnPageEvent(event: PageEvent) {
+    this.count = event.pageSize;
+    this.page = event.pageIndex + 1;
+    this.getPromos(true);
   }
 
   getRetailers() {
@@ -74,7 +93,6 @@ export class PromoComponent implements OnInit {
 
   selectProduct(event) {
     this.selectedProduct = event.value;
-    console.log(this.selectedProduct)
   }
 
   selectStartDate(event) {
@@ -110,13 +128,24 @@ export class PromoComponent implements OnInit {
       objectIdCompany: '',
       objectName: '',
       objectIdRetail: '',
+      totalCount: 0
     }
-    console.log(promo);
     this.promoService.createPromo(promo).subscribe(data => {
       if (data) {
         console.log(data);
-        this.getPromos();
+        this.getPromos(false);
       }
+    });
+  }
+
+  changeType(event) {
+    this.type = event.value;
+    this.getPromos(false);
+  }
+
+  confirmPromo(promo: Promo) {
+    this.promoService.confirmPromo(promo).subscribe(data => {
+      console.log(data);
     });
   }
 

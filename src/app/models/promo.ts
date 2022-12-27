@@ -15,4 +15,5 @@ export interface Promo {
     objectIdCompany: string;
     objectName: string;
     objectIdRetail: string;
+    totalCount: number;
 }

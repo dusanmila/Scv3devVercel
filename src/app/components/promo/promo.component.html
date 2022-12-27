@@ -83,28 +83,48 @@
         (click)="createPromotion()">Create promotion</button>
 </form>
 
-<mat-table #table [dataSource]="promos" matSort class="mat-cell">
-    <ng-container matColumnDef="retailer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Retailer</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
-    </ng-container>
+<mat-radio-group aria-label="Select an option" (change)="changeType($event)">
+    <mat-radio-button value="FOR_CONFIRMATION" checked="true">For confirmation</mat-radio-button>
+    <mat-radio-button value="ACTUAL">Actual</mat-radio-button>
+    <mat-radio-button value="FINISHED">Finished</mat-radio-button>
+</mat-radio-group>
 
-    <ng-container matColumnDef="product">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.productIdCompany }}</mat-cell>
-    </ng-container>
+<div class="table mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="retailer">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Retailer</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="startDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.dateStart | date:'dd/MM/yyyy' }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="product">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.productIdCompany }}</mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="endDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="startDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Start</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.dateStart | date:'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
-<mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No data</mat-toolbar>
+        <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">End</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index">
+                <button mat-stroked-button color="primary" (click)="confirmPromo(row)">Confirm
+                    <!-- <mat-icon area-label="Confirm">check</mat-icon> -->
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No data</mat-toolbar>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
+</div>

@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
@@ -13,9 +13,13 @@ export class PromoService {
 
   constructor(public http: HttpClient) { }
 
-  getPromos(): Observable<Promo[]> {
+  getPromos(count: number, page: number, type: string): Observable<Promo[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('count', count);
+    queryParams = queryParams.append('page', page);
+    queryParams = queryParams.append('type', type);
     let retval$ = new Subject<Promo[]>();
-    this.http.get<Promo[]>(`${PROMO_URL}/promos`, { headers: this.headers }).subscribe((promos: Promo[]) => {
+    this.http.get<Promo[]>(`${PROMO_URL}/promos`, { params: queryParams, headers: this.headers }).subscribe((promos: Promo[]) => {
       retval$.next(promos);
     });
     return retval$.asObservable();
@@ -27,5 +31,9 @@ export class PromoService {
       retval$.next(promo);
     });
     return retval$.asObservable();
+  }
+
+  confirmPromo(promo: Promo): Observable<any> {
+    return this.http.put<any>(`${PROMO_URL}/promos/confirm`, promo, { headers: this.headers });
   }
 }
