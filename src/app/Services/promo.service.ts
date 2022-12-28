@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
 import { Promo } from '../models/promo';
@@ -13,10 +14,23 @@ export class PromoService {
 
   constructor(public http: HttpClient) { }
 
-  getPromos(): Observable<Promo[]> {
+  getPromos(count: number, page: number, type: string, username: string): Observable<Promo[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('count', count);
+    queryParams = queryParams.append('page', page);
+    queryParams = queryParams.append('type', type);
+    queryParams = queryParams.append('username', username);
     let retval$ = new Subject<Promo[]>();
-    this.http.get<Promo[]>(`${PROMO_URL}/promos`, { headers: this.headers }).subscribe((promos: Promo[]) => {
+    this.http.get<Promo[]>(`${PROMO_URL}/promos`, { params: queryParams, headers: this.headers }).subscribe((promos: Promo[]) => {
       retval$.next(promos);
+    });
+    return retval$.asObservable();
+  }
+
+  updatePromoResultSale(promo: Promo): Observable<Promo> {
+    let retval$ = new Subject<Promo>();
+    this.http.put<Promo>(`${PROMO_URL}/promos/updateResultSale`, promo, { headers: this.headers }).subscribe((promo: Promo) => {
+      retval$.next(promo);
     });
     return retval$.asObservable();
   }
@@ -27,5 +41,13 @@ export class PromoService {
       retval$.next(promo);
     });
     return retval$.asObservable();
+  }
+
+  confirmPromo(promo: Promo): Observable<any> {
+    return this.http.put<any>(`${PROMO_URL}/promos/confirm`, promo, { headers: this.headers });
+  }
+
+  deletePromo(promoId: Guid): Observable<any> {
+    return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
   }
 }

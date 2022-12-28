@@ -1,110 +1,59 @@
-<form #formControl="ngForm">
-    <mat-form-field appearance="fill">
-        <mat-label>Retailer</mat-label>
-        <mat-select (selectionChange)="selectRetailer($event)" required name="retailer">
-            <mat-option *ngFor="let retailer of retailers" [value]="retailer">
-                {{retailer.retailerName}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+<mat-radio-group aria-label="Select an option" (change)="changeType($event)">
+    <mat-radio-button value="FOR_CONFIRMATION" checked="true">For confirmation</mat-radio-button>
+    <mat-radio-button value="ACTUAL">Actual</mat-radio-button>
+    <mat-radio-button value="FINISHED">Finished</mat-radio-button>
+    <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
+</mat-radio-group>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Product</mat-label>
-        <mat-select (selectionChange)="selectProduct($event)" required name="product">
-            <mat-option *ngFor="let product of products" [value]="product">
-                {{product.productName}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+<div class="table mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="retailer">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Retailer</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
+        </ng-container>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Choose start date</mat-label>
-        <input matInput [matDatepicker]="startDatePicker" (dateInput)="selectStartDate($event)" readonly
-            [min]="currentDate" [max]="endDate" required name="startDate">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #startDatePicker></mat-datepicker>
-    </mat-form-field>
+        <ng-container matColumnDef="product">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.productName }}</mat-cell>
+        </ng-container>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Choose end date</mat-label>
-        <input matInput [matDatepicker]="endDatePicker" (dateInput)="selectEndDate($event)" readonly
-            [min]="startDate ? startDate : currentDate" required name="endDate">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-        <mat-datepicker #endDatePicker></mat-datepicker>
-    </mat-form-field>
+        <ng-container matColumnDef="startDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Start</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.dateStart | date:'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Rebate</mat-label>
-        <input type="number" matInput [(ngModel)]="rebate" required name="rebate">
-    </mat-form-field>
+        <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">End</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
+        </ng-container>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Regular sale</mat-label>
-        <input type="number" matInput [(ngModel)]="regularSale" required name="regularSale">
-    </mat-form-field>
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-icon-button color="primary" *ngIf="type === 'FOR_CONFIRMATION'">
+                    <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+                </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index">
+                <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
+                    (click)="openDialog(2, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">Confirm
+                </button>
+                <button mat-icon-button color="primary"
+                    (click)="openDialog(3, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
+                    <mat-icon area-label="Delete">delete</mat-icon>
+                </button>
+                <button mat-icon-button color="primary"
+                    *ngIf="type === 'FINISHED' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                    (click)="openDialog(4, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
+                    <mat-icon area-label="Edit">edit</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Type</mat-label>
-        <mat-select (selectionChange)="selectPromoType($event)" required name="type">
-            <mat-option *ngFor="let promoType of promoTypes" [value]="promoType">
-                {{promoType}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Ads cost</mat-label>
-        <input type="number" matInput [(ngModel)]="adsCost" required name="adsCost">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Promo sale</mat-label>
-        <input type="number" matInput [(ngModel)]="promoSale" required name="promoSale">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Promo cost</mat-label>
-        <input type="number" matInput [(ngModel)]="promoCost" required name="promoCost">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Price</mat-label>
-        <input type="number" matInput [(ngModel)]="price" required name="price">
-    </mat-form-field>
-
-    <mat-form-field appearance="fill">
-        <mat-label>Result sale</mat-label>
-        <input type="number" matInput [(ngModel)]="resultSale" name="resultSale">
-    </mat-form-field>
-
-    <button mat-stroked-button color="primary" type="submit" [disabled]="!formControl.valid"
-        (click)="createPromotion()">Create promotion</button>
-</form>
-
-<mat-table #table [dataSource]="promos" matSort class="mat-cell">
-    <ng-container matColumnDef="retailer">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Retailer</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="product">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.productIdCompany }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="startDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.dateStart | date:'dd/MM/yyyy' }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="endDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
-<mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No data</mat-toolbar>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No promos</mat-toolbar>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
+</div>

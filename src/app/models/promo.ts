@@ -1,6 +1,10 @@
+import { Guid } from "guid-typescript";
+
 export interface Promo {
+    promoId: Guid;
     creatorUsername: string;
     productIdCompany: string;
+    productName: string;
     dateStart: string | null;
     dateEnd: string | null;
     rebate: number;
@@ -15,4 +19,5 @@ export interface Promo {
     objectIdCompany: string;
     objectName: string;
     objectIdRetail: string;
+    totalCount: number;
 }

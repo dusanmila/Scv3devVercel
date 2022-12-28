@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import {  PROMO_URL } from '../app.constants';
+import { PROMO_URL } from '../app.constants';
 import { PromoEvaluator } from '../models/promoEvaluator';
 
 @Injectable({
@@ -19,6 +19,10 @@ export class PromoEvaluatorService {
       retval$.next(promoEvaluators);
     });
     return retval$.asObservable();
+  }
+
+  public checkIfUserEvaluator(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${PROMO_URL}/promoEvaluators/checkIfUserEvaluator/${username}`, { headers: this.headers });
   }
 
   public createPromoEvaluator(promoEvaluator: PromoEvaluator): Observable<PromoEvaluator> {
@@ -40,5 +44,5 @@ export class PromoEvaluatorService {
   public deletePromoEvaluator(promoEvaluatorName): Observable<any> {
     return this.http.delete<any>(`${PROMO_URL}/promoEvaluators/deleteByPromoEvaluatorName/${promoEvaluatorName}`, { headers: this.headers });
   }
-  
+
 }

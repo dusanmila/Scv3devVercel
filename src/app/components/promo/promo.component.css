@@ -14,3 +14,7 @@
     background-color: white;
     color: #56baed;
 }
+
+.mat-radio-button {
+    margin: 32px 16px;
+}
