@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   days2: string[];
 
   years: string[] = [
-    'All','2022', '2023', '2024', '2025', '2026'
+    'All', '2022', '2023', '2024', '2025', '2026'
   ];
 
   months: string[] = [
@@ -139,20 +139,17 @@ export class DashboardComponent implements OnInit {
   }
 
   setYear(value) {
-
-if(value==="All"){
-  this.selectedYear="";
-}else{
-  this.selectedYear=value;
-}
-
+    if (value === "All") {
+      this.selectedYear = "";
+    } else {
+      this.selectedYear = value;
+    }
     console.log(this.selectedYear);
     this.send();
   }
 
   setMonth(value) {
     this.selectedMonth = value;
-
     if (this.selectedMonth === 'April' || this.selectedMonth === 'June' || this.selectedMonth === 'September' || this.selectedMonth === 'November') {
       this.days2 = this.days30;
     } else if (this.selectedMonth === 'February') {
@@ -160,10 +157,8 @@ if(value==="All"){
     } else {
       this.days2 = this.days31;
     }
-
     console.log(this.selectedMonth)
     this.send();
-
   }
 
   setDay(value) {
@@ -212,7 +207,7 @@ if(value==="All"){
       this.first = false;
     }
 
-    else if (this.selectedUser != "" && this.first ) {
+    else if (this.selectedUser != "" && this.first) {
       this.selectQuery = this.selectQuery + "where ";
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + "where ";
       this.selectProductCategoryQuery = this.selectProductCategoryQuery + "where ";
@@ -226,7 +221,7 @@ if(value==="All"){
     }
 
 
-    if (this.selectedYear != "" && !this.first ) {
+    if (this.selectedYear != "" && !this.first) {
 
       this.selectQuery = this.selectQuery + " and ";
       this.selectFeedbackCategoryQuery = this.selectFeedbackCategoryQuery + " and ";
@@ -353,7 +348,7 @@ if(value==="All"){
       console.log("number" + data);
     });
 
-   
+
 
     this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
       console.log("product" + data);
