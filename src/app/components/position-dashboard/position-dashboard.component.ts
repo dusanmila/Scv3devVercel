@@ -20,7 +20,7 @@ export class PositionDashboardComponent implements OnInit {
   ObjectQuery: string = " inner join [object] o on (sp.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 
   RetilerQuery: string = " inner join [object] o on (sp.ObjectIdCompany=o.ObjectIdCompany)"
-  + " inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
+    + " inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
 
   selectedUser: string = "";
   selectedObject: string = "";
@@ -35,10 +35,12 @@ export class PositionDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.send();
   }
-  
+
   selectRetailer(retailer: string) {
     if (this.selectedObject)
+    {
       this.selectedObject = '';
+    }
     this.selectedRetailer = retailer;
     console.log(this.selectedRetailer);
     this.send();
@@ -52,38 +54,32 @@ export class PositionDashboardComponent implements OnInit {
 
   selectObject(object: string) {
     if (this.selectedRetailer)
+    {
       this.selectedRetailer = '';
+    }
     this.selectedObject = object;
     console.log(this.selectedObject);
     this.send();
   }
-  
-  public queryUpdate() {
 
+  public queryUpdate() {
 
     if (this.selectedObject != "") {
 
       this.selectQuery = this.selectQuery + this.ObjectQuery + this.selectedObject + "'";
-
       this.selectPositionClassQuery = this.selectPositionClassQuery + this.ObjectQuery + this.selectedObject + "'";
-
       this.selectPositionTypeQuery = this.selectPositionTypeQuery + this.ObjectQuery + this.selectedObject + "'";
-
     }
 
 
     if (this.selectedRetailer != "") {
 
       this.selectQuery = this.selectQuery + this.RetilerQuery + this.selectedRetailer + "'";
-
       this.selectPositionClassQuery = this.selectPositionClassQuery + this.RetilerQuery + this.selectedRetailer + "'";
-
       this.selectPositionTypeQuery = this.selectPositionTypeQuery + this.RetilerQuery + this.selectedRetailer + "'";
-
     }
   }
 
-    
   public send() {
 
     this.selectQuery = "select count(SecondaryPositionId) as Count from SecondaryPosition sp ";
@@ -95,18 +91,13 @@ export class PositionDashboardComponent implements OnInit {
       "from PositionClass pc inner join SecondaryPosition sp on (pc.PositionClassId=sp.PositionClassId) "
 
     this.queryUpdate();
-
-
-
     this.selectPositionClassQuery = this.selectPositionClassQuery + " group by PositionTypeName";
-
     this.selectPositionTypeQuery = this.selectPositionTypeQuery + " group by PositionClassName";
 
     this.statisticsService.getCountListByQuerry(this.selectPositionClassQuery).subscribe(data => {
       console.log(data);
       this.positionClassResult = data;
     });
-
 
     this.statisticsService.getCountListByQuerry(this.selectPositionTypeQuery).subscribe(data => {
       console.log("type" + data);
