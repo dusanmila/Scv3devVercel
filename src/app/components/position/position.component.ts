@@ -22,8 +22,8 @@ export class PositionComponent implements OnInit {
 isExporting=false;
 
   position: Position = {
-    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "",comment: "", img: "", isImgHorizontal: false, valid: false,
-    productCategory: '',
+    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "",comment: "", img: "", img2: "", img3: "", isImgHorizontal: false, isImg2Horizontal: false, isImg3Horizontal: false, valid: false,
+  //  productCategory: '',
     supplier: '',
     location: ''
   };
@@ -103,7 +103,7 @@ isExporting=false;
 
   }*/
 
-  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, comment?: string, img?: string, isImgHorizontal?: boolean) {
+  public openDialog(flag: number, secondaryPositionId?: number, objectName?: string, posClassName?: string, posTypeName?: string, valid?: boolean, productCategory?: string, supplier?: string, location?: string, comment?: string, img?: string,img2?: string,img3?: string, isImgHorizontal?: boolean, isImg2Horizontal?: boolean, isImg3Horizontal?: boolean) {
 
     if(comment=="undefined"){
       comment="";
@@ -125,7 +125,10 @@ isExporting=false;
       location="";
     }
 
-    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location, comment,img, isImgHorizontal } });
+console.log('img2 u comp ' + img2)
+
+    const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location, comment,img,img2,img3, isImgHorizontal, isImg2Horizontal, isImg3Horizontal } });
+   
     dialogRef.componentInstance.flag = flag;
     dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;
     dialogRef.afterClosed()

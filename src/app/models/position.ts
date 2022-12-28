@@ -5,11 +5,15 @@ export interface Position {
     objectIdCompany: string;
     posClassName: string;
     posTypeName: string;
-    productCategory: string;
+  //  productCategory: string;
     supplier: string;
     location: string;
     comment:string;
     img:string;
+    img2:string;
+    img3:string;
     isImgHorizontal:boolean;
+    isImg2Horizontal:boolean;
+    isImg3Horizontal:boolean;
     valid: boolean;
 }
