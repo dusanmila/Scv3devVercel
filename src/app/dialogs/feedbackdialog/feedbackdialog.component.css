@@ -30,11 +30,8 @@
 }
 
 .item2-delete {
-  background-color: white;
   color: #ff0000;
-  margin-bottom: 4%;
   border: 2px solid #ff0000;
-  margin-left: 10px;
 }
 
 button:hover {
@@ -79,18 +76,18 @@ button {
   transform: rotate(270deg);
 }
 
-.horizontal{
+.horizontal {
   height: 200px;
-  width:250px;
+  width: 250px;
 }
 
-.vertical{
+.vertical {
   height: 250px;
-  width:200px;
+  width: 200px;
 }
 
-.marginbottom{
- margin-bottom:10%;
+.marginbottom {
+  margin-bottom: 10%;
 }
 
 .mat-button {

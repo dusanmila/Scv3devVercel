@@ -21,13 +21,14 @@
                 (click)="add()">Add</button>
             <button class="test" mat-button type="submit" *ngIf="flag == 2" [disabled]="!data.productCategoryName"
                 (click)="update()">Ok</button>
-            <button class="test" mat-button type="submit" *ngIf="flag==3" (click)="delete()">Delete</button>
+            <button class="test item2-delete" mat-button type="submit" *ngIf="flag==3"
+                (click)="delete()">Delete</button>
             <button class="test" mat-button (click)="close()">Cancel</button>
             <div *ngIf="isLoading"
-            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
-            </mat-progress-spinner>
-          </div>
+                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+                </mat-progress-spinner>
+            </div>
         </div>
         <br>
         <br>

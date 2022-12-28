@@ -16,26 +16,31 @@
   flex-grow: 1;
 }
 
-.test{
-    background-color: white;
-    color: #39ace7;
-    margin-top: -13%;
-    border: 2px solid #39ace7;
+.test {
+  background-color: white;
+  color: #39ace7;
+  margin-top: -13%;
+  border: 2px solid #39ace7;
+}
 
-  }
+.item2-delete {
+  color: #ff0000;
+  border: 2px solid #ff0000;
+}
 
-h3{
-    color: #39ace7;
+h3 {
+  color: #39ace7;
 }
 
 
-  button:hover {
-    color: #fff;
-    background-color: #39ace7;
-    transition: 0.3s;
+button:hover {
+  color: #fff;
+  background-color: #39ace7;
+  transition: 0.3s;
 }
+
 button[disabled]:hover {
-   background-color: #fff;
+  background-color: #fff;
 }
 
 .wrap {

@@ -7,8 +7,7 @@
 
     <div class="form" *ngIf="flag == 1 || flag == 4">
       <mat-form-field>
-        <mat-select [(ngModel)]="positionDto.posTypeName" placeholder="Type" name="posClassType"
-          required="flag == 1">
+        <mat-select [(ngModel)]="positionDto.posTypeName" placeholder="Type" name="posClassType" required="flag == 1">
           <mat-option *ngFor="let type of positionTypes" [value]="type.positionTypeName">
             {{ type.positionTypeName }}
           </mat-option>
@@ -24,9 +23,9 @@
 
     <div class="form">
       <mat-form-field>
-        <textarea  matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-        cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="positionDto.comment" name="comment"
-          [disabled]=" flag==2||flag==3" > </textarea>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="positionDto.comment" name="comment"
+          [disabled]=" flag==2||flag==3"> </textarea>
       </mat-form-field>
     </div>
 
@@ -59,22 +58,23 @@
     </div>-->
 
     <div class="form" *ngIf="flag==1 || flag==4">
-    <mat-form-field>
-      <mat-label>Product categories</mat-label>
-      <mat-select [(value)]="selectedProductCategories" multiple>
-        <mat-option *ngFor="let productCategory of productCategories" [value]="productCategory">{{productCategory.productCategoryName}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+      <mat-form-field>
+        <mat-label>Product categories</mat-label>
+        <mat-select [(value)]="selectedProductCategories" multiple>
+          <mat-option *ngFor="let productCategory of productCategories"
+            [value]="productCategory">{{productCategory.productCategoryName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-  <div class="form" *ngIf="flag==2 || flag == 3">
-    <mat-form-field>
-      <mat-label>Product categories</mat-label>
-      <input matInput [value]="currentProdCatString" name="currentProdCatString" [disabled]="true" />
-    </mat-form-field>
-  </div>
+    <div class="form" *ngIf="flag==2 || flag == 3">
+      <mat-form-field>
+        <mat-label>Product categories</mat-label>
+        <input matInput [value]="currentProdCatString" name="currentProdCatString" [disabled]="true" />
+      </mat-form-field>
+    </div>
 
-  <!--  <div class="form" *ngIf="flag == 2 || flag == 3">
+    <!--  <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
         <mat-label>Product category</mat-label>
         <input matInput [(ngModel)]="positionDto.productCategory" name="productCategory" [disabled]="true" />
@@ -113,7 +113,7 @@
       </mat-form-field>
     </div>
 
-<!-- UPLOAD PRVE SLIKE PRILIKOM DODAVANJA NOVE POZ  -->
+    <!-- UPLOAD PRVE SLIKE PRILIKOM DODAVANJA NOVE POZ  -->
 
     <div *ngIf="!data.img">
       <form [formGroup]="form" (ngSubmit)="submitFormCreate()" *ngIf="!imageUploaded">
@@ -134,11 +134,11 @@
       </div>
     </div>
 
-<!-- UPLOAD DRUGE SLIKE PRILIKOM DODAVANJA NOVE POZ  -->
+    <!-- UPLOAD DRUGE SLIKE PRILIKOM DODAVANJA NOVE POZ  -->
     <div *ngIf="imageUploaded && !data.img2">
       <form [formGroup]="form" (ngSubmit)="submitFormCreate()" *ngIf="!imageUploaded2">
-        <input type="file" id="inputFile" (change)="uploadFile($event,2)" accept="image/*" fromControlName="file2" hidden
-          capture="camera" />
+        <input type="file" id="inputFile" (change)="uploadFile($event,2)" accept="image/*" fromControlName="file2"
+          hidden capture="camera" />
 
         <div class="photo-input">
           <!-- <p style="margin-bottom:5% " *ngIf="flag!=2 && flag !=3">Click to add photo:</p> -->
@@ -157,8 +157,8 @@
     <!-- UPLOAD TRECE SLIKE PRILIKOM DODAVANJA NOVE POZ  -->
     <div *ngIf="imageUploaded && imageUploaded2 && !data.img3">
       <form [formGroup]="form" (ngSubmit)="submitFormCreate()" *ngIf="!imageUploaded3">
-        <input type="file" id="inputFile" (change)="uploadFile($event,3)" accept="image/*" fromControlName="file3" hidden
-          capture="camera" />
+        <input type="file" id="inputFile" (change)="uploadFile($event,3)" accept="image/*" fromControlName="file3"
+          hidden capture="camera" />
 
         <div class="photo-input">
           <!-- <p style="margin-bottom:5% " *ngIf="flag!=2 && flag !=3">Click to add photo:</p> -->
@@ -174,7 +174,7 @@
       </div>
     </div>
 
-<!-- PRIKAZ PRVE SLIKE  -->
+    <!-- PRIKAZ PRVE SLIKE  -->
 
 
     <div *ngIf="data.img || flag==4">
@@ -185,86 +185,86 @@
       </div>
       <br>
 
-        <!-- UPDATE PRVE SLIKE  -->
-        <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="data.img" style="margin-top: 10px;">
-          <input type="file" id="inputFile" (change)="uploadFile($event,1)" accept="image/*" fromControlName="file" hidden
-            capture="camera" />
-  
-          <div class="photo-input">
-            <label *ngIf="(data.img && data.img != 'undefined') && flag !=2 && flag != 3">Update
-              photo 1:</label>
-            <label *ngIf="(!data.img || data.img == 'undefined') && flag !=2 && flag != 3">Take
-              photo:</label>
-            <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
-              <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
-          </div>
-        </form>
-        <div *ngIf="imageUploaded">
-          <p>Photo 1 is uploaded.</p>
+      <!-- UPDATE PRVE SLIKE  -->
+      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="data.img" style="margin-top: 10px;">
+        <input type="file" id="inputFile" (change)="uploadFile($event,1)" accept="image/*" fromControlName="file" hidden
+          capture="camera" />
+
+        <div class="photo-input">
+          <label *ngIf="(data.img && data.img != 'undefined') && flag !=2 && flag != 3">Update
+            photo 1:</label>
+          <label *ngIf="(!data.img || data.img == 'undefined') && flag !=2 && flag != 3">Take
+            photo:</label>
+          <label for="inputFile" class="browseFile" *ngIf="flag!=2 && flag != 3">
+            <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
         </div>
+      </form>
+      <div *ngIf="imageUploaded">
+        <p>Photo 1 is uploaded.</p>
+      </div>
 
-<!-- PRIKAZ DRUGE SLIKE  -->
+      <!-- PRIKAZ DRUGE SLIKE  -->
 
 
 
-  <div class="form pos-img" *ngIf="data.img2 != 'undefined' && data.img2">
-    <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
+      <div class="form pos-img" *ngIf="data.img2 != 'undefined' && data.img2">
+        <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
         data.img2
       }}" alt="Position photo 2" width="200" height="200" id="posphoto2" />
-  </div>
-  <br>
-<!-- UPDATE DRUGE SLIKE  -->
-<form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="data.img2" style="margin-top: 10px;">
-  <input type="file" id="inputFile2" (change)="uploadFile($event,2)" accept="image/*" fromControlName="file2" hidden
-    capture="camera" />
+      </div>
+      <br>
+      <!-- UPDATE DRUGE SLIKE  -->
+      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="data.img2" style="margin-top: 10px;">
+        <input type="file" id="inputFile2" (change)="uploadFile($event,2)" accept="image/*" fromControlName="file2"
+          hidden capture="camera" />
 
-  <div class="photo-input">
-    <label *ngIf="(data.img2 && data.img2 != 'undefined') && flag !=2 && flag != 3">Update
-      photo 2:</label>
-    <label *ngIf="(!data.img2 || data.img2 == 'undefined') && flag !=2 && flag != 3">Take
-      photo:</label>
-    <label for="inputFile2" class="browseFile" *ngIf="flag!=2 && flag != 3">
-      <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
-  </div>
-</form>
-<div *ngIf="imageUploaded2">
-  <p>Photo 2 is uploaded.</p>
-</div>
+        <div class="photo-input">
+          <label *ngIf="(data.img2 && data.img2 != 'undefined') && flag !=2 && flag != 3">Update
+            photo 2:</label>
+          <label *ngIf="(!data.img2 || data.img2 == 'undefined') && flag !=2 && flag != 3">Take
+            photo:</label>
+          <label for="inputFile2" class="browseFile" *ngIf="flag!=2 && flag != 3">
+            <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
+        </div>
+      </form>
+      <div *ngIf="imageUploaded2">
+        <p>Photo 2 is uploaded.</p>
+      </div>
 
-  <!-- PRIKAZ TRECE SLIKE  -->
+      <!-- PRIKAZ TRECE SLIKE  -->
 
 
-  
-    <div class="form pos-img" *ngIf="data.img3 && data.img3 != 'undefined'">
-      <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
+
+      <div class="form pos-img" *ngIf="data.img3 && data.img3 != 'undefined'">
+        <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{
           data.img3
         }}" alt="Position photo 3" width="200" height="200" id="posphoto3" />
-    </div>
-    <br>
-  <!-- UPDATE TRECE SLIKE  -->
-  <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="data.img3" style="margin-top: 10px;">
-    <input type="file" id="inputFile3" (change)="uploadFile($event,1)" accept="image/*" fromControlName="file3" hidden
-      capture="camera" />
+      </div>
+      <br>
+      <!-- UPDATE TRECE SLIKE  -->
+      <form [formGroup]="form" (ngSubmit)="submitFormUpdate()" *ngIf="data.img3" style="margin-top: 10px;">
+        <input type="file" id="inputFile3" (change)="uploadFile($event,1)" accept="image/*" fromControlName="file3"
+          hidden capture="camera" />
 
-    <div class="photo-input">
-      <label *ngIf="(data.img3 && data.img3 != 'undefined') && flag !=2 && flag != 3">Update
-        photo 3:</label>
-      <label *ngIf="(!data.img3 || data.img3 == 'undefined') && flag !=2 && flag != 3">Take
-        photo:</label>
-      <label for="inputFile3" class="browseFile" *ngIf="flag!=2 && flag != 3">
-        <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
-    </div>
-  </form>
-  <div *ngIf="imageUploaded3">
-    <p>Photo 3 is uploaded.</p>
-  </div>
-    
+        <div class="photo-input">
+          <label *ngIf="(data.img3 && data.img3 != 'undefined') && flag !=2 && flag != 3">Update
+            photo 3:</label>
+          <label *ngIf="(!data.img3 || data.img3 == 'undefined') && flag !=2 && flag != 3">Take
+            photo:</label>
+          <label for="inputFile3" class="browseFile" *ngIf="flag!=2 && flag != 3">
+            <img src="assets\photoicon.png" alt="PhotoIcon" /></label>
+        </div>
+      </form>
+      <div *ngIf="imageUploaded3">
+        <p>Photo 3 is uploaded.</p>
+      </div>
 
-      
-      
 
-      
-    
+
+
+
+
+
     </div>
     <div mat-dialog-actions>
       <button class="item2" mat-button *ngIf="flag == 1" type="submit" (click)="submitFormCreate()"
@@ -275,7 +275,7 @@
         (click)="submitFormUpdate()">
         Ok
       </button>
-      <button mat-button color="warn" class="item2red" *ngIf="flag == 2" type="submit" (click)="delete()">
+      <button mat-button color="warn" class="item2 item2-delete" *ngIf="flag == 2" type="submit" (click)="delete()">
         Delete
       </button>
       <button mat-button class="item2" (click)="close()">Cancel</button>

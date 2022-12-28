@@ -123,7 +123,8 @@
             <button mat-button class="test" *ngIf="flag === 1" type="submit" (click)="add()"
                 [disabled]="!formControl.valid">Ok</button>
             <button mat-button class="test" *ngIf="flag === 2" type="submit" (click)="confirmPromo()">Ok</button>
-            <button mat-button class="test" *ngIf="flag === 3" type="submit" (click)="delete()">Delete</button>
+            <button mat-button class="test item2-delete" *ngIf="flag === 3" type="submit"
+                (click)="delete()">Delete</button>
             <button mat-button class="test" *ngIf="flag === 4" type="submit" (click)="update()"
                 [disabled]="!formControl.valid">Ok</button>
             <button mat-button class="test" (click)="close()">Cancel</button>
