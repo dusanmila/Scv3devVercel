@@ -17,9 +17,9 @@ export class PositionDashboardComponent implements OnInit {
   selectPositionTypeQuery: string;
   selectProductCategoryQuery: string;
 
-  ObjectQuery: string = " inner join [object] o on (sp.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
+  ObjectQuery: string = " inner join [object] o on (sp.[ObjectId]=o.[ObjectId]) where objectname='";
 
-  RetilerQuery: string = " inner join [object] o on (sp.ObjectIdCompany=o.ObjectIdCompany)"
+  RetilerQuery: string = " inner join [object] o on (sp.[ObjectId]=o.[ObjectId])"
     + " inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
 
   selectedObject: string = "";
@@ -55,6 +55,8 @@ export class PositionDashboardComponent implements OnInit {
     console.log(this.selectedObject);
     this.send();
   }
+
+  public queryUpdate() {
 
   public queryUpdate() {
 
