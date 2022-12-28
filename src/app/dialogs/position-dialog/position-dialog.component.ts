@@ -28,11 +28,19 @@ export class PositionDialogComponent implements OnInit {
   public changed: boolean = false;
   public submitClicked: boolean = false;
   public imageUploaded: boolean = false;
+  public imageUploaded2: boolean = false;
+  public imageUploaded3: boolean = false;
   public isLoading: boolean = false;
-  public secPos = { secondaryPositionId: "", objectIdCompany: "", posClassName: "", posTypeName: "", productCategory: "", supplier: "", location: "", comment: "", img: "", isImgHorizontal: false, valid: false };
+  //public secPos = { secondaryPositionId: "", objectIdCompany: "", posClassName: "", posTypeName: "", productCategory: "", supplier: "", location: "", comment: "", img: "", isImgHorizontal: false, valid: false };
   public suppliers = ['Frikom', 'Other'];
   public locations = ['Magacin', 'Prodajni prostor'];
   isRotated = false;
+  isRotated2 = false;
+  isRotated3 = false;
+
+  img1Changed=false;
+  img2Changed=false;
+  img3Changed=false;
 
   public selectedProductCategories:ProductCategory[]=[];
   public positionProductCategory:PositionProductCategory={positionProductCategoryId:"",positionId:"",productCategoryId:""};
@@ -47,12 +55,16 @@ public secPosId: Guid = Guid.create();
     objectIdCompany: "",
     posClassName: "",
     posTypeName: "",
-    productCategory: "",
+  //  productCategory: "",
     supplier: "",
     location: "",
     comment: "",
     img: "",
+    img2: "",
+    img3: "",
     isImgHorizontal: false,
+    isImg2Horizontal: false,
+    isImg3Horizontal: false,
     valid: false
   };
 
@@ -66,20 +78,26 @@ public secPosId: Guid = Guid.create();
      public fb: FormBuilder) {
     this.form = this.fb.group({
       file: [null],
+      file2: [null],
+      file3: [null],
       img: ['']
     });
   }
 
   ngOnInit(): void {
-
+console.log(this.flag)
     this.positionDto = this.data;
-
-    console.log(this.positionDto)
 
     this.loadPositionClasses();
     this.loadPositionTypes();
     this.loadProductCategories();
-    this.loadCurrentProdCat();
+
+    if(this.flag!=1){
+      this.loadCurrentProdCat();
+    }
+   
+
+
   }
 
   public loadPositionClasses() {
@@ -160,7 +178,7 @@ console.log(this.currentProdCategories)
     this.positionDto.posClassName = this.data.posClassName;
     this.positionDto.posTypeName = this.data.posTypeName;
     this.positionDto.supplier = this.data.supplier;
-    this.positionDto.productCategory = this.data.productCategory;
+ //   this.positionDto.productCategory = this.data.productCategory;
 
     this.positionService.updatePosition(this.positionDto)
       .subscribe(() => {
@@ -177,13 +195,32 @@ console.log(this.currentProdCategories)
       }
   }
 
-  uploadFile(event: any) {
-    const file = (event.target as HTMLInputElement).files![0];
-    this.form.patchValue({
-      file: file,
-    });
-    this.form.get('file')!.updateValueAndValidity();
-    this.imageUploaded = true;
+  uploadFile(event: any,imgNumber:number) {
+   console.log(imgNumber)
+    if(imgNumber==1){
+      const file = (event.target as HTMLInputElement).files![0];
+      this.form.patchValue({
+        file: file
+      });
+      this.form.get('file')!.updateValueAndValidity();
+      this.imageUploaded = true;
+    }else if(imgNumber==2){
+      const file2 = (event.target as HTMLInputElement).files![0];
+      this.form.patchValue({
+        file2: file2
+      });
+      this.form.get('file2')!.updateValueAndValidity();
+      this.imageUploaded2=true;
+    }else if(imgNumber==3){
+      const file3= (event.target as HTMLInputElement).files![0];
+      this.form.patchValue({
+        file3: file3
+      });
+      this.form.get('file3')!.updateValueAndValidity();
+      this.imageUploaded3=true;
+    
+    }
+
   }
 
   
@@ -198,12 +235,21 @@ console.log(this.selectedProductCategories)
     this.isLoading = true;
     let username = localStorage.getItem("username") as string;
     const formData: any = new FormData();
-    formData.append('file', this.form.get('file')!.value);
+    formData.append('files', this.form.get('file')!.value);
+    console.log(this.form.get('file')!.value)
+    if(this.imageUploaded2){
+      formData.append('files', this.form.get('file2')!.value);
+      console.log(this.form.get('file2')!.value)
+    }
+    if(this.imageUploaded3){
+      formData.append('files', this.form.get('file3')!.value);
+    }
+    
     formData.append('secondaryPositionId', this.secPosId);
     formData.append('objectIdCompany', this.objectIdCompany);
     formData.append('posClassName', this.positionDto.posClassName);
     formData.append('posTypeName', this.positionDto.posTypeName);
-    formData.append('productCategory', this.positionDto.productCategory);
+ //   formData.append('productCategory', this.positionDto.productCategory);
     formData.append('supplier', this.positionDto.supplier);
     formData.append('location', this.positionDto.location);
     formData.append('comment', this.positionDto.comment);
@@ -242,17 +288,33 @@ console.log(this.selectedProductCategories)
 
 
   submitFormUpdate() {
+console.log(this.imageUploaded)
+console.log(this.imageUploaded2)
+console.log(this.imageUploaded3)
+
     this.submitClicked = true;
 
     this.isLoading = true;
     let username = localStorage.getItem("username") as string;
     const formData: any = new FormData();
-    formData.append('file', this.form.get('file')!.value);
+    if(this.imageUploaded){
+      formData.append('files', this.form.get('file')!.value);
+      this.img1Changed=true;
+    }
+    console.log(this.form.get('file')!.value)
+    if(this.imageUploaded2){
+      formData.append('files', this.form.get('file2')!.value);
+      this.img2Changed=true;
+    }
+    if(this.imageUploaded3){
+      formData.append('files', this.form.get('file3')!.value);
+      this.img3Changed=true;
+    }
     formData.append('secondaryPositionId', this.positionDto.secondaryPositionId);
     formData.append('objectIdCompany', this.objectIdCompany);
     formData.append('posClassName', this.positionDto.posClassName);
     formData.append('posTypeName', this.positionDto.posTypeName);
-    formData.append('productCategory', this.positionDto.productCategory);
+ //   formData.append('productCategory', this.positionDto.productCategory);
     formData.append('supplier', this.positionDto.supplier);
     formData.append('location', this.positionDto.location);
     formData.append('comment', this.positionDto.comment);
@@ -260,15 +322,18 @@ console.log(this.selectedProductCategories)
       formData.append('img', this.positionDto.img);
     }
     formData.append('isValid', this.positionDto.valid);
+    formData.append('img1Changed', this.img1Changed);
+    formData.append('img2Changed', this.img2Changed);
+    formData.append('img3Changed', this.img3Changed);
 
     this.positionService.updatePosition(formData).subscribe(data => {
       console.log(this.selectedProductCategories)
       for (var cat of this.selectedProductCategories) {
-if(this.flag==1){
-  this.positionProductCategory.positionId=this.secPosId.toString();
-}else{
-this.positionProductCategory.positionId=this.data.secondaryPositionId.toString();
-}
+      if(this.flag==1){
+        this.positionProductCategory.positionId=this.secPosId.toString();
+      }else{
+      this.positionProductCategory.positionId=this.data.secondaryPositionId.toString();
+      }
         
         this.positionProductCategory.productCategoryId=cat.productCategoryId.toString();
       console.log(this.positionProductCategory)
@@ -301,6 +366,14 @@ this.positionProductCategory.positionId=this.data.secondaryPositionId.toString()
     if (this.positionDto.img) {
       this.adjustImage();
     }
+    
+    if (this.positionDto.img2) {
+      this.adjustImage();
+    }
+    
+    if (this.positionDto.img3) {
+      this.adjustImage();
+    }
 
 
   }
@@ -310,6 +383,10 @@ this.positionProductCategory.positionId=this.data.secondaryPositionId.toString()
 
 
     const img = document.getElementById('posphoto') as HTMLImageElement;
+
+    const img2 = document.getElementById('posphoto2') as HTMLImageElement;
+
+    const img3 = document.getElementById('posphoto3') as HTMLImageElement;
 
     window.exifr.parse(img!).then((exif) => {
 
@@ -351,6 +428,93 @@ this.positionProductCategory.positionId=this.data.secondaryPositionId.toString()
       }
 
     })
+
+    if(img2!=null){
+      window.exifr.parse(img2!).then((exif) => {
+
+        if (exif && exif.Orientation == 6) {
+          this.isRotated2 = true;
+        }
+  
+        if (this.isRotated2) {
+  
+          if (this.data.isImg2Horizontal == true) {
+  
+            img2.setAttribute('height', '250');
+            img2.setAttribute('width', '180');
+  
+          } else {
+  
+            img2.setAttribute('height', '200');
+            img2.setAttribute('width', '250');
+  
+          }
+        } else {
+  
+          if (this.data.isImg2Horizontal == true) {
+  
+            img2.setAttribute('height', '180');
+            img2.setAttribute('width', '250');
+  
+          } else {
+  
+            img2.setAttribute('height', '250');
+            img2.setAttribute('width', '200');
+  
+  
+          }
+        }
+  
+        if (this.isRotated2) {
+          img.setAttribute('class', 'rotate');
+        }
+  
+      })
+    }
+
+    if(img3!=null){
+      window.exifr.parse(img3!).then((exif) => {
+
+        if (exif && exif.Orientation == 6) {
+          this.isRotated3 = true;
+        }
+  
+        if (this.isRotated3) {
+  
+          if (this.data.isImg3Horizontal == true) {
+  
+            img3.setAttribute('height', '250');
+            img3.setAttribute('width', '180');
+  
+          } else {
+  
+            img3.setAttribute('height', '200');
+            img3.setAttribute('width', '250');
+  
+          }
+        } else {
+  
+          if (this.data.isImg3Horizontal == true) {
+  
+            img3.setAttribute('height', '180');
+            img3.setAttribute('width', '250');
+  
+          } else {
+  
+            img3.setAttribute('height', '250');
+            img3.setAttribute('width', '200');
+  
+  
+          }
+        }
+  
+        if (this.isRotated3) {
+          img3.setAttribute('class', 'rotate');
+        }
+  
+      })
+    }
+
 
   }
 
