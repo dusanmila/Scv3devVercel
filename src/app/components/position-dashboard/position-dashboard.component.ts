@@ -37,8 +37,7 @@ export class PositionDashboardComponent implements OnInit {
   }
 
   selectRetailer(retailer: string) {
-    if (this.selectedObject)
-    {
+    if (this.selectedObject) {
       this.selectedObject = '';
     }
     this.selectedRetailer = retailer;
@@ -53,16 +52,13 @@ export class PositionDashboardComponent implements OnInit {
   }
 
   selectObject(object: string) {
-    if (this.selectedRetailer)
-    {
+    if (this.selectedRetailer) {
       this.selectedRetailer = '';
     }
     this.selectedObject = object;
     console.log(this.selectedObject);
     this.send();
   }
-
-  public queryUpdate() {
 
   public queryUpdate() {
 
