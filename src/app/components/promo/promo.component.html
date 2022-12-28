@@ -41,7 +41,8 @@
                     (click)="openDialog(3, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
                     <mat-icon area-label="Delete">delete</mat-icon>
                 </button>
-                <button mat-icon-button color="primary" *ngIf="!row.resultSale"
+                <button mat-icon-button color="primary"
+                    *ngIf="type === 'FINISHED' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                     (click)="openDialog(4, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
                     <mat-icon area-label="Edit">edit</mat-icon>
                 </button>

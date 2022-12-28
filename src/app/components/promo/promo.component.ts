@@ -50,7 +50,6 @@ export class PromoComponent implements OnInit {
       this.page = 1;
     let username = localStorage.getItem("username") as string;
     this.promoService.getPromos(this.count, this.page, this.type, username).subscribe(data => {
-      console.log(data);
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
@@ -103,6 +102,14 @@ export class PromoComponent implements OnInit {
         this.getPromos(false);
       }
     });
+  }
+
+  calculateDiff(endDate) {
+    let currentDate = new Date();
+    endDate = new Date(endDate);
+    let result = Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())) / (1000 * 60 * 60 * 24));
+    console.log(result)
+    return result;
   }
 
 }
