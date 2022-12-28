@@ -40,7 +40,7 @@ export class PromoComponent implements OnInit {
   ngOnInit(): void {
     this.checkIfUserEvaluator();
     this.getPromos(false);
-    if (this.type === "MY_CONFIRMATION") {
+    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION") {
       this.displayedColumns.push('actions');
     }
   }
@@ -77,10 +77,11 @@ export class PromoComponent implements OnInit {
 
   changeType(event) {
     this.type = event.value;
-    if (this.type === "MY_CONFIRMATION") {
-      this.displayedColumns.push('actions');
+    let index = this.displayedColumns.indexOf('actions');
+    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION") {
+      if (index < 0)
+        this.displayedColumns.push('actions');
     } else {
-      let index = this.displayedColumns.indexOf('actions');
       if (index >= 0)
         this.displayedColumns.splice(index, 1);
     }
