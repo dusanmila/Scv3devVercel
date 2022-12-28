@@ -1,1 +1,17 @@
-<p>position-dashboard works!</p>
+<div class="filter-section">
+    <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
+        selectedUser }} <mat-icon>close</mat-icon></button>
+    <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
+        selectedRetailer }} <mat-icon>close</mat-icon></button>
+    <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
+        selectedObject }} <mat-icon>close</mat-icon></button>
+</div>
+
+<div class="table-section">
+    <div class="table-section-item">
+        <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+    </div>
+    <div class="table-section-item">
+        <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
+    </div>
+</div>
