@@ -20,8 +20,30 @@ export class PositionDashboardComponent implements OnInit {
   ObjectQuery: string = " inner join [object] o on (sp.ObjectIdCompany=o.ObjectIdCompany) where objectname='";
 
   RetilerQuery: string = " inner join [object] o on (sp.ObjectIdCompany=o.ObjectIdCompany)"
-  + " inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
+    + " inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
 
+  years: string[] = [
+    'All', '2022', '2023', '2024', '2025', '2026'
+  ];
+
+  months: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  days2: string[];
+
+  days31: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+
+  days30: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
+
+  days28: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28'];
+
+  selectedYear: string = "";
+  selectedDay: string = "";
+  selectedMonth: string = "";
   selectedUser: string = "";
   selectedObject: string = "";
   selectedRetailer: string = "";
@@ -35,7 +57,7 @@ export class PositionDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.send();
   }
-  
+
   selectRetailer(retailer: string) {
     if (this.selectedObject)
       this.selectedObject = '';
@@ -57,7 +79,35 @@ export class PositionDashboardComponent implements OnInit {
     console.log(this.selectedObject);
     this.send();
   }
-  
+
+  setYear(value) {
+    if (value === "All") {
+      this.selectedYear = "";
+    } else {
+      this.selectedYear = value;
+    }
+    console.log(this.selectedYear);
+    this.send();
+  }
+
+  setMonth(value) {
+    this.selectedMonth = value;
+    if (this.selectedMonth === 'April' || this.selectedMonth === 'June' || this.selectedMonth === 'September' || this.selectedMonth === 'November') {
+      this.days2 = this.days30;
+    } else if (this.selectedMonth === 'February') {
+      this.days2 = this.days28;
+    } else {
+      this.days2 = this.days31;
+    }
+    console.log(this.selectedMonth)
+    this.send();
+  }
+
+  setDay(value) {
+    this.selectedDay = value;
+    this.send();
+  }
+
   public queryUpdate() {
 
 
@@ -83,7 +133,7 @@ export class PositionDashboardComponent implements OnInit {
     }
   }
 
-    
+
   public send() {
 
     this.selectQuery = "select count(SecondaryPositionId) as Count from SecondaryPosition sp ";
