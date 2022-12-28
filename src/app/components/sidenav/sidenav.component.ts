@@ -22,7 +22,9 @@ export class SidenavComponent implements OnInit {
   public changeTitle() {
     let url = this.router.url;
     if (url === '/admin/dashboard')
-      this.title = 'Dashboard';
+      this.title = 'Feedback statistics';
+    else if (url === '/admin/position-dashboard')
+      this.title = 'Position statistics';
     else if (url === '/admin/user')
       this.title = 'Users';
     else if (url === '/admin/object')
