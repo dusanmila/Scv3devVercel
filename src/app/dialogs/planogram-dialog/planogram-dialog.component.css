@@ -16,7 +16,7 @@
 }
 
 .wrap {
-  height: 70px;
+    height: 70px;
 }
 
 .email-input {
@@ -33,6 +33,11 @@
     margin-bottom: 4%;
     border: 2px solid #39ace7;
     margin-left: 10px;
+}
+
+.item2-delete {
+    color: #ff0000;
+    border: 2px solid #ff0000;
 }
 
 button:hover {
@@ -57,6 +62,7 @@ ul {
 button {
     outline: none;
 }
+
 ::ng-deep .mat-button-focus-overlay {
     display: none;
 }
@@ -70,9 +76,9 @@ button {
 
 
 .mat-button {
-  border-radius: 10px !important;
+    border-radius: 10px !important;
 }
 
 .mat-spinner-color::ng-deep circle {
     stroke: #56baed !important;
-  }
+}

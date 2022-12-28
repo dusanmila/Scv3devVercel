@@ -22,11 +22,9 @@
   border: 2px solid #39ace7;
 }
 
-.item2red {
-  background-color: red;
-  color: white;
-  margin-bottom: 4%;
-  border: 2px solid red;
+.item2-delete {
+  color: #ff0000;
+  border: 2px solid #ff0000;
 }
 
 

@@ -22,6 +22,10 @@
     border: 2px solid #39ace7;
 }
 
+.item2-delete {
+    color: #ff0000;
+    border: 2px solid #ff0000;
+}
 
 button:hover {
     color: #fff;
@@ -46,9 +50,9 @@ button {
 }
 
 .mat-button {
-  border-radius: 10px !important;
+    border-radius: 10px !important;
 }
 
 .mat-spinner-color::ng-deep circle {
     stroke: #56baed !important;
-  }
+}

@@ -24,6 +24,11 @@
 
 }
 
+.item2-delete {
+    color: #ff0000;
+    border: 2px solid #ff0000;
+}
+
 h3 {
     color: #39ace7;
 }
@@ -52,9 +57,9 @@ button {
 }
 
 .mat-button {
-  border-radius: 10px !important;
+    border-radius: 10px !important;
 }
 
 .mat-spinner-color::ng-deep circle {
     stroke: #56baed !important;
-  }
+}

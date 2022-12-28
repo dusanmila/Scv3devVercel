@@ -20,12 +20,18 @@
     margin-bottom: 10px;
 }
 
+.item2-delete {
+    color: #ff0000;
+    border: 2px solid #ff0000;
+}
+
 button:hover {
     color: #fff;
     background-color: #39ace7;
     transition: 0.3s;
 }
-.wrap{
+
+.wrap {
     height: 90px;
 }
 
@@ -37,14 +43,15 @@ button:hover {
 button {
     outline: none;
 }
+
 ::ng-deep .mat-button-focus-overlay {
     display: none;
 }
 
 .mat-button {
-  border-radius: 10px !important;
+    border-radius: 10px !important;
 }
 
 .mat-spinner-color::ng-deep circle {
     stroke: #56baed !important;
-  }
+}

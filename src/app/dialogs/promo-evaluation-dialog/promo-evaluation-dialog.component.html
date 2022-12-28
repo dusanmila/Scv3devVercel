@@ -4,14 +4,14 @@
     <h3 mat-dialog-title *ngIf="flag == 3">Delete promo evaluator</h3>
 
     <form class="mat-dialog-content" #formControl="ngForm" [formGroup]="myForm">
-        
 
-       
+
+
         <div class="form">
             <mat-form-field>
                 <input type="text" matInput placeholder="Select user from list" (input)="getUsers()"
                     [matAutocomplete]="auto" [(ngModel)]="data.username" name="username" list="this.SearchResults"
-                   required formControlName="username" />
+                    required formControlName="username" />
                 <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith"
                     (optionSelected)="changeUser($event)">
                     <mat-option *ngFor="let option of searchResults" [value]="option">
@@ -33,11 +33,11 @@
         <div class="form">
             <mat-form-field>
                 <input matInput id="rebate" name="rebate" formControlName="rebate" placeholder="Rabate %"
-                    [(ngModel)]="data.rebate" required /> 
+                    [(ngModel)]="data.rebate" required />
             </mat-form-field>
-            
+
         </div>
-       
+
 
         <div mat-dialog-actions>
             <div *ngIf="isLoading"
@@ -49,13 +49,14 @@
                 (click)="add()">Add</button>
             <button class="test" mat-button type="submit" *ngIf="flag == 2" [disabled]="!data.username"
                 (click)="update()">Ok</button>
-            <button class="test" mat-button type="submit" *ngIf="flag==3" (click)="delete()">Delete</button>
+            <button class="test item2-delete" mat-button type="submit" *ngIf="flag==3"
+                (click)="delete()">Delete</button>
             <button class="test" mat-button (click)="close()">Cancel</button>
             <div *ngIf="isLoading"
-            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
-            </mat-progress-spinner>
-          </div>
+                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+                </mat-progress-spinner>
+            </div>
         </div>
         <br>
         <br>
