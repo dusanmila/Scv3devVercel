@@ -1,8 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
+import { PromoDialogComponent } from 'src/app/dialogs/promo-dialog/promo-dialog.component';
 import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
 import { Retailer } from 'src/app/models/retailer';
@@ -18,22 +20,6 @@ import { PromoService } from 'src/app/Services/promo.service';
 })
 export class PromoComponent implements OnInit {
 
-  retailers: Retailer[];
-  selectedRetailer: Retailer;
-  products: Product[];
-  selectedProduct: Product;
-  startDate: string | null;
-  endDate: string | null;
-  rebate: number;
-  regularSale: number;
-  promoTypes: string[] = ['Type 1', 'Type 2'];
-  selectedPromoType: string;
-  adsCost: number;
-  promoSale: number;
-  promoCost: number;
-  price: number;
-  resultSale: number;
-  currentDate: Date = new Date();
   promos: Promo[];
   displayedColumns: string[] = ['retailer', 'product', 'startDate', 'endDate'];
   dataSource: MatTableDataSource<Promo>;
@@ -48,13 +34,12 @@ export class PromoComponent implements OnInit {
     public productService: ProductService,
     public promoService: PromoService,
     public datePipe: DatePipe,
-    public promoEvaluatorService: PromoEvaluatorService) { }
+    public promoEvaluatorService: PromoEvaluatorService,
+    public dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.checkIfUserEvaluator();
     this.getPromos(false);
-    this.getRetailers();
-    this.getProducts();
     if (this.type === "MY_CONFIRMATION") {
       this.displayedColumns.push('actions');
     }
@@ -66,7 +51,6 @@ export class PromoComponent implements OnInit {
     let username = localStorage.getItem("username") as string;
     this.promoService.getPromos(this.count, this.page, this.type, username).subscribe(data => {
       this.promos = data;
-      console.log(this.promos);
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
         this.noData = true;
@@ -91,70 +75,6 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  getRetailers() {
-    this.objectService.getRetailers(0, 0, '').subscribe(data => {
-      this.retailers = data;
-    });
-  }
-
-  getProducts() {
-    this.productService.getProducts(0, 0, '').subscribe(data => {
-      this.products = data;
-    });
-  }
-
-  selectRetailer(event) {
-    this.selectedRetailer = event.value;
-  }
-
-  selectProduct(event) {
-    this.selectedProduct = event.value;
-  }
-
-  selectStartDate(event) {
-    this.startDate = event.value;
-    this.startDate = this.datePipe.transform(this.startDate, 'yyyy-MM-dd');
-  }
-
-  selectEndDate(event) {
-    this.endDate = event.value;
-    this.endDate = this.datePipe.transform(this.endDate, 'yyyy-MM-dd');
-  }
-
-  selectPromoType(event) {
-    this.selectedPromoType = event.value;
-  }
-
-  createPromotion() {
-    let username = localStorage.getItem("username") as string;
-    let promo: Promo = {
-      promoId: Guid.createEmpty(),
-      creatorUsername: username,
-      productIdCompany: this.selectedProduct.productIdCompany,
-      productName: '',
-      dateStart: this.startDate,
-      dateEnd: this.endDate,
-      rebate: this.rebate,
-      regularSale: this.regularSale,
-      type: this.selectedPromoType,
-      adsCost: this.adsCost,
-      promoSale: this.promoSale,
-      promoCost: this.promoCost,
-      price: this.price,
-      resultSale: this.resultSale,
-      retailerName: this.selectedRetailer.retailerName,
-      objectIdCompany: '',
-      objectName: '',
-      objectIdRetail: '',
-      totalCount: 0
-    }
-    this.promoService.createPromo(promo).subscribe(data => {
-      if (data) {
-        this.getPromos(false);
-      }
-    });
-  }
-
   changeType(event) {
     this.type = event.value;
     if (this.type === "MY_CONFIRMATION") {
@@ -173,9 +93,13 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  deletePromo(promoId: Guid) {
-    this.promoService.deletePromo(promoId).subscribe(data => {
-      this.getPromos(false);
+  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, adsCost?: number, promoSale?: number, promoCost?: number, price?: number, resultSale?: number) {
+    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, adsCost, promoSale, promoCost, price, resultSale } });
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.getPromos(false);
+      }
     });
   }
 

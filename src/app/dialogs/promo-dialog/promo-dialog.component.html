@@ -1,0 +1,135 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag === 1">Add promotion</h3>
+    <h3 mat-dialog-title *ngIf="flag === 2">Confirm promotion</h3>
+    <h3 mat-dialog-title *ngIf="flag === 3">Delete promotion</h3>
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Retailer</mat-label>
+                <mat-select (selectionChange)="selectRetailer($event)" required name="retailer"
+                    [disabled]="flag === 2 || flag === 3" [value]="selectedRetailer">
+                    <mat-option *ngFor="let retailer of retailers" [value]="retailer">
+                        {{retailer.retailerName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Product</mat-label>
+                <mat-select (selectionChange)="selectProduct($event)" required name="product"
+                    [disabled]="flag === 2 || flag === 3" [value]="selectedProduct">
+                    <mat-option *ngFor="let product of products" [value]="product">
+                        {{product.productName}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose start date</mat-label>
+                <input matInput [matDatepicker]="startDatePicker" (dateInput)="selectStartDate($event)" readonly
+                    [min]="currentDate" [max]="data.dateEnd" required name="startDate" [value]="data.dateStart"
+                    [disabled]="flag === 2 || flag === 3">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose end date</mat-label>
+                <input matInput [matDatepicker]="endDatePicker" (dateInput)="selectEndDate($event)" readonly
+                    [min]="data.dateStart ? data.dateStart : currentDate" required name="endDate" [value]="data.dateEnd"
+                    [disabled]="flag === 2 || flag === 3">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Rebate</mat-label>
+                <input type="number" matInput [(ngModel)]="data.rebate" required name="rebate"
+                    [disabled]="flag === 2 || flag === 3">
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Regular sale</mat-label>
+                <input type="number" matInput [(ngModel)]="data.regularSale" required name="regularSale"
+                    [disabled]="flag === 2 || flag === 3">
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Type</mat-label>
+                <mat-select (selectionChange)="selectPromoType($event)" required name="type"
+                    [disabled]="flag === 2 || flag === 3">
+                    <mat-option *ngFor="let promoType of promoTypes" [value]="promoType">
+                        {{promoType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Ads cost</mat-label>
+                <input type="number" matInput [(ngModel)]="data.adsCost" required name="adsCost"
+                    [disabled]="flag === 2 || flag === 3">
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Promo sale</mat-label>
+                <input type="number" matInput [(ngModel)]="data.promoSale" required name="promoSale"
+                    [disabled]="flag === 2 || flag === 3">
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Promo cost</mat-label>
+                <input type="number" matInput [(ngModel)]="data.promoCost" required name="promoCost"
+                    [disabled]="flag === 2 || flag === 3">
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Price</mat-label>
+                <input type="number" matInput [(ngModel)]="data.price" required name="price"
+                    [disabled]="flag === 2 || flag === 3">
+            </mat-form-field>
+        </div>
+
+        <div class="form" *ngIf="flag === 2 || flag === 3">
+            <mat-form-field appearance="fill">
+                <mat-label>Result sale</mat-label>
+                <input type="number" matInput [(ngModel)]="data.resultSale" name="resultSale"
+                    [disabled]="flag === 2 || flag === 3">
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions class="wrap">
+            <button mat-button class="test" *ngIf="flag === 1" type="submit" (click)="add()"
+                [disabled]="!formControl.valid">Ok</button>
+            <button mat-button class="test" *ngIf="flag === 2" type="submit" (click)="confirmPromo()">Ok</button>
+            <button mat-button class="test" *ngIf="flag === 3" type="submit" (click)="delete()">Delete</button>
+            <button mat-button class="test" (click)="close()">Cancel</button>
+            <div *ngIf="isLoading"
+                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+                </mat-progress-spinner>
+            </div>
+        </div>
+    </form>
+</div>
