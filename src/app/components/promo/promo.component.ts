@@ -40,7 +40,7 @@ export class PromoComponent implements OnInit {
   ngOnInit(): void {
     this.checkIfUserEvaluator();
     this.getPromos(false);
-    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION") {
+    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION" || this.type === "FINISHED") {
       this.displayedColumns.push('actions');
     }
   }
@@ -50,6 +50,7 @@ export class PromoComponent implements OnInit {
       this.page = 1;
     let username = localStorage.getItem("username") as string;
     this.promoService.getPromos(this.count, this.page, this.type, username).subscribe(data => {
+      console.log(data);
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
@@ -78,7 +79,7 @@ export class PromoComponent implements OnInit {
   changeType(event) {
     this.type = event.value;
     let index = this.displayedColumns.indexOf('actions');
-    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION") {
+    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION" || this.type === "FINISHED") {
       if (index < 0)
         this.displayedColumns.push('actions');
     } else {

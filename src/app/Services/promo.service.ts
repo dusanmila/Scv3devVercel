@@ -27,6 +27,14 @@ export class PromoService {
     return retval$.asObservable();
   }
 
+  updatePromoResultSale(promo: Promo): Observable<Promo> {
+    let retval$ = new Subject<Promo>();
+    this.http.put<Promo>(`${PROMO_URL}/promos/updateResultSale`, promo, { headers: this.headers }).subscribe((promo: Promo) => {
+      retval$.next(promo);
+    });
+    return retval$.asObservable();
+  }
+
   createPromo(promo: Promo): Observable<Promo> {
     let retval$ = new Subject<Promo>();
     this.http.post<Promo>(`${PROMO_URL}/promos`, promo, { headers: this.headers }).subscribe((promo: Promo) => {
