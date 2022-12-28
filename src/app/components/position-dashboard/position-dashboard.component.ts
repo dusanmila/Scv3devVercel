@@ -56,7 +56,6 @@ export class PositionDashboardComponent implements OnInit {
     this.send();
   }
 
-  public queryUpdate() {
 
   public queryUpdate() {
 
