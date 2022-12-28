@@ -26,9 +26,9 @@ export class VerticalBarChartComponent implements OnInit {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Feedback categories';
+  @Input() xAxisLabel;
   showYAxisLabel = true;
-  yAxisLabel = 'Feedbacks';
+  @Input() yAxisLabel;
 
   colorScheme: Color = {
     name: 'myScheme',

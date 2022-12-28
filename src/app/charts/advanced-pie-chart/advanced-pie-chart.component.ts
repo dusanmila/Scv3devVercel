@@ -21,7 +21,7 @@ export class AdvancedPieChartComponent {
   showLabels: boolean = false;
   isDoughnut: boolean = false;
 
-  label: string = 'Total Feedbacks';
+  @Input() label: string;
 
   colorScheme: Color = {
     name: 'myScheme',

@@ -15,3 +15,23 @@
         <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
     </div>
 </div>
+
+<mat-card class="card chart-card">
+    <mat-card-title>Secondary position classes</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-vertical-bar-chart [data]="positionClassResult" *ngIf="positionClassResult">
+            </app-vertical-bar-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="card chart-card">
+    <mat-card-title>Secondary position types</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-advanced-pie-chart [data]="positionTypeResult" [label]="'Total positions'" *ngIf="positionTypeResult">
+            </app-advanced-pie-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
