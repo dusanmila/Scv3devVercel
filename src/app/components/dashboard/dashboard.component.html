@@ -94,7 +94,8 @@
         <mat-card-title>Product categories</mat-card-title>
         <mat-card-content>
             <div class="chart">
-                <app-advanced-pie-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+                <app-advanced-pie-chart [data]="productCategoryResult" [label]="'Total feedbacks'"
+                    *ngIf="productCategoryResult">
                 </app-advanced-pie-chart>
             </div>
         </mat-card-content>
