@@ -47,3 +47,8 @@
 .column-name {
     font-size: 16px;
 }
+
+.toolbar {
+    background-color: #fff;
+    color: #56baed;
+}
