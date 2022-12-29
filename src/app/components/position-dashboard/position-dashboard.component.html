@@ -1,3 +1,11 @@
+<mat-card class="card">
+    <mat-card-content class="card-content" #containerRef>
+        <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
+            [results]="countData" [cardColor]="cardColor" [textColor]="textColor">
+        </ngx-charts-number-card>
+    </mat-card-content>
+</mat-card>
+
 <div class="filter-section">
     <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
         selectedRetailer }} <mat-icon>close</mat-icon></button>

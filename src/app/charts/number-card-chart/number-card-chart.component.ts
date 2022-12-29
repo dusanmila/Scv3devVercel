@@ -38,10 +38,10 @@ export class NumberCardChartComponent implements OnInit {
   }
 
   public loadData() {
-    this.statisticsService.getCountData().subscribe(data => {
+    this.statisticsService.getCountData('FEEDBACK_DASHBOARD').subscribe(data => {
       this.result = data;
     });
-  
+
   }
 
   onResize(event) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 
@@ -29,11 +30,21 @@ export class PositionDashboardComponent implements OnInit {
   positionClassResult: StatisticsModel[];
   positionTypeResult: StatisticsModel[];
 
+  countData: StatisticsModel[] = [];
+  cardColor: string = '#0081af';
+  textColor: string = '#fff';
+  colorScheme: Color = {
+    name: 'myScheme',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: ['#00abe7', '#2dc7ff', '#ead2ac', '#eaba6b']
+  };
 
   constructor(public statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
     this.send();
+    this.getCountData();
   }
 
   selectRetailer(retailer: string) {
@@ -52,6 +63,12 @@ export class PositionDashboardComponent implements OnInit {
     this.selectedObject = object;
     console.log(this.selectedObject);
     this.send();
+  }
+
+  getCountData() {
+    this.statisticsService.getCountData('POSITION_DASHBOARD').subscribe(data => {
+      this.countData = data;
+    });
   }
 
   public queryUpdate() {
