@@ -41,3 +41,13 @@
         </div>
     </mat-card-content>
 </mat-card>
+
+<mat-card class="card chart-card">
+    <mat-card-title>Secondary position product categories</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-vertical-bar-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+            </app-vertical-bar-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
