@@ -32,12 +32,11 @@
 
         <div class="form">
             <mat-form-field>
-                <input matInput id="rebate" name="rebate" formControlName="rebate" placeholder="Rabate %"
+                <input type="number" matInput id="rebate" name="rebate" formControlName="rebate" placeholder="Rabate %"
                     [(ngModel)]="data.rebate" required />
             </mat-form-field>
 
         </div>
-
 
         <div mat-dialog-actions>
             <div *ngIf="isLoading"
