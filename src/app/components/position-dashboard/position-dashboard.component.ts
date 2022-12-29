@@ -106,6 +106,11 @@ export class PositionDashboardComponent implements OnInit {
       console.log("type" + data);
       this.positionTypeResult = data;
     });
+
+    this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
+      console.log("productCat" + data);
+      this.productCategoryResult = data;
+    });
   }
 
 
