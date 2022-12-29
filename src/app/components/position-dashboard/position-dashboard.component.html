@@ -1,7 +1,7 @@
 <mat-card class="card">
     <mat-card-content class="card-content" #containerRef>
         <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
-            [results]="countData" [cardColor]="cardColor" [textColor]="textColor">
+            [results]="countData" [cardColor]="cardColor" [textColor]="textColor" *ngIf="countData.length > 0">
         </ngx-charts-number-card>
     </mat-card-content>
 </mat-card>
