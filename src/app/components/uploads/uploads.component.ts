@@ -40,6 +40,9 @@ export class UploadsComponent implements OnInit {
   filteredOptions: Observable<Obj[]>;
 
   error:boolean=false;
+  isUploading=false;
+  deletingObjects=false;
+  deletingProducts=false;
 
   retailers: Retailer[];
   objects: Obj[];
@@ -74,6 +77,7 @@ export class UploadsComponent implements OnInit {
     }
 
   uploadObjectsFile(event: any) {
+    this.isUploading=true;
     this.errorMessage = '';
     this.isObjLoading = true;
     this.objectsFile = event.target.files[0];
@@ -96,6 +100,7 @@ export class UploadsComponent implements OnInit {
   }
 
   uploadPositionsFile(event: any) {
+    this.isUploading=true;
     this.errorMessage = '';
     this.isPosLoading = true;
     this.positionsFile = event.target.files[0];
@@ -119,6 +124,7 @@ export class UploadsComponent implements OnInit {
   }
 
   uploadProductsFile(event: any) {
+    this.isUploading=false;
     this.errorMessage = ''
     this.isProdLoading = true;
     this.productsFile = event.target.files[0];
@@ -153,6 +159,7 @@ export class UploadsComponent implements OnInit {
   }
 
   deletePositions(){
+   
     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
     dialogRef.afterClosed()
       .subscribe(res => {
@@ -174,7 +181,8 @@ export class UploadsComponent implements OnInit {
   }
 
   deleteProducts(){
-    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    this.deletingProducts=true;
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent,{ data:{flag:1} });
     dialogRef.afterClosed()
       .subscribe(res => {
 
@@ -194,7 +202,8 @@ export class UploadsComponent implements OnInit {
   }
 
   deleteObjects(){
-     const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    this.deletingObjects=true;
+     const dialogRef = this.dialog.open(AreYouSureDialogComponent,{ data:{flag:2} });
         dialogRef.afterClosed()
           .subscribe(res => {
 

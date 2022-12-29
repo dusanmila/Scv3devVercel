@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { SERVICE_URL } from '../app.constants';
@@ -27,9 +27,11 @@ export class StatisticsService {
     return retval$.asObservable();
   }
 
-  public getCountData(): Observable<StatisticsModel[]> {
+  public getCountData(dashboardType: string): Observable<StatisticsModel[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('dashboardType', dashboardType);
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountData`).subscribe((helper: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountData`, { params: queryParams }).subscribe((helper: StatisticsModel[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -59,7 +61,7 @@ export class StatisticsService {
     return retval$.asObservable();
   }
 
-  public getFeedbackCount(query) : Observable <any>{
+  public getFeedbackCount(query): Observable<any> {
     let retval$ = new Subject<any[]>();
     this.http.get<any>(`${SERVICE_URL}/statistics/getCountByQuerry/${query}`).subscribe((helper: any) => {
       retval$.next(helper);
