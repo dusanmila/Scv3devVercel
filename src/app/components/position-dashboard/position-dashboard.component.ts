@@ -54,13 +54,14 @@ export class PositionDashboardComponent implements OnInit {
     this.send();
   }
 
+  public queryUpdate() {
 
     if (this.selectedObject != "") {
 
       this.selectQuery = this.selectQuery + this.ObjectQuery + this.selectedObject + "'";
       this.selectPositionClassQuery = this.selectPositionClassQuery + this.ObjectQuery + this.selectedObject + "'";
       this.selectPositionTypeQuery = this.selectPositionTypeQuery + this.ObjectQuery + this.selectedObject + "'";
-      this.selectProductCategoryQuery= this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
+      this.selectProductCategoryQuery = this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
     }
 
 
@@ -84,14 +85,14 @@ export class PositionDashboardComponent implements OnInit {
       "from PositionClass pc inner join SecondaryPosition sp on (pc.PositionClassId=sp.PositionClassId) "
 
     this.selectProductCategoryQuery = "select count(PositionId) as Value, ProductCategoryName as Name " +
-    "from ProductCategory pc inner join PositionProductCategory ppc on (pc.ProductCategoryId=ppc.ProductCategoryId) "+
-    "inner join SecondaryPosition sp on (sp.SecondaryPositionId= ppc.PositionId) "
-  
+      "from ProductCategory pc inner join PositionProductCategory ppc on (pc.ProductCategoryId=ppc.ProductCategoryId) " +
+      "inner join SecondaryPosition sp on (sp.SecondaryPositionId= ppc.PositionId) "
+
 
     this.queryUpdate();
     this.selectPositionClassQuery = this.selectPositionClassQuery + " group by PositionTypeName";
     this.selectPositionTypeQuery = this.selectPositionTypeQuery + " group by PositionClassName";
-    this.selectProductCategoryQuery= this.selectProductCategoryQuery+ " group by ProductCategoryName";
+    this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
 
     this.statisticsService.getCountListByQuerry(this.selectPositionClassQuery).subscribe(data => {
       console.log(data);
