@@ -35,3 +35,15 @@
 ::ng-deep .advanced-pie-legend .legend-items-container {
     line-height: 32px;
 }
+
+::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item {
+    margin-right: 10px !important;
+}
+
+::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-value {
+    font-size: 16px !important;
+}
+
+::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item .item-percent {
+    font-size: 16px !important;
+}
