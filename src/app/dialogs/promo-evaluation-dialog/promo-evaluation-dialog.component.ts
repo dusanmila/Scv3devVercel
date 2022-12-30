@@ -11,7 +11,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/f
   templateUrl: './promo-evaluation-dialog.component.html',
   styleUrls: ['./promo-evaluation-dialog.component.css']
 })
-export class PromoEvaluatorDialogComponent  {
+export class PromoEvaluatorDialogComponent {
 
   myForm: FormGroup;
   flag: number;
@@ -33,29 +33,28 @@ export class PromoEvaluatorDialogComponent  {
     this.user = this.data.username;
     this.userService.getUserByUsername(this.user).subscribe(data => {
       this.data.username = data;
-      
+
     });
-    
-   
+
+
     this.myForm = new FormGroup({
-      username: new FormControl({value: '', disabled: this.flag === 3 }, [ValidateUser]),
-      rebate: new FormControl({value: '', disabled: this.flag === 3 })
+      username: new FormControl({ value: '', disabled: this.flag === 3 }, [ValidateUser]),
+      rebate: new FormControl({ value: '', disabled: this.flag === 3 })
     });
   }
 
 
   add() {
-    console.log(this.data)
-    this.isLoading=true;
-    this.data.username=this.user;
+    this.isLoading = true;
+    this.data.username = this.user;
     this.promoEvaluatorService.createPromoEvaluator(this.data).subscribe(data => {
-      this.isLoading=false;
+      this.isLoading = false;
       this.changed = true;
       this.snackBar.open('Promo evaluator successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       this.close();
     }),
       (error: Error) => {
-        this.isLoading=false;
+        this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
         this.close();
@@ -63,7 +62,7 @@ export class PromoEvaluatorDialogComponent  {
   }
 
   update() {
-    this.data.username=this.user;
+    this.data.username = this.user;
     this.promoEvaluatorService.updatePromoEvaluator(this.data).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Promo evaluator successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
@@ -77,7 +76,7 @@ export class PromoEvaluatorDialogComponent  {
   }
 
   delete() {
-    this.data.username=this.user;
+    this.data.username = this.user;
     this.promoEvaluatorService.deletePromoEvaluator(this.data.username).subscribe(data => {
       this.changed = true;
       this.snackBar.open('Promo evaluator successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });

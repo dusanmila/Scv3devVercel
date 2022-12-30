@@ -43,8 +43,6 @@ export class VerticalBarChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('vertical-bar-chart')
-    console.log(this.data);
   }
 
   onSelect(event) {

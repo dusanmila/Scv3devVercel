@@ -55,7 +55,6 @@ export class ProductService {
     queryParams = queryParams.append('parameter', parameter);
     let retval$ = new Subject<Product[]>();
     this.http.get<Product[]>(`${PRODUCT_URL}/products/NameOrId`, { params: queryParams, headers: this.headers }).subscribe((products: Product[]) => {
-      console.log(products);
       retval$.next(products);
     });
     return retval$.asObservable();

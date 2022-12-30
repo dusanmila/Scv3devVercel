@@ -52,7 +52,6 @@ export class PositionDashboardComponent implements OnInit {
       this.selectedObject = '';
     }
     this.selectedRetailer = retailer;
-    console.log(this.selectedRetailer);
     this.send();
   }
 
@@ -61,7 +60,6 @@ export class PositionDashboardComponent implements OnInit {
       this.selectedRetailer = '';
     }
     this.selectedObject = object;
-    console.log(this.selectedObject);
     this.send();
   }
 
@@ -112,17 +110,14 @@ export class PositionDashboardComponent implements OnInit {
     this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
 
     this.statisticsService.getCountListByQuerry(this.selectPositionClassQuery).subscribe(data => {
-      console.log(data);
       this.positionClassResult = data;
     });
 
     this.statisticsService.getCountListByQuerry(this.selectPositionTypeQuery).subscribe(data => {
-      console.log("type" + data);
       this.positionTypeResult = data;
     });
 
     this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
-      console.log("productCat" + data);
       this.productCategoryResult = data;
     });
   }

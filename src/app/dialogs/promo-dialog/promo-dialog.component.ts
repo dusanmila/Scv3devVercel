@@ -37,7 +37,6 @@ export class PromoDialogComponent implements OnInit {
   ngOnInit(): void {
     this.getRetailers();
     this.getProducts();
-    console.log(this.data);
   }
 
   add() {

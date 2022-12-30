@@ -10,16 +10,16 @@ import { LoginService } from 'src/app/Services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent  {
+export class LoginComponent {
 
   user: { username: string, password: string } = { username: "", password: "" };
 
   isLoginFailed: boolean = false;
   isLoading = false;
-  disableLogin=false;
+  disableLogin = false;
 
   loginAttempts: number = 0;
-  rightnow:any;
+  rightnow: any;
 
   constructor(private router: Router, public loginService: LoginService) { }
 
@@ -33,7 +33,7 @@ export class LoginComponent  {
     }
 
 
-   // if(localStorage.getItem("unsuccessfulLoginExpiration")==null || new Date(localStorage.getItem("unsuccessfulLoginExpiration")!)  < new Date())
+    // if(localStorage.getItem("unsuccessfulLoginExpiration")==null || new Date(localStorage.getItem("unsuccessfulLoginExpiration")!)  < new Date())
     this.loginService.login(this.user.username, this.user.password).subscribe({
       next: data => {
 
@@ -53,7 +53,7 @@ export class LoginComponent  {
             this.router.navigate(["/admin/dashboard"]);
           }
           else {
-            this.router.navigate(["/storeCheck"]);
+            this.router.navigate(["/modules"]);
           }
         } else {
           this.isLoginFailed = true;
@@ -63,7 +63,7 @@ export class LoginComponent  {
         this.isLoading = false;
         this.isLoginFailed = true;
 
-        if(this.loginAttempts<5){
+        if (this.loginAttempts < 5) {
           this.loginAttempts++;
         }
 

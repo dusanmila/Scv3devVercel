@@ -18,10 +18,12 @@
       <img src="../../../assets/belo.png" width="50px" height="50px"
         style="margin-top:15px; float:left; margin-left:20px;">
     </p>
-    <div style="justify-content: center;margin-right: 50px;" [routerLink]="['/chooseObject/addStoreCheck']">STORE CHECK</div>
+    <div style="justify-content: center;margin-right: 50px;" [routerLink]="['/chooseObject/addStoreCheck']">STORE CHECK
+    </div>
   </div>
 
-  <div class="item resolve-fb fadeIn second" [routerLink]="['/chooseObject/positions']">
+  <div class="disableditem resolve-fb fadeIn second">
+    <!-- ENABLE: [routerLink]="['/chooseObject/positions']"-->
     <p>
       <img src="../../../assets/belopoz.png" width="50px" height="50px"
         style="margin-top:15px; float:left; margin-left:20px;">
@@ -29,7 +31,7 @@
     <div style="justify-content: center;margin-right: 30px;">SECONDARY POSITIONS</div>
   </div>
 
-  <div class="disableditem resolve-fb fadeIn second" [routerLink]="['/product']">
+  <div class="disableditem resolve-fb fadeIn second">
     <!-- ENABLE: [routerLink]="['/product']"-->
     <p>
       <img src="../../../assets/icons8-barcode-scanner-64.png" width="50px" height="50px"
@@ -38,7 +40,8 @@
     <div style="justify-content: center;margin-right: 50px;">PRICE SCANNER</div>
   </div>
 
-  <div class="disableditem resolve-fb fadeIn second" [routerLink]="['/chooseObject/returns']">
+  <div class="disableditem resolve-fb fadeIn second">
+    <!-- ENABLE: [routerLink]="['/chooseObject/returns']"-->
     <p>
       <img src="../../../assets/icons8-u-turn-to-left-30.png" width="50px" height="50px"
         style="margin-top:15px; float:left; margin-left:20px;">
@@ -46,13 +49,8 @@
     <div style="justify-content: center;margin-right: 50px;">RETURNS</div>
   </div>
 
-  <div class="item2 resolve-fb fadeIn third" (click)="logout()">
-    <p>
-      <img src="../../../assets/exit.png" width="30px" height="30px"
-        style="margin-top:10px; float:left; margin-left:5px;">
-    </p>
-    <div style="justify-content: center;">LOG OUT</div>
-  </div>
+  <button mat-stroked-button color="primary" class="item2 resolve-fb"
+    [routerLink]="['/modules']">Exit<mat-icon>exit_to_app</mat-icon></button>
 
   <!--
   <button mat-raised-button class="fadeIn" color="primary" color="nortz" (click)="logout()">

@@ -102,7 +102,6 @@ export class DashboardComponent implements OnInit {
   }
 
   radioBtnClicked() {
-    console.log(this.resolved)
     this.send();
   }
 
@@ -114,13 +113,11 @@ export class DashboardComponent implements OnInit {
     if (this.selectedObject)
       this.selectedObject = '';
     this.selectedRetailer = retailer;
-    console.log(this.selectedRetailer);
     this.send();
   }
 
   selectUser(user: string) {
     this.selectedUser = user;
-    console.log(this.selectedUser);
     this.send();
   }
 
@@ -128,13 +125,11 @@ export class DashboardComponent implements OnInit {
     if (this.selectedRetailer)
       this.selectedRetailer = '';
     this.selectedObject = object;
-    console.log(this.selectedObject);
     this.send();
   }
 
   selectMonth(month: string) {
     this.selectedMonth = month;
-    console.log(this.selectedMonth);
     this.send();
   }
 
@@ -144,7 +139,6 @@ export class DashboardComponent implements OnInit {
     } else {
       this.selectedYear = value;
     }
-    console.log(this.selectedYear);
     this.send();
   }
 
@@ -157,7 +151,6 @@ export class DashboardComponent implements OnInit {
     } else {
       this.days2 = this.days31;
     }
-    console.log(this.selectedMonth)
     this.send();
   }
 
@@ -340,7 +333,6 @@ export class DashboardComponent implements OnInit {
     this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
 
     this.statisticsService.getCountListByQuerry(this.selectFeedbackCategoryQuery).subscribe(data => {
-      console.log(data);
       this.feedbackCategoryResult = data;
     });
 
@@ -351,7 +343,6 @@ export class DashboardComponent implements OnInit {
 
 
     this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
-      console.log("product" + data);
       this.productCategoryResult = data;
     });
   }
