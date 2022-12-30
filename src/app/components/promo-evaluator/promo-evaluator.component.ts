@@ -27,7 +27,6 @@ export class PromoEvaluatorComponent implements OnInit {
 
     this.isLoading = true;
     this.promoEvaluatorService.getPromoEvaluators().subscribe(data => {
-      console.log(data);
       if (data) {
         this.dataSource = new MatTableDataSource<PromoEvaluator>(data);
         this.noData = false;
@@ -39,7 +38,7 @@ export class PromoEvaluatorComponent implements OnInit {
     });
   }
 
-  public openDialog(flag: number, username?: string, rebate?:number) {
+  public openDialog(flag: number, username?: string, rebate?: number) {
     const dialogRef = this.dialog.open(PromoEvaluatorDialogComponent, { data: { username, rebate } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {

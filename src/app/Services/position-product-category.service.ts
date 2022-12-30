@@ -29,7 +29,6 @@ export class PositionProductCategoryService {
   }
 
   public createPositionProductCategory(positionProductCategory: PositionProductCategory): Observable<PositionProductCategory> {
-    console.log(positionProductCategory)
     let retval$ = new Subject<PositionProductCategory>();
     this.http.post<PositionProductCategory>(`${POSITION_URL}/posProdCategories`, positionProductCategory, { headers: this.headers }).subscribe((helper: PositionProductCategory) => {
       retval$.next(helper);
@@ -37,6 +36,6 @@ export class PositionProductCategoryService {
     return retval$.asObservable();
   }
 
-  
+
 
 }

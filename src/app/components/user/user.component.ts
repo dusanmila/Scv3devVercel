@@ -83,8 +83,6 @@ export class UserComponent implements OnInit {
     this.isLoading = true;
     this.userService.getUsersByUsername(this.search).subscribe(data => {
 
-      console.log(data);
-
       if (data) {
         this.dataSource = new MatTableDataSource<User>(data);
 

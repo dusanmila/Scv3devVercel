@@ -18,13 +18,13 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
 
   public form: FormGroup;
-  public feedback: Feedback = { feedbackCategoryName: "",  productCategoryName: "", text: "", textResolve:"", date: "", resolved: false, img: "", username: "", imgResolve: "",isImgHorizontal:false,isImgResolveHorizontal:false, totalCount: 0,usernameResolve:"" };
+  public feedback: Feedback = { feedbackCategoryName: "", productCategoryName: "", text: "", textResolve: "", date: "", resolved: false, img: "", username: "", imgResolve: "", isImgHorizontal: false, isImgResolveHorizontal: false, totalCount: 0, usernameResolve: "" };
   public feedbackCategories: FeedbackCategory[] = [];
   public productCategories: ProductCategory[] = [];
   public imageUploaded: boolean = false;
   public changed: boolean = false;
-  submitClicked:boolean=false;
-  isLoading=false;
+  submitClicked: boolean = false;
+  isLoading = false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<FeedbackCreateDialogComponent>,
@@ -42,7 +42,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
-    this.dialogRef.updateSize('100%','60%');
+    this.dialogRef.updateSize('100%', '60%');
   }
 
   public loadCategories() {
@@ -64,9 +64,9 @@ export class FeedbackCreateDialogComponent implements OnInit {
   }
 
   submitForm() {
-    this.submitClicked=true;
-    if(this.imageUploaded){
-      this.isLoading=true;
+    this.submitClicked = true;
+    if (this.imageUploaded) {
+      this.isLoading = true;
       let username = localStorage.getItem("username") as string;
       const formData: any = new FormData();
       formData.append('file', this.form.get('file')!.value);
@@ -77,15 +77,14 @@ export class FeedbackCreateDialogComponent implements OnInit {
       this.feedbackService.createFeedbackWithForm(formData).subscribe(data => {
         this.changed = true;
         this.isLoading = false;
-        console.log(data);
         this.snackBar.open('Feedback added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
 
         this.close();
       }),
-      (error:Error) => {
-        console.log(error.name + ' -> ' + error.message)
-        this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-      };
+        (error: Error) => {
+          console.log(error.name + ' -> ' + error.message)
+          this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        };
     }
 
   }

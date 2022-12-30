@@ -24,7 +24,7 @@ export class FeedbackDialogComponent implements AfterViewInit {
   public changed: boolean = false;
   isLoading = false;
   submitClicked = false;
-  isRotated=false;
+  isRotated = false;
 
   output: string;
   @ViewChild('fbimg') fbimg: ElementRef;
@@ -53,11 +53,11 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-  this.adjustImage();
+    this.adjustImage();
 
   }
 
-  async adjustImage(){
+  async adjustImage() {
 
 
 
@@ -66,59 +66,59 @@ export class FeedbackDialogComponent implements AfterViewInit {
     window.exifr.parse(img).then((exif) => {
 
       if (exif.Orientation == 6) {
-      this.isRotated=true;
+        this.isRotated = true;
       }
 
-      if(this.isRotated){
+      if (this.isRotated) {
 
-        if(this.data.isImgHorizontal){
+        if (this.data.isImgHorizontal) {
 
-          img.setAttribute('height','250');
-          img.setAttribute('width','180');
+          img.setAttribute('height', '250');
+          img.setAttribute('width', '180');
 
-        }else{
+        } else {
 
-          img.setAttribute('height','200');
-          img.setAttribute('width','250');
+          img.setAttribute('height', '200');
+          img.setAttribute('width', '250');
 
 
         }
-      }else{
+      } else {
 
-        if(this.data.isImgHorizontal){
+        if (this.data.isImgHorizontal) {
 
-          img.setAttribute('height','180');
-          img.setAttribute('width','250');
+          img.setAttribute('height', '180');
+          img.setAttribute('width', '250');
 
-        }else{
+        } else {
 
-          img.setAttribute('height','250');
-          img.setAttribute('width','200');
+          img.setAttribute('height', '250');
+          img.setAttribute('width', '200');
 
 
         }
       }
 
-   if(this.isRotated){
-          img.setAttribute('class','rotate');
-   }
+      if (this.isRotated) {
+        img.setAttribute('class', 'rotate');
+      }
 
 
     })
 
 
-    if(this.data.imgResolve){
+    if (this.data.imgResolve) {
       const imgres = document.getElementById('fbphotoresolve') as HTMLImageElement;
 
 
-      if(this.data.isImgResolveHorizontal){
+      if (this.data.isImgResolveHorizontal) {
 
-        imgres.setAttribute('height','180');
-        imgres.setAttribute('width','250');
-      }else{
+        imgres.setAttribute('height', '180');
+        imgres.setAttribute('width', '250');
+      } else {
 
-        imgres.setAttribute('height','250');
-        imgres.setAttribute('width','200');
+        imgres.setAttribute('height', '250');
+        imgres.setAttribute('width', '200');
 
       }
 
@@ -188,7 +188,6 @@ export class FeedbackDialogComponent implements AfterViewInit {
         this.snackBar.open('Feedback resolved', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
         this.close();
         this.isLoading = false;
-        console.log(data);
       }),
         (error: Error) => {
           console.log(error.name + ' -> ' + error.message)
