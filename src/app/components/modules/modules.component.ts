@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { AreYouSureDialogComponent } from 'src/app/dialogs/are-you-sure-dialog/are-you-sure-dialog.component';
 
 @Component({
   selector: 'app-modules',
@@ -7,13 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModulesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog,
+    public router: Router) { }
 
   ngOnInit(): void {
   }
 
-  logout() {
-    console.log('logout')
+  public logout() {
+    const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+    localStorage.setItem("jwt", "");
+    localStorage.setItem("refreshToken", "");
+    dialogRef.afterClosed()
+      .subscribe(res => {
+        if (res) {
+          this.router.navigate(['/login']);
+        }
+      }
+      )
   }
-
 }
