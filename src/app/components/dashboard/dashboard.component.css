@@ -141,12 +141,19 @@
     flex-direction: row;
 
 }
-
+.div-element-first {
+    margin-top: 10%;
+    width: 20%;
+    height: 50%;
+    padding-right: 13%;
+    margin-left: -10%;
+}
 .div-element {
     margin-top: 10%;
     width: 20%;
     height: 50%;
     padding-right: 13%;
+    margin-left: 10%;
 }
 
 .chart-card {
