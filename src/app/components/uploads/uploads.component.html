@@ -1,7 +1,8 @@
+
 <p class="warning-message"> Warning: Max allowed 1000 rows per Excel file.</p><br>
 <p class="center font"> Don't exit this page while uploading excels partially!</p><br>
 
-<div class="parentcontainer" style="margin-bottom: 5%;">
+<div class="parentcontainer" style="margin-bottom: 5%;background-color:white;">
   <div class="container">
     <h3 class="uploadHeading " style="color:#56baed;">Objects</h3>
     <input type="file" #objectFileDropRef (change)="uploadObjectsFile($event)" id="objectFileDropRef" hidden />
@@ -150,4 +151,7 @@
 </div>
 
 <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+
+<p style="margin-top:100%">.</p>
+
 

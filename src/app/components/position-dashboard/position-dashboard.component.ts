@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 
@@ -30,44 +29,33 @@ export class PositionDashboardComponent implements OnInit {
   positionClassResult: StatisticsModel[];
   positionTypeResult: StatisticsModel[];
 
-  countData: StatisticsModel[] = [];
-  cardColor: string = '#0081af';
-  textColor: string = '#fff';
-  colorScheme: Color = {
-    name: 'myScheme',
-    selectable: true,
-    group: ScaleType.Ordinal,
-    domain: ['#00abe7', '#2dc7ff', '#ead2ac', '#eaba6b']
-  };
 
   constructor(public statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
     this.send();
-    this.getCountData();
   }
 
   selectRetailer(retailer: string) {
-    if (this.selectedObject) {
+    if (this.selectedObject)
+    {
       this.selectedObject = '';
     }
     this.selectedRetailer = retailer;
+    console.log(this.selectedRetailer);
     this.send();
   }
 
   selectObject(object: string) {
-    if (this.selectedRetailer) {
+    if (this.selectedRetailer)
+    {
       this.selectedRetailer = '';
     }
     this.selectedObject = object;
+    console.log(this.selectedObject);
     this.send();
   }
 
-  getCountData() {
-    this.statisticsService.getCountData('POSITION_DASHBOARD').subscribe(data => {
-      this.countData = data;
-    });
-  }
 
   public queryUpdate() {
 
@@ -76,7 +64,7 @@ export class PositionDashboardComponent implements OnInit {
       this.selectQuery = this.selectQuery + this.ObjectQuery + this.selectedObject + "'";
       this.selectPositionClassQuery = this.selectPositionClassQuery + this.ObjectQuery + this.selectedObject + "'";
       this.selectPositionTypeQuery = this.selectPositionTypeQuery + this.ObjectQuery + this.selectedObject + "'";
-      this.selectProductCategoryQuery = this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
+      this.selectProductCategoryQuery= this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
     }
 
 
@@ -100,25 +88,23 @@ export class PositionDashboardComponent implements OnInit {
       "from PositionClass pc inner join SecondaryPosition sp on (pc.PositionClassId=sp.PositionClassId) "
 
     this.selectProductCategoryQuery = "select count(PositionId) as Value, ProductCategoryName as Name " +
-      "from ProductCategory pc inner join PositionProductCategory ppc on (pc.ProductCategoryId=ppc.ProductCategoryId) " +
-      "inner join SecondaryPosition sp on (sp.SecondaryPositionId= ppc.PositionId) "
-
+    "from ProductCategory pc inner join PositionProductCategory ppc on (pc.ProductCategoryId=ppc.ProductCategoryId) "+
+    "inner join SecondaryPosition sp on (sp.SecondaryPositionId= ppc.PositionId) "
+  
 
     this.queryUpdate();
     this.selectPositionClassQuery = this.selectPositionClassQuery + " group by PositionTypeName";
     this.selectPositionTypeQuery = this.selectPositionTypeQuery + " group by PositionClassName";
-    this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
+    this.selectProductCategoryQuery= this.selectProductCategoryQuery+ " group by ProductCategoryName";
 
     this.statisticsService.getCountListByQuerry(this.selectPositionClassQuery).subscribe(data => {
+      console.log(data);
       this.positionClassResult = data;
     });
 
     this.statisticsService.getCountListByQuerry(this.selectPositionTypeQuery).subscribe(data => {
+      console.log("type" + data);
       this.positionTypeResult = data;
-    });
-
-    this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
-      this.productCategoryResult = data;
     });
   }
 
