@@ -1,4 +1,5 @@
-<p class="center" *ngIf="isUploading"> Don't exit this page while uploading excels partially!</p><br>
+<p class="warning-message"> Warning: Max allowed 1000 rows per Excel file.</p><br>
+<p class="center font"> Don't exit this page while uploading excels partially!</p><br>
 
 <div class="parentcontainer" style="margin-bottom: 5%;">
   <div class="container">
@@ -43,7 +44,7 @@
       <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
       </mat-progress-spinner>
     </div>
-    <div class="check" style="margin-left: -200% ;">
+    <div class="check" style="margin-left: 20% ;">
       <h4>Export options:</h4>
       <br>
       <mat-checkbox class="example-margin" color="primary" (change)="checkWithImages($event)">With images</mat-checkbox>
@@ -127,11 +128,11 @@
     </div>
     <br>
     <div *ngIf="isProdLoading"
-      style="margin-top:15%;display: flex; justify-content: center; align-items: center; background: white; background: transparent;">
+      style="margin-top:30%;display: flex; justify-content: center; align-items: center; background: white; background: transparent;">
       <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
       </mat-progress-spinner>
     </div>
-    <div class="select" style="margin-left: -240%; margin-top: 18%;">
+    <div class="select" style="margin-right:10px; margin-top: 60%;">
       <mat-form-field appearance="fill">
         <mat-label>Product category</mat-label>
         <mat-select [(ngModel)]="selectedCategory">
@@ -150,4 +151,3 @@
 
 <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
 
-<p class="warning-message" > Warning: Max allowed 1000 rows per Excel file.</p>
