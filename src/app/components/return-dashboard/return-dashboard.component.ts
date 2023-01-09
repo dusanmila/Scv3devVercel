@@ -54,6 +54,7 @@ export class ReturnDashboardComponent implements OnInit {
     index = this.returnResult.findIndex(el => el.name === retailer);
     if (index >= 0) {
       this.returnResult.splice(index, 1);
+      this.returnResult = [...this.returnResult];
     }
   }
 
@@ -79,6 +80,7 @@ export class ReturnDashboardComponent implements OnInit {
     index = this.returnResult.findIndex(el => el.name === objectName);
     if (index >= 0) {
       this.returnResult.splice(index, 1);
+      this.returnResult = [...this.returnResult];
     }
   }
 
