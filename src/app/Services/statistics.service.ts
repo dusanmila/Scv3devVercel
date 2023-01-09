@@ -69,4 +69,15 @@ export class StatisticsService {
     return retval$.asObservable();
   }
 
+  getReturnsCount(objectName: string, retailerName): Observable<any> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('objectName', objectName);
+    queryParams = queryParams.append('retailerName', retailerName);
+    let retval$ = new Subject<any>();
+    this.http.get<any>(`${SERVICE_URL}/statistics/returnsCount`, { params: queryParams }).subscribe((helper: any) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
 }
