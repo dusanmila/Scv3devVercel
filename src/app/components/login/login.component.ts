@@ -53,7 +53,7 @@ export class LoginComponent {
             this.router.navigate(["/admin/dashboard"]);
           }
           else {
-            this.router.navigate(["/modules"]);
+            this.router.navigate(["/storeCheck"]); //this.router.navigate(["/modules"]);
           }
         } else {
           this.isLoginFailed = true;
