@@ -97,6 +97,7 @@ import { PromoComponent } from './components/promo/promo.component';
 import { ModulesComponent } from './components/modules/modules.component';
 import { PromoDialogComponent } from './dialogs/promo-dialog/promo-dialog.component';
 import { PositionDashboardComponent } from './components/position-dashboard/position-dashboard.component';
+import { ReturnDashboardComponent } from './components/return-dashboard/return-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -150,7 +151,8 @@ import { PositionDashboardComponent } from './components/position-dashboard/posi
     PromoComponent,
     ModulesComponent,
     PromoDialogComponent,
-    PositionDashboardComponent
+    PositionDashboardComponent,
+    ReturnDashboardComponent
   ],
   imports: [
     AppRoutingModule,

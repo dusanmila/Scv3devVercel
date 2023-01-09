@@ -25,6 +25,8 @@ export class SidenavComponent implements OnInit {
       this.title = 'Feedback statistics';
     else if (url === '/admin/position-dashboard')
       this.title = 'Position statistics';
+    else if (url === '/admin/return-dashboard')
+      this.title = 'Return statistics';
     else if (url === '/admin/user')
       this.title = 'Users';
     else if (url === '/admin/object')
