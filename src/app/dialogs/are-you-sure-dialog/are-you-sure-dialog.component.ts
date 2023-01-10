@@ -15,12 +15,13 @@ export class AreYouSureDialogComponent {
   constructor(public dialogRef: MatDialogRef<AreYouSureDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
-    if (this.data.flag == 1) {
-      this.message = "If you delete products, returns will be deleted too."
-    } else if (this.data.flag == 2) {
-      this.message = "If you delete objects, positions will be deleted too."
+    if (this.data) {
+      if (this.data.flag == 1) {
+        this.message = "If you delete products, returns will be deleted too."
+      } else if (this.data.flag == 2) {
+        this.message = "If you delete objects, positions will be deleted too."
+      }
     }
-
   }
 
   public exit() {
