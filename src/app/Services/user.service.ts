@@ -105,10 +105,11 @@ export class UserService {
   }
 
   public getUsersByUsername(username: string): Observable<User[]> {
-
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('username', username);
     let retval$ = new Subject<User[]>();
 
-    this.http.get<User[]>(`${USER_URL}/users/usernameList/${username}`, { headers: this.headers }).subscribe((users: User[]) => {
+    this.http.get<User[]>(`${USER_URL}/users/usernameList`, { headers: this.headers, params: queryParams }).subscribe((users: User[]) => {
 
       retval$.next(users)
 
