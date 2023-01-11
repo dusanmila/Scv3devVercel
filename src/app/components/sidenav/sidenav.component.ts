@@ -39,6 +39,10 @@ export class SidenavComponent implements OnInit {
       this.title = 'Secondanry Positions';
     else if (url === '/admin/product')
       this.title = 'Products';
+    else if (url === '/admin/productCategory')
+      this.title = 'Product categories';
+    else if (url === '/admin/feedbackCategory')
+      this.title = 'Feedback categories';
     else if (url === '/admin/uploads')
       this.title = 'Import / Export Files';
   }
