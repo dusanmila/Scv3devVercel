@@ -1,3 +1,12 @@
+.header {
+    text-align: center;
+    height: 80px;
+    background-color: #56baed;
+    color: #fff;
+    line-height: 80px;
+    font-family: sans-serif;
+}
+
 .mat-header-cell {
     background: #56baed;
 }
