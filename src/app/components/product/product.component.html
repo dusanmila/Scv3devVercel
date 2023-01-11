@@ -20,7 +20,8 @@
         </ng-container>
 -->
         <ng-container matColumnDef="productName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name" style="justify-content: left;">Name
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
+                style="justify-content: left;">Name
             </mat-header-cell>
             <mat-cell *matCellDef="let row" data-label="Product name">{{ row.productName }}</mat-cell>
         </ng-container>
@@ -102,4 +103,5 @@
     </mat-paginator> -->
 </div>
 
-<button mat-stroked-button color="primary" class="item2" (click)="exit()">Exit <mat-icon>exit_to_app</mat-icon></button>
+<button mat-stroked-button color="primary" class="item2" (click)="exit()" *ngIf="!isAdmin">Exit
+    <mat-icon>exit_to_app</mat-icon></button>

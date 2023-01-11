@@ -1,7 +1,6 @@
 .mat-header-cell {
     background: #56baed;
     text-align: center;
-    justify-content: center;
 }
 
 .centered {
@@ -78,48 +77,52 @@
 
 
 
-  .mat-column-manufacturer {
+.mat-column-manufacturer {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 25% !important;
     width: 25% !important;
     overflow-wrap: break-word;
-  
-  
+
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-  
+
     text-align: left;
-  
-  }
-  .mat-column-price {
+
+}
+
+.mat-column-price {
     word-wrap: break-word !important;
     white-space: unset !important;
     flex: 0 0 17% !important;
     width: 17% !important;
     overflow-wrap: break-word;
-  
-  
+
+
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-  
+
     text-align: left;
-  
-  }
+
+}
+
 /* Promena izgleda table */
 @media screen and (max-width: 300px) {
-    .mat-column-manufacturer{
+    .mat-column-manufacturer {
         flex: 0 0 90% !important;
         width: 90% !important;
     }
-    .mat-column-price{
+
+    .mat-column-price {
         flex: 0 0 90% !important;
         width: 90% !important;
     }
+
     .mat-table {
         border: 0;
         vertical-align: middle

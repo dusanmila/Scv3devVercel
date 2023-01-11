@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   reg = /^-?\d*[.,]?\d{0,2}$/;
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
+  isAdmin: boolean = false;
 
   displayedColumns = ['productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
 
@@ -36,6 +37,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     let url = this.router.url;
     if (url === '/admin/product') {
+      this.isAdmin = true;
       this.showHeader = false;
       this.displayedColumns.push('actions');
     }
