@@ -26,7 +26,9 @@ export class AppComponent {
   // Shows and hides the loading spinner during RouterEvent changes
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
-      this.loading = true;
+      let role = localStorage.getItem('role') as string;
+      if (role !== 'Admin')
+        this.loading = true;
     }
     if (event instanceof NavigationEnd) {
       setTimeout(() => { // here
@@ -46,5 +48,5 @@ export class AppComponent {
       }, 2000);
     }
 
-}
+  }
 }
