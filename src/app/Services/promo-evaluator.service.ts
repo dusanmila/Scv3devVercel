@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
@@ -13,9 +13,13 @@ export class PromoEvaluatorService {
 
   private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
 
-  public getPromoEvaluators(): Observable<PromoEvaluator[]> {
+  public getPromoEvaluators(count: number, page: number, search: string): Observable<PromoEvaluator[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('count', count);
+    queryParams = queryParams.append('page', page);
+    queryParams = queryParams.append('search', search);
     let retval$ = new Subject<PromoEvaluator[]>();
-    this.http.get<PromoEvaluator[]>(`${PROMO_URL}/promoEvaluators`, { headers: this.headers }).subscribe((promoEvaluators: PromoEvaluator[]) => {
+    this.http.get<PromoEvaluator[]>(`${PROMO_URL}/promoEvaluators`, { headers: this.headers, params: queryParams }).subscribe((promoEvaluators: PromoEvaluator[]) => {
       retval$.next(promoEvaluators);
     });
     return retval$.asObservable();
