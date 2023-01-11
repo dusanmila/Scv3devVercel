@@ -1,5 +1,6 @@
 
-export interface PromoEvaluator{
-    username:string;
-    rebate:number;
+export interface PromoEvaluator {
+    username: string;
+    rebate: number;
+    totalCount: number;
 }

@@ -1,3 +1,12 @@
+<div class="centered font">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Search evaluators" [(ngModel)]="search">
+        <button class="search" matSuffix mat-button (click)="loadData(false)">
+            <mat-icon class="search">search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+
 <div class="container mat-elevation-z8">
 
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
@@ -30,5 +39,8 @@
         <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
         </mat-progress-spinner>
     </div>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
     <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No promo evaluators</mat-toolbar>
 </div>
