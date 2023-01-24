@@ -127,6 +127,8 @@ export class PositionComponent implements OnInit {
     const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location, comment, img, img2, img3, isImgHorizontal, isImg2Horizontal, isImg3Horizontal } });
 
     dialogRef.componentInstance.flag = flag;
+    dialogRef.componentInstance.isPositionCheck=this.positionCheck; //postavlja da li se radi storecheck da bi znao da li je sugestija nove pozicije  
+    console.log(this.positionCheck)
     dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;
     dialogRef.afterClosed()
       .subscribe(res => {

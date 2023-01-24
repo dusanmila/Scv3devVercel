@@ -1,5 +1,5 @@
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
@@ -43,9 +43,12 @@ export class PositionService {
     return retval$.asObservable();
   }
 
-  public createPosition(position: Position): Observable<Position> {
+  public createPosition(position: Position, isPositionCheck:boolean): Observable<Position> {
     let retval$ = new Subject<Position>();
-    this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers }).subscribe((helper: Position) => {
+    let queryParams = new HttpParams();
+    console.log(isPositionCheck)
+    queryParams = queryParams.append('isSuggestion', isPositionCheck);
+    this.http.post<Position>(`${POSITION_URL}/secondaryPositions`, position, { headers: this.headers,params: queryParams  }).subscribe((helper: Position) => {
       retval$.next(helper);
     });
     return retval$.asObservable();

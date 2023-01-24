@@ -11,6 +11,7 @@ import { Guid } from 'guid-typescript';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PositionProductCategoryService } from 'src/app/Services/position-product-category.service';
 import { PositionProductCategory } from 'src/app/models/positionProductCategory';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-position-dialog',
@@ -21,6 +22,7 @@ export class PositionDialogComponent implements OnInit {
 
   public form: FormGroup;
   public flag: number;
+  public isPositionCheck: boolean;
   public objectIdCompany: string;
   public positionClasses: PositionClass[];
   public positionTypes: PositionType[];
@@ -130,7 +132,7 @@ export class PositionDialogComponent implements OnInit {
     });
   }
 
-  public add() {
+  /*public add() {
     this.isLoading = true;
     this.data.objectIdCompany = this.objectIdCompany;
     this.data.valid = false;
@@ -147,7 +149,7 @@ export class PositionDialogComponent implements OnInit {
         this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
     });
-  }
+  }*/
 
   public delete() {
     this.isLoading = true;
@@ -253,9 +255,10 @@ export class PositionDialogComponent implements OnInit {
     formData.append('location', this.positionDto.location);
     formData.append('comment', this.positionDto.comment);
     formData.append('img', this.positionDto.img);
-    formData.append('valid', true);
+   
+   
 
-    this.positionService.createPosition(formData).subscribe(data => {
+    this.positionService.createPosition(formData,this.isPositionCheck).subscribe(data => {
       this.changed = true;
       this.isLoading = false;
       console.log(data);
@@ -375,8 +378,6 @@ export class PositionDialogComponent implements OnInit {
   }
 
   async adjustImage() {
-
-
 
     const img = document.getElementById('posphoto') as HTMLImageElement;
 
