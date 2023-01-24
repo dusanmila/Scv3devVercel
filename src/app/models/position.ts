@@ -9,6 +9,7 @@ export interface Position {
     supplier: string;
     location: string;
     comment:string;
+    isSuggestion:boolean;
     img:string;
     img2:string;
     img3:string;

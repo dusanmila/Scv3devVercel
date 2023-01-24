@@ -61,6 +61,7 @@ export class PositionDialogComponent implements OnInit {
     supplier: "",
     location: "",
     comment: "",
+    isSuggestion:false,
     img: "",
     img2: "",
     img3: "",

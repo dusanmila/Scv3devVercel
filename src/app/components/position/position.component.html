@@ -21,8 +21,8 @@
         </div>
       </mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index">
-       <!--<mat-checkbox color="primary" (change)="updatePosition(cb.checked, row);" (click)="$event.stopPropagation()" #cb
-          [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>-->
+       <mat-checkbox *ngIf="!row.isSuggestion" color="primary" (change)="updatePosition(cb.checked, row);" (click)="$event.stopPropagation()" #cb
+          [disabled]="resolveFeedbacks" [(ngModel)]="row.valid"></mat-checkbox>
 
         <button mat-icon-button color="primary"
           (click)="openDialog(2, row.secondaryPositionId, row.objectName, row.posClassName, row.posTypeName, row.valid, row.productCategory, row.supplier, row.location,row.comment, row.img,row.img2,row.img3,row.isImgHorizontal,row.isImgHorizontal2,row.isImgHorizontal3); $event.stopPropagation();"

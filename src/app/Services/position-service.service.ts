@@ -43,6 +43,15 @@ export class PositionService {
     return retval$.asObservable();
   }
 
+
+  public getPositionsByObjectIdCompanyAndIsSuggestion(objectIdCompany: string, isSuggestion:boolean): Observable<Position[]> {
+    let retval$ = new Subject<Position[]>();
+    this.http.get<Position[]>(`${POSITION_URL}/secondaryPositions/secondaryPositionByObjectIdCompanyAndIsSuggestion/${objectIdCompany}/${isSuggestion}`, { headers: this.headers }).subscribe((positions: Position[]) => {
+      retval$.next(positions)
+    });
+    return retval$.asObservable();
+  }
+
   public createPosition(position: Position, isPositionCheck:boolean): Observable<Position> {
     let retval$ = new Subject<Position>();
     let queryParams = new HttpParams();

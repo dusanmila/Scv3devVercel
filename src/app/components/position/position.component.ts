@@ -22,7 +22,7 @@ export class PositionComponent implements OnInit {
   isExporting = false;
 
   position: Position = {
-    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", comment: "", img: "", img2: "", img3: "", isImgHorizontal: false, isImg2Horizontal: false, isImg3Horizontal: false, valid: false,
+    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", comment: "",isSuggestion:false, img: "", img2: "", img3: "", isImgHorizontal: false, isImg2Horizontal: false, isImg3Horizontal: false, valid: false,
     //  productCategory: '',
     supplier: '',
     location: ''
@@ -52,7 +52,7 @@ export class PositionComponent implements OnInit {
   public loadData() {
     this.noData = false;
     if (this.objectIdCompany != null) {
-      this.positionService.getPositionsByObjectIdCompany(this.objectIdCompany).subscribe(data => {
+      this.positionService.getPositionsByObjectIdCompanyAndIsSuggestion(this.objectIdCompany,this.positionCheck).subscribe(data => {
         if (data) {
           this.positions = data;
           this.dataSource = new MatTableDataSource(this.positions);
