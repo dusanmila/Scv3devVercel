@@ -3,7 +3,7 @@
 </div>
 <div class="menu fadeInDown">
 
-  <div *ngIf="!menager" class="disableditem fadeIn second" [routerLink]="['/chooseObject/resolveFeedbacks']">
+  <div *ngIf="!menager" class="item fadeIn second" [routerLink]="['/chooseObject/resolveFeedbacks']">
     <!-- ENABLE: [routerLink]="['/chooseObject/resolveFeedbacks']"-->
     <p>
       <img src="../../../assets/belo.png" width="50px" height="50px"
@@ -12,7 +12,7 @@
     <div style="justify-content: center;margin-right: 30px;">RESOLVE FEEDBACKS</div>
   </div>
 
-  <div *ngIf="menager" class="disableditem fadeIn first">
+  <div *ngIf="menager" class="item fadeIn first">
     <!-- ENABLE: [routerLink]="['/chooseObject/addStoreCheck']"-->
     <p>
       <img src="../../../assets/belo.png" width="50px" height="50px"
@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="disableditem resolve-fb fadeIn second" [routerLink]="['/chooseObject/positions']">
+  <div class="item resolve-fb fadeIn second" [routerLink]="['/chooseObject/positions']">
     <!-- ENABLE: [routerLink]="['/chooseObject/positions']"-->
     <p>
       <img src="../../../assets/belopoz.png" width="50px" height="50px"
@@ -31,8 +31,8 @@
     <div style="justify-content: center;margin-right: 30px;">SECONDARY POSITIONS</div>
   </div>
 
-  <div class="disableditem resolve-fb fadeIn second">
-    <!-- ENABLE: [routerLink]="['/product']"-->
+  <div class="item resolve-fb fadeIn second" [routerLink]="['/product']">
+    <!-- ENABLE: -->
     <p>
       <img src="../../../assets/icons8-barcode-scanner-64.png" width="50px" height="50px"
         style="margin-top:15px; float:left; margin-left:20px;">
@@ -40,8 +40,8 @@
     <div style="justify-content: center;margin-right: 50px;">PRICE SCANNER</div>
   </div>
 
-  <div class="disableditem resolve-fb fadeIn second">
-    <!-- ENABLE: [routerLink]="['/chooseObject/returns']"-->
+  <div class="item resolve-fb fadeIn second" [routerLink]="['/chooseObject/returns']">
+    <!-- ENABLE: -->
     <p>
       <img src="../../../assets/icons8-u-turn-to-left-30.png" width="50px" height="50px"
         style="margin-top:15px; float:left; margin-left:20px;">
