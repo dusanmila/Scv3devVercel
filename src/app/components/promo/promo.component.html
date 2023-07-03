@@ -1,4 +1,4 @@
-<div class="header fadeIn first">
+<div class="header first">
     <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
     <h2 style="height:80px;"> <span>Promo Management</span> </h2>
 </div>
@@ -9,8 +9,8 @@
     <mat-radio-button value="FINISHED">Finished</mat-radio-button>
     <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
 </mat-radio-group>
-
-<div class="table mat-elevation-z8">
+<div>
+    <div class="table mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
         <ng-container matColumnDef="retailer">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Retailer</mat-header-cell>
@@ -61,4 +61,9 @@
     <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[5, 10, 25, 100]"
         [length]="length" (page)="loadDataOnPageEvent($event)">
     </mat-paginator>
-</div>
+    </div>
+    <div>
+        <button mat-stroked-button color="primary" class="item2 resolve-fb fadeIn third center"
+          [routerLink]="['/modules']">Exit<mat-icon>exit_to_app</mat-icon></button>
+      </div>
+
