@@ -1,0 +1,56 @@
+<mat-card class="card">
+    <mat-card-content class="card-content" #containerRef>
+        <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
+            [results]="countData" [cardColor]="cardColor" [textColor]="textColor" *ngIf="countData.length > 0">
+        </ngx-charts-number-card>
+    </mat-card-content>
+</mat-card>
+
+<div class="filter-section">
+    <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
+        selectedRetailer }} <mat-icon>close</mat-icon></button>
+    <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
+        selectedObject }} <mat-icon>close</mat-icon></button>
+</div>
+
+<div class="table-section">
+    <div class="table-section-item">
+        <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+    </div>
+    <div class="table-section-item">
+        <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
+    </div>
+</div>
+
+<mat-card class="card chart-card">
+    <mat-card-title>Secondary positions by classes</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-vertical-bar-chart [data]="positionClassResult" *ngIf="positionClassResult">
+            </app-vertical-bar-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="card chart-card">
+    <mat-card-title>Secondary positions by types</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-advanced-pie-chart [data]="positionTypeResult" [label]="'Total positions'" *ngIf="positionTypeResult">
+            </app-advanced-pie-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="card chart-card">
+    <mat-card-title>Secondary positions by product categories</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-vertical-bar-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
+            </app-vertical-bar-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
+
