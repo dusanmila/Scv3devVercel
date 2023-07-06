@@ -10,6 +10,16 @@
     <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
 </mat-radio-group>
 
+<mat-form-field>
+    <mat-label>Start Month and Year</mat-label>
+    <input matInput [ngModel]="selectedDate" [matDatepicker]="dp2" placeholder="Select a Date"
+        (click)="openDatePicker(dp2)">
+    <mat-hint>MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+    <mat-datepicker #dp2 startView="multi-year" panelClass="example-month-picker"
+        (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
+</mat-form-field>
+
 <div>
     <div class="table mat-elevation-z8">
         <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
