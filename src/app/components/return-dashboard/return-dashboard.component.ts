@@ -10,11 +10,11 @@ import { StatisticsService } from 'src/app/Services/statistics.service';
 })
 export class ReturnDashboardComponent implements OnInit {
 
-  selectedObject: string = "";
   selectedRetailer: string = "";
+  selectedObject: string = "";
+  selectedUser: string = "";
+  selectedProduct: string = "";
 
-  selectedObjects: string[] = [];
-  selectedRetailers: string[] = [];
 
   returnResult: StatisticsModel[] = [];
 
@@ -32,58 +32,34 @@ export class ReturnDashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectRetailer(retailer: string) {
-    if (this.selectedObject) {
-      this.returnResult = [];
-    }
-    this.selectedObject = '';
-    this.selectedObjects = [];
-    let index = this.selectedRetailers.indexOf(retailer);
-    if (index < 0) {
-      this.selectedRetailer = retailer;
-      this.selectedRetailers.push(retailer);
-      this.getReturnsCount();
-    }
-  }
+  
 
-  removeRetailer(retailer: string) {
-    let index = this.selectedRetailers.indexOf(retailer);
-    if (index >= 0) {
-      this.selectedRetailers.splice(index, 1);
-    }
-    index = this.returnResult.findIndex(el => el.name === retailer);
-    if (index >= 0) {
-      this.returnResult.splice(index, 1);
-      this.returnResult = [...this.returnResult];
-    }
+  selectRetailer(retailer: string) {
+    if (this.selectedObject)
+      this.selectedObject = '';
+    this.selectedRetailer = retailer;
+   
   }
 
   selectObject(object: string) {
-    if (this.selectedRetailer) {
-      this.returnResult = [];
-    }
-    this.selectedRetailer = '';
-    this.selectedRetailers = [];
-    let index = this.selectedObjects.indexOf(object);
-    if (index < 0) {
-      this.selectedObject = object;
-      this.selectedObjects.push(object);
-      this.getReturnsCount();
-    }
+    if (this.selectedRetailer)
+      this.selectedRetailer = '';
+    this.selectedObject = object;
+  
   }
 
-  removeObject(objectName: string) {
-    let index = this.selectedObjects.indexOf(objectName);
-    if (index >= 0) {
-      this.selectedObjects.splice(index, 1);
-    }
-    index = this.returnResult.findIndex(el => el.name === objectName);
-    if (index >= 0) {
-      this.returnResult.splice(index, 1);
-      this.returnResult = [...this.returnResult];
-    }
+  selectUser(user: string){
+    this.selectedUser= user;
+   
   }
+  selectProduct(product: string) {
+   
+    this.selectedProduct= product;
 
+    console.log(this.selectedProduct)
+   
+  }
+ 
   getReturnsCount() {
     this.statisticsService.getReturnsCount(this.selectedObject, this.selectedRetailer).subscribe(data => {
       if (data.name) {
