@@ -1,18 +1,24 @@
 <div class="filter-section">
-    <button mat-stroked-button class="filter-section-item" *ngFor="let retailer of selectedRetailers"
+  <!--  <button mat-stroked-button class="filter-section-item" *ngFor="let retailer of selectedRetailers"
         (click)="removeRetailer(retailer)">
         {{ retailer }} <mat-icon>close</mat-icon></button>
     <button mat-stroked-button class="filter-section-item" *ngFor="let object of selectedObjects"
         (click)="removeObject(object)">
-        {{ object }} <mat-icon>close</mat-icon></button>
+        {{ object }} <mat-icon>close</mat-icon></button>-->
 </div>
 
 <div class="table-section">
     <div class="table-section-item">
-        <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+        <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($any($event))"></app-retailer>
     </div>
     <div class="table-section-item">
-        <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
+        <app-object [isDashboard]="true" (selectedObject)="selectObject($any($event))"></app-object>
+    </div>
+    <div class="table-section-item">
+        <app-user [isDashboard]="true" (selectedUser)="selectUser($any($event))"></app-user>
+    </div>
+    <div class="table-section-item">
+        <app-product [isDashboard]="true" (selectedProduct)="selectProduct($any($event))"></app-product>
     </div>
 </div>
 

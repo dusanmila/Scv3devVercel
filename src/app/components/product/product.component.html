@@ -1,4 +1,4 @@
-<div class="header" *ngIf="showHeader">
+<div class="header" *ngIf="showHeader && !isDashboard">
     <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
     <h2 style="height:80px;"> <span>Price scanner</span> </h2>
 </div>
@@ -69,7 +69,7 @@
                 </form>
             </mat-cell>
         </ng-container>
-
+   
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>
                 <button mat-icon-button color="primary">
@@ -90,7 +90,7 @@
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="selectProduct(row.productName)">
         </mat-row>
     </mat-table>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
@@ -103,5 +103,5 @@
     </mat-paginator> -->
 </div>
 
-<button mat-stroked-button color="primary" class="item2" (click)="exit()" *ngIf="!isAdmin">Exit
+<button mat-stroked-button color="primary" class="item2" (click)="exit()" *ngIf="!isAdmin && !isDashboard">Exit
     <mat-icon>exit_to_app</mat-icon></button>

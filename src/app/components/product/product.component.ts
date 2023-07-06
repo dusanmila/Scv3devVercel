@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
@@ -27,6 +27,10 @@ export class ProductComponent implements OnInit {
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
   isAdmin: boolean = false;
+  isProductSelected: boolean = false;
+  
+  @Input() public isDashboard: boolean = false;
+  @Output() public selectedProduct = new EventEmitter<string>();
 
   displayedColumns = ['productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
 
@@ -35,6 +39,13 @@ export class ProductComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+
+    if (this.isDashboard){
+      this.count = 2;
+      this.displayedColumns=['productName'];
+    }
+    
+
     let url = this.router.url;
     if (url === '/admin/product') {
       this.isAdmin = true;
@@ -91,6 +102,11 @@ export class ProductComponent implements OnInit {
         console.log(error);
       }
     });
+  }
+
+  public selectProduct(productName: string) {
+    this.isProductSelected=true;
+    this.selectedProduct.emit(productName);
   }
 
   public exit() {
