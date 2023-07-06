@@ -28,12 +28,18 @@
     display: flex;
 }
 
+
 .footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
 }
+
+
+
+
+
 
 .card {
     width: 95%;
@@ -81,7 +87,6 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
 }
 
 .table-section-item {
@@ -120,15 +125,29 @@
 }
 
 .centered {
+
     margin: auto;
     width: 80%;
+
+
+
 }
 
 .div-container {
     width: 50%;
     height: 50%;
+
     display: flex;
     flex-direction: row;
+
+}
+
+.div-element-first {
+    margin-top: 10%;
+    width: 20%;
+    height: 50%;
+    padding-right: 13%;
+    margin-left: -10%;
 }
 
 .div-element {
@@ -136,6 +155,190 @@
     width: 20%;
     height: 50%;
     padding-right: 13%;
+    margin-left: 10%;
+}
+
+.chart-card {
+    margin-bottom: 50px;
+}
+
+.chart {
+    width: 80%;
+    height: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.radio-group-item {
+    margin: 0 10px;
+}
+
+.header {
+    background-color: #56baed;
+}
+
+.sidenav-container {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav {
+    width: 250px;
+    max-width: 100%;
+}
+
+.nav-list-item {
+    color: #56baed;
+}
+
+.nav-icon {
+    margin-right: 20px;
+    color: #56baed;
+}
+
+.row {
+    display: flex;
+}
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+
+
+
+
+.card {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.filter-section {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.filter-section-item {
+    border: 2px solid #56baed;
+    border-radius: 100px;
+    background-color: #fff;
+    color: #56baed;
+    width: auto;
+    margin: 10px;
+}
+
+.send-btn {
+    border: 2px solid #56baed;
+    border-radius: 100px;
+    background-color: #56baed;
+    color: #fff;
+    width: 100px;
+    margin: 10px;
+}
+
+.send-btn:hover {
+    background-color: #fff;
+    color: #56baed;
+    transition: 0.3s;
+}
+
+.table-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.table-section-item {
+    margin-top: 50px;
+    width: 30%;
+}
+
+.month-section {
+    height: 200px;
+    width: 80%;
+    margin: 100px auto 0 auto;
+}
+
+.month-btn {
+    border: 2px solid #56baed;
+    border-radius: 100px;
+    background-color: #fff;
+    color: #56baed;
+    width: 100px;
+    margin: 10px;
+}
+
+.month-btn:hover {
+    background-color: #56baed;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.selected-month-btn {
+    border: 2px solid #56baed;
+    border-radius: 100px;
+    background-color: #56baed;
+    color: #fff;
+    width: 100px;
+    margin: 10px;
+}
+
+.centered {
+
+    margin: auto;
+    width: 80%;
+
+
+
+}
+
+.div-container {
+    width: 50%;
+    height: 50%;
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+.div-element-first {
+    margin-top: 10%;
+    width: 20%;
+    height: 50%;
+    padding-right: 13%;
+    margin-left: -10%;
+}
+
+.div-element {
+    margin-top: 10%;
+    width: 20%;
+    height: 50%;
+    padding-right: 13%;
+    margin-left: 10%;
 }
 
 .chart-card {

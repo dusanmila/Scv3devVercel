@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
@@ -10,116 +11,145 @@ import { StatisticsModel } from 'src/app/models/statisticsModel';
 })
 export class PromoDashboardComponent implements OnInit {
 
-  query: string;
+  opened: boolean = false;
+  resolved: boolean = false;
+  flag: number = 1;
+  title: string = 'Dashboard';
+  breakpoint: number;
 
+  query: string;
   selectQuery: string;
 
-  selectPositionClassQuery: string;
-  selectPositionTypeQuery: string;
-  selectProductCategoryQuery: string;
 
-  ObjectQuery: string = " inner join [object] o on (sp.[ObjectId]=o.[ObjectId]) where objectname='";
+  days2: string[];
 
-  RetilerQuery: string = " inner join [object] o on (sp.[ObjectId]=o.[ObjectId])"
-    + " inner join Retailer r on (o.RetailerId=r.RetailerId) where retailerName='";
+  years: string[] = [
+    'All', '2022', '2023', '2024', '2025', '2026'
+  ];
 
+  months: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  days31: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+
+
+
+  days30: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
+
+  days28: string[] = [
+    '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28'];
+
+
+  selectedYear: string = "";
+  selectedDay: string = "";
+  selectedMonth: string = "";
+  selectedUser: string = "";
   selectedObject: string = "";
   selectedRetailer: string = "";
+  selectedProduct: string = "";
 
+  feedbackCategoryResult: StatisticsModel[];
   productCategoryResult: StatisticsModel[];
-  positionClassResult: StatisticsModel[];
-  positionTypeResult: StatisticsModel[];
 
-  countData: StatisticsModel[] = [];
-  cardColor: string = '#0081af';
-  textColor: string = '#fff';
-  colorScheme: Color = {
-    name: 'myScheme',
-    selectable: true,
-    group: ScaleType.Ordinal,
-    domain: ['#00abe7', '#2dc7ff', '#ead2ac', '#eaba6b']
-  };
+  first: boolean = true;
+
+  date = new Date();
+  chosenYearDate: Date;
+  chosenMonthDate: Date = new Date(2020, 0, 1);
+  chosenSemesterDate: Date;
+  chosenWeekDate: Date;
+  chosenDate: Date;
+  monthInputCtrl: FormControl = new FormControl(new Date(2020, 0, 1));
+
+  visible = true;
+
+  shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
+
+  tiles: any[] = [
+    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
+    { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
+    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
+    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
+  ];
 
   constructor(public statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
+    this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
     this.send();
-    this.getCountData();
+  }
+
+  changePage(flag: number, title: string) {
+    this.flag = flag;
+    this.title = title;
+  }
+
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 800) ? 2 : 4;
   }
 
   selectRetailer(retailer: string) {
-    if (this.selectedObject) {
+    if (this.selectedObject)
       this.selectedObject = '';
-    }
     this.selectedRetailer = retailer;
     this.send();
   }
 
+  selectUser(user: string) {
+    this.selectedUser = user;
+    this.send();
+  }
+
   selectObject(object: string) {
-    if (this.selectedRetailer) {
+    if (this.selectedRetailer)
       this.selectedRetailer = '';
-    }
     this.selectedObject = object;
     this.send();
   }
 
-  getCountData() {
-    this.statisticsService.getCountData('POSITION_DASHBOARD').subscribe(data => {
-      this.countData = data;
-    });
+  selectProduct(product: string) {
+    if (this.selectedProduct)
+      this.selectedProduct = '';
+    this.selectedProduct = product;
+    this.send();
   }
 
-  public queryUpdate() {
-
-    if (this.selectedObject != "") {
-
-      this.selectQuery = this.selectQuery + this.ObjectQuery + this.selectedObject + "'";
-      this.selectPositionClassQuery = this.selectPositionClassQuery + this.ObjectQuery + this.selectedObject + "'";
-      this.selectPositionTypeQuery = this.selectPositionTypeQuery + this.ObjectQuery + this.selectedObject + "'";
-      this.selectProductCategoryQuery = this.selectProductCategoryQuery + this.ObjectQuery + this.selectedObject + "'";
-    }
-
-
-    if (this.selectedRetailer != "") {
-
-      this.selectQuery = this.selectQuery + this.RetilerQuery + this.selectedRetailer + "'";
-      this.selectPositionClassQuery = this.selectPositionClassQuery + this.RetilerQuery + this.selectedRetailer + "'";
-      this.selectPositionTypeQuery = this.selectPositionTypeQuery + this.RetilerQuery + this.selectedRetailer + "'";
-      this.selectProductCategoryQuery = this.selectProductCategoryQuery + this.RetilerQuery + this.selectedRetailer + "'";
-    }
+  selectMonth(month: string) {
+    this.selectedMonth = month;
+    this.send();
   }
 
-  public send() {
+  setYear(value) {
+    if (value === "All") {
+      this.selectedYear = "";
+    } else {
+      this.selectedYear = value;
+    }
+    this.send();
+  }
 
-    this.selectQuery = "select count(SecondaryPositionId) as Count from SecondaryPosition sp ";
+  setMonth(value) {
+    this.selectedMonth = value;
+    if (this.selectedMonth === 'April' || this.selectedMonth === 'June' || this.selectedMonth === 'September' || this.selectedMonth === 'November') {
+      this.days2 = this.days30;
+    } else if (this.selectedMonth === 'February') {
+      this.days2 = this.days28;
+    } else {
+      this.days2 = this.days31;
+    }
+    this.send();
+  }
 
-    this.selectPositionClassQuery = "select count(SecondaryPositionId) as Value, PositionTypeName as Name " +
-      "from PositionType pt inner join SecondaryPosition sp on (pt.PositionTypeId=sp.PositionTypeId) ";
+  setDay(value) {
+    this.selectedDay = value;
+    this.send();
+  }
 
-    this.selectPositionTypeQuery = "select count(SecondaryPositionId) as Value, PositionClassName as Name " +
-      "from PositionClass pc inner join SecondaryPosition sp on (pc.PositionClassId=sp.PositionClassId) "
+  send() {
 
-    this.selectProductCategoryQuery = "select count(PositionId) as Value, ProductCategoryName as Name " +
-      "from ProductCategory pc inner join PositionProductCategory ppc on (pc.ProductCategoryId=ppc.ProductCategoryId) " +
-      "inner join SecondaryPosition sp on (sp.SecondaryPositionId= ppc.PositionId) "
-
-
-    this.queryUpdate();
-    this.selectPositionClassQuery = this.selectPositionClassQuery + " group by PositionTypeName";
-    this.selectPositionTypeQuery = this.selectPositionTypeQuery + " group by PositionClassName";
-    this.selectProductCategoryQuery = this.selectProductCategoryQuery + " group by ProductCategoryName";
-
-    this.statisticsService.getCountListByQuerry(this.selectPositionClassQuery).subscribe(data => {
-      this.positionClassResult = data;
-    });
-
-    this.statisticsService.getCountListByQuerry(this.selectPositionTypeQuery).subscribe(data => {
-      this.positionTypeResult = data;
-    });
-
-    this.statisticsService.getCountListByQuerry(this.selectProductCategoryQuery).subscribe(data => {
-      this.productCategoryResult = data;
-    });
   }
 
 }

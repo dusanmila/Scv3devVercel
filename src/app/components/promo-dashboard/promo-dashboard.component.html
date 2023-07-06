@@ -1,56 +1,72 @@
-<mat-card class="card">
-    <mat-card-content class="card-content" #containerRef>
-        <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
-            [results]="countData" [cardColor]="cardColor" [textColor]="textColor" *ngIf="countData.length > 0">
-        </ngx-charts-number-card>
-    </mat-card-content>
-</mat-card>
+<div class="dashboard" *ngIf="flag === 1">
 
-<div class="filter-section">
-    <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
-        selectedRetailer }} <mat-icon>close</mat-icon></button>
-    <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
-        selectedObject }} <mat-icon>close</mat-icon></button>
-</div>
-
-<div class="table-section">
-    <div class="table-section-item">
-        <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+    <div class="filter-section">
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
+            selectedUser }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
+            selectedRetailer }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
+            selectedObject }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedProduct" (click)="selectProduct('')">{{
+            selectedProduct }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedYear && !selectedMonth && !selectedDay"
+            (click)="setYear('')">{{
+            selectedYear }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth && selectedYear && !selectedDay"
+            (click)="setMonth(''); setYear('');">
+            {{selectedMonth}}-{{ selectedYear }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedDay && selectedMonth && selectedYear"
+            (click)="setDay(''); setMonth(''); setYear('');">
+            {{ selectedDay }}-{{selectedMonth}}-{{selectedYear}} <mat-icon>close</mat-icon></button>
     </div>
-    <div class="table-section-item">
-        <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
+
+    <div class="table-section">
+        <div class="table-section-item">
+            <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
+        </div>
+        <div class="table-section-item">
+            <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+        </div>
+        <div class="table-section-item">
+            <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
+        </div>
+        <!-- <div class="table-section-item">
+            <app-product [isDashboard]="true" (selectedProduct)="selectProduct($event)"></app-product>
+        </div> -->
     </div>
-</div>
 
-<mat-card class="card chart-card">
-    <mat-card-title>Secondary positions by classes</mat-card-title>
-    <mat-card-content>
-        <div class="chart">
-            <app-vertical-bar-chart [data]="positionClassResult" *ngIf="positionClassResult">
-            </app-vertical-bar-chart>
+    <div class="centered div-container">
+        <div class="div-element-first">
+            <mat-form-field appearance="fill">
+                <mat-label>Year</mat-label>
+                <mat-select (selectionChange)="setYear($event.value)" [value]="selectedYear">
+                    <mat-option *ngFor="let year of years" [value]="year">
+                        {{year}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-    </mat-card-content>
-</mat-card>
 
-<mat-card class="card chart-card">
-    <mat-card-title>Secondary positions by types</mat-card-title>
-    <mat-card-content>
-        <div class="chart">
-            <app-advanced-pie-chart [data]="positionTypeResult" [label]="'Total positions'" *ngIf="positionTypeResult">
-            </app-advanced-pie-chart>
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Month</mat-label>
+                <mat-select (selectionChange)="setMonth($event.value)" [disabled]="!selectedYear"
+                    [value]="selectedMonth">
+                    <mat-option *ngFor="let month of months" [value]="month">
+                        {{month}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-    </mat-card-content>
-</mat-card>
 
-<mat-card class="card chart-card">
-    <mat-card-title>Secondary positions by product categories</mat-card-title>
-    <mat-card-content>
-        <div class="chart">
-            <app-vertical-bar-chart [data]="productCategoryResult" *ngIf="productCategoryResult">
-            </app-vertical-bar-chart>
+        <div class="div-element">
+            <mat-form-field appearance="fill">
+                <mat-label>Day</mat-label>
+                <mat-select (selectionChange)="setDay($event.value)" [disabled]="!selectedMonth" [value]="selectedDay">
+                    <mat-option *ngFor="let day of days2" [value]="day">
+                        {{day}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-    </mat-card-content>
-</mat-card>
-
-
-
+    </div>
