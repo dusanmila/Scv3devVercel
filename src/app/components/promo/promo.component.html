@@ -9,61 +9,77 @@
     <mat-radio-button value="FINISHED">Finished</mat-radio-button>
     <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
 </mat-radio-group>
+
+<mat-form-field>
+    <mat-label>Start Month and Year</mat-label>
+    <input matInput [ngModel]="selectedDate" [matDatepicker]="dp2" placeholder="Select a Date"
+        (click)="openDatePicker(dp2)">
+    <mat-hint>MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+    <mat-datepicker #dp2 startView="multi-year" panelClass="example-month-picker"
+        (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
+</mat-form-field>
+
 <div>
     <div class="table mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
-        <ng-container matColumnDef="retailer">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Retailer</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
-        </ng-container>
+        <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+            <ng-container matColumnDef="retailer">
+                <mat-header-cell *matHeaderCellDef mat-sort-header
+                    class="whitetext column-name">Retailer</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="product">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.productName }}</mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="product">
+                <mat-header-cell *matHeaderCellDef mat-sort-header
+                    class="whitetext column-name">Product</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.productName }}</mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="startDate">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Start</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.dateStart | date:'dd/MM/yyyy' }}</mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="startDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Start</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.dateStart | date:'dd/MM/yyyy' }}</mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="endDate">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">End</mat-header-cell>
-            <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="endDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">End</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
+            </ng-container>
 
-        <ng-container matColumnDef="actions">
-            <mat-header-cell *matHeaderCellDef>
-                <button mat-icon-button color="primary" *ngIf="type === 'FOR_CONFIRMATION'">
-                    <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
-                </button>
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row; let i=index">
-                <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
-                    (click)="openDialog(2, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">Confirm
-                </button>
-                <button mat-icon-button color="primary"
-                    (click)="openDialog(3, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
-                    <mat-icon area-label="Delete">delete</mat-icon>
-                </button>
-                <button mat-icon-button color="primary"
-                    *ngIf="type === 'FINISHED' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
-                    (click)="openDialog(4, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
-                    <mat-icon area-label="Edit">edit</mat-icon>
-                </button>
-            </mat-cell>
-        </ng-container>
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-icon-button color="primary" *ngIf="type === 'FOR_CONFIRMATION'">
+                        <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i=index">
+                    <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
+                        (click)="openDialog(2, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">Confirm
+                    </button>
+                    <button mat-icon-button color="primary"
+                        (click)="openDialog(3, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
+                        <mat-icon area-label="Delete">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary"
+                        *ngIf="type === 'FINISHED' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                        (click)="openDialog(4, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
+                        <mat-icon area-label="Edit">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary"
+                        (click)="openDialog(5, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.adsCost, row.promoSale, row.promoCost, row.price, row.resultSale)">
+                        <mat-icon area-label="Info">info</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
-    </mat-table>
-    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No promos</mat-toolbar>
-    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[5, 10, 25, 100]"
-        [length]="length" (page)="loadDataOnPageEvent($event)">
-    </mat-paginator>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No promos</mat-toolbar>
+        <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[5, 10, 25, 100]"
+            [length]="length" (page)="loadDataOnPageEvent($event)">
+        </mat-paginator>
     </div>
     <div>
         <button mat-stroked-button color="primary" class="item2 resolve-fb fadeIn third center"
-          [routerLink]="['/modules']">Exit<mat-icon>exit_to_app</mat-icon></button>
-      </div>
-
+            [routerLink]="['/modules']">Exit<mat-icon>exit_to_app</mat-icon></button>
+    </div>

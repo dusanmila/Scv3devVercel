@@ -80,4 +80,12 @@ export class StatisticsService {
     return retval$.asObservable();
   }
 
+  getPromoResultData(retailerName: string, objectName: string, username: string, productName, day: string, month: string, year: string): Observable<any> {
+    let retval$ = new Subject<any>();
+    this.http.get<any>(`${SERVICE_URL}/statistics/promoResultData/${retailerName}/${objectName}/${username}/${productName}/${day}/${month}/${year}`).subscribe((helper: any) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
 }

@@ -27,6 +27,7 @@ import { PromoComponent } from './components/promo/promo.component';
 import { ModulesComponent } from './components/modules/modules.component';
 import { PositionDashboardComponent } from './components/position-dashboard/position-dashboard.component';
 import { ReturnDashboardComponent } from './components/return-dashboard/return-dashboard.component';
+import { PromoDashboardComponent } from './components/promo-dashboard/promo-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -49,6 +50,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AdminGuard] },
       { path: 'position-dashboard', component: PositionDashboardComponent, canActivate: [AdminGuard] },
       { path: 'return-dashboard', component: ReturnDashboardComponent, canActivate: [AdminGuard] },
+      { path: 'promo-dashboard', component: PromoDashboardComponent, canActivate: [AdminGuard] },
       { path: 'retailer', component: RetailerComponent, canActivate: [AdminGuard] },
       { path: 'storeCheckReceiver', component: StoreCheckReceiverComponent, canActivate: [AdminGuard] },
       { path: 'promoEvaluator', component: PromoEvaluatorComponent, canActivate: [AdminGuard] },
