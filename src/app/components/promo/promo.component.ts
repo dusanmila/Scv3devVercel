@@ -13,10 +13,22 @@ import { ProductService } from 'src/app/Services/product.service';
 import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service';
 import { PromoService } from 'src/app/Services/promo.service';
 
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'MM/YYYY',
+  },
+  display: {
+    dateInput: 'MM/YYYY',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 @Component({
   selector: 'app-promo',
   templateUrl: './promo.component.html',
-  styleUrls: ['./promo.component.css']
+  styleUrls: ['./promo.component.css'],
 })
 export class PromoComponent implements OnInit {
 
@@ -29,6 +41,7 @@ export class PromoComponent implements OnInit {
   length: number = 0;
   type: string = 'FOR_CONFIRMATION';
   isEvaluator: boolean = false;
+  selectedDate: Date = new Date();
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
@@ -49,7 +62,7 @@ export class PromoComponent implements OnInit {
     if (!pageChanged)
       this.page = 1;
     let username = localStorage.getItem("username") as string;
-    this.promoService.getPromos(this.count, this.page, this.type, username).subscribe(data => {
+    this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedDate).subscribe(data => {
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
@@ -110,5 +123,16 @@ export class PromoComponent implements OnInit {
     let result = Math.floor((Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) - Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate())) / (1000 * 60 * 60 * 24));
     return result;
   }
+
+  openDatePicker(dp) {
+    dp.open();
+  }
+
+  closeDatePicker(eventData: any, dp?: any) {
+    this.selectedDate = eventData;
+    this.getPromos(false);
+    dp.close();
+  }
+
 
 }

@@ -98,6 +98,7 @@ import { ModulesComponent } from './components/modules/modules.component';
 import { PromoDialogComponent } from './dialogs/promo-dialog/promo-dialog.component';
 import { PositionDashboardComponent } from './components/position-dashboard/position-dashboard.component';
 import { ReturnDashboardComponent } from './components/return-dashboard/return-dashboard.component';
+import { PromoDashboardComponent } from './components/promo-dashboard/promo-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -152,7 +153,8 @@ import { ReturnDashboardComponent } from './components/return-dashboard/return-d
     ModulesComponent,
     PromoDialogComponent,
     PositionDashboardComponent,
-    ReturnDashboardComponent
+    ReturnDashboardComponent,
+    PromoDashboardComponent
   ],
   imports: [
     AppRoutingModule,
