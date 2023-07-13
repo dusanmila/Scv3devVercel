@@ -13,7 +13,7 @@ export class StatisticsService {
 
   public getCountListByQuerry(query: string): Observable<StatisticsModel[]> {
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuerry/${query}`).subscribe((helper: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuery/${query}`).subscribe((helper: StatisticsModel[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -39,7 +39,7 @@ export class StatisticsService {
 
   public getTop3UsersByFeedbacks(): Observable<StatisticsModel[]> {
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuerry/select top(3) count(feedbackid) as Value,Username as Name from feedback group by Username order by count(feedbackid) desc`).subscribe((helper: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuery/select top(3) count(feedbackid) as Value,Username as Name from feedback group by Username order by count(feedbackid) desc`).subscribe((helper: StatisticsModel[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -47,7 +47,7 @@ export class StatisticsService {
 
   public getTop3ResolversByFeedbacks(): Observable<StatisticsModel[]> {
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuerry/select top(3) count(feedbackid) as Value,UsernameResolve as Name from feedback group by UsernameResolve order by count(feedbackid) desc`).subscribe((helper: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuery/select top(3) count(feedbackid) as Value,UsernameResolve as Name from feedback group by UsernameResolve order by count(feedbackid) desc`).subscribe((helper: StatisticsModel[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -55,7 +55,7 @@ export class StatisticsService {
 
   public getTop3ObjectsByFeedbacks(): Observable<StatisticsModel[]> {
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuerry/select top(3) count(feedbackid) as Value,objectname as Name from feedback f inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId) inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) group by objectname order by count(feedbackid) desc`).subscribe((helper: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${SERVICE_URL}/statistics/getCountListByQuery/select top(3) count(feedbackid) as Value,objectname as Name from feedback f inner join objectstorecheck osc on (f.ObjectStoreCheckId=osc.ObjectStoreCheckId) inner join [object] o on (osc.ObjectIdCompany=o.ObjectIdCompany) group by objectname order by count(feedbackid) desc`).subscribe((helper: StatisticsModel[]) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
@@ -63,7 +63,7 @@ export class StatisticsService {
 
   public getFeedbackCount(query): Observable<any> {
     let retval$ = new Subject<any[]>();
-    this.http.get<any>(`${SERVICE_URL}/statistics/getCountByQuerry/${query}`).subscribe((helper: any) => {
+    this.http.get<any>(`${SERVICE_URL}/statistics/getCountByQuery/${query}`).subscribe((helper: any) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
