@@ -13,7 +13,7 @@ import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service'
 })
 export class PromoEvaluatorComponent implements OnInit {
 
-  displayedColumns = ["Username", "Rebate", "actions"];
+  displayedColumns = ["Position","Username", "Rebate", "actions"];
   dataSource: MatTableDataSource<PromoEvaluator>;
   isLoading: boolean = false;
   noData: boolean = false;
