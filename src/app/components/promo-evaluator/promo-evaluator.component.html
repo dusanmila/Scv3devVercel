@@ -11,6 +11,11 @@
 
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
+        <ng-container matColumnDef="Position">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Position</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.position }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="Username">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Username</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
