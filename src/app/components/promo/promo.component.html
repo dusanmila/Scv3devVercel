@@ -45,6 +45,12 @@
                 <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="resultSalePercent">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Result Sale
+                    %</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ (row.resultSale * 100 - 100).toFixed(2) }}%</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>
                     <button mat-icon-button color="primary" *ngIf="type === 'FOR_CONFIRMATION'">

@@ -33,7 +33,7 @@ export const MY_FORMATS = {
 export class PromoComponent implements OnInit {
 
   promos: Promo[];
-  displayedColumns: string[] = ['retailer', 'product', 'startDate', 'endDate'];
+  displayedColumns: string[] = [];
   dataSource: MatTableDataSource<Promo>;
   noData: boolean = false;
   count: number = 5;
@@ -53,9 +53,7 @@ export class PromoComponent implements OnInit {
   ngOnInit(): void {
     this.checkIfUserEvaluator();
     this.getPromos(false);
-    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION" || this.type === "FINISHED") {
-      this.displayedColumns.push('actions');
-    }
+    this.editDisplayedColumns();
   }
 
   getPromos(pageChanged: boolean) {
@@ -90,14 +88,7 @@ export class PromoComponent implements OnInit {
 
   changeType(event) {
     this.type = event.value;
-    let index = this.displayedColumns.indexOf('actions');
-    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION" || this.type === "FINISHED") {
-      if (index < 0)
-        this.displayedColumns.push('actions');
-    } else {
-      if (index >= 0)
-        this.displayedColumns.splice(index, 1);
-    }
+    this.editDisplayedColumns();
     this.getPromos(false);
   }
 
@@ -134,5 +125,19 @@ export class PromoComponent implements OnInit {
     dp.close();
   }
 
+  editDisplayedColumns() {
+    if (this.type === 'MY_CONFIRMATION') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
+    }
+    else if (this.type === 'FOR_CONFIRMATION') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'actions'];
+    }
+    else if (this.type === 'FINISHED') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'actions'];
+    }
+    else if (this.type === 'ACTUAL') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate'];
+    }
+  }
 
 }
