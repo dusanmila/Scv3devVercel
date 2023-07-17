@@ -37,6 +37,14 @@
             </mat-form-field>
 
         </div>
+        
+        <div class="form">
+            <mat-form-field>
+                <input type="number" matInput id="position" name="position" formControlName="position" placeholder="Position "
+                    [(ngModel)]="data.position" required />
+            </mat-form-field>
+
+        </div>
 
         <div mat-dialog-actions>
             <div *ngIf="isLoading"
