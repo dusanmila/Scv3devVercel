@@ -45,6 +45,8 @@ export class PromoEvaluatorDialogComponent {
 
 
   add() {
+    console.log(this.data);
+
     this.isLoading = true;
     this.data.username = this.user;
     this.promoEvaluatorService.createPromoEvaluator(this.data).subscribe(data => {
