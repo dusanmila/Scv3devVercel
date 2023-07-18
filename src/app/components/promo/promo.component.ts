@@ -49,11 +49,11 @@ export class PromoComponent implements OnInit {
   retailerNames: string[] = [];
   filteredRetailerNames: Observable<string[]>;
   search: string = '';
-  selectedRetailerName: string;
+  selectedRetailerName: string = "";
   productCategoryFormControl = new FormControl('');
   productCategoryNames: string[] = [];
   filteredProductCategoryNames: Observable<string[]>;
-  selectedProductCategoryName: string;
+  selectedProductCategoryName: string = "";
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
@@ -87,6 +87,8 @@ export class PromoComponent implements OnInit {
     if (!pageChanged)
       this.page = 1;
     let username = localStorage.getItem("username") as string;
+    this.selectedRetailerName = this.retailerFormControl.value;
+    this.selectedProductCategoryName = this.productCategoryFormControl.value;
     this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedDate).subscribe(data => {
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
@@ -116,25 +118,14 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  selectRetailer(event) {
-    this.selectedRetailerName = event.option.value;
-    this.getPromos(false);
-  }
-
   getProductCategoryNames() {
     this.productCategoryService.getProductCategoryNames().subscribe(data => {
       this.productCategoryNames = data;
-      console.log(data);
       this.filteredProductCategoryNames = this.productCategoryFormControl.valueChanges.pipe(
         startWith(''),
         map(value => this._filterProductCategoryNames(value || '')),
       );
     });
-  }
-
-  selectProductCategory(event) {
-    this.selectedProductCategoryName = event.option.value;
-    this.getPromos(false);
   }
 
   checkIfUserEvaluator() {

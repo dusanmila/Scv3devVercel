@@ -14,14 +14,14 @@ export class PromoService {
 
   constructor(public http: HttpClient) { }
 
-  getPromos(count: number, page: number, type: string, username: string, retailerName: string, promoCategoryName: string, startMonthAndYear?: Date): Observable<Promo[]> {
+  getPromos(count: number, page: number, type: string, username: string, retailerName: string, productCategoryName: string, startMonthAndYear?: Date): Observable<Promo[]> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('count', count);
     queryParams = queryParams.append('page', page);
     queryParams = queryParams.append('type', type);
     queryParams = queryParams.append('username', username);
     queryParams = queryParams.append('retailerName', retailerName);
-    queryParams = queryParams.append('promoCategoryName', promoCategoryName);
+    queryParams = queryParams.append('productCategoryName', productCategoryName);
     queryParams = queryParams.append('startMonthAndYear', startMonthAndYear ? startMonthAndYear.toDateString() : '');
     let retval$ = new Subject<Promo[]>();
     this.http.get<Promo[]>(`${PROMO_URL}/promos`, { params: queryParams, headers: this.headers }).subscribe((promos: Promo[]) => {
