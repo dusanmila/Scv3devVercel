@@ -1,14 +1,17 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
+import { map, Observable, startWith } from 'rxjs';
 import { PromoDialogComponent } from 'src/app/dialogs/promo-dialog/promo-dialog.component';
 import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
 import { Retailer } from 'src/app/models/retailer';
 import { ObjectService } from 'src/app/Services/object.service';
+import { ProductCategoryService } from 'src/app/Services/product-category.service';
 import { ProductService } from 'src/app/Services/product.service';
 import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service';
 import { PromoService } from 'src/app/Services/promo.service';
@@ -33,7 +36,7 @@ export const MY_FORMATS = {
 export class PromoComponent implements OnInit {
 
   promos: Promo[];
-  displayedColumns: string[] = ['retailer', 'product', 'startDate', 'endDate'];
+  displayedColumns: string[] = [];
   dataSource: MatTableDataSource<Promo>;
   noData: boolean = false;
   count: number = 5;
@@ -42,27 +45,51 @@ export class PromoComponent implements OnInit {
   type: string = 'FOR_CONFIRMATION';
   isEvaluator: boolean = false;
   selectedDate: Date = new Date();
+  retailerFormControl = new FormControl('');
+  retailerNames: string[] = [];
+  filteredRetailerNames: Observable<string[]>;
+  search: string = '';
+  selectedRetailerName: string = "";
+  productCategoryFormControl = new FormControl('');
+  productCategoryNames: string[] = [];
+  filteredProductCategoryNames: Observable<string[]>;
+  selectedProductCategoryName: string = "";
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
     public promoService: PromoService,
     public datePipe: DatePipe,
     public promoEvaluatorService: PromoEvaluatorService,
-    public dialog: MatDialog,) { }
+    public dialog: MatDialog,
+    public productCategoryService: ProductCategoryService) { }
 
   ngOnInit(): void {
     this.checkIfUserEvaluator();
     this.getPromos(false);
-    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION" || this.type === "FINISHED") {
-      this.displayedColumns.push('actions');
-    }
+    this.editDisplayedColumns();
+    this.getRetailerNames();
+    this.getProductCategoryNames();
+  }
+
+  private _filterRetailerNames(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.retailerNames.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  private _filterProductCategoryNames(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.productCategoryNames.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   getPromos(pageChanged: boolean) {
     if (!pageChanged)
       this.page = 1;
     let username = localStorage.getItem("username") as string;
-    this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedDate).subscribe(data => {
+    this.selectedRetailerName = this.retailerFormControl.value;
+    this.selectedProductCategoryName = this.productCategoryFormControl.value;
+    this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedDate).subscribe(data => {
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
@@ -81,6 +108,26 @@ export class PromoComponent implements OnInit {
     this.getPromos(true);
   }
 
+  getRetailerNames() {
+    this.objectService.getRetailerNames().subscribe(data => {
+      this.retailerNames = data;
+      this.filteredRetailerNames = this.retailerFormControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterRetailerNames(value || '')),
+      );
+    });
+  }
+
+  getProductCategoryNames() {
+    this.productCategoryService.getProductCategoryNames().subscribe(data => {
+      this.productCategoryNames = data;
+      this.filteredProductCategoryNames = this.productCategoryFormControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterProductCategoryNames(value || '')),
+      );
+    });
+  }
+
   checkIfUserEvaluator() {
     let username = localStorage.getItem("username") as string;
     this.promoEvaluatorService.checkIfUserEvaluator(username).subscribe(data => {
@@ -90,14 +137,7 @@ export class PromoComponent implements OnInit {
 
   changeType(event) {
     this.type = event.value;
-    let index = this.displayedColumns.indexOf('actions');
-    if (this.type === "MY_CONFIRMATION" || this.type === "FOR_CONFIRMATION" || this.type === "FINISHED") {
-      if (index < 0)
-        this.displayedColumns.push('actions');
-    } else {
-      if (index >= 0)
-        this.displayedColumns.splice(index, 1);
-    }
+    this.editDisplayedColumns();
     this.getPromos(false);
   }
 
@@ -134,5 +174,19 @@ export class PromoComponent implements OnInit {
     dp.close();
   }
 
+  editDisplayedColumns() {
+    if (this.type === 'MY_CONFIRMATION') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
+    }
+    else if (this.type === 'FOR_CONFIRMATION') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'actions'];
+    }
+    else if (this.type === 'FINISHED') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'actions'];
+    }
+    else if (this.type === 'ACTUAL') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate'];
+    }
+  }
 
 }
