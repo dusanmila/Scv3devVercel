@@ -81,14 +81,6 @@
 
         <div class="form">
             <mat-form-field appearance="fill">
-                <mat-label>Ads cost</mat-label>
-                <input type="number" matInput [(ngModel)]="data.adsCost" required name="adsCost"
-                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
-            </mat-form-field>
-        </div>
-
-        <div class="form">
-            <mat-form-field appearance="fill">
                 <mat-label>Promo sale</mat-label>
                 <input type="number" matInput [(ngModel)]="data.promoSale" required name="promoSale"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
@@ -97,8 +89,8 @@
 
         <div class="form">
             <mat-form-field appearance="fill">
-                <mat-label>Promo cost</mat-label>
-                <input type="number" matInput [(ngModel)]="data.promoCost" required name="promoCost"
+                <mat-label>Expenses</mat-label>
+                <input type="number" matInput [(ngModel)]="data.expenses" required name="expenses"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
             </mat-form-field>
         </div>

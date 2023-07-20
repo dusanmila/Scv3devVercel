@@ -10,11 +10,11 @@ export interface Promo {
     rebate: number;
     regularSale: number;
     type: string;
-    adsCost: number;
     promoSale: number;
-    promoCost: number;
+    expenses: number;
     price: number;
     resultSale: number;
+    ropi: number;
     retailerName: string;
     objectIdCompany: string;
     objectName: string;
