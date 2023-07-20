@@ -12,13 +12,15 @@
 
 <div class="filters">
     <mat-form-field *ngIf="type === 'FINISHED'">
-        <mat-label>Start Month and Year</mat-label>
-        <input matInput [ngModel]="selectedDate" [matDatepicker]="dp2" placeholder="Select a Date"
-            (click)="openDatePicker(dp2)">
-        <mat-hint>MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-        <mat-datepicker #dp2 startView="multi-year" panelClass="example-month-picker"
-            (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date" #dateRangeStart>
+            <input matEndDate placeholder="End date" #dateRangeEnd
+                (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+        </mat-date-range-input>
+        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
 </div>
 

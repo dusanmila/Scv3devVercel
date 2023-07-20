@@ -44,7 +44,8 @@ export class PromoComponent implements OnInit {
   length: number = 0;
   type: string = 'FOR_CONFIRMATION';
   isEvaluator: boolean = false;
-  selectedDate: Date = new Date();
+  selectedStartDate: string = '';
+  selectedEndDate: string = '';
   retailerFormControl = new FormControl('');
   retailerNames: string[] = [];
   filteredRetailerNames: Observable<string[]>;
@@ -89,7 +90,7 @@ export class PromoComponent implements OnInit {
     let username = localStorage.getItem("username") as string;
     this.selectedRetailerName = this.retailerFormControl.value;
     this.selectedProductCategoryName = this.productCategoryFormControl.value;
-    this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedDate).subscribe(data => {
+    this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
@@ -168,12 +169,6 @@ export class PromoComponent implements OnInit {
     dp.open();
   }
 
-  closeDatePicker(eventData: any, dp?: any) {
-    this.selectedDate = eventData;
-    this.getPromos(false);
-    dp.close();
-  }
-
   editDisplayedColumns() {
     if (this.type === 'MY_CONFIRMATION') {
       this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
@@ -187,6 +182,14 @@ export class PromoComponent implements OnInit {
     else if (this.type === 'ACTUAL') {
       this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate'];
     }
+  }
+
+  dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+    const date1 = new Date(dateRangeStart.value);
+    const date2 = new Date(dateRangeEnd.value);
+    this.selectedStartDate = date1.toDateString();
+    this.selectedEndDate = date2.toDateString();
+    this.getPromos(false);
   }
 
 }
