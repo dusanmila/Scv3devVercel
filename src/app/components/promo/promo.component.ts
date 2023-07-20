@@ -147,8 +147,8 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, adsCost?: number, promoSale?: number, promoCost?: number, price?: number, resultSale?: number) {
-    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, adsCost, promoSale, promoCost, price, resultSale } });
+  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, ropi?: number, promoSale?: number, expenses?: number, price?: number, resultSale?: number) {
+    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, ropi, promoSale, expenses, price, resultSale } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
