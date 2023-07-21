@@ -76,11 +76,10 @@ export class StoreCheckPageComponent implements OnInit {
   // ovo koristimo kada ne izlazi dijalog za mejlove pri zarsetku object store checka
   public finishObjectStoreCheck() {
     let username = localStorage.getItem("username") as string;
-    this.router.navigate(['/chooseObject/' + this.workModel]);
 
     this.objectStoreCheckService.finishObjectStoreCheck(username).subscribe({
       next: data => {
-        // this.router.navigate(['/chooseObject/' + this.workModel]);
+        this.router.navigate(['/chooseObject/' + this.workModel]);
         this.snackBar.open('Successfully added', 'Close', { duration: 2500, panelClass: ['blue-snackbar'] });
       },
       error: err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] })
