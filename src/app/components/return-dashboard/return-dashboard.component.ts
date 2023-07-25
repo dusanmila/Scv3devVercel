@@ -16,6 +16,9 @@ export class ReturnDashboardComponent implements OnInit {
   selectedProduct: string = "";
 
 
+  top3products:  StatisticsModel[]= [];
+  top3objects:  StatisticsModel[] =[];
+  
   returnResult: StatisticsModel[] = [];
 
   cardColor: string = '#0081af';
@@ -30,6 +33,8 @@ export class ReturnDashboardComponent implements OnInit {
   constructor(public statisticsService: StatisticsService) { }
 
   ngOnInit(): void {
+    this.getTop3ProductReturns();
+    this.getTop3ObjectReturns();
   }
 
   
@@ -59,7 +64,18 @@ export class ReturnDashboardComponent implements OnInit {
     console.log(this.selectedProduct)
    
   }
- 
+  getTop3ProductReturns(){
+    this.statisticsService.getTop3ProductReturns().subscribe(data => {
+      this.top3products=data;
+      console.log(data)
+      console.log(this.top3products)
+    })
+  }
+  getTop3ObjectReturns(){
+    this.statisticsService.getTop3ObjectReturns().subscribe(data => {
+      this.top3objects=data;
+    })
+  }
   getReturnsCount() {
     this.statisticsService.getReturnsCount(this.selectedObject, this.selectedRetailer).subscribe(data => {
       if (data.name) {

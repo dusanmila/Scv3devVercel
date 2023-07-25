@@ -88,4 +88,20 @@ export class StatisticsService {
     return retval$.asObservable();
   }
 
+  getTop3ProductReturns(): Observable<any> {
+    let retval$ = new Subject<any>();
+    this.http.get<any>(`${SERVICE_URL}/statistics/top3returns`).subscribe((helper: any) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
+  getTop3ObjectReturns(): Observable<any> {
+    let retval$ = new Subject<any>();
+    this.http.get<any>(`${SERVICE_URL}/statistics/top3objects`).subscribe((helper: any) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
 }
