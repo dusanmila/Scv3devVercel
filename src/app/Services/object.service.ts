@@ -36,7 +36,7 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
-  public getObjectsNoPagination(){
+  public getObjectsNoPagination() {
     let retval$ = new Subject<Obj[]>();
     this.http.get<Obj[]>(`${OBJECT_URL}/objects`, { headers: this.headers }).subscribe((objects: Obj[]) => {
       retval$.next(objects);
@@ -57,9 +57,17 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
-  public getRetailersNoPagination(){
+  public getRetailerNames(): Observable<string[]> {
+    let retval$ = new Subject<string[]>();
+    this.http.get<string[]>(`${OBJECT_URL}/retailers/retailerNames`, { headers: this.headers }).subscribe((ret: string[]) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
+  public getRetailersNoPagination() {
     let retval$ = new Subject<Retailer[]>();
-    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers`, { headers: this.headers}).subscribe((ret: Retailer[]) => {
+    this.http.get<Retailer[]>(`${OBJECT_URL}/retailers`, { headers: this.headers }).subscribe((ret: Retailer[]) => {
       retval$.next(ret);
     });
     return retval$.asObservable();
@@ -247,7 +255,7 @@ export class ObjectService {
     });
   }
 
-  public getObjectFormats(){
+  public getObjectFormats() {
     let retvla$ = new Subject<string[]>();
     this.http.get<string[]>(`${OBJECT_URL}/objects/objectFormats`, { headers: this.headers }).subscribe((helper: string[]) => {
       retvla$.next(helper);
