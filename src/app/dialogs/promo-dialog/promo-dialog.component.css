@@ -62,3 +62,7 @@ button {
 .mat-spinner-color::ng-deep circle {
     stroke: #56baed !important;
 }
+
+.error-message {
+    color: #ff0000;
+}

@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
 import { Retailer } from 'src/app/models/retailer';
@@ -25,6 +26,14 @@ export class PromoDialogComponent implements OnInit {
   currentDate: Date = new Date();
   selectedRetailer: Retailer;
   selectedProduct: Product;
+  retailerNames: string[] = [];
+  filteredRetailerNames: string[] = [];
+  selectedRetailerName: string = "";
+  showRetailerError = false;
+  productNames: string[] = [];
+  filteredProductNames: string[] = [];
+  selectedProductName: string = "";
+  showProductError = false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PromoDialogComponent>,
@@ -32,11 +41,14 @@ export class PromoDialogComponent implements OnInit {
     public datePipe: DatePipe,
     public promoService: PromoService,
     public objectService: ObjectService,
-    public productService: ProductService) { }
+    public productService: ProductService) {
+  }
 
   ngOnInit(): void {
     this.getRetailers();
     this.getProducts();
+    this.getRetailerNames();
+    this.getProductNames();
   }
 
   add() {
@@ -114,6 +126,27 @@ export class PromoDialogComponent implements OnInit {
     });
   }
 
+  getRetailerNames() {
+    this.objectService.getRetailerNames().subscribe(data => {
+      this.retailerNames = data;
+    });
+  }
+
+  onRetailerInputChange(event): void {
+    this.filteredRetailerNames = this._filterRetailerNames(event.target.value);
+    if (event.target.value === '') {
+      this.showRetailerError = false;
+    } else {
+      this.showRetailerError = !this.retailerNames.includes(event.target.value) && this.filteredRetailerNames.length === 0;
+    }
+  }
+
+  private _filterRetailerNames(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.retailerNames.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
   getProducts() {
     this.productService.getProducts(0, 0, '').subscribe(data => {
       this.products = data;
@@ -122,6 +155,27 @@ export class PromoDialogComponent implements OnInit {
         this.selectedProduct = this.products[index];
       }
     });
+  }
+
+  getProductNames() {
+    this.productService.getProductNames().subscribe(data => {
+      this.productNames = data;
+    });
+  }
+
+  onProductInputChange(event): void {
+    this.filteredProductNames = this._filterProductNames(event.target.value);
+    if (event.target.value === '') {
+      this.showProductError = false;
+    } else {
+      this.showProductError = !this.productNames.includes(event.target.value) && this.filteredProductNames.length === 0;
+    }
+  }
+
+  private _filterProductNames(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.productNames.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   selectRetailer(event) {

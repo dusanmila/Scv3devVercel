@@ -110,4 +110,12 @@ export class ProductService {
 
   }
 
+  public getProductNames(): Observable<string[]> {
+    let retval$ = new Subject<string[]>();
+    this.http.get<string[]>(`${PRODUCT_URL}/products/productNames`, { headers: this.headers }).subscribe((ret: string[]) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
 }
