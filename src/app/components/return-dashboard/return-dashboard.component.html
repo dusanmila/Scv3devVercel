@@ -1,3 +1,24 @@
+
+<mat-card class="card">
+    <mat-card-title>Objects with most returns</mat-card-title>
+    <mat-card-content class="card-content" #containerRef>
+        <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
+            [results]="top3objects" [cardColor]="cardColor" [textColor]="textColor" *ngIf="top3objects.length > 0">
+        </ngx-charts-number-card>
+    </mat-card-content>
+</mat-card>
+
+
+<mat-card class="card">
+    <mat-card-title>Most returned products</mat-card-title>
+    <mat-card-content class="card-content" #containerRef>
+        <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]" [scheme]="colorScheme"
+            [results]="top3products" [cardColor]="cardColor" [textColor]="textColor" *ngIf="top3products.length > 0">
+        </ngx-charts-number-card>
+    </mat-card-content>
+</mat-card>
+
+
 <div class="filter-section">
   <!--  <button mat-stroked-button class="filter-section-item" *ngFor="let retailer of selectedRetailers"
         (click)="removeRetailer(retailer)">
