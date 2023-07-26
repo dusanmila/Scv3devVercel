@@ -107,6 +107,17 @@ export class PromoDashboardComponent implements OnInit {
     return `${data.data.label}: ${data.data.value}%`;
   }
 
+  promoCountByPeriod: StatisticsModel[] = [];
+
+  showXAxis = true;
+  showYAxis = true;
+  gradientBarChart = false;
+  showLegendBarChart = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Period';
+  showYAxisLabel = true;
+  yAxisLabel = 'Promo count';
+
   constructor(public statisticsService: StatisticsService,
     public promoService: PromoService) { }
 
@@ -114,6 +125,7 @@ export class PromoDashboardComponent implements OnInit {
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
     this.send();
     this.getRopiByProductCategories();
+    this.getPromoCountByPeriod();
   }
 
   changePage(flag: number, title: string) {
@@ -163,6 +175,7 @@ export class PromoDashboardComponent implements OnInit {
       this.selectedYear = value;
     }
     this.send();
+    this.getPromoCountByPeriod();
   }
 
   setMonth(value) {
@@ -175,6 +188,7 @@ export class PromoDashboardComponent implements OnInit {
       this.days2 = this.days31;
     }
     this.send();
+    this.getPromoCountByPeriod();
   }
 
   setDay(value) {
@@ -190,6 +204,18 @@ export class PromoDashboardComponent implements OnInit {
     this.promoService.getRopiByProductCategories(this.selectedRetailer).subscribe(data => {
       this.ropiByProductCategories = data;
     });
+  }
+
+  getPromoCountByPeriod() {
+    if (this.selectedYear === '') {
+      this.promoService.getPromoCountByPeriod("YEAR", "2022").subscribe(data => {
+        this.promoCountByPeriod = data;
+      });
+    } else {
+      this.promoService.getPromoCountByPeriod("MONTH", this.selectedYear).subscribe(data => {
+        this.promoCountByPeriod = data;
+      });
+    }
   }
 
 }

@@ -65,4 +65,15 @@ export class PromoService {
     });
     return retval$.asObservable();
   }
+
+  getPromoCountByPeriod(datePart: string, year: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('datePart', datePart);
+    queryParams = queryParams.append('year', year);
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/promoCountByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
 }
