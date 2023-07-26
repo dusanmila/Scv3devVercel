@@ -4,7 +4,7 @@ import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
 import { Promo } from '../models/promo';
-
+import * as saveAs from 'file-saver';
 @Injectable({
   providedIn: 'root'
 })
@@ -54,4 +54,33 @@ export class PromoService {
   deletePromo(promoId: Guid): Observable<any> {
     return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
   }
+  deletePromos(): Observable<any> {
+    return this.http.delete<any>(`${PROMO_URL}/promos/`, { headers: this.headers });
+  }
+
+  public export() {
+    return this.http.get(`${PROMO_URL}/promoExcels/exportExcel/`, { headers: this.headers, responseType: 'blob' });
+
+  }
+
+  public excelImport(formData: FormData) {
+    return this.http.post(`${PROMO_URL}/promoExcels`, formData, { headers: this.headers });
+  }
+
+  public downloadExcelTemplate() {
+    this.http.get(`${PROMO_URL}/promoExcels`, { headers: this.headers, responseType: 'blob' }).subscribe(template => {
+      const fileName = 'Promo_Template.xlsx';
+      saveAs(template, fileName);
+    });
+  }
+
+  public checkNoData(): Observable<boolean> {
+
+    let retval$ = new Subject<boolean>();
+    this.http.get<boolean>(`${PROMO_URL}/promos/checkNoData`, { headers: this.headers }).subscribe((ret: boolean) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
 }

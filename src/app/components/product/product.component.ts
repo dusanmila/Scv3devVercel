@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ProductDialogComponent } from 'src/app/dialogs/product-dialog/product-dialog.component';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-product',
@@ -111,6 +112,20 @@ export class ProductComponent implements OnInit {
 
   public exit() {
     this.router.navigate(['storeCheck']);
+  }
+
+  public export() {
+
+   
+      this.productService.exportPriceScans().subscribe((excel) => {
+      
+        const fileName = 'PriceScan.xlsx';
+        saveAs(excel, fileName);
+      });
+   
+
+
+
   }
 
 }

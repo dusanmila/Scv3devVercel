@@ -24,6 +24,7 @@ export const SERVICE_URL = 'http://localhost:8081/api';
 export const PRODUCT_URL = 'http://localhost:8081/api';
 export const RETURN_URL = 'http://localhost:8081/api';
 export const PROMO_URL = 'http://localhost:8081/api';
+export const CONDITIONS_URL = 'http://localhost:8081/api';
 export const POSITION_PRODUCT_CATEGORY_URL = 'http://localhost:8081/api';
 
 
