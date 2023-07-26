@@ -129,7 +129,7 @@ export class PromoDashboardComponent implements OnInit {
     if (this.selectedObject)
       this.selectedObject = '';
     this.selectedRetailer = retailer;
-    this.send();
+    this.getRopiByProductCategories();
   }
 
   selectUser(user: string) {
@@ -187,7 +187,7 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   getRopiByProductCategories() {
-    this.promoService.getRopiByProductCategories().subscribe(data => {
+    this.promoService.getRopiByProductCategories(this.selectedRetailer).subscribe(data => {
       this.ropiByProductCategories = data;
     });
   }

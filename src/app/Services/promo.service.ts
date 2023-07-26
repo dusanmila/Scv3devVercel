@@ -56,9 +56,11 @@ export class PromoService {
     return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
   }
 
-  getRopiByProductCategories() {
+  getRopiByProductCategories(retailerName: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('retailerName', retailerName);
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByProductCategories`, { headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByProductCategories`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);
     });
     return retval$.asObservable();
