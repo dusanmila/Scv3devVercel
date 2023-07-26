@@ -94,3 +94,15 @@
             </ngx-charts-bar-vertical>
         </mat-card-content>
     </mat-card>
+
+    <mat-card *ngIf="ropiByPeriod">
+        <mat-card-header>
+            <mat-card-title>ROPI by Period</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+            <ngx-charts-bar-vertical [view]="view" [results]="ropiByPeriod" [gradient]="gradientBarChart"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+            </ngx-charts-bar-vertical>
+        </mat-card-content>
+    </mat-card>
