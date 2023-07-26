@@ -70,3 +70,15 @@
             </mat-form-field>
         </div>
     </div>
+
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>ROPI by Product Categories</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+            <ngx-charts-pie-chart [view]="view" [results]="ropiByProductCategories" [gradient]="gradient"
+                [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut" [labels]="true"
+                [labelFormatting]="labelFormat" [maxLabelLength]="20" [tooltipText]="tooltipText">
+            </ngx-charts-pie-chart>
+        </mat-card-content>
+    </mat-card>

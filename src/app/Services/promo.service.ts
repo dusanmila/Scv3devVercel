@@ -4,6 +4,7 @@ import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
 import { Promo } from '../models/promo';
+import { StatisticsModel } from '../models/statisticsModel';
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +54,13 @@ export class PromoService {
 
   deletePromo(promoId: Guid): Observable<any> {
     return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
+  }
+
+  getRopiByProductCategories() {
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByProductCategories`, { headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
   }
 }

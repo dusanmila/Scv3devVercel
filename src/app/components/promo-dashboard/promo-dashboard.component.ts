@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
+import { PromoService } from 'src/app/Services/promo.service';
 import { StatisticsService } from 'src/app/Services/statistics.service';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 
@@ -75,11 +76,44 @@ export class PromoDashboardComponent implements OnInit {
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
 
-  constructor(public statisticsService: StatisticsService) { }
+
+  ropiByProductCategories: StatisticsModel[] = [];
+  view: [number, number] = [700, 400];
+
+  // options
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
+  labelFormat(label) {
+    const self: any = this;
+
+    const data = self.series.find(x => x.name === label);
+
+    if (data) {
+      return `${data.name}: ${data.value}%`;
+    } else {
+      return label;
+    }
+  }
+
+  tooltipText(data) {
+    return `${data.data.label}: ${data.data.value}%`;
+  }
+
+  constructor(public statisticsService: StatisticsService,
+    public promoService: PromoService) { }
 
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
     this.send();
+    this.getRopiByProductCategories();
   }
 
   changePage(flag: number, title: string) {
@@ -150,6 +184,12 @@ export class PromoDashboardComponent implements OnInit {
 
   send() {
 
+  }
+
+  getRopiByProductCategories() {
+    this.promoService.getRopiByProductCategories().subscribe(data => {
+      this.ropiByProductCategories = data;
+    });
   }
 
 }
