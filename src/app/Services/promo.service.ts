@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
 import { Promo } from '../models/promo';
 import { StatisticsModel } from '../models/statisticsModel';
+import { PromoStatisticsTableModel } from '../models/promoStatisticsTableModel';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,14 @@ export class PromoService {
 
   deletePromo(promoId: Guid): Observable<any> {
     return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
+  }
+
+  getPromoCountAndRopiByProductCategoriesAndYears() {
+    let retval$ = new Subject<PromoStatisticsTableModel[]>();
+    this.http.get<PromoStatisticsTableModel[]>(`${PROMO_URL}/promos/promoCountAndRopiByProductCategoriesAndYears`, { headers: this.headers }).subscribe((result: PromoStatisticsTableModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
   }
 
   getRopiByProductCategories(retailerName: string) {

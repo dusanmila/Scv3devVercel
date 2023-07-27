@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
 import { PromoService } from 'src/app/Services/promo.service';
 import { StatisticsService } from 'src/app/Services/statistics.service';
+import { PromoStatisticsTableModel } from 'src/app/models/promoStatisticsTableModel';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 
 @Component({
@@ -119,12 +120,16 @@ export class PromoDashboardComponent implements OnInit {
   showYAxisLabel = true;
   yAxisLabel = 'Promo count';
 
+  promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
+  displayedColumns = ['productCategoryName', 'promoCount1', 'ropi1', 'promoCount2', 'ropi2'];
+
   constructor(public statisticsService: StatisticsService,
     public promoService: PromoService) { }
 
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
     this.send();
+    this.getPromoCountAndRopiByProductCategoriesAndYears();
     this.getRopiByProductCategories();
     this.getPromoCountByPeriod();
     this.getRopiByPeriod();
@@ -202,6 +207,12 @@ export class PromoDashboardComponent implements OnInit {
 
   send() {
 
+  }
+
+  getPromoCountAndRopiByProductCategoriesAndYears() {
+    this.promoService.getPromoCountAndRopiByProductCategoriesAndYears().subscribe(data => {
+      this.promoAndRopiByProductCategoriesAndYears = data;
+    });
   }
 
   getRopiByProductCategories() {

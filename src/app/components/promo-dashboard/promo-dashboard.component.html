@@ -106,3 +106,43 @@
             </ngx-charts-bar-vertical>
         </mat-card-content>
     </mat-card>
+
+
+    <div class="container mat-elevation-z8">
+        <mat-table mat-table #table [dataSource]="promoAndRopiByProductCategoriesAndYears" matSort class="mat-cell">
+            <ng-container matColumnDef="productCategoryName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
+                    style="justify-content: left;">Product Category
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Product cateogry">{{ row.productCategoryName }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="promoCount1">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count 1
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Promo count">{{ row.promoCount1 }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ropi1">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI 1
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="ROPI">{{ row.ropi1 }}%</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="promoCount2">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count 2
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Promo count">{{ row.promoCount2 }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ropi2">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI 2
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="ROPI">{{ row.ropi2 }}%</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
+            </mat-row>
+        </mat-table>
+    </div>
