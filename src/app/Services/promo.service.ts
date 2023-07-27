@@ -5,6 +5,9 @@ import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
 import { Promo } from '../models/promo';
 import * as saveAs from 'file-saver';
+import { StatisticsModel } from '../models/statisticsModel';
+import { PromoStatisticsTableModel } from '../models/promoStatisticsTableModel';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -54,6 +57,7 @@ export class PromoService {
   deletePromo(promoId: Guid): Observable<any> {
     return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
   }
+  
   deletePromos(): Observable<any> {
     return this.http.delete<any>(`${PROMO_URL}/promos/`, { headers: this.headers });
   }
@@ -83,4 +87,43 @@ export class PromoService {
     return retval$.asObservable();
   }
 
+  getPromoCountAndRopiByProductCategoriesAndYears() {
+    let retval$ = new Subject<PromoStatisticsTableModel[]>();
+    this.http.get<PromoStatisticsTableModel[]>(`${PROMO_URL}/promos/promoCountAndRopiByProductCategoriesAndYears`, { headers: this.headers }).subscribe((result: PromoStatisticsTableModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getRopiByProductCategories(retailerName: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('retailerName', retailerName);
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByProductCategories`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getPromoCountByPeriod(datePart: string, year: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('datePart', datePart);
+    queryParams = queryParams.append('year', year);
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/promoCountByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getRopiByPeriod(datePart: string, year: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('datePart', datePart);
+    queryParams = queryParams.append('year', year);
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
 }

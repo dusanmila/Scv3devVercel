@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Color, ScaleType } from '@swimlane/ngx-charts';
+import { PromoService } from 'src/app/Services/promo.service';
 import { StatisticsService } from 'src/app/Services/statistics.service';
+import { PromoStatisticsTableModel } from 'src/app/models/promoStatisticsTableModel';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 
 @Component({
@@ -75,11 +77,62 @@ export class PromoDashboardComponent implements OnInit {
     { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
   ];
 
-  constructor(public statisticsService: StatisticsService) { }
+
+  ropiByProductCategories: StatisticsModel[] = [];
+  view: [number, number] = [700, 400];
+
+  // options
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = false;
+  legendPosition: string = 'below';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
+
+  labelFormat(label) {
+    const self: any = this;
+
+    const data = self.series.find(x => x.name === label);
+
+    if (data) {
+      return `${data.name}: ${data.value}%`;
+    } else {
+      return label;
+    }
+  }
+
+  tooltipText(data) {
+    return `${data.data.label}: ${data.data.value}%`;
+  }
+
+  promoCountByPeriod: StatisticsModel[] = [];
+  ropiByPeriod: StatisticsModel[] = [];
+
+  showXAxis = true;
+  showYAxis = true;
+  gradientBarChart = false;
+  showLegendBarChart = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Period';
+  showYAxisLabel = true;
+  yAxisLabel = 'Promo count';
+
+  promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
+  displayedColumns = ['productCategoryName', 'promoCount1', 'ropi1', 'promoCount2', 'ropi2'];
+
+  constructor(public statisticsService: StatisticsService,
+    public promoService: PromoService) { }
 
   ngOnInit(): void {
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
     this.send();
+    this.getPromoCountAndRopiByProductCategoriesAndYears();
+    this.getRopiByProductCategories();
+    this.getPromoCountByPeriod();
+    this.getRopiByPeriod();
   }
 
   changePage(flag: number, title: string) {
@@ -95,7 +148,7 @@ export class PromoDashboardComponent implements OnInit {
     if (this.selectedObject)
       this.selectedObject = '';
     this.selectedRetailer = retailer;
-    this.send();
+    this.getRopiByProductCategories();
   }
 
   selectUser(user: string) {
@@ -129,6 +182,8 @@ export class PromoDashboardComponent implements OnInit {
       this.selectedYear = value;
     }
     this.send();
+    this.getPromoCountByPeriod();
+    this.getRopiByPeriod();
   }
 
   setMonth(value) {
@@ -141,6 +196,8 @@ export class PromoDashboardComponent implements OnInit {
       this.days2 = this.days31;
     }
     this.send();
+    this.getPromoCountByPeriod();
+    this.getRopiByPeriod();
   }
 
   setDay(value) {
@@ -150,6 +207,42 @@ export class PromoDashboardComponent implements OnInit {
 
   send() {
 
+  }
+
+  getPromoCountAndRopiByProductCategoriesAndYears() {
+    this.promoService.getPromoCountAndRopiByProductCategoriesAndYears().subscribe(data => {
+      this.promoAndRopiByProductCategoriesAndYears = data;
+    });
+  }
+
+  getRopiByProductCategories() {
+    this.promoService.getRopiByProductCategories(this.selectedRetailer).subscribe(data => {
+      this.ropiByProductCategories = data;
+    });
+  }
+
+  getPromoCountByPeriod() {
+    if (this.selectedYear === '') {
+      this.promoService.getPromoCountByPeriod("YEAR", "2022").subscribe(data => {
+        this.promoCountByPeriod = data;
+      });
+    } else {
+      this.promoService.getPromoCountByPeriod("MONTH", this.selectedYear).subscribe(data => {
+        this.promoCountByPeriod = data;
+      });
+    }
+  }
+
+  getRopiByPeriod() {
+    if (this.selectedYear === '') {
+      this.promoService.getRopiByPeriod("YEAR", "2022").subscribe(data => {
+        this.ropiByPeriod = data;
+      });
+    } else {
+      this.promoService.getRopiByPeriod("MONTH", this.selectedYear).subscribe(data => {
+        this.ropiByPeriod = data;
+      });
+    }
   }
 
 }
