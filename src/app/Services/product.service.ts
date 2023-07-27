@@ -67,6 +67,13 @@ export class ProductService {
     });
   }
 
+  public downloadPriceScanTemplate() {
+    this.http.get(`${PRODUCT_URL}/priceScannerExcels`, { headers: this.headers, responseType: 'blob' }).subscribe(template => {
+      const fileName = 'PriceScanner_Template.xlsx';
+      saveAs(template, fileName);
+    });
+  }
+
   createProduct(product: Product): Observable<Product> {
     let retval$ = new Subject<Product>();
     this.http.post<Product>(`${PRODUCT_URL}/products`, product, { headers: this.headers }).subscribe((product: Product) => {
@@ -96,10 +103,22 @@ export class ProductService {
     return this.http.delete(`${PRODUCT_URL}/products`, { headers: this.headers });
   }
 
+  public deletePriceScans() {
+    return this.http.delete(`${PRODUCT_URL}/products/priceScans`, { headers: this.headers });
+  }
+
   public checkNoData(): Observable<boolean> {
 
     let retval$ = new Subject<boolean>();
     this.http.get<boolean>(`${PRODUCT_URL}/products/checkNoData`, { headers: this.headers }).subscribe((ret: boolean) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+  public checkNoDataPriceScans(): Observable<boolean> {
+
+    let retval$ = new Subject<boolean>();
+    this.http.get<boolean>(`${PRODUCT_URL}/products/checkNoDataPriceScans`, { headers: this.headers }).subscribe((ret: boolean) => {
       retval$.next(ret);
     });
     return retval$.asObservable();
@@ -116,6 +135,15 @@ export class ProductService {
       retval$.next(ret);
     });
     return retval$.asObservable();
+  }
+
+  public exportPriceScans() {
+    return this.http.get(`${PRODUCT_URL}/priceScannerExcels/exportExcel/`, { headers: this.headers, responseType: 'blob' });
+
+  }
+
+  public excelImportPriceScans(formData: FormData) {
+    return this.http.post(`${PRODUCT_URL}/priceScannerExcels`, formData, { headers: this.headers });
   }
 
 }
