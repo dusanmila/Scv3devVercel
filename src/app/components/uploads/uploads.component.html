@@ -112,7 +112,7 @@
     <BR>
     <!--<h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>-->
    <!-- <label for="promosFileDropRef" class="browseButton" *ngIf="isPromosEmpty">Browse</label>-->
-    <label class="browseButton" *ngIf="!isPromosEmpty" (click)="exportPromos()">Export</label>
+    <label class="browseButton" *ngIf="!isPromosEmpty" (click)="openDialog(5)">Export</label>
     <button mat-button color="warn" *ngIf="!isPromosEmpty" (click)="deletePromos()">Delete promos</button>
 
     <div class="download-template">
@@ -194,6 +194,8 @@
     </div>
   </div>
 
+  
+
 
 
   <div class="container">
@@ -203,7 +205,7 @@
     <!--<h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>-->
 
     <label for="conditionsFileDropRef" class="browseButton" *ngIf="isConditionsEmpty">Browse</label>
-    <label class="browseButton" *ngIf="!isConditionsEmpty" (click)="exportConditions()">Export</label>
+    <label class="browseButton" *ngIf="!isConditionsEmpty" (click)="openDialog(6)">Export</label>
     <button mat-button color="warn" *ngIf="!isConditionsEmpty" (click)="deleteConditions()">Delete conditions</button>
 
 
@@ -226,6 +228,24 @@
     <div class="select" style="margin-right:10px; margin-top: 60%;">
       <mat-form-field appearance="fill">
         <mat-label>Product category</mat-label>
+        <mat-select [(ngModel)]="selectedCategory">
+          <mat-option value="All">
+            All
+          </mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.productCategoryName">
+            {{category.productCategoryName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="check" style="margin-left: 20% ;">
+      <h4>Price scan export options:</h4>
+      <br>
+     
+    </div>
+    <div class="select" style="margin-right:10px; margin-top: 60%;">
+      <mat-form-field appearance="fill">
+        <mat-label>Product category:</mat-label>
         <mat-select [(ngModel)]="selectedCategory">
           <mat-option value="All">
             All

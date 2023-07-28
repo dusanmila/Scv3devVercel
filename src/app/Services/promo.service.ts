@@ -58,8 +58,8 @@ export class PromoService {
     return this.http.delete<any>(`${PROMO_URL}/promos/`, { headers: this.headers });
   }
 
-  public export() {
-    return this.http.get(`${PROMO_URL}/promoExcels/exportExcel/`, { headers: this.headers, responseType: 'blob' });
+  public export(type:string,username:string,startDate:string | null,endDate:string | null,retailer:string,productCategory:string) {
+    return this.http.get(`${PROMO_URL}/promoExcels/exportExcel/`+type+'/'+username+'/'+startDate+'/'+endDate+'/'+retailer+'/'+productCategory, { headers: this.headers, responseType: 'blob' });
 
   }
 

@@ -18,6 +18,9 @@ import { PriceScan } from 'src/app/models/priceScan';
 import { Promo } from 'src/app/models/promo';
 import { PromoService } from 'src/app/Services/promo.service';
 import { ConditionsService } from 'src/app/Services/conditions.service';
+import { ExportConditionsDialogComponent } from 'src/app/dialogs/excelDialogs/exportConditionsDialog/export-conditions-dialog.component';
+import { ExportPromosDialogComponent } from 'src/app/dialogs/excelDialogs/exportPromosDialog/export-promos-dialog.component';
+import { ExportPriceScansDialogComponent } from 'src/app/dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
 
 @Component({
   selector: 'app-uploads',
@@ -401,19 +404,8 @@ export class UploadsComponent implements OnInit {
 
   }
 
-  public exportPriceScans() {
-
-    this.productService.exportPriceScans().subscribe((excel) => {
-        this.isPriceScansLoading = false;
-        const fileName = 'PriceScans.xlsx';
-        saveAs(excel, fileName);
-      });
-   
-
-
-
-  }
-
+  
+/*
   public exportPromos() {
 
     this.promoService.export().subscribe((excel) => {
@@ -427,15 +419,8 @@ export class UploadsComponent implements OnInit {
 
 
   }
+*/
 
-  public exportConditions() {
-
-    this.conditionService.export().subscribe((excel) => {
-        this.isConditionsLoading = false;
-        const fileName = 'Conditions.xlsx';
-        saveAs(excel, fileName);
-      });
-    }
 
   public checkWithImages(event) {
     this.isWithImages = event.checked;
@@ -456,6 +441,49 @@ export class UploadsComponent implements OnInit {
       saveAs(excel, fileName);
     });
 
+  }
+
+  public exportPriceScans(){
+    this.productService.exportPriceScans().subscribe((excel) => {
+     
+      const fileName = 'PriceScans.xlsx';
+      saveAs(excel, fileName);
+    });
+  }
+ 
+
+  openDialog(flag: number) {
+
+    if(flag==5){
+      const dialogRef = this.dialog.open(ExportPromosDialogComponent);
+   
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          console.log('exported');
+        }
+      });
+    }
+
+    if(flag==6){
+      const dialogRef = this.dialog.open(ExportConditionsDialogComponent);
+   
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          console.log('exported');
+        }
+      });
+    }
+
+    if(flag==4){
+      const dialogRef = this.dialog.open(ExportPriceScansDialogComponent);
+   
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          console.log('exported');
+        }
+      });
+    }
+    
   }
 
 
