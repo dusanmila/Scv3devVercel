@@ -152,9 +152,9 @@
         </mat-card-header>
         <mat-card-content class="card-content">
             <ngx-charts-pie-chart *ngIf="ropiByProductCategories && ropiByProductCategories.length > 0" [view]="view"
-                [results]="ropiByProductCategories" [gradient]="gradient" [legend]="showLegend" [labels]="showLabels"
-                [doughnut]="isDoughnut" [labels]="true" [labelFormatting]="labelFormat" [maxLabelLength]="20"
-                [tooltipText]="tooltipText">
+                [results]="ropiByProductCategories" [gradient]="gradient" [scheme]="colorScheme" [legend]="showLegend"
+                [labels]="showLabels" [doughnut]="isDoughnut" [labels]="true" [labelFormatting]="labelFormat"
+                [maxLabelLength]="20" [tooltipText]="tooltipText">
             </ngx-charts-pie-chart>
         </mat-card-content>
     </mat-card>
@@ -167,9 +167,9 @@
         </mat-card-header>
         <mat-card-content class=" card-content">
             <ngx-charts-bar-vertical *ngIf="promoCountByPeriod && promoCountByPeriod.length > 0" [view]="view"
-                [results]="promoCountByPeriod" [gradient]="gradientBarChart" [xAxis]="showXAxis" [yAxis]="showYAxis"
-                [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                [results]="promoCountByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
+                [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
             </ngx-charts-bar-vertical>
         </mat-card-content>
     </mat-card>
@@ -182,9 +182,9 @@
         </mat-card-header>
         <mat-card-content class="card-content">
             <ngx-charts-bar-vertical *ngIf="ropiByPeriod && ropiByPeriod.length > 0" [view]="view"
-                [results]="ropiByPeriod" [gradient]="gradientBarChart" [xAxis]="showXAxis" [yAxis]="showYAxis"
-                [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                [results]="ropiByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
+                [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
             </ngx-charts-bar-vertical>
         </mat-card-content>
     </mat-card>

@@ -88,8 +88,11 @@ export class PromoDashboardComponent implements OnInit {
   isDoughnut: boolean = false;
   legendPosition: string = 'below';
 
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  colorScheme: Color = {
+    name: 'myScheme',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: ['#0081af', '#00abe7', '#ead2ac', '#eaba6b']
   };
 
   labelFormat(label) {
