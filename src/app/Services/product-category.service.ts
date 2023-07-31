@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { PRODUCT_URL } from '../app.constants';
@@ -13,9 +13,13 @@ export class ProductCategoryService {
 
   private readonly headers: HttpHeaders = new HttpHeaders({ 'Authorization': "Bearer " + localStorage.getItem("jwt") });
 
-  public getProductCategories(): Observable<ProductCategory[]> {
+  public getProductCategories(count: number, page: number, search: string): Observable<ProductCategory[]> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("count", count);
+    queryParams = queryParams.append("page", page);
+    queryParams = queryParams.append("search", search);
     let retval$ = new Subject<ProductCategory[]>();
-    this.http.get<ProductCategory[]>(`${PRODUCT_URL}/productCategories`, { headers: this.headers }).subscribe((productCategories: ProductCategory[]) => {
+    this.http.get<ProductCategory[]>(`${PRODUCT_URL}/productCategories`, { params: queryParams, headers: this.headers }).subscribe((productCategories: ProductCategory[]) => {
       retval$.next(productCategories);
     });
     return retval$.asObservable();

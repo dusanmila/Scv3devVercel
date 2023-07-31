@@ -61,7 +61,7 @@ export class PositionDialogComponent implements OnInit {
     supplier: "",
     location: "",
     comment: "",
-    isSuggestion:false,
+    isSuggestion: false,
     img: "",
     img2: "",
     img3: "",
@@ -128,7 +128,7 @@ export class PositionDialogComponent implements OnInit {
   }
 
   public loadProductCategories() {
-    this.productCategoryService.getProductCategories().subscribe(data => {
+    this.productCategoryService.getProductCategories(0, 0, '').subscribe(data => {
       this.productCategories = data;
     });
   }
@@ -256,10 +256,10 @@ export class PositionDialogComponent implements OnInit {
     formData.append('location', this.positionDto.location);
     formData.append('comment', this.positionDto.comment);
     formData.append('img', this.positionDto.img);
-   
-   
 
-    this.positionService.createPosition(formData,this.isPositionCheck).subscribe(data => {
+
+
+    this.positionService.createPosition(formData, this.isPositionCheck).subscribe(data => {
       this.changed = true;
       this.isLoading = false;
       console.log(data);

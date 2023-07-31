@@ -84,13 +84,13 @@ export class UploadsComponent implements OnInit {
     this.objectService.checkNoData().subscribe((data) => this.isObjectsEmpty = data);
     this.positionService.checkNoData().subscribe((data) => this.isPositionsEmpty = data);
     this.productService.checkNoData().subscribe((data) => this.isProductsEmpty = data);
-    this.productService.checkNoDataPriceScans().subscribe((data) => {this.isPriceScansEmpty = data; console.log(this.isPriceScansEmpty)});
+    this.productService.checkNoDataPriceScans().subscribe((data) => { this.isPriceScansEmpty = data; console.log(this.isPriceScansEmpty) });
     this.promoService.checkNoData().subscribe((data) => this.isPromosEmpty = data);
     this.conditionService.checkNoData().subscribe((data) => this.isConditionsEmpty = data);
     this.objectService.getRetailersNoPagination().subscribe((data) => this.retailers = data);
     this.positionService.getPositionTypes().subscribe((data) => this.types = data);
     this.objectService.getObjectFormats().subscribe((data) => this.formats = data);
-    this.productCategoryService.getProductCategories().subscribe((data) => this.categories = data);
+    this.productCategoryService.getProductCategories(0, 0, '').subscribe((data) => this.categories = data);
     this.objectService.getObjectsNoPagination().subscribe((data) => {
       this.objects = data;
       this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -374,9 +374,9 @@ export class UploadsComponent implements OnInit {
 
             },
             error: (err: Error) => {
-            //  this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-          console.log(err)
-          }
+              //  this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+              console.log(err)
+            }
           });
 
         }
@@ -404,11 +404,11 @@ export class UploadsComponent implements OnInit {
   public exportPriceScans() {
 
     this.productService.exportPriceScans().subscribe((excel) => {
-        this.isPriceScansLoading = false;
-        const fileName = 'PriceScans.xlsx';
-        saveAs(excel, fileName);
-      });
-   
+      this.isPriceScansLoading = false;
+      const fileName = 'PriceScans.xlsx';
+      saveAs(excel, fileName);
+    });
+
 
 
 
@@ -417,12 +417,12 @@ export class UploadsComponent implements OnInit {
   public exportPromos() {
 
     this.promoService.export().subscribe((excel) => {
-        this.isPromosLoading = false;
-        const fileName = 'Promos.xlsx';
-        saveAs(excel, fileName);
-      });
-   
-      
+      this.isPromosLoading = false;
+      const fileName = 'Promos.xlsx';
+      saveAs(excel, fileName);
+    });
+
+
 
 
 
@@ -431,11 +431,11 @@ export class UploadsComponent implements OnInit {
   public exportConditions() {
 
     this.conditionService.export().subscribe((excel) => {
-        this.isConditionsLoading = false;
-        const fileName = 'Conditions.xlsx';
-        saveAs(excel, fileName);
-      });
-    }
+      this.isConditionsLoading = false;
+      const fileName = 'Conditions.xlsx';
+      saveAs(excel, fileName);
+    });
+  }
 
   public checkWithImages(event) {
     this.isWithImages = event.checked;
