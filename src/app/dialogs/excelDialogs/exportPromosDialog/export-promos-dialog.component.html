@@ -1,0 +1,81 @@
+<div class="container">
+  <h3 mat-dialog-title>Promos export options</h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+
+    
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>User (optional)</mat-label>
+      <input type="text" placeholder="User" aria-label="Number" matInput [formControl]="userControl"
+        [matAutocomplete]="auto" [(ngModel)]="selectedUsername">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option value="All">
+          All
+        </mat-option>
+        <mat-option *ngFor="let option of filteredOptionsUsers | async" [value]="option.username">
+          {{option.username}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+    <div class="form">
+    <mat-form-field>
+      <mat-label>Start date (optional)</mat-label>
+      <input matInput [matDatepicker]="startDatePicker" name="startDate" [(ngModel)]="startDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <mat-label>End date (optional)</mat-label>
+      <input matInput [matDatepicker]="endDatePicker" name="endDate" [(ngModel)]="endDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <mat-select [(ngModel)]="retailer" placeholder="Retailer (optional)" name="retailer"
+       >
+        <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
+          {{ retailer.retailerName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form">
+    <mat-form-field>
+      <mat-select [(ngModel)]="productCategory" placeholder="Product Category (optional)" name="productCategory"
+       >
+        <mat-option *ngFor="let category of productCategories" [value]="category.productCategoryName">
+          {{ category.productCategoryName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+    <div mat-dialog-actions class="wrap">
+
+
+          <button mat-button class="test" type="submit" [disabled]="isLoading" (click)="submitForm()"
+          [disabled]="!formControl.valid"><span class="feedbackSpan"><a
+            onmouseover="this.style.color='white';" onmouseout="this.style.color='#39ace7'">Export</a></span></button>
+            <button mat-button class="test" (click)="close()">Close</button>
+
+           <!-- <div *ngIf="isLoading"
+            style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+            </mat-progress-spinner>
+          </div>-->
+    </div>
+  </form>
+</div>

@@ -4,6 +4,9 @@ import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 import { PROMO_URL } from '../app.constants';
 import { Promo } from '../models/promo';
+import * as saveAs from 'file-saver';
+import { StatisticsModel } from '../models/statisticsModel';
+import { PromoStatisticsTableModel } from '../models/promoStatisticsTableModel';
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +56,74 @@ export class PromoService {
 
   deletePromo(promoId: Guid): Observable<any> {
     return this.http.delete<any>(`${PROMO_URL}/promos/${promoId}`, { headers: this.headers });
+  }
+  
+  deletePromos(): Observable<any> {
+    return this.http.delete<any>(`${PROMO_URL}/promos/`, { headers: this.headers });
+  }
+
+  public export(type:string,username:string,startDate:string | null,endDate:string | null,retailer:string,productCategory:string) {
+    return this.http.get(`${PROMO_URL}/promoExcels/exportExcel/`+type+'/'+username+'/'+startDate+'/'+endDate+'/'+retailer+'/'+productCategory, { headers: this.headers, responseType: 'blob' });
+
+  }
+
+  public excelImport(formData: FormData) {
+    return this.http.post(`${PROMO_URL}/promoExcels`, formData, { headers: this.headers });
+  }
+
+  public downloadExcelTemplate() {
+    this.http.get(`${PROMO_URL}/promoExcels`, { headers: this.headers, responseType: 'blob' }).subscribe(template => {
+      const fileName = 'Promo_Template.xlsx';
+      saveAs(template, fileName);
+    });
+  }
+
+  public checkNoData(): Observable<boolean> {
+
+    let retval$ = new Subject<boolean>();
+    this.http.get<boolean>(`${PROMO_URL}/promos/checkNoData`, { headers: this.headers }).subscribe((ret: boolean) => {
+      retval$.next(ret);
+    });
+    return retval$.asObservable();
+  }
+
+  getPromoCountAndRopiByProductCategoriesAndYears() {
+    let retval$ = new Subject<PromoStatisticsTableModel[]>();
+    this.http.get<PromoStatisticsTableModel[]>(`${PROMO_URL}/promos/promoCountAndRopiByProductCategoriesAndYears`, { headers: this.headers }).subscribe((result: PromoStatisticsTableModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getRopiByProductCategories(retailerName: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('retailerName', retailerName);
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByProductCategories`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getPromoCountByPeriod(datePart: string, year: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('datePart', datePart);
+    queryParams = queryParams.append('year', year);
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/promoCountByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getRopiByPeriod(datePart: string, year: string) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('datePart', datePart);
+    queryParams = queryParams.append('year', year);
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
   }
 }

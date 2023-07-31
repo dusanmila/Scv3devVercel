@@ -3,7 +3,7 @@
     <h3 mat-dialog-title *ngIf="flag === 2">Confirm promotion</h3>
     <h3 mat-dialog-title *ngIf="flag === 3">Delete promotion</h3>
     <form class="mat-dialog-content" #formControl="ngForm">
-        <div class="form">
+        <!-- <div class="form">
             <mat-form-field appearance="fill">
                 <mat-label>Retailer</mat-label>
                 <mat-select (selectionChange)="selectRetailer($event)" required name="retailer"
@@ -13,9 +13,9 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </div>
+        </div> -->
 
-        <div class="form">
+        <!-- <div class="form">
             <mat-form-field appearance="fill">
                 <mat-label>Product</mat-label>
                 <mat-select (selectionChange)="selectProduct($event)" required name="product"
@@ -24,6 +24,36 @@
                         {{product.productName}}
                     </mat-option>
                 </mat-select>
+            </mat-form-field>
+        </div> -->
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Retailer</mat-label>
+                <input type="text" placeholder="Retailer name" aria-label="Retailer" matInput name="retailerName"
+                    [matAutocomplete]="retailerAuto" (input)="onRetailerInputChange($event)" required
+                    [(ngModel)]="data.retailerName" [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+                <mat-autocomplete autoActiveFirstOption #retailerAuto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredRetailerNames" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+                <span *ngIf="showRetailerError" class="error-message">Invalid retailer name</span>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Product</mat-label>
+                <input type="text" placeholder="Product name" aria-label="Product" matInput name="productName"
+                    [matAutocomplete]="productAuto" (input)="onProductInputChange($event)" required
+                    [(ngModel)]="data.productName" [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+                <mat-autocomplete autoActiveFirstOption #productAuto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredProductNames" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+                <span *ngIf="showProductError" class="error-message">Invalid product name</span>
             </mat-form-field>
         </div>
 
@@ -129,7 +159,7 @@
 
         <div mat-dialog-actions class=" wrap">
             <button mat-button class="test" *ngIf="flag === 1" type="submit" (click)="add()"
-                [disabled]="!formControl.valid">Ok</button>
+                [disabled]="!formControl.valid  || showRetailerError || showProductError">Ok</button>
             <button mat-button class="test" *ngIf="flag === 2" type="submit" (click)="confirmPromo()">Ok</button>
             <button mat-button class="test item2-delete" *ngIf="flag === 3" type="submit"
                 (click)="delete()">Delete</button>

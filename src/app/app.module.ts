@@ -99,6 +99,9 @@ import { PromoDialogComponent } from './dialogs/promo-dialog/promo-dialog.compon
 import { PositionDashboardComponent } from './components/position-dashboard/position-dashboard.component';
 import { ReturnDashboardComponent } from './components/return-dashboard/return-dashboard.component';
 import { PromoDashboardComponent } from './components/promo-dashboard/promo-dashboard.component';
+import { ExportConditionsDialogComponent } from './dialogs/excelDialogs/exportConditionsDialog/export-conditions-dialog.component';
+import { ExportPromosDialogComponent } from './dialogs/excelDialogs/exportPromosDialog/export-promos-dialog.component';
+import { ExportPriceScansDialogComponent } from './dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
 
 @NgModule({
   declarations: [
@@ -139,6 +142,9 @@ import { PromoDashboardComponent } from './components/promo-dashboard/promo-dash
     FeedbackCategoryDialogComponent,
     ProductCategoryDialogComponent,
     ProductCategoryComponent,
+    ExportConditionsDialogComponent,
+    ExportPromosDialogComponent,
+    ExportPriceScansDialogComponent,
     PieChartComponent,
     PieChart2Component,
     PieChart3Component,
