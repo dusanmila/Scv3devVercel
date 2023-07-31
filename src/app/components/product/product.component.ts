@@ -9,6 +9,7 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
 import * as saveAs from 'file-saver';
 
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -114,18 +115,7 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['storeCheck']);
   }
 
-  public export() {
-
-   
-      this.productService.exportPriceScans().subscribe((excel) => {
-      
-        const fileName = 'PriceScan.xlsx';
-        saveAs(excel, fileName);
-      });
-   
-
-
-
-  }
+ 
+ 
 
 }

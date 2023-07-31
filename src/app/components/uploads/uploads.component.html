@@ -31,7 +31,7 @@
     <BR>
     <!--<h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>-->
     <label for="positionFileDropRef" class="browseButton" *ngIf="isPositionsEmpty">Browse</label>
-    <label class="browseButton" *ngIf="!isPositionsEmpty" (click)="exportPositions()">Export</label>
+    <label class="browseButton" *ngIf="!isPositionsEmpty" (click)="openDialog(2)">Export</label>
     <button mat-button color="warn" *ngIf="!isPositionsEmpty" (click)="deletePositions()">Delete positions</button>
 
     <div class="download-template">
@@ -62,7 +62,7 @@
     <!--<h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>-->
 
     <label for="productFileDropRef" class="browseButton" *ngIf="isProductsEmpty">Browse</label>
-    <label class="browseButton" *ngIf="!isProductsEmpty" (click)="exportProducts()">Export</label>
+    <label class="browseButton" *ngIf="!isProductsEmpty" (click)="openDialog(3)">Export</label>
     <button mat-button color="warn" *ngIf="!isProductsEmpty" (click)="deleteProducts()">Delete products</button>
 
 
@@ -112,7 +112,7 @@
     <BR>
     <!--<h3 style="margin:5%; color:#56baed;">Drag and drop file here</h3>-->
    <!-- <label for="promosFileDropRef" class="browseButton" *ngIf="isPromosEmpty">Browse</label>-->
-    <label class="browseButton" *ngIf="!isPromosEmpty" (click)="exportPromos()">Export</label>
+    <label class="browseButton" *ngIf="!isPromosEmpty" (click)="openDialog(5)">Export</label>
     <button mat-button color="warn" *ngIf="!isPromosEmpty" (click)="deletePromos()">Delete promos</button>
 
     <div class="download-template">
@@ -130,69 +130,12 @@
     <br> 
 
     
-    <div class="check" style="margin-left: 20% ;">
-      <h4>Positions export options:</h4>
-      <br>
-      <mat-checkbox class="example-margin" color="primary" (change)="checkWithImages($event)">With images</mat-checkbox>
-    </div>
+ 
 
-    <div class="select">
-      <mat-form-field appearance="fill">
-        <mat-label>Position type</mat-label>
-        <mat-select [(ngModel)]="selectedType">
-          <mat-option value="All">
-            All
-          </mat-option>
-          <mat-option *ngFor="let type of types" [value]="type.positionTypeName">
-            {{type.positionTypeName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div class="select">
-      <mat-form-field appearance="fill">
-        <mat-label>Retailer</mat-label>
-        <mat-select [(ngModel)]="selectedRetailer">
-          <mat-option value="All">
-            All
-          </mat-option>
-          <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
-            {{retailer.retailerName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <br>
-    <form class="example-form">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Object</mat-label>
-        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl"
-          [matAutocomplete]="auto" [(ngModel)]="selectedObject">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option value="All">
-            All
-          </mat-option>
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.objectIdCompany">
-            {{option.objectName}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
-    <p *ngIf="error">Can't filter object and retailer at the same time.</p>
-    <div class="select">
-      <mat-form-field appearance="fill">
-        <mat-label>Object format</mat-label>
-        <mat-select [(ngModel)]="selectedFormat">
-          <mat-option value="All">
-            All
-          </mat-option>
-          <mat-option *ngFor="let format of formats" [value]="format">
-            {{format}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    
   </div>
+
+  
 
 
 
@@ -203,7 +146,7 @@
     <!--<h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>-->
 
     <label for="conditionsFileDropRef" class="browseButton" *ngIf="isConditionsEmpty">Browse</label>
-    <label class="browseButton" *ngIf="!isConditionsEmpty" (click)="exportConditions()">Export</label>
+    <label class="browseButton" *ngIf="!isConditionsEmpty" (click)="openDialog(6)">Export</label>
     <button mat-button color="warn" *ngIf="!isConditionsEmpty" (click)="deleteConditions()">Delete conditions</button>
 
 
@@ -218,24 +161,10 @@
       <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="30">
       </mat-progress-spinner>
     </div>
-    <div class="check" style="margin-left: 20% ;">
-      <h4>Product export options:</h4>
-      <br>
-     
-    </div>
-    <div class="select" style="margin-right:10px; margin-top: 60%;">
-      <mat-form-field appearance="fill">
-        <mat-label>Product category</mat-label>
-        <mat-select [(ngModel)]="selectedCategory">
-          <mat-option value="All">
-            All
-          </mat-option>
-          <mat-option *ngFor="let category of categories" [value]="category.productCategoryName">
-            {{category.productCategoryName}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+  
+  
+    
+   
   </div>
 
 </div>

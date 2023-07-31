@@ -16,8 +16,8 @@ export class ConditionsService {
 
  
 
-  public export() {
-    return this.http.get(`${CONDITIONS_URL}/conditionsExcels/exportExcel/`, { headers: this.headers, responseType: 'blob' });
+  public export(retailer:string,productCategory:string) {
+    return this.http.get(`${CONDITIONS_URL}/conditionsExcels/exportExcel/`+retailer+'/'+productCategory, { headers: this.headers, responseType: 'blob' });
 
   }
 

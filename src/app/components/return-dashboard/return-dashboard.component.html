@@ -49,3 +49,24 @@
         </ngx-charts-number-card>
     </mat-card-content>
 </mat-card>
+
+<mat-card class="card chart-card">
+    <mat-card-title>Returns quantity</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-vertical-bar-chart [data]="returnGraphResult[0]" *ngIf="returnGraphResult">
+            </app-vertical-bar-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+
+<mat-card class="card chart-card">
+    <mat-card-title>Returns quantity * price</mat-card-title>
+    <mat-card-content>
+        <div class="chart">
+            <app-vertical-bar-chart [data]="returnGraphResult[1]" *ngIf="returnGraphResult">
+            </app-vertical-bar-chart>
+        </div>
+    </mat-card-content>
+</mat-card>
