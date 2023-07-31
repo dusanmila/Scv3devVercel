@@ -51,7 +51,7 @@ export class UploadsComponent implements OnInit {
   isPromosEmpty = false;
   isConditionsEmpty = false;
   isWithImages = false;
- 
+
 
 
   error: boolean = false;
@@ -373,7 +373,7 @@ export class UploadsComponent implements OnInit {
 
   }
 
-  
+
 
 
 
@@ -385,9 +385,9 @@ export class UploadsComponent implements OnInit {
       const fileName = 'PriceScans.xlsx';
       saveAs(excel, fileName);
     });
+  }
 
 
- 
 
   private _filter(value: string): Obj[] {
     const filterValue = value.toLowerCase();
@@ -395,32 +395,21 @@ export class UploadsComponent implements OnInit {
     return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
   }
 
-
-  public exportPriceScans(){
-    this.productService.exportPriceScans().subscribe((excel) => {
-     
-      const fileName = 'PriceScans.xlsx';
-      saveAs(excel, fileName);
-    });
-  }
- 
-
   openDialog(flag: number) {
 
-    if(flag==2){
+    if (flag == 2) {
       const dialogRef = this.dialog.open(ExportPositionsDialogComponent);
-   
+
       dialogRef.afterClosed().subscribe(res => {
         if (res) {
           console.log('exported');
         }
       });
     }
-  }
 
-    if(flag==3){
+    if (flag == 3) {
       const dialogRef = this.dialog.open(ExportProductsDialogComponent);
-   
+
       dialogRef.afterClosed().subscribe(res => {
         if (res) {
           console.log('exported');
@@ -428,9 +417,9 @@ export class UploadsComponent implements OnInit {
       });
     }
 
-    if(flag==5){
+    if (flag == 5) {
       const dialogRef = this.dialog.open(ExportPromosDialogComponent);
-   
+
       dialogRef.afterClosed().subscribe(res => {
         if (res) {
           console.log('exported');
@@ -438,9 +427,9 @@ export class UploadsComponent implements OnInit {
       });
     }
 
-    if(flag==6){
+    if (flag == 6) {
       const dialogRef = this.dialog.open(ExportConditionsDialogComponent);
-   
+
       dialogRef.afterClosed().subscribe(res => {
         if (res) {
           console.log('exported');
@@ -448,8 +437,8 @@ export class UploadsComponent implements OnInit {
       });
     }
 
-  
-    
+
+
   }
 
 

@@ -25,31 +25,31 @@ import { DatePipe } from '@angular/common';
 })
 export class ExportPromosDialogComponent implements OnInit {
 
-public userControl = new FormControl('');
-public retailerControl = new FormControl('');
-public productCategoryControl = new FormControl('');
+  public userControl = new FormControl('');
+  public retailerControl = new FormControl('');
+  public productCategoryControl = new FormControl('');
 
   public form: FormGroup;
- 
+
   public imageUploaded: boolean = false;
   public changed: boolean = false;
   submitClicked: boolean = false;
   isLoading = false;
 
-  public users: User[]=[];
-  public productCategories: ProductCategory[]=[];
-  public retailers: Retailer[]=[];
+  public users: User[] = [];
+  public productCategories: ProductCategory[] = [];
+  public retailers: Retailer[] = [];
 
   filteredOptions: Observable<Retailer[]>;
   filteredOptionsProdCat: Observable<ProductCategory[]>;
   filteredOptionsUsers: Observable<User[]>;
 
-  public selectedUsername:string='All';
- public datePipe = new DatePipe('en-US');
-  public startDate:Date;
- public endDate:Date;
-  public retailer:string='All';
-  public productCategory:string='All';
+  public selectedUsername: string = 'All';
+  public datePipe = new DatePipe('en-US');
+  public startDate: Date;
+  public endDate: Date;
+  public retailer: string = 'All';
+  public productCategory: string = 'All';
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ExportPromosDialogComponent>,
@@ -67,33 +67,33 @@ public productCategoryControl = new FormControl('');
   }
 
   ngOnInit(): void {
-  
-   this.loadCategories();
-   
+
+    this.loadCategories();
+
     this.dialogRef.updateSize('15%', '60%');
   }
 
- 
+
   public loadCategories() {
-    this.productCategoryService.getProductCategories().subscribe(data => {
+    this.productCategoryService.getProductCategories(0, 0, '').subscribe(data => {
       this.productCategories = data;
     });
-    
+
   }
 
 
   submitForm() {
     this.submitClicked = true;
-   
+
     this.isLoading = true;
-     
-   
-    this.promoService.export('All',this.selectedUsername,this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),this.retailer,this.productCategory).subscribe((excel) => {
-      
+
+
+    this.promoService.export('All', this.selectedUsername, this.datePipe.transform(this.startDate, 'yyyy-MM-dd'), this.datePipe.transform(this.endDate, 'yyyy-MM-dd'), this.retailer, this.productCategory).subscribe((excel) => {
+
       const fileName = 'Promotions.xlsx';
       saveAs(excel, fileName);
     });
-    
+
 
   }
 
@@ -112,7 +112,7 @@ public productCategoryControl = new FormControl('');
   private _filterUsers(value: string): User[] {
     const filterValue = value.toLowerCase();
 
-    return this.users.filter(u=>u.username.toLowerCase().includes(filterValue));
+    return this.users.filter(u => u.username.toLowerCase().includes(filterValue));
   }
 
   public close(): void {
