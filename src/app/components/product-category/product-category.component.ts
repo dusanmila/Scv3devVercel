@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductCategoryDialogComponent } from 'src/app/dialogs/product-category-dialog/product-category-dialog.component';
@@ -12,6 +12,10 @@ import { ProductCategoryService } from 'src/app/Services/product-category.servic
 })
 export class ProductCategoryComponent implements OnInit {
 
+  @Input() isDashboard: boolean = false;
+  @Output() selectedProductCategory = new EventEmitter<string>();
+
+
   displayedColumns = ["productCategoryName", "actions"];
   dataSource: MatTableDataSource<ProductCategory>;
   isLoading: boolean = false;
@@ -20,6 +24,11 @@ export class ProductCategoryComponent implements OnInit {
   constructor(public productCategoryService: ProductCategoryService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    if (this.isDashboard) {
+      this.displayedColumns = ["productCategoryName"];
+    }
+    // this.count = 2;
+
     this.loadData();
   }
 
@@ -45,6 +54,10 @@ export class ProductCategoryComponent implements OnInit {
         this.loadData();
       }
     });
+  }
+
+  public selectProductCategory(productCategoryName: string) {
+    this.selectedProductCategory.emit(productCategoryName);
   }
 
 }
