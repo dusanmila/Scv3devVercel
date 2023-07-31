@@ -217,44 +217,36 @@ export class PromoDashboardComponent implements OnInit {
   dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
     this.selectedStartDate = new Date(dateRangeStart.value);
     this.selectedEndDate = new Date(dateRangeEnd.value);
-    console.log(this.selectedStartDate)
-    console.log(this.selectedEndDate)
 
     if (this.selectedStartDate && this.selectedEndDate)
       this.getPromoCountAndRopiByProductCategoriesAndYears();
   }
 
   getPromoCountAndRopiByProductCategoriesAndYears() {
-    this.promoService.getPromoCountAndRopiByProductCategoriesAndYears(this.selectedStartDate, this.selectedEndDate).subscribe(data => {
+    this.promoService.getPromoCountAndRopiByProductCategoriesAndYears(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
       this.promoAndRopiByProductCategoriesAndYears = data;
     });
   }
 
   getRopiByProductCategories() {
-    this.promoService.getRopiByProductCategories(this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
+    this.promoService.getRopiByProductCategories(this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory, this.selectedYear, this.selectedMonth).subscribe(data => {
       this.ropiByProductCategories = data;
     });
   }
 
   getPromoCountByPeriod() {
-    if (this.selectedYear === '') {
-      this.promoService.getPromoCountByPeriod("YEAR", "2022", this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
-        this.promoCountByPeriod = data;
-      });
-    } else {
-      this.promoService.getPromoCountByPeriod("MONTH", this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
+    if (this.selectedYear !== '') {
+      const datepart = this.selectedMonth === '' ? 'YEAR' : 'MONTH'
+      this.promoService.getPromoCountByPeriod(datepart, this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
         this.promoCountByPeriod = data;
       });
     }
   }
 
   getRopiByPeriod() {
-    if (this.selectedYear === '') {
-      this.promoService.getRopiByPeriod("YEAR", "2022", this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
-        this.ropiByPeriod = data;
-      });
-    } else {
-      this.promoService.getRopiByPeriod("MONTH", this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
+    if (this.selectedYear !== '') {
+      const datepart = this.selectedMonth === '' ? 'YEAR' : 'MONTH'
+      this.promoService.getRopiByPeriod(datepart, this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
         this.ropiByPeriod = data;
       });
     }

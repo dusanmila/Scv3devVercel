@@ -87,6 +87,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .table-section-item {
@@ -362,4 +363,30 @@
 
 .radio-group-item {
     margin: 0 10px;
+}
+
+.container {
+    margin: 0 20px;
+}
+
+.whitetext {
+    color: white;
+}
+
+.column-name {
+    font-size: 16px;
+}
+
+.mat-header-cell {
+    background: #56baed;
+    text-align: center;
+}
+
+.daterange-filter {
+    margin: 0 0 20px 20px;
+}
+
+.noDataMessage {
+    background-color: white;
+    color: #56baed;
 }

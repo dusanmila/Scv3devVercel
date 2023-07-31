@@ -87,10 +87,14 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getPromoCountAndRopiByProductCategoriesAndYears(startDate: Date, endDate: Date) {
+  getPromoCountAndRopiByProductCategoriesAndYears(startDate: Date, endDate: Date, retailerName: string, username: string, objectName: string, productCategoryName: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('startDate', startDate.toDateString());
     queryParams = queryParams.append('endDate', endDate.toDateString());
+    queryParams = queryParams.append('retailerName', retailerName);
+    queryParams = queryParams.append('username', username);
+    queryParams = queryParams.append('objectName', objectName);
+    queryParams = queryParams.append('productCategoryName', productCategoryName);
     let retval$ = new Subject<PromoStatisticsTableModel[]>();
     this.http.get<PromoStatisticsTableModel[]>(`${PROMO_URL}/promos/promoCountAndRopiByProductCategoriesAndYears`, { params: queryParams, headers: this.headers }).subscribe((result: PromoStatisticsTableModel[]) => {
       retval$.next(result);
@@ -98,12 +102,14 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getRopiByProductCategories(retailerName: string, username: string, objectName: string, productCategoryName: string) {
+  getRopiByProductCategories(retailerName: string, username: string, objectName: string, productCategoryName: string, year: string, month: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('retailerName', retailerName);
     queryParams = queryParams.append('username', username);
     queryParams = queryParams.append('objectName', objectName);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
+    queryParams = queryParams.append('year', year);
+    queryParams = queryParams.append('month', month);
     let retval$ = new Subject<StatisticsModel[]>();
     this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByProductCategories`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);
