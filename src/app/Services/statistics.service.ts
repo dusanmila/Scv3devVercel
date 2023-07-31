@@ -104,4 +104,11 @@ export class StatisticsService {
     return retval$.asObservable();
   }
 
+  getGraphReturns(period:string,value: number): Observable<any> {
+    let retval$ = new Subject<any>();
+    this.http.get<any>(`${SERVICE_URL}/returnStatistics/${period}/${value}`).subscribe((helper: any) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
 }

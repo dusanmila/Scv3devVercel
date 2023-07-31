@@ -15,11 +15,15 @@ export class ReturnDashboardComponent implements OnInit {
   selectedUser: string = "";
   selectedProduct: string = "";
 
+  selectedPeriod: string = "";
+  periodValue: number;
+
 
   top3products:  StatisticsModel[]= [];
   top3objects:  StatisticsModel[] =[];
   
   returnResult: StatisticsModel[] = [];
+  returnGraphResult: StatisticsModel[][] = [];
 
   cardColor: string = '#0081af';
   textColor: string = '#fff';
@@ -67,8 +71,6 @@ export class ReturnDashboardComponent implements OnInit {
   getTop3ProductReturns(){
     this.statisticsService.getTop3ProductReturns().subscribe(data => {
       this.top3products=data;
-      console.log(data)
-      console.log(this.top3products)
     })
   }
   getTop3ObjectReturns(){
@@ -81,6 +83,14 @@ export class ReturnDashboardComponent implements OnInit {
       if (data.name) {
         this.returnResult.push(data);
         this.returnResult = [...this.returnResult];
+      }
+    });
+  }
+
+  getGraphReturns() {
+    this.statisticsService.getGraphReturns(this.selectedPeriod, this.periodValue).subscribe(data => {
+      if (data) {
+        this.returnGraphResult=data;
       }
     });
   }
