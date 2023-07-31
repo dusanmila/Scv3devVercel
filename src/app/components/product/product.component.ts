@@ -8,7 +8,7 @@ import { ProductDialogComponent } from 'src/app/dialogs/product-dialog/product-d
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/Services/product.service';
 import * as saveAs from 'file-saver';
-import { ExportPriceScansDialogComponent } from 'src/app/dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
+
 
 @Component({
   selector: 'app-product',
@@ -115,15 +115,7 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['storeCheck']);
   }
 
-  public openDialogExport(){
-    const dialogRef = this.dialog.open(ExportPriceScansDialogComponent);
-   
-    dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        console.log('exported');
-      }
-    });
-  }
+ 
  
 
 }

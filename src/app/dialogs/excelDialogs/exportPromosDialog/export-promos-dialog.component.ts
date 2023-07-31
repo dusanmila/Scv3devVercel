@@ -70,7 +70,7 @@ public productCategoryControl = new FormControl('');
   
    this.loadCategories();
    
-    this.dialogRef.updateSize('20%', '60%');
+    this.dialogRef.updateSize('15%', '60%');
   }
 
  
@@ -90,7 +90,7 @@ public productCategoryControl = new FormControl('');
    
     this.promoService.export('All',this.selectedUsername,this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),this.retailer,this.productCategory).subscribe((excel) => {
       
-      const fileName = 'Conditions.xlsx';
+      const fileName = 'Promotions.xlsx';
       saveAs(excel, fileName);
     });
     

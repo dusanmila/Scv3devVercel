@@ -51,7 +51,7 @@ export class ExportConditionsDialogComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategories();
     this.loadRetailers();
-    this.dialogRef.updateSize('15%', '50%');
+    this.dialogRef.updateSize('15%', '30%');
   }
 
   public loadCategories() {

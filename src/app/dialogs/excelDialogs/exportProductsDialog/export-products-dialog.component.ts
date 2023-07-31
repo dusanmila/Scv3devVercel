@@ -15,11 +15,11 @@ import * as saveAs from 'file-saver';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
-  selector: 'export-pricescans-dialog',
-  templateUrl: './export-pricescans-dialog.component.html',
-  styleUrls: ['./export-pricescans-dialog.component.css']
+  selector: 'export-products-dialog',
+  templateUrl: './export-products-dialog.component.html',
+  styleUrls: ['./export-products-dialog.component.css']
 })
-export class ExportPriceScansDialogComponent implements OnInit {
+export class ExportProductsDialogComponent implements OnInit {
 
 
   public form: FormGroup;
@@ -28,20 +28,18 @@ export class ExportPriceScansDialogComponent implements OnInit {
   public changed: boolean = false;
   submitClicked: boolean = false;
   isLoading = false;
+  selectedObject: string = "All";
+  formats: string[];
 
-
-  public retailers: Retailer[]=[];
+ 
   public productCategories: ProductCategory[]=[];
 
-  public retailer:string='All';
   public productCategory:string='All';
 
   constructor(public snackBar: MatSnackBar,
-    public dialogRef: MatDialogRef<ExportPriceScansDialogComponent>,
-    public objectService: ObjectService,
-    public conditionService: ConditionsService,
-    public productService: ProductService,
+    public dialogRef: MatDialogRef<ExportProductsDialogComponent>,
     public productCategoryService: ProductCategoryService,
+    public productService: ProductService,
     public fb: FormBuilder,
     private http: HttpClient) {
 
@@ -53,8 +51,8 @@ export class ExportPriceScansDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
-    this.loadRetailers();
-    this.dialogRef.updateSize('15%', '50%');
+
+    this.dialogRef.updateSize('15%', '25%');
   }
 
   public loadCategories() {
@@ -64,27 +62,18 @@ export class ExportPriceScansDialogComponent implements OnInit {
     
   }
 
-  public loadRetailers() {
-    this.objectService.getRetailers(0,0,'').subscribe(data => {
-      this.retailers = data;
-    });
-    
-  }
-
-
-
   submitForm() {
     this.submitClicked = true;
    
     this.isLoading = true;
-  
-    this.productService.exportPriceScans().subscribe((excel) => {
      
-      const fileName = 'PriceScans.xlsx';
+   
+    this.productService.export(this.productCategory).subscribe((excel) => {
+      
+      const fileName = 'Products.xlsx';
       saveAs(excel, fileName);
     });
-  
-   
+    
 
   }
 

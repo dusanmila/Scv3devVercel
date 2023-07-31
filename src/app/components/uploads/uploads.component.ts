@@ -20,7 +20,9 @@ import { PromoService } from 'src/app/Services/promo.service';
 import { ConditionsService } from 'src/app/Services/conditions.service';
 import { ExportConditionsDialogComponent } from 'src/app/dialogs/excelDialogs/exportConditionsDialog/export-conditions-dialog.component';
 import { ExportPromosDialogComponent } from 'src/app/dialogs/excelDialogs/exportPromosDialog/export-promos-dialog.component';
-import { ExportPriceScansDialogComponent } from 'src/app/dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
+import { ExportProductsDialogComponent } from 'src/app/dialogs/excelDialogs/exportProductsDialog/export-products-dialog.component';
+import { ExportPositionsDialogComponent } from 'src/app/dialogs/excelDialogs/exportPositionsDialog/export-positions-dialog.component';
+
 
 @Component({
   selector: 'app-uploads',
@@ -454,6 +456,26 @@ export class UploadsComponent implements OnInit {
 
   openDialog(flag: number) {
 
+    if(flag==2){
+      const dialogRef = this.dialog.open(ExportPositionsDialogComponent);
+   
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          console.log('exported');
+        }
+      });
+    }
+
+    if(flag==3){
+      const dialogRef = this.dialog.open(ExportProductsDialogComponent);
+   
+      dialogRef.afterClosed().subscribe(res => {
+        if (res) {
+          console.log('exported');
+        }
+      });
+    }
+
     if(flag==5){
       const dialogRef = this.dialog.open(ExportPromosDialogComponent);
    
@@ -474,15 +496,7 @@ export class UploadsComponent implements OnInit {
       });
     }
 
-    if(flag==4){
-      const dialogRef = this.dialog.open(ExportPriceScansDialogComponent);
-   
-      dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          console.log('exported');
-        }
-      });
-    }
+  
     
   }
 
