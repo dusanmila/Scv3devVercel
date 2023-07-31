@@ -51,12 +51,8 @@ export class UploadsComponent implements OnInit {
   isPromosEmpty = false;
   isConditionsEmpty = false;
   isWithImages = false;
-  selectedRetailer: string = "All";
-  selectedObject: string = "All";
-  selectedType: string = "All";
-  selectedFormat: string = "All";
-  selectedCategory: string = "All";
-  filteredOptions: Observable<Obj[]>;
+ 
+
 
   error: boolean = false;
   isUploading = false;
@@ -92,18 +88,6 @@ export class UploadsComponent implements OnInit {
     this.productService.checkNoDataPriceScans().subscribe((data) => {this.isPriceScansEmpty = data; console.log(this.isPriceScansEmpty)});
     this.promoService.checkNoData().subscribe((data) => this.isPromosEmpty = data);
     this.conditionService.checkNoData().subscribe((data) => this.isConditionsEmpty = data);
-    this.objectService.getRetailersNoPagination().subscribe((data) => this.retailers = data);
-    this.positionService.getPositionTypes().subscribe((data) => this.types = data);
-    this.objectService.getObjectFormats().subscribe((data) => this.formats = data);
-    this.productCategoryService.getProductCategories().subscribe((data) => this.categories = data);
-    this.objectService.getObjectsNoPagination().subscribe((data) => {
-      this.objects = data;
-      this.filteredOptions = this.myControl.valueChanges.pipe(
-        startWith(''),
-        map(value => this._filter(value || '')),
-      );
-    });
-
   }
 
   uploadObjectsFile(event: any) {
@@ -389,45 +373,11 @@ export class UploadsComponent implements OnInit {
 
   }
 
-  public exportPositions() {
-
-    if (this.selectedObject == "All" || this.selectedRetailer == "All") {
-      this.isPosLoading = true;
-      this.positionService.export(this.isWithImages, this.selectedRetailer, this.selectedObject, this.selectedType, this.selectedFormat).subscribe((excel) => {
-        this.isPosLoading = false;
-        const fileName = 'SecondaryPositions.xlsx';
-        saveAs(excel, fileName);
-      });
-    } else {
-      this.error = true;
-    }
-
-
-
-  }
-
   
-/*
-  public exportPromos() {
-
-    this.promoService.export().subscribe((excel) => {
-        this.isPromosLoading = false;
-        const fileName = 'Promos.xlsx';
-        saveAs(excel, fileName);
-      });
-   
-      
 
 
 
-  }
-*/
-
-
-  public checkWithImages(event) {
-    this.isWithImages = event.checked;
-
-  }
+ 
 
   private _filter(value: string): Obj[] {
     const filterValue = value.toLowerCase();
@@ -435,15 +385,7 @@ export class UploadsComponent implements OnInit {
     return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
   }
 
-  public exportProducts() {
-    this.isProdLoading = true;
-    this.productService.export(this.selectedCategory).subscribe((excel) => {
-      this.isProdLoading = false;
-      const fileName = 'Products.xlsx';
-      saveAs(excel, fileName);
-    });
 
-  }
 
   public exportPriceScans(){
     this.productService.exportPriceScans().subscribe((excel) => {
