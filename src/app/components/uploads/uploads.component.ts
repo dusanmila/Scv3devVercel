@@ -85,7 +85,7 @@ export class UploadsComponent implements OnInit {
     this.objectService.checkNoData().subscribe((data) => this.isObjectsEmpty = data);
     this.positionService.checkNoData().subscribe((data) => this.isPositionsEmpty = data);
     this.productService.checkNoData().subscribe((data) => this.isProductsEmpty = data);
-    this.productService.checkNoDataPriceScans().subscribe((data) => {this.isPriceScansEmpty = data; console.log(this.isPriceScansEmpty)});
+    this.productService.checkNoDataPriceScans().subscribe((data) => { this.isPriceScansEmpty = data; console.log(this.isPriceScansEmpty) });
     this.promoService.checkNoData().subscribe((data) => this.isPromosEmpty = data);
     this.conditionService.checkNoData().subscribe((data) => this.isConditionsEmpty = data);
   }
@@ -363,9 +363,9 @@ export class UploadsComponent implements OnInit {
 
             },
             error: (err: Error) => {
-            //  this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-          console.log(err)
-          }
+              //  this.snackBar.open('An error occured', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+              console.log(err)
+            }
           });
 
         }
@@ -377,6 +377,16 @@ export class UploadsComponent implements OnInit {
 
 
 
+
+  public exportPriceScans() {
+
+    this.productService.exportPriceScans().subscribe((excel) => {
+      this.isPriceScansLoading = false;
+      const fileName = 'PriceScans.xlsx';
+      saveAs(excel, fileName);
+    });
+
+
  
 
   private _filter(value: string): Obj[] {
@@ -384,7 +394,6 @@ export class UploadsComponent implements OnInit {
 
     return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
   }
-
 
 
   public exportPriceScans(){
@@ -407,6 +416,7 @@ export class UploadsComponent implements OnInit {
         }
       });
     }
+  }
 
     if(flag==3){
       const dialogRef = this.dialog.open(ExportProductsDialogComponent);
