@@ -23,7 +23,7 @@ export class ExportProductsDialogComponent implements OnInit {
 
 
   public form: FormGroup;
- 
+
   public imageUploaded: boolean = false;
   public changed: boolean = false;
   submitClicked: boolean = false;
@@ -31,10 +31,10 @@ export class ExportProductsDialogComponent implements OnInit {
   selectedObject: string = "All";
   formats: string[];
 
- 
-  public productCategories: ProductCategory[]=[];
 
-  public productCategory:string='All';
+  public productCategories: ProductCategory[] = [];
+
+  public productCategory: string = 'All';
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ExportProductsDialogComponent>,
@@ -56,24 +56,24 @@ export class ExportProductsDialogComponent implements OnInit {
   }
 
   public loadCategories() {
-    this.productCategoryService.getProductCategories().subscribe(data => {
+    this.productCategoryService.getProductCategories(0, 0, '').subscribe(data => {
       this.productCategories = data;
     });
-    
+
   }
 
   submitForm() {
     this.submitClicked = true;
-   
+
     this.isLoading = true;
-     
-   
+
+
     this.productService.export(this.productCategory).subscribe((excel) => {
-      
+
       const fileName = 'Products.xlsx';
       saveAs(excel, fileName);
     });
-    
+
 
   }
 
