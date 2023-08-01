@@ -15,8 +15,20 @@ export class ReturnDashboardComponent implements OnInit {
   selectedUser: string = "";
   selectedProduct: string = "";
 
+  years: string[] = [
+    'All', '2022', '2023', '2024', '2025', '2026'
+  ];
+
+  months: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+
+
+  selectedMonth: string= "a";
+  selectedYear: string="";
+
   selectedPeriod: string = "";
-  periodValue: number;
 
 
   top3products:  StatisticsModel[]= [];
@@ -68,6 +80,26 @@ export class ReturnDashboardComponent implements OnInit {
     console.log(this.selectedProduct)
    
   }
+
+
+
+  setYear(value) {
+    if (value === "All") {
+      this.selectedYear = "";
+    } else {
+      this.selectedYear = value;
+    }
+    this.selectedPeriod="year";
+    this.getGraphReturns();
+  }
+
+  setMonth(value) {
+    this.selectedMonth = value;
+    this.selectedPeriod="month";
+    this.getGraphReturns();
+  }
+
+
   getTop3ProductReturns(){
     this.statisticsService.getTop3ProductReturns().subscribe(data => {
       this.top3products=data;
@@ -88,9 +120,10 @@ export class ReturnDashboardComponent implements OnInit {
   }
 
   getGraphReturns() {
-    this.statisticsService.getGraphReturns(this.selectedPeriod, this.periodValue).subscribe(data => {
+    this.statisticsService.getGraphReturns(this.selectedPeriod, this.selectedYear,this.selectedMonth).subscribe(data => {
       if (data) {
         this.returnGraphResult=data;
+        console.log(data);
       }
     });
   }
