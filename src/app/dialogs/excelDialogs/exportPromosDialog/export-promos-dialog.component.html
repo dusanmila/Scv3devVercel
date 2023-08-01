@@ -4,21 +4,22 @@
   <form class="mat-dialog-content" #formControl="ngForm">
 
     
-  <form class="example-form">
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>User (optional)</mat-label>
-      <input type="text" placeholder="User" aria-label="Number" matInput [formControl]="userControl"
-        [matAutocomplete]="auto" [(ngModel)]="selectedUsername">
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option value="All">
-          All
-        </mat-option>
-        <mat-option *ngFor="let option of filteredOptionsUsers | async" [value]="option.username">
-          {{option.username}}
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>User (optional)</mat-label>
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="userControl"
+          [matAutocomplete]="auto" [(ngModel)]="selectedUsername">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option value="All">
+            All
+          </mat-option>
+          <mat-option *ngFor="let option of filteredOptionsUsers | async" [value]="option.username">
+            {{option.username}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
 
     <div class="form">
     <mat-form-field>

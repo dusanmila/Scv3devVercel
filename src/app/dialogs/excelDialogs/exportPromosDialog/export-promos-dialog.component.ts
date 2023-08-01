@@ -14,7 +14,7 @@ import { ProductCategoryService } from 'src/app/Services/product-category.servic
 import * as saveAs from 'file-saver';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/Services/user.service';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs';
 import { PromoService } from 'src/app/Services/promo.service';
 import { DatePipe } from '@angular/common';
 
@@ -69,6 +69,8 @@ export class ExportPromosDialogComponent implements OnInit {
   ngOnInit(): void {
 
     this.loadCategories();
+    this.loadRetailers();
+    this.loadUsers();
 
     this.dialogRef.updateSize('15%', '60%');
   }
@@ -79,6 +81,21 @@ export class ExportPromosDialogComponent implements OnInit {
       this.productCategories = data;
     });
 
+  }
+
+  public loadRetailers() {
+    this.objectService.getRetailers(0, 0, '').subscribe(data => {
+      this.retailers = data;
+    });
+
+  }
+
+  public loadUsers(){
+    this.filteredOptionsUsers = this.userControl.valueChanges.pipe(
+      debounceTime(300), // Add a debounce to prevent rapid consecutive API calls
+      distinctUntilChanged(), // Only trigger if the value changes
+      switchMap(value => this.userService.getUsersByUsername(value)) // Call the backend function
+    );
   }
 
 
