@@ -49,7 +49,7 @@ export class FeedbackCreateDialogComponent implements OnInit {
     this.feedbackService.getFeedbackCategories().subscribe(data => {
       this.feedbackCategories = data;
     });
-    this.productCategoryServices.getProductCategories().subscribe(data => {
+    this.productCategoryServices.getProductCategories(0, 0, '').subscribe(data => {
       this.productCategories = data;
     });
   }

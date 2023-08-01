@@ -22,17 +22,17 @@ export class ExportConditionsDialogComponent implements OnInit {
 
 
   public form: FormGroup;
- 
+
   public imageUploaded: boolean = false;
   public changed: boolean = false;
   submitClicked: boolean = false;
   isLoading = false;
 
-  public retailers: Retailer[]=[];
-  public productCategories: ProductCategory[]=[];
+  public retailers: Retailer[] = [];
+  public productCategories: ProductCategory[] = [];
 
-  public retailer:string='All';
-  public productCategory:string='All';
+  public retailer: string = 'All';
+  public productCategory: string = 'All';
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ExportConditionsDialogComponent>,
@@ -51,37 +51,37 @@ export class ExportConditionsDialogComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategories();
     this.loadRetailers();
-    this.dialogRef.updateSize('15%', '50%');
+    this.dialogRef.updateSize('15%', '30%');
   }
 
   public loadCategories() {
-    this.productCategoryService.getProductCategories().subscribe(data => {
+    this.productCategoryService.getProductCategories(0, 0, '').subscribe(data => {
       this.productCategories = data;
     });
-    
+
   }
 
   public loadRetailers() {
-    this.objectService.getRetailers(0,0,'').subscribe(data => {
+    this.objectService.getRetailers(0, 0, '').subscribe(data => {
       this.retailers = data;
     });
-    
+
   }
 
 
 
   submitForm() {
     this.submitClicked = true;
-   
+
     this.isLoading = true;
-     
-   
-    this.conditionService.export(this.retailer,this.productCategory).subscribe((excel) => {
-      
+
+
+    this.conditionService.export(this.retailer, this.productCategory).subscribe((excel) => {
+
       const fileName = 'Conditions.xlsx';
       saveAs(excel, fileName);
     });
-    
+
 
   }
 

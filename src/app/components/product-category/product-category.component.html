@@ -1,9 +1,21 @@
+<div class="centered">
+    <mat-form-field>
+
+        <input type="text" matInput placeholder="Search product category" [(ngModel)]="search">
+        <button matSuffix mat-button class="search" (click)="loadData(false)">
+            <mat-icon class="search">search</mat-icon>
+        </button>
+
+    </mat-form-field>
+</div>
+
 <div class="container mat-elevation-z8">
 
     <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
         <ng-container matColumnDef="productCategoryName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product Category</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product
+                Category</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.productCategoryName }}</mat-cell>
         </ng-container>
 
@@ -20,11 +32,15 @@
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
+            (click)="selectProductCategory(row.productCategoryName)"></mat-row>
     </mat-table>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
         <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
         </mat-progress-spinner>
     </div>
     <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No product categories</mat-toolbar>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
 </div>

@@ -101,7 +101,9 @@ import { ReturnDashboardComponent } from './components/return-dashboard/return-d
 import { PromoDashboardComponent } from './components/promo-dashboard/promo-dashboard.component';
 import { ExportConditionsDialogComponent } from './dialogs/excelDialogs/exportConditionsDialog/export-conditions-dialog.component';
 import { ExportPromosDialogComponent } from './dialogs/excelDialogs/exportPromosDialog/export-promos-dialog.component';
-import { ExportPriceScansDialogComponent } from './dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
+import { ExportProductsDialogComponent } from './dialogs/excelDialogs/exportProductsDialog/export-products-dialog.component';
+import { ExportPositionsDialogComponent } from './dialogs/excelDialogs/exportPositionsDialog/export-positions-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -143,9 +145,9 @@ import { ExportPriceScansDialogComponent } from './dialogs/excelDialogs/exportPr
     ProductCategoryDialogComponent,
     ProductCategoryComponent,
     ExportConditionsDialogComponent,
+    ExportProductsDialogComponent,
     ExportPromosDialogComponent,
-    ExportPriceScansDialogComponent,
-    PieChartComponent,
+    ExportPositionsDialogComponent,
     PieChart2Component,
     PieChart3Component,
     UploadsComponent,
@@ -160,7 +162,8 @@ import { ExportPriceScansDialogComponent } from './dialogs/excelDialogs/exportPr
     PromoDialogComponent,
     PositionDashboardComponent,
     ReturnDashboardComponent,
-    PromoDashboardComponent
+    PromoDashboardComponent,
+    PieChartComponent
   ],
   imports: [
     AppRoutingModule,
