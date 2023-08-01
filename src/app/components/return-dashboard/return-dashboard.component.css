@@ -160,3 +160,14 @@
 .radio-group-item {
     margin: 0 10px;
 }
+
+
+
+.div-element-first {
+    margin-top: 10%;
+    margin-right: 30%;
+    width: 20%;
+    height: 50%;
+    padding-right: 13%;
+    margin-left: -10%;
+}

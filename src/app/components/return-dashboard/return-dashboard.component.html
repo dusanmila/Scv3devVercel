@@ -51,6 +51,33 @@
     </mat-card-content>
 </mat-card>
 
+
+<div class="centered div-container">
+    <div class="div-element-first">
+        <mat-form-field appearance="fill">
+            <mat-label>Year</mat-label>
+            <mat-select (selectionChange)="setYear($event.value)" [value]="selectedYear">
+                <mat-option *ngFor="let year of years" [value]="year">
+                    {{year}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="div-element">
+        <mat-form-field appearance="fill">
+            <mat-label>Month</mat-label>
+            <mat-select (selectionChange)="setMonth($event.value)" [disabled]="!selectedYear"
+                [value]="selectedMonth">
+                <mat-option *ngFor="let month of months" [value]="month">
+                    {{month}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</div>
+
 <mat-card class="card chart-card">
     <mat-card-title>Returns quantity</mat-card-title>
     <mat-card-content>
