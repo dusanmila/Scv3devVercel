@@ -64,7 +64,7 @@
         </mat-expansion-panel>
     </mat-accordion>
 
-    <mat-card class="card chart-card">
+    <mat-card class="card chart-card" [ngClass]="panelOpenState ? 'mt' : ''">
         <mat-card-header>
             <mat-card-title>Comparison of data with the last year</mat-card-title>
         </mat-card-header>
