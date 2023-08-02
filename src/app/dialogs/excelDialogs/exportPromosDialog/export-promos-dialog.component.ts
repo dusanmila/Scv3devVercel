@@ -114,23 +114,7 @@ export class ExportPromosDialogComponent implements OnInit {
 
   }
 
-  private _filter(value: string): Retailer[] {
-    const filterValue = value.toLowerCase();
-
-    return this.retailers.filter(r => r.retailerName.toLowerCase().includes(filterValue));
-  }
-
-  private _filterProdCat(value: string): ProductCategory[] {
-    const filterValue = value.toLowerCase();
-
-    return this.productCategories.filter(p => p.productCategoryName.toLowerCase().includes(filterValue));
-  }
-
-  private _filterUsers(value: string): User[] {
-    const filterValue = value.toLowerCase();
-
-    return this.users.filter(u => u.username.toLowerCase().includes(filterValue));
-  }
+ 
 
   public close(): void {
     this.dialogRef.close(this.changed);

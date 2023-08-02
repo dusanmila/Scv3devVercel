@@ -16,35 +16,13 @@ export class SidenavComponent implements OnInit {
   constructor(public dialog: MatDialog, public router: Router,) { }
 
   ngOnInit(): void {
-    this.changeTitle();
+  
   }
 
-  public changeTitle() {
-    let url = this.router.url;
-    if (url === '/admin/dashboard')
-      this.title = 'Feedback statistics';
-    else if (url === '/admin/position-dashboard')
-      this.title = 'Position statistics';
-    else if (url === '/admin/return-dashboard')
-      this.title = 'Return statistics';
-    else if (url === '/admin/user')
-      this.title = 'Users';
-    else if (url === '/admin/object')
-      this.title = 'Objects';
-    else if (url === '/admin/retailer')
-      this.title = 'Retailers';
-    else if (url === '/admin/storeCheckReceiver')
-      this.title = 'Store Check Receivers';
-    else if (url === '/admin/secondaryPosition')
-      this.title = 'Secondanry Positions';
-    else if (url === '/admin/product')
-      this.title = 'Products';
-    else if (url === '/admin/productCategory')
-      this.title = 'Product categories';
-    else if (url === '/admin/feedbackCategory')
-      this.title = 'Feedback categories';
-    else if (url === '/admin/uploads')
-      this.title = 'Import / Export Files';
+ 
+
+  updateTitle(newTitle: string) {
+    this.title = newTitle;
   }
 
   public logout() {
