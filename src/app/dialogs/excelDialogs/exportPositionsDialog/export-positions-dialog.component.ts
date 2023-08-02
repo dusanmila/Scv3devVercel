@@ -14,7 +14,7 @@ import { ProductCategoryService } from 'src/app/Services/product-category.servic
 import * as saveAs from 'file-saver';
 import { PositionService } from 'src/app/Services/position-service.service';
 import { PositionType } from 'src/app/models/positionType';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, debounceTime, distinctUntilChanged, map, startWith, switchMap } from 'rxjs';
 import { Obj } from 'src/app/models/object';
 
 @Component({
@@ -79,14 +79,11 @@ public loadFormats(){
 }
 
 public loadObjects(){
-  this.objectService.getObjectsNoPagination().subscribe((data) => {
-    this.objects = data;
-    console.log(data)
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value || '')),
-    );
-  });
+  this.filteredOptions = this.myControl.valueChanges.pipe(
+    debounceTime(300), // Add a debounce to prevent rapid consecutive API calls
+    distinctUntilChanged(), // Only trigger if the value changes
+    switchMap(value => this.objectService.getObjectsByObjectName(value)) // Call the backend function
+  );
 }
 
   public loadTypes() {
@@ -122,6 +119,10 @@ console.log(this.withImages+ ',retailer: ' +this.retailer + ' obj:' + this.selec
     const filterValue = value.toLowerCase();
 
     return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
+  }
+
+  onAutocompleteInputChange(event: Event) {
+    this.myControl.setValue((event.target as HTMLInputElement).value);
   }
 
   public close(): void {
