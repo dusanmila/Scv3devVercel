@@ -17,7 +17,7 @@ import * as saveAs from 'file-saver';
 })
 export class ProductComponent implements OnInit {
 
-  count: number = 0;
+  count: number = 5;
   page: number = 0;
   search: string = '';
   length: number = 0;
@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
   actionPriceFormControls: FormControl[] = [];
   isAdmin: boolean = false;
   isProductSelected: boolean = false;
-  
+
   @Input() public isDashboard: boolean = false;
   @Output() public selectedProduct = new EventEmitter<string>();
 
@@ -42,11 +42,11 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.isDashboard){
+    if (this.isDashboard) {
       this.count = 2;
-      this.displayedColumns=['productName'];
+      this.displayedColumns = ['productName'];
     }
-    
+
 
     let url = this.router.url;
     if (url === '/admin/product') {
@@ -107,7 +107,7 @@ export class ProductComponent implements OnInit {
   }
 
   public selectProduct(productName: string) {
-    this.isProductSelected=true;
+    this.isProductSelected = true;
     this.selectedProduct.emit(productName);
   }
 
@@ -115,7 +115,7 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['storeCheck']);
   }
 
- 
- 
+
+
 
 }

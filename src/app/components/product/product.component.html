@@ -69,7 +69,7 @@
                 </form>
             </mat-cell>
         </ng-container>
-   
+
         <ng-container matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef>
                 <button mat-icon-button color="primary">
@@ -90,7 +90,8 @@
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="selectProduct(row.productName)">
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
+            (click)="selectProduct(row.productName)">
         </mat-row>
     </mat-table>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
@@ -98,11 +99,10 @@
         </mat-progress-spinner>
     </div>
     <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No products</mat-toolbar>
-    <!-- <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
         [length]="length" (page)="loadDataOnPageEvent($event)">
-    </mat-paginator> -->
+    </mat-paginator>
 </div>
 
 <button mat-stroked-button color="primary" class="item2" (click)="exit()" *ngIf="!isAdmin && !isDashboard">Exit
     <mat-icon>exit_to_app</mat-icon></button>
-   
