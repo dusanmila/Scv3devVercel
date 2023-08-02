@@ -16,7 +16,7 @@ export class ReturnDashboardComponent implements OnInit {
   selectedProduct: string = "";
 
   years: string[] = [
-    'All', '2022', '2023', '2024', '2025', '2026'
+    '2022', '2023', '2024', '2025', '2026'
   ];
 
   months: string[] = [
@@ -84,11 +84,8 @@ export class ReturnDashboardComponent implements OnInit {
 
 
   setYear(value) {
-    if (value === "All") {
-      this.selectedYear = "";
-    } else {
-      this.selectedYear = value;
-    }
+    this.selectedYear = value;
+    this.selectedMonth= "a";
     this.selectedPeriod="year";
     this.getGraphReturns();
   }
