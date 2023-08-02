@@ -90,6 +90,14 @@ export class ObjectService {
     return retval$.asObservable();
   }
 
+  public getObjectsByObjectName(objectName: string): Observable<Obj[]> {
+    let retval$ = new Subject<Obj[]>();
+    this.http.get<Obj[]>(`${OBJECT_URL}/objects/GetObjectsByObjectName/${objectName}`, { headers: this.headers }).subscribe((helper: Obj[]) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
+
   public getObjectsByString(str: string): Observable<Obj[]> {
     let retval$ = new Subject<Obj[]>();
     this.http.get<Obj[]>(`${OBJECT_URL}/objects/objectByString/${str}`).subscribe((objects: Obj[]) => {
