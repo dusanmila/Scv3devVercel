@@ -1,0 +1,190 @@
+.mat-header-cell {
+    background: #56baed;
+    text-align: center;
+}
+
+.centered {
+    text-align: center;
+}
+
+.search {
+    color: white;
+    background-color: #56baed;
+    margin: 1%;
+}
+
+.container {
+    margin: 0 20px;
+}
+
+.mat-spinner-color::ng-deep circle {
+    stroke: #56baed !important;
+}
+
+.whitetext {
+    color: white;
+}
+
+.noDataMessage {
+    background-color: white;
+    color: #56baed;
+}
+
+.column-name {
+    font-size: 16px;
+}
+
+.price-input {
+    width: 50%;
+}
+
+.header {
+    text-align: center;
+    height: 80px;
+    background-color: #56baed;
+    color: #fff;
+    line-height: 80px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+.item2 {
+    background-color: white;
+    color: #39ace7;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    font-family: sans-serif;
+    border: 2px solid #39ace7;
+    cursor: pointer;
+    position: relative;
+    bottom: 1;
+    display: block;
+    margin: 30px auto;
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.3);
+}
+
+.item2:hover {
+    background-color: #39ace7;
+    color: #fff;
+    transition: 0.3s;
+}
+
+
+
+.mat-column-manufacturer {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 25% !important;
+    width: 25% !important;
+    overflow-wrap: break-word;
+
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    text-align: left;
+
+}
+
+.mat-column-price {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    text-align: left;
+
+}
+
+/* Promena izgleda table */
+@media screen and (max-width: 300px) {
+    .mat-column-manufacturer {
+        flex: 0 0 90% !important;
+        width: 90% !important;
+    }
+
+    .mat-column-price {
+        flex: 0 0 90% !important;
+        width: 90% !important;
+    }
+
+    .mat-table {
+        border: 0;
+        vertical-align: middle
+    }
+
+    .mat-table caption {
+        font-size: 1em;
+    }
+
+    /* Enable this to hide header */
+    .mat-table .mat-header-cell {
+        border: 10px solid;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .mat-table .mat-row {
+        border-bottom: 5px solid #ddd;
+        display: block;
+    }
+
+    /*
+    .mat-table .mat-row:nth-child(even) {background: #CCC}
+    .mat-table .mat-row:nth-child(odd) {background: #FFF}
+    */
+    .mat-table .mat-cell {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 1em;
+        text-align: right;
+        font-weight: bold;
+        height: 30px;
+        margin-bottom: 4%;
+        padding: 0 10px;
+    }
+
+    .mat-table .mat-cell:before {
+        /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-weight: normal;
+
+        font-size: .85em;
+    }
+
+    .mat-table .mat-cell:last-child {
+        border-bottom: 0;
+    }
+
+    .mat-table .mat-cell:first-child {
+        margin-top: 4%;
+    }
+}
+
+.mt {
+    margin-top: 20px;
+}

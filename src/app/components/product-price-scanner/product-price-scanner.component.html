@@ -1,0 +1,80 @@
+<div class="header">
+    <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
+    <h2 style="height:80px;"> <span>Price scanner</span> </h2>
+</div>
+
+<div class="centered font mt">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Search products" [(ngModel)]="search">
+        <button class="search" matSuffix mat-button (click)="loadData()">
+            <mat-icon class="search">search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div class="container mat-elevation-z8">
+    <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+        <ng-container matColumnDef="productName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
+                style="justify-content: left;">Product
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Product name">{{ row.productName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Weight
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Weight">{{ row.weight }}g</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="manufacturer">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Manufacturer
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Manufacturer">{{ row.manufacturer }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Price
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index" data-label="Price">
+                <form>
+                    <mat-form-field class="price-input">
+                        <input type="numeric" matInput [formControl]="priceFormControls[i]" name="price"
+                            (change)="changePrice(row)" [(ngModel)]="row.price">
+                        <mat-error *ngIf="priceFormControls[i].hasError('pattern')">
+                            Invalid format
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actionPrice">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Price
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index" data-label="Action price">
+                <form>
+                    <mat-form-field class="price-input">
+                        <input type="numeric" matInput [formControl]="actionPriceFormControls[i]" name="actionPrice"
+                            (change)="changePrice(row)" [(ngModel)]="row.actionPrice">
+                        <mat-error *ngIf="actionPriceFormControls[i].hasError('pattern')">
+                            Invalid format
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
+        </mat-row>
+    </mat-table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No products</mat-toolbar>
+</div>
+
+<button mat-stroked-button color="primary" class="item2" (click)="exit()">Exit
+    <mat-icon>exit_to_app</mat-icon></button>

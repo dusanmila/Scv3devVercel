@@ -28,6 +28,7 @@ import { ModulesComponent } from './components/modules/modules.component';
 import { PositionDashboardComponent } from './components/position-dashboard/position-dashboard.component';
 import { ReturnDashboardComponent } from './components/return-dashboard/return-dashboard.component';
 import { PromoDashboardComponent } from './components/promo-dashboard/promo-dashboard.component';
+import { ProductPriceScannerComponent } from './components/product-price-scanner/product-price-scanner.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
+  { path: 'priceScanner', component: ProductPriceScannerComponent, canActivate: [AdminGuard] },
   { path: 'returns/:objectIdCompany', component: ReturnComponent, canActivate: [AdminGuard] },
   { path: 'modules', component: ModulesComponent, canActivate: [AdminGuard] },
   { path: 'promo', component: PromoComponent, canActivate: [AdminGuard] },

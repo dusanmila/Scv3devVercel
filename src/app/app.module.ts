@@ -104,6 +104,7 @@ import { ExportConditionsDialogComponent } from './dialogs/excelDialogs/exportCo
 import { ExportPromosDialogComponent } from './dialogs/excelDialogs/exportPromosDialog/export-promos-dialog.component';
 import { ExportProductsDialogComponent } from './dialogs/excelDialogs/exportProductsDialog/export-products-dialog.component';
 import { ExportPositionsDialogComponent } from './dialogs/excelDialogs/exportPositionsDialog/export-positions-dialog.component';
+import { ProductPriceScannerComponent } from './components/product-price-scanner/product-price-scanner.component';
 
 
 @NgModule({
@@ -164,7 +165,8 @@ import { ExportPositionsDialogComponent } from './dialogs/excelDialogs/exportPos
     PositionDashboardComponent,
     ReturnDashboardComponent,
     PromoDashboardComponent,
-    PieChartComponent
+    PieChartComponent,
+    ProductPriceScannerComponent
   ],
   imports: [
     AppRoutingModule,
