@@ -148,4 +148,12 @@ export class PromoService {
     });
     return retval$.asObservable();
   }
+
+  getBestEstimators() {
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/bestEstimators`, { headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
 }

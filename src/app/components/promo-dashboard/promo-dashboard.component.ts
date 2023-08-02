@@ -131,6 +131,10 @@ export class PromoDashboardComponent implements OnInit {
 
   panelOpenState = false;
 
+  bestEstimators: StatisticsModel[] = [];
+  cardColor: string = '#0081af';
+  textColor: string = '#fff';
+
   constructor(public statisticsService: StatisticsService,
     public promoService: PromoService) { }
 
@@ -140,6 +144,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getRopiByProductCategories();
     this.getPromoCountByPeriod();
     this.getRopiByPeriod();
+    this.getBestEstimators();
   }
 
   changePage(flag: number, title: string) {
@@ -261,6 +266,12 @@ export class PromoDashboardComponent implements OnInit {
     const datepart = this.selectedYear === '' ? 'YEAR' : 'MONTH';
     this.promoService.getRopiByPeriod(datepart, this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory, this.selectedProduct).subscribe(data => {
       this.ropiByPeriod = data;
+    });
+  }
+
+  getBestEstimators() {
+    this.promoService.getBestEstimators().subscribe(data => {
+      this.bestEstimators = data;
     });
   }
 
