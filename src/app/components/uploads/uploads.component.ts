@@ -388,12 +388,15 @@ export class UploadsComponent implements OnInit {
   }
 
 
+  public exportObjects() {
 
-  private _filter(value: string): Obj[] {
-    const filterValue = value.toLowerCase();
-
-    return this.objects.filter(o => o.objectName.toLowerCase().includes(filterValue));
+    this.objectService.exportObjects().subscribe((excel) => {
+      this.isObjLoading = false;
+      const fileName = 'Objects.xlsx';
+      saveAs(excel, fileName);
+    });
   }
+
 
   openDialog(flag: number) {
 

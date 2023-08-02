@@ -270,4 +270,10 @@ export class ObjectService {
     });
     return retvla$.asObservable();
   }
+
+  
+  public exportObjects() {
+    return this.http.get(`${OBJECT_URL}/objectExcels/exportExcel`, { headers: this.headers, responseType: 'blob' });
+
+  }
 }
