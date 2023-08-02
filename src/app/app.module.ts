@@ -32,6 +32,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { AdminpageComponent } from './components/adminpage/adminpage.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './components/user/user.component';
@@ -194,7 +195,8 @@ import { ExportPositionsDialogComponent } from './dialogs/excelDialogs/exportPos
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule
 
   ],
   providers: [DatePipe],

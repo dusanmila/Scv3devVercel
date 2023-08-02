@@ -62,8 +62,8 @@ export class PromoService {
     return this.http.delete<any>(`${PROMO_URL}/promos/`, { headers: this.headers });
   }
 
-  public export(type:string,username:string,startDate:string | null,endDate:string | null,retailer:string,productCategory:string) {
-    return this.http.get(`${PROMO_URL}/promoExcels/exportExcel/`+type+'/'+username+'/'+startDate+'/'+endDate+'/'+retailer+'/'+productCategory, { headers: this.headers, responseType: 'blob' });
+  public export(type: string, username: string, startDate: string | null, endDate: string | null, retailer: string, productCategory: string) {
+    return this.http.get(`${PROMO_URL}/promoExcels/exportExcel/` + type + '/' + username + '/' + startDate + '/' + endDate + '/' + retailer + '/' + productCategory, { headers: this.headers, responseType: 'blob' });
 
   }
 
@@ -117,7 +117,7 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getPromoCountByPeriod(datePart: string, year: string, retailerName: string, username: string, objectName: string, productCategoryName: string) {
+  getPromoCountByPeriod(datePart: string, year: string, retailerName: string, username: string, objectName: string, productCategoryName: string, productName: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('datePart', datePart);
     queryParams = queryParams.append('year', year);
@@ -125,6 +125,7 @@ export class PromoService {
     queryParams = queryParams.append('username', username);
     queryParams = queryParams.append('objectName', objectName);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
+    queryParams = queryParams.append('productName', productName);
     let retval$ = new Subject<StatisticsModel[]>();
     this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/promoCountByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);
@@ -132,7 +133,7 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getRopiByPeriod(datePart: string, year: string, retailerName: string, username: string, objectName: string, productCategoryName: string) {
+  getRopiByPeriod(datePart: string, year: string, retailerName: string, username: string, objectName: string, productCategoryName: string, productName: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('datePart', datePart);
     queryParams = queryParams.append('year', year);
@@ -140,6 +141,7 @@ export class PromoService {
     queryParams = queryParams.append('username', username);
     queryParams = queryParams.append('objectName', objectName);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
+    queryParams = queryParams.append('productName', productName);
     let retval$ = new Subject<StatisticsModel[]>();
     this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);
