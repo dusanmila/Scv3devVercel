@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/models/product';
+import { ProductCategoryService } from 'src/app/Services/product-category.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
@@ -14,13 +15,19 @@ export class ProductDialogComponent implements OnInit {
   flag: number;
   isLoading: boolean = false;
   changed: boolean = false;
+  productCategoryNames: string[] = [];
+  filteredProductCategoryNames: string[] = [];
+  selectedProductCategoryName: string = "";
+  showProductCategoryNameError = false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ProductDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Product,
-    public productService: ProductService) { }
+    public productService: ProductService,
+    public productCategoryService: ProductCategoryService) { }
 
   ngOnInit(): void {
+    this.getProductCategoryNames();
   }
 
   add() {
@@ -73,6 +80,27 @@ export class ProductDialogComponent implements OnInit {
 
   close() {
     this.dialogRef.close(this.changed);
+  }
+
+  getProductCategoryNames() {
+    this.productCategoryService.getProductCategoryNames().subscribe(data => {
+      this.productCategoryNames = data;
+    });
+  }
+
+  onProductCategoryInputChange(event): void {
+    this.filteredProductCategoryNames = this._filterProductCategoryNames(event.target.value);
+    if (event.target.value === '') {
+      this.showProductCategoryNameError = false;
+    } else {
+      this.showProductCategoryNameError = !this.productCategoryNames.includes(event.target.value) && this.filteredProductCategoryNames.length === 0;
+    }
+  }
+
+  private _filterProductCategoryNames(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.productCategoryNames.filter(option => option.toLowerCase().includes(filterValue));
   }
 
 }

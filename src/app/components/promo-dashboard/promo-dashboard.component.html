@@ -1,43 +1,83 @@
 <div class="dashboard" *ngIf="flag === 1">
 
-    <div class="filter-section">
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
-            selectedUser }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
-            selectedRetailer }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject" (click)="selectObject('')">{{
-            selectedObject }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
-            (click)="selectProductCategory('')">{{
-            selectedProductCategory }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedYear && !selectedMonth && !selectedDay"
-            (click)="setYear('')">{{
-            selectedYear }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedMonth && selectedYear && !selectedDay"
-            (click)="setMonth(''); setYear('');">
-            {{selectedMonth}}-{{ selectedYear }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedDay && selectedMonth && selectedYear"
-            (click)="setDay(''); setMonth(''); setYear('');">
-            {{ selectedDay }}-{{selectedMonth}}-{{selectedYear}} <mat-icon>close</mat-icon></button>
-    </div>
+    <mat-card class="card" [ngClass]="panelOpenState ? 'mb' : ''">
+        <mat-card-header>
+            <mat-card-title>Best estimator</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content" #containerRef>
+            <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
+                [scheme]="colorScheme" [results]="bestEstimators" [cardColor]="cardColor" [textColor]="textColor"
+                *ngIf="bestEstimators && bestEstimators.length > 0">
+            </ngx-charts-number-card>
+        </mat-card-content>
+    </mat-card>
 
-    <div class="table-section">
-        <div class="table-section-item">
-            <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
-        </div>
-        <div class="table-section-item">
-            <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
-        </div>
-        <div class="table-section-item">
-            <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
-        </div>
-        <div class="table-section-item">
-            <app-product-category [isDashboard]="true"
-                (selectedProductCategory)="selectProductCategory($event)"></app-product-category>
-        </div>
-    </div>
+    <mat-accordion>
+        <mat-expansion-panel class="expansion-panel mt" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Filters
+                </mat-panel-title>
+                <mat-panel-description *ngIf="panelOpenState === false">
+                    Show filters
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="expansion-table-body">
+                <div class="filter-section">
+                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser"
+                        (click)="selectUser('')">{{
+                        selectedUser }} <mat-icon>close</mat-icon></button>
+                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer"
+                        (click)="selectRetailer('')">{{
+                        selectedRetailer }} <mat-icon>close</mat-icon></button>
+                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject"
+                        (click)="selectObject('')">{{
+                        selectedObject }} <mat-icon>close</mat-icon></button>
+                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
+                        (click)="selectProductCategory('')">{{
+                        selectedProductCategory }} <mat-icon>close</mat-icon></button>
+                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedProduct"
+                        (click)="selectProduct('')">{{
+                        selectedProduct }} <mat-icon>close</mat-icon></button>
+                    <button mat-stroked-button class="filter-section-item"
+                        *ngIf="selectedYear && !selectedMonth && !selectedDay" (click)="setYear('')">{{
+                        selectedYear }} <mat-icon>close</mat-icon></button>
+                    <button mat-stroked-button class="filter-section-item"
+                        *ngIf="selectedMonth && selectedYear && !selectedDay" (click)="setMonth(''); setYear('');">
+                        {{selectedMonth}}-{{ selectedYear }} <mat-icon>close</mat-icon></button>
+                    <button mat-stroked-button class="filter-section-item"
+                        *ngIf="selectedDay && selectedMonth && selectedYear"
+                        (click)="setDay(''); setMonth(''); setYear('');">
+                        {{ selectedDay }}-{{selectedMonth}}-{{selectedYear}} <mat-icon>close</mat-icon></button>
+                </div>
 
-    <mat-card class="card chart-card">
+                <div class="table-section">
+                    <div class="table-section-item">
+                        <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
+                    </div>
+                    <div class="table-section-item">
+                        <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+                    </div>
+                    <div class="table-section-item">
+                        <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
+                    </div>
+                </div>
+                <div class="table-section">
+
+                    <div class="table-section-item">
+                        <app-product-category [isDashboard]="true"
+                            (selectedProductCategory)="selectProductCategory($event)"></app-product-category>
+                    </div>
+                    <div class="table-section-item">
+                        <app-product [isDashboard]="true" (selectedProduct)="selectProduct($event)"></app-product>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-card class="card chart-card" [ngClass]="panelOpenState ? 'mt' : ''">
         <mat-card-header>
             <mat-card-title>Comparison of data with the last year</mat-card-title>
         </mat-card-header>
@@ -46,9 +86,9 @@
                 <mat-form-field>
                     <mat-label>Enter a date range</mat-label>
                     <mat-date-range-input [rangePicker]="picker">
-                        <input matStartDate placeholder="Start date" #dateRangeStart>
+                        <input matStartDate placeholder="Start date" #dateRangeStart [value]="selectedStartDate">
                         <input matEndDate placeholder="End date" #dateRangeEnd
-                            (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                            (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)" [value]="selectedEndDate">
                     </mat-date-range-input>
                     <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -184,7 +224,7 @@
             <ngx-charts-bar-vertical *ngIf="ropiByPeriod && ropiByPeriod.length > 0" [view]="view"
                 [results]="ropiByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
                 [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'ROPI'" [yAxisLabel]="yAxisLabel">
             </ngx-charts-bar-vertical>
         </mat-card-content>
     </mat-card>

@@ -390,3 +390,19 @@
     background-color: white;
     color: #56baed;
 }
+
+.expansion-panel {
+    margin: 0 20px 50px 20px;
+}
+
+.expansion-table-body {
+    margin-bottom: 50px;
+}
+
+.mt {
+    margin-top: 50px;
+}
+
+.mb {
+    margin-bottom: 50px;
+}

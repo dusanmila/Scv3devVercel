@@ -52,6 +52,7 @@ export class PromoDashboardComponent implements OnInit {
   selectedObject: string = "";
   selectedRetailer: string = "";
   selectedProductCategory: string = "";
+  selectedProduct: string = "";
 
   feedbackCategoryResult: StatisticsModel[];
   productCategoryResult: StatisticsModel[];
@@ -128,6 +129,12 @@ export class PromoDashboardComponent implements OnInit {
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
 
+  panelOpenState = false;
+
+  bestEstimators: StatisticsModel[] = [];
+  cardColor: string = '#0081af';
+  textColor: string = '#fff';
+
   constructor(public statisticsService: StatisticsService,
     public promoService: PromoService) { }
 
@@ -137,6 +144,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getRopiByProductCategories();
     this.getPromoCountByPeriod();
     this.getRopiByPeriod();
+    this.getBestEstimators();
   }
 
   changePage(flag: number, title: string) {
@@ -179,11 +187,21 @@ export class PromoDashboardComponent implements OnInit {
   selectProductCategory(productCategory: string) {
     if (this.selectedProductCategory)
       this.selectedProductCategory = '';
+    this.selectedProduct = '';
     this.selectedProductCategory = productCategory;
     this.getRopiByProductCategories();
     this.getPromoCountByPeriod();
     this.getRopiByPeriod();
     this.getPromoCountAndRopiByProductCategoriesAndYears();
+  }
+
+  selectProduct(product: string) {
+    if (this.selectedProduct)
+      this.selectedProduct = '';
+    this.selectedProductCategory = '';
+    this.selectedProduct = product;
+    this.getPromoCountByPeriod();
+    this.getRopiByPeriod();
   }
 
   selectMonth(month: string) {
@@ -238,21 +256,23 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   getPromoCountByPeriod() {
-    if (this.selectedYear !== '') {
-      const datepart = this.selectedMonth === '' ? 'YEAR' : 'MONTH'
-      this.promoService.getPromoCountByPeriod(datepart, this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
-        this.promoCountByPeriod = data;
-      });
-    }
+    const datepart = this.selectedYear === '' ? 'YEAR' : 'MONTH';
+    this.promoService.getPromoCountByPeriod(datepart, this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory, this.selectedProduct).subscribe(data => {
+      this.promoCountByPeriod = data;
+    });
   }
 
   getRopiByPeriod() {
-    if (this.selectedYear !== '') {
-      const datepart = this.selectedMonth === '' ? 'YEAR' : 'MONTH'
-      this.promoService.getRopiByPeriod(datepart, this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory).subscribe(data => {
-        this.ropiByPeriod = data;
-      });
-    }
+    const datepart = this.selectedYear === '' ? 'YEAR' : 'MONTH';
+    this.promoService.getRopiByPeriod(datepart, this.selectedYear, this.selectedRetailer, this.selectedUser, this.selectedObject, this.selectedProductCategory, this.selectedProduct).subscribe(data => {
+      this.ropiByPeriod = data;
+    });
+  }
+
+  getBestEstimators() {
+    this.promoService.getBestEstimators().subscribe(data => {
+      this.bestEstimators = data;
+    });
   }
 
 }
