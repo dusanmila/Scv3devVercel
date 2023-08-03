@@ -66,3 +66,7 @@ button {
 .error-message {
     color: #ff0000;
 }
+
+.checkbox {
+    margin-bottom: 40px;
+}
