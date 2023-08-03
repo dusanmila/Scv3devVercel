@@ -19,5 +19,6 @@ export interface Promo {
     objectIdCompany: string;
     objectName: string;
     objectIdRetail: string;
+    predefined: boolean;
     totalCount: number;
 }

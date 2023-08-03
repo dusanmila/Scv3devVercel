@@ -149,7 +149,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.ropi">
+        <div class="form" *ngIf="data.ropi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
             <mat-form-field appearance="fill">
                 <mat-label>ROPI %</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -157,9 +157,14 @@
             </mat-form-field>
         </div>
 
+        <div class="form checkbox" *ngIf="flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5">
+            <mat-checkbox [(ngModel)]="data.predefined" name="predefined" color="primary"
+                [disabled]="flag===2 || flag=== 4 || flag===3|| flag===5">Predefined</mat-checkbox>
+        </div>
+
         <div mat-dialog-actions class=" wrap">
-            <button mat-button class="test" *ngIf="flag === 1" type="submit" (click)="add()"
-                [disabled]="!formControl.valid  || showRetailerError || showProductError">Ok</button>
+            <button mat-button class="test" *ngIf="flag === 1 || flag === 6" type="submit" (click)="add()"
+                [disabled]="!formControl.valid  || showRetailerError || showProductError || !data.dateStart || !data.dateEnd">Ok</button>
             <button mat-button class="test" *ngIf="flag === 2" type="submit" (click)="confirmPromo()">Ok</button>
             <button mat-button class="test item2-delete" *ngIf="flag === 3" type="submit"
                 (click)="delete()">Delete</button>

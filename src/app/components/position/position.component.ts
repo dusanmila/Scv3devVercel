@@ -22,7 +22,7 @@ export class PositionComponent implements OnInit {
   isExporting = false;
 
   position: Position = {
-    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", comment: "",isSuggestion:false, img: "", img2: "", img3: "", isImgHorizontal: false, isImg2Horizontal: false, isImg3Horizontal: false, valid: false,
+    secondaryPositionId: Guid.create(), objectIdCompany: "", posClassName: "", posTypeName: "", comment: "", isSuggestion: false, img: "", img2: "", img3: "", isImgHorizontal: false, isImg2Horizontal: false, isImg3Horizontal: false, valid: false,
     //  productCategory: '',
     supplier: '',
     location: ''
@@ -52,7 +52,7 @@ export class PositionComponent implements OnInit {
   public loadData() {
     this.noData = false;
     if (this.objectIdCompany != null) {
-      this.positionService.getPositionsByObjectIdCompanyAndIsSuggestion(this.objectIdCompany,this.positionCheck).subscribe(data => {
+      this.positionService.getPositionsByObjectIdCompanyAndIsSuggestion(this.objectIdCompany, this.positionCheck).subscribe(data => {
         if (data) {
           this.positions = data;
           this.dataSource = new MatTableDataSource(this.positions);
@@ -127,7 +127,7 @@ export class PositionComponent implements OnInit {
     const dialogRef = this.dialog.open(PositionDialogComponent, { data: { secondaryPositionId, objectName, posClassName, posTypeName, valid, productCategory, supplier, location, comment, img, img2, img3, isImgHorizontal, isImg2Horizontal, isImg3Horizontal } });
 
     dialogRef.componentInstance.flag = flag;
-    dialogRef.componentInstance.isPositionCheck=this.positionCheck; //postavlja da li se radi storecheck da bi znao da li je sugestija nove pozicije  
+    dialogRef.componentInstance.isPositionCheck = this.positionCheck; //postavlja da li se radi storecheck da bi znao da li je sugestija nove pozicije  
     console.log(this.positionCheck)
     dialogRef.componentInstance.objectIdCompany = this.objectIdCompany;
     dialogRef.afterClosed()

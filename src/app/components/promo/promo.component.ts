@@ -148,8 +148,8 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, ropi?: number, promoSale?: number, expenses?: number, price?: number, resultSale?: number) {
-    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, ropi, promoSale, expenses, price, resultSale } });
+  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, ropi?: number, promoSale?: number, expenses?: number, price?: number, resultSale?: number, predefined?: boolean) {
+    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, ropi, promoSale, expenses, price, resultSale, predefined } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
@@ -182,6 +182,9 @@ export class PromoComponent implements OnInit {
     else if (this.type === 'ACTUAL') {
       this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate'];
     }
+    else if (this.type === 'PREDEFINED') {
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
+    }
   }
 
   dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
@@ -190,6 +193,13 @@ export class PromoComponent implements OnInit {
     this.selectedStartDate = date1.toDateString();
     this.selectedEndDate = date2.toDateString();
     this.getPromos(false);
+  }
+
+  setPredefined(promo: Promo, predefined: boolean) {
+    promo.predefined = predefined;
+    this.promoService.updatePromoResultSale(promo).subscribe(data => {
+      this.getPromos(false);
+    });
   }
 
 }
