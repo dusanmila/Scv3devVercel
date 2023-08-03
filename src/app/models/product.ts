@@ -2,8 +2,8 @@ export interface Product {
     productIdCompany: string;
     productName: string;
     price: number;
-    actionPrice: number;
-    manufacturer: string;
     weight: number;
+    gp2: number;
+    productCategoryName: string;
     totalCount: number;
 }

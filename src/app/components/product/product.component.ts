@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
   @Input() public isDashboard: boolean = false;
   @Output() public selectedProduct = new EventEmitter<string>();
 
-  displayedColumns = ['productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
+  displayedColumns = ['productName', 'weight', 'price', 'gp2', 'category'];
 
   constructor(private productService: ProductService,
     private dialog: MatDialog,
@@ -85,8 +85,8 @@ export class ProductComponent implements OnInit {
     this.loadData(true);
   }
 
-  openDialog(flag: number, productIdCompany?: string, productName?: string, price?: number, actionPrice?: number, manufacturer?: string, weight?: number) {
-    const dialogRef = this.dialog.open(ProductDialogComponent, { data: { productIdCompany, productName, price, actionPrice, manufacturer, weight } });
+  openDialog(flag: number, productIdCompany?: string, productName?: string, price?: number, weight?: number, gp2?: number, productCategoryName?: string) {
+    const dialogRef = this.dialog.open(ProductDialogComponent, { data: { productIdCompany, productName, price, weight, gp2, productCategoryName } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
