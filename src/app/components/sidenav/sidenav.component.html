@@ -13,69 +13,60 @@
     <mat-sidenav #sidenav class="sidenav" mode="side" [(opened)]="opened" [fixedInViewport]="false" [fixedTopGap]="0"
         [fixedBottomGap]="0">
         <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['dashboard']" (click)="updateTitle('Feedback statistics')">
-                <mat-icon class="nav-icon">dashboard</mat-icon>Feedback Statistics
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['position-dashboard']" (click)="updateTitle('Poisition statistics')">
-                <mat-icon class="nav-icon">dashboard</mat-icon>Position Statistics
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['return-dashboard']" (click)="updateTitle('Return statistics')">
-                <mat-icon class="nav-icon">dashboard</mat-icon>Return Statistics
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['promo-dashboard']" (click)="updateTitle('Promo statistics')">
-                <mat-icon class="nav-icon">dashboard</mat-icon>Promo Statistics
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['user']" (click)="updateTitle('Users')">
-                <mat-icon class="nav-icon">supervised_user_circle</mat-icon>Users
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['object']" (click)="updateTitle('Objects')">
-                <mat-icon class="nav-icon">store</mat-icon>Objects
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['retailer']" (click)="updateTitle('Retailers')">
-                <mat-icon class="nav-icon">vertical_split</mat-icon>Retailers
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['storeCheckReceiver']" (click)="updateTitle('Store check receivers')">
-                <mat-icon class="nav-icon">email</mat-icon>Store Check Receivers
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['promoEvaluator']" (click)="updateTitle('Promo evaluators')">
-                <mat-icon class="nav-icon">assignment_turned_in</mat-icon>Promo Evaluators
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['feedbackCategory']" (click)="updateTitle('Feedback categories')">
-                <mat-icon class="nav-icon">ballot</mat-icon>Feedback Categories
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['productCategory']" (click)="updateTitle('Product categories')">
-                <mat-icon class="nav-icon">fastfood</mat-icon>Product Categories
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['product']" (click)="updateTitle('Products')">
-                <mat-icon class="nav-icon">fastfood</mat-icon>Products
-            </a>
-        </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item class="nav-list-item" [routerLink]="['uploads']" (click)="updateTitle('Import / Export')">
-                <mat-icon class="nav-icon">cloud_upload</mat-icon>Import / Export
-            </a>
+            <button mat-button class="nav-button" (click)="toggleStoreMetrics()">
+                Store Metrics <mat-icon>expand_more</mat-icon>
+            </button>
+            <div *ngIf="showStoreMetrics">
+                <a mat-list-item class="nav-list-item" [routerLink]="['dashboard']" (click)="updateTitle('Feedback statistics')">
+                    <mat-icon class="nav-icon">dashboard</mat-icon>Feedback Statistics
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['position-dashboard']" (click)="updateTitle('Position statistics')">
+                    <mat-icon class="nav-icon">dashboard</mat-icon>Position Statistics
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['return-dashboard']" (click)="updateTitle('Return statistics')">
+                    <mat-icon class="nav-icon">dashboard</mat-icon>Return Statistics
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['storeCheckReceiver']" (click)="updateTitle('Store check receivers')">
+                    <mat-icon class="nav-icon">email</mat-icon>Store Check Receivers
+                </a>
+            </div>
+            <button mat-button class="nav-button" (click)="togglePromoManagement()">
+                Promo Management <mat-icon>expand_more</mat-icon>
+            </button>
+            <div *ngIf="showPromoManagement">
+                <a mat-list-item class="nav-list-item" [routerLink]="['promo-dashboard']" (click)="updateTitle('Promo statistics')">
+                    <mat-icon class="nav-icon">dashboard</mat-icon>Promo Statistics
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['promoEvaluator']" (click)="updateTitle('Promo evaluators')">
+                    <mat-icon class="nav-icon">assignment_turned_in</mat-icon>Promo Evaluators
+                </a>
+            </div>
+            <button mat-button class="nav-button" (click)="toggleData()">
+                Data <mat-icon>expand_more</mat-icon>
+            </button>
+            <div *ngIf="showData">
+                <a mat-list-item class="nav-list-item" [routerLink]="['user']" (click)="updateTitle('Users')">
+                    <mat-icon class="nav-icon">supervised_user_circle</mat-icon>Users
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['object']" (click)="updateTitle('Objects')">
+                    <mat-icon class="nav-icon">store</mat-icon>Objects
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['retailer']" (click)="updateTitle('Retailers')">
+                    <mat-icon class="nav-icon">vertical_split</mat-icon>Retailers
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['feedbackCategory']" (click)="updateTitle('Feedback categories')">
+                    <mat-icon class="nav-icon">ballot</mat-icon>Feedback Categories
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['productCategory']" (click)="updateTitle('Product categories')">
+                    <mat-icon class="nav-icon">fastfood</mat-icon>Product Categories
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['product']" (click)="updateTitle('Products')">
+                    <mat-icon class="nav-icon">fastfood</mat-icon>Products
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['uploads']" (click)="updateTitle('Import / Export')">
+                    <mat-icon class="nav-icon">cloud_upload</mat-icon>Import / Export
+                </a>
+            </div>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content class="sidenav-content">
