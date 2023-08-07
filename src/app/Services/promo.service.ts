@@ -87,13 +87,12 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getPromoCountAndRopiByProductCategoriesAndYears(startDate: Date, endDate: Date, retailerName: string, username: string, objectName: string, productCategoryName: string) {
+  getPromoCountAndRopiByProductCategoriesAndYears(startDate: Date, endDate: Date, retailerName: string, username: string, productCategoryName: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('startDate', startDate.toDateString());
     queryParams = queryParams.append('endDate', endDate.toDateString());
     queryParams = queryParams.append('retailerName', retailerName);
     queryParams = queryParams.append('username', username);
-    queryParams = queryParams.append('objectName', objectName);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
     let retval$ = new Subject<PromoStatisticsTableModel[]>();
     this.http.get<PromoStatisticsTableModel[]>(`${PROMO_URL}/promos/promoCountAndRopiByProductCategoriesAndYears`, { params: queryParams, headers: this.headers }).subscribe((result: PromoStatisticsTableModel[]) => {
@@ -102,30 +101,25 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getRopiByProductCategories(retailerName: string, username: string, objectName: string, productCategoryName: string, year: string, month: string) {
+  getPromoCountByProductCategories(retailerName: string, username: string, productCategoryName: string, startDate: Date, endDate: Date) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('retailerName', retailerName);
     queryParams = queryParams.append('username', username);
-    queryParams = queryParams.append('objectName', objectName);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
-    queryParams = queryParams.append('year', year);
-    queryParams = queryParams.append('month', month);
+    queryParams = queryParams.append('startDate', startDate.toDateString());
+    queryParams = queryParams.append('endDate', endDate.toDateString());
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByProductCategories`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/promoCountByProductCategories`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);
     });
     return retval$.asObservable();
   }
 
-  getPromoCountByPeriod(datePart: string, year: string, retailerName: string, username: string, objectName: string, productCategoryName: string, productName: string) {
+  getPromoCountByPeriod(retailerName: string, username: string, productCategoryName: string) {
     let queryParams = new HttpParams();
-    queryParams = queryParams.append('datePart', datePart);
-    queryParams = queryParams.append('year', year);
     queryParams = queryParams.append('retailerName', retailerName);
     queryParams = queryParams.append('username', username);
-    queryParams = queryParams.append('objectName', objectName);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
-    queryParams = queryParams.append('productName', productName);
     let retval$ = new Subject<StatisticsModel[]>();
     this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/promoCountByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);
@@ -133,15 +127,11 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getRopiByPeriod(datePart: string, year: string, retailerName: string, username: string, objectName: string, productCategoryName: string, productName: string) {
+  getRopiByPeriod(retailerName: string, username: string, productCategoryName: string) {
     let queryParams = new HttpParams();
-    queryParams = queryParams.append('datePart', datePart);
-    queryParams = queryParams.append('year', year);
     queryParams = queryParams.append('retailerName', retailerName);
     queryParams = queryParams.append('username', username);
-    queryParams = queryParams.append('objectName', objectName);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
-    queryParams = queryParams.append('productName', productName);
     let retval$ = new Subject<StatisticsModel[]>();
     this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/ropiByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);

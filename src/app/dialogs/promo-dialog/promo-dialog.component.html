@@ -157,6 +157,14 @@
             </mat-form-field>
         </div>
 
+        <div class="form" *ngIf="data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+            <mat-form-field appearance="fill">
+                <mat-label>ROPI Cash</mat-label>
+                <input type="number" matInput name="ropiCash" [required]="flag === 4" disabled
+                    [value]="data.ropiCash.toFixed(2)">
+            </mat-form-field>
+        </div>
+
         <div class="form checkbox" *ngIf="flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5">
             <mat-checkbox [(ngModel)]="data.predefined" name="predefined" color="primary"
                 [disabled]="flag===2 || flag=== 4 || flag===3|| flag===5">Predefined</mat-checkbox>

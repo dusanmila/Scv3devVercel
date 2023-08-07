@@ -31,25 +31,9 @@
                     <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer"
                         (click)="selectRetailer('')">{{
                         selectedRetailer }} <mat-icon>close</mat-icon></button>
-                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedObject"
-                        (click)="selectObject('')">{{
-                        selectedObject }} <mat-icon>close</mat-icon></button>
                     <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
                         (click)="selectProductCategory('')">{{
                         selectedProductCategory }} <mat-icon>close</mat-icon></button>
-                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedProduct"
-                        (click)="selectProduct('')">{{
-                        selectedProduct }} <mat-icon>close</mat-icon></button>
-                    <button mat-stroked-button class="filter-section-item"
-                        *ngIf="selectedYear && !selectedMonth && !selectedDay" (click)="setYear('')">{{
-                        selectedYear }} <mat-icon>close</mat-icon></button>
-                    <button mat-stroked-button class="filter-section-item"
-                        *ngIf="selectedMonth && selectedYear && !selectedDay" (click)="setMonth(''); setYear('');">
-                        {{selectedMonth}}-{{ selectedYear }} <mat-icon>close</mat-icon></button>
-                    <button mat-stroked-button class="filter-section-item"
-                        *ngIf="selectedDay && selectedMonth && selectedYear"
-                        (click)="setDay(''); setMonth(''); setYear('');">
-                        {{ selectedDay }}-{{selectedMonth}}-{{selectedYear}} <mat-icon>close</mat-icon></button>
                 </div>
 
                 <div class="table-section">
@@ -60,17 +44,8 @@
                         <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
                     </div>
                     <div class="table-section-item">
-                        <app-object [isDashboard]="true" (selectedObject)="selectObject($event)"></app-object>
-                    </div>
-                </div>
-                <div class="table-section">
-
-                    <div class="table-section-item">
                         <app-product-category [isDashboard]="true"
                             (selectedProductCategory)="selectProductCategory($event)"></app-product-category>
-                    </div>
-                    <div class="table-section-item">
-                        <app-product [isDashboard]="true" (selectedProduct)="selectProduct($event)"></app-product>
                     </div>
                 </div>
             </div>
@@ -96,13 +71,12 @@
                 </mat-form-field>
             </div>
             <div class="container">
-                <mat-table mat-table #table [dataSource]="promoAndRopiByProductCategoriesAndYears" matSort
-                    class="mat-cell">
-                    <ng-container matColumnDef="productCategoryName">
+                <mat-table mat-table #table [dataSource]="promoAndRopiByProductCategoriesAndYears" matSort>
+                    <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
-                            style="justify-content: left;">Product Category
+                            style="justify-content: left;">Name
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="Product cateogry">{{ row.productCategoryName
+                        <mat-cell class="mat-cell-left" *matCellDef="let row" data-label="Name">{{ row.name
                             }}</mat-cell>
                     </ng-container>
 
@@ -110,7 +84,23 @@
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
                             Last Year
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="Promo count last year">{{ row.promoCountLastYear
+                        <mat-cell *matCellDef="let row" data-label="Promo count last year">{{
+                            row.promoCountLastYear
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="promoCountThisYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
+                            This Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Promo count">{{ row.promoCountThisYear }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="promoCountDifference">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
+                            Difference
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Promo count difference">{{ row.promoCountDifference
                             }}</mat-cell>
                     </ng-container>
 
@@ -120,16 +110,25 @@
                         <mat-cell *matCellDef="let row" data-label="ROPI last year">{{ row.ropiLastYear }}%</mat-cell>
                     </ng-container>
 
-                    <ng-container matColumnDef="promoCount">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
-                        </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="Promo count">{{ row.promoCount }}</mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="ropi">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI
+                    <ng-container matColumnDef="ropiThisYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI This Year
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="ROPI">{{ row.ropi }}%</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiDifference">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Difference
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI difference">{{ row.ropiDifference
+                            }}%</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiCashDifference">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash
+                            Difference
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI cash difference">{{ row.ropiCashDifference
+                            }}</mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -144,87 +143,74 @@
             </div>
         </mat-card-content>
     </mat-card>
+</div>
 
-
-
-    <div class="centered div-container">
-        <div class="div-element-first">
-            <mat-form-field appearance="fill">
-                <mat-label>Year</mat-label>
-                <mat-select (selectionChange)="setYear($event.value)" [value]="selectedYear">
-                    <mat-option *ngFor="let year of years" [value]="year">
-                        {{year}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <div class="div-element">
-            <mat-form-field appearance="fill">
-                <mat-label>Month</mat-label>
-                <mat-select (selectionChange)="setMonth($event.value)" [disabled]="!selectedYear"
-                    [value]="selectedMonth">
-                    <mat-option *ngFor="let month of months" [value]="month">
-                        {{month}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-        <!-- <div class="div-element">
-            <mat-form-field appearance="fill">
-                <mat-label>Day</mat-label>
-                <mat-select (selectionChange)="setDay($event.value)" [disabled]="!selectedMonth" [value]="selectedDay">
-                    <mat-option *ngFor="let day of days2" [value]="day">
-                        {{day}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div> -->
-    </div>
-
+<div class="two-charts">
     <mat-card class="card chart-card">
         <mat-card-header>
-            <mat-card-title>ROPI by Product Categories</mat-card-title>
-            <mat-card-subtitle *ngIf="!ropiByProductCategories || ropiByProductCategories.length === 0">No data for
+            <mat-card-title>Promo Count by Product Categories Last Year</mat-card-title>
+            <mat-card-subtitle
+                *ngIf="!promoCountByProductCategoriesLastYear || promoCountByProductCategoriesLastYear.length === 0">No
+                data
+                for
                 selected
                 criteria</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="card-content">
-            <ngx-charts-pie-chart *ngIf="ropiByProductCategories && ropiByProductCategories.length > 0" [view]="view"
-                [results]="ropiByProductCategories" [gradient]="gradient" [scheme]="colorScheme" [legend]="showLegend"
-                [labels]="showLabels" [doughnut]="isDoughnut" [labels]="true" [labelFormatting]="labelFormat"
-                [maxLabelLength]="20" [tooltipText]="tooltipText">
+            <ngx-charts-pie-chart
+                *ngIf="promoCountByProductCategoriesLastYear && promoCountByProductCategoriesLastYear.length > 0"
+                [view]="pieView" [results]="promoCountByProductCategoriesLastYear" [gradient]="gradient"
+                [scheme]="colorScheme" [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut"
+                [labels]="true" [labelFormatting]="labelFormat" [maxLabelLength]="20" [tooltipText]="tooltipText">
             </ngx-charts-pie-chart>
         </mat-card-content>
     </mat-card>
 
     <mat-card class="card chart-card">
         <mat-card-header>
-            <mat-card-title>Promo Count by Period</mat-card-title>
-            <mat-card-subtitle *ngIf="!promoCountByPeriod || promoCountByPeriod.length === 0">No data for selected
-                criteria</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class=" card-content">
-            <ngx-charts-bar-vertical *ngIf="promoCountByPeriod && promoCountByPeriod.length > 0" [view]="view"
-                [results]="promoCountByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
-                [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
-            </ngx-charts-bar-vertical>
-        </mat-card-content>
-    </mat-card>
-
-    <mat-card class="card chart-card">
-        <mat-card-header>
-            <mat-card-title>ROPI by Period</mat-card-title>
-            <mat-card-subtitle *ngIf="!ropiByPeriod || ropiByPeriod.length === 0">No data for selected
+            <mat-card-title>Promo Count by Product Categories This Year</mat-card-title>
+            <mat-card-subtitle *ngIf="!promoCountByProductCategories || promoCountByProductCategories.length === 0">No
+                data
+                for
+                selected
                 criteria</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="card-content">
-            <ngx-charts-bar-vertical *ngIf="ropiByPeriod && ropiByPeriod.length > 0" [view]="view"
-                [results]="ropiByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
-                [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="'ROPI'" [yAxisLabel]="yAxisLabel">
-            </ngx-charts-bar-vertical>
+            <ngx-charts-pie-chart *ngIf="promoCountByProductCategories && promoCountByProductCategories.length > 0"
+                [view]="pieView" [results]="promoCountByProductCategories" [gradient]="gradient" [scheme]="colorScheme"
+                [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut" [labels]="true"
+                [labelFormatting]="labelFormat" [maxLabelLength]="20" [tooltipText]="tooltipText">
+            </ngx-charts-pie-chart>
         </mat-card-content>
     </mat-card>
+</div>
+
+<mat-card class="card chart-card">
+    <mat-card-header>
+        <mat-card-title>Promo Count by Period</mat-card-title>
+        <mat-card-subtitle *ngIf="!promoCountByPeriod || promoCountByPeriod.length === 0">No data for selected
+            criteria</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class=" card-content">
+        <ngx-charts-bar-vertical *ngIf="promoCountByPeriod && promoCountByPeriod.length > 0" [view]="view"
+            [results]="promoCountByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="card chart-card">
+    <mat-card-header>
+        <mat-card-title>ROPI by Period</mat-card-title>
+        <mat-card-subtitle *ngIf="!ropiByPeriod || ropiByPeriod.length === 0">No data for selected
+            criteria</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+        <ngx-charts-bar-vertical *ngIf="ropiByPeriod && ropiByPeriod.length > 0" [view]="view" [results]="ropiByPeriod"
+            [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis" [yAxis]="showYAxis"
+            [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="'ROPI'" [yAxisLabel]="yAxisLabel">
+        </ngx-charts-bar-vertical>
+    </mat-card-content>
+</mat-card>

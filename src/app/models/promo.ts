@@ -15,10 +15,8 @@ export interface Promo {
     price: number;
     resultSale: number;
     ropi: number;
+    ropiCash: number;
     retailerName: string;
-    objectIdCompany: string;
-    objectName: string;
-    objectIdRetail: string;
     predefined: boolean;
     totalCount: number;
 }
