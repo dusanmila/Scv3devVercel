@@ -21,6 +21,18 @@
     right: 0;
 }
 
+.nav-button {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 5px ;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.nav-button:hover {
+    background-color: #56baed;
+}
 .sidenav {
     width: 250px;
     max-width: 100%;
