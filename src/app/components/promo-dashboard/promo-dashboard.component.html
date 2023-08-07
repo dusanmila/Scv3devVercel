@@ -187,6 +187,22 @@
 
 <mat-card class="card chart-card">
     <mat-card-header>
+        <mat-card-title>ROPI Cash by ProductCategories</mat-card-title>
+        <mat-card-subtitle *ngIf="!ropiCashByProductCategories || ropiCashByProductCategories.length === 0">No data for
+            selected
+            criteria</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class=" card-content">
+        <ngx-charts-bar-vertical-2d *ngIf="ropiCashByProductCategories && ropiCashByProductCategories.length > 0"
+            [view]="view" [scheme]="colorScheme" [results]="ropiCashByProductCategories" [gradient]="gradient"
+            [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showYAxisLabel]="showYAxisLabel"
+            [showXAxisLabel]="showXAxisLabel" [xAxisLabel]="'Product Category'" [yAxisLabel]="'ROPI Cash'">
+        </ngx-charts-bar-vertical-2d>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="card chart-card">
+    <mat-card-header>
         <mat-card-title>Promo Count by Period</mat-card-title>
         <mat-card-subtitle *ngIf="!promoCountByPeriod || promoCountByPeriod.length === 0">No data for selected
             criteria</mat-card-subtitle>
@@ -202,15 +218,15 @@
 
 <mat-card class="card chart-card">
     <mat-card-header>
-        <mat-card-title>ROPI by Period</mat-card-title>
-        <mat-card-subtitle *ngIf="!ropiByPeriod || ropiByPeriod.length === 0">No data for selected
+        <mat-card-title>ROPI Cash by Period</mat-card-title>
+        <mat-card-subtitle *ngIf="!ropiCashByPeriod || ropiCashByPeriod.length === 0">No data for selected
             criteria</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="card-content">
-        <ngx-charts-bar-vertical *ngIf="ropiByPeriod && ropiByPeriod.length > 0" [view]="view" [results]="ropiByPeriod"
-            [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis" [yAxis]="showYAxis"
-            [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
-            [xAxisLabel]="'ROPI'" [yAxisLabel]="yAxisLabel">
+        <ngx-charts-bar-vertical *ngIf="ropiCashByPeriod && ropiCashByPeriod.length > 0" [view]="view"
+            [results]="ropiCashByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
+            [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="'ROPI'">
         </ngx-charts-bar-vertical>
     </mat-card-content>
 </mat-card>
