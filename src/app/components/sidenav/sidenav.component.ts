@@ -12,6 +12,10 @@ export class SidenavComponent implements OnInit {
 
   opened: boolean = true;
   title: string = 'Dashboard';
+  showStoreMetrics: boolean = false;
+  showPromoManagement: boolean = false;
+  showData: boolean = false;
+
 
   constructor(public dialog: MatDialog, public router: Router,) { }
 
@@ -19,7 +23,17 @@ export class SidenavComponent implements OnInit {
   
   }
 
- 
+  toggleStoreMetrics() {
+    this.showStoreMetrics = !this.showStoreMetrics;
+}
+
+togglePromoManagement() {
+    this.showPromoManagement = !this.showPromoManagement;
+}
+
+toggleData() {
+    this.showData = !this.showData;
+}
 
   updateTitle(newTitle: string) {
     this.title = newTitle;
