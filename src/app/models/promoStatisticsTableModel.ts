@@ -1,7 +1,12 @@
 export interface PromoStatisticsTableModel {
-    productCategoryName: string;
+    name: string;
     promoCountLastYear: number;
     ropiLastYear: number;
-    promoCount: number;
-    ropi: number;
+    ropiCashLastYear: number;
+    promoCountThisYear: number;
+    ropiThisYear: number;
+    ropiCashThisYear;
+    promoCountDifference: number;
+    ropiDifference: number;
+    ropiCashDifference: number;
 }
