@@ -111,6 +111,9 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   ropiCashByProductCategories: GroupedBarChartDataModel[] = [];
+  yAxisTickFormattingCash = function (value: number) {
+    return (value / 1000000).toFixed(2);
+  }
 
   promoCountByPeriod: StatisticsModel[] = [];
   ropiCashByPeriod: StatisticsModel[] = [];
@@ -124,13 +127,14 @@ export class PromoDashboardComponent implements OnInit {
   xAxisLabel = 'Period';
   showYAxisLabel = true;
   yAxisLabel = 'Promo count';
+  yAxisTickFormattingCount = function (value) {
+    return value;
+  }
 
   promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
   displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'promoCountDifference', 'ropiLastYear', 'ropiThisYear', 'ropiDifference', 'ropiCashDifference'];
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
-
-  panelOpenState = false;
 
   bestEstimators: StatisticsModel[] = [];
   cardColor: string = '#0081af';
@@ -219,7 +223,7 @@ export class PromoDashboardComponent implements OnInit {
     const endDateLastYear = new Date(this.selectedEndDate);
     endDateLastYear.setFullYear(this.selectedEndDate.getFullYear() - 1);
     this.promoService.getPromoCountByProductCategories(this.selectedRetailer, this.selectedUser, startDateLastYear, endDateLastYear).subscribe(data => {
-      this.promoCountByProductCategories = data;
+      this.promoCountByProductCategoriesLastYear = data;
     });
   }
 

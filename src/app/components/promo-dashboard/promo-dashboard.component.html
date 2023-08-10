@@ -1,6 +1,6 @@
 <div class="dashboard" *ngIf="flag === 1">
 
-    <mat-card class="card" [ngClass]="panelOpenState ? 'mb' : ''">
+    <mat-card class="card">
         <mat-card-header>
             <mat-card-title>Best estimator</mat-card-title>
         </mat-card-header>
@@ -12,47 +12,30 @@
         </mat-card-content>
     </mat-card>
 
-    <mat-accordion>
-        <mat-expansion-panel class="expansion-panel mt" (opened)="panelOpenState = true"
-            (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Filters
-                </mat-panel-title>
-                <mat-panel-description *ngIf="panelOpenState === false">
-                    Show filters
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="expansion-table-body">
-                <div class="filter-section">
-                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser"
-                        (click)="selectUser('')">{{
-                        selectedUser }} <mat-icon>close</mat-icon></button>
-                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer"
-                        (click)="selectRetailer('')">{{
-                        selectedRetailer }} <mat-icon>close</mat-icon></button>
-                    <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
-                        (click)="selectProductCategory('')">{{
-                        selectedProductCategory }} <mat-icon>close</mat-icon></button>
-                </div>
+    <div class="filter-section">
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
+            selectedUser }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
+            selectedRetailer }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
+            (click)="selectProductCategory('')">{{
+            selectedProductCategory }} <mat-icon>close</mat-icon></button>
 
-                <div class="table-section">
-                    <div class="table-section-item">
-                        <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
-                    </div>
-                    <div class="table-section-item">
-                        <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
-                    </div>
-                    <div class="table-section-item">
-                        <app-product-category [isDashboard]="true"
-                            (selectedProductCategory)="selectProductCategory($event)"></app-product-category>
-                    </div>
-                </div>
+        <div class="table-section">
+            <div class="table-section-item">
+                <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
             </div>
-        </mat-expansion-panel>
-    </mat-accordion>
+            <div class="table-section-item">
+                <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+            </div>
+            <div class="table-section-item">
+                <app-product-category [isDashboard]="true"
+                    (selectedProductCategory)="selectProductCategory($event)"></app-product-category>
+            </div>
+        </div>
+    </div>
 
-    <mat-card class="card chart-card" [ngClass]="panelOpenState ? 'mt' : ''">
+    <mat-card class="card chart-card">
         <mat-card-header>
             <mat-card-title>Comparison of data with the last year</mat-card-title>
         </mat-card-header>
@@ -196,7 +179,8 @@
         <ngx-charts-bar-vertical-2d *ngIf="ropiCashByProductCategories && ropiCashByProductCategories.length > 0"
             [view]="view" [scheme]="colorScheme" [results]="ropiCashByProductCategories" [gradient]="gradient"
             [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend" [showYAxisLabel]="showYAxisLabel"
-            [showXAxisLabel]="showXAxisLabel" [xAxisLabel]="'Product Category'" [yAxisLabel]="'ROPI Cash'">
+            [showXAxisLabel]="showXAxisLabel" [xAxisLabel]="'Product Category'" [yAxisLabel]="'ROPI Cash'"
+            [yAxisTickFormatting]="yAxisTickFormattingCash">
         </ngx-charts-bar-vertical-2d>
     </mat-card-content>
 </mat-card>
@@ -211,7 +195,8 @@
         <ngx-charts-bar-vertical *ngIf="promoCountByPeriod && promoCountByPeriod.length > 0" [view]="view"
             [results]="promoCountByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
             [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+            [yAxisTickFormatting]="yAxisTickFormattingCount">
         </ngx-charts-bar-vertical>
     </mat-card-content>
 </mat-card>
@@ -226,7 +211,8 @@
         <ngx-charts-bar-vertical *ngIf="ropiCashByPeriod && ropiCashByPeriod.length > 0" [view]="view"
             [results]="ropiCashByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
             [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="'ROPI'">
+            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="'ROPI'"
+            [yAxisTickFormatting]="yAxisTickFormattingCash">
         </ngx-charts-bar-vertical>
     </mat-card-content>
 </mat-card>
