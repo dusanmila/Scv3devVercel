@@ -76,6 +76,20 @@
                 <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="estimatePromoSale">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate promo sale 
+                    </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.estimatePromoSale
+                    }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="estimatePromoSaleCash">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate promo sale 
+                    cash</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.estimatePromoSaleCash
+                    }}</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="resultSalePercent">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Result Sale
                     %</mat-header-cell>
@@ -86,6 +100,21 @@
             <ng-container matColumnDef="ropi">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI</mat-header-cell>
                 <mat-cell *matCellDef="let row">{{ (row.ropi * 100 - 100).toFixed(2)}}.%</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="estimateRopi">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate ROPI</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ (row.estimateRopi * 100 - 100).toFixed(2)}}.%</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ropiCash">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI cash</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.ropiCash}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="estimateRopiCash">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate ROPI cash</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.estimateRopiCash}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="actions">

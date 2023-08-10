@@ -177,7 +177,7 @@ export class PromoComponent implements OnInit {
       this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
     }
     else if (this.type === 'FINISHED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'ropi', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'estimatePromoSale','estimatePromoSaleCash', 'ropi','estimateRopi','ropiCash','estimateRopiCash', 'actions'];
     }
     else if (this.type === 'ACTUAL') {
       this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate'];

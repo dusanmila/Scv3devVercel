@@ -10,11 +10,15 @@ export interface Promo {
     rebate: number;
     regularSale: number;
     type: string;
-    promoSale: number;
+    estimatePromoSale: number;
+    estimatePromoSaleCash: number;
     expenses: number;
     price: number;
     resultSale: number;
     ropi: number;
+    estimateRopi:number,
+    ropiCash:number,
+    estimateRopiCash:number,
     retailerName: string;
     predefined: boolean;
     totalCount: number;
