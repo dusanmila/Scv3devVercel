@@ -111,8 +111,16 @@
 
         <div class="form">
             <mat-form-field appearance="fill">
-                <mat-label>Promo sale</mat-label>
-                <input type="number" matInput [(ngModel)]="data.promoSale" required name="promoSale"
+                <mat-label>Estimate promo sale</mat-label>
+                <input type="number" matInput [(ngModel)]="data.estimatePromoSale" required name="estimatePromoSale"
+                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field appearance="fill">
+                <mat-label>Estimate promo sale cash</mat-label>
+                <input type="number" matInput [(ngModel)]="data.estimatePromoSaleCash" required name="estimatePromoSaleCash"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
             </mat-form-field>
         </div>
@@ -157,11 +165,29 @@
             </mat-form-field>
         </div>
 
+
+        
+        <div class="form" *ngIf="data.estimateRopi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+            <mat-form-field appearance="fill">
+                <mat-label>Estimate ROPI %</mat-label>
+                <input type="number" matInput name="result" [required]="flag === 4" disabled
+                    [value]="(data.estimateRopi * 100 - 100).toFixed(2)">
+            </mat-form-field>
+        </div>
+
         <div class="form" *ngIf="data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
             <mat-form-field appearance="fill">
                 <mat-label>ROPI Cash</mat-label>
                 <input type="number" matInput name="ropiCash" [required]="flag === 4" disabled
                     [value]="data.ropiCash.toFixed(2)">
+            </mat-form-field>
+        </div>
+
+        <div class="form" *ngIf="data.estimateRopiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+            <mat-form-field appearance="fill">
+                <mat-label>Estimate ROPI Cash</mat-label>
+                <input type="number" matInput name="result" [required]="flag === 4" disabled
+                    [value]="data.estimateRopiCash">
             </mat-form-field>
         </div>
 

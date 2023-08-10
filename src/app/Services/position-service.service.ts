@@ -168,8 +168,8 @@ export class PositionService {
     });
   }
 
-  public export(withImages:boolean,retailer:string,object:string,type:string,format:string) {
-    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel/`+withImages+'/'+retailer+'/'+object+'/'+type+'/'+format, { headers: this.headers, responseType: 'blob' });
+  public export(withImages:boolean,retailer:string,object:string,type:string,format:string,positionsOrSuggestions:string) {
+    return this.http.get(`${POSITION_URL}/secondaryPositionExcels/exportExcel/`+withImages+'/'+retailer+'/'+object+'/'+type+'/'+format + '/' + positionsOrSuggestions, { headers: this.headers, responseType: 'blob' });
 
   }
 

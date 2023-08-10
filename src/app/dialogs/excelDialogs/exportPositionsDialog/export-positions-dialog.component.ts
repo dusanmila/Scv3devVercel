@@ -32,6 +32,8 @@ export class ExportPositionsDialogComponent implements OnInit {
   submitClicked: boolean = false;
   isLoading = false;
 
+  positionsOrSuggestions = 'positions';
+
   withImages: boolean = false;
 
   public retailers: Retailer[]=[];
@@ -106,13 +108,13 @@ public loadObjects(){
     this.isLoading = true;
      
    
-  /*  this.positionService.export(this.withImages,this.retailer,this.selectedObject,this.selectedType,this.selectedFormat).subscribe((excel) => {
+    this.positionService.export(this.withImages,this.retailer,this.selectedObject,this.selectedType,this.selectedFormat,this.positionsOrSuggestions).subscribe((excel) => {
       
       const fileName = 'Positions.xlsx';
       saveAs(excel, fileName);
-    });*/
+    });
     
-console.log(this.withImages+ ',retailer: ' +this.retailer + ' obj:' + this.selectedObject,this.selectedType,this.selectedFormat)
+    
   }
 
   private _filter(value: string): Obj[] {

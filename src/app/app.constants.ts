@@ -1,5 +1,5 @@
 
-
+/*
 export const STORE_CHECK_URL = 'https://storecheckbeta.azurewebsites.net/api';
 export const USER_URL = 'https://storecheckbeta.azurewebsites.net/api';
 export const POSITION_URL = 'https://storecheckbeta.azurewebsites.net/api';
@@ -12,8 +12,8 @@ export const RETURN_URL = 'https://storecheckbeta.azurewebsites.net/api';
 export const PROMO_URL ='https://storecheckbeta.azurewebsites.net/api';
 export const CONDITIONS_URL = 'https://storecheckbeta.azurewebsites.net/api';
 export const POSITION_PRODUCT_CATEGORY_URL ='https://storecheckbeta.azurewebsites.net/api';
+*/
 
-/*
 
 export const STORE_CHECK_URL = 'http://localhost:8081/api';
 export const USER_URL = 'http://localhost:8081/api';
@@ -29,4 +29,3 @@ export const CONDITIONS_URL = 'http://localhost:8081/api';
 export const POSITION_PRODUCT_CATEGORY_URL = 'http://localhost:8081/api';
 
 
-*/
