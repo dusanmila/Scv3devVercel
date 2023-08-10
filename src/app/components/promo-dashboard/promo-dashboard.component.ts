@@ -91,7 +91,7 @@ export class PromoDashboardComponent implements OnInit {
     name: 'myScheme',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#0081af', '#00abe7', '#ead2ac', '#eaba6b']
+    domain: ['#00abe7', '#2dc7ff', '#ead2ac', '#eaba6b']
   };
 
   labelFormat(label) {
@@ -136,7 +136,7 @@ export class PromoDashboardComponent implements OnInit {
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
 
-  bestEstimators: StatisticsModel[] = [];
+  numericData: StatisticsModel[] = [];
   cardColor: string = '#0081af';
   textColor: string = '#fff';
 
@@ -152,7 +152,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getRopiCashByProductCategories();
     this.getPromoCountByPeriod();
     this.getRopiCashByPeriod();
-    this.getBestEstimators();
+    this.getNumericData();
   }
 
   changePage(flag: number, title: string) {
@@ -245,9 +245,9 @@ export class PromoDashboardComponent implements OnInit {
     });
   }
 
-  getBestEstimators() {
-    this.promoService.getBestEstimators().subscribe(data => {
-      this.bestEstimators = data;
+  getNumericData() {
+    this.promoService.getNumericData().subscribe(data => {
+      this.numericData = data;
     });
   }
 

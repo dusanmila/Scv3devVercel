@@ -1,13 +1,10 @@
 <div class="dashboard" *ngIf="flag === 1">
 
     <mat-card class="card">
-        <mat-card-header>
-            <mat-card-title>Best estimator</mat-card-title>
-        </mat-card-header>
         <mat-card-content class="card-content" #containerRef>
             <ngx-charts-number-card [view]="[containerRef.offsetWidth, containerRef.offsetHeight]"
-                [scheme]="colorScheme" [results]="bestEstimators" [cardColor]="cardColor" [textColor]="textColor"
-                *ngIf="bestEstimators && bestEstimators.length > 0">
+                [scheme]="colorScheme" [results]="numericData" [cardColor]="cardColor" [textColor]="textColor"
+                *ngIf="numericData && numericData.length > 0">
             </ngx-charts-number-card>
         </mat-card-content>
     </mat-card>
