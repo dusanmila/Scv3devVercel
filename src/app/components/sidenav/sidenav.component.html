@@ -17,16 +17,20 @@
                 Store Metrics <mat-icon>expand_more</mat-icon>
             </button>
             <div *ngIf="showStoreMetrics">
-                <a mat-list-item class="nav-list-item" [routerLink]="['dashboard']" (click)="updateTitle('Feedback statistics')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['dashboard']"
+                    (click)="updateTitle('Feedback statistics')">
                     <mat-icon class="nav-icon">dashboard</mat-icon>Feedback Statistics
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['position-dashboard']" (click)="updateTitle('Position statistics')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['position-dashboard']"
+                    (click)="updateTitle('Position statistics')">
                     <mat-icon class="nav-icon">dashboard</mat-icon>Position Statistics
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['return-dashboard']" (click)="updateTitle('Return statistics')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['return-dashboard']"
+                    (click)="updateTitle('Return statistics')">
                     <mat-icon class="nav-icon">dashboard</mat-icon>Return Statistics
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['storeCheckReceiver']" (click)="updateTitle('Store check receivers')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['storeCheckReceiver']"
+                    (click)="updateTitle('Store check receivers')">
                     <mat-icon class="nav-icon">email</mat-icon>Store Check Receivers
                 </a>
             </div>
@@ -34,10 +38,16 @@
                 Promo Management <mat-icon>expand_more</mat-icon>
             </button>
             <div *ngIf="showPromoManagement">
-                <a mat-list-item class="nav-list-item" [routerLink]="['promo-dashboard']" (click)="updateTitle('Promo statistics')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['promo-dashboard']"
+                    (click)="updateTitle('Promo statistics')">
                     <mat-icon class="nav-icon">dashboard</mat-icon>Promo Statistics
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['promoEvaluator']" (click)="updateTitle('Promo evaluators')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['userPerformance']"
+                    (click)="updateTitle('User performance')">
+                    <mat-icon class="nav-icon">verified_user</mat-icon>User performance
+                </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['promoEvaluator']"
+                    (click)="updateTitle('Promo evaluators')">
                     <mat-icon class="nav-icon">assignment_turned_in</mat-icon>Promo Evaluators
                 </a>
             </div>
@@ -54,16 +64,19 @@
                 <a mat-list-item class="nav-list-item" [routerLink]="['retailer']" (click)="updateTitle('Retailers')">
                     <mat-icon class="nav-icon">vertical_split</mat-icon>Retailers
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['feedbackCategory']" (click)="updateTitle('Feedback categories')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['feedbackCategory']"
+                    (click)="updateTitle('Feedback categories')">
                     <mat-icon class="nav-icon">ballot</mat-icon>Feedback Categories
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['productCategory']" (click)="updateTitle('Product categories')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['productCategory']"
+                    (click)="updateTitle('Product categories')">
                     <mat-icon class="nav-icon">fastfood</mat-icon>Product Categories
                 </a>
                 <a mat-list-item class="nav-list-item" [routerLink]="['product']" (click)="updateTitle('Products')">
                     <mat-icon class="nav-icon">fastfood</mat-icon>Products
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['uploads']" (click)="updateTitle('Import / Export')">
+                <a mat-list-item class="nav-list-item" [routerLink]="['uploads']"
+                    (click)="updateTitle('Import / Export')">
                     <mat-icon class="nav-icon">cloud_upload</mat-icon>Import / Export
                 </a>
             </div>
