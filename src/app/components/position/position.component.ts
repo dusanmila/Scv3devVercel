@@ -33,6 +33,8 @@ export class PositionComponent implements OnInit {
   isLoading = true;
   noData = false;
 
+  isSuggestions: boolean = false;
+
   @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
   @Input() public isAdmin: boolean = false;
@@ -52,7 +54,7 @@ export class PositionComponent implements OnInit {
   public loadData() {
     this.noData = false;
     if (this.objectIdCompany != null) {
-      this.positionService.getPositionsByObjectIdCompanyAndIsSuggestion(this.objectIdCompany, this.positionCheck).subscribe(data => {
+      this.positionService.getPositionsByObjectIdCompanyAndIsSuggestion(this.objectIdCompany, this.positionCheck == null ? this.positionCheck : this.isSuggestions).subscribe(data => {
         if (data) {
           this.positions = data;
           this.dataSource = new MatTableDataSource(this.positions);
@@ -91,6 +93,19 @@ export class PositionComponent implements OnInit {
     }
 
   }
+
+  toggleIsSuggestions(value:string) {
+    if(value=='pos'){
+      this.isSuggestions=false;
+    }else{
+      this.isSuggestions=true;
+    }
+
+    this.loadData();
+
+
+  }
+
   /*
     public exportPositions() {
       this.isExporting=true;
