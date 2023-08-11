@@ -91,7 +91,7 @@ export class PromoDashboardComponent implements OnInit {
     name: 'myScheme',
     selectable: true,
     group: ScaleType.Ordinal,
-    domain: ['#0081af', '#00abe7', '#ead2ac', '#eaba6b']
+    domain: ['#00abe7', '#2dc7ff', '#ead2ac', '#eaba6b']
   };
 
   labelFormat(label) {
@@ -111,6 +111,9 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   ropiCashByProductCategories: GroupedBarChartDataModel[] = [];
+  yAxisTickFormattingCash = function (value: number) {
+    return (value / 1000000).toFixed(2);
+  }
 
   promoCountByPeriod: StatisticsModel[] = [];
   ropiCashByPeriod: StatisticsModel[] = [];
@@ -124,15 +127,16 @@ export class PromoDashboardComponent implements OnInit {
   xAxisLabel = 'Period';
   showYAxisLabel = true;
   yAxisLabel = 'Promo count';
+  yAxisTickFormattingCount = function (value) {
+    return value;
+  }
 
   promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
   displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'promoCountDifference', 'ropiLastYear', 'ropiThisYear', 'ropiDifference', 'ropiCashDifference'];
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
 
-  panelOpenState = false;
-
-  bestEstimators: StatisticsModel[] = [];
+  numericData: StatisticsModel[] = [];
   cardColor: string = '#0081af';
   textColor: string = '#fff';
 
@@ -148,7 +152,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getRopiCashByProductCategories();
     this.getPromoCountByPeriod();
     this.getRopiCashByPeriod();
-    this.getBestEstimators();
+    this.getNumericData();
   }
 
   changePage(flag: number, title: string) {
@@ -219,7 +223,7 @@ export class PromoDashboardComponent implements OnInit {
     const endDateLastYear = new Date(this.selectedEndDate);
     endDateLastYear.setFullYear(this.selectedEndDate.getFullYear() - 1);
     this.promoService.getPromoCountByProductCategories(this.selectedRetailer, this.selectedUser, startDateLastYear, endDateLastYear).subscribe(data => {
-      this.promoCountByProductCategories = data;
+      this.promoCountByProductCategoriesLastYear = data;
     });
   }
 
@@ -241,9 +245,9 @@ export class PromoDashboardComponent implements OnInit {
     });
   }
 
-  getBestEstimators() {
-    this.promoService.getBestEstimators().subscribe(data => {
-      this.bestEstimators = data;
+  getNumericData() {
+    this.promoService.getNumericData().subscribe(data => {
+      this.numericData = data;
     });
   }
 

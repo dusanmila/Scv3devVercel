@@ -1,0 +1,43 @@
+<div class="centered font">
+    <mat-form-field>
+        <input type="text" matInput placeholder="Search User" [(ngModel)]="search">
+        <button class="search" matSuffix mat-button (click)="loadData(false)">
+            <mat-icon class="search">search</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div class="container mat-elevation-z8">
+    <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
+                style="justify-content: left;">Username
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Username">{{ row.username }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="user">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">User
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="User">{{ row.firstName }} {{ row.lastName }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="avgEstimationSuccess">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Average estimation success
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Average estimation success">{{
+                row.avgEstimationSuccess | number : '1.2-2'
+                }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+        <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+        </mat-progress-spinner>
+    </div>
+    <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No data</mat-toolbar>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
+</div>

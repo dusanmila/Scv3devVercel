@@ -8,6 +8,7 @@ import * as saveAs from 'file-saver';
 import { StatisticsModel } from '../models/statisticsModel';
 import { PromoStatisticsTableModel } from '../models/promoStatisticsTableModel';
 import { GroupedBarChartDataModel } from '../models/groupedBarChartDataModel';
+import { UserPerformance } from '../models/userPerformance';
 
 @Injectable({
   providedIn: 'root'
@@ -156,9 +157,21 @@ export class PromoService {
     return retval$.asObservable();
   }
 
-  getBestEstimators() {
+  getNumericData() {
     let retval$ = new Subject<StatisticsModel[]>();
-    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/bestEstimators`, { headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/numericData`, { headers: this.headers }).subscribe((result: StatisticsModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getUserPerformance(search: string, page: number, count: number) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('search', search);
+    queryParams = queryParams.append('count', count);
+    queryParams = queryParams.append('page', page);
+    let retval$ = new Subject<UserPerformance[]>();
+    this.http.get<UserPerformance[]>(`${PROMO_URL}/promos/userPerformance`, { params: queryParams, headers: this.headers }).subscribe((result: UserPerformance[]) => {
       retval$.next(result);
     });
     return retval$.asObservable();
