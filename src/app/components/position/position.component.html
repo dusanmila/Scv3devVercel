@@ -1,4 +1,15 @@
+<div style="margin:50px" *ngIf="positionCheck">
+  <label>
+    <input type="radio" name="option" value="positions" (click)="toggleIsSuggestions('pos')"> Positions
+  </label>
+  <label>
+    <input type="radio" name="option" value="suggestions" (click)="toggleIsSuggestions('sug')"> Suggestions
+  </label>
+</div>
+
 <div class="container mat-elevation-z8 font">
+
+
 
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 

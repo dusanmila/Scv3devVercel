@@ -72,6 +72,11 @@ export class ChooseObjectComponent implements OnInit {
     if (this.workModel === 'addStoreCheck') {
       this.loadStoreCheck();
     }
+
+    if (this.workModel === 'positions') {
+      
+    }
+
     this.objectService.getObjectsNoPagination().subscribe((data)=>this.objects=data);
     this.productService.getProductsNoPagination().subscribe((data)=>this.products=data);
     this.objectService.getObjectsNoPagination().subscribe((data)=>{
