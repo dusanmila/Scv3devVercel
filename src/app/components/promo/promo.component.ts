@@ -92,6 +92,7 @@ export class PromoComponent implements OnInit {
     this.selectedProductCategoryName = this.productCategoryFormControl.value;
     this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
       this.promos = data;
+      console.log(data);
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
         this.noData = true;
@@ -171,19 +172,19 @@ export class PromoComponent implements OnInit {
 
   editDisplayedColumns() {
     if (this.type === 'MY_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash', 'actions'];
     }
     else if (this.type === 'FOR_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash', 'actions'];
     }
     else if (this.type === 'FINISHED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'estimatePromoSale','estimatePromoSaleCash', 'ropi','estimateRopi','ropiCash','estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'estimatePromoSale', 'estimatePromoSaleCash', 'ropi', 'estimateRopi', 'ropiCash', 'estimateRopiCash', 'actions'];
     }
     else if (this.type === 'ACTUAL') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash'];
     }
     else if (this.type === 'PREDEFINED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash', 'actions'];
     }
   }
 
