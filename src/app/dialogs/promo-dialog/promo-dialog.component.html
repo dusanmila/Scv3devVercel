@@ -120,8 +120,17 @@
         <div class="form">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate promo sale cash</mat-label>
-                <input type="number" matInput [(ngModel)]="data.estimatePromoSaleCash" required name="estimatePromoSaleCash"
-                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+                <input type="number" matInput [(ngModel)]="data.estimatePromoSaleCash" required
+                    name="estimatePromoSaleCash" [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+            </mat-form-field>
+        </div>
+
+        <div class="form"
+            *ngIf="data.estimatePromoSaleCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+            <mat-form-field appearance="fill">
+                <mat-label>Estimate promo sale cash</mat-label>
+                <input type="number" matInput name="result" [required]="flag === 4" disabled
+                    [value]="data.estimatePromoSaleCash.toFixed(2)">
             </mat-form-field>
         </div>
 
@@ -165,8 +174,6 @@
             </mat-form-field>
         </div>
 
-
-        
         <div class="form" *ngIf="data.estimateRopi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate ROPI %</mat-label>
