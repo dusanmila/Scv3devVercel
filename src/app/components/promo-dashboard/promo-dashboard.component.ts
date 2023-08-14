@@ -6,6 +6,7 @@ import { StatisticsService } from 'src/app/Services/statistics.service';
 import { GroupedBarChartDataModel } from 'src/app/models/groupedBarChartDataModel';
 import { PromoStatisticsTableModel } from 'src/app/models/promoStatisticsTableModel';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
+import * as saveAs from 'file-saver';
 
 @Component({
   selector: 'app-promo-dashboard',
@@ -249,6 +250,17 @@ export class PromoDashboardComponent implements OnInit {
     this.promoService.getNumericData().subscribe(data => {
       this.numericData = data;
     });
+  }
+
+ export() {
+   
+    this.promoService.exportStatistics(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory).subscribe((excel) => {
+      
+      const fileName = 'Promos.xlsx';
+      saveAs(excel, fileName);
+    });
+    
+    
   }
 
 }

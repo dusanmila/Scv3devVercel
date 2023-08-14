@@ -44,6 +44,8 @@ export class PositionDialogComponent implements OnInit {
   img2Changed = false;
   img3Changed = false;
 
+  isSuggestions = false;
+
   public selectedProductCategories: ProductCategory[] = [];
   public positionProductCategory: PositionProductCategory = { positionProductCategoryId: "", positionId: "", productCategoryId: "" };
   public currentProdCategories: ProductCategory[] = [];

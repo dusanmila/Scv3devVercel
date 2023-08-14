@@ -69,6 +69,22 @@ export class PromoService {
 
   }
 
+  
+    exportStatistics(startDate: Date, endDate: Date, retailerName: string, username: string, productCategoryName: string): Observable<Blob> {
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('startDate', startDate.toISOString());
+      queryParams = queryParams.append('endDate', endDate.toISOString());
+      queryParams = queryParams.append('retailerName', retailerName);
+      queryParams = queryParams.append('username', username);
+      queryParams = queryParams.append('productCategoryName', productCategoryName);
+    
+      return this.http.get(`${PROMO_URL}/promoExcels/exportPromoCountAndRopiByProductCategoriesAndYears`, {
+        params: queryParams,
+        headers: this.headers,
+        responseType: 'blob'
+      });
+    }
+
   public excelImport(formData: FormData) {
     return this.http.post(`${PROMO_URL}/promoExcels`, formData, { headers: this.headers });
   }
