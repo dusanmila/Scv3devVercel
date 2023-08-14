@@ -178,7 +178,7 @@
                     </button>
                     <button *ngIf="type === 'FINISHED' && !row.predefined" mat-icon-button color="primary"
                         (click)="setPredefined(row, true)">
-                        Add to predefined
+                        <mat-icon area-label="Add to predefined">settings_backup_restore</mat-icon>
                     </button>
                     <button *ngIf="type === 'PREDEFINED' && row.predefined" mat-icon-button color="primary"
                         (click)="setPredefined(row, false)">
