@@ -92,7 +92,6 @@ export class PromoComponent implements OnInit {
     this.selectedProductCategoryName = this.productCategoryFormControl.value;
     this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
       this.promos = data;
-      console.log(data);
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
         this.noData = true;
