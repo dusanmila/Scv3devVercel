@@ -149,8 +149,8 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, ropi?: number, ropiCash?: number, promoSale?: number, expenses?: number, price?: number, resultSale?: number, predefined?: boolean) {
-    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, ropi, ropiCash, promoSale, expenses, price, resultSale, predefined } });
+  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, ropi?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, predefined?: boolean) {
+    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, ropi, ropiCash, estimatePromoSale, expenses, price, resultSale, predefined } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
@@ -172,19 +172,19 @@ export class PromoComponent implements OnInit {
 
   editDisplayedColumns() {
     if (this.type === 'MY_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash', 'actions'];
     }
     else if (this.type === 'FOR_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash', 'actions'];
     }
     else if (this.type === 'FINISHED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'resultSalePercent', 'estimatePromoSale', 'estimatePromoSaleCash', 'ropi', 'estimateRopi', 'ropiCash', 'estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'resultSalePercent', 'estimateRopi', 'ropi', 'ropiDifference', 'estimateRopiCash', 'ropiCash', 'ropiCashDifference', 'actions'];
     }
     else if (this.type === 'ACTUAL') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash'];
     }
     else if (this.type === 'PREDEFINED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'estimatePromoSale', 'estimatePromoSaleCash', 'estimateRopi', 'estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash', 'actions'];
     }
   }
 
