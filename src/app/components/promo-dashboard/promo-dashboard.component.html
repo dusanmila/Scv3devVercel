@@ -103,6 +103,22 @@
                             }}%</mat-cell>
                     </ng-container>
 
+                    <ng-container matColumnDef="ropiCashLastYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash Last
+                            Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI cash last year">{{ row.ropiCashLastYear
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiCashThisYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash This
+                            Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI cash this year">{{ row.ropiCashThisYear
+                            }}</mat-cell>
+                    </ng-container>
+
                     <ng-container matColumnDef="ropiCashDifference">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash
                             Difference
