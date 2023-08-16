@@ -256,7 +256,7 @@ export class PromoDashboardComponent implements OnInit {
    
     this.promoService.exportStatistics(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory).subscribe((excel) => {
       
-      const fileName = 'Promos.xlsx';
+      const fileName = 'PromoStatistics.xlsx';
       saveAs(excel, fileName);
     });
     
