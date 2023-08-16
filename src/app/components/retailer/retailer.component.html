@@ -11,7 +11,17 @@
   <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
     <ng-container matColumnDef="retailerName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">{{ isDashboard ? "Retailers" : "Name" }}</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">
+        <p>{{ isDashboard ? "Retailers" :
+          "Name" }}</p>
+
+        <mat-radio-group *ngIf="isDashboard" class="radio-group" aria-label="Select an option"
+          (change)="onRadioButtonChange($event)">
+          <mat-radio-button class="radio-btn" color="primary" checked="true" value="retailer1">Retailer
+            1</mat-radio-button>
+          <mat-radio-button class="radio-btn" color="primary" value="retailer2">Retailer 2</mat-radio-button>
+        </mat-radio-group>
+      </mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
     </ng-container>
 
@@ -34,21 +44,24 @@
         <button mat-icon-button color="primary">
           <mat-icon (click)="openDialog(3,row.retailerName,row.planogramPdf)"> delete </mat-icon>
         </button>
-        <button mat-icon-button color="primary" style="margin-left: 20px;" (click)="openDialog(2,row.retailerName,row.planogramPdf)"> Add planogram
+        <button mat-icon-button color="primary" style="margin-left: 20px;"
+          (click)="openDialog(2,row.retailerName,row.planogramPdf)"> Add planogram
         </button>
 
 
       </mat-cell>
     </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns" (click)="selectRetailer(row)"></mat-row>
+    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"
+      (click)="selectRetailer(row)"></mat-row>
   </mat-table>
   <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
     <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
     </mat-progress-spinner>
   </div>
   <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No retailers</mat-toolbar>
-  <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]" [length]="length"
-    (page)="loadDataOnPageEvent($event)">
+  <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+    [length]="length" (page)="loadDataOnPageEvent($event)">
   </mat-paginator>
 </div>

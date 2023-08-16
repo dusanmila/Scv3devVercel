@@ -106,6 +106,8 @@ import { ExportProductsDialogComponent } from './dialogs/excelDialogs/exportProd
 import { ExportPositionsDialogComponent } from './dialogs/excelDialogs/exportPositionsDialog/export-positions-dialog.component';
 import { ProductPriceScannerComponent } from './components/product-price-scanner/product-price-scanner.component';
 import { UserPerformanceComponent } from './components/user-performance/user-performance.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AddToPredefinedDialogComponent } from './dialogs/add-to-predefined-dialog/add-to-predefined-dialog.component';
 
 
 @NgModule({
@@ -168,7 +170,8 @@ import { UserPerformanceComponent } from './components/user-performance/user-per
     PromoDashboardComponent,
     PieChartComponent,
     ProductPriceScannerComponent,
-    UserPerformanceComponent
+    UserPerformanceComponent,
+    AddToPredefinedDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -200,7 +203,8 @@ import { UserPerformanceComponent } from './components/user-performance/user-per
     MatNativeDateModule,
     MatRadioModule,
     MatAutocompleteModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSlideToggleModule
 
   ],
   providers: [DatePipe],

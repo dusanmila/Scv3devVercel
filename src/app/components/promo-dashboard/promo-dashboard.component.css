@@ -420,3 +420,12 @@
 .mat-cell-left {
     justify-content: left;
 }
+
+.comparasion-tbl-options {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.slide-toggle {
+    margin-left: 20px;
+}

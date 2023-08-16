@@ -69,21 +69,21 @@ export class PromoService {
 
   }
 
-  
-    exportStatistics(startDate: Date, endDate: Date, retailerName: string, username: string, productCategoryName: string): Observable<Blob> {
-      let queryParams = new HttpParams();
-      queryParams = queryParams.append('startDate', startDate.toISOString());
-      queryParams = queryParams.append('endDate', endDate.toISOString());
-      queryParams = queryParams.append('retailerName', retailerName);
-      queryParams = queryParams.append('username', username);
-      queryParams = queryParams.append('productCategoryName', productCategoryName);
-    
-      return this.http.get(`${PROMO_URL}/promoExcels/exportPromoCountAndRopiByProductCategoriesAndYears`, {
-        params: queryParams,
-        headers: this.headers,
-        responseType: 'blob'
-      });
-    }
+
+  exportStatistics(startDate: Date, endDate: Date, retailerName: string, username: string, productCategoryName: string): Observable<Blob> {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('startDate', startDate.toISOString());
+    queryParams = queryParams.append('endDate', endDate.toISOString());
+    queryParams = queryParams.append('retailerName', retailerName);
+    queryParams = queryParams.append('username', username);
+    queryParams = queryParams.append('productCategoryName', productCategoryName);
+
+    return this.http.get(`${PROMO_URL}/promoExcels/exportPromoCountAndRopiByProductCategoriesAndYears`, {
+      params: queryParams,
+      headers: this.headers,
+      responseType: 'blob'
+    });
+  }
 
   public excelImport(formData: FormData) {
     return this.http.post(`${PROMO_URL}/promoExcels`, formData, { headers: this.headers });
@@ -140,6 +140,20 @@ export class PromoService {
     queryParams = queryParams.append('endDate', endDate.toDateString());
     let retval$ = new Subject<GroupedBarChartDataModel[]>();
     this.http.get<GroupedBarChartDataModel[]>(`${PROMO_URL}/promos/ropiCashByProductCategories`, { params: queryParams, headers: this.headers }).subscribe((result: GroupedBarChartDataModel[]) => {
+      retval$.next(result);
+    });
+    return retval$.asObservable();
+  }
+
+  getAvgUpliftByPeriod(retailerName: string, username: string, productCategoryName: string, startDate: Date, endDate: Date) {
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('retailerName', retailerName);
+    queryParams = queryParams.append('username', username);
+    queryParams = queryParams.append('productCategoryName', productCategoryName);
+    queryParams = queryParams.append('startDate', startDate.toDateString());
+    queryParams = queryParams.append('endDate', endDate.toDateString());
+    let retval$ = new Subject<StatisticsModel[]>();
+    this.http.get<StatisticsModel[]>(`${PROMO_URL}/promos/avgUpliftByPeriod`, { params: queryParams, headers: this.headers }).subscribe((result: StatisticsModel[]) => {
       retval$.next(result);
     });
     return retval$.asObservable();
