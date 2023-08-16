@@ -12,8 +12,11 @@
     <div class="filter-section">
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedUser" (click)="selectUser('')">{{
             selectedUser }} <mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="selectRetailer('')">{{
-            selectedRetailer }} <mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="deselectRetailer()">{{
+            selectedRetailer }} - First Table<mat-icon>close</mat-icon></button>
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailerForSecondTable"
+            (click)="deselectRetailerForSecondTable()">{{
+            selectedRetailerForSecondTable }} - Second Table<mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
             (click)="selectProductCategory('')">{{
             selectedProductCategory }} <mat-icon>close</mat-icon></button>
@@ -23,7 +26,8 @@
                 <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
             </div>
             <div class="table-section-item">
-                <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"></app-retailer>
+                <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"
+                    (radioBtnValueEvent)="onRadioBtnChange($event)"></app-retailer>
             </div>
             <div class="table-section-item">
                 <app-product-category [isDashboard]="true"
@@ -137,11 +141,103 @@
                     selected
                     criteria</mat-toolbar>
             </div>
-            <button mat-stroked-button color="primary" class="item2" style="margin-bottom: 10px; margin-left:10px;"
-            (click)="export()">Export</button>
+
+            <div *ngIf="showSecondTable" class="container">
+                <mat-table mat-table #table [dataSource]="promoAndRopiByProductCategoriesAndYearsSecondTable" matSort>
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
+                            style="justify-content: left;">Name
+                        </mat-header-cell>
+                        <mat-cell class="mat-cell-left" *matCellDef="let row" data-label="Name">{{ row.name
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="promoCountLastYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
+                            Last Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Promo count last year">{{
+                            row.promoCountLastYear
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="promoCountThisYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
+                            This Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Promo count">{{ row.promoCountThisYear }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="promoCountDifference">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
+                            Difference
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Promo count difference">{{ row.promoCountDifference
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiLastYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Last Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI last year">{{ row.ropiLastYear }}%</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiThisYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI This Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI">{{ row.ropiThisYear }}%</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiDifference">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Difference
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI difference">{{ row.ropiDifference
+                            }}%</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiCashLastYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash Last
+                            Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI cash last year">{{ row.ropiCashLastYear
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiCashThisYear">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash This
+                            Year
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI cash this year">{{ row.ropiCashThisYear
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ropiCashDifference">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash
+                            Difference
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI cash difference">{{ row.ropiCashDifference
+                            }}</mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
+                    </mat-row>
+                </mat-table>
+                <mat-toolbar color="primary" class="noDataMessage"
+                    *ngIf="!promoAndRopiByProductCategoriesAndYearsSecondTable || promoAndRopiByProductCategoriesAndYearsSecondTable.length === 0">No
+                    data for
+                    selected
+                    criteria</mat-toolbar>
+            </div>
+            <div class="comparasion-tbl-options">
+                <button mat-stroked-button color="primary" class="item2" style="margin-bottom: 10px; margin-left:10px;"
+                    (click)="export()">Export</button>
+                <mat-slide-toggle class="slide-toggle" color="primary" (change)="onChangeSlideToggle()">Show second
+                    table</mat-slide-toggle>
+            </div>
         </mat-card-content>
     </mat-card>
-   
+
 </div>
 
 <div class="two-charts">
@@ -184,7 +280,7 @@
     </mat-card>
 </div>
 
-<mat-card class="card chart-card">
+<!-- <mat-card class="card chart-card">
     <mat-card-header>
         <mat-card-title>ROPI Cash by ProductCategories</mat-card-title>
         <mat-card-subtitle *ngIf="!ropiCashByProductCategories || ropiCashByProductCategories.length === 0">No data for
@@ -199,7 +295,7 @@
             [yAxisTickFormatting]="yAxisTickFormattingCash">
         </ngx-charts-bar-vertical-2d>
     </mat-card-content>
-</mat-card>
+</mat-card> -->
 
 <mat-card class="card chart-card">
     <mat-card-header>

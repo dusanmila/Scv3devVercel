@@ -17,6 +17,7 @@ export class RetailerComponent implements OnInit {
 
   @Input() isDashboard: boolean = false;
   @Output() selectedRetailer = new EventEmitter<string>();
+  @Output() radioBtnValueEvent = new EventEmitter<string>();
 
   displayedColumns = ["retailerName", "planogramPdf", "actions"];
   dataSource: MatTableDataSource<Retailer>;
@@ -31,6 +32,8 @@ export class RetailerComponent implements OnInit {
 
   selectedRetailer2: Retailer;
 
+  radioBtnValue: string = 'retailer1';
+
   public page: number = 1;
   public count: number = 5;
   public length: number = 0;
@@ -39,8 +42,9 @@ export class RetailerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if (this.isDashboard)
+    if (this.isDashboard) {
       this.count = 2;
+    }
     this.loadData(false);
     if (this.isDashboard) {
       this.displayedColumns.splice(1, 2);
@@ -117,6 +121,11 @@ export class RetailerComponent implements OnInit {
   public openPlanogramDialog(retailerName: string) {
     const dialogRef = this.dialog.open(PlanogramDialogComponent, { data: retailerName });
     dialogRef.componentInstance.isAdmin = true;
+  }
+
+  onRadioButtonChange(event) {
+    this.radioBtnValue = event.value;
+    this.radioBtnValueEvent.emit(this.radioBtnValue);
   }
 
 }

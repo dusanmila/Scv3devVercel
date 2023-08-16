@@ -48,6 +48,7 @@ export class PromoDashboardComponent implements OnInit {
 
   selectedUser: string = "";
   selectedRetailer: string = "";
+  selectedRetailerForSecondTable: string = "";
   selectedProductCategory: string = "";
 
   feedbackCategoryResult: StatisticsModel[];
@@ -133,9 +134,12 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
+  promoAndRopiByProductCategoriesAndYearsSecondTable: PromoStatisticsTableModel[] = [];
+  showSecondTable: boolean = false;
   displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'promoCountDifference', 'ropiLastYear', 'ropiThisYear', 'ropiDifference', 'ropiCashLastYear', 'ropiCashThisYear', 'ropiCashDifference'];
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
+  retailerRadioBtnValue: string = 'retailer1';
 
   numericData: StatisticsModel[] = [];
   cardColor: string = '#0081af';
@@ -148,6 +152,7 @@ export class PromoDashboardComponent implements OnInit {
     this.selectedStartDate.setDate(1);
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
     this.getPromoCountAndRopiByProductCategoriesAndYears();
+    this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
     this.getPromoCountByProductCategories();
     this.getPromoCountByProductCategoriesLastYear();
     this.getRopiCashByProductCategories();
@@ -166,13 +171,37 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   selectRetailer(retailer: string) {
-    this.selectedRetailer = retailer;
+    if (this.retailerRadioBtnValue === 'retailer1') {
+      this.selectedRetailer = retailer;
+      this.getPromoCountAndRopiByProductCategoriesAndYears();
+    } else if (this.retailerRadioBtnValue === 'retailer2') {
+      this.selectedRetailerForSecondTable = retailer;
+      this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
+      this.getPromoCountByProductCategories();
+      this.getPromoCountByProductCategoriesLastYear();
+      this.getPromoCountByPeriod();
+      this.getRopiCashByPeriod();
+      this.getRopiCashByProductCategories();
+    }
+  }
+
+  deselectRetailer() {
+    this.selectedRetailer = '';
+    this.getPromoCountAndRopiByProductCategoriesAndYears();
     this.getPromoCountByProductCategories();
     this.getPromoCountByProductCategoriesLastYear();
     this.getPromoCountByPeriod();
     this.getRopiCashByPeriod();
-    this.getPromoCountAndRopiByProductCategoriesAndYears();
     this.getRopiCashByProductCategories();
+  }
+
+  deselectRetailerForSecondTable() {
+    this.selectedRetailerForSecondTable = '';
+    this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
+  }
+
+  onRadioBtnChange(event) {
+    this.retailerRadioBtnValue = event;
   }
 
   selectUser(user: string) {
@@ -182,6 +211,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getPromoCountByPeriod();
     this.getRopiCashByPeriod();
     this.getPromoCountAndRopiByProductCategoriesAndYears();
+    this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
     this.getRopiCashByProductCategories();
   }
 
@@ -190,6 +220,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getPromoCountByPeriod();
     this.getRopiCashByPeriod();
     this.getPromoCountAndRopiByProductCategoriesAndYears();
+    this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
   }
 
   dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
@@ -198,6 +229,7 @@ export class PromoDashboardComponent implements OnInit {
 
     if (dateRangeStart.value && dateRangeEnd.value) {
       this.getPromoCountAndRopiByProductCategoriesAndYears();
+      this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
       this.getPromoCountByProductCategories();
       this.getPromoCountByProductCategoriesLastYear();
       this.getRopiCashByPeriod();
@@ -210,6 +242,14 @@ export class PromoDashboardComponent implements OnInit {
     this.promoService.getPromoCountAndRopiByProductCategoriesAndYears(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory).subscribe(data => {
       this.promoAndRopiByProductCategoriesAndYears = data;
     });
+  }
+
+  getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable() {
+    if (this.showSecondTable) {
+      this.promoService.getPromoCountAndRopiByProductCategoriesAndYears(this.selectedStartDate, this.selectedEndDate, this.selectedRetailerForSecondTable, this.selectedUser, this.selectedProductCategory).subscribe(data => {
+        this.promoAndRopiByProductCategoriesAndYearsSecondTable = data;
+      });
+    }
   }
 
   getPromoCountByProductCategories() {
@@ -252,15 +292,20 @@ export class PromoDashboardComponent implements OnInit {
     });
   }
 
- export() {
-   
+  export() {
+
     this.promoService.exportStatistics(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory).subscribe((excel) => {
-      
+
       const fileName = 'PromoStatistics.xlsx';
       saveAs(excel, fileName);
     });
-    
-    
+
+
+  }
+
+  onChangeSlideToggle() {
+    this.showSecondTable = !this.showSecondTable;
+    this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
   }
 
 }
