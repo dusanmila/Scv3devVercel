@@ -133,7 +133,7 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
-  displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'promoCountDifference', 'ropiLastYear', 'ropiThisYear', 'ropiDifference', 'ropiCashLastYear', 'ropiCashThisYear', 'ropiCashDifference'];
+  displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'ropiLastYear', 'ropiThisYear', 'ropiCashLastYear', 'ropiCashThisYear','uplift'];
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
 

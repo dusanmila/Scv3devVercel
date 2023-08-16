@@ -9,4 +9,5 @@ export interface PromoStatisticsTableModel {
     promoCountDifference: number;
     ropiDifference: number;
     ropiCashDifference: number;
+    uplift:number;
 }
