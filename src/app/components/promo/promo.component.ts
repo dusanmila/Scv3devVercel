@@ -17,6 +17,7 @@ import { ProductService } from 'src/app/Services/product.service';
 import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service';
 import { PromoService } from 'src/app/Services/promo.service';
 
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'MM/YYYY',
@@ -207,6 +208,11 @@ export class PromoComponent implements OnInit {
         });
       }
     });
+  }
+
+  format(x: number, regularSale: number): string {
+    const res = x / regularSale;
+    return res.toFixed(2); // Format to 2 decimal places
   }
 
 }

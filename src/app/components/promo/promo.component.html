@@ -151,12 +151,12 @@
 
             <ng-container matColumnDef="uplift">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Uplift</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.resultSale/row.regularSale}}</mat-cell>
+                <mat-cell *matCellDef="let row">{{ format(row.resultSale, row.regularSale) }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="estimateUplift">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate uplift</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.estimatePromoSale/row.regularSale}}</mat-cell>
+                <mat-cell *matCellDef="let row">{{ format(row.estimatePromoSale,row.regularSale)}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="actions">
