@@ -118,6 +118,7 @@ export class PromoDashboardComponent implements OnInit {
     return (value / 1000000).toFixed(2);
   }
 
+  avgUpliftByPeriod: StatisticsModel[] = [];
   promoCountByPeriod: StatisticsModel[] = [];
   ropiCashByPeriod: StatisticsModel[] = [];
 
@@ -160,6 +161,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getPromoCountByPeriod();
     this.getRopiCashByPeriod();
     this.getNumericData();
+    this.getAvgUpliftByPeriod();
   }
 
   changePage(flag: number, title: string) {
@@ -183,6 +185,7 @@ export class PromoDashboardComponent implements OnInit {
       this.getPromoCountByPeriod();
       this.getRopiCashByPeriod();
       this.getRopiCashByProductCategories();
+      this.getAvgUpliftByPeriod();
     }
   }
 
@@ -194,6 +197,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getPromoCountByPeriod();
     this.getRopiCashByPeriod();
     this.getRopiCashByProductCategories();
+    this.getAvgUpliftByPeriod();
   }
 
   deselectRetailerForSecondTable() {
@@ -214,6 +218,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getPromoCountAndRopiByProductCategoriesAndYears();
     this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
     this.getRopiCashByProductCategories();
+    this.getAvgUpliftByPeriod();
   }
 
   selectProductCategory(productCategory: string) {
@@ -222,6 +227,7 @@ export class PromoDashboardComponent implements OnInit {
     this.getRopiCashByPeriod();
     this.getPromoCountAndRopiByProductCategoriesAndYears();
     this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
+    this.getAvgUpliftByPeriod();
   }
 
   dateRangeChange(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
@@ -236,6 +242,7 @@ export class PromoDashboardComponent implements OnInit {
       this.getRopiCashByPeriod();
       this.getPromoCountByPeriod();
       this.getRopiCashByProductCategories();
+      this.getAvgUpliftByPeriod();
     }
   }
 
@@ -253,6 +260,7 @@ export class PromoDashboardComponent implements OnInit {
     }
   }
 
+
   getPromoCountByProductCategories() {
     this.promoService.getPromoCountByProductCategories(this.selectedRetailer, this.selectedUser, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
       this.promoCountByProductCategories = data;
@@ -269,9 +277,16 @@ export class PromoDashboardComponent implements OnInit {
     });
   }
 
+
   getRopiCashByProductCategories() {
     this.promoService.getRopiCashByProductCategories(this.selectedRetailer, this.selectedUser, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
       this.ropiCashByProductCategories = data;
+    });
+  }
+
+  getAvgUpliftByPeriod() {
+    this.promoService.getAvgUpliftByPeriod(this.selectedRetailer, this.selectedUser, this.selectedProductCategory, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
+      this.avgUpliftByPeriod = data;
     });
   }
 
