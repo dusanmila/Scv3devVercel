@@ -56,7 +56,7 @@ import { EmailDialogComponent } from './dialogs/email-dialog/email-dialog.compon
 import { MatSelectModule } from '@angular/material/select';
 import { AnalyticsdialogComponent } from './dialogs/analyticsdialog/analyticsdialog.component';
 import { PositionDialogComponent } from './dialogs/position-dialog/position-dialog.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ObjectCreateDialogComponent } from './dialogs/object-create-dialog/object-create-dialog.component';
 

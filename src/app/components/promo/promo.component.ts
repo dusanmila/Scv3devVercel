@@ -17,6 +17,7 @@ import { ProductService } from 'src/app/Services/product.service';
 import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service';
 import { PromoService } from 'src/app/Services/promo.service';
 
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'MM/YYYY',
@@ -172,19 +173,19 @@ export class PromoComponent implements OnInit {
 
   editDisplayedColumns() {
     if (this.type === 'MY_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
     }
     else if (this.type === 'FOR_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
     }
     else if (this.type === 'FINISHED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'resultSalePercent', 'estimateRopi', 'ropi', 'ropiDifference', 'estimateRopiCash', 'ropiCash', 'ropiCashDifference', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'resultSalePercent', 'estimateRopi', 'ropi', 'ropiDifference', 'estimateRopiCash', 'ropiCash', 'ropiCashDifference','uplift','estimateUplift', 'actions'];
     }
     else if (this.type === 'ACTUAL') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift',];
     }
     else if (this.type === 'PREDEFINED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
     }
   }
 
@@ -207,6 +208,11 @@ export class PromoComponent implements OnInit {
         });
       }
     });
+  }
+
+  format(x: number, regularSale: number): string {
+    const res = x / regularSale;
+    return res.toFixed(2); // Format to 2 decimal places
   }
 
 }
