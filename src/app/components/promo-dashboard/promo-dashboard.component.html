@@ -232,8 +232,9 @@
             <div class="comparasion-tbl-options">
                 <button mat-stroked-button color="primary" class="item2" style="margin-bottom: 10px; margin-left:10px;"
                     (click)="export()">Export</button>
-                <mat-slide-toggle class="slide-toggle" color="primary" (change)="onChangeSlideToggle()">Show second
-                    table</mat-slide-toggle>
+                <mat-slide-toggle class="slide-toggle" color="primary" (change)="onChangeSlideToggle()">Show comparison
+                    table
+                </mat-slide-toggle>
             </div>
         </mat-card-content>
     </mat-card>
@@ -257,6 +258,12 @@
                 [view]="pieView" [results]="promoCountByProductCategoriesLastYear" [gradient]="gradient"
                 [scheme]="colorScheme" [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut"
                 [labels]="true" [labelFormatting]="labelFormat" [maxLabelLength]="20" [tooltipText]="tooltipText">
+                <ng-template #tooltipTemplate let-model="model">
+                    <div class="custom-tooltip">
+                        <p>{{ model.label }}</p>
+                        <p>{{ calculatePercentage(model.value, promoCountByProductCategoriesLastYear) }}%</p>
+                    </div>
+                </ng-template>
             </ngx-charts-pie-chart>
         </mat-card-content>
     </mat-card>
@@ -275,6 +282,12 @@
                 [view]="pieView" [results]="promoCountByProductCategories" [gradient]="gradient" [scheme]="colorScheme"
                 [legend]="showLegend" [labels]="showLabels" [doughnut]="isDoughnut" [labels]="true"
                 [labelFormatting]="labelFormat" [maxLabelLength]="20" [tooltipText]="tooltipText">
+                <ng-template #tooltipTemplate let-model="model">
+                    <div class="custom-tooltip">
+                        <p>{{ model.label }}</p>
+                        <p>{{ calculatePercentage(model.value, promoCountByProductCategories) }}%</p>
+                    </div>
+                </ng-template>
             </ngx-charts-pie-chart>
         </mat-card-content>
     </mat-card>
@@ -313,7 +326,7 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card class="card chart-card">
+<mat-card class=" card chart-card">
     <mat-card-header>
         <mat-card-title>ROPI Cash by Period</mat-card-title>
         <mat-card-subtitle *ngIf="!ropiCashByPeriod || ropiCashByPeriod.length === 0">No data for selected

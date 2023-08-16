@@ -109,6 +109,7 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   tooltipText(data) {
+    console.log(data);
     return `${data.data.label}: ${data.data.value}%`;
   }
 
@@ -306,6 +307,11 @@ export class PromoDashboardComponent implements OnInit {
   onChangeSlideToggle() {
     this.showSecondTable = !this.showSecondTable;
     this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
+  }
+
+  calculatePercentage(value: number, data: StatisticsModel[]) {
+    const totalValue = data.reduce((sum, item) => sum + item.value, 0);
+    return ((value / totalValue) * 100).toFixed(2);
   }
 
 }
