@@ -327,7 +327,7 @@
         <ngx-charts-bar-vertical *ngIf="avgUpliftByPeriod && avgUpliftByPeriod.length > 0" [view]="view"
             [results]="avgUpliftByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
             [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="'Average uplift'"
             [yAxisTickFormatting]="yAxisTickFormattingCount">
         </ngx-charts-bar-vertical>
     </mat-card-content>
@@ -359,7 +359,7 @@
         <ngx-charts-bar-vertical *ngIf="ropiCashByPeriod && ropiCashByPeriod.length > 0" [view]="view"
             [results]="ropiCashByPeriod" [gradient]="gradientBarChart" [scheme]="colorScheme" [xAxis]="showXAxis"
             [yAxis]="showYAxis" [legend]="showLegendBarChart" [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="'ROPI'"
+            [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="'ROPI cash'"
             [yAxisTickFormatting]="yAxisTickFormattingCash">
         </ngx-charts-bar-vertical>
     </mat-card-content>
