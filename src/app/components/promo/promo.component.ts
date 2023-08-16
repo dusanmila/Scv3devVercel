@@ -6,6 +6,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Guid } from 'guid-typescript';
 import { map, Observable, startWith } from 'rxjs';
+import { AddToPredefinedDialogComponent } from 'src/app/dialogs/add-to-predefined-dialog/add-to-predefined-dialog.component';
 import { PromoDialogComponent } from 'src/app/dialogs/promo-dialog/promo-dialog.component';
 import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
@@ -196,9 +197,15 @@ export class PromoComponent implements OnInit {
   }
 
   setPredefined(promo: Promo, predefined: boolean) {
-    promo.predefined = predefined;
-    this.promoService.updatePromoResultSale(promo).subscribe(data => {
-      this.getPromos(false);
+    const dialogRef = this.dialog.open(AddToPredefinedDialogComponent);
+    dialogRef.componentInstance.flag = predefined ? 1 : 2;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        promo.predefined = predefined;
+        this.promoService.updatePromoResultSale(promo).subscribe(data => {
+          this.getPromos(false);
+        });
+      }
     });
   }
 
