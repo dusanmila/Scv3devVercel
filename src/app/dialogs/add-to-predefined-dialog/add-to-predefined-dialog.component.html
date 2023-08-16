@@ -1,0 +1,10 @@
+<div class="container">
+    <h3 *ngIf="flag === 1" mat-dialog-title>Do you want to add promo to predefined?</h3>
+    <h3 *ngIf="flag === 2" mat-dialog-title>Do you want to remove promo from predefined?</h3>
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <div mat-dialog-actions class="wrap">
+            <button mat-button class="test" (click)="exit()">Yes</button>
+            <button mat-button class="test" (click)="close()">No</button>
+        </div>
+    </form>
+</div>

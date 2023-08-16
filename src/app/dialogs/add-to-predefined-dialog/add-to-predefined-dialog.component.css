@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+}
+
+.form {
+    display: flex;
+}
+
+.mat-form-field {
+    font-size: 16px;
+    flex-grow: 1;
+}
+
+.test {
+    background-color: #fff;
+    color: #39ace7;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+    border: 2px solid #39ace7;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    color: #fff;
+    background-color: #39ace7;
+    transition: 0.3s;
+}
+
+.wrap {
+    height: 90px;
+}
+
+
+.mat-dialog-title {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: -10px;
+}
+
+.mat-dialog-content {
+    overflow-y: hidden;
+}
+
+button {
+    outline: none;
+}
+
+::ng-deep .mat-button-focus-overlay {
+    display: none;
+}
+
+.mat-button {
+    border-radius: 10px !important;
+}
+
+.mat-spinner-color::ng-deep circle {
+    stroke: #56baed !important;
+}

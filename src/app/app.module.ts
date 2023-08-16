@@ -107,6 +107,7 @@ import { ExportPositionsDialogComponent } from './dialogs/excelDialogs/exportPos
 import { ProductPriceScannerComponent } from './components/product-price-scanner/product-price-scanner.component';
 import { UserPerformanceComponent } from './components/user-performance/user-performance.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AddToPredefinedDialogComponent } from './dialogs/add-to-predefined-dialog/add-to-predefined-dialog.component';
 
 
 @NgModule({
@@ -169,7 +170,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     PromoDashboardComponent,
     PieChartComponent,
     ProductPriceScannerComponent,
-    UserPerformanceComponent
+    UserPerformanceComponent,
+    AddToPredefinedDialogComponent
   ],
   imports: [
     AppRoutingModule,
