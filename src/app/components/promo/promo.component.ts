@@ -172,19 +172,19 @@ export class PromoComponent implements OnInit {
 
   editDisplayedColumns() {
     if (this.type === 'MY_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','uplift','estimateUplift', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
     }
     else if (this.type === 'FOR_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','uplift','estimateUplift', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
     }
     else if (this.type === 'FINISHED') {
       this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'resultSalePercent', 'estimateRopi', 'ropi', 'ropiDifference', 'estimateRopiCash', 'ropiCash', 'ropiCashDifference','uplift','estimateUplift', 'actions'];
     }
     else if (this.type === 'ACTUAL') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','uplift','estimateUplift',];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift',];
     }
     else if (this.type === 'PREDEFINED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','uplift','estimateUplift', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
     }
   }
 
