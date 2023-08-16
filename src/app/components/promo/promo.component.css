@@ -6,7 +6,7 @@
     line-height: 80px;
     font-family: sans-serif;
 }
-
+ 
 .mat-header-cell {
     background: #56baed;
 }
@@ -90,4 +90,8 @@
 
 .form-field {
     margin-right: 20px;
+}
+
+.fix {
+    margin-left: -10px;
 }
