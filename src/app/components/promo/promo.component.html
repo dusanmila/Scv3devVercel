@@ -149,6 +149,7 @@
                 <mat-cell *matCellDef="let row">{{ row.ropiCash - row.estimateRopiCash}}</mat-cell>
             </ng-container>
 
+
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>
                     <button mat-icon-button color="primary" *ngIf="type === 'FOR_CONFIRMATION'">
@@ -161,7 +162,7 @@
                         <mat-icon area-label="Copy">filter_none</mat-icon>
                     </button>
                     <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
-                        (click)="openDialog(2, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.ropi, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)">Confirm
+                        (click)="openDialog(2, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.ropi, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)"><a class=fix>Confirm</a>
                     </button>
                     <button mat-icon-button color="primary"
                         (click)="openDialog(3, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.ropi, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)">

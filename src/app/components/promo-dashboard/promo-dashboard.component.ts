@@ -135,10 +135,10 @@ export class PromoDashboardComponent implements OnInit {
     return value;
   }
 
+  displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'ropiLastYear', 'ropiThisYear', 'ropiCashLastYear', 'ropiCashThisYear','uplift'];
   promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
   promoAndRopiByProductCategoriesAndYearsSecondTable: PromoStatisticsTableModel[] = [];
   showSecondTable: boolean = false;
-  displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'promoCountDifference', 'ropiLastYear', 'ropiThisYear', 'ropiDifference', 'ropiCashLastYear', 'ropiCashThisYear', 'ropiCashDifference'];
   selectedStartDate: Date = new Date();
   selectedEndDate: Date = new Date();
   retailerRadioBtnValue: string = 'retailer1';
