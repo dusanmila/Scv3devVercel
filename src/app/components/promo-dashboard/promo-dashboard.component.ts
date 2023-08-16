@@ -177,15 +177,15 @@ export class PromoDashboardComponent implements OnInit {
     if (this.retailerRadioBtnValue === 'retailer1') {
       this.selectedRetailer = retailer;
       this.getPromoCountAndRopiByProductCategoriesAndYears();
-    } else if (this.retailerRadioBtnValue === 'retailer2') {
-      this.selectedRetailerForSecondTable = retailer;
-      this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
       this.getPromoCountByProductCategories();
       this.getPromoCountByProductCategoriesLastYear();
       this.getPromoCountByPeriod();
       this.getRopiCashByPeriod();
       this.getRopiCashByProductCategories();
       this.getAvgUpliftByPeriod();
+    } else if (this.retailerRadioBtnValue === 'retailer2') {
+      this.selectedRetailerForSecondTable = retailer;
+      this.getPromoCountAndRopiByProductCategoriesAndYearsForSecondTable();
     }
   }
 
