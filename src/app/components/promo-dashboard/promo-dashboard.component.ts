@@ -329,4 +329,9 @@ export class PromoDashboardComponent implements OnInit {
     return ((value / totalValue) * 100).toFixed(2);
   }
 
+  format(x: number): string {
+   
+    return x.toFixed(2); // Format to 2 decimal places
+  }
+
 }

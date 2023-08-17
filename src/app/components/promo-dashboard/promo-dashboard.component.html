@@ -134,7 +134,7 @@
                     <ng-container matColumnDef="uplift">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Uplift
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="Uplift">{{ row.uplift
+                        <mat-cell *matCellDef="let row" data-label="Uplift">{{ format(row.uplift)
                             }}</mat-cell>
                     </ng-container>
 
