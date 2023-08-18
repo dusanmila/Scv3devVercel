@@ -70,13 +70,14 @@ export class PromoService {
   }
 
 
-  exportStatistics(startDate: Date, endDate: Date, retailerName: string, username: string, productCategoryName: string): Observable<Blob> {
+  exportStatistics(startDate: Date, endDate: Date, retailerName: string, username: string, productCategoryName: string, retailer2: string): Observable<Blob> {
     let queryParams = new HttpParams();
     queryParams = queryParams.append('startDate', startDate.toISOString());
     queryParams = queryParams.append('endDate', endDate.toISOString());
     queryParams = queryParams.append('retailerName', retailerName);
     queryParams = queryParams.append('username', username);
     queryParams = queryParams.append('productCategoryName', productCategoryName);
+    queryParams = queryParams.append('retailerName2', retailer2);
 
     return this.http.get(`${PROMO_URL}/promoExcels/exportPromoCountAndRopiByProductCategoriesAndYears`, {
       params: queryParams,

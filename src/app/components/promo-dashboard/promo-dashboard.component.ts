@@ -48,7 +48,7 @@ export class PromoDashboardComponent implements OnInit {
 
   selectedUser: string = "";
   selectedRetailer: string = "";
-  selectedRetailerForSecondTable: string = "";
+  selectedRetailerForSecondTable: string = "null";
   selectedProductCategory: string = "";
 
   feedbackCategoryResult: StatisticsModel[];
@@ -310,7 +310,7 @@ export class PromoDashboardComponent implements OnInit {
 
   export() {
 
-    this.promoService.exportStatistics(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory).subscribe((excel) => {
+    this.promoService.exportStatistics(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory, this.selectedRetailerForSecondTable).subscribe((excel) => {
 
       const fileName = 'PromoStatistics.xlsx';
       saveAs(excel, fileName);

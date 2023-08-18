@@ -14,7 +14,7 @@
             selectedUser }} <mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="deselectRetailer()">{{
             selectedRetailer }} - First Table<mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailerForSecondTable"
+        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailerForSecondTable && selectedRetailerForSecondTable != 'null'"
             (click)="deselectRetailerForSecondTable()">{{
             selectedRetailerForSecondTable }} - Second Table<mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
@@ -149,7 +149,7 @@
                     criteria</mat-toolbar>
             </div>
 
-            <div *ngIf="showSecondTable" class="container">
+            <div *ngIf="showSecondTable && selectedRetailerForSecondTable != 'null'" class="container">
                 <mat-table mat-table #table [dataSource]="promoAndRopiByProductCategoriesAndYearsSecondTable" matSort>
                     <ng-container matColumnDef="name">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
