@@ -105,3 +105,7 @@
 .fix {
     margin-left: -10px;
 }
+
+.text-bold {
+    font-weight: bold;
+}

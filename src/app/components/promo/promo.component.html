@@ -106,45 +106,52 @@
             </ng-container>
 
             <ng-container matColumnDef="estimateUplift">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
                     uplift</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ format(row.estimatePromoSale,row.regularSale)}}</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{
+                    format(row.estimatePromoSale,row.regularSale)}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="uplift">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
                     Uplift</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ format(row.resultSale, row.regularSale) }}</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ format(row.resultSale, row.regularSale)
+                    }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="estimateRopi">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
                     ROPI</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ (row.estimateRopi * 100 - 100).toFixed(2)}}%</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ (row.estimateRopi * 100 -
+                    100).toFixed(2)}}%</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="ropi">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
                     ROPI</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ (row.ropi * 100 - 100).toFixed(2)}}%</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ (row.ropi * 100 - 100).toFixed(2)}}%</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="estimateRopiCash">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est ROPI
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                    ROPI
                     abs</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.estimateRopiCash}} din</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateRopiCash | number:'':'es'}}
+                    din</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="ropiCash">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Act ROPI
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
+                    ROPI
                     abs</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.ropiCash}} din</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ row.ropiCash | number:'':'es'}} din</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="promoGp2">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo GP
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo
+                    GP
                     2</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.promoGp2 }}%</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ row.promoGp2 }}%</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="resultSalePercent">

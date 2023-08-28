@@ -16,6 +16,8 @@ import { ProductCategoryService } from 'src/app/Services/product-category.servic
 import { ProductService } from 'src/app/Services/product.service';
 import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service';
 import { PromoService } from 'src/app/Services/promo.service';
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 
 export const MY_FORMATS = {
@@ -67,6 +69,7 @@ export class PromoComponent implements OnInit {
     public productCategoryService: ProductCategoryService) { }
 
   ngOnInit(): void {
+    registerLocaleData(es);
     this.checkIfUserEvaluator();
     this.getPromos(false);
     this.editDisplayedColumns();
