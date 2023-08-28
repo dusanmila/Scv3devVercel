@@ -375,8 +375,8 @@ td {
 .flex1 {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 20% !important;
-    width: 20% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
     overflow-wrap: break-word;
 
 
@@ -388,7 +388,6 @@ td {
     text-align: center;
     justify-content: left;
 
-    margin-left: -5.5%;
 
     left: 1px;
 }
@@ -396,8 +395,8 @@ td {
 .flex2 {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 60% !important;
-    width: 60% !important;
+    flex: 0 0 70% !important;
+    width: 70% !important;
     overflow-wrap: break-word;
 
 
@@ -409,15 +408,15 @@ td {
     justify-content: center;
 
     text-align: center;
-    margin-right: 5%;
+   
     margin-top: 5%;
 }
 
 .flex3 {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 20% !important;
-    width: 20% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
     overflow-wrap: break-word;
 
 
@@ -429,7 +428,6 @@ td {
     hyphens: auto;
 
     text-align: left;
-    margin-right: 1%;
 
 }
 
