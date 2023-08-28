@@ -58,10 +58,9 @@
             <div class="container">
                 <mat-table mat-table #table [dataSource]="promoAndRopiByProductCategoriesAndYears" matSort>
                     <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
-                            style="justify-content: left;">Name
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Name
                         </mat-header-cell>
-                        <mat-cell class="mat-cell-left" *matCellDef="let row" data-label="Name">{{ row.name
+                        <mat-cell *matCellDef="let row" data-label="Name">{{ row.name
                             }}</mat-cell>
                     </ng-container>
 
