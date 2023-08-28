@@ -178,7 +178,7 @@
                         <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
                     </button>
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row; let i=index">
+                <mat-cell class="action-cell" *matCellDef="let row; let i=index">
                     <button *ngIf="type === 'PREDEFINED'" mat-icon-button color="primary"
                         (click)="openDialog(6, row.promoId, row.retailerName, row.productName, '', '', row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.predefined)">
                         <mat-icon area-label="Copy">filter_none</mat-icon>
