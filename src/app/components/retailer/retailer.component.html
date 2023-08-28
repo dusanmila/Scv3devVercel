@@ -15,7 +15,7 @@
         <p>{{ isDashboard ? "Retailers" :
           "Name" }}</p>
 
-        <mat-radio-group *ngIf="isDashboard" class="radio-group" aria-label="Select an option"
+        <mat-radio-group *ngIf="isDashboard && showRadioButtons" class="radio-group" aria-label="Select an option"
           (change)="onRadioButtonChange($event)">
           <mat-radio-button class="radio-btn" color="primary" checked="true" value="retailer1">Retailer
             1</mat-radio-button>
