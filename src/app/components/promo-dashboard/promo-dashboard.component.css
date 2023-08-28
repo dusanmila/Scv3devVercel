@@ -380,6 +380,7 @@
 .mat-header-cell {
     background: #56baed;
     text-align: center;
+    justify-content: center;
 }
 
 .daterange-filter {
