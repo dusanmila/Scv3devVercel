@@ -48,7 +48,7 @@ export class PromoDashboardComponent implements OnInit {
 
   selectedUser: string = "";
   selectedRetailer: string = "";
-  selectedRetailerForSecondTable: string = "";
+  selectedRetailerForSecondTable: string = "null";
   selectedProductCategory: string = "";
 
   feedbackCategoryResult: StatisticsModel[];
@@ -310,7 +310,7 @@ export class PromoDashboardComponent implements OnInit {
 
   export() {
 
-    this.promoService.exportStatistics(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory).subscribe((excel) => {
+    this.promoService.exportStatistics(this.selectedStartDate, this.selectedEndDate, this.selectedRetailer, this.selectedUser, this.selectedProductCategory, this.selectedRetailerForSecondTable).subscribe((excel) => {
 
       const fileName = 'PromoStatistics.xlsx';
       saveAs(excel, fileName);
@@ -327,6 +327,11 @@ export class PromoDashboardComponent implements OnInit {
   calculatePercentage(value: number, data: StatisticsModel[]) {
     const totalValue = data.reduce((sum, item) => sum + item.value, 0);
     return ((value / totalValue) * 100).toFixed(2);
+  }
+
+  format(x: number): string {
+   
+    return x.toFixed(2); // Format to 2 decimal places
   }
 
 }
