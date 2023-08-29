@@ -16,6 +16,8 @@ import { ProductCategoryService } from 'src/app/Services/product-category.servic
 import { ProductService } from 'src/app/Services/product.service';
 import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service';
 import { PromoService } from 'src/app/Services/promo.service';
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 
 export const MY_FORMATS = {
@@ -67,6 +69,7 @@ export class PromoComponent implements OnInit {
     public productCategoryService: ProductCategoryService) { }
 
   ngOnInit(): void {
+    registerLocaleData(es);
     this.checkIfUserEvaluator();
     this.getPromos(false);
     this.editDisplayedColumns();
@@ -150,8 +153,8 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, ropi?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, predefined?: boolean) {
-    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, ropi, ropiCash, estimatePromoSale, expenses, price, resultSale, predefined } });
+  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, estimateRopi?: number, ropi?: number, estimateRopiCash?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, predefined?: boolean) {
+    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, estimateRopi, ropi, estimateRopiCash, ropiCash, estimatePromoSale, expenses, price, resultSale, predefined } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
@@ -173,19 +176,19 @@ export class PromoComponent implements OnInit {
 
   editDisplayedColumns() {
     if (this.type === 'MY_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
     }
     else if (this.type === 'FOR_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
     }
     else if (this.type === 'FINISHED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'resultSalePercent', 'estimateRopi', 'ropi', 'ropiDifference', 'estimateRopiCash', 'ropiCash', 'ropiCashDifference','uplift','estimateUplift', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'uplift', 'estimateRopi', 'ropi', 'estimateRopiCash', 'ropiCash', 'promoGp2', 'actions'];
     }
     else if (this.type === 'ACTUAL') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift',];
+      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
     }
     else if (this.type === 'PREDEFINED') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateRopi', 'estimateRopiCash','estimateUplift', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
     }
   }
 
@@ -211,7 +214,7 @@ export class PromoComponent implements OnInit {
   }
 
   format(x: number, regularSale: number): string {
-    const res = x / regularSale;
+    const res = (x / regularSale) * 100 - 100;
     return res.toFixed(2); // Format to 2 decimal places
   }
 

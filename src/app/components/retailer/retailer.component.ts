@@ -16,6 +16,7 @@ import { PlanogramDialogComponent } from 'src/app/dialogs/planogram-dialog/plano
 export class RetailerComponent implements OnInit {
 
   @Input() isDashboard: boolean = false;
+  @Input() showRadioButtons: boolean = false;
   @Output() selectedRetailer = new EventEmitter<string>();
   @Output() radioBtnValueEvent = new EventEmitter<string>();
 
