@@ -56,16 +56,11 @@
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="Suggested Discount" [(ngModel)]="data.discount" name="discount"
-                    formControlName="discount" required />
-            </mat-form-field>
-        </div>
+       
         <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Comment" [(ngModel)]="data.comment" name="comment"
-                    formControlName="comment" required />
+                    formControlName="comment" />
             </mat-form-field>
         </div>
 

@@ -1,8 +1,7 @@
 .container {
     overflow-x: hidden;
-    
+    font-family: sans-serif;
 }
-
 
 .header {
     background-color: #56baed;
@@ -35,45 +34,34 @@ button {
     margin: 0 0 0 auto;
 }
 
-
 h1 {
     margin-left: 0%;
 }
 
-.card1 {
+@media (max-width: 768px) {
+    .object-info-slider {
+        flex-direction: column;
+    }
 
-    max-width: 90%;
-    padding: .5rem;
-    margin-bottom: 1rem;
-    border: 0;
-    flex-basis: 90%;
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin-left: 10%;
+    .card {
+        width: 100%;
+    }
 }
 
-.card {
-
-    max-width: 30%;
-    padding: .5rem;
-    margin-bottom: 1rem;
-    border: 0;
-    flex-basis: 33.333%;
-    flex-grow: 0;
-    flex-shrink: 0;
+/* Media query for screens with a maximum width of 480px (smaller mobile devices) */
+@media (max-width: 480px) {
+    .card {
+        padding: 5px;
+        font-size: 14px; /* Adjust the font size for smaller screens */
+    }
 }
 
-.card2 {
-
-    max-width: 50%;
-    padding: .75rem;
-    margin-bottom: 1rem;
-    border: 0;
-    flex-basis: 50%;
-    flex-grow: 0;
-    flex-shrink: 0;
+/* Media query for screens with a maximum width of 320px (very small screens) */
+@media (max-width: 320px) {
+    .card {
+        font-size: 12px; /* Further adjust the font size for very small screens */
+    }
 }
-
 
 .object-info-data {
     max-width: 100%;
@@ -87,13 +75,14 @@ h1 {
 }
 
 .object-info-slider {
-    align-items: stretch;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px 0;
+}
 
+.obj-info {
+    margin-bottom: 5px;
 }
 
 .header .obj-info {
@@ -104,8 +93,6 @@ h1 {
     margin-left: 5%;
     margin-top: 2%;
 }
-
-
 
 .header .obj-info ul {
     list-style-type: none;
@@ -149,13 +136,14 @@ td {
     width: 100%;
     background-color: #fff;
     text-align: center;
-
 }
+
 
 .main h3 {
     margin-top: 25px;
     margin-bottom: 25px;
     color: #39ace7;
+    font-family: sans-serif;
 }
 
 .main a {
@@ -220,136 +208,6 @@ td {
 }
 
 
-.fadeInDown {
-    font-family: sans-serif;
-    -webkit-animation-name: fadeInDown;
-    animation-name: fadeInDown;
-    -webkit-animation-duration: 1s;
-    animation-duration: 1s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-}
-
-@-webkit-keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-
-        transform: translate3d(0, -100%, 0);
-    }
-
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
-}
-
-@keyframes fadeInDown {
-    0% {
-        opacity: 0;
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
-
-    100% {
-        opacity: 1;
-        -webkit-transform: none;
-        transform: none;
-    }
-}
-
-@-webkit-keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.fadeIn {
-    opacity: 0;
-    -webkit-animation: fadeIn ease-in 1;
-    -moz-animation: fadeIn ease-in 1;
-    animation: fadeIn ease-in 1;
-
-    -webkit-animation-fill-mode: forwards;
-    -moz-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-
-    -webkit-animation-duration: 1s;
-    -moz-animation-duration: 1s;
-    animation-duration: 1s;
-}
-
-.fadeIn.first {
-    -webkit-animation-delay: 0.4s;
-    -moz-animation-delay: 0.4s;
-    animation-delay: 0.4s;
-}
-
-.fadeIn.second {
-    -webkit-animation-delay: 0.6s;
-    -moz-animation-delay: 0.6s;
-    animation-delay: 0.6s;
-}
-
-.fadeIn.third {
-    -webkit-animation-delay: 0.8s;
-    -moz-animation-delay: 0.8s;
-    animation-delay: 0.8s;
-}
-
-.fadeIn.fourth {
-    -webkit-animation-delay: 1s;
-    -moz-animation-delay: 1s;
-    animation-delay: 1s;
-}
-
-.item2 {
-    background-color: white;
-  color: #39ace7;
-  width: 100px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  border-radius: 10px;
-  font-size: 17px;
-  letter-spacing: 0.5px;
-  font-weight: bold;
-  font-family: sans-serif;
-  border: 2px solid #39ace7;
-  cursor: pointer;
-  position: relative;
-  bottom: 1;
-  margin: auto;
-  
-
-  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
-
-}
 
 .item2:hover {
     background-color: #39ace7;
@@ -375,62 +233,45 @@ td {
 .flex1 {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 20% !important;
-    width: 20% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
     overflow-wrap: break-word;
-
-
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-
     text-align: center;
     justify-content: left;
-
-    margin-left: -5.5%;
-
     left: 1px;
 }
 
 .flex2 {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 60% !important;
-    width: 60% !important;
+    flex: 0 0 70% !important;
+    width: 70% !important;
     overflow-wrap: break-word;
-
-
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-
     justify-content: center;
-
     text-align: center;
-    margin-right: 5%;
     margin-top: 5%;
 }
 
 .flex3 {
     word-wrap: break-word !important;
     white-space: unset !important;
-    flex: 0 0 20% !important;
-    width: 20% !important;
+    flex: 0 0 15% !important;
+    width: 15% !important;
     overflow-wrap: break-word;
-
-
     justify-content: center;
-
     -ms-hyphens: auto;
     -moz-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
-
     text-align: left;
-    margin-right: 1%;
-
 }
 
 .details {
@@ -439,4 +280,31 @@ td {
 
 .detail-text {
     margin-bottom: 5px;
+    font-family: sans-serif;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
+}
+
+.item2 {
+    background-color: white;
+    color: #39ace7;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    font-weight: bold;
+    font-family: sans-serif;
+    border: 2px solid #39ace7;
+    cursor: pointer;
+    position: relative;
+    bottom: 1;
+    margin: 10px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
