@@ -214,7 +214,7 @@ export class PromoComponent implements OnInit {
   }
 
   format(x: number, regularSale: number): string {
-    const res = x / regularSale;
+    const res = (x / regularSale) * 100 - 100;
     return res.toFixed(2); // Format to 2 decimal places
   }
 

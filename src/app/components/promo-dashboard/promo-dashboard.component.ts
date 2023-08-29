@@ -333,7 +333,7 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   format(x: number): string {
-
+    x = x * 100 - 100;
     return x.toFixed(2); // Format to 2 decimal places
   }
 

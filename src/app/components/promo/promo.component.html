@@ -109,14 +109,14 @@
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
                     uplift</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{
-                    format(row.estimatePromoSale,row.regularSale)}}</mat-cell>
+                    format(row.estimatePromoSale,row.regularSale)}}%</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="uplift">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
                     Uplift</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ format(row.resultSale, row.regularSale)
-                    }}</mat-cell>
+                    }}%</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="estimateRopi">
