@@ -7,6 +7,8 @@ import { GroupedBarChartDataModel } from 'src/app/models/groupedBarChartDataMode
 import { PromoStatisticsTableModel } from 'src/app/models/promoStatisticsTableModel';
 import { StatisticsModel } from 'src/app/models/statisticsModel';
 import * as saveAs from 'file-saver';
+import es from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: 'app-promo-dashboard',
@@ -135,7 +137,7 @@ export class PromoDashboardComponent implements OnInit {
     return value;
   }
 
-  displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'ropiLastYear', 'ropiThisYear', 'ropiCashLastYear', 'ropiCashThisYear','uplift'];
+  displayedColumns = ['name', 'promoCountLastYear', 'promoCountThisYear', 'ropiLastYear', 'ropiThisYear', 'ropiCashLastYear', 'ropiCashThisYear', 'uplift'];
   promoAndRopiByProductCategoriesAndYears: PromoStatisticsTableModel[] = [];
   promoAndRopiByProductCategoriesAndYearsSecondTable: PromoStatisticsTableModel[] = [];
   showSecondTable: boolean = false;
@@ -151,6 +153,7 @@ export class PromoDashboardComponent implements OnInit {
     public promoService: PromoService) { }
 
   ngOnInit(): void {
+    registerLocaleData(es);
     this.selectedStartDate.setDate(1);
     this.breakpoint = (window.innerWidth <= 800) ? 2 : 4;
     this.getPromoCountAndRopiByProductCategoriesAndYears();
@@ -330,7 +333,7 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   format(x: number): string {
-   
+    x = x * 100 - 100;
     return x.toFixed(2); // Format to 2 decimal places
   }
 

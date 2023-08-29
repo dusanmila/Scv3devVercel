@@ -14,7 +14,8 @@
             selectedUser }} <mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailer" (click)="deselectRetailer()">{{
             selectedRetailer }} - First Table<mat-icon>close</mat-icon></button>
-        <button mat-stroked-button class="filter-section-item" *ngIf="selectedRetailerForSecondTable && selectedRetailerForSecondTable != 'null'"
+        <button mat-stroked-button class="filter-section-item"
+            *ngIf="selectedRetailerForSecondTable && selectedRetailerForSecondTable != 'null'"
             (click)="deselectRetailerForSecondTable()">{{
             selectedRetailerForSecondTable }} - Second Table<mat-icon>close</mat-icon></button>
         <button mat-stroked-button class="filter-section-item" *ngIf="selectedProductCategory"
@@ -26,7 +27,7 @@
                 <app-user [isDashboard]="true" (selectedUser)="selectUser($event)"></app-user>
             </div>
             <div class="table-section-item">
-                <app-retailer [isDashboard]="true" (selectedRetailer)="selectRetailer($event)"
+                <app-retailer [isDashboard]="true" [showRadioButtons]="true" (selectedRetailer)="selectRetailer($event)"
                     (radioBtnValueEvent)="onRadioBtnChange($event)"></app-retailer>
             </div>
             <div class="table-section-item">
@@ -57,10 +58,9 @@
             <div class="container">
                 <mat-table mat-table #table [dataSource]="promoAndRopiByProductCategoriesAndYears" matSort>
                     <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
-                            style="justify-content: left;">Name
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Name
                         </mat-header-cell>
-                        <mat-cell class="mat-cell-left" *matCellDef="let row" data-label="Name">{{ row.name
+                        <mat-cell *matCellDef="let row" data-label="Name">{{ row.name
                             }}</mat-cell>
                     </ng-container>
 
@@ -108,19 +108,19 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashLastYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash Last
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Abs Last
                             Year
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="ROPI cash last year">{{ row.ropiCashLastYear
-                            }}</mat-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI abs last year">{{ row.ropiCashLastYear
+                            | number:'':'es'}} din</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashThisYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash This
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Abs This
                             Year
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="ROPI cash this year">{{ row.ropiCashThisYear
-                            }}</mat-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI abs this year">{{ row.ropiCashThisYear
+                            | number:'':'es'}} din</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashDifference">
@@ -135,7 +135,7 @@
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Uplift
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="Uplift">{{ format(row.uplift)
-                            }}</mat-cell>
+                            }}%</mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -203,19 +203,19 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashLastYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash Last
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Abs Last
                             Year
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="ROPI cash last year">{{ row.ropiCashLastYear
-                            }}</mat-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI abs last year">{{ row.ropiCashLastYear
+                            | number:'':'es'}} din</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashThisYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Cash This
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI Abs This
                             Year
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="ROPI cash this year">{{ row.ropiCashThisYear
-                            }}</mat-cell>
+                        <mat-cell *matCellDef="let row" data-label="ROPI abs this year">{{ row.ropiCashThisYear
+                            | number:'':'es'}} din</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashDifference">
@@ -224,6 +224,13 @@
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="ROPI cash difference">{{ row.ropiCashDifference
                             }}</mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="uplift">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Uplift
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let row" data-label="Uplift">{{ format(row.uplift)
+                            }}%</mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
