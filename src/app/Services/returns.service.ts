@@ -5,6 +5,7 @@ import { Guid } from 'guid-typescript';
 import { Observable, Subject } from 'rxjs';
 import { RETURN_URL } from '../app.constants';
 import { Return } from '../models/returns';
+import { ReturnTypes } from '../models/returnType';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,15 @@ export class ReturnService {
     let retval$ = new Subject<Return[]>();
     this.http.get<Return[]>(`${RETURN_URL}/returns`, { headers: this.headers, params: queryParams }).subscribe((returns: Return[]) => {
       retval$.next(returns);
+    });
+    return retval$.asObservable();
+  }
+
+  getReturnTypes(): Observable<ReturnTypes[]> {
+   
+    let retval$ = new Subject<ReturnTypes[]>();
+    this.http.get<ReturnTypes[]>(`${RETURN_URL}/returnTypes`, { headers: this.headers }).subscribe((returnTypes: ReturnTypes[]) => {
+      retval$.next(returnTypes);
     });
     return retval$.asObservable();
   }

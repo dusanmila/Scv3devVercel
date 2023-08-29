@@ -37,6 +37,13 @@
             <mat-cell *matCellDef="let row" data-label="quantity">{{ row.quantity }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="returnType">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Return type
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="return Type">{{ row.returnType}}
+            </mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="expiryDate">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Expiry Date
             </mat-header-cell>

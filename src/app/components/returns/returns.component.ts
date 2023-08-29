@@ -34,7 +34,7 @@ export class ReturnComponent implements OnInit {
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
 
-  displayedColumns = ['productName', 'quantity', 'expiryDate', 'actions'];
+  displayedColumns = ['productName', 'quantity', 'expiryDate', 'returnType', 'actions'];
 
   constructor(private returnService: ReturnService,
     private objectService: ObjectService,

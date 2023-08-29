@@ -2,6 +2,7 @@ import { Guid } from "guid-typescript";
 
 export interface Return {
     returnId:Guid;
+    returnType:string;
     productName: string;
     productIdCompany:string;
     objectName:string;
