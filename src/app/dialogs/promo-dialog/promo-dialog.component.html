@@ -150,11 +150,11 @@
         </div> -->
 
         <div class="form"
-            *ngIf="data.estimatePromoSale && data.regularSale && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+            *ngIf="data.estimatePromoSale && data.regularSale && (flag===2 || flag=== 4 || flag===3|| flag===5)">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate uplift</mat-label>
                 <input type="number" matInput name="estimateUplift" [required]="flag === 4" disabled
-                    [value]="(data.estimatePromoSale / data.regularSale).toFixed(2)">
+                    [value]="((data.estimatePromoSale / data.regularSale) * 100 - 100).toFixed(2)">
             </mat-form-field>
         </div>
 
@@ -163,7 +163,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Uplift</mat-label>
                 <input type="number" matInput name="uplift" [required]="flag === 4" disabled
-                    [value]="(data.resultSale / data.regularSale).toFixed(2)">
+                    [value]="((data.resultSale / data.regularSale) * 100 - 100).toFixed(2)">
             </mat-form-field>
         </div>
 
