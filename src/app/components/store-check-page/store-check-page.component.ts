@@ -103,7 +103,7 @@ export class StoreCheckPageComponent implements OnInit {
           dialogRef.afterClosed()
             .subscribe({
               next: res => {
-                this.isLoading = false;
+                this.isLoading = true;
                 if (res) {
                   this.finishObjectStoreCheck();
                 }
