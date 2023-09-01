@@ -47,7 +47,7 @@ export class PromoComponent implements OnInit {
   count: number = 5;
   page: number = 1;
   length: number = 0;
-  type: string = 'FOR_CONFIRMATION';
+  type: string = 'PROMO_LIST';
   isEvaluator: boolean = false;
   selectedStartDate: string = '';
   selectedEndDate: string = '';
@@ -179,16 +179,7 @@ export class PromoComponent implements OnInit {
     if (this.type === 'MY_CONFIRMATION') {
       this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
     }
-    else if (this.type === 'FOR_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
-    }
-    else if (this.type === 'FINISHED') {
-      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'uplift', 'estimateRopi', 'ropi', 'estimateRopiCash', 'ropiCash', 'promoGp2', 'actions'];
-    }
-    else if (this.type === 'ACTUAL') {
-      this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
-    }
-    else if (this.type === 'PREDEFINED') {
+    else if (this.type === 'PROMO_LIST') {
       this.displayedColumns = ['retailer', 'product', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
     }
   }
