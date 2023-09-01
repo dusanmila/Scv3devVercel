@@ -91,7 +91,7 @@
 
         <div class="form">
             <mat-form-field appearance="fill">
-                <mat-label>Reb Type</mat-label>
+                <mat-label>Reb (On/Off)</mat-label>
                 <mat-select (selectionChange)="selectPromoType($event)" required name="type" [value]="data.type"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
                     <mat-option *ngFor="let promoType of promoTypes" [value]="promoType">
