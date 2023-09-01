@@ -22,7 +22,7 @@ export class PromoDialogComponent implements OnInit {
   changed: boolean = false;
   retailers: Retailer[];
   products: Product[];
-  promoTypes: string[] = ['Type 1', 'Type 2'];
+  promoTypes: string[] = ['On', 'Off'];
   currentDate: Date = new Date();
   selectedRetailer: Retailer;
   selectedProduct: Product;

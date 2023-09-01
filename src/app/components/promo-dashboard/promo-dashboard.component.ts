@@ -50,7 +50,7 @@ export class PromoDashboardComponent implements OnInit {
 
   selectedUser: string = "";
   selectedRetailer: string = "";
-  selectedRetailerForSecondTable: string = "null";
+  selectedRetailerForSecondTable: string = "";
   selectedProductCategory: string = "";
 
   feedbackCategoryResult: StatisticsModel[];
@@ -111,7 +111,6 @@ export class PromoDashboardComponent implements OnInit {
   }
 
   tooltipText(data) {
-    console.log(data);
     return `${data.data.label}: ${data.data.value}%`;
   }
 
