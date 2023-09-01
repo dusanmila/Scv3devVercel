@@ -192,11 +192,16 @@
                     </button>
                     <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
                         (click)="openDialog(2, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)"><a
-                            class=fix>Confirm</a>
+                            class=fix style="color:green">Confirm</a>
                     </button>
-                    <button mat-icon-button color="primary"
+                    
+                    <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION'"
                         (click)="openDialog(3, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)">
                         <mat-icon area-label="Delete">delete</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary" *ngIf="type==='MY_CONFIRMATION'"
+                        (click)="openDialog(3, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)">
+                        <p style="color:red">Decline</p>
                     </button>
                     <button mat-icon-button color="primary"
                         *ngIf="type === 'FINISHED' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"

@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from 'src/app/models/product';
 import { Return } from 'src/app/models/returns';
+import { ReturnTypes } from 'src/app/models/returnType';
 import { ProductService } from 'src/app/Services/product.service';
 import { ReturnService } from 'src/app/Services/returns.service';
 
@@ -24,6 +25,8 @@ export class ReturnDialogComponent implements OnInit {
   searchResults: any[] = [];
   showErrorMessage: boolean = false;
   product!: string;
+  selectedReturnType:string;
+  public returnTypes: ReturnTypes[] = [];
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<ReturnDialogComponent>,
@@ -37,14 +40,21 @@ export class ReturnDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.product = this.data.productName;
+  
     this.productService.getProductByProductName(this.product).subscribe(data => {
       this.data.productName = data;
     });
+
+    this.returnService.getReturnTypes().subscribe(data => {
+      this.returnTypes = data;
+      console.log(this.returnTypes)
+    });
+
     this.myForm = new FormGroup({
       productName: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }, [ValidateProduct]),
       quantity: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
       expiryDate: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
-      discount: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
+    //  discount: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
       comment: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 })
     });
   }
@@ -52,6 +62,8 @@ export class ReturnDialogComponent implements OnInit {
   add() {
     this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
     this.data.productName = this.product;
+    this.data.returnType=this.selectedReturnType;
+    console.log(this.data.returnType)
     this.returnService.createReturn(this.data).subscribe(data => {
       this.isLoading = false;
       this.changed = true;

@@ -41,6 +41,15 @@
                     formControlName="quantity" required />
             </mat-form-field>
         </div>
+        <div class="form">
+            <mat-form-field>
+              <mat-select [(ngModel)]="selectedReturnType" placeholder="Return type" name="returnType" [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let retType of returnTypes" [value]="retType.typeName">
+                  {{ retType.typeName }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         <!--   <div class="form">
             <mat-form-field>
                 <input matInput placeholder="Expiry Date" [(ngModel)]="data.expiryDate" name="expiryDate"

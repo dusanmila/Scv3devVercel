@@ -43,6 +43,7 @@ export class PromoComponent implements OnInit {
   displayedColumns: string[] = [];
   dataSource: MatTableDataSource<Promo>;
   noData: boolean = false;
+  isMyConfirmation: boolean = false;
   count: number = 5;
   page: number = 1;
   length: number = 0;

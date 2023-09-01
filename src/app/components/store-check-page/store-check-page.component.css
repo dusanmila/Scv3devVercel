@@ -308,3 +308,7 @@ td {
     margin: 10px;
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
+
+.mat-spinner-color::ng-deep circle {
+    stroke: #56baed !important;
+  }
