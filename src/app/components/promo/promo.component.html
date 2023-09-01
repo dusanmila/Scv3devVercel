@@ -4,15 +4,12 @@
 </div>
 
 <mat-radio-group aria-label="Select an option" (change)="changeType($event)">
-    <mat-radio-button value="FOR_CONFIRMATION" checked="true">For confirmation</mat-radio-button>
-    <mat-radio-button value="ACTUAL">Actual</mat-radio-button>
-    <mat-radio-button value="FINISHED">Finished</mat-radio-button>
+    <mat-radio-button value="PROMO_LIST" checked="true">Promo list</mat-radio-button>
     <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
-    <mat-radio-button value="PREDEFINED">Predefined</mat-radio-button>
 </mat-radio-group>
 
 <div class="filters">
-    <mat-form-field *ngIf="type === 'FINISHED'">
+    <mat-form-field *ngIf="type === 'PROMO_LIST'">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">
             <input matStartDate placeholder="Start date" #dateRangeStart>
@@ -25,7 +22,7 @@
     </mat-form-field>
 </div>
 
-<div *ngIf="type === 'FINISHED'" class="filters">
+<div *ngIf="type === 'PROMO_LIST'" class="filters">
     <form class="example-form">
         <mat-form-field class="form-field">
             <mat-label>Retailer</mat-label>
@@ -82,13 +79,13 @@
 
             <ng-container matColumnDef="type">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reb
-                    Type</mat-header-cell>
+                    (On/Off)</mat-header-cell>
                 <mat-cell *matCellDef="let row">{{ row.type }}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="expenses">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Fix
-                    inv.</mat-header-cell>
+                    investment Net</mat-header-cell>
                 <mat-cell *matCellDef="let row">{{ row.expenses }}</mat-cell>
             </ng-container>
 
@@ -181,12 +178,21 @@
 
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>
-                    <button mat-icon-button color="primary" *ngIf="type === 'FOR_CONFIRMATION'">
-                        <mat-icon (click)="openDialog(1,false)" class="whitetext">add</mat-icon>
+                    <button mat-icon-button color="primary" *ngIf="type === 'PROMO_LIST'">
+                        <mat-icon (click)="openDialog(1, false)" class="whitetext">add</mat-icon>
                     </button>
                 </mat-header-cell>
                 <mat-cell class="action-cell" *matCellDef="let row; let i=index">
-                    <button *ngIf="type === 'PREDEFINED'" mat-icon-button color="primary"
+                    <button *ngIf="type === 'PROMO_LIST' && row.confirmed" mat-icon-button color="primary">
+                        <mat-icon area-label="Actual">check_circle</mat-icon>
+                    </button>
+                    <button *ngIf="type === 'PROMO_LIST' && !row.confirmed" mat-icon-button color="primary">
+                        <mat-icon area-label="For confirmation">access_time</mat-icon>
+                    </button>
+                    <button *ngIf="type === 'PROMO_LIST' && !row.confirmed" mat-icon-button color="primary">
+                        <mat-icon area-label="Rejected">close</mat-icon>
+                    </button>
+                    <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
                         (click)="openDialog(6,false, row.promoId, row.retailerName, row.productName, '', '', row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.predefined)">
                         <mat-icon area-label="Copy">filter_none</mat-icon>
                     </button>
@@ -194,7 +200,7 @@
                         (click)="openDialog(2,false, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)"><a
                             class=fix style="color:green">Confirm</a>
                     </button>
-                    
+
                     <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION'"
                         (click)="openDialog(3,false, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)">
                         <mat-icon area-label="Delete">delete</mat-icon>
@@ -204,21 +210,13 @@
                         <p style="color:red">Decline</p>
                     </button>
                     <button mat-icon-button color="primary"
-                        *ngIf="type === 'FINISHED' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                        *ngIf="type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                         (click)="openDialog(4,false, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)">
                         <mat-icon area-label="Edit">edit</mat-icon>
                     </button>
                     <button mat-icon-button color="primary"
                         (click)="openDialog(5,false, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.predefined)">
                         <mat-icon area-label="Info">info</mat-icon>
-                    </button>
-                    <button *ngIf="type === 'FINISHED' && !row.predefined" mat-icon-button color="primary"
-                        (click)="setPredefined(row, true)">
-                        <mat-icon area-label="Add to predefined">settings_backup_restore</mat-icon>
-                    </button>
-                    <button *ngIf="type === 'PREDEFINED' && row.predefined" mat-icon-button color="primary"
-                        (click)="setPredefined(row, false)">
-                        <mat-icon area-label="Remove">remove_circle</mat-icon>
                     </button>
                 </mat-cell>
             </ng-container>
