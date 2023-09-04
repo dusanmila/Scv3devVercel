@@ -28,6 +28,7 @@ export class ProductDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductCategoryNames();
+    console.log(this.data);
   }
 
   add() {
