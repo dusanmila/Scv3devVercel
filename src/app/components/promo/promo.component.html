@@ -211,6 +211,10 @@
                         <p style="color:red">Decline</p>
                     </button>
                     <button mat-icon-button color="primary"
+                        (click)="openDialog(5,false, row.promoId, row.retailerName, row.productName, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp2)">
+                        <mat-icon area-label="Info">info</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary"
                         *ngIf="type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                         (click)="openDialog(4,false, row.creatorUsername, row.promoId, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp2)">
                         <mat-icon area-label="Edit">edit</mat-icon>

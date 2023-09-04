@@ -35,25 +35,25 @@
         <ng-container matColumnDef="price">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Price
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="Price">{{ row.price }}</mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="gp2">
-            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP2
-            </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="GP2">{{ row.gp2 }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="Price">{{ row.price }} din</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="totalExpenses">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Total expenses
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="Total expenses">{{ row.totalExpenses }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="Total expenses">{{ row.totalExpenses }} din</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="rebate">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Rebate
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="Rebate">{{ row.rebate }}</mat-cell>
+            <mat-cell *matCellDef="let row" data-label="Rebate">{{ row.rebate.toFixed(2) }} %</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gp2">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP2
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="GP2">{{ (row.gp2 * 100).toFixed(2) }} %</mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="category">
@@ -71,12 +71,12 @@
             <mat-cell *matCellDef="let row; let i=index">
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Edit"
-                        (click)="openDialog(2, row.productIdCompany, row.productName, row.price, row.weight, row.gp2, row.productCategoryName)">
+                        (click)="openDialog(2, row.productIdCompany, row.productName, row.price, row.weight, row.gp2, row.totalExpenses, row.rebate, row.productCategoryName)">
                         edit</mat-icon>
                 </button>
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Delete"
-                        (click)="openDialog(3, row.productIdCompany, row.productName, row.price, row.weight, row.gp2, row.productCategoryName)">
+                        (click)="openDialog(3, row.productIdCompany, row.productName, row.price, row.weight, row.gp2, row.totalExpenses, row.rebate, row.productCategoryName)">
                         delete</mat-icon>
                 </button>
             </mat-cell>
