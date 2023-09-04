@@ -189,8 +189,8 @@
                     <button *ngIf="type === 'PROMO_LIST' && !row.confirmed" mat-icon-button color="primary">
                         <mat-icon area-label="For confirmation">access_time</mat-icon>
                     </button>
-                    <button *ngIf="type === 'PROMO_LIST' && !row.confirmed" mat-icon-button color="primary">
-                        <mat-icon area-label="Rejected">close</mat-icon>
+                    <button *ngIf="type === 'PROMO_LIST' && row.declined" mat-icon-button color="primary">
+                        <mat-icon area-label="Declined">close</mat-icon>
                     </button>
                     <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
                         (click)="openDialog(6,false, row.promoId, row.retailerName, row.productName, '', '', row.rebate, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.predefined)">
