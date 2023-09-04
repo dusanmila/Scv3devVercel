@@ -109,3 +109,11 @@
 .text-bold {
     font-weight: bold;
 }
+
+.mat-icon-button {
+    width: auto;
+}
+
+.mat-icon {
+    font-size: 20px;
+}

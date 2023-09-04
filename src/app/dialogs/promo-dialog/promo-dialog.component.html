@@ -113,7 +113,7 @@
         <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Price</mat-label>
-                <input type="number" matInput [(ngModel)]="data.price"  name="price"
+                <input type="number" matInput [(ngModel)]="data.price" name="price"
                     [disabled]="flag === 2 || flag === 3 || flag === 4 || flag === 5">
             </mat-form-field>
         </div>
@@ -144,10 +144,11 @@
 
         <div class="form" *ngIf="flag===3 && isDeclined">
             <mat-form-field>
-              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="data.comment" name="comment" required> </textarea>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="data.comment" name="comment"
+                    required> </textarea>
             </mat-form-field>
-          </div>
+        </div>
 
         <!-- <div class="form" *ngIf="data.resultSale">
             <mat-form-field appearance="fill">
@@ -175,7 +176,8 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.estimateRopiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
+        <div class="form"
+            *ngIf="data.estimateRopiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate abs ROPI</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -183,7 +185,8 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
+        <div class="form"
+            *ngIf="data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>ROPI abs</mat-label>
                 <input type="number" matInput name="ropiCash" [required]="flag === 4" disabled
@@ -191,7 +194,8 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.estimateRopi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
+        <div class="form"
+            *ngIf="data.estimateRopi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate ROPI</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -199,7 +203,8 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.ropi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
+        <div class="form"
+            *ngIf="data.ropi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Actual ROPI</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -207,9 +212,12 @@
             </mat-form-field>
         </div>
 
-        <div class="form checkbox" *ngIf="(flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
-            <mat-checkbox [(ngModel)]="data.predefined" name="predefined" color="primary"
-                [disabled]="flag===2 || flag=== 4 || flag===3|| flag===5">Predefined</mat-checkbox>
+        <div class="form" *ngIf="!isDeclined && flag !== 1 && flag !== 6">
+            <mat-form-field appearance="fill">
+                <mat-label>Promo GP 2 %</mat-label>
+                <input type="number" matInput [value]="data.gp2 * 100" required name="promoGp2"
+                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+            </mat-form-field>
         </div>
 
         <div mat-dialog-actions class=" wrap">
@@ -218,7 +226,7 @@
             <button mat-button class="test" *ngIf="flag === 2" type="submit" (click)="confirmPromo()">Ok</button>
             <button mat-button class="test item2-delete" *ngIf="flag === 3 && !isDeclined" type="submit"
                 (click)="delete()">Delete</button>
-                <button mat-button class="test item2-delete" *ngIf="flag === 3 && isDeclined" type="submit"
+            <button mat-button class="test item2-delete" *ngIf="flag === 3 && isDeclined" type="submit"
                 (click)="update(true)">Decline</button>
             <button mat-button class="test" *ngIf="flag === 4" type="submit" (click)="update(false)"
                 [disabled]="!formControl.valid">Ok</button>
