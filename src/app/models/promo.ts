@@ -5,7 +5,7 @@ export interface Promo {
     creatorUsername: string;
     productIdCompany: string;
     productName: string;
-    declined:boolean;
+    declined: boolean;
     comment: string;
     dateStart: string | null;
     dateEnd: string | null;
@@ -18,10 +18,11 @@ export interface Promo {
     price: number;
     resultSale: number;
     ropi: number;
-    estimateRopi:number,
-    ropiCash:number,
-    estimateRopiCash:number,
+    estimateRopi: number,
+    ropiCash: number,
+    estimateRopiCash: number,
     retailerName: string;
     predefined: boolean;
+    gp2: number;
     totalCount: number;
 }
