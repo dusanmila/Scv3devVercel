@@ -1,7 +1,8 @@
 <div class="container">
     <h3 mat-dialog-title *ngIf="flag === 1">Add promotion</h3>
     <h3 mat-dialog-title *ngIf="flag === 2">Confirm promotion</h3>
-    <h3 mat-dialog-title *ngIf="flag === 3">Delete promotion</h3>
+    <h3 mat-dialog-title *ngIf="flag === 3 && !isDeclined">Delete promotion</h3>
+    <h3 mat-dialog-title *ngIf="flag === 3 && isDeclined">Decline promotion</h3>
     <form class="mat-dialog-content" #formControl="ngForm">
         <!-- <div class="form">
             <mat-form-field appearance="fill">
@@ -27,7 +28,7 @@
             </mat-form-field>
         </div> -->
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Partner</mat-label>
                 <input type="text" placeholder="Partner name" aria-label="Retailer" matInput name="retailerName"
@@ -42,7 +43,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Item</mat-label>
                 <input type="text" placeholder="Item name" aria-label="Product" matInput name="productName"
@@ -57,7 +58,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Choose start date</mat-label>
                 <input matInput [matDatepicker]="startDatePicker" (dateInput)="selectStartDate($event)" readonly
@@ -69,7 +70,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Choose end date</mat-label>
                 <input matInput [matDatepicker]="endDatePicker" (dateInput)="selectEndDate($event)" readonly
@@ -81,7 +82,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Rebate %</mat-label>
                 <input type="number" matInput [(ngModel)]="data.rebate" required name="rebate"
@@ -89,7 +90,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Reb (On/Off)</mat-label>
                 <mat-select (selectionChange)="selectPromoType($event)" required name="type" [value]="data.type"
@@ -101,7 +102,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Fix investment Net</mat-label>
                 <input type="number" matInput [(ngModel)]="data.expenses" required name="expenses"
@@ -109,7 +110,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Price</mat-label>
                 <input type="number" matInput [(ngModel)]="data.price"  name="price"
@@ -117,7 +118,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate promo sale</mat-label>
                 <input type="number" matInput [(ngModel)]="data.estimatePromoSale" required name="estimatePromoSale"
@@ -125,7 +126,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form">
+        <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Regular sale</mat-label>
                 <input type="number" matInput [(ngModel)]="data.regularSale" required name="regularSale"
@@ -133,13 +134,20 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+        <div class="form" *ngIf="(flag === 2 || flag === 3|| flag === 4 || flag === 5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Result sale</mat-label>
                 <input type="number" matInput [(ngModel)]="data.resultSale" name="resultSale" [required]="flag === 4"
                     [disabled]="flag === 2 || flag === 3 || flag === 5">
             </mat-form-field>
         </div>
+
+        <div class="form" *ngIf="flag===3 && isDeclined">
+            <mat-form-field>
+              <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="data.comment" name="comment" required> </textarea>
+            </mat-form-field>
+          </div>
 
         <!-- <div class="form" *ngIf="data.resultSale">
             <mat-form-field appearance="fill">
@@ -150,7 +158,7 @@
         </div> -->
 
         <div class="form"
-            *ngIf="data.estimatePromoSale && data.regularSale && (flag===2 || flag=== 4 || flag===3|| flag===5)">
+            *ngIf="data.estimatePromoSale && data.regularSale && (flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate uplift</mat-label>
                 <input type="number" matInput name="estimateUplift" [required]="flag === 4" disabled
@@ -159,7 +167,7 @@
         </div>
 
         <div class="form"
-            *ngIf="data.resultSale && data.regularSale && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+            *ngIf="data.resultSale && data.regularSale && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Uplift</mat-label>
                 <input type="number" matInput name="uplift" [required]="flag === 4" disabled
@@ -167,7 +175,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.estimateRopiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+        <div class="form" *ngIf="data.estimateRopiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate abs ROPI</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -175,7 +183,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+        <div class="form" *ngIf="data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>ROPI abs</mat-label>
                 <input type="number" matInput name="ropiCash" [required]="flag === 4" disabled
@@ -183,7 +191,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.estimateRopi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+        <div class="form" *ngIf="data.estimateRopi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Estimate ROPI</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -191,7 +199,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="data.ropi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5)">
+        <div class="form" *ngIf="data.ropi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Actual ROPI</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -199,7 +207,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form checkbox" *ngIf="flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5">
+        <div class="form checkbox" *ngIf="(flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-checkbox [(ngModel)]="data.predefined" name="predefined" color="primary"
                 [disabled]="flag===2 || flag=== 4 || flag===3|| flag===5">Predefined</mat-checkbox>
         </div>
@@ -208,9 +216,11 @@
             <button mat-button class="test" *ngIf="flag === 1 || flag === 6" type="submit" (click)="add()"
                 [disabled]="!formControl.valid  || showRetailerError || showProductError || !data.dateStart || !data.dateEnd">Ok</button>
             <button mat-button class="test" *ngIf="flag === 2" type="submit" (click)="confirmPromo()">Ok</button>
-            <button mat-button class="test item2-delete" *ngIf="flag === 3" type="submit"
+            <button mat-button class="test item2-delete" *ngIf="flag === 3 && !isDeclined" type="submit"
                 (click)="delete()">Delete</button>
-            <button mat-button class="test" *ngIf="flag === 4" type="submit" (click)="update()"
+                <button mat-button class="test item2-delete" *ngIf="flag === 3 && isDeclined" type="submit"
+                (click)="update(true)">Decline</button>
+            <button mat-button class="test" *ngIf="flag === 4" type="submit" (click)="update(false)"
                 [disabled]="!formControl.valid">Ok</button>
             <button mat-button class="test" (click)="close()">Cancel</button>
             <div *ngIf="isLoading"

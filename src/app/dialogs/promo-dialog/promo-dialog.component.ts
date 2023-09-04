@@ -34,6 +34,7 @@ export class PromoDialogComponent implements OnInit {
   filteredProductNames: string[] = [];
   selectedProductName: string = "";
   showProductError = false;
+  isDeclined:boolean=false;
 
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PromoDialogComponent>,
@@ -68,20 +69,40 @@ export class PromoDialogComponent implements OnInit {
       }
   }
 
-  update() {
+  update(isDecline:boolean) {
     this.isLoading = true;
-    this.promoService.updatePromoResultSale(this.data).subscribe(data => {
-      this.isLoading = false;
-      this.changed = true;
-      this.snackBar.open('Promo successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-      this.close();
-    }),
-      (error: Error) => {
+    if(isDecline){
+      this.data.declined=true;
+    }
+   
+    if(!isDecline){
+      this.promoService.updatePromoResultSale(this.data).subscribe(data => {
         this.isLoading = false;
-        console.log(error.name + ' -> ' + error.message)
-        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.changed = true;
+        this.snackBar.open('Promo successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
         this.close();
-      }
+      }),
+        (error: Error) => {
+          this.isLoading = false;
+          console.log(error.name + ' -> ' + error.message)
+          this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+          this.close();
+        }
+    }else{
+      this.promoService.declinePromo(this.data).subscribe(data => {
+        this.isLoading = false;
+        this.changed = true;
+        this.snackBar.open('Promo successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+        this.close();
+      }),
+        (error: Error) => {
+          this.isLoading = false;
+          console.log(error.name + ' -> ' + error.message)
+          this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+          this.close();
+        }
+    }
+    
   }
 
   confirmPromo() {

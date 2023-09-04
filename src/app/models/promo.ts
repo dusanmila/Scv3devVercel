@@ -5,6 +5,8 @@ export interface Promo {
     creatorUsername: string;
     productIdCompany: string;
     productName: string;
+    declined:boolean;
+    comment: string;
     dateStart: string | null;
     dateEnd: string | null;
     rebate: number;

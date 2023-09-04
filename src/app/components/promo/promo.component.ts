@@ -154,9 +154,12 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, estimateRopi?: number, ropi?: number, estimateRopiCash?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, predefined?: boolean) {
+  openDialog(flag: number, isDeclined:boolean, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, estimateRopi?: number, ropi?: number, estimateRopiCash?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, predefined?: boolean) {
     const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, estimateRopi, ropi, estimateRopiCash, ropiCash, estimatePromoSale, expenses, price, resultSale, predefined } });
     dialogRef.componentInstance.flag = flag;
+  
+    dialogRef.componentInstance.isDeclined = isDeclined;
+
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.getPromos(false);
