@@ -27,7 +27,7 @@
                     [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
-        <div class="form">
+        <div class="form" *ngIf="flag != 1 && flag != 2">
             <mat-form-field>
                 <input matInput placeholder="GP2" [(ngModel)]="data.gp2" name="gp2" type="number"
                     [disabled]="flag === 3" required />
