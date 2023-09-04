@@ -186,7 +186,8 @@
                     <button *ngIf="type === 'PROMO_LIST' && row.confirmed" mat-icon-button color="primary">
                         <mat-icon area-label="Actual">check_circle</mat-icon>
                     </button>
-                    <button *ngIf="type === 'PROMO_LIST' && !row.confirmed" mat-icon-button color="primary">
+                    <button *ngIf="type === 'PROMO_LIST' && !row.confirmed && !row.declined" mat-icon-button
+                        color="primary">
                         <mat-icon area-label="For confirmation">access_time</mat-icon>
                     </button>
                     <button *ngIf="type === 'PROMO_LIST' && row.declined" mat-icon-button color="primary">
