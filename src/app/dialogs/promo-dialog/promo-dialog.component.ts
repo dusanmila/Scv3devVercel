@@ -36,6 +36,7 @@ export class PromoDialogComponent implements OnInit {
   showProductError = false;
   isDeclined:boolean=false;
 
+
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PromoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Promo,
@@ -46,6 +47,7 @@ export class PromoDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.getRetailers();
     this.getProducts();
     this.getRetailerNames();
@@ -71,6 +73,7 @@ export class PromoDialogComponent implements OnInit {
 
   update(isDecline:boolean) {
     this.isLoading = true;
+
     if(isDecline){
       this.data.declined=true;
     }

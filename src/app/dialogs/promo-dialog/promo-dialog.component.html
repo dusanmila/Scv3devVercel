@@ -142,13 +142,6 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="flag===3 && isDeclined">
-            <mat-form-field>
-                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="200" placeholder="Comment" [(ngModel)]="data.comment" name="comment"
-                    required> </textarea>
-            </mat-form-field>
-        </div>
 
         <!-- <div class="form" *ngIf="data.resultSale">
             <mat-form-field appearance="fill">
@@ -217,6 +210,15 @@
                 <mat-label>Promo GP 2 %</mat-label>
                 <input type="number" matInput [value]="data.gp2 * 100" required name="promoGp2"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+            </mat-form-field>
+        </div>
+
+     
+        <div class="form" *ngIf="(flag===3 || flag===5)">
+            <mat-form-field>
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="200" placeholder="Comment" [disabled]="flag === 5" [(ngModel)]="data.comment" name="comment"
+                    required> </textarea>
             </mat-form-field>
         </div>
 

@@ -98,6 +98,7 @@ export class PromoComponent implements OnInit {
     this.selectedProductCategoryName = this.productCategoryFormControl.value;
     this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
       this.promos = data;
+      
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
         this.noData = true;
@@ -154,11 +155,16 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, isDeclined: boolean, promoId?: Guid, retailerName?: string, productName?: string, dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, estimateRopi?: number, ropi?: number, estimateRopiCash?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, gp2?: number) {
-    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, retailerName, productName, dateStart, dateEnd, rebate, regularSale, type, estimateRopi, ropi, estimateRopiCash, ropiCash, estimatePromoSale, expenses, price, resultSale, gp2 } });
+  openDialog(flag: number, declinedAddComment: boolean, promoId?: Guid,creatorUsername?:string, retailerName?: string, productName?: string, declined?:boolean,comment?:string,dateStart?: string, dateEnd?: string, rebate?: number, regularSale?: number, type?: string, estimateRopi?: number, ropi?: number, estimateRopiCash?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, gp2?: number) {
+  
+console.log(flag)
+console.log(declinedAddComment)
+
+    const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId,creatorUsername, retailerName, productName, declined,comment, dateStart, dateEnd, rebate, regularSale, type, estimateRopi, ropi, estimateRopiCash, ropiCash, estimatePromoSale, expenses, price, resultSale, gp2 } });
     dialogRef.componentInstance.flag = flag;
 
-    dialogRef.componentInstance.isDeclined = isDeclined;
+    dialogRef.componentInstance.isDeclined = declinedAddComment;
+   
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
