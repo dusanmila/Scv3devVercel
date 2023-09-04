@@ -34,7 +34,7 @@ export class ProductComponent implements OnInit {
   @Input() public isDashboard: boolean = false;
   @Output() public selectedProduct = new EventEmitter<string>();
 
-  displayedColumns = ['productName', 'weight', 'price', 'gp2', 'category'];
+  displayedColumns = ['productName', 'weight', 'price', 'gp2','totalExpenses','rebate', 'category'];
 
   constructor(private productService: ProductService,
     private dialog: MatDialog,
@@ -70,6 +70,7 @@ export class ProductComponent implements OnInit {
           this.priceFormControls.push(new FormControl('', [Validators.required, Validators.pattern(this.reg)]));
           this.actionPriceFormControls.push(new FormControl('', [Validators.required, Validators.pattern(this.reg)]));
         });
+        console.log(data)
       } else {
         this.noData = true;
         this.dataSource = data;

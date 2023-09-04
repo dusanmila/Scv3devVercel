@@ -4,6 +4,8 @@ export interface Product {
     price: number;
     weight: number;
     gp2: number;
+    totalExpenses:number;
+    rebate:number;
     productCategoryName: string;
     totalCount: number;
 }

@@ -33,6 +33,20 @@
                     [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
+
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Total expenses" [(ngModel)]="data.totalExpenses" name="totalExpenses" type="number"
+                    [disabled]="flag === 3" required />
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field>
+                <input matInput placeholder="Rebate" [(ngModel)]="data.rebate" name="rebate" type="number"
+                    [disabled]="flag === 3" required />
+            </mat-form-field>
+        </div>
         <div class="form">
             <mat-form-field>
                 <mat-label>Product category</mat-label>

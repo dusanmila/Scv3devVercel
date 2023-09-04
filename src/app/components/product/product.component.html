@@ -44,6 +44,18 @@
             <mat-cell *matCellDef="let row" data-label="GP2">{{ row.gp2 }}</mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="totalExpenses">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Total expenses
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Total expenses">{{ row.totalExpenses }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="rebate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Rebate
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Rebate">{{ row.rebate }}</mat-cell>
+        </ng-container>
+
         <ng-container matColumnDef="category">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Category
             </mat-header-cell>
