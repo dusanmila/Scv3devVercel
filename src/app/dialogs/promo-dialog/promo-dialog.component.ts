@@ -23,6 +23,7 @@ export class PromoDialogComponent implements OnInit {
   retailers: Retailer[];
   products: Product[];
   promoTypes: string[] = ['On', 'Off'];
+  rebateTypes: string[] = ['Cascade', 'Summarized'];
   currentDate: Date = new Date();
   selectedRetailer: Retailer;
   selectedProduct: Product;
@@ -222,6 +223,16 @@ export class PromoDialogComponent implements OnInit {
 
   selectPromoType(event) {
     this.data.type = event.value;
+    
+  }
+
+  selectRebateType(event) {
+    if(event.value==="Cascade"){
+      this.data.isRebateCascade=true;
+    }else{
+      this.data.isRebateCascade=false;
+    }
+ 
   }
 
   close() {

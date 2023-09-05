@@ -104,6 +104,18 @@
 
         <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
+                <mat-label>Reb (C/S)</mat-label>
+                <mat-select (selectionChange)="selectRebateType($event)" required name="rebateType" [value]="data.isRebateCascade"
+                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+                    <mat-option *ngFor="let rebateType of rebateTypes" [value]="rebateType">
+                        {{rebateType}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form" *ngIf="!isDeclined">
+            <mat-form-field appearance="fill">
                 <mat-label>Fix investment Net</mat-label>
                 <input type="number" matInput [(ngModel)]="data.expenses" required name="expenses"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">

@@ -10,6 +10,7 @@ export interface Promo {
     dateStart: string | null;
     dateEnd: string | null;
     rebate: number;
+    isRebateCascade:boolean;
     regularSale: number;
     type: string;
     estimatePromoSale: number;
