@@ -5,11 +5,10 @@ export interface Promo {
     creatorUsername: string;
     productIdCompany: string;
     productName: string;
-    declined: boolean;
-    comment: string;
     dateStart: string | null;
     dateEnd: string | null;
     rebate: number;
+    isRebateCascade:boolean;
     regularSale: number;
     type: string;
     estimatePromoSale: number;
@@ -22,7 +21,10 @@ export interface Promo {
     ropiCash: number,
     estimateRopiCash: number,
     retailerName: string;
+    currentEvaluator:string;
     predefined: boolean;
+    declined:boolean;
+    comment:string;
     gp2: number;
     totalCount: number;
 }

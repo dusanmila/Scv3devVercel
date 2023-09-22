@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
@@ -9,6 +9,7 @@ import { Retailer } from 'src/app/models/retailer';
 import { ObjectService } from 'src/app/Services/object.service';
 import { ProductService } from 'src/app/Services/product.service';
 import { PromoService } from 'src/app/Services/promo.service';
+import { AreYouSureDialogComponent } from '../are-you-sure-dialog/are-you-sure-dialog.component';
 
 @Component({
   selector: 'app-promo-dialog',
@@ -23,6 +24,7 @@ export class PromoDialogComponent implements OnInit {
   retailers: Retailer[];
   products: Product[];
   promoTypes: string[] = ['On', 'Off'];
+  rebateTypes: string[] = ['Cascade', 'Summarized'];
   currentDate: Date = new Date();
   selectedRetailer: Retailer;
   selectedProduct: Product;
@@ -36,16 +38,19 @@ export class PromoDialogComponent implements OnInit {
   showProductError = false;
   isDeclined:boolean=false;
 
+
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<PromoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Promo,
     public datePipe: DatePipe,
     public promoService: PromoService,
     public objectService: ObjectService,
-    public productService: ProductService) {
+    public productService: ProductService,
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
+    
     this.getRetailers();
     this.getProducts();
     this.getRetailerNames();
@@ -71,6 +76,7 @@ export class PromoDialogComponent implements OnInit {
 
   update(isDecline:boolean) {
     this.isLoading = true;
+
     if(isDecline){
       this.data.declined=true;
     }
@@ -89,18 +95,30 @@ export class PromoDialogComponent implements OnInit {
           this.close();
         }
     }else{
-      this.promoService.declinePromo(this.data).subscribe(data => {
-        this.isLoading = false;
-        this.changed = true;
-        this.snackBar.open('Promo successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
-        this.close();
-      }),
-        (error: Error) => {
-          this.isLoading = false;
-          console.log(error.name + ' -> ' + error.message)
-          this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-          this.close();
-        }
+      const dialogRef = this.dialog.open(AreYouSureDialogComponent);
+      dialogRef.afterClosed()
+        .subscribe({
+          next: res => {
+            this.isLoading = true;
+            if (res) {
+              console.log(this.data)
+              this.promoService.declinePromo(this.data).subscribe(data => {
+                this.isLoading = false;
+                this.changed = true;
+                this.snackBar.open('Promo successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+                this.close();
+              }),
+                (error: Error) => {
+                  this.isLoading = false;
+                  console.log(error.name + ' -> ' + error.message)
+                  this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+                  this.close();
+                }
+            }
+          },
+          error: err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] })
+        });
+    
     }
     
   }
@@ -219,6 +237,16 @@ export class PromoDialogComponent implements OnInit {
 
   selectPromoType(event) {
     this.data.type = event.value;
+    
+  }
+
+  selectRebateType(event) {
+    if(event.value==="Cascade"){
+      this.data.isRebateCascade=true;
+    }else{
+      this.data.isRebateCascade=false;
+    }
+ 
   }
 
   close() {
