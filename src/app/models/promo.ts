@@ -25,7 +25,7 @@ export interface Promo {
     predefined: boolean;
     declined: boolean;
     comment: string;
-    gp2: number;
+    gp: number;
     confirmed: boolean;
     totalCount: number;
 }
