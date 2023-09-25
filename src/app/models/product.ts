@@ -3,9 +3,7 @@ export interface Product {
     productName: string;
     price: number;
     weight: number;
-    gp2: number;
-    totalExpenses:number;
-    rebate:number;
+    totalExpenses: number;
     productCategoryName: string;
     totalCount: number;
 }
