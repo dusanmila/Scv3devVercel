@@ -27,26 +27,14 @@
                     [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
-        <div class="form" *ngIf="flag != 1 && flag != 2">
-            <mat-form-field>
-                <input matInput placeholder="GP2" [(ngModel)]="data.gp2" name="gp2" type="number"
-                    [disabled]="flag === 3" required />
-            </mat-form-field>
-        </div>
 
         <div class="form">
             <mat-form-field>
-                <input matInput placeholder="Total expenses" [(ngModel)]="data.totalExpenses" name="totalExpenses" type="number"
-                    [disabled]="flag === 3" required />
+                <input matInput placeholder="Total expenses" [(ngModel)]="data.totalExpenses" name="totalExpenses"
+                    type="number" [disabled]="flag === 3" required />
             </mat-form-field>
         </div>
 
-        <div class="form">
-            <mat-form-field>
-                <input matInput placeholder="Rebate" [(ngModel)]="data.rebate" name="rebate" type="number"
-                    [disabled]="flag === 3" required />
-            </mat-form-field>
-        </div>
         <div class="form">
             <mat-form-field>
                 <mat-label>Product category</mat-label>
