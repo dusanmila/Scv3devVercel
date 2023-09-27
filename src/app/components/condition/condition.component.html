@@ -1,0 +1,76 @@
+<div class="font">
+    <div class="centered">
+        <mat-form-field>
+
+            <input type="text" matInput placeholder="Search users" [(ngModel)]="search">
+            <button matSuffix mat-button class="search" (click)="loadData()">
+                <mat-icon class="search">search</mat-icon>
+            </button>
+
+        </mat-form-field>
+    </div>
+    <div class="container mat-elevation-z8">
+
+        <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+            <ng-container matColumnDef="retailer">
+                <mat-header-cell *matHeaderCellDef mat-sort-header
+                    class="whitetext column-name">Retailer</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="productCategory">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Product
+                    category</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.productCategoryName }}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="on">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">On</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.on.toFixed(2) }} %</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="off">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Off</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.off.toFixed(2) }} %</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="fix">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Fix</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.fix.toFixed(2) }} %</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-icon-button color="primary">
+                        <mat-icon (click)="openDialog(1)" class="whitetext">add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i=index">
+                    <button mat-icon-button color="primary">
+                        <mat-icon area-label="Edit"
+                            (click)="openDialog(2,row.conditionId,row.retailerName,row.productCategoryName,row.on,row.off,row.fix)">
+                            edit
+                        </mat-icon>
+                    </button>
+
+                    <button mat-icon-button color="primary">
+                        <mat-icon area-label="Delete"
+                            (click)="openDialog(3,row.conditionId,row.retailerName,row.productCategoryName,row.on,row.off,row.fix)">
+                            delete </mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+        <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+            <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
+            </mat-progress-spinner>
+        </div>
+        <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No users</mat-toolbar>
+        <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count"
+            [pageSizeOptions]="[2, 5, 10, 25, 100]" [length]="length" (page)="loadDataOnPageEvent($event)">
+        </mat-paginator>
+    </div>
+</div>

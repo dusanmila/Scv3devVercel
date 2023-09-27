@@ -1,0 +1,66 @@
+<div class="container">
+    <h3 mat-dialog-title *ngIf="flag == 1">Add condition</h3>
+    <h3 mat-dialog-title *ngIf="flag == 2">Update condition</h3>
+    <h3 mat-dialog-title *ngIf="flag == 3">Delete condition</h3>
+    <form class="mat-dialog-content" #formControl="ngForm">
+        <div class="form">
+            <mat-form-field>
+                <mat-select [(ngModel)]="data.retailerName" placeholder="Retailer" name="retailer" [disabled]="flag==3"
+                    required>
+                    <mat-option *ngFor="let retailer of retailers" [value]="retailer.retailerName">
+                        {{ retailer.retailerName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field>
+                <mat-select [(ngModel)]="data.productCategoryName" placeholder="Product category" name="productCategory"
+                    [disabled]="flag==3" required>
+                    <mat-option *ngFor="let productCategory of productCategories"
+                        [value]="productCategory.productCategoryName">
+                        {{ productCategory.productCategoryName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field>
+                <input type="number" matInput placeholder="On" [(ngModel)]="data.on" name="on" [disabled]="flag==3"
+                    required />
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field>
+                <input type="number" matInput placeholder="Off" [(ngModel)]="data.off" name="off" [disabled]="flag==3"
+                    required />
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field>
+                <input type="number" matInput placeholder="Fix" [(ngModel)]="data.fix" name="fix" [disabled]="flag==3"
+                    required />
+            </mat-form-field>
+        </div>
+
+        <div mat-dialog-actions class="wrap">
+
+            <button mat-button class="test" *ngIf="flag == 1" type="submit" (click)="add()"
+                [disabled]="!formControl.valid">Ok</button>
+            <button mat-button class="test" *ngIf="flag == 2" type="submit" (click)="update()"
+                [disabled]="!formControl.valid">Ok</button>
+            <button mat-button class="test item2-delete" *ngIf="flag == 3" type="submit"
+                (click)="delete()">Delete</button>
+            <button mat-button class="test" (click)="close()">Cancel</button>
+            <div *ngIf="isLoading"
+                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
+                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
+                </mat-progress-spinner>
+            </div>
+        </div>
+    </form>
+</div>

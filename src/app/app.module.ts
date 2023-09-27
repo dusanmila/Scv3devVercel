@@ -108,6 +108,8 @@ import { ProductPriceScannerComponent } from './components/product-price-scanner
 import { UserPerformanceComponent } from './components/user-performance/user-performance.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AddToPredefinedDialogComponent } from './dialogs/add-to-predefined-dialog/add-to-predefined-dialog.component';
+import { ConditionComponent } from './components/condition/condition.component';
+import { ConditionDialogComponent } from './dialogs/condition-dialog/condition-dialog.component';
 
 
 @NgModule({
@@ -171,7 +173,9 @@ import { AddToPredefinedDialogComponent } from './dialogs/add-to-predefined-dial
     PieChartComponent,
     ProductPriceScannerComponent,
     UserPerformanceComponent,
-    AddToPredefinedDialogComponent
+    AddToPredefinedDialogComponent,
+    ConditionComponent,
+    ConditionDialogComponent
   ],
   imports: [
     AppRoutingModule,

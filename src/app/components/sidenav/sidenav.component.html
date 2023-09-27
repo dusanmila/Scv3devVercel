@@ -50,6 +50,9 @@
                     (click)="updateTitle('Promo evaluators')">
                     <mat-icon class="nav-icon">assignment_turned_in</mat-icon>Promo Evaluators
                 </a>
+                <a mat-list-item class="nav-list-item" [routerLink]="['condition']" (click)="updateTitle('Conditions')">
+                    <mat-icon class="nav-icon">loyalty</mat-icon>Conditions
+                </a>
             </div>
             <button mat-button class="nav-button" (click)="toggleData()">
                 Data <mat-icon>expand_more</mat-icon>
