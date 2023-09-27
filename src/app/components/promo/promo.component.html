@@ -170,6 +170,11 @@
                 <mat-cell *matCellDef="let row">{{ ((row.ropi - row.estimateRopi) * 100 - 100).toFixed(2)}}%</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="estimateGP">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate GP</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.estimateGP}}</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="ropiCashDifference">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI
                     cash difference</mat-header-cell>

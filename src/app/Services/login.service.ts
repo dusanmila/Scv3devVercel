@@ -15,6 +15,7 @@ export class LoginService {
     this.http.post<any>(`${AUTH_URL}/auths/login`, {username: username, password: password}).subscribe({
       next: data => {
         retval$.next(data);
+        
       },
       error: e => {
         retval$.error(e);
