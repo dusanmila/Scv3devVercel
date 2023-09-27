@@ -26,6 +26,7 @@ export interface Promo {
     declined: boolean;
     comment: string;
     gp: number;
+    estimateGP:number;
     confirmed: boolean;
     totalCount: number;
 }

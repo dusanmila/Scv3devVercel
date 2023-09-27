@@ -185,10 +185,10 @@ export class PromoComponent implements OnInit {
 
   editDisplayedColumns() {
     if (this.type === 'MY_CONFIRMATION') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2','estimateGP', 'actions'];
     }
     else if (this.type === 'PROMO_LIST') {
-      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2', 'actions'];
+      this.displayedColumns = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'promoGp2','estimateGP', 'actions'];
     }
   }
 
