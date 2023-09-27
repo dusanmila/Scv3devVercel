@@ -4,6 +4,7 @@ import * as saveAs from 'file-saver';
 import { Observable, Subject } from 'rxjs';
 import { CONDITIONS_URL } from '../app.constants';
 import { Condition } from '../models/condition';
+import { Guid } from 'guid-typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +36,7 @@ export class ConditionsService {
     return this.http.put<Condition>(`${CONDITIONS_URL}/conditions`, condition, { headers: this.headers });
   }
 
-  public deleteCondition(conditionId: string): Observable<any> {
+  public deleteCondition(conditionId: Guid): Observable<any> {
     return this.http.delete<any>(`${CONDITIONS_URL}/conditions/${conditionId}`, { headers: this.headers });
   }
 

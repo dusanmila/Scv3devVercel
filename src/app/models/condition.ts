@@ -1,12 +1,14 @@
 import { Guid } from "guid-typescript";
 
 export interface Condition {
-    conditionId:Guid;
+    conditionId: Guid;
     retailerId: Guid;
-    productCategoryId:Guid;
-    on:number;
-    off:number;
-    fix:number;
-    
+    retailerName: string;
+    productCategoryId: Guid;
+    productCategoryName: string;
+    on: number;
+    off: number;
+    fix: number;
+    totalCount: number;
 }
 
