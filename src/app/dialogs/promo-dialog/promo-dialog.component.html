@@ -218,6 +218,15 @@
             </mat-form-field>
         </div>
 
+        <div class="form"
+            *ngIf="data.estimateGP && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
+            <mat-form-field appearance="fill">
+                <mat-label>Estimate GP %</mat-label>
+                <input type="number" matInput name="result" [required]="flag === 4" disabled
+                    [value]="data.estimateGP.toFixed(2)">
+            </mat-form-field>
+        </div>
+
         <div class="form" *ngIf="!isDeclined && flag !== 1 && flag !== 6">
             <mat-form-field appearance="fill">
                 <mat-label>Promo GP 2 %</mat-label>
