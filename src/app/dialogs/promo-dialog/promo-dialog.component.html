@@ -244,7 +244,8 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="!isDeclined && flag !== 1 && flag !== 6">
+        <div class="form"
+            *ngIf="data.gpCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>GP Abs</mat-label>
                 <input type="number" matInput [value]="data.gpCash.toFixed(2)" required name="gpCash"
