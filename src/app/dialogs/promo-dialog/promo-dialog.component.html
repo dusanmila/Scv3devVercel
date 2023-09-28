@@ -106,7 +106,8 @@
             <mat-form-field appearance="fill">
                 <mat-label>Reb (C/S)</mat-label>
                 <mat-select (selectionChange)="selectRebateType($event)" required name="rebateType"
-                    [value]="data.isRebateCascade ? 'Cascade' : (data.isRebateCascade==null ? '' : 'Summarized')" [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+                    [value]="data.isRebateCascade ? 'Cascade' : (data.isRebateCascade==null ? '' : 'Summarized')"
+                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
                     <mat-option *ngFor="let rebateType of rebateTypes" [value]="rebateType">
                         {{rebateType}}
                     </mat-option>
@@ -220,17 +221,17 @@
         <div class="form" *ngIf="!isDeclined && flag !== 1 && flag !== 6">
             <mat-form-field appearance="fill">
                 <mat-label>Promo GP 2 %</mat-label>
-                <input type="number" matInput [value]="data.gp * 100" required name="promoGp2"
+                <input type="number" matInput [value]="data.gp" required name="promoGp2"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
             </mat-form-field>
         </div>
 
-     
+
         <div class="form" *ngIf="(flag===3 || flag===5) && data.comment && data.comment !=''">
             <mat-form-field>
                 <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
-                    cdkAutosizeMaxRows="200" placeholder="Comment" [disabled]="flag === 5 || !isDeclined" [(ngModel)]="data.comment"
-                    name="comment" required> </textarea>
+                    cdkAutosizeMaxRows="200" placeholder="Comment" [disabled]="flag === 5 || !isDeclined"
+                    [(ngModel)]="data.comment" name="comment" required> </textarea>
             </mat-form-field>
         </div>
 
