@@ -174,7 +174,7 @@
             <ng-container matColumnDef="estimateGP">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate
                     GP</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.estimateGP}}</mat-cell>
+                <mat-cell class="text-bold" *matCellDef=" let row">{{ row.estimateGP}}%</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="ropiCashDifference">
