@@ -36,7 +36,7 @@ export class PromoDialogComponent implements OnInit {
   filteredProductNames: string[] = [];
   selectedProductName: string = "";
   showProductError = false;
-  isDeclined:boolean=false;
+  isDeclined: boolean = false;
 
 
   constructor(public snackBar: MatSnackBar,
@@ -50,7 +50,6 @@ export class PromoDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     this.getRetailers();
     this.getProducts();
     this.getRetailerNames();
@@ -74,14 +73,14 @@ export class PromoDialogComponent implements OnInit {
       }
   }
 
-  update(isDecline:boolean) {
+  update(isDecline: boolean) {
     this.isLoading = true;
 
-    if(isDecline){
-      this.data.declined=true;
+    if (isDecline) {
+      this.data.declined = true;
     }
-   
-    if(!isDecline){
+
+    if (!isDecline) {
       this.promoService.updatePromoResultSale(this.data).subscribe(data => {
         this.isLoading = false;
         this.changed = true;
@@ -94,7 +93,7 @@ export class PromoDialogComponent implements OnInit {
           this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
           this.close();
         }
-    }else{
+    } else {
       const dialogRef = this.dialog.open(AreYouSureDialogComponent);
       dialogRef.afterClosed()
         .subscribe({
@@ -118,9 +117,9 @@ export class PromoDialogComponent implements OnInit {
           },
           error: err => this.snackBar.open('Error', 'Close', { duration: 2500, panelClass: ['red-snackbar'] })
         });
-    
+
     }
-    
+
   }
 
   confirmPromo() {
@@ -237,16 +236,16 @@ export class PromoDialogComponent implements OnInit {
 
   selectPromoType(event) {
     this.data.type = event.value;
-    
+
   }
 
   selectRebateType(event) {
-    if(event.value==="Cascade"){
-      this.data.isRebateCascade=true;
-    }else{
-      this.data.isRebateCascade=false;
+    if (event.value === "Cascade") {
+      this.data.isRebateCascade = true;
+    } else {
+      this.data.isRebateCascade = false;
     }
- 
+
   }
 
   close() {
