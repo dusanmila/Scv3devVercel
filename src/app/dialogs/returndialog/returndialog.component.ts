@@ -54,16 +54,16 @@ export class ReturnDialogComponent implements OnInit {
       productName: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }, [ValidateProduct]),
       quantity: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
       expiryDate: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
-    //  discount: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
+      returnTypeName: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 }),
       comment: new FormControl({ value: '', disabled: this.flag === 3 || this.flag === 4 })
     });
   }
 
   add() {
-    this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
+    this.data.expiryDate = this.data.expiryDate;
     this.data.productName = this.product;
-    this.data.returnType=this.selectedReturnType;
-    console.log(this.data.returnType)
+    this.data.returnTypeName=this.selectedReturnType;
+    console.log(this.data.returnTypeName)
     this.returnService.createReturn(this.data).subscribe(data => {
       this.isLoading = false;
       this.changed = true;
@@ -80,7 +80,7 @@ export class ReturnDialogComponent implements OnInit {
 
   update() {
     this.isLoading = true;
-    this.data.expiryDate = this.datePipe.transform(this.data.expiryDate, 'yyyy-MM-dd');
+    this.data.expiryDate = this.data.expiryDate;
     this.data.productName = this.product;
     this.returnService.updateReturn(this.data).subscribe(data => {
       this.isLoading = false;

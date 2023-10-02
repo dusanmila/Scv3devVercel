@@ -28,13 +28,12 @@ export class ReturnComponent implements OnInit {
   noData: boolean = false;
   showHeader: boolean = true;
 
+  datenow = new Date();
 
   dataSource: MatTableDataSource<Return>;
   reg = /^-?\d*[.,]?\d{0,2}$/;
-  priceFormControls: FormControl[] = [];
-  actionPriceFormControls: FormControl[] = [];
 
-  displayedColumns = ['productName', 'quantity', 'expiryDate', 'returnType', 'actions'];
+  displayedColumns = ['productName', 'quantity', 'expiryDate', 'returnTypeName', 'actions'];
 
   constructor(private returnService: ReturnService,
     private objectService: ObjectService,
@@ -62,7 +61,6 @@ export class ReturnComponent implements OnInit {
   }
 
   loadData(pageChanged: boolean) {
-
     if (!pageChanged)
       this.page = 1;
     this.returnService.getReturnsByObject(this.count, this.page, this.search, this.objectIdCompany).subscribe(data => {
@@ -71,10 +69,12 @@ export class ReturnComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Return>(data);
         this.length = data[0].totalCount;
         this.noData = false;
-        data.forEach(i => {
-          this.priceFormControls.push(new FormControl('', [Validators.required, Validators.pattern(this.reg)]));
-          this.actionPriceFormControls.push(new FormControl('', [Validators.required, Validators.pattern(this.reg)]));
+
+        data.forEach(data1 => {
+          
+          data1.expiryDate=new Date(data1.expiryDate);
         });
+       
       } else {
         this.noData = true;
         this.dataSource = data;
@@ -90,9 +90,10 @@ export class ReturnComponent implements OnInit {
     this.loadData(true);
   }
 
-  openDialog(flag: number, returnId?: Guid, retailerName?: string, objectName?: string, objectAddress?: string, objectCity?: string, objectIdCompany?: string, objectIdRetail?: string, productName?: string, productIdCompany?: string, quantity?: number, expiryDate?: Date, comment?: string, discount?: number) {
-    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { returnId, retailerName, objectName, objectAddress, objectCity, objectIdCompany: this.objectIdCompany, objectIdRetail, productName, productIdCompany, quantity, expiryDate, comment, discount } });
+  openDialog(flag: number, returnId?: Guid, retailerName?: string, objectName?: string, objectAddress?: string, objectCity?: string, objectIdCompany?: string, objectIdRetail?: string, productName?: string, productIdCompany?: string, quantity?: number, expiryDate?: Date, comment?: string, discount?: number,returnTypeName?: string) {
+    const dialogRef = this.dialog.open(ReturnDialogComponent, { data: { returnId, retailerName, objectName, objectAddress, objectCity, objectIdCompany: this.objectIdCompany, objectIdRetail, productName, productIdCompany, quantity, expiryDate, comment, discount, returnTypeName } });
     dialogRef.componentInstance.flag = flag;
+    
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
         this.loadData(false);
