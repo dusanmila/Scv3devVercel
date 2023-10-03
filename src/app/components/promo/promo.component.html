@@ -8,45 +8,58 @@
     <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
 </mat-radio-group>
 
-<div class="filters">
-    <mat-form-field *ngIf="type === 'PROMO_LIST'">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" #dateRangeStart>
-            <input matEndDate placeholder="End date" #dateRangeEnd
-                (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
-        </mat-date-range-input>
-        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-</div>
+<mat-accordion *ngIf="type === 'PROMO_LIST'">
+    <mat-expansion-panel class="expansion-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filters
+            </mat-panel-title>
+            <mat-panel-description>
+                {{panelOpenState ? 'Close filters' : 'Open filters'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="filters">
+            <mat-form-field *ngIf="type === 'PROMO_LIST'">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date" #dateRangeStart>
+                    <input matEndDate placeholder="End date" #dateRangeEnd
+                        (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                </mat-date-range-input>
+                <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div>
 
-<div *ngIf="type === 'PROMO_LIST'" class="filters">
-    <form class="example-form">
-        <mat-form-field class="form-field">
-            <mat-label>Retailer</mat-label>
-            <input type="text" placeholder="Retailer name" aria-label="Retailer" matInput
-                [formControl]="retailerFormControl" [matAutocomplete]="retailerAuto">
-            <mat-autocomplete autoActiveFirstOption #retailerAuto="matAutocomplete" (closed)="getPromos(false)">
-                <mat-option *ngFor="let option of filteredRetailerNames | async" [value]="option">
-                    {{option}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+        <div *ngIf="type === 'PROMO_LIST'" class="filters">
+            <form class="example-form">
+                <mat-form-field class="form-field">
+                    <mat-label>Retailer</mat-label>
+                    <input type="text" placeholder="Retailer name" aria-label="Retailer" matInput
+                        [formControl]="retailerFormControl" [matAutocomplete]="retailerAuto">
+                    <mat-autocomplete autoActiveFirstOption #retailerAuto="matAutocomplete" (closed)="getPromos(false)">
+                        <mat-option *ngFor="let option of filteredRetailerNames | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
 
-        <mat-form-field class="form-field">
-            <mat-label>Product category</mat-label>
-            <input type="text" placeholder="Product category name" aria-label="Product category" matInput
-                [formControl]="productCategoryFormControl" [matAutocomplete]="productCategoryAuto">
-            <mat-autocomplete autoActiveFirstOption #productCategoryAuto="matAutocomplete" (closed)="getPromos(false)">
-                <mat-option *ngFor="let option of filteredProductCategoryNames | async" [value]="option">
-                    {{option}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </form>
-</div>
+                <mat-form-field class="form-field">
+                    <mat-label>Product category</mat-label>
+                    <input type="text" placeholder="Product category name" aria-label="Product category" matInput
+                        [formControl]="productCategoryFormControl" [matAutocomplete]="productCategoryAuto">
+                    <mat-autocomplete autoActiveFirstOption #productCategoryAuto="matAutocomplete"
+                        (closed)="getPromos(false)">
+                        <mat-option *ngFor="let option of filteredProductCategoryNames | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
 
 <div>
     <div class="table mat-elevation-z8">

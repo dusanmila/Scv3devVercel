@@ -61,6 +61,7 @@ export class PromoComponent implements OnInit {
   filteredProductCategoryNames: Observable<string[]>;
   selectedProductCategoryName: string = "";
   currentDate: Date = new Date();
+  panelOpenState = false;
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
