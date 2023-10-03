@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'chooseObject/:workModel', component: ChooseObjectComponent, canActivate: [AdminGuard] },
   { path: 'resolvedFeebacks/:objectIdCompany', component: ResolvedFeedbackComponent, canActivate: [AdminGuard] },
   { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
-  { path: 'priceScanner', component: ProductPriceScannerComponent, canActivate: [AdminGuard] },
+  { path: 'priceScanner/:objectIdCompany', component: ProductPriceScannerComponent, canActivate: [AdminGuard] },
   { path: 'returns/:objectIdCompany', component: ReturnComponent, canActivate: [AdminGuard] },
   { path: 'modules', component: ModulesComponent, canActivate: [AdminGuard] },
   { path: 'promo', component: PromoComponent, canActivate: [AdminGuard] },

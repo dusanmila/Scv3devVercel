@@ -98,18 +98,26 @@
 
               <mat-icon area-label="Info">info</mat-icon>
             </button>
-            <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin && !isReturns" [disabled]="isObjectSelected"
+            <button class="choose-btn" mat-button color="primary"
+              *ngIf="!isAdmin && (workModel==='resolveFeedbacks' || workModel==='addStoreCheck' || workModel==='positions')"
+              [disabled]="isObjectSelected"
               (click)="getUnfinishedObjectStoreCheck(row.objectName, row.objectIdCompany)">
 
               Start
               <mat-icon area-label="Open" class="openIcon">open_in_new</mat-icon>
             </button>
-            <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin && isReturns" [disabled]="isObjectSelected"
-            (click)="returnPage(row.objectIdCompany)">
+            <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin && isReturns"
+              [disabled]="isObjectSelected" (click)="returnPage(row.objectIdCompany)">
 
-            Start
-            <mat-icon area-label="Open" class="openIcon">open_in_new</mat-icon>
-          </button>
+              Start
+              <mat-icon area-label="Open" class="openIcon">open_in_new</mat-icon>
+            </button>
+
+            <button class="choose-btn" mat-button color="primary" *ngIf="!isAdmin && workModel==='priceScanner'"
+              [disabled]="isObjectSelected" (click)="openPriceScannerPage(row.objectIdCompany)">
+              Start
+              <mat-icon area-label="Open" class="openIcon">open_in_new</mat-icon>
+            </button>
 
           </mat-cell>
         </ng-container>
