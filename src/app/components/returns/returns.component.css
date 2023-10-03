@@ -126,6 +126,18 @@
 
 }
 
+.boja{
+    width: 10px;
+    height: 10px;
+}
+.green{
+    background-color: #D1FFBD;
+
+}
+
+.red{
+    background-color:  #ffcccb;
+}
 
 
 /* Promena izgleda table */
