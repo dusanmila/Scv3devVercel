@@ -29,7 +29,7 @@ export class ObjectComponent implements OnInit {
   subscription: Subscription;
   isLoading = false;
   objInfo: ObjectInfo;
-  isReturns :boolean=false;
+  isReturns: boolean = false;
 
   @Input() public workModel: string;
   @Input() public isAdmin: boolean = false;
@@ -52,7 +52,7 @@ export class ObjectComponent implements OnInit {
   // public positionCheck: boolean = false;
 
   objectInfo: ObjectInfo;
-isObjectSelected=false;
+  isObjectSelected = false;
 
   search: string = "";
 
@@ -144,9 +144,8 @@ isObjectSelected=false;
     this.workModel = this.activatedRoute.snapshot.paramMap.get("workModel") as string;
 
 
-    if(this.workModel=='returns')
-    {
-      this.isReturns=true;
+    if (this.workModel == 'returns') {
+      this.isReturns = true;
     }
     // if (this.workModel == "addStoreCheck") {
     //   this.resolveFeedbacks = false;
@@ -268,7 +267,7 @@ isObjectSelected=false;
 
   public getUnfinishedObjectStoreCheck(objectName: string, objectIdCompany: string) {
 
-    this.isObjectSelected=true;
+    this.isObjectSelected = true;
     if (this.workModel === 'addStoreCheck') {
       let username = localStorage.getItem("username") as string;
       this.objectStoreCheckService.getUnfinishedObjectStoreCheckByUsername(username).subscribe(data => {
@@ -296,13 +295,16 @@ isObjectSelected=false;
     }
   }
 
-  public returnPage(objectIdCompany:string)
-  {
+  public returnPage(objectIdCompany: string) {
     this.router.navigate(['/returns', objectIdCompany]);
   }
 
+  openPriceScannerPage(objectIdCompany) {
+    this.router.navigate(['/priceScanner', objectIdCompany]);
+  }
+
   public selectObject(objectName: string) {
-    this.isObjectSelected=true;
+    this.isObjectSelected = true;
     this.selectedObject.emit(objectName);
   }
 

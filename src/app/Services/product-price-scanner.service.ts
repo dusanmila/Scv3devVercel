@@ -13,11 +13,11 @@ export class ProductPriceScannerService {
 
   constructor(public http: HttpClient) { }
 
-  getProductsPriceScanner(search: string) {
+  getProductsPriceScannerByObject(objectIdCompany: string, search: string) {
     let queryParams = new HttpParams();
     queryParams = queryParams.append("search", search);
     let retval$ = new Subject<ProductPriceScanner[]>();
-    this.http.get<ProductPriceScanner[]>(`${PRODUCT_URL}/productPriceScanner`, { params: queryParams, headers: this.headers }).subscribe((products: ProductPriceScanner[]) => {
+    this.http.get<ProductPriceScanner[]>(`${PRODUCT_URL}/productPriceScanner/productsPriceScannerByObject/${objectIdCompany}`, { params: queryParams, headers: this.headers }).subscribe((products: ProductPriceScanner[]) => {
       retval$.next(products);
     });
     return retval$.asObservable();
