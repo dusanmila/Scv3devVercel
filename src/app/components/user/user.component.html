@@ -29,9 +29,9 @@
         <mat-cell *matCellDef="let row">{{ row.username }}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="email">
+      <ng-container  matColumnDef="email">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Email</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+        <mat-cell style="margin-right: 20px;" *matCellDef="let row">{{ row.email }}</mat-cell>
       </ng-container>
 
 
