@@ -3,9 +3,9 @@
     <h2 style="height:80px;"> <span>Promo Management</span> </h2>
 </div>
 
-<mat-radio-group aria-label="Select an option" (change)="changeType($event)">
+<mat-radio-group *ngIf="isEvaluator" aria-label="Select an option" (change)="changeType($event)">
     <mat-radio-button value="PROMO_LIST" checked="true">Promo list</mat-radio-button>
-    <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
+    <mat-radio-button value="MY_CONFIRMATION">My confirmation</mat-radio-button>
 </mat-radio-group>
 
 <mat-accordion *ngIf="type === 'PROMO_LIST'">
@@ -19,7 +19,7 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="filters">
-            <mat-form-field *ngIf="type === 'PROMO_LIST'">
+            <mat-form-field class="form-field" *ngIf="type === 'PROMO_LIST'">
                 <mat-label>Enter a date range</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
                     <input matStartDate placeholder="Start date" #dateRangeStart>
@@ -30,33 +30,48 @@
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
             </mat-form-field>
-        </div>
 
-        <div *ngIf="type === 'PROMO_LIST'" class="filters">
-            <form class="example-form">
-                <mat-form-field class="form-field">
-                    <mat-label>Retailer</mat-label>
-                    <input type="text" placeholder="Retailer name" aria-label="Retailer" matInput
-                        [formControl]="retailerFormControl" [matAutocomplete]="retailerAuto">
-                    <mat-autocomplete autoActiveFirstOption #retailerAuto="matAutocomplete" (closed)="getPromos(false)">
-                        <mat-option *ngFor="let option of filteredRetailerNames | async" [value]="option">
-                            {{option}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
+            <mat-form-field class="form-field">
+                <mat-label>State</mat-label>
+                <mat-select [(ngModel)]="state" (selectionChange)="getPromos(false)">
+                    <mat-option *ngFor="let state of states" [value]="state.value">
+                        {{state.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
 
-                <mat-form-field class="form-field">
-                    <mat-label>Product category</mat-label>
-                    <input type="text" placeholder="Product category name" aria-label="Product category" matInput
-                        [formControl]="productCategoryFormControl" [matAutocomplete]="productCategoryAuto">
-                    <mat-autocomplete autoActiveFirstOption #productCategoryAuto="matAutocomplete"
-                        (closed)="getPromos(false)">
-                        <mat-option *ngFor="let option of filteredProductCategoryNames | async" [value]="option">
-                            {{option}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </form>
+            <mat-form-field class="form-field">
+                <mat-label>Retailer</mat-label>
+                <input type="text" placeholder="Retailer name" aria-label="Retailer" matInput
+                    [formControl]="retailerFormControl" [matAutocomplete]="retailerAuto">
+                <mat-autocomplete autoActiveFirstOption #retailerAuto="matAutocomplete" (closed)="getPromos(false)">
+                    <mat-option *ngFor="let option of filteredRetailerNames | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+                <mat-label>Product</mat-label>
+                <input type="text" placeholder="Product name" aria-label="Product" matInput
+                    [formControl]="productFormControl" [matAutocomplete]="productAuto">
+                <mat-autocomplete autoActiveFirstOption #productAuto="matAutocomplete" (closed)="getPromos(false)">
+                    <mat-option *ngFor="let option of filteredProductNames | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+            <mat-form-field class="form-field">
+                <mat-label>Creator</mat-label>
+                <input type="text" placeholder="Creator name" aria-label="Creator" matInput
+                    [formControl]="userFormControl" [matAutocomplete]="userAuto">
+                <mat-autocomplete autoActiveFirstOption #userAuto="matAutocomplete" (closed)="getPromos(false)">
+                    <mat-option *ngFor="let option of filteredUserNames | async" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
         </div>
     </mat-expansion-panel>
 </mat-accordion>
