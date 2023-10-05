@@ -186,7 +186,7 @@
                                 class=fix style="color:green">Confirm</a>
                         </button>
     
-                        <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION'"
+                        <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION' && row.creatorUsername == loggedUser"
                             (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
                             <mat-icon area-label="Delete">delete</mat-icon>
                         </button>
@@ -196,7 +196,7 @@
                         </button>
     
                         <button mat-icon-button color="primary"
-                            *ngIf="type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                            *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                             (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
                             <mat-icon area-label="Edit">edit</mat-icon>
                         </button>
@@ -364,7 +364,7 @@
                             class=fix style="color:green">Confirm</a>
                     </button>
 
-                    <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION'"
+                    <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION' && row.creatorUsername == loggedUser"
                         (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Delete">delete</mat-icon>
                     </button>
@@ -374,7 +374,7 @@
                     </button>
 
                     <button mat-icon-button color="primary"
-                        *ngIf="type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                        *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                         (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Edit">edit</mat-icon>
                     </button>

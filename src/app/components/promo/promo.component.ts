@@ -65,6 +65,7 @@ export class PromoComponent implements OnInit {
   selectedProductCategoryName: string = "";
   currentDate: Date = new Date();
   panelOpenState = false;
+  loggedUser=localStorage.getItem('username');
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
