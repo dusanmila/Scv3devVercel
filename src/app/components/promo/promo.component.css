@@ -10,6 +10,7 @@
 .mat-header-cell {
     background: #56baed;
     justify-content: center;
+    text-align: center;
 }
 
 .mat-cell {
@@ -116,4 +117,8 @@
 
 .mat-icon {
     font-size: 20px;
+}
+
+.expansion-panel {
+    margin-bottom: 20px;
 }

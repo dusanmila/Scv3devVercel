@@ -15,6 +15,11 @@
     </mat-card-content>
 </mat-card>
 
+<div style="margin-left: 20px;font-family:sans-serif;">
+<div><div class="boja" style="background-color: #ffcccb;"></div>Date expired</div>
+<div><div class="boja" style="background-color: #D1FFBD; margin-top: 5px;"></div>Sold</div>
+</div>
+
 <div class="centered font">
     <mat-form-field>
         <input type="text" matInput placeholder="Search returns" [(ngModel)]="search">
@@ -37,10 +42,10 @@
             <mat-cell *matCellDef="let row" data-label="quantity">{{ row.quantity }}</mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="returnType">
+        <ng-container matColumnDef="returnTypeName">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Return type
             </mat-header-cell>
-            <mat-cell *matCellDef="let row" data-label="return Type">{{ row.returnType}}
+            <mat-cell *matCellDef="let row" data-label="return Type">{{ row.returnTypeName}}
             </mat-cell>
         </ng-container>
 
@@ -60,28 +65,28 @@
             </mat-header-cell>
             <mat-cell *matCellDef="let row; let i=index">
                 <button mat-icon-button color="primary"
-                    (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                    (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount, row.returnTypeName)">
 
                     View
                 </button>
                 <button mat-icon-button color="primary">
                     <mat-icon style="margin-top: -5px;" area-label="Edit"
-                        (click)="openDialog(2, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                        (click)="openDialog(2, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount, row.returnTypeName)">
                         edit</mat-icon>
                 </button>
-                <button mat-icon-button color="primary"
-                    (click)="openDialog(3, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                <button *ngIf="!row.sold" mat-icon-button color="primary"
+                    (click)="openDialog(3, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount, row.returnTypeName)">
                     Sold
                 </button>
                 <button mat-icon-button color="primary">
                     <mat-icon style="margin-top: -5px;" area-label="Edit"
-                        (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount)">
+                        (click)="openDialog(4, row.returnId,row.retailerName, row.objectName,row.objectAddress,row.objectCity, row.objectIdCompany,row.objectIdRetail,row.productName,row.productIdCompany,row.quantity, row.expiryDate, row.comment, row.discount, row.returnTypeName)">
                         delete</mat-icon>
                 </button>
             </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
+        <mat-row   [ngClass]="row.sold  ? 'green' : (row.expiryDate < datenow ? 'red' : 'siva')" style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
         </mat-row>
     </mat-table>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductPriceScannerService } from 'src/app/Services/product-price-scanner.service';
 import { ProductPriceScanner } from 'src/app/models/productPriceScanner';
 
@@ -21,18 +21,22 @@ export class ProductPriceScannerComponent implements OnInit {
   displayedColumns = ['productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
   reg = /^-?\d*[.,]?\d{0,2}$/;
   search: string = '';
+  objectIdCompany: string = '';
 
   constructor(private productPriceScannerService: ProductPriceScannerService,
     private router: Router,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    public activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
+
     this.loadData();
   }
 
   loadData() {
     this.isLoading = true;
-    this.productPriceScannerService.getProductsPriceScanner(this.search).subscribe(data => {
+    this.productPriceScannerService.getProductsPriceScannerByObject(this.objectIdCompany, this.search).subscribe(data => {
       if (data) {
         this.dataSource = new MatTableDataSource<ProductPriceScanner>(data);
         this.noData = false;
@@ -49,6 +53,7 @@ export class ProductPriceScannerComponent implements OnInit {
   }
 
   changePrice(product: ProductPriceScanner) {
+    product.objectIdCompany = this.objectIdCompany;
     this.productPriceScannerService.updateProduct(product).subscribe({
       next: data => {
         console.log(data);

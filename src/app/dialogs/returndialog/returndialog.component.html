@@ -43,7 +43,7 @@
         </div>
         <div class="form">
             <mat-form-field>
-              <mat-select [(ngModel)]="selectedReturnType" placeholder="Return type" name="returnType" [ngModelOptions]="{standalone: true}">
+              <mat-select  formControlName="returnTypeName" [(ngModel)]="data.returnTypeName" placeholder="Return type" name="returnType" >
                 <mat-option *ngFor="let retType of returnTypes" [value]="retType.typeName">
                   {{ retType.typeName }}
                 </mat-option>
@@ -58,7 +58,7 @@
         </div>-->
         <mat-form-field appearance="fill">
             <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [(ngModel)]="data.expiryDate" name="date"
+            <input required matInput [matDatepicker]="picker" [(ngModel)]="data.expiryDate" name="date"
                 formControlName="expiryDate">
             <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

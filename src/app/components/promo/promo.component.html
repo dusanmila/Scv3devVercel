@@ -8,45 +8,58 @@
     <mat-radio-button value="MY_CONFIRMATION" *ngIf="isEvaluator">My confirmation</mat-radio-button>
 </mat-radio-group>
 
-<div class="filters">
-    <mat-form-field *ngIf="type === 'PROMO_LIST'">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" #dateRangeStart>
-            <input matEndDate placeholder="End date" #dateRangeEnd
-                (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
-        </mat-date-range-input>
-        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-    </mat-form-field>
-</div>
+<mat-accordion *ngIf="type === 'PROMO_LIST'">
+    <mat-expansion-panel class="expansion-panel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filters
+            </mat-panel-title>
+            <mat-panel-description>
+                {{panelOpenState ? 'Close filters' : 'Open filters'}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="filters">
+            <mat-form-field *ngIf="type === 'PROMO_LIST'">
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date" #dateRangeStart>
+                    <input matEndDate placeholder="End date" #dateRangeEnd
+                        (dateChange)="dateRangeChange(dateRangeStart, dateRangeEnd)">
+                </mat-date-range-input>
+                <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+        </div>
 
-<div *ngIf="type === 'PROMO_LIST'" class="filters">
-    <form class="example-form">
-        <mat-form-field class="form-field">
-            <mat-label>Retailer</mat-label>
-            <input type="text" placeholder="Retailer name" aria-label="Retailer" matInput
-                [formControl]="retailerFormControl" [matAutocomplete]="retailerAuto">
-            <mat-autocomplete autoActiveFirstOption #retailerAuto="matAutocomplete" (closed)="getPromos(false)">
-                <mat-option *ngFor="let option of filteredRetailerNames | async" [value]="option">
-                    {{option}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
+        <div *ngIf="type === 'PROMO_LIST'" class="filters">
+            <form class="example-form">
+                <mat-form-field class="form-field">
+                    <mat-label>Retailer</mat-label>
+                    <input type="text" placeholder="Retailer name" aria-label="Retailer" matInput
+                        [formControl]="retailerFormControl" [matAutocomplete]="retailerAuto">
+                    <mat-autocomplete autoActiveFirstOption #retailerAuto="matAutocomplete" (closed)="getPromos(false)">
+                        <mat-option *ngFor="let option of filteredRetailerNames | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
 
-        <mat-form-field class="form-field">
-            <mat-label>Product category</mat-label>
-            <input type="text" placeholder="Product category name" aria-label="Product category" matInput
-                [formControl]="productCategoryFormControl" [matAutocomplete]="productCategoryAuto">
-            <mat-autocomplete autoActiveFirstOption #productCategoryAuto="matAutocomplete" (closed)="getPromos(false)">
-                <mat-option *ngFor="let option of filteredProductCategoryNames | async" [value]="option">
-                    {{option}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-    </form>
-</div>
+                <mat-form-field class="form-field">
+                    <mat-label>Product category</mat-label>
+                    <input type="text" placeholder="Product category name" aria-label="Product category" matInput
+                        [formControl]="productCategoryFormControl" [matAutocomplete]="productCategoryAuto">
+                    <mat-autocomplete autoActiveFirstOption #productCategoryAuto="matAutocomplete"
+                        (closed)="getPromos(false)">
+                        <mat-option *ngFor="let option of filteredProductCategoryNames | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
 
 
         <h2>Unfinished</h2><br>
@@ -309,6 +322,17 @@
 
 
 
+            <ng-container matColumnDef="estimateGP">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate
+                    GP</mat-header-cell>
+                <mat-cell class="text-bold" *matCellDef=" let row">{{ row.estimateGP}}%</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="ropiCashDifference">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI
+                    cash difference</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.ropiCash - row.estimateRopiCash}}</mat-cell>
+            </ng-container>
 
             <ng-container matColumnDef="actions">
                 <mat-header-cell *matHeaderCellDef>
@@ -332,30 +356,30 @@
                         <mat-icon area-label="Finished">done_all</mat-icon>
                     </button>
                     <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
-                        (click)="openDialog(6,false,row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, '', '', row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.gp)">
+                        (click)="openDialog(6,false,row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, '', '', row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Copy">filter_none</mat-icon>
                     </button>
                     <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
-                        (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)"><a
+                        (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)"><a
                             class=fix style="color:green">Confirm</a>
                     </button>
 
                     <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION'"
-                        (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                        (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Delete">delete</mat-icon>
                     </button>
                     <button mat-icon-button color="primary" *ngIf="type==='MY_CONFIRMATION'"
-                        (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                        (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <p style="color:red">Decline</p>
                     </button>
 
                     <button mat-icon-button color="primary"
                         *ngIf="type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
-                        (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                        (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Edit">edit</mat-icon>
                     </button>
                     <button mat-icon-button color="primary"
-                        (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                        (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Info">info</mat-icon>
                     </button>
                 </mat-cell>
