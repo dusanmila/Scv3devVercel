@@ -192,7 +192,7 @@
         </div>
 
         <div class="form"
-            *ngIf="data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
+            *ngIf="data.resultSale && data.ropiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>ROPI abs</mat-label>
                 <input type="number" matInput name="ropiCash" [required]="flag === 4" disabled
@@ -210,7 +210,7 @@
         </div>
 
         <div class="form"
-            *ngIf="data.ropi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
+            *ngIf="data.resultSale && data.ropi && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Actual ROPI</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
@@ -218,10 +218,36 @@
             </mat-form-field>
         </div>
 
+
         <div class="form" *ngIf="!isDeclined && flag !== 1 && flag !== 6">
+            <mat-form-field appearance="fill">
+                <mat-label>Est Promo GP 2 %</mat-label>
+                <input type="number" matInput [value]="data.estimateGP" required name="estPromoGp2"
+                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+            </mat-form-field>
+        </div>
+
+        <div class="form" *ngIf="!isDeclined && flag !== 1 && flag !== 6">
+            <mat-form-field appearance="fill">
+                <mat-label>Est Promo GP 2 abs</mat-label>
+                <input type="number" matInput [value]="data.estimateGPCash" required name="estPromoGp2Abs"
+                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+            </mat-form-field>
+        </div>
+
+        <div class="form" *ngIf="data.resultSale && !isDeclined && flag !== 1 && flag !== 6">
             <mat-form-field appearance="fill">
                 <mat-label>Promo GP 2 %</mat-label>
                 <input type="number" matInput [value]="data.gp" required name="promoGp2"
+                    [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
+            </mat-form-field>
+        </div>
+
+        
+        <div class="form" *ngIf="data.resultSale && !isDeclined && flag !== 1 && flag !== 6">
+            <mat-form-field appearance="fill">
+                <mat-label>Promo GP 2 abs</mat-label>
+                <input type="number" matInput [value]="data.gpCash" required name="promoGp2Abs"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
             </mat-form-field>
         </div>
