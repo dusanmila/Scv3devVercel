@@ -183,17 +183,27 @@
                     </button>
                 </mat-header-cell>
                 <mat-cell class="action-cell" *matCellDef="let row; let i=index">
-                    <button *ngIf="type === 'PROMO_LIST' && row.confirmed && !row.resultSale" mat-icon-button
-                        color="primary">
-                        <mat-icon area-label="Actual">check_circle</mat-icon>
+
+                    <!-- POTVRDJENO, CEKA REZULTAT-->
+                    <button *ngIf="type === 'PROMO_LIST' && row.confirmed && !row.resultSale && isDatePast(row.dateEnd)"
+                        mat-icon-button color="primary">
+                        <mat-icon area-label="Actual">error</mat-icon>
                     </button>
+                    <!-- CEKA POTVRDU -->
                     <button *ngIf="type === 'PROMO_LIST' && !row.confirmed && !row.declined" mat-icon-button
                         color="primary">
+                        <mat-icon area-label="For confirmation">help_outline</mat-icon>
+                    </button>
+                    <!-- TRAJE -->
+                    <button *ngIf="type === 'PROMO_LIST' && !row.declined && row.confirmed && !isDatePast(row.dateEnd)"
+                        mat-icon-button color="primary">
                         <mat-icon area-label="For confirmation">access_time</mat-icon>
                     </button>
+                    <!-- DECLINED -->
                     <button *ngIf="type === 'PROMO_LIST' && row.declined" mat-icon-button color="primary">
                         <mat-icon area-label="Declined">close</mat-icon>
                     </button>
+                    <!-- ZAVRSENA -->
                     <button *ngIf="type === 'PROMO_LIST' && row.resultSale" mat-icon-button color="primary">
                         <mat-icon area-label="Finished">done_all</mat-icon>
                     </button>
