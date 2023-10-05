@@ -12,12 +12,12 @@ import { Product } from 'src/app/models/product';
 import { Promo } from 'src/app/models/promo';
 import { Retailer } from 'src/app/models/retailer';
 import { ObjectService } from 'src/app/Services/object.service';
-import { ProductCategoryService } from 'src/app/Services/product-category.service';
 import { ProductService } from 'src/app/Services/product.service';
 import { PromoEvaluatorService } from 'src/app/Services/promo-evaluator.service';
 import { PromoService } from 'src/app/Services/promo.service';
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { UserService } from 'src/app/Services/user.service';
 
 
 export const MY_FORMATS = {
@@ -56,12 +56,23 @@ export class PromoComponent implements OnInit {
   filteredRetailerNames: Observable<string[]>;
   search: string = '';
   selectedRetailerName: string = "";
-  productCategoryFormControl = new FormControl('');
-  productCategoryNames: string[] = [];
-  filteredProductCategoryNames: Observable<string[]>;
-  selectedProductCategoryName: string = "";
+  productFormControl = new FormControl('');
+  productNames: string[] = [];
+  filteredProductNames: Observable<string[]>;
+  selectedProductName: string = "";
+  userFormControl = new FormControl('');
+  userNames: string[] = [];
+  filteredUserNames: Observable<string[]>;
+  selectedUserName: string = "";
   currentDate: Date = new Date();
   panelOpenState = false;
+  state: string = ''
+  states = [
+    { name: 'Actual', value: 'ACTUAL' },
+    { name: 'Declined', value: 'DECLINED' },
+    { name: 'Finished', value: 'FINISHED' },
+    { name: 'For confirmation', value: 'FOR_CONFIRMATION' },
+  ]
 
   constructor(public objectService: ObjectService,
     public productService: ProductService,
@@ -69,7 +80,7 @@ export class PromoComponent implements OnInit {
     public datePipe: DatePipe,
     public promoEvaluatorService: PromoEvaluatorService,
     public dialog: MatDialog,
-    public productCategoryService: ProductCategoryService) { }
+    public userService: UserService) { }
 
   ngOnInit(): void {
     registerLocaleData(es);
@@ -77,7 +88,8 @@ export class PromoComponent implements OnInit {
     this.getPromos(false);
     this.editDisplayedColumns();
     this.getRetailerNames();
-    this.getProductCategoryNames();
+    this.getProductNames();
+    this.getUserNames();
   }
 
   private _filterRetailerNames(value: string): string[] {
@@ -86,10 +98,16 @@ export class PromoComponent implements OnInit {
     return this.retailerNames.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  private _filterProductCategoryNames(value: string): string[] {
+  private _filterProductNames(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.productCategoryNames.filter(option => option.toLowerCase().includes(filterValue));
+    return this.productNames.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  private _filterUserNames(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.userNames.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   getPromos(pageChanged: boolean) {
@@ -97,8 +115,9 @@ export class PromoComponent implements OnInit {
       this.page = 1;
     let username = localStorage.getItem("username") as string;
     this.selectedRetailerName = this.retailerFormControl.value;
-    this.selectedProductCategoryName = this.productCategoryFormControl.value;
-    this.promoService.getPromos(this.count, this.page, this.type, username, this.selectedRetailerName, this.selectedProductCategoryName, this.selectedStartDate, this.selectedEndDate).subscribe(data => {
+    this.selectedProductName = this.productFormControl.value;
+    this.selectedUserName = this.userFormControl.value;
+    this.promoService.getPromos(this.count, this.page, this.type, this.state, username, this.selectedRetailerName, this.selectedProductName, this.selectedStartDate, this.selectedEndDate, this.selectedUserName).subscribe(data => {
       this.promos = data;
       this.dataSource = new MatTableDataSource<Promo>(data);
       if (!data) {
@@ -127,12 +146,22 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  getProductCategoryNames() {
-    this.productCategoryService.getProductCategoryNames().subscribe(data => {
-      this.productCategoryNames = data;
-      this.filteredProductCategoryNames = this.productCategoryFormControl.valueChanges.pipe(
+  getProductNames() {
+    this.productService.getProductNames().subscribe(data => {
+      this.productNames = data;
+      this.filteredProductNames = this.productFormControl.valueChanges.pipe(
         startWith(''),
-        map(value => this._filterProductCategoryNames(value || '')),
+        map(value => this._filterProductNames(value || '')),
+      );
+    });
+  }
+
+  getUserNames() {
+    this.userService.getUsers(0, 0, '').subscribe(data => {
+      this.userNames = data.map(element => element.username);
+      this.filteredUserNames = this.userFormControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filterUserNames(value || '')),
       );
     });
   }
