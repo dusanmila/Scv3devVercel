@@ -252,4 +252,9 @@ export class PromoComponent implements OnInit {
     return res.toFixed(2); // Format to 2 decimal places
   }
 
+  isDatePast(date: Date): boolean {
+    const currentDate = new Date();
+    return date < currentDate;
+  }
+
 }
