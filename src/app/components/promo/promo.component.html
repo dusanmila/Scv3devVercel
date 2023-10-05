@@ -76,6 +76,162 @@
     </mat-expansion-panel>
 </mat-accordion>
 
+
+      <div class="title">  <h2>Unfinished</h2> </div>
+        <div>
+        <div class="table mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+                <ng-container matColumnDef="retailer">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header
+                        class="whitetext column-name">Partner</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.retailerName }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="product">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Item</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.productName }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="startDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Start</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.dateStart | date:'dd/MM/yyyy' }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="endDate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">End</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.dateEnd | date:'dd/MM/yyyy' }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="rebate">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reb %</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.rebate }}%</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="type">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reb
+                        (On/Off)</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.type }}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="expenses">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Fix
+                        investment Net</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.expenses }} din</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="regularSale">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reg
+                        sale</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.regularSale }} din</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="estimatePromoSale">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est sale
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.estimatePromoSale
+                        }} din</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="estimateUplift">
+                    <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                        uplift</mat-header-cell>
+                    <mat-cell class="text-bold" *matCellDef="let row">{{
+                        format(row.estimatePromoSale,row.regularSale)}}%</mat-cell>
+                </ng-container>
+    
+    
+                <ng-container matColumnDef="estimateRopi">
+                    <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                        ROPI</mat-header-cell>
+                    <mat-cell class="text-bold" *matCellDef="let row">{{ (row.estimateRopi * 100 -
+                        100).toFixed(2)}}%</mat-cell>
+                </ng-container>
+    
+    
+                <ng-container matColumnDef="estimateRopiCash">
+                    <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                        ROPI
+                        abs</mat-header-cell>
+                    <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateRopiCash | number:'':'es'}}
+                        din</mat-cell>
+                </ng-container>
+    
+    
+                
+    
+                <ng-container matColumnDef="estimateGP">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate GP</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.estimateGP}}%</mat-cell>
+                </ng-container>
+
+                
+                <ng-container matColumnDef="estimateGPCash">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate GP abs</mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{ row.estimateGPCash}} din</mat-cell>
+                </ng-container>
+
+    
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef>
+                        <button mat-icon-button color="primary" *ngIf="type === 'PROMO_LIST'">
+                            <mat-icon (click)="openDialog(1, false)" class="whitetext">add</mat-icon>
+                        </button>
+                    </mat-header-cell>
+                    <mat-cell class="action-cell" *matCellDef="let row; let i=index">
+                        <button *ngIf="type === 'PROMO_LIST' && row.confirmed && !row.resultSale" mat-icon-button
+                            color="primary">
+                            <mat-icon area-label="Actual">check_circle</mat-icon>
+                        </button>
+                        <button *ngIf="type === 'PROMO_LIST' && !row.confirmed && !row.declined" mat-icon-button
+                            color="primary">
+                            <mat-icon area-label="For confirmation">access_time</mat-icon>
+                        </button>
+                        <button *ngIf="type === 'PROMO_LIST' && row.declined" mat-icon-button color="primary">
+                            <mat-icon area-label="Declined">close</mat-icon>
+                        </button>
+                        <button *ngIf="type === 'PROMO_LIST' && row.resultSale" mat-icon-button color="primary">
+                            <mat-icon area-label="Finished">done_all</mat-icon>
+                        </button>
+                        <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
+                            (click)="openDialog(6,false,row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, '', '', row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.gp)">
+                            <mat-icon area-label="Copy">filter_none</mat-icon>
+                        </button>
+                        <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
+                            (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)"><a
+                                class=fix style="color:green">Confirm</a>
+                        </button>
+    
+                        <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION' && row.creatorUsername == loggedUser"
+                            (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            <mat-icon area-label="Delete">delete</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary" *ngIf="type==='MY_CONFIRMATION'"
+                            (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            <p style="color:red">Decline</p>
+                        </button>
+    
+                        <button mat-icon-button color="primary"
+                            *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                            (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            <mat-icon area-label="Edit">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary"
+                            (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            <mat-icon area-label="Info">info</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+    
+                <mat-header-row *matHeaderRowDef="displayedColumnsUnfinished"></mat-header-row>
+                <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumnsUnfinished"></mat-row>
+            </mat-table>
+            <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No promos</mat-toolbar>
+            <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[5, 10, 25, 100]"
+                [length]="length" (page)="loadDataOnPageEvent($event)">
+            </mat-paginator>
+        </div>
+
+      <div class="title">  <h2>Finished</h2> </div>
 <div>
     <div class="table mat-elevation-z8">
         <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
@@ -114,28 +270,26 @@
             <ng-container matColumnDef="expenses">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Fix
                     investment Net</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.expenses }}</mat-cell>
+                <mat-cell *matCellDef="let row">{{ row.expenses }} din</mat-cell>
+            </ng-container>
+
+            
+            <ng-container matColumnDef="estimatePromoSale">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est sale
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.estimatePromoSale
+                    }} din</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="regularSale">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reg
                     sale</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.regularSale }}</mat-cell>
+                <mat-cell *matCellDef="let row">{{ row.regularSale }} din</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="estimatePromoSale">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est sale
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.estimatePromoSale
-                    }}</mat-cell>
-            </ng-container>
+          
 
-            <ng-container matColumnDef="estimateUplift">
-                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                    uplift</mat-header-cell>
-                <mat-cell class="text-bold" *matCellDef="let row">{{
-                    format(row.estimatePromoSale,row.regularSale)}}%</mat-cell>
-            </ng-container>
+         
 
             <ng-container matColumnDef="uplift">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
@@ -144,12 +298,7 @@
                     }}%</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="estimateRopi">
-                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                    ROPI</mat-header-cell>
-                <mat-cell class="text-bold" *matCellDef="let row">{{ (row.estimateRopi * 100 -
-                    100).toFixed(2)}}%</mat-cell>
-            </ng-container>
+         
 
             <ng-container matColumnDef="ropi">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
@@ -157,13 +306,7 @@
                 <mat-cell class="text-bold" *matCellDef="let row">{{ (row.ropi * 100 - 100).toFixed(2)}}%</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="estimateRopiCash">
-                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                    ROPI
-                    abs</mat-header-cell>
-                <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateRopiCash | number:'':'es'}}
-                    din</mat-cell>
-            </ng-container>
+            
 
             <ng-container matColumnDef="ropiCash">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Act
@@ -176,8 +319,14 @@
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo
                     GP
                     2</mat-header-cell>
-                <mat-cell class="text-bold" *matCellDef="let row">{{ row.gp ? (row.gp).toFixed(2) : 0
-                    }}%</mat-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ (row.gp * 100).toFixed(2) }}%</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="promoGp2Cash">
+                <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo
+                    GP
+                    2 Abs</mat-header-cell>
+                <mat-cell class="text-bold" *matCellDef="let row">{{ row.gpCash }} din</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="resultSalePercent">
@@ -186,18 +335,7 @@
                 <mat-cell *matCellDef="let row">{{ row.resultSale}}</mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="estimatePromoSaleCash">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate promo sale
-                    cash</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.estimatePromoSaleCash
-                    }}</mat-cell>
-            </ng-container>
 
-            <ng-container matColumnDef="ropiDifference">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">ROPI
-                    difference</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ ((row.ropi - row.estimateRopi) * 100 - 100).toFixed(2)}}%</mat-cell>
-            </ng-container>
 
             <ng-container matColumnDef="estimateGP">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate
@@ -241,7 +379,7 @@
                             class=fix style="color:green">Confirm</a>
                     </button>
 
-                    <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION'"
+                    <button mat-icon-button color="primary" *ngIf="type!='MY_CONFIRMATION' && row.creatorUsername == loggedUser"
                         (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Delete">delete</mat-icon>
                     </button>
@@ -251,7 +389,7 @@
                     </button>
 
                     <button mat-icon-button color="primary"
-                        *ngIf="type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                        *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                         (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Edit">edit</mat-icon>
                     </button>
@@ -262,9 +400,10 @@
                 </mat-cell>
             </ng-container>
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns"></mat-row>
+            <mat-header-row *matHeaderRowDef="displayedColumnsFinished"></mat-header-row>
+            <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumnsFinished"></mat-row>
         </mat-table>
+
         <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No promos</mat-toolbar>
         <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[5, 10, 25, 100]"
             [length]="length" (page)="loadDataOnPageEvent($event)">

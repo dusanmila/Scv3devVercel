@@ -54,6 +54,9 @@ export class PromoDialogComponent implements OnInit {
     this.getProducts();
     this.getRetailerNames();
     this.getProductNames();
+    console.log(this.data.gpCash)
+    console.log(this.data.estimateGP)
+    console.log(this.data.estimateGPCash)
   }
 
   add() {

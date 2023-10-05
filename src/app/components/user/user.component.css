@@ -53,7 +53,7 @@
 
   text-align: left;
 }
-.mat-column-username {
+/*.mat-column-username {
   word-wrap: break-word !important;
   white-space: unset !important;
   flex: 0 0 15% !important;
@@ -68,6 +68,7 @@
 
   text-align: left;
 }
+*/
 .mat-column-lastName {
   word-wrap: break-word !important;
   white-space: unset !important;
