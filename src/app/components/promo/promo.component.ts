@@ -45,6 +45,7 @@ export class PromoComponent implements OnInit {
   displayedColumnsUnfinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'estimateGP', 'estimateGPCash', 'actions'];
   dataSource: MatTableDataSource<Promo>;
   dataSourceUnfinished: MatTableDataSource<Promo>;
+  dataSourceDeclined: MatTableDataSource<Promo>;
   noData: boolean = false;
   isMyConfirmation: boolean = false;
   count: number = 5;
@@ -78,6 +79,8 @@ export class PromoComponent implements OnInit {
     { name: 'For confirmation', value: 'FOR_CONFIRMATION' },
   ]
 
+  declinedPromos: Promo[];
+
   constructor(public objectService: ObjectService,
     public productService: ProductService,
     public promoService: PromoService,
@@ -94,6 +97,8 @@ export class PromoComponent implements OnInit {
     this.getRetailerNames();
     this.getProductNames();
     this.getUserNames();
+ 
+    
   }
 
   private _filterRetailerNames(value: string): string[] {
@@ -122,8 +127,13 @@ export class PromoComponent implements OnInit {
     this.selectedProductName = this.productFormControl.value;
     this.selectedUserName = this.userFormControl.value;
     this.promoService.getPromos(this.count, this.page, this.type, this.state, username, this.selectedRetailerName, this.selectedProductName, this.selectedStartDate, this.selectedEndDate, this.selectedUserName).subscribe(data => {
+     
       this.promos = data;
+      this.declinedPromos=this.promos.filter(promotion => promotion.declined === true);
+      
       this.dataSource = new MatTableDataSource<Promo>(data);
+      this.dataSourceDeclined=new MatTableDataSource<Promo>(this.declinedPromos);
+
       if (!data) {
         this.noData = true;
         this.length = 0;
@@ -133,6 +143,8 @@ export class PromoComponent implements OnInit {
       }
     });
   }
+
+ 
 
   loadDataOnPageEvent(event: PageEvent) {
     this.count = event.pageSize;
