@@ -41,7 +41,7 @@ export class PromoComponent implements OnInit {
 
   promos: Promo[];
   displayedColumns: string[] = [];
-  displayedColumnsFinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'regularSale', 'resultSale', 'ropi', 'ropiCash', 'uplift', 'promoGp2', 'promoGp2Cash', 'actions'];
+  displayedColumnsFinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'regularSale', 'resultSale', 'uplift', 'ropi', 'ropiCash', 'promoGp2', 'promoGp2Cash', 'actions'];
   displayedColumnsUnfinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'estimateGP', 'estimateGPCash', 'actions'];
   dataSource: MatTableDataSource<Promo>;
   dataSourceUnfinished: MatTableDataSource<Promo>;
@@ -97,8 +97,8 @@ export class PromoComponent implements OnInit {
     this.getRetailerNames();
     this.getProductNames();
     this.getUserNames();
- 
-    
+
+
   }
 
   private _filterRetailerNames(value: string): string[] {
@@ -127,12 +127,12 @@ export class PromoComponent implements OnInit {
     this.selectedProductName = this.productFormControl.value;
     this.selectedUserName = this.userFormControl.value;
     this.promoService.getPromos(this.count, this.page, this.type, this.state, username, this.selectedRetailerName, this.selectedProductName, this.selectedStartDate, this.selectedEndDate, this.selectedUserName).subscribe(data => {
-     
+
       this.promos = data;
-      this.declinedPromos=this.promos.filter(promotion => promotion.declined === true);
-      
+      this.declinedPromos = this.promos.filter(promotion => promotion.declined === true);
+
       this.dataSource = new MatTableDataSource<Promo>(data);
-      this.dataSourceDeclined=new MatTableDataSource<Promo>(this.declinedPromos);
+      this.dataSourceDeclined = new MatTableDataSource<Promo>(this.declinedPromos);
 
       if (!data) {
         this.noData = true;
@@ -144,7 +144,7 @@ export class PromoComponent implements OnInit {
     });
   }
 
- 
+
 
   loadDataOnPageEvent(event: PageEvent) {
     this.count = event.pageSize;
