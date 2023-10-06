@@ -41,8 +41,8 @@ export class PromoComponent implements OnInit {
 
   promos: Promo[];
   displayedColumns: string[] = [];
-  displayedColumnsFinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale','ropi','ropiCash','uplift', 'promoGp2', 'promoGp2Cash', 'actions'];
-  displayedColumnsUnfinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'estimatePromoSale', 'regularSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash','estimateGP','estimateGPCash', 'actions'];
+  displayedColumnsFinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'regularSale', 'resultSale', 'ropi', 'ropiCash', 'uplift', 'promoGp2', 'promoGp2Cash', 'actions'];
+  displayedColumnsUnfinished: string[] = ['retailer', 'product', 'startDate', 'endDate', 'rebate', 'type', 'expenses', 'regularSale', 'estimatePromoSale', 'estimateUplift', 'estimateRopi', 'estimateRopiCash', 'estimateGP', 'estimateGPCash', 'actions'];
   dataSource: MatTableDataSource<Promo>;
   dataSourceUnfinished: MatTableDataSource<Promo>;
   noData: boolean = false;
@@ -69,7 +69,7 @@ export class PromoComponent implements OnInit {
   selectedUserName: string = "";
   currentDate: Date = new Date();
   panelOpenState = false;
-  loggedUser=localStorage.getItem('username');
+  loggedUser = localStorage.getItem('username');
   state: string = ''
   states = [
     { name: 'Actual', value: 'ACTUAL' },

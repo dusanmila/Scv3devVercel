@@ -62,7 +62,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Choose start date</mat-label>
                 <input matInput [matDatepicker]="startDatePicker" (dateInput)="selectStartDate($event)" readonly
-                    [min]="currentDate" [max]="data.dateEnd" required name="startDate" [value]="data.dateStart"
+                    required name="startDate" [value]="data.dateStart"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
@@ -73,8 +73,8 @@
         <div class="form" *ngIf="!isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Choose end date</mat-label>
-                <input matInput [matDatepicker]="endDatePicker" (dateInput)="selectEndDate($event)" readonly
-                    [min]="data.dateStart ? data.dateStart : currentDate" required name="endDate" [value]="data.dateEnd"
+                <input matInput [matDatepicker]="endDatePicker" (dateInput)="selectEndDate($event)" readonly required
+                    name="endDate" [value]="data.dateEnd"
                     [disabled]="flag === 2 || flag === 3|| flag === 4 || flag === 5">
                 <mat-hint>MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
@@ -123,11 +123,11 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="!isDeclined">
+        <div class="form" *ngIf="(flag === 3|| flag === 4 || flag === 5) && !isDeclined">
             <mat-form-field appearance="fill">
                 <mat-label>Price</mat-label>
                 <input type="number" matInput [(ngModel)]="data.price" name="price"
-                    [disabled]="flag === 2 || flag === 3 || flag === 4 || flag === 5">
+                    [disabled]="flag === 3 || flag === 4 || flag === 5">
             </mat-form-field>
         </div>
 
@@ -154,15 +154,6 @@
                     [disabled]="flag === 2 || flag === 3 || flag === 5">
             </mat-form-field>
         </div>
-
-
-        <!-- <div class="form" *ngIf="data.resultSale">
-            <mat-form-field appearance="fill">
-                <mat-label>Result Sale %</mat-label>
-                <input type="number" matInput name="result" [required]="flag === 4" disabled
-                    [value]="(data.resultSale / data.regularSale * 100 - 100).toFixed(2)">
-            </mat-form-field>
-        </div> -->
 
         <div class="form"
             *ngIf="data.estimatePromoSale && data.regularSale && (flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
@@ -251,7 +242,7 @@
             </mat-form-field>
         </div>
 
-        
+
         <div class="form" *ngIf="data.resultSale && !isDeclined && flag !== 1 && flag !== 6">
             <mat-form-field appearance="fill">
                 <mat-label>Promo GP 2 abs</mat-label>
