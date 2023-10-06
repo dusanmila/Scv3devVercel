@@ -252,9 +252,15 @@ export class PromoComponent implements OnInit {
     return res.toFixed(2); // Format to 2 decimal places
   }
 
-  isDatePast(date: Date): boolean {
-    const currentDate = new Date();
-    return date < currentDate;
+  isDateBeforeToday(dateString: string): boolean {
+    // Parse the input date string into a Date object
+    const inputDate = new Date(dateString);
+
+    // Get today's date
+    const today = new Date();
+
+    // Use the comparison operator to check if the input date is before today
+    return inputDate < today;
   }
 
 }
