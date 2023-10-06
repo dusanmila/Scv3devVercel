@@ -142,7 +142,7 @@
     
                 <ng-container matColumnDef="estimateRopi">
                     <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                        ROPI</mat-header-cell>
+                        GP Uplift %</mat-header-cell>
                     <mat-cell class="text-bold" *matCellDef="let row">{{ (row.estimateRopi * 100 -
                         100).toFixed(2)}}%</mat-cell>
                 </ng-container>
@@ -150,8 +150,7 @@
     
                 <ng-container matColumnDef="estimateRopiCash">
                     <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                        ROPI
-                        abs</mat-header-cell>
+                        GP Uplift Abs</mat-header-cell>
                     <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateRopiCash | number:'':'es'}}
                         din</mat-cell>
                 </ng-container>
@@ -160,13 +159,13 @@
                 
     
                 <ng-container matColumnDef="estimateGP">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate GP</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est SKU Promo GP</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.estimateGP}}%</mat-cell>
                 </ng-container>
 
                 
                 <ng-container matColumnDef="estimateGPCash">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate GP abs</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est SKU Promo GP abs</mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.estimateGPCash}} din</mat-cell>
                 </ng-container>
 
@@ -306,7 +305,7 @@
 
             <ng-container matColumnDef="estimateRopi">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                    ROPI</mat-header-cell>
+                    GP Uplift %</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ (row.estimateRopi * 100 -
                     100).toFixed(2)}}%</mat-cell>
             </ng-container>
@@ -314,8 +313,7 @@
 
             <ng-container matColumnDef="estimateRopiCash">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                    ROPI
-                    abs</mat-header-cell>
+                    GP Uplift Abs</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateRopiCash | number:'':'es'}}
                     din</mat-cell>
             </ng-container>
@@ -324,14 +322,14 @@
 
 
             <ng-container matColumnDef="estimateGP">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate
-                    GP</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                    SKU Promo GP</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateGP}}%</mat-cell>
             </ng-container>
 
 
             <ng-container matColumnDef="estimateGPCash">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate GP
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est SKU Promo GP
                     abs</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateGPCash |
                     number:'':'es'}}
@@ -472,7 +470,7 @@
 
             <ng-container matColumnDef="estimateRopi">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                    ROPI</mat-header-cell>
+                 GP Uplift %</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ (row.estimateRopi * 100 -
                     100).toFixed(2)}}%</mat-cell>
             </ng-container>
@@ -480,8 +478,7 @@
 
             <ng-container matColumnDef="estimateRopiCash">
                 <mat-header-cell class="text-bold" *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
-                    ROPI
-                    abs</mat-header-cell>
+                    GP Uplift Abs</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateRopiCash | number:'':'es'}}
                     din</mat-cell>
             </ng-container>
@@ -490,14 +487,14 @@
 
 
             <ng-container matColumnDef="estimateGP">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate
-                    GP</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est
+                    SKU Promo GP</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateGP}}%</mat-cell>
             </ng-container>
 
 
             <ng-container matColumnDef="estimateGPCash">
-                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Estimate GP
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est SKU Promo GP
                     abs</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateGPCash |
                     number:'':'es'}}
