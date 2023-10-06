@@ -75,8 +75,6 @@
         </div>
     </mat-expansion-panel>
 </mat-accordion>
-
-
       <div class="title" *ngIf="state!='DECLINED'">  <h2>Unfinished</h2> </div>
         <div>
         <div class="table mat-elevation-z8" *ngIf="state!='DECLINED'">
@@ -241,6 +239,7 @@
         </div>
 
       <div class="title" *ngIf="state!='DECLINED'">  <h2>Finished</h2> </div>
+
 <div>
     <div class="table mat-elevation-z8" *ngIf="state!='DECLINED'">
         <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
@@ -279,19 +278,19 @@
             <ng-container matColumnDef="expenses">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Fix
                     investment Net</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.expenses }} din</mat-cell>
+                <mat-cell *matCellDef="let row">{{ row.expenses | number:'':'es' }} din</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="regularSale">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reg
                     sale</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.regularSale }} din</mat-cell>
+                <mat-cell *matCellDef="let row">{{ row.regularSale | number:'':'es' }} din</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="estimatePromoSale">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est sale
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.estimatePromoSale
+                <mat-cell *matCellDef="let row">{{ row.estimatePromoSale | number:'':'es'
                     }} din</mat-cell>
             </ng-container>
 
@@ -331,8 +330,7 @@
             <ng-container matColumnDef="estimateGPCash">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est SKU Promo GP
                     abs</mat-header-cell>
-                <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateGPCash |
-                    number:'':'es'}}
+                <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateGPCash | number:'':'es'}}
                     din</mat-cell>
             </ng-container>
 
@@ -344,36 +342,44 @@
                     </button>
                 </mat-header-cell>
                 <mat-cell class="action-cell" *matCellDef="let row; let i=index">
-                     <!-- POTVRDJENO, CEKA REZULTAT-->
-                     <button *ngIf="type === 'PROMO_LIST' && row.confirmed && !row.resultSale && isDateBeforeToday(row.dateEnd)" mat-icon-button 
-                     color="primary">
-                     <mat-icon area-label="Actual">error</mat-icon>
-                 </button>
-                 <!-- CEKA POTVRDU -->
-                 <button *ngIf="type === 'PROMO_LIST' && !row.confirmed && !row.declined" mat-icon-button
-                     color="primary">
-                     <mat-icon area-label="For confirmation">help_outline</mat-icon>
-                 </button>
-                  <!-- TRAJE -->
-                  <button *ngIf="type === 'PROMO_LIST' && !row.declined && row.confirmed && isDateBeforeToday(row.dateEnd)==false" mat-icon-button
-                  color="primary">
-                  <mat-icon area-label="For confirmation">access_time</mat-icon>
-              </button>
-                 <!-- DECLINED -->
-                 <button *ngIf="type === 'PROMO_LIST' && row.declined" mat-icon-button color="primary">
-                     <mat-icon area-label="Declined">close</mat-icon>
-                 </button>
-                 <!-- ZAVRSENA -->
-                 <button *ngIf="type === 'PROMO_LIST' && row.resultSale" mat-icon-button color="primary">
-                     <mat-icon area-label="Finished">check_circle</mat-icon>
-                 </button>
+
+                    <!-- POTVRDJENO, CEKA REZULTAT-->
+                    <button
+                        *ngIf="type === 'PROMO_LIST' && row.confirmed && !row.resultSale && isDateBeforeToday(row.dateEnd)"
+                        mat-icon-button color="primary">
+                        <mat-icon area-label="Actual">error</mat-icon>
+                    </button>
+                    <!-- CEKA POTVRDU -->
+                    <button *ngIf="type === 'PROMO_LIST' && !row.confirmed && !row.declined" mat-icon-button
+                        color="primary">
+                        <mat-icon area-label="For confirmation">help_outline</mat-icon>
+                    </button>
+                    <!-- TRAJE -->
+                    <button
+                        *ngIf="type === 'PROMO_LIST' && !row.declined && row.confirmed && isDateBeforeToday(row.dateEnd)==false"
+                        mat-icon-button color="primary">
+                        <mat-icon area-label="For confirmation">access_time</mat-icon>
+                    </button>
+                    <!-- DECLINED -->
+                    <button *ngIf="type === 'PROMO_LIST' && row.declined" mat-icon-button color="primary">
+                        <mat-icon area-label="Declined">close</mat-icon>
+                    </button>
+                    <!-- ZAVRSENA -->
+                    <button *ngIf="type === 'PROMO_LIST' && row.resultSale" mat-icon-button color="primary">
+                        <mat-icon area-label="Finished">check_circle</mat-icon>
+                    </button>
                     <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
-                        (click)="openDialog(6,false,row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, '', '', row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.gp)">
+                        (click)="openDialog(6,false,row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, 0, row.gp)">
                         <mat-icon area-label="Copy">filter_none</mat-icon>
                     </button>
                     <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
                         (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)"><a
                             class=fix style="color:green">Confirm</a>
+                    </button>
+
+                    <button mat-icon-button color="primary"
+                        (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                        <mat-icon area-label="Info">info</mat-icon>
                     </button>
 
                     <button mat-icon-button color="primary"
@@ -390,10 +396,6 @@
                         *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                         (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
                         <mat-icon area-label="Edit">edit</mat-icon>
-                    </button>
-                    <button mat-icon-button color="primary"
-                        (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
-                        <mat-icon area-label="Info">info</mat-icon>
                     </button>
                 </mat-cell>
             </ng-container>
@@ -491,7 +493,6 @@
                     SKU Promo GP</mat-header-cell>
                 <mat-cell class="text-bold" *matCellDef="let row">{{ row.estimateGP}}%</mat-cell>
             </ng-container>
-
 
             <ng-container matColumnDef="estimateGPCash">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est SKU Promo GP
