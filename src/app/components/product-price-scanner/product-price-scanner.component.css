@@ -116,7 +116,12 @@
 }
 
 /* Promena izgleda table */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 308px) {
+    
+    h2{
+        font-size: 15px;
+    }
+
     .mat-column-manufacturer {
         flex: 0 0 90% !important;
         width: 90% !important;
