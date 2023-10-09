@@ -120,6 +120,7 @@ export class PromoComponent implements OnInit {
   }
 
   getPromos(pageChanged: boolean) {
+    console.log(this.type)
     if (!pageChanged)
       this.page = 1;
     let username = localStorage.getItem("username") as string;
@@ -129,7 +130,7 @@ export class PromoComponent implements OnInit {
     this.promoService.getPromos(this.count, this.page, this.type, this.state, username, this.selectedRetailerName, this.selectedProductName, this.selectedStartDate, this.selectedEndDate, this.selectedUserName).subscribe(data => {
 
       this.promos = data;
-      this.declinedPromos = this.promos.filter(promotion => promotion.declined === true);
+    
 
       this.dataSource = new MatTableDataSource<Promo>(data);
       this.dataSourceDeclined = new MatTableDataSource<Promo>(this.declinedPromos);
@@ -189,8 +190,15 @@ export class PromoComponent implements OnInit {
     });
   }
 
-  changeType(event) {
-    this.type = event.value;
+  changeState(event) {
+  
+    if(event.value=="MY_CONFIRMATION"){
+      this.type=event.value;
+     this.state='';
+    }else{
+      this.type = event.value;
+      this.state = event.value;
+    }
     this.editDisplayedColumns();
     this.getPromos(false);
   }
