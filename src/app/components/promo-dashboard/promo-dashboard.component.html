@@ -66,7 +66,7 @@
 
                     <ng-container matColumnDef="promoCountLastYear">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
-                            Last Year
+                            LY
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="Promo count last year">{{
                             row.promoCountLastYear
@@ -75,7 +75,7 @@
 
                     <ng-container matColumnDef="promoCountThisYear">
                         <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Promo Count
-                            This Year
+                            TY
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="Promo count">{{ row.promoCountThisYear }}</mat-cell>
                     </ng-container>
@@ -89,35 +89,37 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ropiLastYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Last Year
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift LY
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="GP Uplift last year">{{ row.ropiLastYear }}%</mat-cell>
+                        <mat-cell *matCellDef="let row" data-label="GP Uplift last year">{{ row.ropiLastYear
+                            }}%</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiThisYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift This Year
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift TY
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift">{{ row.ropiThisYear }}%</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiDifference">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Difference
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift
+                            Difference
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift difference">{{ row.ropiDifference
                             }}%</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashLastYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs Last
-                            Year
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs
+                            LY
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift abs last year">{{ row.ropiCashLastYear
                             | number:'':'es'}} din</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashThisYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs This
-                            Year
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs
+                            TY
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift abs this year">{{ row.ropiCashThisYear
                             | number:'':'es'}} din</mat-cell>
@@ -184,26 +186,31 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ropiLastYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Last Year
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Last
+                            Year
                         </mat-header-cell>
-                        <mat-cell *matCellDef="let row" data-label="GP Uplift last year">{{ row.ropiLastYear }}%</mat-cell>
+                        <mat-cell *matCellDef="let row" data-label="GP Uplift last year">{{ row.ropiLastYear
+                            }}%</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiThisYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift This Year
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift This
+                            Year
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift">{{ row.ropiThisYear }}%</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiDifference">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Difference
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift
+                            Difference
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift difference">{{ row.ropiDifference
                             }}%</mat-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashLastYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs Last
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs
+                            Last
                             Year
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift abs last year">{{ row.ropiCashLastYear
@@ -211,7 +218,8 @@
                     </ng-container>
 
                     <ng-container matColumnDef="ropiCashThisYear">
-                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs This
+                        <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">GP Uplift Abs
+                            This
                             Year
                         </mat-header-cell>
                         <mat-cell *matCellDef="let row" data-label="GP Uplift abs this year">{{ row.ropiCashThisYear

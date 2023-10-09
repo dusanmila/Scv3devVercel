@@ -269,7 +269,7 @@
             </mat-form-field>
         </div>
 
-        <div class="form" *ngIf="(flag===3 || flag===5) && data.comment && data.comment !=''">
+        <div class="form" *ngIf="(flag===3 || (flag===5 && data.comment && data.comment !=''))">
             <mat-form-field>
                 <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                     cdkAutosizeMaxRows="200" placeholder="Comment" [disabled]="flag === 5 || !isDeclined"
