@@ -203,7 +203,8 @@
                         <mat-icon area-label="Declined">close</mat-icon>
                     </button>
                     <!-- ZAVRSENA -->
-                    <button *ngIf="type === 'PROMO_LIST' && row.resultSale" mat-icon-button color="primary">
+                    <button *ngIf="type === 'PROMO_LIST' && row.resultSale && row.confirmed" mat-icon-button
+                        color="primary">
                         <mat-icon area-label="Finished">check_circle</mat-icon>
                     </button>
                     <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
@@ -212,28 +213,28 @@
                     </button>
 
                     <button mat-icon-button color="primary"
-                        (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp, row.estimateGPCash, row.gpCash)">
+                        (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Info">info</mat-icon>
                     </button>
 
                     <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
-                        (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp, row.estimateGPCash, row.gpCash)"><a
+                        (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)"><a
                             class=fix style="color:green">Confirm</a>
                     </button>
 
                     <button mat-icon-button color="primary"
                         *ngIf="type!='MY_CONFIRMATION' && row.creatorUsername == loggedUser"
-                        (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp, row.estimateGPCash, row.gpCash)">
+                        (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Delete">delete</mat-icon>
                     </button>
                     <button mat-icon-button color="primary" *ngIf="type==='MY_CONFIRMATION'"
-                        (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp, row.estimateGPCash, row.gpCash)">
+                        (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <p style="color:red">Decline</p>
                     </button>
 
                     <button mat-icon-button color="primary"
-                        *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
-                        (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp, row.estimateGPCash, row.gpCash)">
+                        *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && row.confirmed && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                        (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                         <mat-icon area-label="Edit">edit</mat-icon>
                     </button>
                 </mat-cell>
@@ -340,7 +341,7 @@
                 <ng-container matColumnDef="promoGp2">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">
                         SKU Promo GP</mat-header-cell>
-                    <mat-cell class="text-bold" *matCellDef="let row">{{ row.promoGp2 ? row.promoGp2.toFixed(2) : 0
+                    <mat-cell class="text-bold" *matCellDef="let row">{{ row.gp ? row.gp.toFixed(2) : 0
                         }}%</mat-cell>
                 </ng-container>
 
@@ -383,7 +384,8 @@
                             <mat-icon area-label="Declined">close</mat-icon>
                         </button>
                         <!-- ZAVRSENA -->
-                        <button *ngIf="type === 'PROMO_LIST' && row.resultSale" mat-icon-button color="primary">
+                        <button *ngIf="type === 'PROMO_LIST' && row.resultSale && row.confirmed" mat-icon-button
+                            color="primary">
                             <mat-icon area-label="Finished">check_circle</mat-icon>
                         </button>
                         <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
@@ -391,28 +393,28 @@
                             <mat-icon area-label="Copy">filter_none</mat-icon>
                         </button>
                         <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
-                            (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)"><a
+                            (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)"><a
                                 class=fix style="color:green">Confirm</a>
                         </button>
 
                         <button mat-icon-button color="primary"
-                            (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            (click)="openDialog(5, false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <mat-icon area-label="Info">info</mat-icon>
                         </button>
 
                         <button mat-icon-button color="primary"
                             *ngIf="type!='MY_CONFIRMATION' && row.creatorUsername == loggedUser"
-                            (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <mat-icon area-label="Delete">delete</mat-icon>
                         </button>
                         <button mat-icon-button color="primary" *ngIf="type==='MY_CONFIRMATION'"
-                            (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <p style="color:red">Decline</p>
                         </button>
 
                         <button mat-icon-button color="primary"
-                            *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
-                            (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && row.confirmed && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                            (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <mat-icon area-label="Edit">edit</mat-icon>
                         </button>
                     </mat-cell>
@@ -559,7 +561,8 @@
                             <mat-icon area-label="Declined">close</mat-icon>
                         </button>
                         <!-- ZAVRSENA -->
-                        <button *ngIf="type === 'PROMO_LIST' && row.resultSale" mat-icon-button color="primary">
+                        <button *ngIf="type === 'PROMO_LIST' && row.resultSale && row.confirmed" mat-icon-button
+                            color="primary">
                             <mat-icon area-label="Finished">check_circle</mat-icon>
                         </button>
                         <button *ngIf="type === 'PROMO_LIST'" mat-icon-button color="primary"
@@ -567,27 +570,27 @@
                             <mat-icon area-label="Copy">filter_none</mat-icon>
                         </button>
                         <button mat-stroked-button color="primary" *ngIf="type === 'MY_CONFIRMATION'"
-                            (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)"><a
+                            (click)="openDialog(2,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)"><a
                                 class=fix style="color:green">Confirm</a>
                         </button>
 
                         <button mat-icon-button color="primary"
                             *ngIf="type!='MY_CONFIRMATION' && row.creatorUsername == loggedUser"
-                            (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            (click)="openDialog(3,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <mat-icon area-label="Delete">delete</mat-icon>
                         </button>
                         <button mat-icon-button color="primary" *ngIf="type==='MY_CONFIRMATION'"
-                            (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            (click)="openDialog(3,true, row.promoId,row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <p style="color:red">Decline</p>
                         </button>
 
                         <button mat-icon-button color="primary"
-                            *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
-                            (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && row.confirmed && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
+                            (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <mat-icon area-label="Edit">edit</mat-icon>
                         </button>
                         <button mat-icon-button color="primary"
-                            (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            (click)="openDialog(5,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.estimateGP, row.gp, row.estimateGPCash, row.gpCash)">
                             <mat-icon area-label="Info">info</mat-icon>
                         </button>
                     </mat-cell>

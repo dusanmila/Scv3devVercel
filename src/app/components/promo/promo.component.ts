@@ -203,8 +203,6 @@ export class PromoComponent implements OnInit {
 
   openDialog(flag: number, declinedAddComment: boolean, promoId?: Guid, creatorUsername?: string, retailerName?: string, productName?: string, declined?: boolean, comment?: string, dateStart?: string, dateEnd?: string, rebate?: number, isRebateCascade?: boolean, regularSale?: number, type?: string, estimateRopi?: number, ropi?: number, estimateRopiCash?: number, ropiCash?: number, estimatePromoSale?: number, expenses?: number, price?: number, resultSale?: number, estimateGP?: number, gp?: number, estimateGPCash?: number, gpCash?: number) {
 
-
-
     const dialogRef = this.dialog.open(PromoDialogComponent, { data: { promoId, creatorUsername, retailerName, productName, declined, comment, dateStart, dateEnd, rebate, isRebateCascade, regularSale, type, estimateRopi, ropi, estimateRopiCash, ropiCash, estimatePromoSale, expenses, price, resultSale, estimateGP, gp, estimateGPCash, gpCash } });
     dialogRef.componentInstance.flag = flag;
 
