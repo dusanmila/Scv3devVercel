@@ -129,3 +129,13 @@
   
    
 }
+
+.leftMargin{
+    margin-left: 30px;
+}
+
+.radioGroup{
+    display: flex;
+  flex-direction: row; 
+}
+
