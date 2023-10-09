@@ -50,14 +50,10 @@ export class PromoDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data);
     this.getRetailers();
     this.getProducts();
     this.getRetailerNames();
     this.getProductNames();
-    console.log(this.data.gpCash)
-    console.log(this.data.estimateGP)
-    console.log(this.data.estimateGPCash)
   }
 
   add() {

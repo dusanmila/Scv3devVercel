@@ -127,7 +127,7 @@
             <mat-form-field appearance="fill">
                 <mat-label>Price</mat-label>
                 <input type="number" matInput [(ngModel)]="data.price" name="price"
-                    [disabled]="flag === 3 || flag === 4 || flag === 5" [required]="flag===4">
+                    [disabled]="flag === 3 || flag === 5" [required]="flag===4">
             </mat-form-field>
         </div>
 
@@ -176,7 +176,7 @@
         <div class="form"
             *ngIf="data.estimateRopiCash && (flag === 1 || flag===2 || flag=== 4 || flag===3|| flag===5) && !isDeclined">
             <mat-form-field appearance="fill">
-                <mat-label>Estimate abs GP Uplift</mat-label>
+                <mat-label>Estimate GP Uplift abs</mat-label>
                 <input type="number" matInput name="result" [required]="flag === 4" disabled
                     [value]="data.estimateRopiCash">
             </mat-form-field>
