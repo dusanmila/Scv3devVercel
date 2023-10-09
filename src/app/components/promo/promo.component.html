@@ -122,14 +122,14 @@
             <ng-container matColumnDef="regularSale">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reg
                     sale</mat-header-cell>
-                <mat-cell *matCellDef="let row">{{ row.regularSale | number:'':'es'}} din</mat-cell>
+                <mat-cell *matCellDef="let row">{{ row.regularSale | number:'':'es'}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="estimatePromoSale">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Est sale
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row">{{ row.estimatePromoSale
-                    | number:'':'es'}} din</mat-cell>
+                    | number:'':'es'}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="estimateUplift">
@@ -301,14 +301,14 @@
                 <ng-container matColumnDef="regularSale">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Reg
                         sale</mat-header-cell>
-                    <mat-cell *matCellDef="let row">{{ row.regularSale | number:'':'es' }} din</mat-cell>
+                    <mat-cell *matCellDef="let row">{{ row.regularSale | number:'':'es' }}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="resultSale">
                     <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name">Result sale
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row">{{ row.resultSale ? row.resultSale : 0 | number:'':'es'
-                        }} din</mat-cell>
+                        }}</mat-cell>
                 </ng-container>
 
                 <ng-container matColumnDef="uplift">
