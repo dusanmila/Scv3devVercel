@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Guid } from 'guid-typescript';
 import { ProductPriceScannerService } from 'src/app/Services/product-price-scanner.service';
 import { ProductPriceScanner } from 'src/app/models/productPriceScanner';
 
@@ -54,7 +55,7 @@ export class ProductPriceScannerComponent implements OnInit {
 
   changePrice(product: ProductPriceScanner) {
     product.objectIdCompany = this.objectIdCompany;
-    this.productPriceScannerService.updateProduct(product).subscribe({
+    this.productPriceScannerService.updatePrice(product).subscribe({
       next: data => {
         console.log(data);
         this.snackBar.open('Successfuly changed', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
@@ -63,6 +64,10 @@ export class ProductPriceScannerComponent implements OnInit {
         this.snackBar.open('An error occured.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
       }
     });
+  }
+
+  openDialog(flag: number, productPriceScannerId?: Guid, productName?: string, manufacturer?: string, weight?: number) {
+
   }
 
   public exit() {
