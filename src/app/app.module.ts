@@ -110,6 +110,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AddToPredefinedDialogComponent } from './dialogs/add-to-predefined-dialog/add-to-predefined-dialog.component';
 import { ConditionComponent } from './components/condition/condition.component';
 import { ConditionDialogComponent } from './dialogs/condition-dialog/condition-dialog.component';
+import { ProductPriceScannerDialogComponent } from './dialogs/product-price-scanner-dialog/product-price-scanner-dialog.component';
 
 
 @NgModule({
@@ -175,7 +176,8 @@ import { ConditionDialogComponent } from './dialogs/condition-dialog/condition-d
     UserPerformanceComponent,
     AddToPredefinedDialogComponent,
     ConditionComponent,
-    ConditionDialogComponent
+    ConditionDialogComponent,
+    ProductPriceScannerDialogComponent
   ],
   imports: [
     AppRoutingModule,
