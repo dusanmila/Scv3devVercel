@@ -139,3 +139,12 @@
   flex-direction: row; 
 }
 
+.checkmark {
+    font-size: 24px; /* Adjust the size as needed */
+    color: green;    /* Change the color as needed */
+  }
+
+  .cancel-icon {
+    font-size: 24px; /* Adjust the size as needed */
+    color: red;      /* Change the color as needed */
+  }
