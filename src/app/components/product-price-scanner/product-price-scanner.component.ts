@@ -22,7 +22,7 @@ export class ProductPriceScannerComponent implements OnInit {
   dataSource: MatTableDataSource<ProductPriceScanner>;
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
-  displayedColumns = ['productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
+  displayedColumns = ['category', 'productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
   reg = /^-?\d*[.,]?\d{0,2}$/;
   search: string = '';
   objectIdCompany: string = '';
@@ -41,7 +41,7 @@ export class ProductPriceScannerComponent implements OnInit {
     this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
     if (!this.objectIdCompany) {
       this.isDashboard = true;
-      this.displayedColumns = ['productName', 'weight', 'manufacturer', 'actions'];
+      this.displayedColumns = ['category', 'productName', 'weight', 'manufacturer', 'actions'];
     }
 
     this.loadData();
@@ -107,8 +107,8 @@ export class ProductPriceScannerComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, productPriceScannerId?: Guid, productName?: string, manufacturer?: string, weight?: number) {
-    const dialogRef = this.dialog.open(ProductPriceScannerDialogComponent, { data: { productPriceScannerId, productName, manufacturer, weight } });
+  openDialog(flag: number, productPriceScannerId?: Guid, category?: string, productName?: string, manufacturer?: string, weight?: number) {
+    const dialogRef = this.dialog.open(ProductPriceScannerDialogComponent, { data: { productPriceScannerId, category, productName, manufacturer, weight } });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(res => {
       if (res) {

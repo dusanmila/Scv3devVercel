@@ -8,5 +8,6 @@ export interface ProductPriceScanner {
     actionPrice: number;
     manufacturer: number;
     weight: number;
+    category: string;
     totalCount: number;
 }

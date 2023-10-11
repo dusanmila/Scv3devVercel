@@ -13,6 +13,12 @@
 </div>
 <div class="container mat-elevation-z8">
     <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
+                style="justify-content: left;">Category
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Category">{{ row.category }}</mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="productName">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
@@ -74,14 +80,14 @@
             <mat-cell *matCellDef="let row; let i=index">
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Edit"
-                        (click)="openDialog(2, row.productPriceScannerId, row.productName, row.manufacturer, row.weight)">
+                        (click)="openDialog(2, row.productPriceScannerId, row.category, row.productName, row.manufacturer, row.weight)">
                         edit
                     </mat-icon>
                 </button>
 
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Delete"
-                        (click)="openDialog(3, row.productPriceScannerId, row.productName, row.manufacturer, row.weight)">
+                        (click)="openDialog(3, row.productPriceScannerId, row.category, row.productName, row.manufacturer, row.weight)">
                         delete </mat-icon>
                 </button>
             </mat-cell>
