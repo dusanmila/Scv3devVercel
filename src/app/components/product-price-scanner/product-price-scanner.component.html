@@ -1,4 +1,4 @@
-<div class="header">
+<div *ngIf="!isDashboard" class="header">
     <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
     <h2 style="height:80px; margin-right: 9%;"> <span>Price scanner</span> </h2>
 </div>
@@ -91,6 +91,9 @@
         <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
         </mat-row>
     </mat-table>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
         <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
         </mat-progress-spinner>
@@ -98,5 +101,5 @@
     <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No products</mat-toolbar>
 </div>
 
-<button mat-stroked-button color="primary" class="item2" (click)="exit()">Exit
+<button *ngIf="!isDashboard" mat-stroked-button color="primary" class="item2" (click)="exit()">Exit
     <mat-icon>exit_to_app</mat-icon></button>
