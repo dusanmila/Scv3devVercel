@@ -380,11 +380,11 @@ export class UploadsComponent implements OnInit {
 
   public exportPriceScans() {
 
-    this.productService.exportPriceScans().subscribe((excel) => {
+  /*  this.productService.exportPriceScans(this.).subscribe((excel) => {
       this.isPriceScansLoading = false;
       const fileName = 'PriceScans.xlsx';
       saveAs(excel, fileName);
-    });
+    });*/
   }
 
 
