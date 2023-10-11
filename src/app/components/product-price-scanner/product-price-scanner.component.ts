@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { ProductPriceScannerService } from 'src/app/Services/product-price-scanner.service';
+import { ProductPriceScannerDialogComponent } from 'src/app/dialogs/product-price-scanner-dialog/product-price-scanner-dialog.component';
 import { ProductPriceScanner } from 'src/app/models/productPriceScanner';
 import * as saveAs from 'file-saver';
 import { ProductService } from 'src/app/Services/product.service';
@@ -21,23 +24,62 @@ export class ProductPriceScannerComponent implements OnInit {
   dataSource: MatTableDataSource<ProductPriceScanner>;
   priceFormControls: FormControl[] = [];
   actionPriceFormControls: FormControl[] = [];
-  displayedColumns = ['productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
+  displayedColumns = ['category', 'productName', 'weight', 'manufacturer', 'price', 'actionPrice'];
   reg = /^-?\d*[.,]?\d{0,2}$/;
   search: string = '';
   objectIdCompany: string = '';
+  isDashboard: boolean = false;
+  count: number = 5;
+  page: number = 1;
+  length: number = 0;
 
   constructor(private productPriceScannerService: ProductPriceScannerService,private productService: ProductService,
     private router: Router,
     public snackBar: MatSnackBar,
-    public activatedRoute: ActivatedRoute) { }
+    public activatedRoute: ActivatedRoute,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.objectIdCompany = this.activatedRoute.snapshot.paramMap.get("objectIdCompany") as string;
+    if (!this.objectIdCompany) {
+      this.isDashboard = true;
+      this.displayedColumns = ['category', 'productName', 'weight', 'manufacturer', 'actions'];
+    }
 
     this.loadData();
   }
 
   loadData() {
+    if (this.isDashboard) {
+      this.getProducts();
+    } else {
+      this.getProductsByObject();
+    }
+  }
+
+  loadDataOnPageEvent(event: PageEvent) {
+    this.count = event.pageSize;
+    this.page = event.pageIndex + 1;
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.isLoading = true;
+    this.productPriceScannerService.getProductPriceScanners(this.count, this.page, this.search).subscribe(data => {
+      if (data) {
+        this.dataSource = new MatTableDataSource<ProductPriceScanner>(data);
+        this.noData = false;
+        this.length = data[0].totalCount;
+      } else {
+        this.noData = true;
+        this.dataSource = data;
+        this.length = 0;
+      }
+      this.isLoading = false;
+    });
+  }
+
+  getProductsByObject() {
     this.isLoading = true;
     this.productPriceScannerService.getProductsPriceScannerByObject(this.objectIdCompany, this.search).subscribe(data => {
       if (data) {
@@ -59,7 +101,6 @@ export class ProductPriceScannerComponent implements OnInit {
     product.objectIdCompany = this.objectIdCompany;
     this.productPriceScannerService.updatePrice(product).subscribe({
       next: data => {
-        console.log(data);
         this.snackBar.open('Successfuly changed', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
       },
       error: error => {
@@ -68,8 +109,14 @@ export class ProductPriceScannerComponent implements OnInit {
     });
   }
 
-  openDialog(flag: number, productPriceScannerId?: Guid, productName?: string, manufacturer?: string, weight?: number) {
-
+  openDialog(flag: number, productPriceScannerId?: Guid, category?: string, productName?: string, manufacturer?: string, weight?: number) {
+    const dialogRef = this.dialog.open(ProductPriceScannerDialogComponent, { data: { productPriceScannerId, category, productName, manufacturer, weight } });
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.loadData();
+      }
+    });
   }
 
 public export(){

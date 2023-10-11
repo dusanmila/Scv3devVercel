@@ -1,4 +1,4 @@
-<div class="header">
+<div *ngIf="!isDashboard" class="header">
     <img src="../../../assets/Store Metrics Logo PNG.png" alt="SC icon" width="80" height="80" style="float:left;">
     <h2 style="height:80px; margin-right: 9%;"> <span>Price scanner</span> </h2>
 </div>
@@ -13,6 +13,12 @@
 </div>
 <div class="container mat-elevation-z8">
     <mat-table mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
+                style="justify-content: left;">Category
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row" data-label="Category">{{ row.category }}</mat-cell>
+        </ng-container>
 
         <ng-container matColumnDef="productName">
             <mat-header-cell *matHeaderCellDef mat-sort-header class="whitetext column-name"
@@ -74,14 +80,14 @@
             <mat-cell *matCellDef="let row; let i=index">
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Edit"
-                        (click)="openDialog(2, row.productPriceScannerId, row.productName, row.manufacturer, row.weight)">
+                        (click)="openDialog(2, row.productPriceScannerId, row.category, row.productName, row.manufacturer, row.weight)">
                         edit
                     </mat-icon>
                 </button>
 
                 <button mat-icon-button color="primary">
                     <mat-icon area-label="Delete"
-                        (click)="openDialog(3, row.productPriceScannerId, row.productName, row.manufacturer, row.weight)">
+                        (click)="openDialog(3, row.productPriceScannerId, row.category, row.productName, row.manufacturer, row.weight)">
                         delete </mat-icon>
                 </button>
             </mat-cell>
@@ -91,6 +97,9 @@
         <mat-row style="cursor:pointer;" *matRowDef="let row; columns: displayedColumns">
         </mat-row>
     </mat-table>
+    <mat-paginator *ngIf="dataSource" [pageIndex]="page-1" [pageSize]="count" [pageSizeOptions]="[2, 5, 10, 25, 100]"
+        [length]="length" (page)="loadDataOnPageEvent($event)">
+    </mat-paginator>
     <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
         <mat-progress-spinner class="mat-spinner-color" mode="indeterminate">
         </mat-progress-spinner>
@@ -99,5 +108,5 @@
 </div>
 <button mat-stroked-button color="primary" class="item2" (click)="export()">Export
     </button>
-<button mat-stroked-button color="primary" class="item2" (click)="exit()">Exit
+<button *ngIf="!isDashboard" mat-stroked-button color="primary" class="item2" (click)="exit()">Exit
     <mat-icon>exit_to_app</mat-icon></button>
