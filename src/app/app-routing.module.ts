@@ -63,6 +63,7 @@ const routes: Routes = [
       { path: 'feedbackCategory', component: FeedbackCategoryComponent, canActivate: [AdminGuard] },
       { path: 'productCategory', component: ProductCategoryComponent, canActivate: [AdminGuard] },
       { path: 'product', component: ProductComponent, canActivate: [AdminGuard] },
+      { path: 'priceScanner', component: ProductPriceScannerComponent, canActivate: [AdminGuard] },
       { path: 'uploads', component: UploadsComponent, canActivate: [AdminGuard] }
     ],
     component: SidenavComponent,
