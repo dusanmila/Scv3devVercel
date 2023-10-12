@@ -91,7 +91,7 @@
     <!--<h3 style="margin:5%;color:#56baed;">Drag and drop file here</h3>-->
 
     <label for="priceScanFileDropRef" class="browseButton" *ngIf="isPriceScansEmpty">Browse</label>
-    <label class="browseButton" *ngIf="!isPriceScansEmpty" (click)="exportPriceScans()">Export</label>
+    <label class="browseButton" *ngIf="!isPriceScansEmpty" (click)="openDialog(7)">Export</label>
     <button mat-button color="warn" *ngIf="!isPriceScansEmpty" (click)="deletePriceScans()">Delete scans</button>
     <div class="download-template">
       <em id="download-obj-template" class="fa-solid fa-download fa-2x" (click)="downloadTemplate(4)"></em>

@@ -111,6 +111,7 @@ import { AddToPredefinedDialogComponent } from './dialogs/add-to-predefined-dial
 import { ConditionComponent } from './components/condition/condition.component';
 import { ConditionDialogComponent } from './dialogs/condition-dialog/condition-dialog.component';
 import { ProductPriceScannerDialogComponent } from './dialogs/product-price-scanner-dialog/product-price-scanner-dialog.component';
+import { ExportPriceScansDialogComponent } from './dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
 
 
 @NgModule({
@@ -156,6 +157,7 @@ import { ProductPriceScannerDialogComponent } from './dialogs/product-price-scan
     ExportProductsDialogComponent,
     ExportPromosDialogComponent,
     ExportPositionsDialogComponent,
+    ExportPriceScansDialogComponent,
     PieChart2Component,
     PieChart3Component,
     UploadsComponent,
