@@ -6,7 +6,7 @@
     <div class="form fb-img marginbottom" #photodiv>
 
       <img src="https://storagestorecheck.blob.core.windows.net/storecheck/{{data.img}}" id="fbphoto" alt="SC photo"
-        width="200" height="200" #fbphoto />
+        width="200" height="200" #fbphoto (click)="clicked(undefined,undefined,undefined,undefined,undefined,data.img,data.isImgHorizontal,data.isImgResolveHorizontal,undefined)" />
 
     </div>
 
