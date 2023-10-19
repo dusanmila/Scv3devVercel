@@ -208,7 +208,7 @@ export class ObjectComponent implements OnInit {
   public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string, kam?: string, merchandiser?: string, director?: string, commercialist?: string, supervisor?: string) {
     
 
-    if (flag == 1 || flag == 4) {
+    if (flag == 1) {
       const dialogRef=this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
       dialogRef.componentInstance.flag = flag;
 
@@ -221,7 +221,7 @@ export class ObjectComponent implements OnInit {
         )
     
     } 
-    else {
+    else { //flag=3, delete
       const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address, city, retailer, objectFormat, requisitionDays, merchandiserRevisionDays, kam, merchandiser, director, commercialist, supervisor } });
 
       dialogRef.componentInstance.flag = flag;
@@ -240,6 +240,14 @@ export class ObjectComponent implements OnInit {
   public openUpdateDialog(flag: number, data: Obj) {
     const dialogRef = this.dialog.open(ObjectDialogComponent, { data: data });
     dialogRef.componentInstance.flag = flag;
+
+    dialogRef.afterClosed()
+    .subscribe(res => {
+      if (res === 1) {
+        this.loadData(false);
+      }
+    }
+    )
   }
 
   public applyFilter(event: Event) {
