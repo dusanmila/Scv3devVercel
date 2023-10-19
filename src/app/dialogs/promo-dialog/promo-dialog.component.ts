@@ -73,6 +73,23 @@ export class PromoDialogComponent implements OnInit {
       }
   }
 
+  updatePromoData() {
+    this.isLoading = true;
+    this.data.creatorUsername = localStorage.getItem("username") as string;
+    this.promoService.updatePromo(this.data).subscribe(data => {
+      this.isLoading = false;
+      this.changed = true;
+      this.snackBar.open('Promotion successfully updated', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+      this.close();
+    }),
+      (error: Error) => {
+        this.isLoading = false;
+        console.log(error.name + ' -> ' + error.message)
+        this.snackBar.open('An error occurred ', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.close();
+      }
+  }
+
   update(isDecline: boolean) {
     this.isLoading = true;
 

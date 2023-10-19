@@ -226,7 +226,7 @@
             </mat-form-field>
         </div> -->
 
-        <div class="form" *ngIf="data.resultSale && !isDeclined && flag !== 1 && flag !== 6">
+        <div class="form" *ngIf="data.resultSale && !isDeclined && (flag===2 || flag===3 || flag===4 || flag===5)">
             <mat-form-field appearance="fill">
                 <mat-label>SKU Promo GP %</mat-label>
                 <input type="number" matInput [value]="data.gp" required name="promoGp2"
@@ -286,6 +286,8 @@
             <button mat-button class="test item2-delete" *ngIf="flag === 3 && isDeclined" type="submit"
                 (click)="update(true)">Decline</button>
             <button mat-button class="test" *ngIf="flag === 4" type="submit" (click)="update(false)"
+                [disabled]="!formControl.valid">Ok</button>
+            <button mat-button class="test" *ngIf="flag === 7" type="submit" (click)="updatePromoData()"
                 [disabled]="!formControl.valid">Ok</button>
             <button mat-button class="test" (click)="close()">Cancel</button>
             <div *ngIf="isLoading"

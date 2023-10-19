@@ -254,6 +254,13 @@
                         (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
                         <mat-icon area-label="Edit">edit</mat-icon>
                     </button>
+
+                    <!-- IZMENA NEPOTVRDJENE PROMOCIJE -->
+                    <button mat-icon-button color="primary"
+                        *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.confirmed && !row.declined"
+                        (click)="openDialog(7,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                        <mat-icon area-label="Edit">edit</mat-icon>
+                    </button>
                 </mat-cell>
             </ng-container>
 
@@ -434,6 +441,13 @@
                         <button mat-icon-button color="primary"
                             *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.resultSale && calculateDiff(row.dateEnd) >= 3"
                             (click)="openDialog(4,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
+                            <mat-icon area-label="Edit">edit</mat-icon>
+                        </button>
+
+                        <!-- IZMENA NEPOTVRDJENE PROMOCIJE -->
+                        <button mat-icon-button color="primary"
+                            *ngIf="row.creatorUsername == loggedUser && type === 'PROMO_LIST' && !row.confirmed && !row.declined"
+                            (click)="openDialog(7,false, row.promoId, row.creatorUsername, row.retailerName, row.productName,row.declined,row.comment, row.dateStart, row.dateEnd, row.rebate,row.isRebateCascade, row.regularSale, row.type, row.estimateRopi, row.ropi, row.estimateRopiCash, row.ropiCash, row.estimatePromoSale, row.expenses, row.price, row.resultSale, row.gp)">
                             <mat-icon area-label="Edit">edit</mat-icon>
                         </button>
                     </mat-cell>
