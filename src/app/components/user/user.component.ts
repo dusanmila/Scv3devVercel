@@ -106,7 +106,8 @@ export class UserComponent implements OnInit {
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed()
       .subscribe(res => {
-        if (res) {
+       
+        if (res==='1') {
           this.loadData();
         }
       }
