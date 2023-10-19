@@ -518,6 +518,8 @@ export class PositionDialogComponent implements OnInit {
 
   }
 
+
+
   public close() {
     this.dialogRef.close(this.changed);
   }

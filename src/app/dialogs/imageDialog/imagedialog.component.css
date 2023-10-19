@@ -1,0 +1,95 @@
+.table-row {
+  height: 30px !important;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  /* min-width: 450px; */
+}
+
+.form {
+  display: flex;
+}
+
+.mat-form-field {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+.fb-img {
+  justify-content: center;
+}
+
+.item2 {
+  background-color: white;
+  color: #39ace7;
+  margin-bottom: 4%;
+  border: 2px solid #39ace7;
+  margin-left: 10px;
+}
+
+.item2-delete {
+  color: #ff0000;
+  border: 2px solid #ff0000;
+}
+
+button:hover {
+  color: #fff;
+  background-color: #39ace7;
+  transition: 0.3s;
+}
+
+button[disabled]:hover {
+  background-color: #fff;
+  cursor: not-allowed;
+}
+
+.mat-spinner-color::ng-deep circle {
+  stroke: #56baed !important;
+}
+
+.browseFile {
+  color: white;
+  width: 10px;
+  height: 10px;
+  border-radius: 21.5px;
+  background-color: white;
+  padding: 8px 16px;
+  margin: 40%;
+}
+
+button {
+  outline: none;
+}
+
+::ng-deep .mat-button-focus-overlay {
+  display: none;
+}
+
+
+.rotate {
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+.horizontal {
+  height: 200px;
+  width: 250px;
+}
+
+.vertical {
+  height: 250px;
+  width: 200px;
+}
+
+.marginbottom {
+  margin-bottom: 10%;
+}
+
+.mat-button {
+  border-radius: 10px !important;
+}

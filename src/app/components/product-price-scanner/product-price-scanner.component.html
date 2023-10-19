@@ -106,6 +106,7 @@
     </div>
     <mat-toolbar color="primary" *ngIf="noData" class="noDataMessage">No products</mat-toolbar>
 </div>
-
+<button mat-stroked-button color="primary" class="item2" (click)="export()">Export
+    </button>
 <button *ngIf="!isDashboard" mat-stroked-button color="primary" class="item2" (click)="exit()">Exit
     <mat-icon>exit_to_app</mat-icon></button>

@@ -9,6 +9,8 @@ import { Guid } from 'guid-typescript';
 import { ProductPriceScannerService } from 'src/app/Services/product-price-scanner.service';
 import { ProductPriceScannerDialogComponent } from 'src/app/dialogs/product-price-scanner-dialog/product-price-scanner-dialog.component';
 import { ProductPriceScanner } from 'src/app/models/productPriceScanner';
+import * as saveAs from 'file-saver';
+import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
   selector: 'app-product-price-scanner',
@@ -31,7 +33,7 @@ export class ProductPriceScannerComponent implements OnInit {
   page: number = 1;
   length: number = 0;
 
-  constructor(private productPriceScannerService: ProductPriceScannerService,
+  constructor(private productPriceScannerService: ProductPriceScannerService,private productService: ProductService,
     private router: Router,
     public snackBar: MatSnackBar,
     public activatedRoute: ActivatedRoute,
@@ -116,6 +118,15 @@ export class ProductPriceScannerComponent implements OnInit {
       }
     });
   }
+
+public export(){
+  this.productService.exportPriceScans(this.objectIdCompany).subscribe((excel) => {
+
+
+    const fileName = 'ProductPriceScans.xlsx';
+    saveAs(excel, fileName);
+  });
+}
 
   public exit() {
     this.router.navigate(['storeCheck']);

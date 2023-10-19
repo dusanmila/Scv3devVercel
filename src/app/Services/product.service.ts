@@ -137,8 +137,8 @@ export class ProductService {
     return retval$.asObservable();
   }
 
-  public exportPriceScans() {
-    return this.http.get(`${PRODUCT_URL}/priceScannerExcels/exportExcel/`, { headers: this.headers, responseType: 'blob' });
+  public exportPriceScans(objectIdCompany: string) {
+    return this.http.get(`${PRODUCT_URL}/priceScannerExcels/exportExcel/`+objectIdCompany, { headers: this.headers, responseType: 'blob' });
 
   }
 

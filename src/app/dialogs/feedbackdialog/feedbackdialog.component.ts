@@ -8,6 +8,7 @@ import { FeedbackService } from 'src/app/Services/feedback.service';
 import { AnalyticsdialogComponent } from '../analyticsdialog/analyticsdialog.component';
 
 import * as exifr from 'exifr'
+import { ImageDialogComponent } from '../imageDialog/imagedialog.component';
 
 @Component({
   selector: 'app-feedback-dialog',
@@ -35,7 +36,8 @@ export class FeedbackDialogComponent implements AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: Feedback,
     public feedbackService: FeedbackService,
     public fb: FormBuilder,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private imgDialog: MatDialog) {
 
     this.form = this.fb.group({
       file: [null],
@@ -208,7 +210,16 @@ export class FeedbackDialogComponent implements AfterViewInit {
 
   }
 
-
+public clicked(feedbackCategoryName?: string, productCategoryName?: string, text?: string, date?: string, resolved?: string, img?: string, isImgHorizontal?: boolean, isImgResolveHorizontal?:boolean, username?: string){
+ 
+    const dialogRef = this.dialog.open(ImageDialogComponent, { data: { feedbackCategoryName, productCategoryName, text, date, resolved, img, isImgHorizontal,isImgResolveHorizontal, username }
+      ,maxWidth: '100vw', 
+       maxHeight: '100vh', });
+   
+   
+      
+  
+}
 
 
 

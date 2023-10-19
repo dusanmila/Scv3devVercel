@@ -22,6 +22,7 @@ import { ExportConditionsDialogComponent } from 'src/app/dialogs/excelDialogs/ex
 import { ExportPromosDialogComponent } from 'src/app/dialogs/excelDialogs/exportPromosDialog/export-promos-dialog.component';
 import { ExportProductsDialogComponent } from 'src/app/dialogs/excelDialogs/exportProductsDialog/export-products-dialog.component';
 import { ExportPositionsDialogComponent } from 'src/app/dialogs/excelDialogs/exportPositionsDialog/export-positions-dialog.component';
+import { ExportPriceScansDialogComponent } from 'src/app/dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
 
 
 @Component({
@@ -378,14 +379,6 @@ export class UploadsComponent implements OnInit {
 
 
 
-  public exportPriceScans() {
-
-    this.productService.exportPriceScans().subscribe((excel) => {
-      this.isPriceScansLoading = false;
-      const fileName = 'PriceScans.xlsx';
-      saveAs(excel, fileName);
-    });
-  }
 
 
   public exportObjects() {
@@ -404,9 +397,7 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportPositionsDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          console.log('exported');
-        }
+        
       });
     }
 
@@ -414,9 +405,7 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportProductsDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          console.log('exported');
-        }
+        
       });
     }
 
@@ -424,9 +413,7 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportPromosDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          console.log('exported');
-        }
+      
       });
     }
 
@@ -434,12 +421,17 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportConditionsDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-        if (res) {
-          console.log('exported');
-        }
+       
       });
     }
 
+    if (flag == 7) {
+      const dialogRef = this.dialog.open(ExportPriceScansDialogComponent);
+
+      dialogRef.afterClosed().subscribe(res => {
+       
+      });
+    }
 
 
   }
