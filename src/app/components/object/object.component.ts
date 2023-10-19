@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { MatTableDataSource } from '@angular/material/table';
@@ -206,16 +206,22 @@ export class ObjectComponent implements OnInit {
   }
 
   public openDialog(flag: number, objectName?: string, objectIdCompany?: string, objectIdRetail?: string, address?: string, city?: string, retailer?: Retailer, objectFormat?: string, requisitionDays?: string, merchandiserRevisionDays?: string, kam?: string, merchandiser?: string, director?: string, commercialist?: string, supervisor?: string) {
+    
+
     if (flag == 1) {
-      this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
+      const dialogRef=this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
+      dialogRef.componentInstance.flag = flag;
 
-    } else if (flag == 4) {
-      this.dialog.open(ObjectCreateDialogComponent, { data: this.objectCreateDto });
-    }
-    else {
-
-
-
+      dialogRef.afterClosed()
+        .subscribe(res => {
+          if (res === 1) {
+            this.loadData(false);
+          }
+        }
+        )
+    
+    } 
+    else { //flag=3, delete
       const dialogRef = this.dialog.open(ObjectDialogComponent, { data: { objectName, objectIdCompany, objectIdRetail, address, city, retailer, objectFormat, requisitionDays, merchandiserRevisionDays, kam, merchandiser, director, commercialist, supervisor } });
 
       dialogRef.componentInstance.flag = flag;
@@ -234,6 +240,14 @@ export class ObjectComponent implements OnInit {
   public openUpdateDialog(flag: number, data: Obj) {
     const dialogRef = this.dialog.open(ObjectDialogComponent, { data: data });
     dialogRef.componentInstance.flag = flag;
+
+    dialogRef.afterClosed()
+    .subscribe(res => {
+      if (res === 1) {
+        this.loadData(false);
+      }
+    }
+    )
   }
 
   public applyFilter(event: Event) {

@@ -41,6 +41,7 @@ public add(): void{
   .subscribe(() =>{
     this.isLoading=false;
     this.snackBar.open('User successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+    this.dialogRef.close('1');
   } ),
   (error:Error) => {
     this.isLoading=false;
@@ -55,6 +56,7 @@ public update(): void{
   .subscribe(() => {
     this.isLoading=false;
     this.snackBar.open('Updated user', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+    this.dialogRef.close('1');
   }),
   (error:Error) => {
     this.isLoading=false;
@@ -69,6 +71,8 @@ public delete(): void{
   .subscribe(() => {
     this.isLoading=false;
     this.snackBar.open('User deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+    this.dialogRef.close('1');
+    
   }),
   (error:Error) => {
     this.isLoading=false;

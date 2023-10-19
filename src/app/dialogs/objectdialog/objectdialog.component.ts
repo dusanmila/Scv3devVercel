@@ -101,6 +101,7 @@ export class ObjectDialogComponent implements OnInit {
       .subscribe(() => {
         this.isLoading = false;
         this.snackBar.open('Updated object', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+        this.dialogRef.close('1');
       }),
       (error: Error) => {
         this.isLoading = false;
@@ -115,11 +116,13 @@ export class ObjectDialogComponent implements OnInit {
       .subscribe(() => {
         this.isLoading = false;
         this.snackBar.open('Object successfully deleted', 'Ok', { duration: 2500, panelClass: ['red-snackbar'] });
+        this.dialogRef.close('1');
       }),
       (error: Error) => {
         this.isLoading = false;
         console.log(error.name + ' -> ' + error.message)
         this.snackBar.open('An error occurred', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+      
       }
   }
 

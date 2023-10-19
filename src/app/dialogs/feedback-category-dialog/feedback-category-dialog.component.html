@@ -12,11 +12,7 @@
         </div>
 
         <div mat-dialog-actions>
-            <div *ngIf="isLoading"
-                style="display: flex; justify-content: center; align-items: center; background: white;color:#56baed">
-                <mat-progress-spinner class="mat-spinner-color" mode="indeterminate" [diameter]="20">
-                </mat-progress-spinner>
-            </div>
+            
             <button class="test" mat-button type="submit" *ngIf="flag == 1" [disabled]="!data.feedbackCategoryName"
                 (click)="add()">Add</button>
             <button class="test" mat-button type="submit" *ngIf="flag == 2" [disabled]="!data.feedbackCategoryName"

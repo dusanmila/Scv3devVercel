@@ -52,6 +52,7 @@ this.isLoading=true;
       .subscribe(() => {
         this.isLoading=false;
         this.snackBar.open('Object successfully added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
+     this.dialogRef.close('1');
       }),
       (error: Error) => {
            this.isLoading=false;
