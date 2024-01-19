@@ -32,7 +32,7 @@ export class ExportPositionsDialogComponent implements OnInit {
   submitClicked: boolean = false;
   isLoading = false;
 
-  positionsOrSuggestions = 'positions';
+  positionsOrSuggestions = 'suggestions';
 
   withImages: boolean = false;
 

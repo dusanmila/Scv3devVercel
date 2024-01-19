@@ -50,7 +50,7 @@ export class LoginComponent {
 
           //ovih 6 ispod msm da ne treba ako cu u adminguard
           if (role === "Admin") {
-            this.router.navigate(["/admin/dashboard"]);
+            this.router.navigate(["/admin"]);
           }
           else {
             this.router.navigate(["/modules"]);

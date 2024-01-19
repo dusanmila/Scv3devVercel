@@ -17,33 +17,6 @@
   stroke: #56baed !important;
 }
 
-.item2 {
-  background-color: white;
-  color: #39ace7;
-  width: 20%;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  border-radius: 10px;
-  font-size: 10px;
-  border: 2px solid #39ace7;
-  cursor: pointer;
-  margin-bottom: 1%;
-  margin-top: -2.3%;
-  margin-left: 5%;
-  margin-right: 20%;
-  position: relative;
-}
-
-.item2:hover {
-  color: #fff;
-  background-color: #39ace7;
-  transition: 0.3s;
-}
-
-.item4 {
-  margin-right: 10%;
-}
 
 
 .feedbackSpan {
@@ -83,22 +56,14 @@ button[disabled]:hover {
   background-color: #fff;
 }
 
-.browseFile {
-  color: white;
-  width: 10px;
-  height: 10px;
-  border-radius: 21.5px;
-  background-color: white;
-  padding: 8px 16px;
-  margin: 40%;
-}
+
 
 .mat-dialog-content {
   overflow-y: hidden;
 }
 
 .mat-dialog-container {
-  width:200px;
+  width:500px;
 }
 
 .wrap {
