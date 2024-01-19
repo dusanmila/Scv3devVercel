@@ -33,7 +33,7 @@ export class PositionComponent implements OnInit {
   isLoading = true;
   noData = false;
 
-  isSuggestions: boolean = false;
+  isSuggestions: boolean = true;
 
   @Input() objectIdCompany: string;
   @Input() resolveFeedbacks: boolean;
@@ -94,7 +94,7 @@ export class PositionComponent implements OnInit {
 
   }
 
-  toggleIsSuggestions(value:string) {
+  /*toggleIsSuggestions(value:string) {
     if(value=='pos'){
       this.isSuggestions=false;
     }else{
@@ -105,7 +105,7 @@ export class PositionComponent implements OnInit {
 
 
   }
-
+*/
   /*
     public exportPositions() {
       this.isExporting=true;
