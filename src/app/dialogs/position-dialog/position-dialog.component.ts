@@ -52,13 +52,17 @@ export class PositionDialogComponent implements OnInit {
   public selectedProductCategories: ProductCategory[] = [];
   public positionProductCategory: PositionProductCategory = { positionProductCategoryId: "", positionId: "", productCategoryId: "" };
   public currentProdCategories: ProductCategory[] = [];
+
   public currentProdCatIds: Guid[] = [];
+  currentProdCatsChanged = false;
 
   public currentProdCatString: string = " ";
 
   public secPosId: Guid = Guid.create();
 
   isSelectOpen = false;
+
+
 
   positionDto: Position = {
     secondaryPositionId: Guid.create(),
@@ -349,30 +353,38 @@ console.log(this.currentProdCatIds)
 
     this.positionService.updatePosition(formData).subscribe(data => {
 
-      this.positionProductCategoryService.deleteForPosition(this.secPosId.toString()).subscribe(() => { //first delete existing position product categories
-        for (var cat of this.currentProdCatIds) { //then add new ...
-          if (this.flag == 1) {
-            this.positionProductCategory.positionId = this.secPosId.toString();
-          } else {
-            this.positionProductCategory.positionId = this.data.secondaryPositionId.toString();
+      console.log(this.currentProdCatsChanged)
+
+      if(this.currentProdCatsChanged) // if product categories have been changed during position editing
+      {
+        console.log('uso')
+        this.positionProductCategoryService.deleteForPosition(this.secPosId.toString()).subscribe(() => { //first delete existing position product categories
+          for (var cat of this.currentProdCatIds) { //then add new ...
+            if (this.flag == 1) {
+              this.positionProductCategory.positionId = this.secPosId.toString();
+            } else {
+              this.positionProductCategory.positionId = this.data.secondaryPositionId.toString();
+            }
+    
+            this.positionProductCategory.productCategoryId = cat.toString();
+    
+            this.positionProductCategoryService.createPositionProductCategory(this.positionProductCategory).subscribe(() => {
+              console.log('successfully added')
+            }),
+              (error: Error) => {
+                console.log(error.name + ' -> ' + error.message)
+                this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+              };
+           
           }
-  
-          this.positionProductCategory.productCategoryId = cat.toString();
-  
-          this.positionProductCategoryService.createPositionProductCategory(this.positionProductCategory).subscribe(() => {
-            console.log('successfully added')
-          }),
-            (error: Error) => {
-              console.log(error.name + ' -> ' + error.message)
-              this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-            };
-         
-        }
-      }),
-        (error: Error) => {
-          console.log(error.name + ' -> ' + error.message)
-          this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
-        };
+        }),
+          (error: Error) => {
+            console.log(error.name + ' -> ' + error.message)
+            this.snackBar.open('An error occurred.', 'Close', { duration: 2500, panelClass: ['red-snackbar'] });
+          };
+
+      }
+      
       
       this.changed = true;
       this.isLoading = false;
@@ -546,6 +558,9 @@ console.log(this.currentProdCatIds)
 
     /*checkbox change event*/
     onChange(event:Guid) {
+
+      this.currentProdCatsChanged=true;
+
       const index = this.currentProdCatIds.indexOf(event);
 
       if (index === -1) {
