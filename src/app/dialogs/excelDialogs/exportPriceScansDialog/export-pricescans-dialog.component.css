@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  max-width:200px;
+  max-width: 400px;
 }
 
 .form {
@@ -98,7 +98,7 @@ button[disabled]:hover {
 }
 
 .mat-dialog-container {
-  width:200px;
+  width: 200px;
 }
 
 .wrap {

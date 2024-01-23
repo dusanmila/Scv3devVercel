@@ -26,7 +26,7 @@ export class ExportPositionsDialogComponent implements OnInit {
 
 
   public form: FormGroup;
- 
+
   public imageUploaded: boolean = false;
   public changed: boolean = false;
   submitClicked: boolean = false;
@@ -36,19 +36,19 @@ export class ExportPositionsDialogComponent implements OnInit {
 
   withImages: boolean = false;
 
-  public retailers: Retailer[]=[];
-  public productCategories: ProductCategory[]=[];
-  public types: PositionType[]=[];
-  public objects: Obj[]=[];
+  public retailers: Retailer[] = [];
+  public productCategories: ProductCategory[] = [];
+  public types: PositionType[] = [];
+  public objects: Obj[] = [];
   filteredOptions: Observable<Obj[]>;
   formats: string[];
 
   myControl = new FormControl('');
 
-  public retailer:string='All';
-  public productCategory:string='All';
-  public selectedType:string='All';
-  public selectedObject:string='All';
+  public retailer: string = 'All';
+  public productCategory: string = 'All';
+  public selectedType: string = 'All';
+  public selectedObject: string = 'All';
   selectedFormat: string = "All";
 
   constructor(public snackBar: MatSnackBar,
@@ -72,49 +72,49 @@ export class ExportPositionsDialogComponent implements OnInit {
     this.loadTypes();
     this.loadFormats();
     this.loadObjects();
-   
-    this.dialogRef.updateSize('15%', '50%');
+    5
+    this.dialogRef.updateSize('400px', '450px');
   }
 
-public loadFormats(){
-  this.objectService.getObjectFormats().subscribe((data) => this.formats = data);
-}
+  public loadFormats() {
+    this.objectService.getObjectFormats().subscribe((data) => this.formats = data);
+  }
 
-public loadObjects(){
-  this.filteredOptions = this.myControl.valueChanges.pipe(
-    debounceTime(300), // Add a debounce to prevent rapid consecutive API calls
-    distinctUntilChanged(), // Only trigger if the value changes
-    switchMap(value => this.objectService.getObjectsByObjectName(value)) // Call the backend function
-  );
-}
+  public loadObjects() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      debounceTime(300), // Add a debounce to prevent rapid consecutive API calls
+      distinctUntilChanged(), // Only trigger if the value changes
+      switchMap(value => this.objectService.getObjectsByObjectName(value)) // Call the backend function
+    );
+  }
 
   public loadTypes() {
     this.positionService.getPositionTypes().subscribe((data) => this.types = data);
-    
+
   }
 
   public loadRetailers() {
-    this.objectService.getRetailers(0,0,'').subscribe(data => {
+    this.objectService.getRetailers(0, 0, '').subscribe(data => {
       this.retailers = data;
     });
-    
+
   }
 
 
 
   submitForm() {
     this.submitClicked = true;
-   
+
     this.isLoading = true;
-     
-   
-    this.positionService.export(this.withImages,this.retailer,this.selectedObject,this.selectedType,this.selectedFormat,this.positionsOrSuggestions).subscribe((excel) => {
-      
+
+
+    this.positionService.export(this.withImages, this.retailer, this.selectedObject, this.selectedType, this.selectedFormat, this.positionsOrSuggestions).subscribe((excel) => {
+
       const fileName = 'Positions.xlsx';
       saveAs(excel, fileName);
     });
-    
-    
+
+
   }
 
   private _filter(value: string): Obj[] {
