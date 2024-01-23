@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, IterableDiffers, OnInit, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Position } from 'src/app/models/position';
@@ -12,6 +12,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { PositionProductCategoryService } from 'src/app/Services/position-product-category.service';
 import { PositionProductCategory } from 'src/app/models/positionProductCategory';
 import { HttpParams } from '@angular/common/http';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-position-dialog',
@@ -19,6 +20,8 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./position-dialog.component.css']
 })
 export class PositionDialogComponent implements OnInit {
+
+  @ViewChild('matSelect') matSelect: MatSelect;
 
   public form: FormGroup;
   public flag: number;
@@ -49,10 +52,13 @@ export class PositionDialogComponent implements OnInit {
   public selectedProductCategories: ProductCategory[] = [];
   public positionProductCategory: PositionProductCategory = { positionProductCategoryId: "", positionId: "", productCategoryId: "" };
   public currentProdCategories: ProductCategory[] = [];
+  public currentProdCatIds: Guid[] = [];
 
   public currentProdCatString: string = " ";
 
   public secPosId: Guid = Guid.create();
+
+  isSelectOpen = false;
 
   positionDto: Position = {
     secondaryPositionId: Guid.create(),
@@ -81,12 +87,16 @@ export class PositionDialogComponent implements OnInit {
     public productCategoryService: ProductCategoryService,
     public positionProductCategoryService: PositionProductCategoryService,
     public fb: FormBuilder) {
+
+
     this.form = this.fb.group({
       file: [null],
       file2: [null],
       file3: [null],
       img: ['']
     });
+   
+
   }
 
   ngOnInit(): void {
@@ -101,7 +111,10 @@ export class PositionDialogComponent implements OnInit {
     }
 
 
+  }
 
+  onSelectOpenChange(event: boolean): void {
+    this.isSelectOpen = event;
   }
 
   public loadPositionClasses() {
@@ -116,10 +129,11 @@ export class PositionDialogComponent implements OnInit {
       console.log(this.currentProdCategories)
       this.currentProdCategories.forEach(cat => {
         this.currentProdCatString += " " + cat.productCategoryName + " ";
+        this.currentProdCatIds.push(cat.productCategoryId);
       });
 
 
-
+console.log(this.currentProdCatIds)
     });
   }
 
@@ -132,6 +146,7 @@ export class PositionDialogComponent implements OnInit {
   public loadProductCategories() {
     this.productCategoryService.getProductCategories(0, 0, '').subscribe(data => {
       this.productCategories = data;
+      console.log(this.productCategories)
     });
   }
 
@@ -332,15 +347,15 @@ export class PositionDialogComponent implements OnInit {
     formData.append('img3Changed', this.img3Changed);
 
     this.positionService.updatePosition(formData).subscribe(data => {
-      for (var cat of this.selectedProductCategories) {
+      for (var cat of this.currentProdCatIds) {
         if (this.flag == 1) {
           this.positionProductCategory.positionId = this.secPosId.toString();
         } else {
           this.positionProductCategory.positionId = this.data.secondaryPositionId.toString();
         }
 
-        this.positionProductCategory.productCategoryId = cat.productCategoryId.toString();
-        this.positionProductCategoryService.createPositionProductCategory(this.positionProductCategory).subscribe(() => {
+        this.positionProductCategory.productCategoryId = cat.toString();
+        this.positionProductCategoryService.createPositionProductCategoryWithDelete(this.positionProductCategory).subscribe(() => {
           console.log('successfully added')
         }),
           (error: Error) => {
@@ -518,7 +533,25 @@ export class PositionDialogComponent implements OnInit {
 
   }
 
+    /*checkbox change event*/
+    onChange(event:Guid) {
+      const index = this.currentProdCatIds.indexOf(event);
 
+      if (index === -1) {
+        // If the event is not in the list, add it
+        this.currentProdCatIds.push(event);
+      } else {
+        // If the event is in the list, remove it
+        this.currentProdCatIds.splice(index, 1);
+      }
+      this.matSelect.open();
+      console.log(this.currentProdCatIds)
+    }
+
+
+  isGuidInList(targetGuid: Guid): boolean {
+    return this.currentProdCatIds.includes(targetGuid);
+  }
 
   public close() {
     this.dialogRef.close(this.changed);

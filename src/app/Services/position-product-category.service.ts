@@ -36,6 +36,13 @@ export class PositionProductCategoryService {
     return retval$.asObservable();
   }
 
+  public createPositionProductCategoryWithDelete(positionProductCategory: PositionProductCategory): Observable<PositionProductCategory> {
+    let retval$ = new Subject<PositionProductCategory>();
+    this.http.post<PositionProductCategory>(`${POSITION_URL}/posProdCategoriesWithDelete`, positionProductCategory, { headers: this.headers }).subscribe((helper: PositionProductCategory) => {
+      retval$.next(helper);
+    });
+    return retval$.asObservable();
+  }
 
 
 }

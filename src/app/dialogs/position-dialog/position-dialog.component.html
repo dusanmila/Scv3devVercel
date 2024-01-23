@@ -57,12 +57,13 @@
       </mat-form-field>
     </div>-->
  
-    <div class="form" *ngIf="flag==1 || flag==4">
+    <div class="form" *ngIf="flag==4">
       <mat-form-field>
         <mat-label>Product categories</mat-label>
-        <mat-select [(value)]="selectedProductCategories" multiple>
-          <mat-option *ngFor="let productCategory of productCategories"
-            [value]="productCategory">{{productCategory.productCategoryName}}</mat-option>
+        <mat-select  #matSelect>
+          <mat-option *ngFor="let category of productCategories" [value]="category.productCategoryId" (click)="$event.stopPropagation()" (mousedown)="$event.preventDefault()">
+            <mat-checkbox [checked]="isGuidInList(category.productCategoryId)" (change)="onChange(category.productCategoryId)"> {{category.productCategoryName}}</mat-checkbox>
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -73,6 +74,18 @@
         <input matInput [value]="currentProdCatString" name="currentProdCatString" [disabled]="true" />
       </mat-form-field>
     </div>
+
+    <div class="form" *ngIf="flag==1">
+      <mat-form-field>
+        <mat-label>Change product categories</mat-label>
+        <mat-select [(value)]="selectedProductCategories" multiple>
+          <mat-option *ngFor="let productCategory of productCategories"
+            [value]="productCategory">{{productCategory.productCategoryName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    
 
     <!--  <div class="form" *ngIf="flag == 2 || flag == 3">
       <mat-form-field>
