@@ -36,13 +36,19 @@ export class PositionProductCategoryService {
     return retval$.asObservable();
   }
 
+  public deleteForPosition(positionId:string) {
+    return this.http.delete(`${POSITION_URL}/posProdCategories/deleteForPosition/`+positionId, { headers: this.headers });
+  }
+
+
+  /*
   public createPositionProductCategoryWithDelete(positionProductCategory: PositionProductCategory): Observable<PositionProductCategory> {
     let retval$ = new Subject<PositionProductCategory>();
-    this.http.post<PositionProductCategory>(`${POSITION_URL}/posProdCategoriesWithDelete`, positionProductCategory, { headers: this.headers }).subscribe((helper: PositionProductCategory) => {
+    this.http.post<PositionProductCategory>(`${POSITION_URL}/posProdCategories/withDelete`, positionProductCategory, { headers: this.headers }).subscribe((helper: PositionProductCategory) => {
       retval$.next(helper);
     });
     return retval$.asObservable();
-  }
+  }*/
 
 
 }

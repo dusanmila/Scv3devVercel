@@ -62,7 +62,7 @@
         <mat-label>Product categories</mat-label>
         <mat-select  #matSelect>
           <mat-option *ngFor="let category of productCategories" [value]="category.productCategoryId" (click)="$event.stopPropagation()" (mousedown)="$event.preventDefault()">
-            <mat-checkbox [checked]="isGuidInList(category.productCategoryId)" (change)="onChange(category.productCategoryId)"> {{category.productCategoryName}}</mat-checkbox>
+            <mat-checkbox color="primary" [checked]="isGuidInList(category.productCategoryId)" (change)="onChange(category.productCategoryId)"> {{category.productCategoryName}}</mat-checkbox>
           </mat-option>
         </mat-select>
       </mat-form-field>
