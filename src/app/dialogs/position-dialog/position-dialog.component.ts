@@ -131,6 +131,7 @@ export class PositionDialogComponent implements OnInit {
     this.productCategoryService.getProductCategoriesByPosition(this.data.secondaryPositionId).subscribe(data => {
       this.currentProdCategories = data;
       console.log(this.currentProdCategories)
+      this.currentProdCatString="";
       this.currentProdCategories.forEach(cat => {
         this.currentProdCatString += " " + cat.productCategoryName + " ";
         this.currentProdCatIds.push(cat.productCategoryId);
@@ -358,7 +359,7 @@ console.log(this.currentProdCatIds)
       if(this.currentProdCatsChanged) // if product categories have been changed during position editing
       {
         console.log('uso')
-        this.positionProductCategoryService.deleteForPosition(this.secPosId.toString()).subscribe(() => { //first delete existing position product categories
+        this.positionProductCategoryService.deleteForPosition(this.data.secondaryPositionId.toString()).subscribe(() => { //first delete existing position product categories
           for (var cat of this.currentProdCatIds) { //then add new ...
             if (this.flag == 1) {
               this.positionProductCategory.positionId = this.secPosId.toString();
