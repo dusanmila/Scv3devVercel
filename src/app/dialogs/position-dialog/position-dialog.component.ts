@@ -130,15 +130,12 @@ export class PositionDialogComponent implements OnInit {
   public loadCurrentProdCat() {
     this.productCategoryService.getProductCategoriesByPosition(this.data.secondaryPositionId).subscribe(data => {
       this.currentProdCategories = data;
-      console.log(this.currentProdCategories)
       this.currentProdCatString="";
       this.currentProdCategories.forEach(cat => {
-        this.currentProdCatString += " " + cat.productCategoryName + " ";
+        this.currentProdCatString += cat.productCategoryName + " ";
         this.currentProdCatIds.push(cat.productCategoryId);
       });
 
-
-console.log(this.currentProdCatIds)
     });
   }
 
@@ -151,7 +148,6 @@ console.log(this.currentProdCatIds)
   public loadProductCategories() {
     this.productCategoryService.getProductCategories(0, 0, '').subscribe(data => {
       this.productCategories = data;
-      console.log(this.productCategories)
     });
   }
 
@@ -192,7 +188,6 @@ console.log(this.currentProdCatIds)
   }
 
   public update(): void {
-    console.log(this.positionDto)
 
 
     this.isLoading = true;
@@ -220,7 +215,6 @@ console.log(this.currentProdCatIds)
   }
 
   uploadFile(event: any, imgNumber: number) {
-    console.log(imgNumber)
     if (imgNumber == 1) {
       const file = (event.target as HTMLInputElement).files![0];
       this.form.patchValue({
@@ -253,17 +247,13 @@ console.log(this.currentProdCatIds)
     this.submitClicked = true;
 
 
-    console.log(this.selectedProductCategories)
-
 
     this.isLoading = true;
     let username = localStorage.getItem("username") as string;
     const formData: any = new FormData();
     formData.append('files', this.form.get('file')!.value);
-    console.log(this.form.get('file')!.value)
     if (this.imageUploaded2) {
       formData.append('files', this.form.get('file2')!.value);
-      console.log(this.form.get('file2')!.value)
     }
     if (this.imageUploaded3) {
       formData.append('files', this.form.get('file3')!.value);
@@ -284,7 +274,6 @@ console.log(this.currentProdCatIds)
     this.positionService.createPosition(formData, this.isPositionCheck).subscribe(data => {
       this.changed = true;
       this.isLoading = false;
-      console.log(data);
       this.snackBar.open('Position added', 'Ok', { duration: 2500, panelClass: ['blue-snackbar'] });
 
       this.close();
@@ -314,10 +303,6 @@ console.log(this.currentProdCatIds)
 
 
   submitFormUpdate() {
-    console.log(this.imageUploaded)
-    console.log(this.imageUploaded2)
-    console.log(this.imageUploaded3)
-
     this.submitClicked = true;
 
     this.isLoading = true;
@@ -327,7 +312,6 @@ console.log(this.currentProdCatIds)
       formData.append('files', this.form.get('file')!.value);
       this.img1Changed = true;
     }
-    console.log(this.form.get('file')!.value)
     if (this.imageUploaded2) {
       formData.append('files', this.form.get('file2')!.value);
       this.img2Changed = true;
@@ -354,11 +338,9 @@ console.log(this.currentProdCatIds)
 
     this.positionService.updatePosition(formData).subscribe(data => {
 
-      console.log(this.currentProdCatsChanged)
 
       if(this.currentProdCatsChanged) // if product categories have been changed during position editing
       {
-        console.log('uso')
         this.positionProductCategoryService.deleteForPosition(this.data.secondaryPositionId.toString()).subscribe(() => { //first delete existing position product categories
           for (var cat of this.currentProdCatIds) { //then add new ...
             if (this.flag == 1) {
@@ -572,7 +554,6 @@ console.log(this.currentProdCatIds)
         this.currentProdCatIds.splice(index, 1);
       }
       this.matSelect.open();
-      console.log(this.currentProdCatIds)
     }
 
 
