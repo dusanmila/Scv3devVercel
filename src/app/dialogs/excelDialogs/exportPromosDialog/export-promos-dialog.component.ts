@@ -72,7 +72,7 @@ export class ExportPromosDialogComponent implements OnInit {
     this.loadRetailers();
     this.loadUsers();
 
-    this.dialogRef.updateSize('15%', '60%');
+    this.dialogRef.updateSize('400px', '500px');
   }
 
 
@@ -90,7 +90,7 @@ export class ExportPromosDialogComponent implements OnInit {
 
   }
 
-  public loadUsers(){
+  public loadUsers() {
     this.filteredOptionsUsers = this.userControl.valueChanges.pipe(
       debounceTime(300), // Add a debounce to prevent rapid consecutive API calls
       distinctUntilChanged(), // Only trigger if the value changes
@@ -114,7 +114,7 @@ export class ExportPromosDialogComponent implements OnInit {
 
   }
 
- 
+
 
   public close(): void {
     this.dialogRef.close(this.changed);

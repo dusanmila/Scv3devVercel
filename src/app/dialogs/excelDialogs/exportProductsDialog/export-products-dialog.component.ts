@@ -52,7 +52,7 @@ export class ExportProductsDialogComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategories();
 
-    this.dialogRef.updateSize('15%', '25%');
+    this.dialogRef.updateSize('400px', '300px');
   }
 
   public loadCategories() {

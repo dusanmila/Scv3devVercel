@@ -34,9 +34,9 @@ export class ExportPriceScansDialogComponent implements OnInit {
 
 
 
-  public objects: Obj[]=[];
+  public objects: Obj[] = [];
   filteredOptions: Observable<Obj[]>;
-  public selectedObject:string='All';
+  public selectedObject: string = 'All';
 
 
   constructor(public snackBar: MatSnackBar,
@@ -54,8 +54,8 @@ export class ExportPriceScansDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
- this.loadObjects();
-    this.dialogRef.updateSize('15%', '30%');
+    this.loadObjects();
+    this.dialogRef.updateSize('400px', '300px');
   }
 
 
@@ -77,19 +77,19 @@ export class ExportPriceScansDialogComponent implements OnInit {
 
   }
 
- 
-    public loadObjects(){
-      this.filteredOptions = this.myControl.valueChanges.pipe(
-        debounceTime(300), // Add a debounce to prevent rapid consecutive API calls
-        distinctUntilChanged(), // Only trigger if the value changes
-        switchMap(value => this.objectService.getObjectsByObjectName(value)) // Call the backend function
-      );
-    }
-    
-    onAutocompleteInputChange(event: Event) {
-      this.myControl.setValue((event.target as HTMLInputElement).value);
-    }
-  
+
+  public loadObjects() {
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      debounceTime(300), // Add a debounce to prevent rapid consecutive API calls
+      distinctUntilChanged(), // Only trigger if the value changes
+      switchMap(value => this.objectService.getObjectsByObjectName(value)) // Call the backend function
+    );
+  }
+
+  onAutocompleteInputChange(event: Event) {
+    this.myControl.setValue((event.target as HTMLInputElement).value);
+  }
+
 
   public close(): void {
     this.dialogRef.close(this.changed);
