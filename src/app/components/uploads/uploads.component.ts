@@ -23,6 +23,7 @@ import { ExportPromosDialogComponent } from 'src/app/dialogs/excelDialogs/export
 import { ExportProductsDialogComponent } from 'src/app/dialogs/excelDialogs/exportProductsDialog/export-products-dialog.component';
 import { ExportPositionsDialogComponent } from 'src/app/dialogs/excelDialogs/exportPositionsDialog/export-positions-dialog.component';
 import { ExportPriceScansDialogComponent } from 'src/app/dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
+import { ExportObjectsDialogComponent } from 'src/app/dialogs/excelDialogs/export-objects-dialog/export-objects-dialog.component';
 
 
 @Component({
@@ -374,30 +375,21 @@ export class UploadsComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-  public exportObjects() {
-
-    this.objectService.exportObjects().subscribe((excel) => {
-      this.isObjLoading = false;
-      const fileName = 'Objects.xlsx';
-      saveAs(excel, fileName);
-    });
-  }
-
-
   openDialog(flag: number) {
+
+    if (flag == 1) {
+      const dialogRef = this.dialog.open(ExportObjectsDialogComponent);
+
+      dialogRef.afterClosed().subscribe(res => {
+
+      });
+    }
 
     if (flag == 2) {
       const dialogRef = this.dialog.open(ExportPositionsDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-        
+
       });
     }
 
@@ -405,7 +397,7 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportProductsDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-        
+
       });
     }
 
@@ -413,7 +405,7 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportPromosDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-      
+
       });
     }
 
@@ -421,7 +413,7 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportConditionsDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-       
+
       });
     }
 
@@ -429,7 +421,7 @@ export class UploadsComponent implements OnInit {
       const dialogRef = this.dialog.open(ExportPriceScansDialogComponent);
 
       dialogRef.afterClosed().subscribe(res => {
-       
+
       });
     }
 

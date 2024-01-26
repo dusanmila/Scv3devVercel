@@ -112,6 +112,7 @@ import { ConditionComponent } from './components/condition/condition.component';
 import { ConditionDialogComponent } from './dialogs/condition-dialog/condition-dialog.component';
 import { ProductPriceScannerDialogComponent } from './dialogs/product-price-scanner-dialog/product-price-scanner-dialog.component';
 import { ExportPriceScansDialogComponent } from './dialogs/excelDialogs/exportPriceScansDialog/export-pricescans-dialog.component';
+import { ExportObjectsDialogComponent } from './dialogs/excelDialogs/export-objects-dialog/export-objects-dialog.component';
 
 
 @NgModule({
@@ -179,7 +180,8 @@ import { ExportPriceScansDialogComponent } from './dialogs/excelDialogs/exportPr
     AddToPredefinedDialogComponent,
     ConditionComponent,
     ConditionDialogComponent,
-    ProductPriceScannerDialogComponent
+    ProductPriceScannerDialogComponent,
+    ExportObjectsDialogComponent
   ],
   imports: [
     AppRoutingModule,
