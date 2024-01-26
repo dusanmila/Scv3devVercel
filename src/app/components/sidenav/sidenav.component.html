@@ -70,21 +70,24 @@
                 <a mat-list-item class="nav-list-item" [routerLink]="['retailer']" (click)="updateTitle('Retailers')">
                     <mat-icon class="nav-icon">vertical_split</mat-icon>Retailers
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['feedbackCategory']"
+                <a mat-list-item class="nav-list-item"   style="background-color: rgb(219, 219, 219);"
                     (click)="updateTitle('Feedback categories')">
+                    <!--[routerLink]="['feedbackCategory']"-->
                     <mat-icon class="nav-icon">ballot</mat-icon>Feedback Categories
                 </a>
                 <a mat-list-item class="nav-list-item" [routerLink]="['productCategory']"
                     (click)="updateTitle('Product categories')">
                     <mat-icon class="nav-icon">fastfood</mat-icon>Product Categories
                 </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['product']" (click)="updateTitle('Products')">
-                    <mat-icon class="nav-icon">fastfood</mat-icon>Products
-                </a>
-                <a mat-list-item class="nav-list-item" [routerLink]="['priceScanner']"
-                    (click)="updateTitle('Price Scanner Products')">
+                <a mat-list-item class="nav-list-item" style="background-color: rgb(219, 219, 219);" (click)="updateTitle('Products')">
+                    <!--[routerLink]="['product']"-->
                     <mat-icon class="nav-icon">ballot</mat-icon>Price Scanner Products
                 </a>
+                <!--<a mat-list-item class="nav-list-item" [routerLink]="['priceScanner']"
+                    (click)="updateTitle('Price Scanner Products')">
+                    <mat-icon class="nav-icon">ballot</mat-icon>Price Scanner Products
+                </a>-->
+                
                 <a mat-list-item class="nav-list-item" [routerLink]="['uploads']"
                     (click)="updateTitle('Import / Export')">
                     <mat-icon class="nav-icon">cloud_upload</mat-icon>Import / Export
