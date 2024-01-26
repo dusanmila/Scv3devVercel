@@ -110,6 +110,7 @@ export class ExportPositionsDialogComponent implements OnInit {
 
     this.positionService.export(this.withImages, this.retailer, this.selectedObject, this.selectedType, this.selectedFormat, this.positionsOrSuggestions).subscribe((excel) => {
 
+      this.isLoading=false;
       const fileName = 'Positions.xlsx';
       saveAs(excel, fileName);
     });
