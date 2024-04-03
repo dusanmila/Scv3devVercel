@@ -17,6 +17,12 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header class="column-name">Class</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.posClassName}}</mat-cell>
     </ng-container>
+    
+    <ng-container matColumnDef="supplier">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="column-name">Supplier</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.supplier}}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="posTypeName">
       <mat-header-cell *matHeaderCellDef mat-sort-header class="column-name">Type</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.posTypeName}}</mat-cell>

@@ -17,7 +17,7 @@ import * as saveAs from 'file-saver';
 })
 export class PositionComponent implements OnInit {
 
-  displayedColumns = ["posTypeName", "actions"];
+  displayedColumns = ["posTypeName","actions"];
   dataSource: MatTableDataSource<Position>;
   isExporting = false;
 

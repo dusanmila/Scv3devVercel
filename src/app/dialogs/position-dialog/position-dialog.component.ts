@@ -37,7 +37,19 @@ export class PositionDialogComponent implements OnInit {
   public imageUploaded3: boolean = false;
   public isLoading: boolean = false;
   //public secPos = { secondaryPositionId: "", objectIdCompany: "", posClassName: "", posTypeName: "", productCategory: "", supplier: "", location: "", comment: "", img: "", isImgHorizontal: false, valid: false };
-  public suppliers = ['Frikom', 'Other'];
+  public suppliers = [
+  'Frikom uredjaj-Frikom asort. 100%', 
+  'Frikom uredjaj-Frikom asort. 75%',
+  'Frikom uredjaj-Frikom asort. 50%',
+  'Frikom uredjaj-Santa asort.',
+  'Frikom uredjaj-Konkurencija asort.', 
+  'Froneri uredjaj-Froneri asort.',
+  'Retail oprema-Frikom asort.',
+  'Retail oprema-Froner asort.',
+  'Retail oprema-Drugi dobavljači',
+  'Retail oprema-Robna marka asort.'
+
+];
   public locations = ['Magacin', 'Prodajni prostor'];
   isRotated = false;
   isRotated2 = false;
