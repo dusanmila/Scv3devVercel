@@ -45,7 +45,7 @@ export class PositionDialogComponent implements OnInit {
   'Frikom uredjaj-Konkurencija asort.', 
   'Froneri uredjaj-Froneri asort.',
   'Retail oprema-Frikom asort.',
-  'Retail oprema-Froner asort.',
+  'Retail oprema-Froneri asort.',
   'Retail oprema-Drugi dobavljači',
   'Retail oprema-Robna marka asort.'
 
